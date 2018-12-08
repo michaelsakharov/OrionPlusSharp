@@ -137,12 +137,12 @@ namespace Engine
 
             if (ShieldSlot > 0)
             {
-                n = (byte)Conversion.Int(VBMath.Rnd() * 2);
+                n = Convert.ToInt16(VBMath.Rnd() * 2);
 
                 if (n == 1)
                 {
                     i = (GetPlayerStat(index, Enums.StatType.Endurance) / 2) + (GetPlayerLevel(index) / 2);
-                    n = (byte)Conversion.Int(VBMath.Rnd() * 100) + 1;
+                    n = Convert.ToInt16(VBMath.Rnd() * 100) + 1;
 
                     if (n <= i)
                         CanPlayerBlockHit = true;
@@ -164,7 +164,7 @@ namespace Engine
                 if (n == 1)
                 {
                     i = (GetPlayerStat(index, Enums.StatType.Strength) / 2) + (GetPlayerLevel(index) / 2);
-                    n = (byte)Conversion.Int(VBMath.Rnd() * 100) + 1;
+                    n = Convert.ToInt16(VBMath.Rnd() * 100) + 1;
 
                     if (n <= i)
                         CanPlayerCriticalHit = true;
@@ -906,36 +906,44 @@ namespace Engine
 
         internal static void HandlePlayerKilledPK(int Attacker, int Victim)
         {
-            int z = 0;
             int eqcount = 0;
             // TODO: Redo this method, it is horrendous.
             int invcount = 0, j = 0;
+
+
+            //Check to see if the victim is a Player Killer
             if (GetPlayerPK(Victim) == 0)
             {
+                //Check to see if the Attacker is a Player Killer
                 if (GetPlayerPK(Attacker) == 0)
                 {
+                    //If the Victim is not a PK and the Attacker also isnt a PK then the attacker has now been deemed a Player Killer
                     SetPlayerPK(Attacker, 1);
                     S_NetworkSend.SendPlayerData(Attacker);
                     S_NetworkSend.GlobalMsg(GetPlayerName(Attacker) + " has been deemed a Player Killer!!!");
                 }
             }
             else
+            {
+                //Victim was a Player Killer
                 S_NetworkSend.GlobalMsg(GetPlayerName(Victim) + " has paid the price for being a Player Killer!!!");
+            }
+
 
             if (GetPlayerLevel(Victim) >= 10)
             {
-                for (z = 1; z <= Constants.MAX_INV; z++)
+                for (int i = 1; i <= Constants.MAX_INV; i++)
                 {
-                    if (GetPlayerInvItemNum(Victim, z) > 0)
+                    if (GetPlayerInvItemNum(Victim, i) > 0)
                         invcount = invcount + 1;
                 }
 
-                for (z = 1; z <= (byte)Enums.EquipmentType.Count - 1; z++)
+                for (int i = 1; i <= (byte)Enums.EquipmentType.Count - 1; i++)
                 {
-                    if (GetPlayerEquipment(Victim, (EquipmentType)z) > 0)
+                    if (GetPlayerEquipment(Victim, (EquipmentType)i) > 0)
                         eqcount = eqcount + 1;
                 }
-                z = S_GameLogic.Random(1, invcount + eqcount);
+                int z = S_GameLogic.Random(1, invcount + eqcount);
 
                 if (z == 0)
                     z = 1;
@@ -954,7 +962,7 @@ namespace Engine
                             if (j == z)
                             {
                                 // Here it is, drop this piece of equipment!
-                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Microsoft.VisualBasic.Strings.Trim(Types.Item[GetPlayerEquipment(Victim, (EquipmentType)x)].Name), (int)Enums.ColorType.BrightRed);
+                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Types.Item[GetPlayerEquipment(Victim, (EquipmentType)x)].Name.Trim(), (int)Enums.ColorType.BrightRed);
                                 S_Items.SpawnItem(GetPlayerEquipment(Victim, (EquipmentType)x), 1, GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim));
                                 SetPlayerEquipment(Victim, 0, (EquipmentType)x);
                                 S_NetworkSend.SendWornEquipment(Victim);
@@ -973,7 +981,7 @@ namespace Engine
                             if (j == z)
                             {
                                 // Here it is, drop this item!
-                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Microsoft.VisualBasic.Strings.Trim(Types.Item[GetPlayerInvItemNum(Victim, x)].Name), (int)Enums.ColorType.BrightRed);
+                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Types.Item[GetPlayerInvItemNum(Victim, x)].Name.Trim(), (int)Enums.ColorType.BrightRed);
                                 S_Items.SpawnItem(GetPlayerInvItemNum(Victim, x), GetPlayerInvItemValue(Victim, x), GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim));
                                 SetPlayerInvItemNum(Victim, x, 0);
                                 SetPlayerInvItemValue(Victim, x, 0);

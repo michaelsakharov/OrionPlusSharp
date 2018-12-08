@@ -3441,7 +3441,7 @@ namespace Engine
                         i = i + 1;
                     newtxt = Microsoft.VisualBasic.Strings.Mid(txt, 1, x - 1);
                     parsestring = Microsoft.VisualBasic.Strings.Mid(txt, x + 2, i);
-                    z = modTypes.Player[index].Character[modTypes.TempPlayer[i].CurChar].Variables[(int)Conversion.Val(parsestring)];
+                    z = modTypes.Player[index].Character[modTypes.TempPlayer[i].CurChar].Variables[Convert.ToInt32(parsestring)];
                     newtxt = newtxt + System.Convert.ToString(z);
                     newtxt = newtxt + Microsoft.VisualBasic.Strings.Mid(txt, x + 2 + i, Microsoft.VisualBasic.Strings.Len(txt) - (x + i));
                     txt = newtxt;

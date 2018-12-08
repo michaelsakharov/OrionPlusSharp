@@ -316,16 +316,16 @@ namespace Engine
             {
                 for (var Layer = 1; Layer <= (int)Enums.LayerType.Count - 1; Layer++)
                 {
-                    if ((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")) > 0)
+                    if (Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")) > 0)
                     {
                         buffer.WriteInt32(Layer);
-                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")));
-                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "X")));
-                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Y")));
-                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Autotile")));
+                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")));
+                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "X")));
+                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Y")));
+                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Autotile")));
                     }
                 }
-                buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Type")));
+                buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Type")));
             }
 
             myXml.CloseXml(false);
@@ -442,7 +442,7 @@ namespace Engine
 
                         if (S_GameLogic.Random(1, ResourceFreq) == 1)
                         {
-                            resourceNum = (int)Conversion.Val(_resources[S_GameLogic.Random(1, Information.UBound(_resources))]);
+                            resourceNum = Convert.ToInt32(_resources[S_GameLogic.Random(1, Information.UBound(_resources))]);
                             modTypes.Map[mapNum].Tile[x, y].Type = (byte)Enums.TileType.Resource;
                             modTypes.Map[mapNum].Tile[x, y].Data1 = resourceNum;
                         }
@@ -519,7 +519,7 @@ namespace Engine
                     }
                 }
 
-                totalOvergrass = S_GameLogic.Random((int)Conversion.Int(grassCount / (double)100), Conversion.Int(grassCount / (int)50));
+                totalOvergrass = S_GameLogic.Random(Convert.ToInt32(grassCount / (double)100), Conversion.Int(grassCount / (int)50));
 
                 while (overgrassCount >= totalOvergrass)
                 {
@@ -883,7 +883,7 @@ namespace Engine
             oldX = Tile[(int)TilePrefab.Mountain].Layer[2].X;
             oldY = Tile[(int)TilePrefab.Mountain].Layer[2].Y;
             Tile[(int)TilePrefab.Mountain].Layer[2].X = (byte)(oldX + ((int)mountainPrefab % 3));
-            Tile[(int)TilePrefab.Mountain].Layer[2].Y = (byte)(oldY + ((int)Conversion.Int((int)mountainPrefab / (int)3)));
+            Tile[(int)TilePrefab.Mountain].Layer[2].Y = (byte)(oldY + (Convert.ToInt32((int)mountainPrefab / (int)3)));
             AddTile(TilePrefab.Mountain, mapNum, x, y);
             Tile[(int)TilePrefab.Mountain].Layer[2].X = (byte)oldX;
             Tile[(int)TilePrefab.Mountain].Layer[2].Y = (byte)oldY;
@@ -1621,7 +1621,7 @@ namespace Engine
                         if (_mapOrientation[modTypes.Map[mapNum].Left].Prefab == (int)MapPrefab.Common)
                         {
                             PaintTile(TilePrefab.Passing, mapNum, x, y, brushX, brushY, onlyTo: TilePrefab.Grass);
-                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Left, (int)Conversion.Val(modTypes.Map[mapNum].MaxX), y, brushX, brushY, onlyTo: TilePrefab.Grass);
+                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Left, Convert.ToInt32(modTypes.Map[mapNum].MaxX), y, brushX, brushY, onlyTo: TilePrefab.Grass);
                             MakePath(modTypes.Map[mapNum].Left, modTypes.Map[mapNum].MaxX, y, dir, steps);
                         }
                     }
@@ -1647,7 +1647,7 @@ namespace Engine
                         if (_mapOrientation[modTypes.Map[mapNum].Up].Prefab == (int)MapPrefab.Common)
                         {
                             PaintTile(TilePrefab.Passing, mapNum, x, y, brushX, brushY, onlyTo: TilePrefab.Grass);
-                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Up, x, (int)Conversion.Val(modTypes.Map[mapNum].MaxY), brushX, brushY, onlyTo: TilePrefab.Grass);
+                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Up, x, Convert.ToInt32(modTypes.Map[mapNum].MaxY), brushX, brushY, onlyTo: TilePrefab.Grass);
                             MakePath(modTypes.Map[mapNum].Up, x, modTypes.Map[mapNum].MaxY, dir, steps);
                         }
                     }
@@ -1846,13 +1846,13 @@ namespace Engine
             int totalMaps = size * size;
 
             if (totalMaps % 2 == 1)
-                MakeMapPaths((int)Conversion.Int(totalMaps / (double)2) + 1);
+                MakeMapPaths(Convert.ToInt32(totalMaps / (double)2) + 1);
             else
             {
-                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2));
-                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2) + 1);
-                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2) + size);
-                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2) + size + 1);
+                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2));
+                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2) + 1);
+                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2) + size);
+                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2) + size + 1);
             }
         }
 

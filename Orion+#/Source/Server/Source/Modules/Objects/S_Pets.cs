@@ -975,11 +975,11 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                                         if (didWalk == false)
                                         {
-                                            tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
+                                            tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
 
                                             if (tmpdir == 1)
                                             {
-                                                tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
+                                                tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
                                                 if (CanPetMove(playerindex, mapNum, (byte)tmpdir))
                                                     PetMove(playerindex, mapNum, tmpdir, (byte)Enums.MovementType.Walking);
                                             }
@@ -1000,10 +1000,10 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                                         if (didWalk == false)
                                         {
-                                            tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
+                                            tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
                                             if (tmpdir == 1)
                                             {
-                                                tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
+                                                tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
                                                 if (CanPetMove(playerindex, mapNum, (byte)tmpdir))
                                                     PetMove(playerindex, mapNum, tmpdir, (byte)Enums.MovementType.Walking);
                                             }
@@ -1529,7 +1529,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             {
                 if (S_Events.PathfindingType == 1)
                 {
-                    i = (int)Conversion.Int(VBMath.Rnd() * 5);
+                    i = Convert.ToInt32(VBMath.Rnd() * 5);
 
                     // Lets move the pet
                     switch (i)
@@ -1814,11 +1814,11 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             // We could not move so Target must be behind something, walk randomly.
             if (!didwalk)
             {
-                i = (int)Conversion.Int(VBMath.Rnd() * 2);
+                i = Convert.ToInt32(VBMath.Rnd() * 2);
 
                 if (i == 1)
                 {
-                    i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                    i = Convert.ToInt32(VBMath.Rnd() * 4);
 
                     if (CanPetMove(x, mapNum, (byte)i))
                         PetMove(x, mapNum, i, (int)Enums.MovementType.Walking);

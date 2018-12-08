@@ -132,17 +132,17 @@ namespace Engine
                 Types.Classes[i].Stat[(int)Enums.StatType.Intelligence] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "Int"));
                 Types.Classes[i].Stat[(int)Enums.StatType.Spirit] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "Speed"));
 
-                Types.Classes[i].BaseExp = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "BaseExp"));
+                Types.Classes[i].BaseExp = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "BaseExp"));
 
-                Types.Classes[i].StartMap = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartMap"));
+                Types.Classes[i].StartMap = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "StartMap"));
                 Types.Classes[i].StartX = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartX"));
                 Types.Classes[i].StartY = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartY"));
 
                 // loop for items & values
                 for (x = 1; x <= 5; x++)
                 {
-                    Types.Classes[i].StartItem[x] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartItem" + x));
-                    Types.Classes[i].StartValue[x] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartValue" + x));
+                    Types.Classes[i].StartItem[x] = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "StartItem" + x));
+                    Types.Classes[i].StartValue[x] = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "StartValue" + x));
                 }
             }
 
@@ -167,8 +167,8 @@ namespace Engine
             var loopTo = S_Globals.Max_Classes;
             for (i = 1; i <= loopTo; i++)
             {
-                myXml.WriteString("CLASS" + i, "Name", Microsoft.VisualBasic.Strings.Trim(Types.Classes[i].Name));
-                myXml.WriteString("CLASS" + i, "Desc", Microsoft.VisualBasic.Strings.Trim(Types.Classes[i].Desc));
+                myXml.WriteString("CLASS" + i, "Name", Types.Classes[i].Name.Trim());
+                myXml.WriteString("CLASS" + i, "Desc", Types.Classes[i].Desc.Trim());
 
                 tmpstring = "";
                 var loopTo1 = Information.UBound(Types.Classes[i].MaleSprite);
@@ -534,7 +534,7 @@ namespace Engine
             };
 
             myXml.LoadXml();
-            modTypes.Map[mapNum].EventCount = (int)Conversion.Val(myXml.ReadString("Events", "EventCount"));
+            modTypes.Map[mapNum].EventCount = Convert.ToInt32(myXml.ReadString("Events", "EventCount"));
 
             if (!(modTypes.Map[mapNum].EventCount > 0))
             {

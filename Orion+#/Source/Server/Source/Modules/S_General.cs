@@ -199,7 +199,7 @@ namespace Engine
             // load options, set if they dont exist
             if (!File.Exists(Path.Combine(Application.StartupPath, "Data", "Config.xml")))
             {
-                modTypes.Options.GameName = "Orion+";
+                modTypes.Options.GameName = "Orion+#";
                 modTypes.Options.Port = 7001;
                 modTypes.Options.Motd = "Welcome to the Orion+# Engine";
                 modTypes.Options.Website = "http://ascensiongamedev.com/index.php";
@@ -308,7 +308,6 @@ namespace Engine
             S_NetworkConfig.DestroyNetwork();
             ClearGameData();
 
-            /* TODO ERROR: Skipped IfDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElseDirectiveTrivia */
             Environment.Exit(0);
         }
 

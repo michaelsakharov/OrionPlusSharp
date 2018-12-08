@@ -537,10 +537,10 @@ namespace Engine
                                                 }
                                                 else
                                                 {
-                                                    i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                                    i = Convert.ToInt32(VBMath.Rnd() * 4);
                                                     if (i == 1)
                                                     {
-                                                        i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                                        i = Convert.ToInt32(VBMath.Rnd() * 4);
 
                                                         if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
                                                             S_Npc.NpcMove(mapNum, x, i, (int)Enums.MovementType.Walking);
@@ -552,11 +552,11 @@ namespace Engine
                                         }
                                         else
                                         {
-                                            i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                            i = Convert.ToInt32(VBMath.Rnd() * 4);
 
                                             if (i == 1)
                                             {
-                                                i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                                i = Convert.ToInt32(VBMath.Rnd() * 4);
 
                                                 if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
                                                     S_Npc.NpcMove(mapNum, x, i, (int)Enums.MovementType.Walking);
