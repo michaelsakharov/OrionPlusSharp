@@ -1438,8 +1438,6 @@ namespace Engine
             int Colour = 0;
             int amount = 0;
 
-            Console.WriteLine("Server-PlayerMove");
-
             // Check for subscript out of range
             if (S_NetworkConfig.IsPlaying(index) == false || Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right || Movement < 1 || Movement > 2)
                 return;
@@ -1452,26 +1450,20 @@ namespace Engine
             {
                 case (byte)Enums.DirectionType.Up:
                     {
-                        Console.WriteLine("Got here 1");
                         // Check to make sure not outside of boundries
                         if (GetPlayerY(index) > 0)
                         {
-                            Console.WriteLine("Got here 2");
                             // Check to make sure that the tile is walkable
                             byte directionRef = ((int)Enums.DirectionType.Up + 1);
                             if (!IsDirBlocked(ref modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].DirBlock, ref directionRef))
                             {
-                                Console.WriteLine("Got here 3");
                                 if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Blocked)
                                 {
-                                    Console.WriteLine("Got here 4");
                                     if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Resource)
                                     {
-                                        Console.WriteLine("Got here 5");
                                         // Check to see if the tile is a key and if it is check if its opened
                                         if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Key || (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index) - 1].Type == (byte)Enums.TileType.Key && modTypes.TempTile[GetPlayerMap(index)].DoorOpen[GetPlayerX(index), GetPlayerY(index) - 1] == 1))
                                         {
-                                            Console.WriteLine("Got here 6");
                                             SetPlayerY(index, GetPlayerY(index) - 1);
                                             S_NetworkSend.SendPlayerMove(index, Movement);
                                             Moved = true;
