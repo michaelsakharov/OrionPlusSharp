@@ -1,0 +1,83 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Editors
+</name>
+</assembly>
+<members>
+<member name="T:Engine.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Engine.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Engine.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:Engine.Enums.ColorType">
+ <Summary> Text Color Contstant </Summary>
+</member>
+<member name="T:Engine.Enums.QColorType">
+ <Summary> Quick Access/Constant Color References </Summary>
+</member>
+<member name="T:Engine.Enums.SexType">
+ <Summary> Sex Constant </Summary>
+</member>
+<member name="T:Engine.Enums.MapMoralType">
+ <Summary> Map Moral Constant </Summary>
+</member>
+<member name="T:Engine.Enums.TileType">
+ <Summary> Tile Constant </Summary>
+</member>
+<member name="T:Engine.Enums.ItemType">
+ <Summary> Item Constant </Summary>
+</member>
+<member name="T:Engine.Enums.ConsumableType">
+ <Summary> Consumable Constant </Summary>
+</member>
+<member name="T:Engine.Enums.DirectionType">
+ <Summary> Direction Constant </Summary>
+</member>
+<member name="T:Engine.Enums.MovementType">
+ <Summary> Movement Constant </Summary>
+</member>
+<member name="T:Engine.Enums.AdminType">
+ <Summary> Admin Constant </Summary>
+</member>
+<member name="T:Engine.Enums.NpcBehavior">
+ <Summary> Npc Behavior Constant </Summary>
+</member>
+<member name="T:Engine.Enums.SkillType">
+ <Summary> Skill Constant </Summary>
+</member>
+<member name="T:Engine.Enums.TargetType">
+ <Summary> Target Constant </Summary>
+</member>
+<member name="T:Engine.Enums.ActionMsgType">
+ <Summary> Action Message Constant </Summary>
+</member>
+<member name="T:Engine.Enums.StatType">
+ <Summary> Stats used by Players, Npcs and Classes </Summary>
+</member>
+<member name="T:Engine.Enums.VitalType">
+ <Summary> Vitals used by Players, Npcs, and Classes </Summary>
+</member>
+<member name="T:Engine.Enums.EquipmentType">
+ <Summary> Equipment used by Players </Summary>
+</member>
+<member name="T:Engine.Enums.LayerType">
+ <Summary> Layers in a map </Summary>
+</member>
+<member name="T:Engine.Enums.ResourceSkills">
+ <Summary> Resource Skills </Summary>
+</member>
+</members>
+</doc>

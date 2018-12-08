@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{810E26CF-A435-07F9-382D-9FA96786B7B4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Engine.E_Loop</StartupObject>
+    <RootNamespace>Engine</RootNamespace>
+    <AssemblyName>Editors</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\Build\Editors\</OutputPath>
+    <DocumentationFile>Editors.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Build\Editors\</OutputPath>
+    <DocumentationFile>Editors.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ASFW">
+      <HintPath>..\..\ASFW.dll</HintPath>
+    </Reference>
+    <Reference Include="DarkUI">
+      <HintPath>.\DarkUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="SFML.Portable, Version=2.0.6778.23407, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SFML-Portable-2.1.1.5.0\lib\SFML.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.cs" />
+    <Compile Include="Source\Common\Time.cs" />
+    <Compile Include="Source\Legacy\Constants.cs" />
+    <Compile Include="Source\Legacy\Enums.cs" />
+    <Compile Include="Source\Legacy\Language.cs" />
+    <Compile Include="Source\Legacy\Packets.cs" />
+    <Compile Include="Source\Legacy\Strings.cs" />
+    <Compile Include="Source\Legacy\Types.cs" />
+    <Compile Include="Source\Legacy\Xml.cs" />
+    <Compile Include="Source\Modules\E_Options.cs" />
+    <Compile Include="Source\Forms\frmAutoMapper.Designer.cs">
+      <DependentUpon>frmAutoMapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmAutoMapper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\FrmAnimation.Designer.cs">
+      <DependentUpon>FrmAnimation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\FrmAnimation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmClasses.Designer.cs">
+      <DependentUpon>frmClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmClasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmMapEditor.Designer.cs">
+      <DependentUpon>frmMapEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmMapEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmEvents.Designer.cs">
+      <DependentUpon>frmEvents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmHouse.Designer.cs">
+      <DependentUpon>frmHouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmHouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmItem.Designer.cs">
+      <DependentUpon>frmItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmNPC.Designer.cs">
+      <DependentUpon>frmNPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmNPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmPet.Designer.cs">
+      <DependentUpon>frmPet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmPet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmProjectile.Designer.cs">
+      <DependentUpon>frmProjectile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmProjectile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmQuest.Designer.cs">
+      <DependentUpon>frmQuest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmQuest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmRecipe.Designer.cs">
+      <DependentUpon>frmRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmRecipe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmResource.Designer.cs">
+      <DependentUpon>frmResource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmResource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmShop.Designer.cs">
+      <DependentUpon>frmShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmSkill.Designer.cs">
+      <DependentUpon>frmSkill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmSkill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Forms\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.cs" />
+    <Compile Include="My Project\Application.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Source\Forms\frmVisualWarp.Designer.cs">
+      <DependentUpon>frmVisualWarp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Forms\frmVisualWarp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Modules\E_Loop.cs" />
+    <Compile Include="Source\Modules\HouseRec.cs" />
+    <Compile Include="Source\Modules\Objects\E_Items.cs" />
+    <Compile Include="Source\Modules\Objects\E_Pets.cs" />
+    <Compile Include="Source\Modules\Objects\E_Projectiles.cs" />
+    <Compile Include="Source\Modules\E_Weather.cs" />
+    <Compile Include="Source\Modules\E_Sound.cs" />
+    <Compile Include="Source\Modules\E_Text.cs" />
+    <Compile Include="Source\Modules\Objects\E_Housing.cs" />
+    <Compile Include="Source\Modules\E_EventSystem.cs" />
+    <Compile Include="Source\Modules\E_AutoTiles.cs" />
+    <Compile Include="Source\Modules\E_Graphics.cs" />
+    <Compile Include="Source\Modules\E_DataBase.cs" />
+    <Compile Include="Source\Modules\E_Crafting.cs" />
+    <Compile Include="Source\Modules\E_Editors.cs" />
+    <Compile Include="Source\Modules\Objects\E_Quest.cs" />
+    <Compile Include="Source\Modules\E_Globals.cs" />
+    <Compile Include="Source\Modules\E_Types.cs" />
+    <Compile Include="Source\Modules\E_AutoMap.cs" />
+    <Compile Include="Source\Modules\Network\E_NetworkConfig.cs" />
+    <Compile Include="Source\Modules\Network\E_NetworkReceive.cs" />
+    <Compile Include="Source\Modules\Network\E_NetworkSend.cs" />
+    <Compile Include="Source\MyProject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmAutoMapper.resx">
+      <DependentUpon>frmAutoMapper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\FrmAnimation.resx">
+      <DependentUpon>FrmAnimation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmClasses.resx">
+      <DependentUpon>frmClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmMapEditor.resx">
+      <DependentUpon>frmMapEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmEvents.resx">
+      <DependentUpon>frmEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmHouse.resx">
+      <DependentUpon>frmHouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmItem.resx">
+      <DependentUpon>frmItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmNPC.resx">
+      <DependentUpon>frmNPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmPet.resx">
+      <DependentUpon>frmPet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmProjectile.resx">
+      <DependentUpon>frmProjectile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmQuest.resx">
+      <DependentUpon>frmQuest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmRecipe.resx">
+      <DependentUpon>frmRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmResource.resx">
+      <DependentUpon>frmResource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmShop.resx">
+      <DependentUpon>frmShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmSkill.resx">
+      <DependentUpon>frmSkill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Forms\frmVisualWarp.resx">
+      <DependentUpon>frmVisualWarp.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="SFML.Portable.dll.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Grid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LightPreview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\AutoMapper.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
