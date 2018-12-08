@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Data>
+  <Events>
+    <Element Name="EventCount" Value="4" />
+  </Events>
+  <Event1>
+    <Element Name="Name" Value="" />
+    <Element Name="Global" Value="0" />
+    <Element Name="x" Value="0" />
+    <Element Name="y" Value="0" />
+    <Element Name="PageCount" Value="0" />
+  </Event1>
+  <Event2>
+    <Element Name="Name" Value="" />
+    <Element Name="Global" Value="0" />
+    <Element Name="x" Value="0" />
+    <Element Name="y" Value="0" />
+    <Element Name="PageCount" Value="0" />
+  </Event2>
+  <Event3>
+    <Element Name="Name" Value="" />
+    <Element Name="Global" Value="0" />
+    <Element Name="x" Value="0" />
+    <Element Name="y" Value="0" />
+    <Element Name="PageCount" Value="0" />
+  </Event3>
+  <Event4>
+    <Element Name="Name" Value="" />
+    <Element Name="Global" Value="0" />
+    <Element Name="x" Value="0" />
+    <Element Name="y" Value="0" />
+    <Element Name="PageCount" Value="0" />
+  </Event4>
+</Data>

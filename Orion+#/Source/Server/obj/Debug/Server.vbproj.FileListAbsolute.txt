@@ -1,0 +1,13 @@
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Data\AutoMapper.xml
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Data\SkillExp.xml
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Data\News.txt
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Orion+ Server.exe.config
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Orion+ Server.exe
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Orion+ Server.pdb
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Server.vbprojResolveAssemblyReference.cache
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Engine.Resources.resources
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Server.vbproj.GenerateResource.cache
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Server.vbproj.CoreCompileInputs.cache
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Server.vbproj.CopyComplete
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Orion+ Server.exe
+C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Debug\Orion+ Server.pdb

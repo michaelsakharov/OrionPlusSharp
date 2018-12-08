@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Options>
+  <Settings>
+    <Element Name="Game_Name" Value="Orion+" />
+    <Element Name="Port" Value=" 7001" />
+    <Element Name="MoTd" Value="Welcome to the Orion+ Engine" />
+    <Element Name="Website" Value="http://ascensiongamedev.com/index.php" />
+    <Element Name="StartMap" Value="1" />
+    <Element Name="StartX" Value="13" />
+    <Element Name="StartY" Value="7" />
+  </Settings>
+</Options>
