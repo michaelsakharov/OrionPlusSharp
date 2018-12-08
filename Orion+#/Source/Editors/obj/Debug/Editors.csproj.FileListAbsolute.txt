@@ -27,3 +27,31 @@ C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Edito
 C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Editors\Editors.pdb
 C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Editors\Editors.xml
 C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Editors\obj\Debug\Editors.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Data\AutoMapper.xml
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Editors.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Editors.pdb
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Editors.xml
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.My_Project.Resources.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmAutoMapper.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmAnimation.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmClasses.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmMapEditor.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmEvents.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmHouse.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmItem.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmNPC.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmPet.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmProjectile.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmQuest.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmRecipe.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmResource.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmShop.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmSkill.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmLogin.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmVisualWarp.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csproj.GenerateResource.cache
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csproj.CoreCompileInputs.cache
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.pdb

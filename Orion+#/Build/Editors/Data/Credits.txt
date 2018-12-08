@@ -1,0 +1,29 @@
+Creators:
+JC Snider
+Damian666
+
+Base:
+Eclipse Origins v1.1.0 by Robin Perris*
+
+Graphics/Media Engine:
+SFML*
+
+Temporary Graphics:
+Rpgmaker MV
+
+Testing:
+Kras
+Pamiclo
+H3lp
+
+Optimisations:
+SpiceyWolf
+Chronos
+
+AutoMapper System: boasfesta
+
+Instanced map system, other functions: BugSick
+
+DarkUI: Robin Perris
+
+*License copies can be found in the license directory.
