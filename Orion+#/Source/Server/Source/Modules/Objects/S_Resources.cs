@@ -279,7 +279,7 @@ namespace Engine
                 return;
 
             int expRollover;
-            //string skillname = "";
+            string skillname = "";
             int level_count;
 
             level_count = 0;
@@ -339,6 +339,7 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
+                        break;
                     }
                     
             }

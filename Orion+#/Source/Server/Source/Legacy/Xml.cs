@@ -17,13 +17,12 @@ namespace Engine
 
             // Write blank xml document.
             {
-                var withBlock = xmlTextWrite;
-                withBlock.WriteStartDocument(true);
-                withBlock.WriteStartElement(Root);
-                withBlock.WriteEndElement();
-                withBlock.WriteEndDocument();
-                withBlock.Flush();
-                withBlock.Close();
+                xmlTextWrite.WriteStartDocument(true);
+                xmlTextWrite.WriteStartElement(Root);
+                xmlTextWrite.WriteEndElement();
+                xmlTextWrite.WriteEndDocument();
+                xmlTextWrite.Flush();
+                xmlTextWrite.Close();
             }
         }
 

@@ -137,12 +137,12 @@ namespace Engine
 
             if (ShieldSlot > 0)
             {
-                n = Convert.ToInt16(VBMath.Rnd() * 2);
+                n = (byte)Conversion.Int(VBMath.Rnd() * 2);
 
                 if (n == 1)
                 {
                     i = (GetPlayerStat(index, Enums.StatType.Endurance) / 2) + (GetPlayerLevel(index) / 2);
-                    n = Convert.ToInt16(VBMath.Rnd() * 100) + 1;
+                    n = (byte)Conversion.Int(VBMath.Rnd() * 100) + 1;
 
                     if (n <= i)
                         CanPlayerBlockHit = true;
@@ -164,7 +164,7 @@ namespace Engine
                 if (n == 1)
                 {
                     i = (GetPlayerStat(index, Enums.StatType.Strength) / 2) + (GetPlayerLevel(index) / 2);
-                    n = Convert.ToInt16(VBMath.Rnd() * 100) + 1;
+                    n = (byte)Conversion.Int(VBMath.Rnd() * 100) + 1;
 
                     if (n <= i)
                         CanPlayerCriticalHit = true;
@@ -906,44 +906,36 @@ namespace Engine
 
         internal static void HandlePlayerKilledPK(int Attacker, int Victim)
         {
+            int z = 0;
             int eqcount = 0;
             // TODO: Redo this method, it is horrendous.
             int invcount = 0, j = 0;
-
-
-            //Check to see if the victim is a Player Killer
             if (GetPlayerPK(Victim) == 0)
             {
-                //Check to see if the Attacker is a Player Killer
                 if (GetPlayerPK(Attacker) == 0)
                 {
-                    //If the Victim is not a PK and the Attacker also isnt a PK then the attacker has now been deemed a Player Killer
                     SetPlayerPK(Attacker, 1);
                     S_NetworkSend.SendPlayerData(Attacker);
                     S_NetworkSend.GlobalMsg(GetPlayerName(Attacker) + " has been deemed a Player Killer!!!");
                 }
             }
             else
-            {
-                //Victim was a Player Killer
                 S_NetworkSend.GlobalMsg(GetPlayerName(Victim) + " has paid the price for being a Player Killer!!!");
-            }
-
 
             if (GetPlayerLevel(Victim) >= 10)
             {
-                for (int i = 1; i <= Constants.MAX_INV; i++)
+                for (z = 1; z <= Constants.MAX_INV; z++)
                 {
-                    if (GetPlayerInvItemNum(Victim, i) > 0)
+                    if (GetPlayerInvItemNum(Victim, z) > 0)
                         invcount = invcount + 1;
                 }
 
-                for (int i = 1; i <= (byte)Enums.EquipmentType.Count - 1; i++)
+                for (z = 1; z <= (byte)Enums.EquipmentType.Count - 1; z++)
                 {
-                    if (GetPlayerEquipment(Victim, (EquipmentType)i) > 0)
+                    if (GetPlayerEquipment(Victim, (EquipmentType)z) > 0)
                         eqcount = eqcount + 1;
                 }
-                int z = S_GameLogic.Random(1, invcount + eqcount);
+                z = S_GameLogic.Random(1, invcount + eqcount);
 
                 if (z == 0)
                     z = 1;
@@ -962,7 +954,7 @@ namespace Engine
                             if (j == z)
                             {
                                 // Here it is, drop this piece of equipment!
-                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Types.Item[GetPlayerEquipment(Victim, (EquipmentType)x)].Name.Trim(), (int)Enums.ColorType.BrightRed);
+                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Microsoft.VisualBasic.Strings.Trim(Types.Item[GetPlayerEquipment(Victim, (EquipmentType)x)].Name), (int)Enums.ColorType.BrightRed);
                                 S_Items.SpawnItem(GetPlayerEquipment(Victim, (EquipmentType)x), 1, GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim));
                                 SetPlayerEquipment(Victim, 0, (EquipmentType)x);
                                 S_NetworkSend.SendWornEquipment(Victim);
@@ -981,7 +973,7 @@ namespace Engine
                             if (j == z)
                             {
                                 // Here it is, drop this item!
-                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Types.Item[GetPlayerInvItemNum(Victim, x)].Name.Trim(), (int)Enums.ColorType.BrightRed);
+                                S_NetworkSend.PlayerMsg(Victim, "In death you lost grip on your " + Microsoft.VisualBasic.Strings.Trim(Types.Item[GetPlayerInvItemNum(Victim, x)].Name), (int)Enums.ColorType.BrightRed);
                                 S_Items.SpawnItem(GetPlayerInvItemNum(Victim, x), GetPlayerInvItemValue(Victim, x), GetPlayerMap(Victim), GetPlayerX(Victim), GetPlayerY(Victim));
                                 SetPlayerInvItemNum(Victim, x, 0);
                                 SetPlayerInvItemValue(Victim, x, 0);
@@ -1733,13 +1725,12 @@ namespace Engine
             }
 
             {
-                var withBlock = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)];
                 // Check to see if the tile is a warp tile, and if so warp them
-                if (withBlock.Type == (byte)Enums.TileType.Warp)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Warp)
                 {
-                    mapNum = withBlock.Data1;
-                    x = withBlock.Data2;
-                    y = withBlock.Data3;
+                    mapNum = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
+                    x = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data2;
+                    y = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data3;
 
                     // If (MapNum AndAlso INSTANCED_MAP_MASK) > 0 Then
                     if (modTypes.Map[mapNum].Instanced == 1)
@@ -1757,11 +1748,11 @@ namespace Engine
                 }
 
                 // Check to see if the tile is a door tile, and if so warp them
-                if (withBlock.Type == (byte)Enums.TileType.Door)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Door)
                 {
-                    mapNum = withBlock.Data1;
-                    x = withBlock.Data2;
-                    y = withBlock.Data3;
+                    mapNum = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
+                    x = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data2;
+                    y = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data3;
                     // send the animation to the map
                     S_NetworkSend.SendDoorAnimation(GetPlayerMap(index), GetPlayerX(index), GetPlayerY(index));
 
@@ -1779,10 +1770,10 @@ namespace Engine
                 }
 
                 // Check for key trigger open
-                if (withBlock.Type == (byte)Enums.TileType.KeyOpen)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.KeyOpen)
                 {
-                    x = withBlock.Data1;
-                    y = withBlock.Data2;
+                    x = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
+                    y = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data2;
 
                     if (modTypes.Map[GetPlayerMap(index)].Tile[x, y].Type == (byte)Enums.TileType.Key && modTypes.TempTile[GetPlayerMap(index)].DoorOpen[x, y] == 0)
                     {
@@ -1794,9 +1785,9 @@ namespace Engine
                 }
 
                 // Check for a shop, and if so open it
-                if (withBlock.Type == (byte)Enums.TileType.Shop)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Shop)
                 {
-                    x = withBlock.Data1;
+                    x = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
                     if (x > 0)
                     {
                         if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Types.Shop[x].Name)) > 0)
@@ -1808,7 +1799,7 @@ namespace Engine
                 }
 
                 // Check to see if the tile is a bank, and if so send bank
-                if (withBlock.Type == (byte)Enums.TileType.Bank)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Bank)
                 {
                     S_NetworkSend.SendBank(index);
                     modTypes.TempPlayer[index].InBank = true;
@@ -1816,10 +1807,10 @@ namespace Engine
                 }
 
                 // Check if it's a heal tile
-                if (withBlock.Type == (byte)Enums.TileType.Heal)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Heal)
                 {
-                    VitalType = withBlock.Data1;
-                    amount = withBlock.Data2;
+                    VitalType = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
+                    amount = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data2;
                     if (!(GetPlayerVital(index, (VitalType)VitalType) == GetPlayerMaxVital(index, (VitalType)VitalType)))
                     {
                         if (VitalType == (byte)Enums.VitalType.HP)
@@ -1838,9 +1829,9 @@ namespace Engine
                 }
 
                 // Check if it's a trap tile
-                if (withBlock.Type == (byte)Enums.TileType.Trap)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Trap)
                 {
-                    amount = withBlock.Data1;
+                    amount = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
                     S_NetworkSend.SendActionMsg(GetPlayerMap(index), "-" + amount, (int)Enums.ColorType.BrightRed, (byte)Enums.ActionMsgType.Scroll, GetPlayerX(index) * 32, GetPlayerY(index) * 32, 1);
                     if (GetPlayerVital(index, Enums.VitalType.HP) - amount <= 0)
                     {
@@ -1860,9 +1851,9 @@ namespace Engine
                 }
 
                 // Housing
-                if (withBlock.Type == (byte)Enums.TileType.House)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.House)
                 {
-                    if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].House.Houseindex == withBlock.Data1)
+                    if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].House.Houseindex == modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1)
                     {
                         // Do warping and such to the player's house :/
                         modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastMap = GetPlayerMap(index);
@@ -1880,15 +1871,15 @@ namespace Engine
                         // Send the buy sequence and see what happens. (To be recreated in events.)
                         Buffer = new ByteStream(4);
                         Buffer.WriteInt32((int)Packets.ServerPackets.SBuyHouse);
-                        Buffer.WriteInt32(withBlock.Data1);
+                        Buffer.WriteInt32(modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1);
                         S_NetworkConfig.Socket.SendDataTo(index, Buffer.Data, Buffer.Head);
                         Buffer.Dispose();
-                        modTypes.TempPlayer[index].BuyHouseindex = withBlock.Data1;
+                        modTypes.TempPlayer[index].BuyHouseindex = modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Data1;
                     }
                 }
 
                 // crafting
-                if (withBlock.Type == (byte)Enums.TileType.Craft)
+                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].Type == (byte)Enums.TileType.Craft)
                 {
                     modTypes.TempPlayer[index].IsCrafting = true;
                     modCrafting.SendPlayerRecipes(index);
@@ -3129,47 +3120,46 @@ namespace Engine
 
             // RandomInv
             {
-                var withBlock = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot];
-                NewPrefix = withBlock.Prefix;
-                NewSuffix = withBlock.Suffix;
-                NewDamage = withBlock.Damage;
-                NewSpeed = withBlock.Speed;
-                NewRarity = withBlock.Rarity;
+                NewPrefix = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Prefix;
+                NewSuffix = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Suffix;
+                NewDamage = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Damage;
+                NewSpeed = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Speed;
+                NewRarity = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Rarity;
                 for (var i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    NewStats[i] = withBlock.Stat[i];
+                    NewStats[i] = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Stat[i];
             }
 
             {
-                var withBlock1 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot];
-                OldPrefix = withBlock1.Prefix;
-                OldSuffix = withBlock1.Suffix;
-                OldDamage = withBlock1.Damage;
-                OldSpeed = withBlock1.Speed;
-                OldRarity = withBlock1.Rarity;
+                //var withBlock1 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot];
+                OldPrefix = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Prefix;
+                OldSuffix = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Suffix;
+                OldDamage = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Damage;
+                OldSpeed = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Speed;
+                OldRarity = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Rarity;
                 for (var i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    OldStats[i] = withBlock1.Stat[i];
+                    OldStats[i] = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Stat[i];
             }
 
             {
-                var withBlock2 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot];
-                withBlock2.Prefix = OldPrefix;
-                withBlock2.Suffix = OldSuffix;
-                withBlock2.Damage = OldDamage;
-                withBlock2.Speed = OldSpeed;
-                withBlock2.Rarity = OldRarity;
+                //var withBlock2 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot];
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Prefix = OldPrefix;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Suffix = OldSuffix;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Damage = OldDamage;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Speed = OldSpeed;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Rarity = OldRarity;
                 for (var i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    withBlock2.Stat[i] = OldStats[i];
+                    modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Stat[i] = OldStats[i];
             }
 
             {
-                var withBlock3 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot];
-                withBlock3.Prefix = NewPrefix;
-                withBlock3.Suffix = NewSuffix;
-                withBlock3.Damage = NewDamage;
-                withBlock3.Speed = NewSpeed;
-                withBlock3.Rarity = NewRarity;
+                //var withBlock3 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot];
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Prefix = NewPrefix;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Suffix = NewSuffix;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Damage = NewDamage;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Speed = NewSpeed;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Rarity = NewRarity;
                 for (var i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    withBlock3.Stat[i] = NewStats[i];
+                    modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Stat[i] = NewStats[i];
             }
 
             S_NetworkSend.SendInventory(index);
@@ -3990,47 +3980,45 @@ namespace Engine
 
             // RandomInv
             {
-                var withBlock = modTypes.Bank[index].ItemRand[NewSlot];
-                NewPrefix = withBlock.Prefix;
-                NewSuffix = withBlock.Suffix;
-                NewDamage = withBlock.Damage;
-                NewSpeed = withBlock.Speed;
-                NewRarity = withBlock.Rarity;
+                NewPrefix = modTypes.Bank[index].ItemRand[NewSlot].Prefix;
+                NewSuffix = modTypes.Bank[index].ItemRand[NewSlot].Suffix;
+                NewDamage = modTypes.Bank[index].ItemRand[NewSlot].Damage;
+                NewSpeed = modTypes.Bank[index].ItemRand[NewSlot].Speed;
+                NewRarity = modTypes.Bank[index].ItemRand[NewSlot].Rarity;
                 for (i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    NewStats[i] = withBlock.Stat[i];
+                    NewStats[i] = modTypes.Bank[index].ItemRand[NewSlot].Stat[i];
             }
 
             {
-                var withBlock1 = modTypes.Bank[index].ItemRand[OldSlot];
-                OldPrefix = withBlock1.Prefix;
-                OldSuffix = withBlock1.Suffix;
-                OldDamage = withBlock1.Damage;
-                OldSpeed = withBlock1.Speed;
-                OldRarity = withBlock1.Rarity;
+                OldPrefix = modTypes.Bank[index].ItemRand[OldSlot].Prefix;
+                OldSuffix = modTypes.Bank[index].ItemRand[OldSlot].Suffix;
+                OldDamage = modTypes.Bank[index].ItemRand[OldSlot].Damage;
+                OldSpeed = modTypes.Bank[index].ItemRand[OldSlot].Speed;
+                OldRarity = modTypes.Bank[index].ItemRand[OldSlot].Rarity;
                 for (i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    OldStats[i] = withBlock1.Stat[i];
+                    OldStats[i] = modTypes.Bank[index].ItemRand[OldSlot].Stat[i];
             }
 
             {
-                var withBlock2 = modTypes.Bank[index].ItemRand[NewSlot];
-                withBlock2.Prefix = OldPrefix;
-                withBlock2.Suffix = OldSuffix;
-                withBlock2.Damage = OldDamage;
-                withBlock2.Speed = OldSpeed;
-                withBlock2.Rarity = OldRarity;
+                //var withBlock2 = modTypes.Bank[index].ItemRand[NewSlot];
+                modTypes.Bank[index].ItemRand[NewSlot].Prefix = OldPrefix;
+                modTypes.Bank[index].ItemRand[NewSlot].Suffix = OldSuffix;
+                modTypes.Bank[index].ItemRand[NewSlot].Damage = OldDamage;
+                modTypes.Bank[index].ItemRand[NewSlot].Speed = OldSpeed;
+                modTypes.Bank[index].ItemRand[NewSlot].Rarity = OldRarity;
                 for (i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    withBlock2.Stat[i] = OldStats[i];
+                    modTypes.Bank[index].ItemRand[NewSlot].Stat[i] = OldStats[i];
             }
 
             {
-                var withBlock3 = modTypes.Bank[index].ItemRand[OldSlot];
-                withBlock3.Prefix = NewPrefix;
-                withBlock3.Suffix = NewSuffix;
-                withBlock3.Damage = NewDamage;
-                withBlock3.Speed = NewSpeed;
-                withBlock3.Rarity = NewRarity;
+                //var withBlock3 = modTypes.Bank[index].ItemRand[OldSlot];
+                modTypes.Bank[index].ItemRand[OldSlot].Prefix = NewPrefix;
+                modTypes.Bank[index].ItemRand[OldSlot].Suffix = NewSuffix;
+                modTypes.Bank[index].ItemRand[OldSlot].Damage = NewDamage;
+                modTypes.Bank[index].ItemRand[OldSlot].Speed = NewSpeed;
+                modTypes.Bank[index].ItemRand[OldSlot].Rarity = NewRarity;
                 for (i = 1; i <= (byte)Enums.StatType.Count - 1; i++)
-                    withBlock3.Stat[i] = NewStats[i];
+                    modTypes.Bank[index].ItemRand[OldSlot].Stat[i] = NewStats[i];
             }
 
             S_NetworkSend.SendBank(index);

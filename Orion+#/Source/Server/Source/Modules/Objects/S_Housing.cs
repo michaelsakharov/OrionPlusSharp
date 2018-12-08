@@ -21,12 +21,12 @@ namespace Engine
             };
             myXml.NewXmlDocument();
             myXml.LoadXml();
-            myXml.WriteString("House" + Convert.ToString(1), "BaseMap", Convert.ToString(S_Housing.HouseConfig[1].BaseMap));
-            myXml.WriteString("House" + Convert.ToString(1), "Name", S_Housing.HouseConfig[1].ConfigName);
-            myXml.WriteString("House" + Convert.ToString(1), "MaxFurniture", Convert.ToString(S_Housing.HouseConfig[1].MaxFurniture));
-            myXml.WriteString("House" + Convert.ToString(1), "Price", Convert.ToString(S_Housing.HouseConfig[1].Price));
-            myXml.WriteString("House" + Convert.ToString(1), "X", Convert.ToString(S_Housing.HouseConfig[1].X));
-            myXml.WriteString("House" + Convert.ToString(1), "Y", Convert.ToString(S_Housing.HouseConfig[1].Y));
+            myXml.WriteString("House" + Conversions.ToString(1), "BaseMap", Conversions.ToString(S_Housing.HouseConfig[1].BaseMap));
+            myXml.WriteString("House" + Conversions.ToString(1), "Name", S_Housing.HouseConfig[1].ConfigName);
+            myXml.WriteString("House" + Conversions.ToString(1), "MaxFurniture", Conversions.ToString(S_Housing.HouseConfig[1].MaxFurniture));
+            myXml.WriteString("House" + Conversions.ToString(1), "Price", Conversions.ToString(S_Housing.HouseConfig[1].Price));
+            myXml.WriteString("House" + Conversions.ToString(1), "X", Conversions.ToString(S_Housing.HouseConfig[1].X));
+            myXml.WriteString("House" + Conversions.ToString(1), "Y", Conversions.ToString(S_Housing.HouseConfig[1].Y));
             myXml.CloseXml(true);
         }
 
@@ -49,12 +49,12 @@ namespace Engine
             {
                 for (int i = 1; i <= max_HOUSES; i++)
                 {
-                    S_Housing.HouseConfig[i].BaseMap = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Convert.ToString(i), "BaseMap", "")));
-                    S_Housing.HouseConfig[i].ConfigName = (myXml.ReadString("House" + Convert.ToString(i), "Name", "").Trim());
-                    S_Housing.HouseConfig[i].MaxFurniture = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Convert.ToString(i), "MaxFurniture", "")));
-                    S_Housing.HouseConfig[i].Price = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Convert.ToString(i), "Price", "")));
-                    S_Housing.HouseConfig[i].X = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Convert.ToString(i), "X", "")));
-                    S_Housing.HouseConfig[i].Y = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Convert.ToString(i), "Y", "")));
+                    S_Housing.HouseConfig[i].BaseMap = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Conversions.ToString(i), "BaseMap", "")));
+                    S_Housing.HouseConfig[i].ConfigName = (myXml.ReadString("House" + Conversions.ToString(i), "Name", "").Trim());
+                    S_Housing.HouseConfig[i].MaxFurniture = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Conversions.ToString(i), "MaxFurniture", "")));
+                    S_Housing.HouseConfig[i].Price = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Conversions.ToString(i), "Price", "")));
+                    S_Housing.HouseConfig[i].X = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Conversions.ToString(i), "X", "")));
+                    S_Housing.HouseConfig[i].Y = (int)Math.Round(Conversion.Val(myXml.ReadString("House" + Conversions.ToString(i), "Y", "")));
                 }
                 myXml.CloseXml(false);
                 int playersOnline = S_GameLogic.GetPlayersOnline();
@@ -81,12 +81,12 @@ namespace Engine
             bool flag = index > 0 && index <= S_Housing.MAX_HOUSES;
             if (flag)
             {
-                myXml.WriteString("House" + Convert.ToString(index), "BaseMap", Convert.ToString(S_Housing.HouseConfig[index].BaseMap));
-                myXml.WriteString("House" + Convert.ToString(index), "Name", S_Housing.HouseConfig[index].ConfigName);
-                myXml.WriteString("House" + Convert.ToString(index), "MaxFurniture", Convert.ToString(S_Housing.HouseConfig[index].MaxFurniture));
-                myXml.WriteString("House" + Convert.ToString(index), "Price", Convert.ToString(S_Housing.HouseConfig[index].Price));
-                myXml.WriteString("House" + Convert.ToString(index), "X", Convert.ToString(S_Housing.HouseConfig[index].X));
-                myXml.WriteString("House" + Convert.ToString(index), "Y", Convert.ToString(S_Housing.HouseConfig[index].Y));
+                myXml.WriteString("House" + Conversions.ToString(index), "BaseMap", Conversions.ToString(S_Housing.HouseConfig[index].BaseMap));
+                myXml.WriteString("House" + Conversions.ToString(index), "Name", S_Housing.HouseConfig[index].ConfigName);
+                myXml.WriteString("House" + Conversions.ToString(index), "MaxFurniture", Conversions.ToString(S_Housing.HouseConfig[index].MaxFurniture));
+                myXml.WriteString("House" + Conversions.ToString(index), "Price", Conversions.ToString(S_Housing.HouseConfig[index].Price));
+                myXml.WriteString("House" + Conversions.ToString(index), "X", Conversions.ToString(S_Housing.HouseConfig[index].X));
+                myXml.WriteString("House" + Conversions.ToString(index), "Y", Conversions.ToString(S_Housing.HouseConfig[index].Y));
             }
             myXml.CloseXml(true);
             S_Housing.LoadHouses();
@@ -640,7 +640,7 @@ namespace Engine
                         S_Players.PlayerWarp(index, modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastMap, modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastX, modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastY, false, false);
                     }
                     modDatabase.SavePlayer(index);
-                    S_NetworkSend.PlayerMsg(index, "You sold your House for " + Convert.ToString(refund) + " Gold!", 10);
+                    S_NetworkSend.PlayerMsg(index, "You sold your House for " + Conversions.ToString(refund) + " Gold!", 10);
                     S_Players.GiveInvItem(index, 1, refund, true);
                 }
                 else

@@ -51,7 +51,7 @@ namespace Engine
                 modTypes.MapNpc[mapNum].Npc[mapNpcNum].Vital[(int)Enums.VitalType.MP] = S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.MP);
                 modTypes.MapNpc[mapNum].Npc[mapNpcNum].Vital[(int)Enums.VitalType.SP] = S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.SP);
 
-                modTypes.MapNpc[mapNum].Npc[mapNpcNum].Dir = Convert.ToInt32(VBMath.Rnd() * 4);
+                modTypes.MapNpc[mapNum].Npc[mapNpcNum].Dir = (int)Conversion.Int(VBMath.Rnd() * 4);
                 var loopTo = modTypes.Map[mapNum].MaxX;
 
                 // Check if theres a spawn tile for the specific npc
@@ -833,7 +833,7 @@ namespace Engine
 
                 // Drop the goods if they get it
                 var tmpitem = S_GameLogic.Random(1, 5);
-                n = Convert.ToInt32(VBMath.Rnd() * Types.Npc[vNpcNum].DropChance[tmpitem]) + 1;
+                n = (int)Conversion.Int(VBMath.Rnd() * Types.Npc[vNpcNum].DropChance[tmpitem]) + 1;
                 if (n == 1)
                     S_Items.SpawnItem(Types.Npc[vNpcNum].DropItem[tmpitem], Types.Npc[vNpcNum].DropItemValue[tmpitem], mapNum, modTypes.MapNpc[mapNum].Npc[Victim].X, modTypes.MapNpc[mapNum].Npc[Victim].Y);
 
@@ -1376,13 +1376,12 @@ namespace Engine
             buffer.WriteInt32(MapNpcNum);
 
             {
-                var withBlock = modTypes.MapNpc[mapNum].Npc[MapNpcNum];
-                buffer.WriteInt32(withBlock.Num);
-                buffer.WriteInt32(withBlock.X);
-                buffer.WriteInt32(withBlock.Y);
-                buffer.WriteInt32(withBlock.Dir);
-                buffer.WriteInt32(withBlock.Vital[(byte)Enums.VitalType.HP]);
-                buffer.WriteInt32(withBlock.Vital[(byte)Enums.VitalType.MP]);
+                buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Num);
+                buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X);
+                buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y);
+                buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Dir);
+                buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Vital[(byte)Enums.VitalType.HP]);
+                buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Vital[(byte)Enums.VitalType.MP]);
             }
 
             S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);

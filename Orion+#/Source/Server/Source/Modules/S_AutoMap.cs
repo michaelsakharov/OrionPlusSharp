@@ -316,16 +316,16 @@ namespace Engine
             {
                 for (var Layer = 1; Layer <= (int)Enums.LayerType.Count - 1; Layer++)
                 {
-                    if (Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")) > 0)
+                    if ((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")) > 0)
                     {
                         buffer.WriteInt32(Layer);
-                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")));
-                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "X")));
-                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Y")));
-                        buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Autotile")));
+                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Tileset")));
+                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "X")));
+                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Y")));
+                        buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Layer" + Layer + "Autotile")));
                     }
                 }
-                buffer.WriteInt32(Convert.ToInt32(myXml.ReadString("Prefab" + Prefab, "Type")));
+                buffer.WriteInt32((int)Conversion.Val(myXml.ReadString("Prefab" + Prefab, "Type")));
             }
 
             myXml.CloseXml(false);
@@ -442,7 +442,7 @@ namespace Engine
 
                         if (S_GameLogic.Random(1, ResourceFreq) == 1)
                         {
-                            resourceNum = Convert.ToInt32(_resources[S_GameLogic.Random(1, Information.UBound(_resources))]);
+                            resourceNum = (int)Conversion.Val(_resources[S_GameLogic.Random(1, Information.UBound(_resources))]);
                             modTypes.Map[mapNum].Tile[x, y].Type = (byte)Enums.TileType.Resource;
                             modTypes.Map[mapNum].Tile[x, y].Data1 = resourceNum;
                         }
@@ -507,11 +507,10 @@ namespace Engine
             bool foundBorder = false;
 
             {
-                var withBlock = modTypes.Map[mapNum];
-                var loopTo = withBlock.MaxX;
+                var loopTo = modTypes.Map[mapNum].MaxX;
                 for (int xx = 0; xx <= loopTo; xx++)
                 {
-                    var loopTo1 = withBlock.MaxY;
+                    var loopTo1 = modTypes.Map[mapNum].MaxY;
                     for (y = 0; y <= loopTo1; y++)
                     {
                         if (CanPlaceOvergrass(mapNum, xx, y))
@@ -519,14 +518,14 @@ namespace Engine
                     }
                 }
 
-                totalOvergrass = S_GameLogic.Random(Convert.ToInt32(grassCount / (double)100), Conversion.Int(grassCount / (int)50));
+                totalOvergrass = S_GameLogic.Random((int)Conversion.Int(grassCount / (double)100), Conversion.Int(grassCount / (int)50));
 
                 while (overgrassCount >= totalOvergrass)
                 {
                     int totalWalk;
                     brushSize = S_GameLogic.Random(1, 2);
-                    startX = S_GameLogic.Random(0, withBlock.MaxX);
-                    startY = S_GameLogic.Random(0, withBlock.MaxY);
+                    startX = S_GameLogic.Random(0, modTypes.Map[mapNum].MaxX);
+                    startY = S_GameLogic.Random(0, modTypes.Map[mapNum].MaxY);
 
                     if (CanPlaceOvergrass(mapNum, startX, startY))
                     {
@@ -569,9 +568,9 @@ namespace Engine
                             }
                             if (nextDir < 5)
                             {
-                                if (x > 0 && x < withBlock.MaxX)
+                                if (x > 0 && x < modTypes.Map[mapNum].MaxX)
                                 {
-                                    if (y > 0 && y < withBlock.MaxY)
+                                    if (y > 0 && y < modTypes.Map[mapNum].MaxY)
                                     {
                                         if (CanPlaceOvergrass(mapNum, x, y))
                                         {
@@ -883,7 +882,7 @@ namespace Engine
             oldX = Tile[(int)TilePrefab.Mountain].Layer[2].X;
             oldY = Tile[(int)TilePrefab.Mountain].Layer[2].Y;
             Tile[(int)TilePrefab.Mountain].Layer[2].X = (byte)(oldX + ((int)mountainPrefab % 3));
-            Tile[(int)TilePrefab.Mountain].Layer[2].Y = (byte)(oldY + (Convert.ToInt32((int)mountainPrefab / (int)3)));
+            Tile[(int)TilePrefab.Mountain].Layer[2].Y = (byte)(oldY + ((int)Conversion.Int((int)mountainPrefab / (int)3)));
             AddTile(TilePrefab.Mountain, mapNum, x, y);
             Tile[(int)TilePrefab.Mountain].Layer[2].X = (byte)oldX;
             Tile[(int)TilePrefab.Mountain].Layer[2].Y = (byte)oldY;
@@ -1240,33 +1239,32 @@ namespace Engine
             _mapOrientation[mapNum].Prefab = (int)prefab;
 
             {
-                var withBlock = modTypes.Map[mapNum];
                 if (prefab != MapPrefab.Common)
                 {
-                    var loopTo = withBlock.MaxX;
+                    var loopTo = modTypes.Map[mapNum].MaxX;
                     for (x = 0; x <= loopTo; x++)
                     {
-                        var loopTo1 = withBlock.MaxY;
+                        var loopTo1 = modTypes.Map[mapNum].MaxY;
                         for (y = 0; y <= loopTo1; y++)
                             AddTile(TilePrefab.Water, mapNum, x, y);
                     }
                 }
                 else
                 {
-                    var loopTo2 = withBlock.MaxX;
+                    var loopTo2 = modTypes.Map[mapNum].MaxX;
                     for (x = 0; x <= loopTo2; x++)
                     {
-                        var loopTo3 = withBlock.MaxY;
+                        var loopTo3 = modTypes.Map[mapNum].MaxY;
                         for (y = 0; y <= loopTo3; y++)
                             AddTile(TilePrefab.Grass, mapNum, x, y);
                     }
                 }
                 if (prefab == MapPrefab.UpLeftQuarter)
                 {
-                    tileStartX = Conversion.Int(withBlock.MaxX / (int)2) - S_GameLogic.Random(0, Conversion.Int(withBlock.MaxX / (int)4));
-                    tileStartY = withBlock.MaxY;
-                    tileEndX = withBlock.MaxX;
-                    tileEndY = Conversion.Int(withBlock.MaxY / (int)2) - S_GameLogic.Random(0, Conversion.Int(withBlock.MaxY / (int)4));
+                    tileStartX = Conversion.Int(modTypes.Map[mapNum].MaxX / (int)2) - S_GameLogic.Random(0, Conversion.Int(modTypes.Map[mapNum].MaxX / (int)4));
+                    tileStartY = modTypes.Map[mapNum].MaxY;
+                    tileEndX = modTypes.Map[mapNum].MaxX;
+                    tileEndY = Conversion.Int(modTypes.Map[mapNum].MaxY / (int)2) - S_GameLogic.Random(0, Conversion.Int(modTypes.Map[mapNum].MaxY / (int)4));
                     tileX = tileStartX;
                     var loopTo4 = tileEndY;
                     for (y = tileStartY; y >= loopTo4; y += -1)
@@ -1294,8 +1292,8 @@ namespace Engine
                 if (prefab == MapPrefab.UpBorder)
                 {
                     tileStartX = 0;
-                    tileStartY = _mapOrientation[withBlock.Left].TileEndY;
-                    tileEndX = withBlock.MaxX;
+                    tileStartY = _mapOrientation[modTypes.Map[mapNum].Left].TileEndY;
+                    tileEndX = modTypes.Map[mapNum].MaxX;
                     tileY = tileStartY;
                     changed = true;
                     var loopTo6 = tileEndX;
@@ -1312,11 +1310,11 @@ namespace Engine
                         }
                         else
                             changed = false;
-                        if (tileY < Conversion.Int(withBlock.MaxY / (double)4))
-                            tileY = Conversion.Int(withBlock.MaxY / (int)4);
-                        if (tileY > Conversion.Int(withBlock.MaxY / (double)2) + Conversion.Int(withBlock.MaxY / (int)4))
-                            tileY = Conversion.Int(withBlock.MaxY / (int)2) + Conversion.Int(withBlock.MaxY / (int)4);
-                        var loopTo7 = withBlock.MaxY;
+                        if (tileY < Conversion.Int(modTypes.Map[mapNum].MaxY / (double)4))
+                            tileY = Conversion.Int(modTypes.Map[mapNum].MaxY / (int)4);
+                        if (tileY > Conversion.Int(modTypes.Map[mapNum].MaxY / (double)2) + Conversion.Int(modTypes.Map[mapNum].MaxY / (int)4))
+                            tileY = Conversion.Int(modTypes.Map[mapNum].MaxY / (int)2) + Conversion.Int(modTypes.Map[mapNum].MaxY / (int)4);
+                        var loopTo7 = modTypes.Map[mapNum].MaxY;
                         for (y = tileY; y <= loopTo7; y++)
                         {
                             if (y < tileY + SandBorder)
@@ -1331,9 +1329,9 @@ namespace Engine
                 if (prefab == MapPrefab.UpRightQuarter)
                 {
                     tileStartX = S_GameLogic.Random(4, 8);
-                    tileStartY = _mapOrientation[withBlock.Left].TileEndY;
+                    tileStartY = _mapOrientation[modTypes.Map[mapNum].Left].TileEndY;
                     tileEndX = 0;
-                    tileEndY = withBlock.MaxY;
+                    tileEndY = modTypes.Map[mapNum].MaxY;
 
                     tileX = tileStartX;
                     var loopTo8 = tileEndY;
@@ -1341,8 +1339,8 @@ namespace Engine
                     {
                         if (y != tileStartY)
                             tileX = tileX + S_GameLogic.Random(0, 2);
-                        if (tileX > withBlock.MaxX)
-                            tileX = withBlock.MaxX;
+                        if (tileX > modTypes.Map[mapNum].MaxX)
+                            tileX = modTypes.Map[mapNum].MaxX;
                         var loopTo9 = tileEndX;
                         for (x = tileX; x >= loopTo9; x += -1)
                         {
@@ -1357,13 +1355,13 @@ namespace Engine
                 }
                 if (prefab == MapPrefab.LeftBorder)
                 {
-                    if (withBlock.Up == MapStart)
-                        tileStartX = _mapOrientation[withBlock.Up].TileStartX;
+                    if (modTypes.Map[mapNum].Up == MapStart)
+                        tileStartX = _mapOrientation[modTypes.Map[mapNum].Up].TileStartX;
                     else
-                        tileStartX = _mapOrientation[withBlock.Up].TileEndX;
+                        tileStartX = _mapOrientation[modTypes.Map[mapNum].Up].TileEndX;
                     tileStartY = 0;
-                    tileEndX = withBlock.MaxX;
-                    tileEndY = withBlock.MaxY;
+                    tileEndX = modTypes.Map[mapNum].MaxX;
+                    tileEndY = modTypes.Map[mapNum].MaxY;
                     tileX = tileStartX;
                     changed = true;
                     var loopTo10 = tileEndY;
@@ -1380,10 +1378,10 @@ namespace Engine
                         }
                         else
                             changed = false;
-                        if (tileX < Conversion.Int(withBlock.MaxX / (double)4))
-                            tileX = Conversion.Int(withBlock.MaxX / (int)4);
-                        if (tileX > Conversion.Int(withBlock.MaxX / (double)2) + Conversion.Int(withBlock.MaxX / (double)4))
-                            tileX = Conversion.Int(withBlock.MaxX / (int)2) + Conversion.Int(withBlock.MaxX / (int)4);
+                        if (tileX < Conversion.Int(modTypes.Map[mapNum].MaxX / (double)4))
+                            tileX = Conversion.Int(modTypes.Map[mapNum].MaxX / (int)4);
+                        if (tileX > Conversion.Int(modTypes.Map[mapNum].MaxX / (double)2) + Conversion.Int(modTypes.Map[mapNum].MaxX / (double)4))
+                            tileX = Conversion.Int(modTypes.Map[mapNum].MaxX / (int)2) + Conversion.Int(modTypes.Map[mapNum].MaxX / (int)4);
                         var loopTo11 = tileEndX;
                         for (x = tileX; x <= loopTo11; x++)
                         {
@@ -1398,13 +1396,13 @@ namespace Engine
                 }
                 if (prefab == MapPrefab.RightBorder)
                 {
-                    if (withBlock.Up == MapStart)
-                        tileStartX = _mapOrientation[withBlock.Up].TileStartX;
+                    if (modTypes.Map[mapNum].Up == MapStart)
+                        tileStartX = _mapOrientation[modTypes.Map[mapNum].Up].TileStartX;
                     else
-                        tileStartX = _mapOrientation[withBlock.Up].TileEndX;
+                        tileStartX = _mapOrientation[modTypes.Map[mapNum].Up].TileEndX;
                     tileStartY = 0;
-                    tileEndX = withBlock.MaxX;
-                    tileEndY = withBlock.MaxY;
+                    tileEndX = modTypes.Map[mapNum].MaxX;
+                    tileEndY = modTypes.Map[mapNum].MaxY;
                     tileX = tileStartX;
                     changed = true;
                     var loopTo12 = tileEndY;
@@ -1421,10 +1419,10 @@ namespace Engine
                         }
                         else
                             changed = false;
-                        if (tileX < Conversion.Int(withBlock.MaxX / (double)4))
-                            tileX = Conversion.Int(withBlock.MaxX / (int)4);
-                        if (tileX > Conversion.Int(withBlock.MaxX / (double)2) + Conversion.Int(withBlock.MaxX / (double)4))
-                            tileX = Conversion.Int(withBlock.MaxX / (int)2) + Conversion.Int(withBlock.MaxX / (int)4);
+                        if (tileX < Conversion.Int(modTypes.Map[mapNum].MaxX / (double)4))
+                            tileX = Conversion.Int(modTypes.Map[mapNum].MaxX / (int)4);
+                        if (tileX > Conversion.Int(modTypes.Map[mapNum].MaxX / (double)2) + Conversion.Int(modTypes.Map[mapNum].MaxX / (double)4))
+                            tileX = Conversion.Int(modTypes.Map[mapNum].MaxX / (int)2) + Conversion.Int(modTypes.Map[mapNum].MaxX / (int)4);
                         for (x = tileX; x >= 0; x += -1)
                         {
                             if (x > tileX - SandBorder)
@@ -1438,10 +1436,10 @@ namespace Engine
                 }
                 if (prefab == MapPrefab.DownLeftQuarter)
                 {
-                    tileStartX = _mapOrientation[withBlock.Up].TileEndX;
-                    tileEndX = withBlock.MaxX;
+                    tileStartX = _mapOrientation[modTypes.Map[mapNum].Up].TileEndX;
+                    tileEndX = modTypes.Map[mapNum].MaxX;
                     tileStartY = 0;
-                    tileEndY = Conversion.Int(withBlock.MaxY / 2) + S_GameLogic.Random(0, Conversion.Int(withBlock.MaxY / 4));
+                    tileEndY = Conversion.Int(modTypes.Map[mapNum].MaxY / 2) + S_GameLogic.Random(0, Conversion.Int(modTypes.Map[mapNum].MaxY / 4));
 
                     tileX = tileStartX;
                     var loopTo13 = tileEndY;
@@ -1470,8 +1468,8 @@ namespace Engine
                 if (prefab == MapPrefab.BottomBorder)
                 {
                     tileStartX = 0;
-                    tileEndX = withBlock.MaxX;
-                    tileStartY = _mapOrientation[withBlock.Left].TileEndY;
+                    tileEndX = modTypes.Map[mapNum].MaxX;
+                    tileStartY = _mapOrientation[modTypes.Map[mapNum].Left].TileEndY;
 
                     tileY = tileStartY;
                     changed = true;
@@ -1489,10 +1487,10 @@ namespace Engine
                         }
                         else
                             changed = false;
-                        if (tileY < Conversion.Int(withBlock.MaxY / (double)4))
-                            tileY = Conversion.Int(withBlock.MaxY / (int)4);
-                        if (tileY > Conversion.Int(withBlock.MaxY / (double)2) + Conversion.Int(withBlock.MaxY / (double)4))
-                            tileY = Conversion.Int(withBlock.MaxY / (int)2) + Conversion.Int(withBlock.MaxY / (int)4);
+                        if (tileY < Conversion.Int(modTypes.Map[mapNum].MaxY / (double)4))
+                            tileY = Conversion.Int(modTypes.Map[mapNum].MaxY / (int)4);
+                        if (tileY > Conversion.Int(modTypes.Map[mapNum].MaxY / (double)2) + Conversion.Int(modTypes.Map[mapNum].MaxY / (double)4))
+                            tileY = Conversion.Int(modTypes.Map[mapNum].MaxY / (int)2) + Conversion.Int(modTypes.Map[mapNum].MaxY / (int)4);
                         for (y = tileY; y >= 0; y += -1)
                         {
                             if (y > tileY - SandBorder)
@@ -1506,10 +1504,10 @@ namespace Engine
                 }
                 if (prefab == MapPrefab.DownRightQuarter)
                 {
-                    tileStartY = _mapOrientation[withBlock.Left].TileEndY;
+                    tileStartY = _mapOrientation[modTypes.Map[mapNum].Left].TileEndY;
                     tileEndY = 0;
                     tileStartX = 0;
-                    tileEndX = _mapOrientation[withBlock.Up].TileEndX;
+                    tileEndX = _mapOrientation[modTypes.Map[mapNum].Up].TileEndX;
                     tileY = tileStartY;
                     var loopTo16 = tileEndX;
                     for (x = tileStartX; x <= loopTo16; x++)
@@ -1621,7 +1619,7 @@ namespace Engine
                         if (_mapOrientation[modTypes.Map[mapNum].Left].Prefab == (int)MapPrefab.Common)
                         {
                             PaintTile(TilePrefab.Passing, mapNum, x, y, brushX, brushY, onlyTo: TilePrefab.Grass);
-                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Left, Convert.ToInt32(modTypes.Map[mapNum].MaxX), y, brushX, brushY, onlyTo: TilePrefab.Grass);
+                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Left, (int)Conversion.Val(modTypes.Map[mapNum].MaxX), y, brushX, brushY, onlyTo: TilePrefab.Grass);
                             MakePath(modTypes.Map[mapNum].Left, modTypes.Map[mapNum].MaxX, y, dir, steps);
                         }
                     }
@@ -1647,7 +1645,7 @@ namespace Engine
                         if (_mapOrientation[modTypes.Map[mapNum].Up].Prefab == (int)MapPrefab.Common)
                         {
                             PaintTile(TilePrefab.Passing, mapNum, x, y, brushX, brushY, onlyTo: TilePrefab.Grass);
-                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Up, x, Convert.ToInt32(modTypes.Map[mapNum].MaxY), brushX, brushY, onlyTo: TilePrefab.Grass);
+                            PaintTile(TilePrefab.Passing, modTypes.Map[mapNum].Up, x, (int)Conversion.Val(modTypes.Map[mapNum].MaxY), brushX, brushY, onlyTo: TilePrefab.Grass);
                             MakePath(modTypes.Map[mapNum].Up, x, modTypes.Map[mapNum].MaxY, dir, steps);
                         }
                     }
@@ -1846,13 +1844,13 @@ namespace Engine
             int totalMaps = size * size;
 
             if (totalMaps % 2 == 1)
-                MakeMapPaths(Convert.ToInt32(totalMaps / (double)2) + 1);
+                MakeMapPaths((int)Conversion.Int(totalMaps / (double)2) + 1);
             else
             {
-                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2));
-                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2) + 1);
-                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2) + size);
-                MakeMapPaths(Convert.ToInt32(totalMaps / (int)2) - (size / (int)2) + size + 1);
+                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2));
+                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2) + 1);
+                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2) + size);
+                MakeMapPaths((int)Conversion.Int(totalMaps / (int)2) - (size / (int)2) + size + 1);
             }
         }
 

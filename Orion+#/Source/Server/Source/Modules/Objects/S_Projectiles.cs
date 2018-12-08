@@ -332,14 +332,13 @@ namespace Engine
             buffer.WriteInt32((byte)Packets.ServerPackets.SMapProjectile);
 
             {
-                var withBlock = MapProjectiles[mapNum, ProjectileNum];
                 buffer.WriteInt32(ProjectileNum);
-                buffer.WriteInt32(withBlock.ProjectileNum);
-                buffer.WriteInt32(withBlock.Owner);
-                buffer.WriteInt32(withBlock.OwnerType);
-                buffer.WriteInt32(withBlock.Dir);
-                buffer.WriteInt32(withBlock.X);
-                buffer.WriteInt32(withBlock.Y);
+                buffer.WriteInt32(MapProjectiles[mapNum, ProjectileNum].ProjectileNum);
+                buffer.WriteInt32(MapProjectiles[mapNum, ProjectileNum].Owner);
+                buffer.WriteInt32(MapProjectiles[mapNum, ProjectileNum].OwnerType);
+                buffer.WriteInt32(MapProjectiles[mapNum, ProjectileNum].Dir);
+                buffer.WriteInt32(MapProjectiles[mapNum, ProjectileNum].X);
+                buffer.WriteInt32(MapProjectiles[mapNum, ProjectileNum].Y);
             }
 
             S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
@@ -381,14 +380,13 @@ namespace Engine
                 return;
 
             {
-                var withBlock = MapProjectiles[mapNum, ProjectileSlot];
-                withBlock.ProjectileNum = ProjectileNum;
-                withBlock.Owner = index;
-                withBlock.OwnerType = (byte)Enums.TargetType.Player;
-                withBlock.Dir = (byte)S_Players.GetPlayerDir(index);
-                withBlock.X = S_Players.GetPlayerX(index);
-                withBlock.Y = S_Players.GetPlayerY(index);
-                withBlock.Timer = S_General.GetTimeMs() + 60000;
+                MapProjectiles[mapNum, ProjectileSlot].ProjectileNum = ProjectileNum;
+                MapProjectiles[mapNum, ProjectileSlot].Owner = index;
+                MapProjectiles[mapNum, ProjectileSlot].OwnerType = (byte)Enums.TargetType.Player;
+                MapProjectiles[mapNum, ProjectileSlot].Dir = (byte)S_Players.GetPlayerDir(index);
+                MapProjectiles[mapNum, ProjectileSlot].X = S_Players.GetPlayerX(index);
+                MapProjectiles[mapNum, ProjectileSlot].Y = S_Players.GetPlayerY(index);
+                MapProjectiles[mapNum, ProjectileSlot].Timer = S_General.GetTimeMs() + 60000;
             }
 
             SendProjectileToMap(mapNum, ProjectileSlot);

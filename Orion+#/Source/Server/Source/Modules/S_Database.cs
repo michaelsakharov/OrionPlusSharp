@@ -132,17 +132,17 @@ namespace Engine
                 Types.Classes[i].Stat[(int)Enums.StatType.Intelligence] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "Int"));
                 Types.Classes[i].Stat[(int)Enums.StatType.Spirit] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "Speed"));
 
-                Types.Classes[i].BaseExp = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "BaseExp"));
+                Types.Classes[i].BaseExp = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "BaseExp"));
 
-                Types.Classes[i].StartMap = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "StartMap"));
+                Types.Classes[i].StartMap = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartMap"));
                 Types.Classes[i].StartX = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartX"));
                 Types.Classes[i].StartY = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartY"));
 
                 // loop for items & values
                 for (x = 1; x <= 5; x++)
                 {
-                    Types.Classes[i].StartItem[x] = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "StartItem" + x));
-                    Types.Classes[i].StartValue[x] = (int)Conversion.Val(myXml.ReadString("CLASS" + i, "StartValue" + x));
+                    Types.Classes[i].StartItem[x] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartItem" + x));
+                    Types.Classes[i].StartValue[x] = (byte)Conversion.Val(myXml.ReadString("CLASS" + i, "StartValue" + x));
                 }
             }
 
@@ -167,8 +167,8 @@ namespace Engine
             var loopTo = S_Globals.Max_Classes;
             for (i = 1; i <= loopTo; i++)
             {
-                myXml.WriteString("CLASS" + i, "Name", Types.Classes[i].Name.Trim());
-                myXml.WriteString("CLASS" + i, "Desc", Types.Classes[i].Desc.Trim());
+                myXml.WriteString("CLASS" + i, "Name", Microsoft.VisualBasic.Strings.Trim(Types.Classes[i].Name));
+                myXml.WriteString("CLASS" + i, "Desc", Microsoft.VisualBasic.Strings.Trim(Types.Classes[i].Desc));
 
                 tmpstring = "";
                 var loopTo1 = Information.UBound(Types.Classes[i].MaleSprite);
@@ -387,13 +387,12 @@ namespace Engine
                 for (var i = 1; i <= loopTo; i++)
                 {
                     {
-                        var withBlock = modTypes.Map[mapNum].Events[i];
-                        myXml.WriteString("Event" + i, "Name", withBlock.Name);
-                        myXml.WriteString("Event" + i, "Global", withBlock.Globals.ToString());
-                        myXml.WriteString("Event" + i, "x", withBlock.X.ToString());
-                        myXml.WriteString("Event" + i, "y", withBlock.Y.ToString());
-                        myXml.WriteString("Event" + i, "PageCount", withBlock.PageCount.ToString());
-                        Console.WriteLine(withBlock.PageCount);
+                        myXml.WriteString("Event" + i, "Name", modTypes.Map[mapNum].Events[i].Name);
+                        myXml.WriteString("Event" + i, "Global", modTypes.Map[mapNum].Events[i].Globals.ToString());
+                        myXml.WriteString("Event" + i, "x", modTypes.Map[mapNum].Events[i].X.ToString());
+                        myXml.WriteString("Event" + i, "y", modTypes.Map[mapNum].Events[i].Y.ToString());
+                        myXml.WriteString("Event" + i, "PageCount", modTypes.Map[mapNum].Events[i].PageCount.ToString());
+                        Console.WriteLine(modTypes.Map[mapNum].Events[i].PageCount);
                     }
                     if (modTypes.Map[mapNum].Events[i].PageCount + 1 > 0)
                     {
@@ -401,66 +400,66 @@ namespace Engine
                         for (var x = 1; x <= loopTo1; x++)
                         {
                             {
-                                var withBlock1 = modTypes.Map[mapNum].Events[i].Pages[x];
-                                myXml.WriteString("Event" + i + "Page" + x, "chkVariable", Conversion.Val(withBlock1.ChkVariable).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "VariableIndex", Conversion.Val(withBlock1.Variableindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "VariableCondition", Conversion.Val(withBlock1.VariableCondition).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "VariableCompare", Conversion.Val(withBlock1.VariableCompare).ToString());
+                                //var withBlock1 = modTypes.Map[mapNum].Events[i].Pages[x];
+                                myXml.WriteString("Event" + i + "Page" + x, "chkVariable", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkVariable).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "VariableIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Variableindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "VariableCondition", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].VariableCondition).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "VariableCompare", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].VariableCompare).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "chkSwitch", Conversion.Val(withBlock1.ChkSwitch).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SwitchIndex", Conversion.Val(withBlock1.Switchindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SwitchCompare", Conversion.Val(withBlock1.SwitchCompare).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkSwitch", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkSwitch).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SwitchIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Switchindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SwitchCompare", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].SwitchCompare).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "chkHasItem", Conversion.Val(withBlock1.ChkHasItem).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "HasItemIndex", Conversion.Val(withBlock1.HasItemindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "HasItemAmount", Conversion.Val(withBlock1.HasItemAmount).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkHasItem", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkHasItem).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "HasItemIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].HasItemindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "HasItemAmount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].HasItemAmount).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "chkSelfSwitch", Conversion.Val(withBlock1.ChkSelfSwitch).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchIndex", Conversion.Val(withBlock1.SelfSwitchindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchCompare", Conversion.Val(withBlock1.SelfSwitchCompare).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkSelfSwitch", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkSelfSwitch).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchCompare", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchCompare).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicType", Conversion.Val(withBlock1.GraphicType).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "Graphic", Conversion.Val(withBlock1.Graphic).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX", Conversion.Val(withBlock1.GraphicX).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY", Conversion.Val(withBlock1.GraphicY).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX2", Conversion.Val(withBlock1.GraphicX2).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY2", Conversion.Val(withBlock1.GraphicY2).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicType", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicType).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "Graphic", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Graphic).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicX).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicY).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicX2).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicY2).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveType", Conversion.Val(withBlock1.MoveType).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveSpeed", Conversion.Val(withBlock1.MoveSpeed).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveFreq", Conversion.Val(withBlock1.MoveFreq).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveType", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveType).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveSpeed", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveSpeed).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveFreq", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveFreq).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "IgnoreMoveRoute", Conversion.Val(withBlock1.IgnoreMoveRoute).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "RepeatMoveRoute", Conversion.Val(withBlock1.RepeatMoveRoute).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "IgnoreMoveRoute", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].IgnoreMoveRoute).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "RepeatMoveRoute", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].RepeatMoveRoute).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveRouteCount", Conversion.Val(withBlock1.MoveRouteCount).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveRouteCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount).ToString());
 
-                                if (withBlock1.MoveRouteCount > 0)
+                                if (modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount > 0)
                                 {
-                                    var loopTo2 = withBlock1.MoveRouteCount;
+                                    var loopTo2 = modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount;
                                     for (var y = 1; y <= loopTo2; y++)
                                     {
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Index", Conversion.Val(withBlock1.MoveRoute[y].Index).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1", Conversion.Val(withBlock1.MoveRoute[y].Data1).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2", Conversion.Val(withBlock1.MoveRoute[y].Data2).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3", Conversion.Val(withBlock1.MoveRoute[y].Data3).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4", Conversion.Val(withBlock1.MoveRoute[y].Data4).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5", Conversion.Val(withBlock1.MoveRoute[y].Data5).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6", Conversion.Val(withBlock1.MoveRoute[y].Data6).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Index", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Index).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data1).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data2).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data3).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data4).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data5).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data6).ToString());
                                     }
                                 }
 
-                                myXml.WriteString("Event" + i + "Page" + x, "WalkAnim", Conversion.Val(withBlock1.WalkAnim).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "DirFix", Conversion.Val(withBlock1.DirFix).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "WalkThrough", Conversion.Val(withBlock1.WalkThrough).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "ShowName", Conversion.Val(withBlock1.ShowName).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "Trigger", Conversion.Val(withBlock1.Trigger).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "CommandListCount", Conversion.Val(withBlock1.CommandListCount).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "WalkAnim", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].WalkAnim).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "DirFix", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].DirFix).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "WalkThrough", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].WalkThrough).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "ShowName", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ShowName).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "Trigger", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Trigger).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "CommandListCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "Position", Conversion.Val(withBlock1.Position).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "QuestNum", Conversion.Val(withBlock1.QuestNum).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "Position", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Position).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "QuestNum", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].QuestNum).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "PlayerGender", Conversion.Val(withBlock1.ChkPlayerGender).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "PlayerGender", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkPlayerGender).ToString());
                             }
 
                             if (modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount > 0)
@@ -477,39 +476,39 @@ namespace Engine
                                         for (var z = 1; z <= loopTo4; z++)
                                         {
                                             {
-                                                var withBlock2 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z];
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Index", Conversion.Val(withBlock2.Index).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text1", withBlock2.Text1);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text2", withBlock2.Text2);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text3", withBlock2.Text3);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text4", withBlock2.Text4);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text5", withBlock2.Text5);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data1", Conversion.Val(withBlock2.Data1).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data2", Conversion.Val(withBlock2.Data2).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data3", Conversion.Val(withBlock2.Data3).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data4", Conversion.Val(withBlock2.Data4).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data5", Conversion.Val(withBlock2.Data5).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data6", Conversion.Val(withBlock2.Data6).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCommandList", Conversion.Val(withBlock2.ConditionalBranch.CommandList).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCondition", Conversion.Val(withBlock2.ConditionalBranch.Condition).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData1", Conversion.Val(withBlock2.ConditionalBranch.Data1).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData2", Conversion.Val(withBlock2.ConditionalBranch.Data2).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData3", Conversion.Val(withBlock2.ConditionalBranch.Data3).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchElseCommandList", Conversion.Val(withBlock2.ConditionalBranch.ElseCommandList).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRouteCount", Conversion.Val(withBlock2.MoveRouteCount).ToString());
+                                                //var withBlock2 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z];
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Index", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Index).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text1", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text1);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text2", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text2);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text3", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text3);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text4", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text4);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text5", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text5);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data1).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data2).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data3).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data4", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data4).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data5", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data5).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data6", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data6).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCommandList", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.CommandList).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCondition", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Condition).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data1).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data2).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data3).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchElseCommandList", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.ElseCommandList).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRouteCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount).ToString());
 
-                                                if (withBlock2.MoveRouteCount > 0)
+                                                if (modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount > 0)
                                                 {
-                                                    var loopTo5 = withBlock2.MoveRouteCount;
+                                                    var loopTo5 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount;
                                                     for (var w = 1; w <= loopTo5; w++)
                                                     {
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Index", Conversion.Val(withBlock2.MoveRoute[w].Index).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data1", Conversion.Val(withBlock2.MoveRoute[w].Data1).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data2", Conversion.Val(withBlock2.MoveRoute[w].Data2).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data3", Conversion.Val(withBlock2.MoveRoute[w].Data3).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data4", Conversion.Val(withBlock2.MoveRoute[w].Data4).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data5", Conversion.Val(withBlock2.MoveRoute[w].Data5).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data6", Conversion.Val(withBlock2.MoveRoute[w].Data6).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Index", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Index).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data1).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data2).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data3).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data4", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data4).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data5", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data5).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data6", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data6).ToString());
                                                     }
                                                 }
                                             }
@@ -534,7 +533,7 @@ namespace Engine
             };
 
             myXml.LoadXml();
-            modTypes.Map[mapNum].EventCount = Convert.ToInt32(myXml.ReadString("Events", "EventCount"));
+            modTypes.Map[mapNum].EventCount = (int)Conversion.Val(myXml.ReadString("Events", "EventCount"));
 
             if (!(modTypes.Map[mapNum].EventCount > 0))
             {
@@ -554,12 +553,11 @@ namespace Engine
                 if (Conversion.Val(myXml.ReadString("Event" + i, "PageCount")) > 0)
                 {
                     {
-                        var withBlock = modTypes.Map[mapNum].Events[i];
-                        withBlock.Name = myXml.ReadString("Event" + i, "Name");
-                        withBlock.Globals = (byte)Conversion.Val(myXml.ReadString("Event" + i, "Global"));
-                        withBlock.X = (byte)Conversion.Val(myXml.ReadString("Event" + i, "x"));
-                        withBlock.Y = (byte)Conversion.Val(myXml.ReadString("Event" + i, "y"));
-                        withBlock.PageCount = (byte)Conversion.Val(myXml.ReadString("Event" + i, "PageCount"));
+                        modTypes.Map[mapNum].Events[i].Name = myXml.ReadString("Event" + i, "Name");
+                        modTypes.Map[mapNum].Events[i].Globals = (byte)Conversion.Val(myXml.ReadString("Event" + i, "Global"));
+                        modTypes.Map[mapNum].Events[i].X = (byte)Conversion.Val(myXml.ReadString("Event" + i, "x"));
+                        modTypes.Map[mapNum].Events[i].Y = (byte)Conversion.Val(myXml.ReadString("Event" + i, "y"));
+                        modTypes.Map[mapNum].Events[i].PageCount = (byte)Conversion.Val(myXml.ReadString("Event" + i, "PageCount"));
                     }
                     if (modTypes.Map[mapNum].Events[i].PageCount > 0)
                     {
@@ -568,67 +566,67 @@ namespace Engine
                         for (x = 1; x <= loopTo1; x++)
                         {
                             {
-                                var withBlock1 = modTypes.Map[mapNum].Events[i].Pages[x];
-                                withBlock1.ChkVariable = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkVariable"));
-                                withBlock1.Variableindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableIndex"));
-                                withBlock1.VariableCondition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCondition"));
-                                withBlock1.VariableCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCompare"));
+                                //var modTypes.Map[mapNum].Events[i].Pages[x] = modTypes.Map[mapNum].Events[i].Pages[x];
+                                modTypes.Map[mapNum].Events[i].Pages[x].ChkVariable = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkVariable"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].Variableindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableIndex"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].VariableCondition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCondition"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].VariableCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCompare"));
 
-                                withBlock1.ChkSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSwitch"));
-                                withBlock1.Switchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchIndex"));
-                                withBlock1.SwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchCompare"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].ChkSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSwitch"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].Switchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchIndex"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].SwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchCompare"));
 
-                                withBlock1.ChkHasItem = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkHasItem"));
-                                withBlock1.HasItemindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemIndex"));
-                                withBlock1.HasItemAmount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemAmount"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].ChkHasItem = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkHasItem"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].HasItemindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemIndex"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].HasItemAmount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemAmount"));
 
-                                withBlock1.ChkSelfSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSelfSwitch"));
-                                withBlock1.SelfSwitchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchIndex"));
-                                withBlock1.SelfSwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchCompare"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].ChkSelfSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSelfSwitch"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchIndex"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchCompare"));
 
-                                withBlock1.GraphicType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicType"));
-                                withBlock1.Graphic = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Graphic"));
-                                withBlock1.GraphicX = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX"));
-                                withBlock1.GraphicY = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY"));
-                                withBlock1.GraphicX2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX2"));
-                                withBlock1.GraphicY2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY2"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicType"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].Graphic = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Graphic"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicX = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicY = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicX2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX2"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicY2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY2"));
 
-                                withBlock1.MoveType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveType"));
-                                withBlock1.MoveSpeed = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveSpeed"));
-                                withBlock1.MoveFreq = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveFreq"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].MoveType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveType"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].MoveSpeed = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveSpeed"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].MoveFreq = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveFreq"));
 
-                                withBlock1.IgnoreMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "IgnoreMoveRoute"));
-                                withBlock1.RepeatMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "RepeatMoveRoute"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].IgnoreMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "IgnoreMoveRoute"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].RepeatMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "RepeatMoveRoute"));
 
-                                withBlock1.MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRouteCount"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRouteCount"));
 
-                                if (withBlock1.MoveRouteCount > 0)
+                                if (modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount > 0)
                                 {
-                                    modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute = new MoveRouteStruct[withBlock1.MoveRouteCount + 1];
-                                    var loopTo2 = withBlock1.MoveRouteCount;
+                                    modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute = new MoveRouteStruct[modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount + 1];
+                                    var loopTo2 = modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount;
                                     for (y = 1; y <= loopTo2; y++)
                                     {
-                                        withBlock1.MoveRoute[y].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Index"));
-                                        withBlock1.MoveRoute[y].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1"));
-                                        withBlock1.MoveRoute[y].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2"));
-                                        withBlock1.MoveRoute[y].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3"));
-                                        withBlock1.MoveRoute[y].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4"));
-                                        withBlock1.MoveRoute[y].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5"));
-                                        withBlock1.MoveRoute[y].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Index"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5"));
+                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6"));
                                     }
                                 }
 
-                                withBlock1.WalkAnim = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkAnim"));
-                                withBlock1.DirFix = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "DirFix"));
-                                withBlock1.WalkThrough = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkThrough"));
-                                withBlock1.ShowName = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "ShowName"));
-                                withBlock1.Trigger = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Trigger"));
-                                withBlock1.CommandListCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandListCount"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].WalkAnim = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkAnim"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].DirFix = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "DirFix"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].WalkThrough = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkThrough"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].ShowName = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "ShowName"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].Trigger = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Trigger"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandListCount"));
 
-                                withBlock1.Position = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Position"));
-                                withBlock1.QuestNum = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "QuestNum"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].Position = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Position"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].QuestNum = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "QuestNum"));
 
-                                withBlock1.ChkPlayerGender = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "PlayerGender"));
+                                modTypes.Map[mapNum].Events[i].Pages[x].ChkPlayerGender = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "PlayerGender"));
                             }
 
                             if (modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount > 0)
@@ -647,38 +645,38 @@ namespace Engine
                                         {
                                             {
                                                 var withBlock2 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p];
-                                                withBlock2.Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Index"));
-                                                withBlock2.Text1 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text1");
-                                                withBlock2.Text2 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text2");
-                                                withBlock2.Text3 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text3");
-                                                withBlock2.Text4 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text4");
-                                                withBlock2.Text5 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text5");
-                                                withBlock2.Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data1"));
-                                                withBlock2.Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data2"));
-                                                withBlock2.Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data3"));
-                                                withBlock2.Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data4"));
-                                                withBlock2.Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data5"));
-                                                withBlock2.Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data6"));
-                                                withBlock2.ConditionalBranch.CommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCommandList"));
-                                                withBlock2.ConditionalBranch.Condition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCondition"));
-                                                withBlock2.ConditionalBranch.Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData1"));
-                                                withBlock2.ConditionalBranch.Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData2"));
-                                                withBlock2.ConditionalBranch.Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData3"));
-                                                withBlock2.ConditionalBranch.ElseCommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchElseCommandList"));
-                                                withBlock2.MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRouteCount"));
-                                                if (withBlock2.MoveRouteCount > 0)
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Index"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text1 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text1");
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text2 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text2");
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text3 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text3");
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text4 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text4");
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text5 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text5");
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data1"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data2"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data3"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data4"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data5"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data6"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.CommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCommandList"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Condition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCondition"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData1"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData2"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData3"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.ElseCommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchElseCommandList"));
+                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRouteCount"));
+                                                if (modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount > 0)
                                                 {
-                                                    withBlock2.MoveRoute = new MoveRouteStruct[withBlock2.MoveRouteCount + 1];
-                                                    var loopTo5 = withBlock2.MoveRouteCount;
+                                                    modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute = new MoveRouteStruct[modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount + 1];
+                                                    var loopTo5 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount;
                                                     for (var w = 1; w <= loopTo5; w++)
                                                     {
-                                                        withBlock2.MoveRoute[w].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Index"));
-                                                        withBlock2.MoveRoute[w].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data1"));
-                                                        withBlock2.MoveRoute[w].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data2"));
-                                                        withBlock2.MoveRoute[w].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data3"));
-                                                        withBlock2.MoveRoute[w].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data4"));
-                                                        withBlock2.MoveRoute[w].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data5"));
-                                                        withBlock2.MoveRoute[w].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data6"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Index"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data1"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data2"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data3"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data4"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data5"));
+                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data6"));
                                                     }
                                                 }
                                             }

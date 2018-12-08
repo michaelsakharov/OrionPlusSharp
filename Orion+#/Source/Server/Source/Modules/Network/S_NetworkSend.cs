@@ -737,18 +737,16 @@ namespace Engine
                 buffer.WriteInt32(modTypes.Map[mapNum].EventCount);
                 if (modTypes.Map[mapNum].EventCount > 0)
                 {
-                    Console.WriteLine("GotHere");
                     var loopTo2 = modTypes.Map[mapNum].EventCount;
                     for (var i = 1; i <= loopTo2; i++)
                     {
                         {
-                            var withBlock = modTypes.Map[mapNum].Events[i];
-                            if (withBlock.Name == null) { withBlock.Name = "Null"; }
-                            buffer.WriteString((withBlock.Name.Trim()));
-                            buffer.WriteInt32(withBlock.Globals);
-                            buffer.WriteInt32(withBlock.X);
-                            buffer.WriteInt32(withBlock.Y);
-                            buffer.WriteInt32(withBlock.PageCount);
+                            if (modTypes.Map[mapNum].Events[i].Name == null) { modTypes.Map[mapNum].Events[i].Name = "Null"; }
+                            buffer.WriteString((modTypes.Map[mapNum].Events[i].Name.Trim()));
+                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Globals);
+                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].X);
+                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Y);
+                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].PageCount);
                         }
                         if (modTypes.Map[mapNum].Events[i].PageCount > 0)
                         {
@@ -756,57 +754,56 @@ namespace Engine
                             for (var X = 1; X <= loopTo3; X++)
                             {
                                 {
-                                    Console.WriteLine("GotHere");
-                                    var withBlock1 = modTypes.Map[mapNum].Events[i].Pages[X];
-                                    buffer.WriteInt32(withBlock1.ChkVariable);
-                                    buffer.WriteInt32(withBlock1.Variableindex);
-                                    buffer.WriteInt32(withBlock1.VariableCondition);
-                                    buffer.WriteInt32(withBlock1.VariableCompare);
-                                    buffer.WriteInt32(withBlock1.ChkSwitch);
-                                    buffer.WriteInt32(withBlock1.Switchindex);
-                                    buffer.WriteInt32(withBlock1.SwitchCompare);
-                                    buffer.WriteInt32(withBlock1.ChkHasItem);
-                                    buffer.WriteInt32(withBlock1.HasItemindex);
-                                    buffer.WriteInt32(withBlock1.HasItemAmount);
-                                    buffer.WriteInt32(withBlock1.ChkSelfSwitch);
-                                    buffer.WriteInt32(withBlock1.SelfSwitchindex);
-                                    buffer.WriteInt32(withBlock1.SelfSwitchCompare);
-                                    buffer.WriteInt32(withBlock1.GraphicType);
-                                    buffer.WriteInt32(withBlock1.Graphic);
-                                    buffer.WriteInt32(withBlock1.GraphicX);
-                                    buffer.WriteInt32(withBlock1.GraphicY);
-                                    buffer.WriteInt32(withBlock1.GraphicX2);
-                                    buffer.WriteInt32(withBlock1.GraphicY2);
-                                    buffer.WriteInt32(withBlock1.MoveType);
-                                    buffer.WriteInt32(withBlock1.MoveSpeed);
-                                    buffer.WriteInt32(withBlock1.MoveFreq);
-                                    buffer.WriteInt32(withBlock1.MoveRouteCount);
-                                    buffer.WriteInt32(withBlock1.IgnoreMoveRoute);
-                                    buffer.WriteInt32(withBlock1.RepeatMoveRoute);
-                                    if (withBlock1.MoveRouteCount > 0)
+                                    //var withBlock1 = modTypes.Map[mapNum].Events[i].Pages[X];
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkVariable);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Variableindex);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].VariableCondition);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].VariableCompare);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkSwitch);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Switchindex);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].SwitchCompare);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkHasItem);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].HasItemindex);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].HasItemAmount);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkSelfSwitch);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].SelfSwitchindex);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].SelfSwitchCompare);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].GraphicType);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Graphic);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].GraphicX);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].GraphicY);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].GraphicX2);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].GraphicY2);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveType);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveSpeed);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveFreq);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRouteCount);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].IgnoreMoveRoute);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].RepeatMoveRoute);
+                                    if (modTypes.Map[mapNum].Events[i].Pages[X].MoveRouteCount > 0)
                                     {
-                                        var loopTo4 = withBlock1.MoveRouteCount;
+                                        var loopTo4 = modTypes.Map[mapNum].Events[i].Pages[X].MoveRouteCount;
                                         for (var Y = 1; Y <= loopTo4; Y++)
                                         {
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Index);
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Data1);
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Data2);
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Data3);
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Data4);
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Data5);
-                                            buffer.WriteInt32(withBlock1.MoveRoute[Y].Data6);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Index);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Data1);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Data2);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Data3);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Data4);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Data5);
+                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].MoveRoute[Y].Data6);
                                         }
                                     }
-                                    buffer.WriteInt32(withBlock1.WalkAnim);
-                                    buffer.WriteInt32(withBlock1.DirFix);
-                                    buffer.WriteInt32(withBlock1.WalkThrough);
-                                    buffer.WriteInt32(withBlock1.ShowName);
-                                    buffer.WriteInt32(withBlock1.Trigger);
-                                    buffer.WriteInt32(withBlock1.CommandListCount);
-                                    buffer.WriteInt32(withBlock1.Position);
-                                    buffer.WriteInt32(withBlock1.QuestNum);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].WalkAnim);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].DirFix);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].WalkThrough);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ShowName);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Trigger);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandListCount);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Position);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].QuestNum);
 
-                                    buffer.WriteInt32(withBlock1.ChkPlayerGender);
+                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkPlayerGender);
                                 }
                                 if (modTypes.Map[mapNum].Events[i].Pages[X].CommandListCount > 0)
                                 {
@@ -821,38 +818,38 @@ namespace Engine
                                             for (var z = 1; z <= loopTo6; z++)
                                             {
                                                 {
-                                                    var withBlock2 = modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z];
-                                                    buffer.WriteInt32(withBlock2.Index);
-                                                    buffer.WriteString((withBlock2.Text1.Trim()));
-                                                    buffer.WriteString((withBlock2.Text2.Trim()));
-                                                    buffer.WriteString((withBlock2.Text3.Trim()));
-                                                    buffer.WriteString((withBlock2.Text4.Trim()));
-                                                    buffer.WriteString((withBlock2.Text5.Trim()));
-                                                    buffer.WriteInt32(withBlock2.Data1);
-                                                    buffer.WriteInt32(withBlock2.Data2);
-                                                    buffer.WriteInt32(withBlock2.Data3);
-                                                    buffer.WriteInt32(withBlock2.Data4);
-                                                    buffer.WriteInt32(withBlock2.Data5);
-                                                    buffer.WriteInt32(withBlock2.Data6);
-                                                    buffer.WriteInt32(withBlock2.ConditionalBranch.CommandList);
-                                                    buffer.WriteInt32(withBlock2.ConditionalBranch.Condition);
-                                                    buffer.WriteInt32(withBlock2.ConditionalBranch.Data1);
-                                                    buffer.WriteInt32(withBlock2.ConditionalBranch.Data2);
-                                                    buffer.WriteInt32(withBlock2.ConditionalBranch.Data3);
-                                                    buffer.WriteInt32(withBlock2.ConditionalBranch.ElseCommandList);
-                                                    buffer.WriteInt32(withBlock2.MoveRouteCount);
-                                                    if (withBlock2.MoveRouteCount > 0)
+                                                    //var withBlock2 = modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z];
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Index);
+                                                    buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Text1.Trim()));
+                                                    buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Text2.Trim()));
+                                                    buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Text3.Trim()));
+                                                    buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Text4.Trim()));
+                                                    buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Text5.Trim()));
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Data1);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Data2);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Data3);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Data4);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Data5);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].Data6);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.CommandList);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Condition);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Data1);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Data2);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Data3);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.ElseCommandList);
+                                                    buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount);
+                                                    if (modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount > 0)
                                                     {
-                                                        var loopTo7 = withBlock2.MoveRouteCount;
+                                                        var loopTo7 = modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount;
                                                         for (var w = 1; w <= loopTo7; w++)
                                                         {
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Index);
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Data1);
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Data2);
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Data3);
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Data4);
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Data5);
-                                                            buffer.WriteInt32(withBlock2.MoveRoute[w].Data6);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Index);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data1);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data2);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data3);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data4);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data5);
+                                                            buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data6);
                                                         }
                                                     }
                                                 }
@@ -978,11 +975,9 @@ namespace Engine
             for (int i = 1; i <= Constants.MAX_RECIPE; i++)
                 buffer.WriteInt32(modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RecipeLearned[i]);
 
-            PlayerData = buffer.ToArray();
+            return buffer.ToArray();
 
             buffer.Dispose();
-
-            return PlayerData;
         }
 
         public static void SendPlayerXY(int index)

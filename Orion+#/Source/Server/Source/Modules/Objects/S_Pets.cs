@@ -205,28 +205,27 @@ namespace Engine
             buffer.WriteInt32(petNum);
 
             {
-                var withBlock = Pet[petNum];
-                buffer.WriteInt32(withBlock.Num);
-                if (withBlock.Name == null) { withBlock.Name = "Null"; }
-                buffer.WriteString(withBlock.Name.Trim());
-                buffer.WriteInt32(withBlock.Sprite);
-                buffer.WriteInt32(withBlock.Range);
-                buffer.WriteInt32(withBlock.Level);
-                buffer.WriteInt32(withBlock.MaxLevel);
-                buffer.WriteInt32(withBlock.ExpGain);
-                buffer.WriteInt32(withBlock.LevelPnts);
-                buffer.WriteInt32(withBlock.StatType);
-                buffer.WriteInt32(withBlock.LevelingType);
+                buffer.WriteInt32(Pet[petNum].Num);
+                if (Pet[petNum].Name == null) { Pet[petNum].Name = "Null"; }
+                buffer.WriteString(Pet[petNum].Name.Trim());
+                buffer.WriteInt32(Pet[petNum].Sprite);
+                buffer.WriteInt32(Pet[petNum].Range);
+                buffer.WriteInt32(Pet[petNum].Level);
+                buffer.WriteInt32(Pet[petNum].MaxLevel);
+                buffer.WriteInt32(Pet[petNum].ExpGain);
+                buffer.WriteInt32(Pet[petNum].LevelPnts);
+                buffer.WriteInt32(Pet[petNum].StatType);
+                buffer.WriteInt32(Pet[petNum].LevelingType);
 
                 for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                    buffer.WriteInt32(withBlock.Stat[i]);
+                    buffer.WriteInt32(Pet[petNum].Stat[i]);
 
                 for (int i = 1; i <= 4; i++)
-                    buffer.WriteInt32(withBlock.Skill[i]);
+                    buffer.WriteInt32(Pet[petNum].Skill[i]);
 
-                buffer.WriteInt32(withBlock.Evolvable);
-                buffer.WriteInt32(withBlock.EvolveLevel);
-                buffer.WriteInt32(withBlock.EvolveNum);
+                buffer.WriteInt32(Pet[petNum].Evolvable);
+                buffer.WriteInt32(Pet[petNum].EvolveLevel);
+                buffer.WriteInt32(Pet[petNum].EvolveNum);
             }
 
             S_NetworkConfig.SendDataToAll(ref buffer.Data, buffer.Head);
@@ -242,28 +241,27 @@ namespace Engine
             buffer.WriteInt32(petNum);
 
             {
-                var withBlock = Pet[petNum];
-                buffer.WriteInt32(withBlock.Num);
-                if (withBlock.Name == null) { withBlock.Name = "Null"; }
-                buffer.WriteString(withBlock.Name.Trim());
-                buffer.WriteInt32(withBlock.Sprite);
-                buffer.WriteInt32(withBlock.Range);
-                buffer.WriteInt32(withBlock.Level);
-                buffer.WriteInt32(withBlock.MaxLevel);
-                buffer.WriteInt32(withBlock.ExpGain);
-                buffer.WriteInt32(withBlock.LevelPnts);
-                buffer.WriteInt32(withBlock.StatType);
-                buffer.WriteInt32(withBlock.LevelingType);
+                buffer.WriteInt32(Pet[petNum].Num);
+                if (Pet[petNum].Name == null) { Pet[petNum].Name = "Null"; }
+                buffer.WriteString(Pet[petNum].Name.Trim());
+                buffer.WriteInt32(Pet[petNum].Sprite);
+                buffer.WriteInt32(Pet[petNum].Range);
+                buffer.WriteInt32(Pet[petNum].Level);
+                buffer.WriteInt32(Pet[petNum].MaxLevel);
+                buffer.WriteInt32(Pet[petNum].ExpGain);
+                buffer.WriteInt32(Pet[petNum].LevelPnts);
+                buffer.WriteInt32(Pet[petNum].StatType);
+                buffer.WriteInt32(Pet[petNum].LevelingType);
 
                 for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                    buffer.WriteInt32(withBlock.Stat[i]);
+                    buffer.WriteInt32(Pet[petNum].Stat[i]);
 
                 for (int i = 1; i <= 4; i++)
-                    buffer.WriteInt32(withBlock.Skill[i]);
+                    buffer.WriteInt32(Pet[petNum].Skill[i]);
 
-                buffer.WriteInt32(withBlock.Evolvable);
-                buffer.WriteInt32(withBlock.EvolveLevel);
-                buffer.WriteInt32(withBlock.EvolveNum);
+                buffer.WriteInt32(Pet[petNum].Evolvable);
+                buffer.WriteInt32(Pet[petNum].EvolveLevel);
+                buffer.WriteInt32(Pet[petNum].EvolveNum);
             }
 
             S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
@@ -423,27 +421,26 @@ namespace Engine
                 return;
 
             {
-                var withBlock = Pet[petNum];
-                withBlock.Num = buffer.ReadInt32();
-                withBlock.Name = buffer.ReadString();
-                withBlock.Sprite = buffer.ReadInt32();
-                withBlock.Range = buffer.ReadInt32();
-                withBlock.Level = buffer.ReadInt32();
-                withBlock.MaxLevel = buffer.ReadInt32();
-                withBlock.ExpGain = buffer.ReadInt32();
-                withBlock.LevelPnts = buffer.ReadInt32();
-                withBlock.StatType = (byte)buffer.ReadInt32();
-                withBlock.LevelingType = (byte)buffer.ReadInt32();
+                Pet[petNum].Num = buffer.ReadInt32();
+                Pet[petNum].Name = buffer.ReadString();
+                Pet[petNum].Sprite = buffer.ReadInt32();
+                Pet[petNum].Range = buffer.ReadInt32();
+                Pet[petNum].Level = buffer.ReadInt32();
+                Pet[petNum].MaxLevel = buffer.ReadInt32();
+                Pet[petNum].ExpGain = buffer.ReadInt32();
+                Pet[petNum].LevelPnts = buffer.ReadInt32();
+                Pet[petNum].StatType = (byte)buffer.ReadInt32();
+                Pet[petNum].LevelingType = (byte)buffer.ReadInt32();
 
                 for (i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                    withBlock.Stat[i] = (byte)buffer.ReadInt32();
+                    Pet[petNum].Stat[i] = (byte)buffer.ReadInt32();
 
                 for (i = 1; i <= 4; i++)
-                    withBlock.Skill[i] = buffer.ReadInt32();
+                    Pet[petNum].Skill[i] = buffer.ReadInt32();
 
-                withBlock.Evolvable = (byte)buffer.ReadInt32();
-                withBlock.EvolveLevel = buffer.ReadInt32();
-                withBlock.EvolveNum = buffer.ReadInt32();
+                Pet[petNum].Evolvable = (byte)buffer.ReadInt32();
+                Pet[petNum].EvolveLevel = buffer.ReadInt32();
+                Pet[petNum].EvolveNum = buffer.ReadInt32();
             }
 
             // Save it
@@ -975,11 +972,11 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                                         if (didWalk == false)
                                         {
-                                            tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
+                                            tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
 
                                             if (tmpdir == 1)
                                             {
-                                                tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
+                                                tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
                                                 if (CanPetMove(playerindex, mapNum, (byte)tmpdir))
                                                     PetMove(playerindex, mapNum, tmpdir, (byte)Enums.MovementType.Walking);
                                             }
@@ -1000,10 +997,10 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                                         if (didWalk == false)
                                         {
-                                            tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
+                                            tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
                                             if (tmpdir == 1)
                                             {
-                                                tmpdir = Convert.ToByte(VBMath.Rnd() * 4);
+                                                tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
                                                 if (CanPetMove(playerindex, mapNum, (byte)tmpdir))
                                                     PetMove(playerindex, mapNum, tmpdir, (byte)Enums.MovementType.Walking);
                                             }
@@ -1529,7 +1526,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             {
                 if (S_Events.PathfindingType == 1)
                 {
-                    i = Convert.ToInt32(VBMath.Rnd() * 5);
+                    i = (int)Conversion.Int(VBMath.Rnd() * 5);
 
                     // Lets move the pet
                     switch (i)
@@ -1814,11 +1811,11 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             // We could not move so Target must be behind something, walk randomly.
             if (!didwalk)
             {
-                i = Convert.ToInt32(VBMath.Rnd() * 2);
+                i = (int)Conversion.Int(VBMath.Rnd() * 2);
 
                 if (i == 1)
                 {
-                    i = Convert.ToInt32(VBMath.Rnd() * 4);
+                    i = (int)Conversion.Int(VBMath.Rnd() * 4);
 
                     if (CanPetMove(x, mapNum, (byte)i))
                         PetMove(x, mapNum, i, (int)Enums.MovementType.Walking);
@@ -2204,14 +2201,13 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             projectileNum = Types.Skill[spellnum].Projectile;
 
             {
-                var withBlock = S_Projectiles.MapProjectiles[mapNum, projectileSlot];
-                withBlock.ProjectileNum = projectileNum;
-                withBlock.Owner = index;
-                withBlock.OwnerType = (int)Enums.TargetType.Pet;
-                withBlock.Dir = (byte)modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pet.Dir;
-                withBlock.X = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pet.X;
-                withBlock.Y = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pet.Y;
-                withBlock.Timer = S_General.GetTimeMs() + 60000;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].ProjectileNum = projectileNum;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].Owner = index;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].OwnerType = (int)Enums.TargetType.Pet;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].Dir = (byte)modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pet.Dir;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].X = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pet.X;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].Y = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pet.Y;
+                S_Projectiles.MapProjectiles[mapNum, projectileSlot].Timer = S_General.GetTimeMs() + 60000;
             }
 
             S_Projectiles.SendProjectileToMap(mapNum, projectileSlot);
@@ -3924,20 +3920,19 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             for (i = 1; i <= Constants.MAX_DOTS; i++)
             {
                 {
-                    var withBlock = modTypes.TempPlayer[index].PetHoT[i];
-                    if (withBlock.Skill == skillnum)
+                    if (modTypes.TempPlayer[index].PetHoT[i].Skill == skillnum)
                     {
-                        withBlock.Timer = S_General.GetTimeMs();
-                        withBlock.StartTime = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetHoT[i].Timer = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetHoT[i].StartTime = S_General.GetTimeMs();
                         return;
                     }
 
-                    if (withBlock.Used == false)
+                    if (modTypes.TempPlayer[index].PetHoT[i].Used == false)
                     {
-                        withBlock.Skill = skillnum;
-                        withBlock.Timer = S_General.GetTimeMs();
-                        withBlock.Used = true;
-                        withBlock.StartTime = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetHoT[i].Skill = skillnum;
+                        modTypes.TempPlayer[index].PetHoT[i].Timer = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetHoT[i].Used = true;
+                        modTypes.TempPlayer[index].PetHoT[i].StartTime = S_General.GetTimeMs();
                         return;
                     }
                 }
@@ -3954,24 +3949,23 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             for (i = 1; i <= Constants.MAX_DOTS; i++)
             {
                 {
-                    var withBlock = modTypes.TempPlayer[index].PetDoT[i];
-                    if (withBlock.Skill == skillnum)
+                    if (modTypes.TempPlayer[index].PetDoT[i].Skill == skillnum)
                     {
-                        withBlock.Timer = S_General.GetTimeMs();
-                        withBlock.Caster = caster;
-                        withBlock.StartTime = S_General.GetTimeMs();
-                        withBlock.AttackerType = attackerType;
+                        modTypes.TempPlayer[index].PetDoT[i].Timer = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetDoT[i].Caster = caster;
+                        modTypes.TempPlayer[index].PetDoT[i].StartTime = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetDoT[i].AttackerType = attackerType;
                         return;
                     }
 
-                    if (withBlock.Used == false)
+                    if (modTypes.TempPlayer[index].PetDoT[i].Used == false)
                     {
-                        withBlock.Skill = skillnum;
-                        withBlock.Timer = S_General.GetTimeMs();
-                        withBlock.Caster = caster;
-                        withBlock.Used = true;
-                        withBlock.StartTime = S_General.GetTimeMs();
-                        withBlock.AttackerType = attackerType;
+                        modTypes.TempPlayer[index].PetDoT[i].Skill = skillnum;
+                        modTypes.TempPlayer[index].PetDoT[i].Timer = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetDoT[i].Caster = caster;
+                        modTypes.TempPlayer[index].PetDoT[i].Used = true;
+                        modTypes.TempPlayer[index].PetDoT[i].StartTime = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetDoT[i].AttackerType = attackerType;
                         return;
                     }
                 }
@@ -3998,44 +3992,43 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
         internal static void HandleDoT_Pet(int index, int dotNum)
         {
             {
-                var withBlock = modTypes.TempPlayer[index].PetDoT[dotNum];
-                if (withBlock.Used && withBlock.Skill > 0)
+                if (modTypes.TempPlayer[index].PetDoT[dotNum].Used && modTypes.TempPlayer[index].PetDoT[dotNum].Skill > 0)
                 {
                     // time to tick?
-                    if (S_General.GetTimeMs() > withBlock.Timer + (Types.Skill[withBlock.Skill].Interval * 1000))
+                    if (S_General.GetTimeMs() > modTypes.TempPlayer[index].PetDoT[dotNum].Timer + (Types.Skill[modTypes.TempPlayer[index].PetDoT[dotNum].Skill].Interval * 1000))
                     {
-                        if (withBlock.AttackerType == (int)Enums.TargetType.Pet)
+                        if (modTypes.TempPlayer[index].PetDoT[dotNum].AttackerType == (int)Enums.TargetType.Pet)
                         {
-                            if (CanPetAttackPet(withBlock.Caster, index, withBlock.Skill))
+                            if (CanPetAttackPet(modTypes.TempPlayer[index].PetDoT[dotNum].Caster, index, modTypes.TempPlayer[index].PetDoT[dotNum].Skill))
                             {
-                                PetAttackPet(withBlock.Caster, index, Types.Skill[withBlock.Skill].Vital);
+                                PetAttackPet(modTypes.TempPlayer[index].PetDoT[dotNum].Caster, index, Types.Skill[modTypes.TempPlayer[index].PetDoT[dotNum].Skill].Vital);
                                 SendPetVital(index, Enums.VitalType.HP);
                                 SendPetVital(index, Enums.VitalType.MP);
                             }
                         }
-                        else if (withBlock.AttackerType == (int)Enums.TargetType.Player)
+                        else if (modTypes.TempPlayer[index].PetDoT[dotNum].AttackerType == (int)Enums.TargetType.Player)
                         {
-                            if (CanPlayerAttackPet(withBlock.Caster, index, Convert.ToBoolean(withBlock.Skill)))
+                            if (CanPlayerAttackPet(modTypes.TempPlayer[index].PetDoT[dotNum].Caster, index, Convert.ToBoolean(modTypes.TempPlayer[index].PetDoT[dotNum].Skill)))
                             {
-                                PlayerAttackPet(withBlock.Caster, index, Types.Skill[withBlock.Skill].Vital);
+                                PlayerAttackPet(modTypes.TempPlayer[index].PetDoT[dotNum].Caster, index, Types.Skill[modTypes.TempPlayer[index].PetDoT[dotNum].Skill].Vital);
                                 SendPetVital(index, Enums.VitalType.HP);
                                 SendPetVital(index, Enums.VitalType.MP);
                             }
                         }
 
-                        withBlock.Timer = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetDoT[dotNum].Timer = S_General.GetTimeMs();
 
                         // check if DoT is still active - if player died it'll have been purged
-                        if (withBlock.Used && withBlock.Skill > 0)
+                        if (modTypes.TempPlayer[index].PetDoT[dotNum].Used && modTypes.TempPlayer[index].PetDoT[dotNum].Skill > 0)
                         {
                             // destroy DoT if finished
-                            if (S_General.GetTimeMs() - withBlock.StartTime >= (Types.Skill[withBlock.Skill].Duration * 1000))
+                            if (S_General.GetTimeMs() - modTypes.TempPlayer[index].PetDoT[dotNum].StartTime >= (Types.Skill[modTypes.TempPlayer[index].PetDoT[dotNum].Skill].Duration * 1000))
                             {
-                                withBlock.Used = false;
-                                withBlock.Skill = 0;
-                                withBlock.Timer = 0;
-                                withBlock.Caster = 0;
-                                withBlock.StartTime = 0;
+                                modTypes.TempPlayer[index].PetDoT[dotNum].Used = false;
+                                modTypes.TempPlayer[index].PetDoT[dotNum].Skill = 0;
+                                modTypes.TempPlayer[index].PetDoT[dotNum].Timer = 0;
+                                modTypes.TempPlayer[index].PetDoT[dotNum].Caster = 0;
+                                modTypes.TempPlayer[index].PetDoT[dotNum].StartTime = 0;
                             }
                         }
                     }
@@ -4046,14 +4039,13 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
         internal static void HandleHoT_Pet(int index, int hotNum)
         {
             {
-                var withBlock = modTypes.TempPlayer[index].PetHoT[hotNum];
-                if (withBlock.Used && withBlock.Skill > 0)
+                if (modTypes.TempPlayer[index].PetHoT[hotNum].Used && modTypes.TempPlayer[index].PetHoT[hotNum].Skill > 0)
                 {
                     // time to tick?
-                    if (S_General.GetTimeMs() > withBlock.Timer + (Types.Skill[withBlock.Skill].Interval * 1000))
+                    if (S_General.GetTimeMs() > modTypes.TempPlayer[index].PetHoT[hotNum].Timer + (Types.Skill[modTypes.TempPlayer[index].PetHoT[hotNum].Skill].Interval * 1000))
                     {
-                        S_NetworkSend.SendActionMsg(S_Players.GetPlayerMap(index), "+" + Types.Skill[withBlock.Skill].Vital, (int)Enums.ColorType.BrightGreen, (byte)Enums.ActionMsgType.Scroll, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.X * 32, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Y * 32);
-                        SetPetVital(index, Enums.VitalType.HP, GetPetVital(index, Enums.VitalType.HP) + Types.Skill[withBlock.Skill].Vital);
+                        S_NetworkSend.SendActionMsg(S_Players.GetPlayerMap(index), "+" + Types.Skill[modTypes.TempPlayer[index].PetHoT[hotNum].Skill].Vital, (int)Enums.ColorType.BrightGreen, (byte)Enums.ActionMsgType.Scroll, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.X * 32, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Y * 32);
+                        SetPetVital(index, Enums.VitalType.HP, GetPetVital(index, Enums.VitalType.HP) + Types.Skill[modTypes.TempPlayer[index].PetHoT[hotNum].Skill].Vital);
 
                         if (GetPetVital(index, Enums.VitalType.HP) > GetPetMaxVital(index, Enums.VitalType.HP))
                             SetPetVital(index, Enums.VitalType.HP, GetPetMaxVital(index, Enums.VitalType.HP));
@@ -4063,19 +4055,19 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                         SendPetVital(index, Enums.VitalType.HP);
                         SendPetVital(index, Enums.VitalType.MP);
-                        withBlock.Timer = S_General.GetTimeMs();
+                        modTypes.TempPlayer[index].PetHoT[hotNum].Timer = S_General.GetTimeMs();
 
                         // check if DoT is still active - if player died it'll have been purged
-                        if (withBlock.Used && withBlock.Skill > 0)
+                        if (modTypes.TempPlayer[index].PetHoT[hotNum].Used && modTypes.TempPlayer[index].PetHoT[hotNum].Skill > 0)
                         {
                             // destroy hoT if finished
-                            if (S_General.GetTimeMs() - withBlock.StartTime >= (Types.Skill[withBlock.Skill].Duration * 1000))
+                            if (S_General.GetTimeMs() - modTypes.TempPlayer[index].PetHoT[hotNum].StartTime >= (Types.Skill[modTypes.TempPlayer[index].PetHoT[hotNum].Skill].Duration * 1000))
                             {
-                                withBlock.Used = false;
-                                withBlock.Skill = 0;
-                                withBlock.Timer = 0;
-                                withBlock.Caster = 0;
-                                withBlock.StartTime = 0;
+                                modTypes.TempPlayer[index].PetHoT[hotNum].Used = false;
+                                modTypes.TempPlayer[index].PetHoT[hotNum].Skill = 0;
+                                modTypes.TempPlayer[index].PetHoT[hotNum].Timer = 0;
+                                modTypes.TempPlayer[index].PetHoT[hotNum].Caster = 0;
+                                modTypes.TempPlayer[index].PetHoT[hotNum].StartTime = 0;
                             }
                         }
                     }
