@@ -34,7 +34,6 @@ namespace Engine
                     E_NetworkConfig.Connect();
                     lblConnectionStatus.Text = "Reconnecting...";
                     lblConnectionStatus.ForeColor = Color.Orange;
-                    tmr_Connect_Tick = 0;
                 }
                 else
                     lblConnectionStatus.Text = "Offline...";

@@ -317,7 +317,7 @@ namespace Engine
             this.MinimizeBox = false;
             this.Name = "FrmLogin";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Orion+ Editors";
+            this.Text = "Orion+# Editors";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_UnLoad);
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.pnlAdmin.ResumeLayout(false);
