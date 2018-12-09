@@ -36,7 +36,7 @@ namespace Engine
         // It can be modified using the Windows Form Designer.  
         // Do not modify it using the code editor.
         [System.Diagnostics.DebuggerStepThrough()]
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             this.btnWarpOK = new DarkUI.Controls.DarkButton();
             this.DarkLabel15 = new DarkUI.Controls.DarkLabel();

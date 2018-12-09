@@ -36,7 +36,7 @@ namespace Engine
         // It can be modified using the Windows Form Designer.  
         // Do not modify it using the code editor.
         [System.Diagnostics.DebuggerStepThrough()]
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             System.Windows.Forms.TreeNode TreeNode59 = new System.Windows.Forms.TreeNode("Show Text");
             System.Windows.Forms.TreeNode TreeNode60 = new System.Windows.Forms.TreeNode("Show Choices");

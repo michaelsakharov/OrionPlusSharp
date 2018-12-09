@@ -62,6 +62,7 @@ namespace Engine
             E_Housing.CheckFurniture();
             E_Projectiles.CheckProjectiles();
 
+            //Orion+# Broken - TODO
             E_Graphics.InitGraphics();
 
             E_AutoTiles.Autotile = new AutotileRec[E_Types.Map.MaxX + 1, E_Types.Map.MaxY + 1];

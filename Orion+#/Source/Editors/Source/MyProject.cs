@@ -133,6 +133,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmAnimation = MyProject.MyForms.Create__Instance__<FrmAnimation>(this.m_FrmAnimation);
+                    m_FrmAnimation.InitializeComponent();
                     return this.m_FrmAnimation;
                 }
                 set
@@ -153,6 +154,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmAutoMapper = MyProject.MyForms.Create__Instance__<FrmAutoMapper>(this.m_FrmAutoMapper);
+                    m_FrmAutoMapper.InitializeComponent();
                     return this.m_FrmAutoMapper;
                 }
                 set
@@ -173,6 +175,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmClasses = MyProject.MyForms.Create__Instance__<frmClasses>(this.m_frmClasses);
+                    m_frmClasses.InitializeComponent();
                     return this.m_frmClasses;
                 }
                 set
@@ -193,6 +196,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmEvents = MyProject.MyForms.Create__Instance__<frmEvents>(this.m_frmEvents);
+                    m_frmEvents.InitializeComponent();
                     return this.m_frmEvents;
                 }
                 set
@@ -213,6 +217,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmHouse = MyProject.MyForms.Create__Instance__<FrmHouse>(this.m_FrmHouse);
+                    m_FrmHouse.InitializeComponent();
                     return this.m_FrmHouse;
                 }
                 set
@@ -233,6 +238,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmItem = MyProject.MyForms.Create__Instance__<FrmItem>(this.m_FrmItem);
+                    m_FrmItem.InitializeComponent();
                     return this.m_FrmItem;
                 }
                 set
@@ -253,6 +259,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmLogin = MyProject.MyForms.Create__Instance__<FrmLogin>(this.m_FrmLogin);
+                    m_FrmLogin.InitializeComponent();
                     return this.m_FrmLogin;
                 }
                 set
@@ -273,6 +280,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmMapEditor = MyProject.MyForms.Create__Instance__<frmMapEditor>(this.m_frmMapEditor);
+                    m_frmMapEditor.InitializeComponent();
                     return this.m_frmMapEditor;
                 }
                 set
@@ -293,6 +301,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmNPC = MyProject.MyForms.Create__Instance__<frmNPC>(this.m_frmNPC);
+                    m_frmNPC.InitializeComponent();
                     return this.m_frmNPC;
                 }
                 set
@@ -313,6 +322,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmPet = MyProject.MyForms.Create__Instance__<frmPet>(this.m_frmPet);
+                    m_frmPet.InitializeComponent();
                     return this.m_frmPet;
                 }
                 set
@@ -333,6 +343,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmProjectile = MyProject.MyForms.Create__Instance__<frmProjectile>(this.m_frmProjectile);
+                    m_frmProjectile.InitializeComponent();
                     return this.m_frmProjectile;
                 }
                 set
@@ -353,6 +364,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmQuest = MyProject.MyForms.Create__Instance__<FrmQuest>(this.m_FrmQuest);
+                    m_FrmQuest.InitializeComponent();
                     return this.m_FrmQuest;
                 }
                 set
@@ -373,6 +385,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmRecipe = MyProject.MyForms.Create__Instance__<FrmRecipe>(this.m_FrmRecipe);
+                    m_FrmRecipe.InitializeComponent();
                     return this.m_FrmRecipe;
                 }
                 set
@@ -393,6 +406,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmResource = MyProject.MyForms.Create__Instance__<FrmResource>(this.m_FrmResource);
+                    m_FrmResource.InitializeComponent();
                     return this.m_FrmResource;
                 }
                 set
@@ -413,6 +427,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmShop = MyProject.MyForms.Create__Instance__<frmShop>(this.m_frmShop);
+                    m_frmShop.InitializeComponent();
                     return this.m_frmShop;
                 }
                 set
@@ -433,6 +448,7 @@ namespace Engine.My
                 get
                 {
                     this.m_frmSkill = MyProject.MyForms.Create__Instance__<frmSkill>(this.m_frmSkill);
+                    m_frmSkill.InitializeComponent();
                     return this.m_frmSkill;
                 }
                 set
@@ -453,6 +469,7 @@ namespace Engine.My
                 get
                 {
                     this.m_FrmVisualWarp = MyProject.MyForms.Create__Instance__<FrmVisualWarp>(this.m_FrmVisualWarp);
+                    m_FrmVisualWarp.InitializeComponent();
                     return this.m_FrmVisualWarp;
                 }
                 set
