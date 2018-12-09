@@ -1255,184 +1255,184 @@ namespace Engine
             this.PerformLayout();
         }
 
-        private DarkUI.Controls.DarkGroupBox fraQuestList;
+        public DarkUI.Controls.DarkGroupBox fraQuestList;
 
-        private ListBox lstIndex;
+        public ListBox lstIndex;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox2;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox2;
 
-        private DarkUI.Controls.DarkTextBox txtName;
+        public DarkUI.Controls.DarkTextBox txtName;
 
-        private DarkUI.Controls.DarkLabel DarkLabel1;
+        public DarkUI.Controls.DarkLabel DarkLabel1;
 
-        private DarkUI.Controls.DarkCheckBox chkRepeat;
+        public DarkUI.Controls.DarkCheckBox chkRepeat;
 
-        private DarkUI.Controls.DarkCheckBox chkQuestCancel;
+        public DarkUI.Controls.DarkCheckBox chkQuestCancel;
 
-        private DarkUI.Controls.DarkTextBox txtStartText;
+        public DarkUI.Controls.DarkTextBox txtStartText;
 
-        private DarkUI.Controls.DarkLabel DarkLabel2;
+        public DarkUI.Controls.DarkLabel DarkLabel2;
 
-        private DarkUI.Controls.DarkTextBox txtEndText;
+        public DarkUI.Controls.DarkTextBox txtEndText;
 
-        private DarkUI.Controls.DarkTextBox txtProgressText;
+        public DarkUI.Controls.DarkTextBox txtProgressText;
 
-        private DarkUI.Controls.DarkLabel DarkLabel3;
+        public DarkUI.Controls.DarkLabel DarkLabel3;
 
-        private DarkUI.Controls.DarkLabel DarkLabel4;
+        public DarkUI.Controls.DarkLabel DarkLabel4;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox3;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox3;
 
-        private ListBox lstRewards;
+        public ListBox lstRewards;
 
-        private DarkUI.Controls.DarkButton btnAddReward;
+        public DarkUI.Controls.DarkButton btnAddReward;
 
-        private DarkUI.Controls.DarkButton btnRemoveReward;
+        public DarkUI.Controls.DarkButton btnRemoveReward;
 
-        private DarkUI.Controls.DarkNumericUpDown nudExpReward;
+        public DarkUI.Controls.DarkNumericUpDown nudExpReward;
 
-        private DarkUI.Controls.DarkLabel DarkLabel5;
+        public DarkUI.Controls.DarkLabel DarkLabel5;
 
-        private DarkUI.Controls.DarkNumericUpDown nudItemRewValue;
+        public DarkUI.Controls.DarkNumericUpDown nudItemRewValue;
 
-        private DarkUI.Controls.DarkLabel DarkLabel7;
+        public DarkUI.Controls.DarkLabel DarkLabel7;
 
-        private DarkUI.Controls.DarkComboBox cmbItemReward;
+        public DarkUI.Controls.DarkComboBox cmbItemReward;
 
-        private DarkUI.Controls.DarkLabel DarkLabel6;
+        public DarkUI.Controls.DarkLabel DarkLabel6;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox4;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox4;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox5;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox5;
 
-        private DarkUI.Controls.DarkButton btnAddRequirement;
+        public DarkUI.Controls.DarkButton btnAddRequirement;
 
-        private DarkUI.Controls.DarkButton btnRemoveRequirement;
+        public DarkUI.Controls.DarkButton btnRemoveRequirement;
 
-        private ListBox lstRequirements;
+        public ListBox lstRequirements;
         
 
-        private ListBox lstTasks;
+        public ListBox lstTasks;
         
 
-        private DarkUI.Controls.DarkButton btnRemoveTask;
+        public DarkUI.Controls.DarkButton btnRemoveTask;
         
 
-        private DarkUI.Controls.DarkButton btnAddTask;
+        public DarkUI.Controls.DarkButton btnAddTask;
         
 
-        private DarkUI.Controls.DarkLabel DarkLabel8;
+        public DarkUI.Controls.DarkLabel DarkLabel8;
         
 
-        private DarkUI.Controls.DarkButton btnSave;
+        public DarkUI.Controls.DarkButton btnSave;
         
 
-        private DarkUI.Controls.DarkButton btnCancel;
+        public DarkUI.Controls.DarkButton btnCancel;
         
-        private DarkUI.Controls.DarkGroupBox fraTasks;
+        public DarkUI.Controls.DarkGroupBox fraTasks;
 
-        private Panel Panel1;
+        public Panel Panel1;
 
-        private DarkUI.Controls.DarkTextBox txtTaskLog;
+        public DarkUI.Controls.DarkTextBox txtTaskLog;
 
-        private DarkUI.Controls.DarkLabel DarkLabel9;
+        public DarkUI.Controls.DarkLabel DarkLabel9;
 
-        private DarkUI.Controls.DarkTextBox txtTaskSpeech;
+        public DarkUI.Controls.DarkTextBox txtTaskSpeech;
 
-        private DarkUI.Controls.DarkLabel DarkLabel10;
+        public DarkUI.Controls.DarkLabel DarkLabel10;
 
-        private DarkUI.Controls.DarkCheckBox chkEnd;
+        public DarkUI.Controls.DarkCheckBox chkEnd;
 
-        private DarkUI.Controls.DarkLabel DarkLabel11;
+        public DarkUI.Controls.DarkLabel DarkLabel11;
 
-        private DarkUI.Controls.DarkLabel DarkLabel13;
+        public DarkUI.Controls.DarkLabel DarkLabel13;
 
-        private DarkUI.Controls.DarkLabel DarkLabel12;
+        public DarkUI.Controls.DarkLabel DarkLabel12;
 
-        private DarkUI.Controls.DarkLabel DarkLabel14;
+        public DarkUI.Controls.DarkLabel DarkLabel14;
 
-        private DarkUI.Controls.DarkNumericUpDown nudAmount;
+        public DarkUI.Controls.DarkNumericUpDown nudAmount;
 
-        private DarkUI.Controls.DarkLabel DarkLabel15;
+        public DarkUI.Controls.DarkLabel DarkLabel15;
 
-        private DarkUI.Controls.DarkLabel lblTaskNum;
+        public DarkUI.Controls.DarkLabel lblTaskNum;
 
-        private Panel Panel2;
+        public Panel Panel2;
 
-        private DarkUI.Controls.DarkRadioButton optTask0;
+        public DarkUI.Controls.DarkRadioButton optTask0;
 
-        private DarkUI.Controls.DarkLabel DarkLabel16;
+        public DarkUI.Controls.DarkLabel DarkLabel16;
 
-        private DarkUI.Controls.DarkRadioButton optTask1;
+        public DarkUI.Controls.DarkRadioButton optTask1;
 
-        private DarkUI.Controls.DarkRadioButton optTask2;
+        public DarkUI.Controls.DarkRadioButton optTask2;
 
-        private DarkUI.Controls.DarkRadioButton optTask3;
+        public DarkUI.Controls.DarkRadioButton optTask3;
 
-        private DarkUI.Controls.DarkRadioButton optTask4;
+        public DarkUI.Controls.DarkRadioButton optTask4;
 
-        private DarkUI.Controls.DarkRadioButton optTask5;
+        public DarkUI.Controls.DarkRadioButton optTask5;
 
-        private DarkUI.Controls.DarkRadioButton optTask6;
+        public DarkUI.Controls.DarkRadioButton optTask6;
 
-        private DarkUI.Controls.DarkRadioButton optTask7;
+        public DarkUI.Controls.DarkRadioButton optTask7;
 
-        private DarkUI.Controls.DarkLabel DarkLabel17;
+        public DarkUI.Controls.DarkLabel DarkLabel17;
 
-        private DarkUI.Controls.DarkGroupBox fraRequirements;
+        public DarkUI.Controls.DarkGroupBox fraRequirements;
 
-        private DarkUI.Controls.DarkRadioButton rdbNoneReq;
+        public DarkUI.Controls.DarkRadioButton rdbNoneReq;
 
-        private DarkUI.Controls.DarkRadioButton rdbItemReq;
+        public DarkUI.Controls.DarkRadioButton rdbItemReq;
 
-        private DarkUI.Controls.DarkComboBox cmbItemReq;
+        public DarkUI.Controls.DarkComboBox cmbItemReq;
 
-        private DarkUI.Controls.DarkLabel DarkLabel18;
+        public DarkUI.Controls.DarkLabel DarkLabel18;
 
-        private DarkUI.Controls.DarkComboBox cmbQuestReq;
+        public DarkUI.Controls.DarkComboBox cmbQuestReq;
 
-        private DarkUI.Controls.DarkLabel DarkLabel19;
+        public DarkUI.Controls.DarkLabel DarkLabel19;
 
-        private DarkUI.Controls.DarkRadioButton rdbQuestReq;
+        public DarkUI.Controls.DarkRadioButton rdbQuestReq;
 
-        private DarkUI.Controls.DarkComboBox cmbClassReq;
+        public DarkUI.Controls.DarkComboBox cmbClassReq;
 
-        private DarkUI.Controls.DarkLabel DarkLabel20;
+        public DarkUI.Controls.DarkLabel DarkLabel20;
 
-        private DarkUI.Controls.DarkRadioButton rdbClassReq;
+        public DarkUI.Controls.DarkRadioButton rdbClassReq;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox6;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox6;
 
-        private DarkUI.Controls.DarkComboBox cmbStartItem;
+        public DarkUI.Controls.DarkComboBox cmbStartItem;
 
-        private DarkUI.Controls.DarkLabel DarkLabel21;
+        public DarkUI.Controls.DarkLabel DarkLabel21;
 
-        private DarkUI.Controls.DarkNumericUpDown nudGiveAmount;
+        public DarkUI.Controls.DarkNumericUpDown nudGiveAmount;
 
-        private DarkUI.Controls.DarkLabel DarkLabel22;
+        public DarkUI.Controls.DarkLabel DarkLabel22;
 
-        private DarkUI.Controls.DarkNumericUpDown nudTakeAmount;
+        public DarkUI.Controls.DarkNumericUpDown nudTakeAmount;
 
-        private DarkUI.Controls.DarkLabel DarkLabel23;
+        public DarkUI.Controls.DarkLabel DarkLabel23;
 
-        private DarkUI.Controls.DarkComboBox cmbEndItem;
+        public DarkUI.Controls.DarkComboBox cmbEndItem;
 
-        private DarkUI.Controls.DarkLabel DarkLabel24;
+        public DarkUI.Controls.DarkLabel DarkLabel24;
 
-        private DarkUI.Controls.DarkButton btnRequirementSave;
+        public DarkUI.Controls.DarkButton btnRequirementSave;
 
-        private DarkUI.Controls.DarkButton btnRequirementCancel;
+        public DarkUI.Controls.DarkButton btnRequirementCancel;
 
-        private DarkUI.Controls.DarkButton btnCancelTask;
+        public DarkUI.Controls.DarkButton btnCancelTask;
 
-        private DarkUI.Controls.DarkButton btnSaveTask;
+        public DarkUI.Controls.DarkButton btnSaveTask;
 
-        private DarkUI.Controls.DarkComboBox cmbResource;
+        public DarkUI.Controls.DarkComboBox cmbResource;
 
-        private DarkUI.Controls.DarkComboBox cmbMap;
+        public DarkUI.Controls.DarkComboBox cmbMap;
 
-        private DarkUI.Controls.DarkComboBox cmbItem;
+        public DarkUI.Controls.DarkComboBox cmbItem;
 
-        private DarkUI.Controls.DarkComboBox cmbNpc;
+        public DarkUI.Controls.DarkComboBox cmbNpc;
     }
 }

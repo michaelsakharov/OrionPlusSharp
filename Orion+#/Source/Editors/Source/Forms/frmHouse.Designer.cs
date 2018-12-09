@@ -278,38 +278,38 @@ namespace Engine
             this.ResumeLayout(false);
         }
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox1;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox1;
 
-        private ListBox lstIndex;
+        public ListBox lstIndex;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox2;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox2;
 
-        private DarkUI.Controls.DarkTextBox txtName;
+        public DarkUI.Controls.DarkTextBox txtName;
 
-        private DarkUI.Controls.DarkLabel DarkLabel1;
+        public DarkUI.Controls.DarkLabel DarkLabel1;
 
-        private DarkUI.Controls.DarkNumericUpDown nudBaseMap;
+        public DarkUI.Controls.DarkNumericUpDown nudBaseMap;
 
-        private DarkUI.Controls.DarkLabel DarkLabel2;
+        public DarkUI.Controls.DarkLabel DarkLabel2;
 
-        private DarkUI.Controls.DarkNumericUpDown nudY;
+        public DarkUI.Controls.DarkNumericUpDown nudY;
 
-        private DarkUI.Controls.DarkLabel DarkLabel4;
+        public DarkUI.Controls.DarkLabel DarkLabel4;
 
-        private DarkUI.Controls.DarkNumericUpDown nudX;
+        public DarkUI.Controls.DarkNumericUpDown nudX;
 
-        private DarkUI.Controls.DarkLabel DarkLabel3;
+        public DarkUI.Controls.DarkLabel DarkLabel3;
 
-        private DarkUI.Controls.DarkNumericUpDown nudPrice;
+        public DarkUI.Controls.DarkNumericUpDown nudPrice;
 
-        private DarkUI.Controls.DarkLabel DarkLabel5;
+        public DarkUI.Controls.DarkLabel DarkLabel5;
 
-        private DarkUI.Controls.DarkNumericUpDown nudFurniture;
+        public DarkUI.Controls.DarkNumericUpDown nudFurniture;
 
-        private DarkUI.Controls.DarkLabel DarkLabel6;
+        public DarkUI.Controls.DarkLabel DarkLabel6;
 
-        private DarkUI.Controls.DarkButton btnCancel;
+        public DarkUI.Controls.DarkButton btnCancel;
 
-        private DarkUI.Controls.DarkButton btnSave;
+        public DarkUI.Controls.DarkButton btnSave;
     }
 }

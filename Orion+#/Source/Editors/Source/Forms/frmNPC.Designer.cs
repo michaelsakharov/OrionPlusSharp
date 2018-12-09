@@ -1083,144 +1083,144 @@ namespace Engine
             this.ResumeLayout(false);
         }
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox1;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox1;
 
-        private ListBox lstIndex;
+        public ListBox lstIndex;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox2;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox2;
 
-        private DarkUI.Controls.DarkTextBox txtName;
+        public DarkUI.Controls.DarkTextBox txtName;
 
-        private DarkUI.Controls.DarkLabel DarkLabel1;
+        public DarkUI.Controls.DarkLabel DarkLabel1;
 
-        private PictureBox picSprite;
+        public PictureBox picSprite;
 
-        private DarkUI.Controls.DarkTextBox txtAttackSay;
+        public DarkUI.Controls.DarkTextBox txtAttackSay;
 
-        private DarkUI.Controls.DarkLabel DarkLabel2;
+        public DarkUI.Controls.DarkLabel DarkLabel2;
 
-        private DarkUI.Controls.DarkNumericUpDown nudSprite;
+        public DarkUI.Controls.DarkNumericUpDown nudSprite;
 
-        private DarkUI.Controls.DarkLabel DarkLabel3;
+        public DarkUI.Controls.DarkLabel DarkLabel3;
 
-        private DarkUI.Controls.DarkLabel DarkLabel4;
+        public DarkUI.Controls.DarkLabel DarkLabel4;
 
-        private DarkUI.Controls.DarkNumericUpDown nudRange;
+        public DarkUI.Controls.DarkNumericUpDown nudRange;
 
-        private DarkUI.Controls.DarkLabel DarkLabel6;
+        public DarkUI.Controls.DarkLabel DarkLabel6;
 
-        private DarkUI.Controls.DarkComboBox cmbAnimation;
+        public DarkUI.Controls.DarkComboBox cmbAnimation;
 
-        private DarkUI.Controls.DarkLabel DarkLabel7;
+        public DarkUI.Controls.DarkLabel DarkLabel7;
 
-        private DarkUI.Controls.DarkComboBox cmbQuest;
+        public DarkUI.Controls.DarkComboBox cmbQuest;
 
-        private DarkUI.Controls.DarkComboBox cmbFaction;
+        public DarkUI.Controls.DarkComboBox cmbFaction;
 
-        private DarkUI.Controls.DarkLabel DarkLabel8;
+        public DarkUI.Controls.DarkLabel DarkLabel8;
 
-        private DarkUI.Controls.DarkComboBox cmbBehaviour;
+        public DarkUI.Controls.DarkComboBox cmbBehaviour;
 
-        private DarkUI.Controls.DarkLabel DarkLabel5;
+        public DarkUI.Controls.DarkLabel DarkLabel5;
 
-        private DarkUI.Controls.DarkNumericUpDown nudHp;
+        public DarkUI.Controls.DarkNumericUpDown nudHp;
 
-        private DarkUI.Controls.DarkLabel DarkLabel9;
+        public DarkUI.Controls.DarkLabel DarkLabel9;
 
-        private DarkUI.Controls.DarkNumericUpDown nudExp;
+        public DarkUI.Controls.DarkNumericUpDown nudExp;
 
-        private DarkUI.Controls.DarkLabel DarkLabel10;
+        public DarkUI.Controls.DarkLabel DarkLabel10;
 
-        private DarkUI.Controls.DarkNumericUpDown nudDamage;
+        public DarkUI.Controls.DarkNumericUpDown nudDamage;
 
-        private DarkUI.Controls.DarkLabel DarkLabel12;
+        public DarkUI.Controls.DarkLabel DarkLabel12;
 
-        private DarkUI.Controls.DarkNumericUpDown nudLevel;
+        public DarkUI.Controls.DarkNumericUpDown nudLevel;
 
-        private DarkUI.Controls.DarkLabel DarkLabel11;
+        public DarkUI.Controls.DarkLabel DarkLabel11;
 
-        private DarkUI.Controls.DarkNumericUpDown nudSpawnSecs;
+        public DarkUI.Controls.DarkNumericUpDown nudSpawnSecs;
 
-        private DarkUI.Controls.DarkLabel DarkLabel13;
+        public DarkUI.Controls.DarkLabel DarkLabel13;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox3;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox3;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox4;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox4;
 
-        private DarkUI.Controls.DarkGroupBox DarkGroupBox5;
+        public DarkUI.Controls.DarkGroupBox DarkGroupBox5;
 
-        private DarkUI.Controls.DarkComboBox cmbSkill1;
+        public DarkUI.Controls.DarkComboBox cmbSkill1;
 
-        private DarkUI.Controls.DarkLabel DarkLabel14;
+        public DarkUI.Controls.DarkLabel DarkLabel14;
 
-        private DarkUI.Controls.DarkComboBox cmbSkill6;
+        public DarkUI.Controls.DarkComboBox cmbSkill6;
 
-        private DarkUI.Controls.DarkLabel DarkLabel17;
+        public DarkUI.Controls.DarkLabel DarkLabel17;
 
-        private DarkUI.Controls.DarkComboBox cmbSkill5;
+        public DarkUI.Controls.DarkComboBox cmbSkill5;
 
-        private DarkUI.Controls.DarkLabel DarkLabel18;
+        public DarkUI.Controls.DarkLabel DarkLabel18;
 
-        private DarkUI.Controls.DarkComboBox cmbSkill4;
+        public DarkUI.Controls.DarkComboBox cmbSkill4;
 
-        private DarkUI.Controls.DarkLabel DarkLabel19;
+        public DarkUI.Controls.DarkLabel DarkLabel19;
 
-        private DarkUI.Controls.DarkComboBox cmbSkill3;
+        public DarkUI.Controls.DarkComboBox cmbSkill3;
 
-        private DarkUI.Controls.DarkLabel DarkLabel16;
+        public DarkUI.Controls.DarkLabel DarkLabel16;
 
-        private DarkUI.Controls.DarkComboBox cmbSkill2;
+        public DarkUI.Controls.DarkComboBox cmbSkill2;
 
-        private DarkUI.Controls.DarkLabel DarkLabel15;
+        public DarkUI.Controls.DarkLabel DarkLabel15;
 
-        private DarkUI.Controls.DarkNumericUpDown nudStrength;
+        public DarkUI.Controls.DarkNumericUpDown nudStrength;
 
-        private DarkUI.Controls.DarkLabel DarkLabel20;
+        public DarkUI.Controls.DarkLabel DarkLabel20;
 
-        private DarkUI.Controls.DarkNumericUpDown nudSpirit;
+        public DarkUI.Controls.DarkNumericUpDown nudSpirit;
 
-        private DarkUI.Controls.DarkLabel DarkLabel23;
+        public DarkUI.Controls.DarkLabel DarkLabel23;
 
-        private DarkUI.Controls.DarkNumericUpDown nudIntelligence;
+        public DarkUI.Controls.DarkNumericUpDown nudIntelligence;
 
-        private DarkUI.Controls.DarkLabel DarkLabel24;
+        public DarkUI.Controls.DarkLabel DarkLabel24;
 
-        private DarkUI.Controls.DarkNumericUpDown nudLuck;
+        public DarkUI.Controls.DarkNumericUpDown nudLuck;
 
-        private DarkUI.Controls.DarkLabel DarkLabel25;
+        public DarkUI.Controls.DarkLabel DarkLabel25;
 
-        private DarkUI.Controls.DarkNumericUpDown nudVitality;
+        public DarkUI.Controls.DarkNumericUpDown nudVitality;
 
-        private DarkUI.Controls.DarkLabel DarkLabel22;
+        public DarkUI.Controls.DarkLabel DarkLabel22;
 
-        private DarkUI.Controls.DarkNumericUpDown nudEndurance;
+        public DarkUI.Controls.DarkNumericUpDown nudEndurance;
 
-        private DarkUI.Controls.DarkLabel DarkLabel21;
+        public DarkUI.Controls.DarkLabel DarkLabel21;
 
-        private DarkUI.Controls.DarkLabel DarkLabel26;
+        public DarkUI.Controls.DarkLabel DarkLabel26;
 
-        private DarkUI.Controls.DarkComboBox cmbDropSlot;
+        public DarkUI.Controls.DarkComboBox cmbDropSlot;
 
-        private DarkUI.Controls.DarkNumericUpDown nudChance;
+        public DarkUI.Controls.DarkNumericUpDown nudChance;
 
-        private DarkUI.Controls.DarkLabel DarkLabel27;
+        public DarkUI.Controls.DarkLabel DarkLabel27;
 
-        private DarkUI.Controls.DarkNumericUpDown nudAmount;
+        public DarkUI.Controls.DarkNumericUpDown nudAmount;
 
-        private DarkUI.Controls.DarkLabel DarkLabel29;
+        public DarkUI.Controls.DarkLabel DarkLabel29;
 
-        private DarkUI.Controls.DarkComboBox cmbItem;
+        public DarkUI.Controls.DarkComboBox cmbItem;
         
-        private DarkUI.Controls.DarkLabel DarkLabel28;
+        public DarkUI.Controls.DarkLabel DarkLabel28;
 
-        private DarkUI.Controls.DarkButton btnCancel;
+        public DarkUI.Controls.DarkButton btnCancel;
 
-        private DarkUI.Controls.DarkButton btnDelete;
+        public DarkUI.Controls.DarkButton btnDelete;
 
-        private DarkUI.Controls.DarkButton btnSave;
+        public DarkUI.Controls.DarkButton btnSave;
 
-        private DarkUI.Controls.DarkComboBox cmbSpawnPeriod;
+        public DarkUI.Controls.DarkComboBox cmbSpawnPeriod;
 
-        private DarkUI.Controls.DarkLabel DarkLabel30;
+        public DarkUI.Controls.DarkLabel DarkLabel30;
     }
 }
