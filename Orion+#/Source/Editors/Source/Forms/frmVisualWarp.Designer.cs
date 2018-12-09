@@ -137,172 +137,19 @@ namespace Engine
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-        private DarkUI.Controls.DarkButton _btnWarpOK;
+        public DarkUI.Controls.DarkButton btnWarpOK;
 
-        internal DarkUI.Controls.DarkButton btnWarpOK
-        {
-            
-            get
-            {
-                return _btnWarpOK;
-            }
+        public DarkUI.Controls.DarkLabel DarkLabel15;
 
-            
-            set
-            {
-                if (_btnWarpOK != null)
-                {
-                }
+        public ListBox lstMaps;
 
-                _btnWarpOK = value;
-                if (_btnWarpOK != null)
-                {
-                }
-            }
-        }
+        public Panel pnlPreview;
 
-        private DarkUI.Controls.DarkLabel _DarkLabel15;
+        public PictureBox picPreview;
 
-        internal DarkUI.Controls.DarkLabel DarkLabel15
-        {
-            
-            get
-            {
-                return _DarkLabel15;
-            }
+        public DarkUI.Controls.DarkLabel lblSelX;
 
-            
-            set
-            {
-                if (_DarkLabel15 != null)
-                {
-                }
-
-                _DarkLabel15 = value;
-                if (_DarkLabel15 != null)
-                {
-                }
-            }
-        }
-
-        private ListBox _lstMaps;
-
-        internal ListBox lstMaps
-        {
-            
-            get
-            {
-                return _lstMaps;
-            }
-
-            
-            set
-            {
-                if (_lstMaps != null)
-                {
-                }
-
-                _lstMaps = value;
-                if (_lstMaps != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlPreview;
-
-        internal Panel pnlPreview
-        {
-            
-            get
-            {
-                return _pnlPreview;
-            }
-
-            
-            set
-            {
-                if (_pnlPreview != null)
-                {
-                }
-
-                _pnlPreview = value;
-                if (_pnlPreview != null)
-                {
-                }
-            }
-        }
-
-        private PictureBox _picPreview;
-
-        internal PictureBox picPreview
-        {
-            
-            get
-            {
-                return _picPreview;
-            }
-
-            
-            set
-            {
-                if (_picPreview != null)
-                {
-                }
-
-                _picPreview = value;
-                if (_picPreview != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblSelX;
-
-        internal DarkUI.Controls.DarkLabel lblSelX
-        {
-            
-            get
-            {
-                return _lblSelX;
-            }
-
-            
-            set
-            {
-                if (_lblSelX != null)
-                {
-                }
-
-                _lblSelX = value;
-                if (_lblSelX != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblSelY;
-
-        internal DarkUI.Controls.DarkLabel lblSelY
-        {
-            
-            get
-            {
-                return _lblSelY;
-            }
-
-            
-            set
-            {
-                if (_lblSelY != null)
-                {
-                }
-
-                _lblSelY = value;
-                if (_lblSelY != null)
-                {
-                }
-            }
-        }
+        public DarkUI.Controls.DarkLabel lblSelY;
+        
     }
 }

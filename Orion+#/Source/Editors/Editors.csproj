@@ -298,8 +298,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
-    <None Include="SFML.Portable.dll.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Clear.png" />

@@ -62,7 +62,7 @@ namespace Engine
             E_Housing.CheckFurniture();
             E_Projectiles.CheckProjectiles();
 
-            //E_Graphics.InitGraphics();
+            E_Graphics.InitGraphics();
 
             E_AutoTiles.Autotile = new AutotileRec[E_Types.Map.MaxX + 1, E_Types.Map.MaxY + 1];
             var loopTo = E_Types.Map.MaxX;
@@ -228,8 +228,8 @@ namespace Engine
 
             myXml.CloseXml(false);
 
-            //My.MyProject.Forms.FrmLogin.txtLogin.Text = E_Types.Options.Username;
-            //My.MyProject.Forms.FrmLogin.txtPassword.Text = E_Types.Options.Password;
+            My.MyProject.Forms.FrmLogin.txtLogin.Text = E_Types.Options.Username;
+            My.MyProject.Forms.FrmLogin.txtPassword.Text = E_Types.Options.Password;
         }
 
 
