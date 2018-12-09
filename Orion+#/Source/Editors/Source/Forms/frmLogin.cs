@@ -10,14 +10,15 @@ namespace Engine
             E_Loop.Main();
         }
 
-        private void FrmLogin_UnLoad(object sender, EventArgs e)
+        private void FrmLogin_UnLoad(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
             E_Loop.CloseEditor();
         }
 
+        int tmr_Connect_Tick = 0;
+
         private void TmrConnect_Tick(object sender, EventArgs e)
         {
-            
             if (E_NetworkConfig.Socket.IsConnected == true)
             {
                 lblConnectionStatus.ForeColor = Color.Green;
@@ -27,14 +28,13 @@ namespace Engine
             else
             {
                 lblConnectionStatus.ForeColor = Color.Red;
-                //Orion+# Todo
-                int i = 5;
-                if (i == 5)
+                tmr_Connect_Tick++;
+                if (tmr_Connect_Tick == 5)
                 {
                     E_NetworkConfig.Connect();
                     lblConnectionStatus.Text = "Reconnecting...";
                     lblConnectionStatus.ForeColor = Color.Orange;
-                    i = 0;
+                    tmr_Connect_Tick = 0;
                 }
                 else
                     lblConnectionStatus.Text = "Offline...";
@@ -43,9 +43,9 @@ namespace Engine
 
         internal bool IsLoginLegal(string Username, string Password)
         {
-            if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Username)) >= 3)
+            if (Username.Length >= 3)
             {
-                if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Password)) >= 3)
+                if (Password.Length >= 3)
                     return true;
                 else
                     return false;

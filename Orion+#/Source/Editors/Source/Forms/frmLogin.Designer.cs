@@ -68,12 +68,13 @@ namespace Engine
             // 
             this.tmrConnect.Enabled = true;
             this.tmrConnect.Interval = 1000;
+            this.tmrConnect.Tick += new System.EventHandler(this.TmrConnect_Tick);
             // 
             // lblConnectionStatus
             // 
             this.lblConnectionStatus.AutoSize = true;
             this.lblConnectionStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblConnectionStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, System.Convert.ToByte(0));
+            this.lblConnectionStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConnectionStatus.ForeColor = System.Drawing.Color.Orange;
             this.lblConnectionStatus.Location = new System.Drawing.Point(12, 235);
             this.lblConnectionStatus.Name = "lblConnectionStatus";
@@ -103,7 +104,7 @@ namespace Engine
             // 
             this.txtPassword.Location = new System.Drawing.Point(16, 123);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = (char)35;
+            this.txtPassword.PasswordChar = '#';
             this.txtPassword.Size = new System.Drawing.Size(159, 20);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
@@ -130,6 +131,7 @@ namespace Engine
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // pnlAdmin
             // 
@@ -162,6 +164,7 @@ namespace Engine
             this.btnPetEditor.TabIndex = 54;
             this.btnPetEditor.Text = "Pet Editor";
             this.btnPetEditor.UseVisualStyleBackColor = true;
+            this.btnPetEditor.Click += new System.EventHandler(this.BtnPetEditor_Click);
             // 
             // btnAutoMapper
             // 
@@ -171,6 +174,7 @@ namespace Engine
             this.btnAutoMapper.TabIndex = 53;
             this.btnAutoMapper.Text = "Auto Mapper";
             this.btnAutoMapper.UseVisualStyleBackColor = true;
+            this.btnAutoMapper.Click += new System.EventHandler(this.BtnAutoMapper_Click);
             // 
             // btnClassEditor
             // 
@@ -180,6 +184,7 @@ namespace Engine
             this.btnClassEditor.TabIndex = 52;
             this.btnClassEditor.Text = "Class Editor";
             this.btnClassEditor.UseVisualStyleBackColor = true;
+            this.btnClassEditor.Click += new System.EventHandler(this.BtnClassEditor_Click);
             // 
             // btnRecipeEditor
             // 
@@ -189,6 +194,7 @@ namespace Engine
             this.btnRecipeEditor.TabIndex = 51;
             this.btnRecipeEditor.Text = "Recipe Editor";
             this.btnRecipeEditor.UseVisualStyleBackColor = true;
+            this.btnRecipeEditor.Click += new System.EventHandler(this.BtnRecipeEditor_Click);
             // 
             // btnProjectiles
             // 
@@ -198,6 +204,7 @@ namespace Engine
             this.btnProjectiles.TabIndex = 50;
             this.btnProjectiles.Text = "Projectiles Editor";
             this.btnProjectiles.UseVisualStyleBackColor = true;
+            this.btnProjectiles.Click += new System.EventHandler(this.BtnProjectiles_Click);
             // 
             // btnQuest
             // 
@@ -207,6 +214,7 @@ namespace Engine
             this.btnQuest.TabIndex = 48;
             this.btnQuest.Text = "Quest Editor";
             this.btnQuest.UseVisualStyleBackColor = true;
+            this.btnQuest.Click += new System.EventHandler(this.BtnQuest_Click);
             // 
             // btnhouseEditor
             // 
@@ -216,6 +224,7 @@ namespace Engine
             this.btnhouseEditor.TabIndex = 49;
             this.btnhouseEditor.Text = "Houses Editor";
             this.btnhouseEditor.UseVisualStyleBackColor = true;
+            this.btnhouseEditor.Click += new System.EventHandler(this.BtnhouseEditor_Click);
             // 
             // btnMapEditor
             // 
@@ -225,6 +234,7 @@ namespace Engine
             this.btnMapEditor.TabIndex = 41;
             this.btnMapEditor.Text = "Map Editor";
             this.btnMapEditor.UseVisualStyleBackColor = true;
+            this.btnMapEditor.Click += new System.EventHandler(this.BtnMapEditor_Click);
             // 
             // btnItemEditor
             // 
@@ -234,6 +244,7 @@ namespace Engine
             this.btnItemEditor.TabIndex = 42;
             this.btnItemEditor.Text = "Item Editor";
             this.btnItemEditor.UseVisualStyleBackColor = true;
+            this.btnItemEditor.Click += new System.EventHandler(this.BtnItemEditor_Click);
             // 
             // btnResourceEditor
             // 
@@ -243,6 +254,7 @@ namespace Engine
             this.btnResourceEditor.TabIndex = 43;
             this.btnResourceEditor.Text = "Resource Editor";
             this.btnResourceEditor.UseVisualStyleBackColor = true;
+            this.btnResourceEditor.Click += new System.EventHandler(this.BtnResourceEditor_Click);
             // 
             // btnNPCEditor
             // 
@@ -252,6 +264,7 @@ namespace Engine
             this.btnNPCEditor.TabIndex = 44;
             this.btnNPCEditor.Text = "NPC Editor";
             this.btnNPCEditor.UseVisualStyleBackColor = true;
+            this.btnNPCEditor.Click += new System.EventHandler(this.BtnNPCEditor_Click);
             // 
             // btnSkillEditor
             // 
@@ -261,6 +274,7 @@ namespace Engine
             this.btnSkillEditor.TabIndex = 45;
             this.btnSkillEditor.Text = "Skill Editor";
             this.btnSkillEditor.UseVisualStyleBackColor = true;
+            this.btnSkillEditor.Click += new System.EventHandler(this.BtnSkillEditor_Click);
             // 
             // btnShopEditor
             // 
@@ -270,6 +284,7 @@ namespace Engine
             this.btnShopEditor.TabIndex = 46;
             this.btnShopEditor.Text = "Shop Editor";
             this.btnShopEditor.UseVisualStyleBackColor = true;
+            this.btnShopEditor.Click += new System.EventHandler(this.BtnShopEditor_Click);
             // 
             // btnAnimationEditor
             // 
@@ -279,12 +294,13 @@ namespace Engine
             this.btnAnimationEditor.TabIndex = 47;
             this.btnAnimationEditor.Text = "Animation Editor";
             this.btnAnimationEditor.UseVisualStyleBackColor = true;
+            this.btnAnimationEditor.Click += new System.EventHandler(this.BtnAnimationEditor_Click);
             // 
-            // frmLogin
+            // FrmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6.0F, 13.0F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(529, 261);
             this.Controls.Add(this.pnlAdmin);
@@ -296,15 +312,18 @@ namespace Engine
             this.Controls.Add(this.lblConnectionStatus);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmLogin";
+            this.Name = "FrmLogin";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Orion+ Editors";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_UnLoad);
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.pnlAdmin.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         public Timer tmrConnect;
