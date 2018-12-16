@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Strings>
+  <loadscreen>
+    <string id="loading">Loading...</string>
+    <string id="options">Loading Options...</string>
+    <string id="network">Initialising Network...</string>
+    <string id="graphics">Initialising Graphics...</string>
+    <string id="starting">Starting Game...</string>
+  </loadscreen>
+
+  <mainmenu>
+    <!-- main panel -->
+    <string id="newsheader">Latest News</string>
+    <string id="news">
+      Welcome to the Orion Client.
+      This is a free open source VB.Net game engine!
+      For help or support please visit our site at http://ascensionforums.com.
+    </string>
+    <string id="serverstatus">Server Status:</string>
+    <string id="serveronline">Online</string>
+    <string id="serverreconnect">Reconnecting...</string>
+    <string id="serveroffline">Offline</string>
+    <string id="buttonplay">Play</string>
+    <string id="buttonregister">Register</string>
+    <string id="buttoncredits">Credits</string>
+    <string id="buttonexit">Exit</string>
+    <!-- login panel -->
+    <string id="login">Login</string>
+    <string id="loginname">Name:</string>
+    <string id="loginpass">Password:</string>
+    <string id="loginchkbox">Save Password?</string>
+    <string id="loginbutton">Login</string>
+    <!-- New Char panel -->
+    <string id="newchar">Create Character</string>
+    <string id="newcharname">Name:</string>
+    <string id="newcharclass">Class:</string>
+    <string id="newchargender">Gender:</string>
+    <string id="newcharmale">Male</string>
+    <string id="newcharfemale">Female</string>
+    <string id="newcharsprite">Sprite</string>
+    <string id="newcharbutton">Create Character</string>
+    <!-- Char Select -->
+    <string id="selchar">Character Selection</string>
+    <string id="selcharnew">New Character</string>
+    <string id="selcharuse">Use Character</string>
+    <string id="selchardel">Delete Character</string>
+    <!-- New Account -->
+    <string id="newacc">New Account</string>
+    <string id="newaccname">Username:</string>
+    <string id="newaccpass">Password:</string>
+    <string id="newaccpass2">Retype Password:</string>
+    <!-- Credits -->
+    <string id="credits">Credits</string>
+    <!-- Ip Config-->
+    <string id="ipconfig">IP Config</string>
+    <string id="ipconfigadres">IP Adress:</string>
+    <string id="ipconfigport">Port:</string>
+    <!-- Misc -->
+    <string id="stringlegal">You cannot use high ASCII characters in your name, please re-enter.</string>
+    <string id="sendaddchar">Connected, sending character addition data...</string>
+    <string id="sendnewacc">Connected, sending new account information...</string>
+    <string id="sendlogin">Connected, sending login information...</string>
+    <string id="connectserver">Connecting to server...( {0} )</string>
+  </mainmenu>
+
+  <gamegui>
+    <string id="mapname">Map:</string>
+    <string id="fps">FPS:</string>
+    <string id="lps">LPS:</string>
+    <string id="ping">Ping:</string>
+    <string id="clock">Time:</string>
+    <string id="pingsync">Sync</string>
+    <string id="pinglocal">Local</string>
+    <string id="maprecieve">Recieving Map...</string>
+    <string id="datarecieve">Receiving game data...</string>
+    <string id="curloc">Cur Loc x: {0} y: {1}</string>
+    <string id="loc">Loc x: {0} y: {1}</string>
+    <string id="curmap">Map # {0}</string>
+  </gamegui>
+
+  <chatcommand>
+    <string id="playermsg">Usage: !playername (message)</string>
+    <string id="emote">Usage: /emote (number 1 to 11)</string>
+    <string id="help1">Social Commands:</string>
+    <string id="help2">'msghere = Global Message</string>
+    <string id="help3">-msghere = Party Message</string>
+    <string id="help4">!namehere msghere = Player Message</string>
+    <string id="help5">Available Commands: /help, /info, /who, /fps, /lps, /stats, /trade, /party, /join, /leave, /sellhouse, /houseinvite</string>
+    <string id="houseinvite">Usage: /houseinvite (name)</string>
+    <string id="info">Usage: /info (name)</string>
+    <string id="party">Usage: /party (name)</string>
+    <string id="wrongcmd">"Not a valid command!"</string>
+  </chatcommand>
+
+  <adminchatcommand>
+    <string id="accesswarning">You need to be a high enough staff member to do this!</string>
+    <string id="questreset">Usage: /questreset (quest #)</string>
+    <string id="wrongquestnr">Invalid quest number.</string>
+    <string id="admin1">Social Commands:</string>
+    <string id="adminglobal">""msghere = Global Admin Message</string>
+    <string id="adminprivate">=msghere = Private Admin Message</string>
+    <string id="admin2">Available Commands: /admin, /loc, /mapeditor, /warpmeto, /warptome, /warpto, /setsprite, /mapreport, /kick, /ban, /respawn,  /motd, /questreset </string>
+    <string id="kick">Usage: /kick (name)</string>
+    <string id="warpmeto">Usage: /warpmeto (name)</string>
+    <string id="warptome">Usage: /warptome (name)</string>
+    <string id="warpto">Usage: /warpto (map #)</string>
+    <string id="wrongmapnr">Invalid map number.</string>
+    <string id="setsprite">Usage: /setsprite (sprite #)</string>
+    <string id="motd">Usage: /motd (new motd)</string>
+    <string id="ban">Usage: /ban (name)</string>
+    <string id="setaccess">Usage: /setaccess (name) (access)</string>
+  </adminchatcommand>
+
+  <itemdescription>
+    <string id="notavail">Not Available</string>
+    <string id="damage">Damage: </string>
+    <string id="defense">Defence: </string>
+    <string id="weapon">Weapon</string>
+    <string id="armor">Armor</string>
+    <string id="helmet">Helmet</string>
+    <string id="shield">Shield</string>
+    <string id="shoes">Shoes</string>
+    <string id="gloves">Gloves</string>
+    <string id="restore">Restore Amount: </string>
+    <string id="potion">Potion</string>
+    <string id="key">Key</string>
+    <string id="currency">Currency</string>
+    <string id="skill">Skill</string>
+    <string id="furniture">Furniture</string>
+    <string id="none">None</string>
+    <string id="secs"> Secs</string>
+    <string id="amount">Amount: </string>
+  </itemdescription>
+
+  <skilldescription>
+    <string id="no">No</string>
+    <string id="damage">Damage: </string>
+    <string id="damagehp">Damage Hp</string>
+    <string id="damagemp">Damage Mp</string>
+    <string id="heal">Heal: </string>
+    <string id="healhp">Heal Hp</string>
+    <string id="healmp">Heal Mp</string>
+    <string id="warp">Warp</string>
+    <string id="none">None</string>
+    <string id="tiles"> Tiles</string>
+    <string id="selfcast">Self-Cast</string>
+  </skilldescription>
+
+  <crafting>
+    <string id="notenough">Not Enough Materials!</string>
+  <string id="noneselected">None Selected</string>
+  </crafting>
+
+  <trade>
+    <string id="tradetimeout">You took too long to decide. Please try again.</string>
+    <string id="tradeinvite">{0} invites you to a trade!</string>
+    <string id="tradeworth">Total Worth: {0} g</string>
+    <string id="tradestatusok">Other player has accepted.</string>
+    <string id="tradestatuswait">You accepted the trade.</string>
+  </trade>
+
+  <events>
+    <string id="continue">- Continue -</string>
+  </events>
+
+  <quests>
+    <string id="queststarted">Quest Started</string>
+    <string id="questcancel">Cancel Quest</string>
+    <string id="questcomplete">Quest Completed</string>
+    <string id="questgoslay">Defeat {0}/{1} {2}.</string>
+    <string id="questgocollect">Collect {0}/{1} {2}.</string>
+    <string id="questtalkto">Go talk to {0}.</string>
+    <string id="questgoto">Go to {0}.</string>
+    <string id="questgive">Give {0} the {1} {2}/{3} they requested.</string>
+    <string id="questkill">Defeat {0}/{1} Players in Battle.</string>
+    <string id="questgather">Gather {0}/{1} {2}.</string>
+    <string id="questfetch">Fetch {0} X {1} from {2}.</string>
+  </quests>
+
+  <charwindow>
+    <string id="charname">Name: </string>
+    <string id="charclass">Class: </string>
+    <string id="charlvl">Lvl: </string>
+    <string id="charpoints">StatPoints: </string>
+    <string id="charstatslbl">==Basic Stats==</string>
+    <string id="charstrength">Strength: </string>
+    <string id="charendurance">Endurance: </string>
+    <string id="charvitality">Vitality: </string>
+    <string id="charintelligence">Intelligence: </string>
+    <string id="charluck">Luck: </string>
+    <string id="charspirit">Spirit: </string>
+    <string id="chargather">==Gather Stats==</string>
+    <string id="charherb">Herbalist Lvl: </string>
+    <string id="charwood">Woodcutter Lvl: </string>
+    <string id="charmine">Miner Lvl: </string>
+    <string id="charfish">Fisherman Lvl: </string>
+    <string id="charexp"> Exp: </string>
+  </charwindow>
+</Strings>
