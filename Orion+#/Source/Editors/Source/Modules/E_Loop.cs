@@ -676,21 +676,43 @@ namespace Engine
 				frmEvents.Default.cmbHasItem.Items.Add("None");
 				for (var i = 1; i <= Constants.MAX_ITEMS; i++)
 				{
-					frmEvents.Default.cmbHasItem.Items.Add(i + ": " + Types.Item[(int) i].Name.Trim());
+                    if (Types.Item[(int)i].Name != null)
+                    {
+                        frmEvents.Default.cmbHasItem.Items.Add(i + ": " + Types.Item[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmEvents.Default.cmbHasItem.Items.Add(i + ": " + "Null");
+                    }
 				}
 				// variables
 				frmEvents.Default.cmbPlayerVar.Items.Clear();
 				frmEvents.Default.cmbPlayerVar.Items.Add("None");
 				for (var i = 1; i <= E_EventSystem.MaxVariables; i++)
 				{
-					frmEvents.Default.cmbPlayerVar.Items.Add(i +". " + E_EventSystem.Variables[(int) i]);
+                    if (E_EventSystem.Variables[(int)i] != null)
+                    {
+                        frmEvents.Default.cmbPlayerVar.Items.Add(i + ". " + E_EventSystem.Variables[(int)i]);
+                    }
+                    else
+                    {
+                        frmEvents.Default.cmbPlayerVar.Items.Add(i + ". " + "Null");
+                    }
 				}
 				// variables
 				frmEvents.Default.cmbPlayerSwitch.Items.Clear();
 				frmEvents.Default.cmbPlayerSwitch.Items.Add("None");
 				for (var i = 1; i <= E_EventSystem.MaxSwitches; i++)
 				{
-					frmEvents.Default.cmbPlayerSwitch.Items.Add(i +". " + E_EventSystem.Switches[(int) i]);
+                    if (E_EventSystem.Switches[(int)i] != null)
+                    {
+                        frmEvents.Default.cmbPlayerSwitch.Items.Add(i + ". " + E_EventSystem.Switches[(int)i]);
+                    }
+                    else
+                    {
+                        frmEvents.Default.cmbPlayerSwitch.Items.Add(i + ". " + "Null");
+                    }
+                    
 				}
 				// name
 				frmEvents.Default.txtName.Text = E_EventSystem.TmpEvent.Name;

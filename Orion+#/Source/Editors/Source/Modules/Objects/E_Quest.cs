@@ -256,7 +256,7 @@ namespace Engine
 		internal static void QuestEditorCancel()
 		{
 			E_Globals.Editor = (byte) 0;
-			FrmQuest.Default.Dispose();
+			FrmQuest.Default.Close();
 			ClearChanged_Quest();
 			ClearQuests();
 			SendRequestQuests();

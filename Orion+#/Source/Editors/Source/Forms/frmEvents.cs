@@ -153,21 +153,42 @@ namespace Engine
 
             for (i = 1; i <= E_EventSystem.MaxSwitches; i++)
             {
-                cmbSwitch.Items.Add(i + ". " + E_EventSystem.Switches[i]);
+                if (E_EventSystem.Switches[i] != null)
+                {
+                    cmbSwitch.Items.Add(i + ". " + E_EventSystem.Switches[i]);
+                }
+                else
+                {
+                    cmbSwitch.Items.Add(i + ". " + "Null");
+                }
             }
             cmbSwitch.SelectedIndex = 0;
             cmbVariable.Items.Clear();
 
             for (i = 1; i <= E_EventSystem.MaxVariables; i++)
             {
-                cmbVariable.Items.Add(i + ". " + E_EventSystem.Variables[i]);
+                if (E_EventSystem.Variables[i] != null)
+                {
+                    cmbVariable.Items.Add(i + ". " + E_EventSystem.Variables[i]);
+                }
+                else
+                {
+                    cmbVariable.Items.Add(i + ". " + "Null");
+                }
             }
             cmbVariable.SelectedIndex = 0;
             cmbChangeItemIndex.Items.Clear();
 
             for (i = 1; i <= Constants.MAX_ITEMS; i++)
             {
-                cmbChangeItemIndex.Items.Add(Types.Item[i].Name.Trim());
+                if (Types.Item[i].Name != null)
+                {
+                    cmbChangeItemIndex.Items.Add(Types.Item[i].Name.Trim());
+                }
+                else
+                {
+                    cmbChangeItemIndex.Items.Add("Null");
+                }
             }
             cmbChangeItemIndex.SelectedIndex = 0;
             nudChangeLevel.Minimum = 1;
@@ -177,7 +198,14 @@ namespace Engine
 
             for (i = 1; i <= Constants.MAX_SKILLS; i++)
             {
-                cmbChangeSkills.Items.Add(Types.Skill[i].Name.Trim());
+                if (Types.Skill[i].Name != null)
+                {
+                    cmbChangeSkills.Items.Add(Types.Skill[i].Name.Trim());
+                }
+                else
+                {
+                    cmbChangeSkills.Items.Add("Null");
+                }
             }
             cmbChangeSkills.SelectedIndex = 0;
             cmbChangeClass.Items.Clear();
@@ -186,7 +214,14 @@ namespace Engine
             {
                 for (i = 1; i <= E_Globals.Max_Classes; i++)
                 {
-                    cmbChangeClass.Items.Add(Types.Classes[i].Name.Trim());
+                    if (Types.Classes[i].Name != null)
+                    {
+                        cmbChangeClass.Items.Add(Types.Classes[i].Name.Trim());
+                    }
+                    else
+                    {
+                        cmbChangeClass.Items.Add("Null");
+                    }
                 }
                 cmbChangeClass.SelectedIndex = 0;
             }
@@ -195,7 +230,14 @@ namespace Engine
 
             for (i = 1; i <= Constants.MAX_ANIMATIONS; i++)
             {
-                cmbPlayAnim.Items.Add(i + ". " + Types.Animation[i].Name.Trim());
+                if (Types.Animation[i].Name != null)
+                {
+                    cmbPlayAnim.Items.Add(i + ". " + Types.Animation[i].Name.Trim());
+                }
+                else
+                {
+                    cmbPlayAnim.Items.Add(i + ". " + "Null");
+                }
             }
             cmbPlayAnim.SelectedIndex = 0;
 
@@ -205,7 +247,14 @@ namespace Engine
             {
                 for (i = 1; i <= (E_Sound.MusicCache.Length - 1); i++)
                 {
-                    cmbPlayBGM.Items.Add(E_Sound.MusicCache[i]);
+                    if (E_Sound.MusicCache[i] != null)
+                    {
+                        cmbPlayBGM.Items.Add(E_Sound.MusicCache[i]);
+                    }
+                    else
+                    {
+                        cmbPlayBGM.Items.Add("Null");
+                    }
                 }
                 cmbPlayBGM.SelectedIndex = 0;
             }
@@ -219,7 +268,14 @@ namespace Engine
             {
                 for (i = 1; i <= (E_Sound.SoundCache.Length - 1); i++)
                 {
-                    cmbPlaySound.Items.Add(E_Sound.SoundCache[i]);
+                    if (E_Sound.SoundCache[i] != null)
+                    {
+                        cmbPlaySound.Items.Add(E_Sound.SoundCache[i]);
+                    }
+                    else
+                    {
+                        cmbPlaySound.Items.Add("Null");
+                    }
                 }
                 cmbPlaySound.SelectedIndex = 0;
             }
@@ -231,7 +287,15 @@ namespace Engine
 
             for (i = 1; i <= Constants.MAX_SHOPS; i++)
             {
-                cmbOpenShop.Items.Add(i + ". " + Types.Shop[i].Name.Trim());
+                if (Types.Shop[i].Name != null)
+                {
+                    cmbOpenShop.Items.Add(i + ". " + Types.Shop[i].Name.Trim());
+                }
+                else
+                {
+                    cmbOpenShop.Items.Add(i + ". " + "Null");
+                }
+                
             }
             cmbOpenShop.SelectedIndex = 0;
             cmbSpawnNpc.Items.Clear();
@@ -240,7 +304,14 @@ namespace Engine
             {
                 if (E_Types.Map.Npc[i] > 0)
                 {
-                    cmbSpawnNpc.Items.Add(i + ". " + Types.Npc[E_Types.Map.Npc[i]].Name.Trim());
+                    if (Types.Npc[E_Types.Map.Npc[i]].Name != null)
+                    {
+                        cmbSpawnNpc.Items.Add(i + ". " + Types.Npc[E_Types.Map.Npc[i]].Name.Trim());
+                    }
+                    else
+                    {
+                        cmbSpawnNpc.Items.Add(i + ". " + "Null");
+                    }
                 }
                 else
                 {
@@ -259,9 +330,18 @@ namespace Engine
 
             for (i = 1; i <= E_Quest.MAX_QUESTS; i++)
             {
-                cmbBeginQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
-                cmbCompleteQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
-                cmbEndQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
+                if (E_Quest.Quest[i].Name != null)
+                {
+                    cmbBeginQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
+                    cmbCompleteQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
+                    cmbEndQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
+                }
+                else
+                {
+                    cmbBeginQuest.Items.Add(i + ". " + "Null");
+                    cmbCompleteQuest.Items.Add(i + ". " + "Null");
+                    cmbEndQuest.Items.Add(i + ". " + "Null");
+                }
             }
 
             cmbSpawnNpc.SelectedIndex = 0;
@@ -270,7 +350,14 @@ namespace Engine
             cmbEventQuest.Items.Add("None");
             for (i = 1; i <= E_Quest.MAX_QUESTS; i++)
             {
-                cmbEventQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
+                if (E_Quest.Quest[i].Name != null)
+                {
+                    cmbEventQuest.Items.Add(i + ". " + E_Quest.Quest[i].Name.Trim());
+                }
+                else
+                {
+                    cmbEventQuest.Items.Add(i + ". " + "Null");
+                }
             }
 
             //If NumPics > 0 Then
