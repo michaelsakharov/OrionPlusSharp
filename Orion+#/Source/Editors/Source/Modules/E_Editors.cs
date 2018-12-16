@@ -168,8 +168,8 @@ namespace Engine
 			{
 				frmMapEditor.Default.chkInstance.Checked = false;
 			}
-			
-			frmMapEditor.Default.lstMapNpc.Items.Clear();
+
+            frmMapEditor.Default.lstMapNpc.Items.Clear();
 			
 			for (X = 1; X <= Constants.MAX_MAP_NPCS; X++)
 			{
@@ -186,10 +186,17 @@ namespace Engine
 			
 			frmMapEditor.Default.cmbNpcList.Items.Clear();
 			frmMapEditor.Default.cmbNpcList.Items.Add("No NPC");
-			
-			for (Y = 1; Y <= Constants.MAX_NPCS; Y++)
+            
+            for (Y = 1; Y <= Constants.MAX_NPCS; Y++)
 			{
-				frmMapEditor.Default.cmbNpcList.Items.Add(Y + ": " + Types.Npc[Y].Name.Trim());
+                if (Types.Npc[Y].Name != null)
+                {
+                    frmMapEditor.Default.cmbNpcList.Items.Add(Y + ": " + Types.Npc[Y].Name.Trim());
+                }
+                else
+                {
+                    frmMapEditor.Default.cmbNpcList.Items.Add(Y + ": " + "Null");
+                }
 			}
 			
 			frmMapEditor.Default.lblMap.Text = "Current Map: " + System.Convert.ToString(E_Types.Map.mapNum);
@@ -211,7 +218,7 @@ namespace Engine
 			frmMapEditor.Default.tslCurMap.Text = "Map: " + System.Convert.ToString(E_Types.Map.mapNum);
 			
 			// show the form
-			frmMapEditor.Default.Visible = true;
+			frmMapEditor.Default.Show();
 			
 			E_Globals.GameStarted = true;
 			
@@ -293,7 +300,7 @@ namespace Engine
 			{
 				E_Globals.GettingMap = false;
 			}
-			
+
 		}
 		
 		internal static void MapEditorTileScroll()
