@@ -435,7 +435,6 @@ namespace Engine
                                 Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
                                 Buffer.WriteInt32(id);
                                 {
-                                    //var withBlock1 = modTypes.TempPlayer[i].EventMap.EventPages[x];
                                     Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].Name)));
                                     Buffer.WriteInt32(modTypes.TempPlayer[i].EventMap.EventPages[x].Dir);
                                     Buffer.WriteInt32(modTypes.TempPlayer[i].EventMap.EventPages[x].GraphicNum);
@@ -1120,7 +1119,6 @@ namespace Engine
                                                                 Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
                                                                 Buffer.WriteInt32(eventID);
                                                                 {
-                                                                    //var withBlock1 = S_Events.TempEventMap[i].Events[x];
                                                                     Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[i].Events[x].Name)));
                                                                     Buffer.WriteInt32(S_Events.TempEventMap[i].Events[x].Dir);
                                                                     Buffer.WriteInt32(S_Events.TempEventMap[i].Events[x].GraphicNum);
@@ -1867,7 +1865,6 @@ namespace Engine
                                                                     Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
                                                                     Buffer.WriteInt32(modTypes.TempPlayer[playerID].EventMap.EventPages[eventID].EventId);
                                                                     {
-                                                                        //var withBlock1 = modTypes.TempPlayer[playerID].EventMap.EventPages[eventID];
                                                                         Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(playerID)].Events[modTypes.TempPlayer[playerID].EventMap.EventPages[eventID].EventId].Name)));
                                                                         Buffer.WriteInt32(modTypes.TempPlayer[playerID].EventMap.EventPages[eventID].Dir);
                                                                         Buffer.WriteInt32(modTypes.TempPlayer[playerID].EventMap.EventPages[eventID].GraphicNum);
@@ -1995,7 +1992,6 @@ namespace Engine
                                     // Clearly need to start it!
                                     modTypes.TempPlayer[i].EventProcessing[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].Active = 1;
                                     {
-                                        //var withBlock1 = modTypes.TempPlayer[i].EventProcessing[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId];
                                         modTypes.TempPlayer[i].EventProcessing[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].ActionTimer = S_General.GetTimeMs();
                                         modTypes.TempPlayer[i].EventProcessing[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].CurList = 1;
                                         modTypes.TempPlayer[i].EventProcessing[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].CurSlot = 1;
@@ -2035,7 +2031,6 @@ namespace Engine
                                     if (x > modTypes.TempPlayer[i].EventProcessingCount)
                                         break;
                                     {
-                                        //var withBlock2 = modTypes.TempPlayer[i].EventProcessing[x];
                                         if (modTypes.TempPlayer[i].EventProcessingCount == 0)
                                             return;
                                         removeEventProcess = false;
@@ -4023,7 +4018,6 @@ namespace Engine
                                 if (oldEventPages != null)
                                     Array.Copy(oldEventPages, modTypes.TempPlayer[index].EventMap.EventPages, Math.Min(modTypes.TempPlayer[index].EventMap.CurrentEvents + 1, oldEventPages.Length));
                                 {
-                                    //var withBlock1 = modTypes.TempPlayer[index].EventMap.EventPages[modTypes.TempPlayer[index].EventMap.CurrentEvents];
                                     if (modTypes.Map[mapNum].Events[i].Pages[z].GraphicType == 1)
                                     {
                                         switch (modTypes.Map[mapNum].Events[i].Pages[z].GraphicY)

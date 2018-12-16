@@ -376,47 +376,7 @@ namespace Engine
 
         internal static void StartCraft(int index, int RecipeNum, int Amount)
         {
-            ;/* Cannot convert MultiLineIfBlockSyntax, System.ArgumentNullException: Value cannot be null.
-Parameter name: node
-   at Microsoft.CodeAnalysis.VisualBasic.VBSemanticModel.GetSymbolInfoForNode(SyntaxNode node, CancellationToken cancellationToken)
-   at Microsoft.CodeAnalysis.VisualBasic.VBSemanticModel.GetSymbolInfoCore(SyntaxNode node, CancellationToken cancellationToken)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.NodesVisitor.VisitInvocationExpression(InvocationExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.InvocationExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingNodesVisitor.DefaultVisit(SyntaxNode node)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.VisitInvocationExpression(InvocationExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.InvocationExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.NodesVisitor.VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.MemberAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingNodesVisitor.DefaultVisit(SyntaxNode node)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.MemberAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.NodesVisitor.VisitConditionalAccessExpression(ConditionalAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.ConditionalAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingNodesVisitor.DefaultVisit(SyntaxNode node)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.VisitConditionalAccessExpression(ConditionalAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.ConditionalAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.MethodBodyVisitor.VisitMultiLineIfBlock(MultiLineIfBlockSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.MultiLineIfBlockSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingMethodBodyVisitor.ConvertWithTrivia(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingMethodBodyVisitor.DefaultVisit(SyntaxNode node)
-
-Input: 
-
-        If TempPlayer?(index).IsCrafting Then
-            TempPlayer(index).CraftRecipe = RecipeNum
-            TempPlayer(index).CraftAmount = Amount
-
-            TempPlayer(index).CraftTimer = GetTimeMs()
-            TempPlayer(index).CraftTimeNeeded = Recipe(RecipeNum).CreateTime
-
-            TempPlayer(index).CraftIt = 1
-        End If
-
- */
+            //Todo Orion+#
         }
 
         internal static void UpdateCraft(int index)
@@ -429,52 +389,8 @@ Input:
                 for (i = 1; i <= Constants.MAX_INGREDIENT; i++)
                     S_Players.TakeInvItem(index, Recipe[modTypes.TempPlayer[index].CraftRecipe].Ingredients[i].ItemNum, Recipe[modTypes.TempPlayer[index].CraftRecipe].Ingredients[i].Value);
                 S_NetworkSend.PlayerMsg(index, "You created " + Microsoft.VisualBasic.Strings.Trim(Types.Item[Recipe[modTypes.TempPlayer[index].CraftRecipe].MakeItemNum].Name) + " X " + Recipe[modTypes.TempPlayer[index].CraftRecipe].MakeItemAmount, (int)Enums.ColorType.BrightGreen);
-            };/* Cannot convert MultiLineIfBlockSyntax, System.ArgumentNullException: Value cannot be null.
-Parameter name: node
-   at Microsoft.CodeAnalysis.VisualBasic.VBSemanticModel.GetSymbolInfoForNode(SyntaxNode node, CancellationToken cancellationToken)
-   at Microsoft.CodeAnalysis.VisualBasic.VBSemanticModel.GetSymbolInfoCore(SyntaxNode node, CancellationToken cancellationToken)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.NodesVisitor.VisitInvocationExpression(InvocationExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.InvocationExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingNodesVisitor.DefaultVisit(SyntaxNode node)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.VisitInvocationExpression(InvocationExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.InvocationExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.NodesVisitor.VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.MemberAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingNodesVisitor.DefaultVisit(SyntaxNode node)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.MemberAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.NodesVisitor.VisitConditionalAccessExpression(ConditionalAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.ConditionalAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingNodesVisitor.DefaultVisit(SyntaxNode node)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.VisitConditionalAccessExpression(ConditionalAccessExpressionSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.ConditionalAccessExpressionSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at ICSharpCode.CodeConverter.CSharp.VisualBasicConverter.MethodBodyVisitor.VisitMultiLineIfBlock(MultiLineIfBlockSyntax node)
-   at Microsoft.CodeAnalysis.VisualBasic.Syntax.MultiLineIfBlockSyntax.Accept[TResult](VisualBasicSyntaxVisitor`1 visitor)
-   at Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxVisitor`1.Visit(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingMethodBodyVisitor.ConvertWithTrivia(SyntaxNode node)
-   at ICSharpCode.CodeConverter.CSharp.CommentConvertingMethodBodyVisitor.DefaultVisit(SyntaxNode node)
-
-Input: 
-
-        If TempPlayer?(index).IsCrafting Then
-            TempPlayer(index).CraftAmount = TempPlayer(index).CraftAmount - 1
-
-            If TempPlayer(index).CraftAmount > 0 Then
-                TempPlayer(index).CraftTimer = GetTimeMs()
-                TempPlayer(index).CraftTimeNeeded = Recipe(TempPlayer(index).CraftRecipe).CreateTime
-
-                TempPlayer(index).CraftIt = 1
-
-                SendCraftUpdate(index, 0)
-            End If
-
-            SendCraftUpdate(index, 1)
-        End If
-
- */
+            };
+            //Todo Orion+#
         }
     }
 }

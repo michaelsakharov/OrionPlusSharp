@@ -2279,7 +2279,6 @@ namespace Engine
                         for (x = 1; x <= loopTo1; x++)
                         {
                             {
-                                //var withBlock1 = modTypes.Map[mapNum].Events[i].Pages[x];
                                 buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[x].ChkVariable);
                                 buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[x].Variableindex);
                                 buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[x].VariableCondition);
@@ -2351,7 +2350,6 @@ namespace Engine
                                         for (z = 1; z <= loopTo4; z++)
                                         {
                                             {
-                                                //var withBlock2 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z];
                                                 buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Index);
                                                 buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text1));
                                                 buffer.WriteString((modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text2));

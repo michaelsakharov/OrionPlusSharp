@@ -1,43 +1,49 @@
-﻿using System.Threading.Tasks;
+
+using System.Collections.Generic;
+using System;
 using System.Drawing;
 using System.Diagnostics;
-using System.Windows.Forms;
+using System.Threading.Tasks;
 using Microsoft.VisualBasic;
-using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Collections;
-using System;
+using System.Linq;
+
+
+using Engine;
 
 namespace Engine
 {
-    [global::Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
-    partial class frmMapEditor : System.Windows.Forms.Form
-    {
-
-        // Form overrides dispose to clean up the component list.
-        [System.Diagnostics.DebuggerNonUserCode()]
-        protected override void Dispose(bool disposing)
-        {
-            try
-            {
-                if (disposing && components != null)
-                    components.Dispose();
-            }
-            finally
-            {
-                base.Dispose(disposing);
-            }
-        }
-
-        // Required by the Windows Form Designer
-        private System.ComponentModel.IContainer components;
-
-        // NOTE: The following procedure is required by the Windows Form Designer
-        // It can be modified using the Windows Form Designer.  
-        // Do not modify it using the code editor.
-        [System.Diagnostics.DebuggerStepThrough()]
-        public void InitializeComponent()
-        {
+	[global::Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
+		public partial class frmMapEditor : System.Windows.Forms.Form
+		{
+		
+		//Form overrides dispose to clean up the component list.
+		[System.Diagnostics.DebuggerNonUserCode()]
+			protected override void Dispose(bool disposing)
+			{
+			try
+			{
+				if (disposing && components != null)
+				{
+					components.Dispose();
+				}
+			}
+			finally
+			{
+				base.Dispose(disposing);
+			}
+		}
+		
+		//Required by the Windows Form Designer
+		private System.ComponentModel.Container components = null;
+		
+		//NOTE: The following procedure is required by the Windows Form Designer
+		//It can be modified using the Windows Form Designer.
+		//Do not modify it using the code editor.
+		[System.Diagnostics.DebuggerStepThrough()]
+			private void InitializeComponent()
+			{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMapEditor));
             this.DarkDockPanel1 = new DarkUI.Docking.DarkDockPanel();
             this.ToolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
@@ -221,7 +227,7 @@ namespace Engine
             this.DarkSectionPanel1.SuspendLayout();
             this.pnlTiles.SuspendLayout();
             this.pnlBack.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picBackSelect).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBackSelect)).BeginInit();
             this.pnlNpc.SuspendLayout();
             this.pnlDirBlock.SuspendLayout();
             this.pnlEvents.SuspendLayout();
@@ -229,28 +235,28 @@ namespace Engine
             this.DarkSectionPanel2.SuspendLayout();
             this.pnlMoreOptions.SuspendLayout();
             this.GroupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudFogAlpha).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudFogSpeed).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudFog).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudIntensity).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFogAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFogSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFog)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIntensity)).BeginInit();
             this.GroupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapAlpha).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapBlue).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapGreen).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapRed).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapBlue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapGreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapRed)).BeginInit();
             this.GroupBox3.SuspendLayout();
             this.GroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudMaxY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMaxX).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxX)).BeginInit();
             this.GroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudSpawnY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudSpawnX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudSpawnMap).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSpawnY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSpawnX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSpawnMap)).BeginInit();
             this.fraMapLinks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudRight).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudLeft).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudUp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUp)).BeginInit();
             this.ToolStrip.SuspendLayout();
             this.pnlBack2.SuspendLayout();
             this.pnlAttributes.SuspendLayout();
@@ -258,20 +264,20 @@ namespace Engine
             this.fraBuyHouse.SuspendLayout();
             this.fraKeyOpen.SuspendLayout();
             this.fraMapKey.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picMapKey).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapKey)).BeginInit();
             this.fraNpcSpawn.SuspendLayout();
             this.fraHeal.SuspendLayout();
             this.fraShop.SuspendLayout();
             this.fraResource.SuspendLayout();
             this.fraMapItem.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picMapItem).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapItem)).BeginInit();
             this.fraTrap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picScreen).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // DarkDockPanel1
             // 
-            this.DarkDockPanel1.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.DarkDockPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.DarkDockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DarkDockPanel1.Location = new System.Drawing.Point(0, 0);
             this.DarkDockPanel1.Name = "DarkDockPanel1";
@@ -298,10 +304,13 @@ namespace Engine
             // ssInfo
             // 
             this.ssInfo.AutoSize = false;
-            this.ssInfo.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.ssInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.ssInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ssInfo.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.ssInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tslCurMap, this.tslCurXY, this.tsCurFps });
+            this.ssInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ssInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslCurMap,
+            this.tslCurXY,
+            this.tsCurFps});
             this.ssInfo.Location = new System.Drawing.Point(0, 0);
             this.ssInfo.Name = "ssInfo";
             this.ssInfo.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
@@ -350,7 +359,7 @@ namespace Engine
             // 
             // pnlTiles
             // 
-            this.pnlTiles.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.pnlTiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlTiles.Controls.Add(this.cmbAutoTile);
             this.pnlTiles.Controls.Add(this.cmbTileSets);
             this.pnlTiles.Controls.Add(this.cmbLayers);
@@ -368,11 +377,11 @@ namespace Engine
             // 
             // cmbAutoTile
             // 
-            this.cmbAutoTile.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
-            this.cmbAutoTile.BorderColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(90)), System.Convert.ToInt32(System.Convert.ToByte(90)), System.Convert.ToInt32(System.Convert.ToByte(90)));
+            this.cmbAutoTile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.cmbAutoTile.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.cmbAutoTile.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.cmbAutoTile.ButtonColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(43)), System.Convert.ToInt32(System.Convert.ToByte(43)), System.Convert.ToInt32(System.Convert.ToByte(43)));
-            this.cmbAutoTile.ButtonIcon = (System.Drawing.Bitmap)resources.GetObject("cmbAutoTile.ButtonIcon");
+            this.cmbAutoTile.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.cmbAutoTile.ButtonIcon = ((System.Drawing.Bitmap)(resources.GetObject("cmbAutoTile.ButtonIcon")));
             this.cmbAutoTile.DrawDropdownHoverOutline = false;
             this.cmbAutoTile.DrawFocusRectangle = false;
             this.cmbAutoTile.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -380,21 +389,28 @@ namespace Engine
             this.cmbAutoTile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbAutoTile.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmbAutoTile.FormattingEnabled = true;
-            this.cmbAutoTile.Items.AddRange(new object[] { "Normal", "AutoTile", "Fake", "Animated", "Cliff", "Waterfall" });
+            this.cmbAutoTile.Items.AddRange(new object[] {
+            "Normal",
+            "AutoTile",
+            "Fake",
+            "Animated",
+            "Cliff",
+            "Waterfall"});
             this.cmbAutoTile.Location = new System.Drawing.Point(52, 512);
             this.cmbAutoTile.Name = "cmbAutoTile";
             this.cmbAutoTile.Size = new System.Drawing.Size(109, 21);
             this.cmbAutoTile.TabIndex = 22;
             this.cmbAutoTile.Text = "Normal";
             this.cmbAutoTile.TextPadding = new System.Windows.Forms.Padding(2);
+            this.cmbAutoTile.SelectedIndexChanged += new System.EventHandler(this.CmbAutoTile_SelectedIndexChanged);
             // 
             // cmbTileSets
             // 
-            this.cmbTileSets.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
-            this.cmbTileSets.BorderColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(90)), System.Convert.ToInt32(System.Convert.ToByte(90)), System.Convert.ToInt32(System.Convert.ToByte(90)));
+            this.cmbTileSets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.cmbTileSets.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.cmbTileSets.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.cmbTileSets.ButtonColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(43)), System.Convert.ToInt32(System.Convert.ToByte(43)), System.Convert.ToInt32(System.Convert.ToByte(43)));
-            this.cmbTileSets.ButtonIcon = (System.Drawing.Bitmap)resources.GetObject("cmbTileSets.ButtonIcon");
+            this.cmbTileSets.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.cmbTileSets.ButtonIcon = ((System.Drawing.Bitmap)(resources.GetObject("cmbTileSets.ButtonIcon")));
             this.cmbTileSets.DrawDropdownHoverOutline = false;
             this.cmbTileSets.DrawFocusRectangle = false;
             this.cmbTileSets.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -408,14 +424,15 @@ namespace Engine
             this.cmbTileSets.TabIndex = 21;
             this.cmbTileSets.Text = null;
             this.cmbTileSets.TextPadding = new System.Windows.Forms.Padding(2);
+            this.cmbTileSets.SelectedIndexChanged += new System.EventHandler(this.CmbTileSets_SelectedIndexChanged);
             // 
             // cmbLayers
             // 
-            this.cmbLayers.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
-            this.cmbLayers.BorderColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(90)), System.Convert.ToInt32(System.Convert.ToByte(90)), System.Convert.ToInt32(System.Convert.ToByte(90)));
+            this.cmbLayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.cmbLayers.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.cmbLayers.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.cmbLayers.ButtonColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(43)), System.Convert.ToInt32(System.Convert.ToByte(43)), System.Convert.ToInt32(System.Convert.ToByte(43)));
-            this.cmbLayers.ButtonIcon = (System.Drawing.Bitmap)resources.GetObject("cmbLayers.ButtonIcon");
+            this.cmbLayers.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.cmbLayers.ButtonIcon = ((System.Drawing.Bitmap)(resources.GetObject("cmbLayers.ButtonIcon")));
             this.cmbLayers.DrawDropdownHoverOutline = false;
             this.cmbLayers.DrawFocusRectangle = false;
             this.cmbLayers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -423,7 +440,12 @@ namespace Engine
             this.cmbLayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbLayers.ForeColor = System.Drawing.Color.Gainsboro;
             this.cmbLayers.FormattingEnabled = true;
-            this.cmbLayers.Items.AddRange(new object[] { "Ground", "Mask", "Mask2", "Fringe", "Fringe2" });
+            this.cmbLayers.Items.AddRange(new object[] {
+            "Ground",
+            "Mask",
+            "Mask2",
+            "Fringe",
+            "Fringe2"});
             this.cmbLayers.Location = new System.Drawing.Point(180, 485);
             this.cmbLayers.Name = "cmbLayers";
             this.cmbLayers.Size = new System.Drawing.Size(130, 21);
@@ -435,7 +457,7 @@ namespace Engine
             // 
             this.DarkLabel4.AutoSize = true;
             this.DarkLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel4.Location = new System.Drawing.Point(3, 516);
             this.DarkLabel4.Name = "DarkLabel4";
             this.DarkLabel4.Size = new System.Drawing.Size(49, 13);
@@ -450,6 +472,7 @@ namespace Engine
             this.pnlBack.Name = "pnlBack";
             this.pnlBack.Size = new System.Drawing.Size(286, 442);
             this.pnlBack.TabIndex = 10;
+            this.pnlBack.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlBack_Paint);
             // 
             // picBackSelect
             // 
@@ -459,12 +482,15 @@ namespace Engine
             this.picBackSelect.Size = new System.Drawing.Size(283, 451);
             this.picBackSelect.TabIndex = 1;
             this.picBackSelect.TabStop = false;
+            this.picBackSelect.Paint += new System.Windows.Forms.PaintEventHandler(this.PicBackSelect_Paint);
+            this.picBackSelect.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicBackSelect_MouseDown);
+            this.picBackSelect.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicBackSelect_MouseMove);
             // 
             // DarkLabel3
             // 
             this.DarkLabel3.AutoSize = true;
             this.DarkLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel3.Location = new System.Drawing.Point(138, 489);
             this.DarkLabel3.Name = "DarkLabel3";
             this.DarkLabel3.Size = new System.Drawing.Size(36, 13);
@@ -478,6 +504,7 @@ namespace Engine
             this.scrlPictureY.Name = "scrlPictureY";
             this.scrlPictureY.Size = new System.Drawing.Size(18, 442);
             this.scrlPictureY.TabIndex = 12;
+            this.scrlPictureY.ValueChanged += new System.EventHandler<DarkUI.Controls.ScrollValueEventArgs>(this.ScrlPictureY_Scroll);
             // 
             // scrlPictureX
             // 
@@ -487,12 +514,13 @@ namespace Engine
             this.scrlPictureX.ScrollOrientation = DarkUI.Controls.DarkScrollOrientation.Horizontal;
             this.scrlPictureX.Size = new System.Drawing.Size(283, 16);
             this.scrlPictureX.TabIndex = 11;
+            this.scrlPictureX.ValueChanged += new System.EventHandler<DarkUI.Controls.ScrollValueEventArgs>(this.ScrlPictureX_Scroll);
             // 
             // DarkLabel2
             // 
             this.DarkLabel2.AutoSize = true;
             this.DarkLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel2.Location = new System.Drawing.Point(3, 489);
             this.DarkLabel2.Name = "DarkLabel2";
             this.DarkLabel2.Size = new System.Drawing.Size(43, 13);
@@ -504,7 +532,7 @@ namespace Engine
             this.DarkLabel1.AutoSize = true;
             this.DarkLabel1.BackColor = System.Drawing.Color.Transparent;
             this.DarkLabel1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel1.Location = new System.Drawing.Point(57, 470);
             this.DarkLabel1.Name = "DarkLabel1";
             this.DarkLabel1.Size = new System.Drawing.Size(174, 13);
@@ -513,7 +541,7 @@ namespace Engine
             // 
             // pnlNpc
             // 
-            this.pnlNpc.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.pnlNpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlNpc.Controls.Add(this.cmbNpcList);
             this.pnlNpc.Controls.Add(this.lstMapNpc);
             this.pnlNpc.Location = new System.Drawing.Point(2, 50);
@@ -523,7 +551,7 @@ namespace Engine
             // 
             // cmbNpcList
             // 
-            this.cmbNpcList.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.cmbNpcList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.cmbNpcList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNpcList.ForeColor = System.Drawing.Color.LightGray;
             this.cmbNpcList.FormattingEnabled = true;
@@ -531,10 +559,11 @@ namespace Engine
             this.cmbNpcList.Name = "cmbNpcList";
             this.cmbNpcList.Size = new System.Drawing.Size(184, 21);
             this.cmbNpcList.TabIndex = 18;
+            this.cmbNpcList.SelectedIndexChanged += new System.EventHandler(this.CmbNpcList_SelectedIndexChanged);
             // 
             // lstMapNpc
             // 
-            this.lstMapNpc.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.lstMapNpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.lstMapNpc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMapNpc.ForeColor = System.Drawing.Color.LightGray;
             this.lstMapNpc.FormattingEnabled = true;
@@ -542,10 +571,11 @@ namespace Engine
             this.lstMapNpc.Name = "lstMapNpc";
             this.lstMapNpc.Size = new System.Drawing.Size(307, 431);
             this.lstMapNpc.TabIndex = 0;
+            this.lstMapNpc.SelectedIndexChanged += new System.EventHandler(this.LstMapNpc_SelectedIndexChanged);
             // 
             // pnlDirBlock
             // 
-            this.pnlDirBlock.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.pnlDirBlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlDirBlock.Controls.Add(this.DarkLabel6);
             this.pnlDirBlock.Location = new System.Drawing.Point(2, 51);
             this.pnlDirBlock.Name = "pnlDirBlock";
@@ -555,7 +585,7 @@ namespace Engine
             // DarkLabel6
             // 
             this.DarkLabel6.AutoSize = true;
-            this.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel6.Location = new System.Drawing.Point(8, 8);
             this.DarkLabel6.Name = "DarkLabel6";
             this.DarkLabel6.Size = new System.Drawing.Size(239, 13);
@@ -564,57 +594,62 @@ namespace Engine
             // 
             // btnEvents
             // 
-            this.btnEvents.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnEvents.Location = new System.Drawing.Point(264, 28);
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Padding = new System.Windows.Forms.Padding(5);
             this.btnEvents.Size = new System.Drawing.Size(52, 23);
             this.btnEvents.TabIndex = 4;
             this.btnEvents.Text = "Events";
+            this.btnEvents.Click += new System.EventHandler(this.BtnEvents_Click);
             // 
             // btnDirBlock
             // 
-            this.btnDirBlock.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnDirBlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnDirBlock.Location = new System.Drawing.Point(163, 28);
             this.btnDirBlock.Name = "btnDirBlock";
             this.btnDirBlock.Padding = new System.Windows.Forms.Padding(5);
             this.btnDirBlock.Size = new System.Drawing.Size(100, 23);
             this.btnDirBlock.TabIndex = 3;
             this.btnDirBlock.Text = "Directional Block";
+            this.btnDirBlock.Click += new System.EventHandler(this.BtnDirBlock_Click);
             // 
             // btnNpc
             // 
-            this.btnNpc.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnNpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnNpc.Location = new System.Drawing.Point(118, 28);
             this.btnNpc.Name = "btnNpc";
             this.btnNpc.Padding = new System.Windows.Forms.Padding(5);
             this.btnNpc.Size = new System.Drawing.Size(44, 23);
             this.btnNpc.TabIndex = 2;
-            this.btnNpc.Text = "Npc's";
+            this.btnNpc.Text = "Npc\'s";
+            this.btnNpc.Click += new System.EventHandler(this.BtnNpc_Click);
             // 
             // btnAttributes
             // 
-            this.btnAttributes.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnAttributes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnAttributes.Location = new System.Drawing.Point(49, 28);
             this.btnAttributes.Name = "btnAttributes";
             this.btnAttributes.Padding = new System.Windows.Forms.Padding(5);
             this.btnAttributes.Size = new System.Drawing.Size(68, 23);
             this.btnAttributes.TabIndex = 1;
             this.btnAttributes.Text = "Attributes";
+            this.btnAttributes.Click += new System.EventHandler(this.BtnAttributes_Click);
             // 
             // btnTiles
             // 
-            this.btnTiles.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnTiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnTiles.Location = new System.Drawing.Point(4, 28);
             this.btnTiles.Name = "btnTiles";
             this.btnTiles.Padding = new System.Windows.Forms.Padding(5);
             this.btnTiles.Size = new System.Drawing.Size(44, 23);
             this.btnTiles.TabIndex = 0;
             this.btnTiles.Text = "Tiles";
+            this.btnTiles.Click += new System.EventHandler(this.BtnTiles_Click);
             // 
             // pnlEvents
             // 
-            this.pnlEvents.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.pnlEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlEvents.Controls.Add(this.lblPasteMode);
             this.pnlEvents.Controls.Add(this.btnPasteEvent);
             this.pnlEvents.Controls.Add(this.DarkLabel16);
@@ -630,7 +665,7 @@ namespace Engine
             // lblPasteMode
             // 
             this.lblPasteMode.AutoSize = true;
-            this.lblPasteMode.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblPasteMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblPasteMode.Location = new System.Drawing.Point(92, 148);
             this.lblPasteMode.Name = "lblPasteMode";
             this.lblPasteMode.Size = new System.Drawing.Size(78, 13);
@@ -648,17 +683,18 @@ namespace Engine
             // 
             // DarkLabel16
             // 
-            this.DarkLabel16.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel16.Location = new System.Drawing.Point(8, 111);
             this.DarkLabel16.Name = "DarkLabel16";
             this.DarkLabel16.Size = new System.Drawing.Size(251, 44);
             this.DarkLabel16.TabIndex = 16;
-            this.DarkLabel16.Text = "To paste a copied Event, press the paste button, then click on the map to place i" + "t.";
+            this.DarkLabel16.Text = "To paste a copied Event, press the paste button, then click on the map to place i" +
+    "t.";
             // 
             // lblCopyMode
             // 
             this.lblCopyMode.AutoSize = true;
-            this.lblCopyMode.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblCopyMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblCopyMode.Location = new System.Drawing.Point(92, 67);
             this.lblCopyMode.Name = "lblCopyMode";
             this.lblCopyMode.Size = new System.Drawing.Size(75, 13);
@@ -676,7 +712,7 @@ namespace Engine
             // 
             // DarkLabel15
             // 
-            this.DarkLabel15.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel15.Location = new System.Drawing.Point(8, 29);
             this.DarkLabel15.Name = "DarkLabel15";
             this.DarkLabel15.Size = new System.Drawing.Size(237, 30);
@@ -686,7 +722,7 @@ namespace Engine
             // DarkLabel5
             // 
             this.DarkLabel5.AutoSize = true;
-            this.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel5.Location = new System.Drawing.Point(8, 8);
             this.DarkLabel5.Name = "DarkLabel5";
             this.DarkLabel5.Size = new System.Drawing.Size(233, 13);
@@ -695,7 +731,7 @@ namespace Engine
             // 
             // pnlAttribute
             // 
-            this.pnlAttribute.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.pnlAttribute.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlAttribute.Controls.Add(this.optLight);
             this.pnlAttribute.Controls.Add(this.btnClearAttribute);
             this.pnlAttribute.Controls.Add(this.optHouse);
@@ -737,41 +773,45 @@ namespace Engine
             this.btnClearAttribute.Size = new System.Drawing.Size(297, 23);
             this.btnClearAttribute.TabIndex = 15;
             this.btnClearAttribute.Text = "Clear Attributes";
+            this.btnClearAttribute.Click += new System.EventHandler(this.BtnClearAttribute_Click);
             // 
             // optHouse
             // 
             this.optHouse.AutoSize = true;
-            this.optHouse.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optHouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optHouse.Location = new System.Drawing.Point(163, 139);
             this.optHouse.Name = "optHouse";
             this.optHouse.Size = new System.Drawing.Size(56, 17);
             this.optHouse.TabIndex = 14;
             this.optHouse.Text = "House";
+            this.optHouse.CheckedChanged += new System.EventHandler(this.OptHouse_CheckedChanged);
             // 
             // optShop
             // 
             this.optShop.AutoSize = true;
-            this.optShop.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optShop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optShop.Location = new System.Drawing.Point(97, 139);
             this.optShop.Name = "optShop";
             this.optShop.Size = new System.Drawing.Size(50, 17);
             this.optShop.TabIndex = 13;
             this.optShop.Text = "Shop";
+            this.optShop.CheckedChanged += new System.EventHandler(this.OptShop_CheckedChanged);
             // 
             // optNpcSpawn
             // 
             this.optNpcSpawn.AutoSize = true;
-            this.optNpcSpawn.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optNpcSpawn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optNpcSpawn.Location = new System.Drawing.Point(10, 139);
             this.optNpcSpawn.Name = "optNpcSpawn";
             this.optNpcSpawn.Size = new System.Drawing.Size(81, 17);
             this.optNpcSpawn.TabIndex = 12;
             this.optNpcSpawn.Text = "Npc Spawn";
+            this.optNpcSpawn.CheckedChanged += new System.EventHandler(this.OptNPCSpawn_CheckedChanged);
             // 
             // optBank
             // 
             this.optBank.AutoSize = true;
-            this.optBank.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optBank.Location = new System.Drawing.Point(235, 94);
             this.optBank.Name = "optBank";
             this.optBank.Size = new System.Drawing.Size(50, 17);
@@ -781,7 +821,7 @@ namespace Engine
             // optCraft
             // 
             this.optCraft.AutoSize = true;
-            this.optCraft.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optCraft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optCraft.Location = new System.Drawing.Point(163, 94);
             this.optCraft.Name = "optCraft";
             this.optCraft.Size = new System.Drawing.Size(47, 17);
@@ -791,68 +831,74 @@ namespace Engine
             // optTrap
             // 
             this.optTrap.AutoSize = true;
-            this.optTrap.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optTrap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optTrap.Location = new System.Drawing.Point(97, 94);
             this.optTrap.Name = "optTrap";
             this.optTrap.Size = new System.Drawing.Size(47, 17);
             this.optTrap.TabIndex = 9;
             this.optTrap.Text = "Trap";
+            this.optTrap.CheckedChanged += new System.EventHandler(this.OptTrap_CheckedChanged);
             // 
             // optHeal
             // 
             this.optHeal.AutoSize = true;
-            this.optHeal.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optHeal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optHeal.Location = new System.Drawing.Point(10, 94);
             this.optHeal.Name = "optHeal";
             this.optHeal.Size = new System.Drawing.Size(47, 17);
             this.optHeal.TabIndex = 8;
             this.optHeal.Text = "Heal";
+            this.optHeal.CheckedChanged += new System.EventHandler(this.OptHeal_CheckedChanged);
             // 
             // optKeyOpen
             // 
             this.optKeyOpen.AutoSize = true;
-            this.optKeyOpen.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optKeyOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optKeyOpen.Location = new System.Drawing.Point(235, 50);
             this.optKeyOpen.Name = "optKeyOpen";
             this.optKeyOpen.Size = new System.Drawing.Size(72, 17);
             this.optKeyOpen.TabIndex = 7;
             this.optKeyOpen.Text = "Key Open";
+            this.optKeyOpen.CheckedChanged += new System.EventHandler(this.OptKeyOpen_CheckedChanged);
             // 
             // optKey
             // 
             this.optKey.AutoSize = true;
-            this.optKey.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optKey.Location = new System.Drawing.Point(163, 50);
             this.optKey.Name = "optKey";
             this.optKey.Size = new System.Drawing.Size(43, 17);
             this.optKey.TabIndex = 6;
             this.optKey.Text = "Key";
+            this.optKey.CheckedChanged += new System.EventHandler(this.OptKey_CheckedChanged);
             // 
             // optDoor
             // 
             this.optDoor.AutoSize = true;
-            this.optDoor.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optDoor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optDoor.Location = new System.Drawing.Point(97, 50);
             this.optDoor.Name = "optDoor";
             this.optDoor.Size = new System.Drawing.Size(48, 17);
             this.optDoor.TabIndex = 5;
             this.optDoor.Text = "Door";
+            this.optDoor.CheckedChanged += new System.EventHandler(this.OptDoor_CheckedChanged);
             // 
             // optResource
             // 
             this.optResource.AutoSize = true;
-            this.optResource.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optResource.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optResource.ForeColor = System.Drawing.SystemColors.ControlText;
             this.optResource.Location = new System.Drawing.Point(10, 50);
             this.optResource.Name = "optResource";
             this.optResource.Size = new System.Drawing.Size(71, 17);
             this.optResource.TabIndex = 4;
             this.optResource.Text = "Resource";
+            this.optResource.CheckedChanged += new System.EventHandler(this.OptResource_CheckedChanged);
             // 
             // optNpcAvoid
             // 
             this.optNpcAvoid.AutoSize = true;
-            this.optNpcAvoid.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optNpcAvoid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optNpcAvoid.Location = new System.Drawing.Point(235, 7);
             this.optNpcAvoid.Name = "optNpcAvoid";
             this.optNpcAvoid.Size = new System.Drawing.Size(75, 17);
@@ -862,33 +908,36 @@ namespace Engine
             // optItem
             // 
             this.optItem.AutoSize = true;
-            this.optItem.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optItem.Location = new System.Drawing.Point(163, 7);
             this.optItem.Name = "optItem";
             this.optItem.Size = new System.Drawing.Size(66, 17);
             this.optItem.TabIndex = 2;
             this.optItem.Text = "MapItem";
+            this.optItem.CheckedChanged += new System.EventHandler(this.OptItem_CheckedChanged);
             // 
             // optWarp
             // 
             this.optWarp.AutoSize = true;
-            this.optWarp.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optWarp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optWarp.Location = new System.Drawing.Point(97, 7);
             this.optWarp.Name = "optWarp";
             this.optWarp.Size = new System.Drawing.Size(51, 17);
             this.optWarp.TabIndex = 1;
             this.optWarp.Text = "Warp";
+            this.optWarp.CheckedChanged += new System.EventHandler(this.OptWarp_CheckedChanged);
             // 
             // optBlocked
             // 
             this.optBlocked.AutoSize = true;
-            this.optBlocked.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.optBlocked.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.optBlocked.ForeColor = System.Drawing.SystemColors.ControlText;
             this.optBlocked.Location = new System.Drawing.Point(10, 7);
             this.optBlocked.Name = "optBlocked";
             this.optBlocked.Size = new System.Drawing.Size(64, 17);
             this.optBlocked.TabIndex = 0;
             this.optBlocked.Text = "Blocked";
+            this.optBlocked.CheckedChanged += new System.EventHandler(this.OptBlocked_CheckedChanged);
             // 
             // DarkSectionPanel2
             // 
@@ -914,7 +963,7 @@ namespace Engine
             // 
             // pnlMoreOptions
             // 
-            this.pnlMoreOptions.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.pnlMoreOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.pnlMoreOptions.Controls.Add(this.GroupBox4);
             this.pnlMoreOptions.Location = new System.Drawing.Point(4, 26);
             this.pnlMoreOptions.Name = "pnlMoreOptions";
@@ -944,49 +993,73 @@ namespace Engine
             // 
             // nudFogAlpha
             // 
-            this.nudFogAlpha.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudFogAlpha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudFogAlpha.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudFogAlpha.Location = new System.Drawing.Point(145, 69);
-            this.nudFogAlpha.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            this.nudFogAlpha.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.nudFogAlpha.Name = "nudFogAlpha";
             this.nudFogAlpha.Size = new System.Drawing.Size(49, 20);
             this.nudFogAlpha.TabIndex = 29;
-            this.nudFogAlpha.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudFogAlpha.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudFogAlpha.ValueChanged += new System.EventHandler(this.ScrlFogAlpha_Scroll);
             // 
             // nudFogSpeed
             // 
-            this.nudFogSpeed.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudFogSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudFogSpeed.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudFogSpeed.Location = new System.Drawing.Point(61, 69);
             this.nudFogSpeed.Name = "nudFogSpeed";
             this.nudFogSpeed.Size = new System.Drawing.Size(44, 20);
             this.nudFogSpeed.TabIndex = 28;
-            this.nudFogSpeed.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudFogSpeed.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudFogSpeed.ValueChanged += new System.EventHandler(this.ScrlFogSpeed_Scroll);
             // 
             // nudFog
             // 
-            this.nudFog.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudFog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudFog.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudFog.Location = new System.Drawing.Point(145, 44);
             this.nudFog.Name = "nudFog";
             this.nudFog.Size = new System.Drawing.Size(49, 20);
             this.nudFog.TabIndex = 28;
-            this.nudFog.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudFog.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudFog.ValueChanged += new System.EventHandler(this.ScrlFog_Scroll);
             // 
             // nudIntensity
             // 
-            this.nudIntensity.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudIntensity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudIntensity.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudIntensity.Location = new System.Drawing.Point(61, 44);
             this.nudIntensity.Name = "nudIntensity";
             this.nudIntensity.Size = new System.Drawing.Size(44, 20);
             this.nudIntensity.TabIndex = 28;
-            this.nudIntensity.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudIntensity.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudIntensity.ValueChanged += new System.EventHandler(this.ScrlIntensity_Scroll);
             // 
             // lblFogAlpha
             // 
             this.lblFogAlpha.AutoSize = true;
-            this.lblFogAlpha.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblFogAlpha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblFogAlpha.Location = new System.Drawing.Point(111, 72);
             this.lblFogAlpha.Name = "lblFogAlpha";
             this.lblFogAlpha.Size = new System.Drawing.Size(37, 13);
@@ -996,7 +1069,7 @@ namespace Engine
             // lblFogSpeed
             // 
             this.lblFogSpeed.AutoSize = true;
-            this.lblFogSpeed.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblFogSpeed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblFogSpeed.Location = new System.Drawing.Point(6, 72);
             this.lblFogSpeed.Name = "lblFogSpeed";
             this.lblFogSpeed.Size = new System.Drawing.Size(41, 13);
@@ -1006,7 +1079,7 @@ namespace Engine
             // lblFogIndex
             // 
             this.lblFogIndex.AutoSize = true;
-            this.lblFogIndex.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblFogIndex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblFogIndex.Location = new System.Drawing.Point(111, 46);
             this.lblFogIndex.Name = "lblFogIndex";
             this.lblFogIndex.Size = new System.Drawing.Size(28, 13);
@@ -1016,7 +1089,7 @@ namespace Engine
             // lblIntensity
             // 
             this.lblIntensity.AutoSize = true;
-            this.lblIntensity.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblIntensity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblIntensity.Location = new System.Drawing.Point(6, 46);
             this.lblIntensity.Name = "lblIntensity";
             this.lblIntensity.Size = new System.Drawing.Size(49, 13);
@@ -1025,19 +1098,27 @@ namespace Engine
             // 
             // cmbWeather
             // 
-            this.cmbWeather.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.cmbWeather.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.cmbWeather.ForeColor = System.Drawing.Color.LightGray;
             this.cmbWeather.FormattingEnabled = true;
-            this.cmbWeather.Items.AddRange(new object[] { "None", "Rain", "Snow", "Hail", "Sand Storm", "Storm", "Fog" });
+            this.cmbWeather.Items.AddRange(new object[] {
+            "None",
+            "Rain",
+            "Snow",
+            "Hail",
+            "Sand Storm",
+            "Storm",
+            "Fog"});
             this.cmbWeather.Location = new System.Drawing.Point(91, 17);
             this.cmbWeather.Name = "cmbWeather";
             this.cmbWeather.Size = new System.Drawing.Size(103, 21);
             this.cmbWeather.TabIndex = 16;
+            this.cmbWeather.SelectedIndexChanged += new System.EventHandler(this.CmbWeather_SelectedIndexChanged);
             // 
             // DarkLabel14
             // 
             this.DarkLabel14.AutoSize = true;
-            this.DarkLabel14.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel14.Location = new System.Drawing.Point(7, 22);
             this.DarkLabel14.Name = "DarkLabel14";
             this.DarkLabel14.Size = new System.Drawing.Size(78, 13);
@@ -1066,47 +1147,83 @@ namespace Engine
             // 
             // nudMapAlpha
             // 
-            this.nudMapAlpha.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudMapAlpha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudMapAlpha.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMapAlpha.Location = new System.Drawing.Point(139, 55);
-            this.nudMapAlpha.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            this.nudMapAlpha.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.nudMapAlpha.Name = "nudMapAlpha";
             this.nudMapAlpha.Size = new System.Drawing.Size(47, 20);
             this.nudMapAlpha.TabIndex = 31;
-            this.nudMapAlpha.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudMapAlpha.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudMapAlpha.ValueChanged += new System.EventHandler(this.ScrlMapAlpha_Scroll);
             // 
             // nudMapBlue
             // 
-            this.nudMapBlue.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudMapBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudMapBlue.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMapBlue.Location = new System.Drawing.Point(41, 55);
-            this.nudMapBlue.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            this.nudMapBlue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.nudMapBlue.Name = "nudMapBlue";
             this.nudMapBlue.Size = new System.Drawing.Size(47, 20);
             this.nudMapBlue.TabIndex = 30;
-            this.nudMapBlue.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudMapBlue.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudMapBlue.ValueChanged += new System.EventHandler(this.ScrlMapBlue_Scroll);
             // 
             // nudMapGreen
             // 
-            this.nudMapGreen.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudMapGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudMapGreen.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMapGreen.Location = new System.Drawing.Point(139, 29);
-            this.nudMapGreen.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            this.nudMapGreen.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.nudMapGreen.Name = "nudMapGreen";
             this.nudMapGreen.Size = new System.Drawing.Size(47, 20);
             this.nudMapGreen.TabIndex = 29;
-            this.nudMapGreen.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudMapGreen.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudMapGreen.ValueChanged += new System.EventHandler(this.ScrlMapGreen_Scroll);
             // 
             // nudMapRed
             // 
-            this.nudMapRed.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudMapRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudMapRed.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMapRed.Location = new System.Drawing.Point(41, 29);
-            this.nudMapRed.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            this.nudMapRed.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.nudMapRed.Name = "nudMapRed";
             this.nudMapRed.Size = new System.Drawing.Size(47, 20);
             this.nudMapRed.TabIndex = 28;
-            this.nudMapRed.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudMapRed.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudMapRed.ValueChanged += new System.EventHandler(this.ScrlMapRed_Scroll);
             // 
             // chkUseTint
             // 
@@ -1120,11 +1237,12 @@ namespace Engine
             this.chkUseTint.TabIndex = 25;
             this.chkUseTint.Text = "Use MapTint?";
             this.chkUseTint.UseVisualStyleBackColor = false;
+            this.chkUseTint.CheckedChanged += new System.EventHandler(this.ChkUseTint_CheckedChanged);
             // 
             // lblMapAlpha
             // 
             this.lblMapAlpha.AutoSize = true;
-            this.lblMapAlpha.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblMapAlpha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblMapAlpha.Location = new System.Drawing.Point(96, 57);
             this.lblMapAlpha.Name = "lblMapAlpha";
             this.lblMapAlpha.Size = new System.Drawing.Size(37, 13);
@@ -1134,7 +1252,7 @@ namespace Engine
             // lblMapBlue
             // 
             this.lblMapBlue.AutoSize = true;
-            this.lblMapBlue.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblMapBlue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblMapBlue.Location = new System.Drawing.Point(4, 57);
             this.lblMapBlue.Name = "lblMapBlue";
             this.lblMapBlue.Size = new System.Drawing.Size(31, 13);
@@ -1144,7 +1262,7 @@ namespace Engine
             // lblMapGreen
             // 
             this.lblMapGreen.AutoSize = true;
-            this.lblMapGreen.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblMapGreen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblMapGreen.Location = new System.Drawing.Point(94, 31);
             this.lblMapGreen.Name = "lblMapGreen";
             this.lblMapGreen.Size = new System.Drawing.Size(39, 13);
@@ -1154,7 +1272,7 @@ namespace Engine
             // lblMapRed
             // 
             this.lblMapRed.AutoSize = true;
-            this.lblMapRed.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblMapRed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblMapRed.Location = new System.Drawing.Point(5, 31);
             this.lblMapRed.Name = "lblMapRed";
             this.lblMapRed.Size = new System.Drawing.Size(30, 13);
@@ -1163,13 +1281,14 @@ namespace Engine
             // 
             // btnMoreOptions
             // 
-            this.btnMoreOptions.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnMoreOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnMoreOptions.Location = new System.Drawing.Point(9, 571);
             this.btnMoreOptions.Name = "btnMoreOptions";
             this.btnMoreOptions.Padding = new System.Windows.Forms.Padding(5);
             this.btnMoreOptions.Size = new System.Drawing.Size(203, 23);
             this.btnMoreOptions.TabIndex = 30;
             this.btnMoreOptions.Text = "More Options";
+            this.btnMoreOptions.Click += new System.EventHandler(this.BtnMoreOptions_Click);
             // 
             // GroupBox3
             // 
@@ -1186,8 +1305,8 @@ namespace Engine
             // 
             // btnPreview
             // 
-            this.btnPreview.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
-            this.btnPreview.Image = (System.Drawing.Image)resources.GetObject("btnPreview.Image");
+            this.btnPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnPreview.Image = ((System.Drawing.Image)(resources.GetObject("btnPreview.Image")));
             this.btnPreview.Location = new System.Drawing.Point(9, 102);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Padding = new System.Windows.Forms.Padding(5);
@@ -1196,6 +1315,7 @@ namespace Engine
             this.btnPreview.Text = "Preview Music";
             this.btnPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPreview.UseMnemonic = false;
+            this.btnPreview.Click += new System.EventHandler(this.BtnPreview_Click);
             // 
             // lstMusic
             // 
@@ -1205,6 +1325,7 @@ namespace Engine
             this.lstMusic.ScrollAlwaysVisible = true;
             this.lstMusic.Size = new System.Drawing.Size(191, 82);
             this.lstMusic.TabIndex = 4;
+            this.lstMusic.SelectedIndexChanged += new System.EventHandler(this.LstMusic_SelectedIndexChanged);
             // 
             // GroupBox2
             // 
@@ -1224,38 +1345,47 @@ namespace Engine
             // 
             // nudMaxY
             // 
-            this.nudMaxY.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudMaxY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudMaxY.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMaxY.Location = new System.Drawing.Point(145, 14);
             this.nudMaxY.Name = "nudMaxY";
             this.nudMaxY.Size = new System.Drawing.Size(41, 20);
             this.nudMaxY.TabIndex = 6;
-            this.nudMaxY.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudMaxY.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // nudMaxX
             // 
-            this.nudMaxX.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudMaxX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudMaxX.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMaxX.Location = new System.Drawing.Point(52, 14);
             this.nudMaxX.Name = "nudMaxX";
             this.nudMaxX.Size = new System.Drawing.Size(41, 20);
             this.nudMaxX.TabIndex = 5;
-            this.nudMaxX.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudMaxX.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // btnSetSize
             // 
-            this.btnSetSize.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.btnSetSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.btnSetSize.Location = new System.Drawing.Point(64, 39);
             this.btnSetSize.Name = "btnSetSize";
             this.btnSetSize.Padding = new System.Windows.Forms.Padding(5);
             this.btnSetSize.Size = new System.Drawing.Size(75, 23);
             this.btnSetSize.TabIndex = 4;
             this.btnSetSize.Text = "Set Size";
+            this.btnSetSize.Click += new System.EventHandler(this.BtnSetSize_Click);
             // 
             // DarkLabel13
             // 
             this.DarkLabel13.AutoSize = true;
-            this.DarkLabel13.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel13.Location = new System.Drawing.Point(99, 16);
             this.DarkLabel13.Name = "DarkLabel13";
             this.DarkLabel13.Size = new System.Drawing.Size(40, 13);
@@ -1265,7 +1395,7 @@ namespace Engine
             // DarkLabel12
             // 
             this.DarkLabel12.AutoSize = true;
-            this.DarkLabel12.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel12.Location = new System.Drawing.Point(6, 16);
             this.DarkLabel12.Name = "DarkLabel12";
             this.DarkLabel12.Size = new System.Drawing.Size(40, 13);
@@ -1291,38 +1421,53 @@ namespace Engine
             // 
             // nudSpawnY
             // 
-            this.nudSpawnY.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudSpawnY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudSpawnY.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudSpawnY.Location = new System.Drawing.Point(143, 44);
             this.nudSpawnY.Name = "nudSpawnY";
             this.nudSpawnY.Size = new System.Drawing.Size(51, 20);
             this.nudSpawnY.TabIndex = 29;
-            this.nudSpawnY.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudSpawnY.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudSpawnY.ValueChanged += new System.EventHandler(this.TxtBootY_TextChanged);
             // 
             // nudSpawnX
             // 
-            this.nudSpawnX.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudSpawnX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudSpawnX.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudSpawnX.Location = new System.Drawing.Point(48, 44);
             this.nudSpawnX.Name = "nudSpawnX";
             this.nudSpawnX.Size = new System.Drawing.Size(51, 20);
             this.nudSpawnX.TabIndex = 28;
-            this.nudSpawnX.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudSpawnX.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudSpawnX.ValueChanged += new System.EventHandler(this.TxtBootX_TextChanged);
             // 
             // nudSpawnMap
             // 
-            this.nudSpawnMap.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudSpawnMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudSpawnMap.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudSpawnMap.Location = new System.Drawing.Point(108, 18);
             this.nudSpawnMap.Name = "nudSpawnMap";
             this.nudSpawnMap.Size = new System.Drawing.Size(86, 20);
             this.nudSpawnMap.TabIndex = 6;
-            this.nudSpawnMap.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudSpawnMap.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudSpawnMap.ValueChanged += new System.EventHandler(this.TxtBootMap_TextChanged);
             // 
             // DarkLabel11
             // 
             this.DarkLabel11.AutoSize = true;
-            this.DarkLabel11.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel11.Location = new System.Drawing.Point(120, 46);
             this.DarkLabel11.Name = "DarkLabel11";
             this.DarkLabel11.Size = new System.Drawing.Size(17, 13);
@@ -1332,7 +1477,7 @@ namespace Engine
             // DarkLabel10
             // 
             this.DarkLabel10.AutoSize = true;
-            this.DarkLabel10.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel10.Location = new System.Drawing.Point(7, 46);
             this.DarkLabel10.Name = "DarkLabel10";
             this.DarkLabel10.Size = new System.Drawing.Size(17, 13);
@@ -1342,7 +1487,7 @@ namespace Engine
             // DarkLabel9
             // 
             this.DarkLabel9.AutoSize = true;
-            this.DarkLabel9.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel9.Location = new System.Drawing.Point(6, 22);
             this.DarkLabel9.Name = "DarkLabel9";
             this.DarkLabel9.Size = new System.Drawing.Size(79, 13);
@@ -1353,7 +1498,7 @@ namespace Engine
             // 
             this.DarkLabel7.AutoSize = true;
             this.DarkLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.DarkLabel7.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel7.Location = new System.Drawing.Point(6, 33);
             this.DarkLabel7.Name = "DarkLabel7";
             this.DarkLabel7.Size = new System.Drawing.Size(38, 13);
@@ -1363,29 +1508,31 @@ namespace Engine
             // chkInstance
             // 
             this.chkInstance.AutoSize = true;
-            this.chkInstance.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.chkInstance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.chkInstance.ForeColor = System.Drawing.Color.Gainsboro;
             this.chkInstance.Location = new System.Drawing.Point(9, 85);
             this.chkInstance.Name = "chkInstance";
             this.chkInstance.Size = new System.Drawing.Size(79, 17);
             this.chkInstance.TabIndex = 26;
             this.chkInstance.Text = "Instanced?";
+            this.chkInstance.CheckedChanged += new System.EventHandler(this.ChkInstance_CheckedChanged);
             // 
             // txtName
             // 
-            this.txtName.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.txtName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtName.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.txtName.Location = new System.Drawing.Point(50, 31);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(162, 20);
             this.txtName.TabIndex = 22;
+            this.txtName.TextChanged += new System.EventHandler(this.TxtName_TextChanged);
             // 
             // DarkLabel8
             // 
             this.DarkLabel8.AutoSize = true;
             this.DarkLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.DarkLabel8.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.DarkLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel8.Location = new System.Drawing.Point(8, 60);
             this.DarkLabel8.Name = "DarkLabel8";
             this.DarkLabel8.Size = new System.Drawing.Size(36, 13);
@@ -1410,48 +1557,68 @@ namespace Engine
             // 
             // nudRight
             // 
-            this.nudRight.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudRight.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudRight.Location = new System.Drawing.Point(147, 34);
             this.nudRight.Name = "nudRight";
             this.nudRight.Size = new System.Drawing.Size(50, 20);
             this.nudRight.TabIndex = 8;
-            this.nudRight.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudRight.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudRight.ValueChanged += new System.EventHandler(this.NudRight_ValueChanged);
             // 
             // nudLeft
             // 
-            this.nudLeft.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudLeft.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudLeft.Location = new System.Drawing.Point(6, 34);
             this.nudLeft.Name = "nudLeft";
             this.nudLeft.Size = new System.Drawing.Size(50, 20);
             this.nudLeft.TabIndex = 7;
-            this.nudLeft.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudLeft.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudLeft.ValueChanged += new System.EventHandler(this.NudLeft_ValueChanged);
             // 
             // nudDown
             // 
-            this.nudDown.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudDown.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudDown.Location = new System.Drawing.Point(75, 54);
             this.nudDown.Name = "nudDown";
             this.nudDown.Size = new System.Drawing.Size(50, 20);
             this.nudDown.TabIndex = 6;
-            this.nudDown.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudDown.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudDown.ValueChanged += new System.EventHandler(this.NudDown_ValueChanged);
             // 
             // nudUp
             // 
-            this.nudUp.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(69)), System.Convert.ToInt32(System.Convert.ToByte(73)), System.Convert.ToInt32(System.Convert.ToByte(74)));
+            this.nudUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudUp.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudUp.Location = new System.Drawing.Point(75, 11);
             this.nudUp.Name = "nudUp";
             this.nudUp.Size = new System.Drawing.Size(50, 20);
             this.nudUp.TabIndex = 5;
-            this.nudUp.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            this.nudUp.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudUp.ValueChanged += new System.EventHandler(this.NudUp_ValueChanged);
             // 
             // lblMap
             // 
             this.lblMap.AutoSize = true;
-            this.lblMap.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.lblMap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.lblMap.Location = new System.Drawing.Point(72, 36);
             this.lblMap.Name = "lblMap";
             this.lblMap.Size = new System.Drawing.Size(65, 13);
@@ -1460,22 +1627,38 @@ namespace Engine
             // 
             // cmbMoral
             // 
-            this.cmbMoral.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.cmbMoral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.cmbMoral.ForeColor = System.Drawing.Color.LightGray;
             this.cmbMoral.FormattingEnabled = true;
-            this.cmbMoral.Items.AddRange(new object[] { "None", "Safe Zone", "Indoors" });
+            this.cmbMoral.Items.AddRange(new object[] {
+            "None",
+            "Safe Zone",
+            "Indoors"});
             this.cmbMoral.Location = new System.Drawing.Point(50, 57);
             this.cmbMoral.Name = "cmbMoral";
             this.cmbMoral.Size = new System.Drawing.Size(162, 21);
             this.cmbMoral.TabIndex = 24;
+            this.cmbMoral.SelectedIndexChanged += new System.EventHandler(this.CmbMoral_SelectedIndexChanged);
             // 
             // ToolStrip
             // 
             this.ToolStrip.AutoSize = false;
-            this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
-            this.ToolStrip.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ToolStrip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tsbSave, this.tsbDiscard, this.ToolStripSeparator1, this.tsbMapGrid, this.ToolStripSeparator2, this.tsbFill, this.tsbClear, this.ToolStripSeparator3, this.ToolStripLabel1, this.cmbMapList, this.ToolStripSeparator4, this.tsbScreenShot });
+            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbSave,
+            this.tsbDiscard,
+            this.ToolStripSeparator1,
+            this.tsbMapGrid,
+            this.ToolStripSeparator2,
+            this.tsbFill,
+            this.tsbClear,
+            this.ToolStripSeparator3,
+            this.ToolStripLabel1,
+            this.cmbMapList,
+            this.ToolStripSeparator4,
+            this.tsbScreenShot});
             this.ToolStrip.Location = new System.Drawing.Point(318, 0);
             this.ToolStrip.Name = "ToolStrip";
             this.ToolStrip.Padding = new System.Windows.Forms.Padding(5, 0, 1, 0);
@@ -1486,100 +1669,107 @@ namespace Engine
             // 
             // tsbSave
             // 
-            this.tsbSave.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.tsbSave.Image = (System.Drawing.Image)resources.GetObject("tsbSave.Image");
+            this.tsbSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
             this.tsbSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSave.Name = "tsbSave";
             this.tsbSave.Size = new System.Drawing.Size(78, 22);
             this.tsbSave.Text = "Save Map";
+            this.tsbSave.Click += new System.EventHandler(this.TsbSave_Click);
             // 
             // tsbDiscard
             // 
-            this.tsbDiscard.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.tsbDiscard.Image = (System.Drawing.Image)resources.GetObject("tsbDiscard.Image");
+            this.tsbDiscard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tsbDiscard.Image = ((System.Drawing.Image)(resources.GetObject("tsbDiscard.Image")));
             this.tsbDiscard.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbDiscard.Name = "tsbDiscard";
             this.tsbDiscard.Size = new System.Drawing.Size(66, 22);
             this.tsbDiscard.Text = "Discard";
+            this.tsbDiscard.Click += new System.EventHandler(this.TsbDiscard_Click);
             // 
             // ToolStripSeparator1
             // 
-            this.ToolStripSeparator1.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.ToolStripSeparator1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ToolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.ToolStripSeparator1.Name = "ToolStripSeparator1";
             this.ToolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbMapGrid
             // 
-            this.tsbMapGrid.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.tsbMapGrid.Image = (System.Drawing.Image)resources.GetObject("tsbMapGrid.Image");
+            this.tsbMapGrid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tsbMapGrid.Image = ((System.Drawing.Image)(resources.GetObject("tsbMapGrid.Image")));
             this.tsbMapGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbMapGrid.Name = "tsbMapGrid";
             this.tsbMapGrid.Size = new System.Drawing.Size(76, 22);
             this.tsbMapGrid.Text = "Map Grid";
+            this.tsbMapGrid.Click += new System.EventHandler(this.TsbMapGrid_Click);
             // 
             // ToolStripSeparator2
             // 
-            this.ToolStripSeparator2.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.ToolStripSeparator2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ToolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.ToolStripSeparator2.Name = "ToolStripSeparator2";
             this.ToolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbFill
             // 
-            this.tsbFill.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.tsbFill.Image = (System.Drawing.Image)resources.GetObject("tsbFill.Image");
+            this.tsbFill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tsbFill.Image = ((System.Drawing.Image)(resources.GetObject("tsbFill.Image")));
             this.tsbFill.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFill.Name = "tsbFill";
             this.tsbFill.Size = new System.Drawing.Size(73, 22);
             this.tsbFill.Text = "Fill Layer";
+            this.tsbFill.Click += new System.EventHandler(this.TsbFill_Click);
             // 
             // tsbClear
             // 
-            this.tsbClear.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.tsbClear.Image = (System.Drawing.Image)resources.GetObject("tsbClear.Image");
+            this.tsbClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tsbClear.Image = ((System.Drawing.Image)(resources.GetObject("tsbClear.Image")));
             this.tsbClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClear.Name = "tsbClear";
             this.tsbClear.Size = new System.Drawing.Size(85, 22);
             this.tsbClear.Text = "Clear Layer";
+            this.tsbClear.Click += new System.EventHandler(this.TsbClear_Click);
             // 
             // ToolStripSeparator3
             // 
-            this.ToolStripSeparator3.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.ToolStripSeparator3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ToolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.ToolStripSeparator3.Name = "ToolStripSeparator3";
             this.ToolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // ToolStripLabel1
             // 
-            this.ToolStripLabel1.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.ToolStripLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ToolStripLabel1.Name = "ToolStripLabel1";
             this.ToolStripLabel1.Size = new System.Drawing.Size(34, 22);
             this.ToolStripLabel1.Text = "Map:";
             // 
             // cmbMapList
             // 
-            this.cmbMapList.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
-            this.cmbMapList.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.cmbMapList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.cmbMapList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.cmbMapList.Name = "cmbMapList";
             this.cmbMapList.Size = new System.Drawing.Size(121, 25);
+            this.cmbMapList.SelectedIndexChanged += new System.EventHandler(this.CmbMapList_SelectedIndexChanged);
             // 
             // ToolStripSeparator4
             // 
-            this.ToolStripSeparator4.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
+            this.ToolStripSeparator4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ToolStripSeparator4.Margin = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.ToolStripSeparator4.Name = "ToolStripSeparator4";
             this.ToolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbScreenShot
             // 
-            this.tsbScreenShot.ForeColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)), System.Convert.ToInt32(System.Convert.ToByte(220)));
-            this.tsbScreenShot.Image = (System.Drawing.Image)resources.GetObject("tsbScreenShot.Image");
+            this.tsbScreenShot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.tsbScreenShot.Image = ((System.Drawing.Image)(resources.GetObject("tsbScreenShot.Image")));
             this.tsbScreenShot.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbScreenShot.Name = "tsbScreenShot";
             this.tsbScreenShot.Size = new System.Drawing.Size(86, 22);
             this.tsbScreenShot.Text = "ScreenShot";
+            this.tsbScreenShot.Click += new System.EventHandler(this.TsbScreenShot_Click);
             // 
             // pnlBack2
             // 
@@ -1593,10 +1783,11 @@ namespace Engine
             this.pnlBack2.SectionHeader = "MapView";
             this.pnlBack2.Size = new System.Drawing.Size(758, 573);
             this.pnlBack2.TabIndex = 12;
+            this.pnlBack2.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlBack2_Paint);
             // 
             // pnlAttributes
             // 
-            this.pnlAttributes.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToInt32(System.Convert.ToByte(60)), System.Convert.ToInt32(System.Convert.ToByte(63)), System.Convert.ToInt32(System.Convert.ToByte(65)));
+            this.pnlAttributes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlAttributes.Controls.Add(this.fraMapWarp);
             this.pnlAttributes.Controls.Add(this.fraBuyHouse);
             this.pnlAttributes.Controls.Add(this.fraKeyOpen);
@@ -1640,6 +1831,7 @@ namespace Engine
             this.lblVisualWarp.Size = new System.Drawing.Size(64, 13);
             this.lblVisualWarp.TabIndex = 7;
             this.lblVisualWarp.Text = "Visual Warp";
+            this.lblVisualWarp.Click += new System.EventHandler(this.LblVisualWarp_Click);
             // 
             // btnMapWarp
             // 
@@ -1650,6 +1842,7 @@ namespace Engine
             this.btnMapWarp.TabIndex = 6;
             this.btnMapWarp.Text = "Accept";
             this.btnMapWarp.UseVisualStyleBackColor = true;
+            this.btnMapWarp.Click += new System.EventHandler(this.BtnMapWarp_Click);
             // 
             // scrlMapWarpY
             // 
@@ -1657,6 +1850,7 @@ namespace Engine
             this.scrlMapWarpY.Name = "scrlMapWarpY";
             this.scrlMapWarpY.Size = new System.Drawing.Size(144, 18);
             this.scrlMapWarpY.TabIndex = 5;
+            this.scrlMapWarpY.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlMapWarpY_Scroll);
             // 
             // scrlMapWarpX
             // 
@@ -1664,6 +1858,7 @@ namespace Engine
             this.scrlMapWarpX.Name = "scrlMapWarpX";
             this.scrlMapWarpX.Size = new System.Drawing.Size(144, 18);
             this.scrlMapWarpX.TabIndex = 4;
+            this.scrlMapWarpX.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlMapWarpX_Scroll);
             // 
             // scrlMapWarpMap
             // 
@@ -1671,6 +1866,7 @@ namespace Engine
             this.scrlMapWarpMap.Name = "scrlMapWarpMap";
             this.scrlMapWarpMap.Size = new System.Drawing.Size(144, 18);
             this.scrlMapWarpMap.TabIndex = 3;
+            this.scrlMapWarpMap.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlMapWarpMap_Scroll);
             // 
             // lblMapWarpY
             // 
@@ -1721,6 +1917,7 @@ namespace Engine
             this.btnHouseTileOk.TabIndex = 6;
             this.btnHouseTileOk.Text = "Accept";
             this.btnHouseTileOk.UseVisualStyleBackColor = true;
+            this.btnHouseTileOk.Click += new System.EventHandler(this.BtnHouseTileOk_Click);
             // 
             // scrlBuyHouse
             // 
@@ -1729,6 +1926,7 @@ namespace Engine
             this.scrlBuyHouse.Name = "scrlBuyHouse";
             this.scrlBuyHouse.Size = new System.Drawing.Size(193, 18);
             this.scrlBuyHouse.TabIndex = 3;
+            this.scrlBuyHouse.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlBuyHouse_Scroll);
             // 
             // lblHouseName
             // 
@@ -1760,6 +1958,7 @@ namespace Engine
             this.scrlKeyY.Name = "scrlKeyY";
             this.scrlKeyY.Size = new System.Drawing.Size(160, 18);
             this.scrlKeyY.TabIndex = 8;
+            this.scrlKeyY.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlKeyY_Scroll);
             // 
             // lblKeyY
             // 
@@ -1779,6 +1978,7 @@ namespace Engine
             this.btnMapKeyOpen.TabIndex = 6;
             this.btnMapKeyOpen.Text = "Accept";
             this.btnMapKeyOpen.UseVisualStyleBackColor = true;
+            this.btnMapKeyOpen.Click += new System.EventHandler(this.BtnMapKeyOpen_Click);
             // 
             // scrlKeyX
             // 
@@ -1786,6 +1986,7 @@ namespace Engine
             this.scrlKeyX.Name = "scrlKeyX";
             this.scrlKeyX.Size = new System.Drawing.Size(160, 18);
             this.scrlKeyX.TabIndex = 3;
+            this.scrlKeyX.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlKeyX_Scroll);
             // 
             // lblKeyX
             // 
@@ -1841,6 +2042,7 @@ namespace Engine
             this.btnMapKey.TabIndex = 6;
             this.btnMapKey.Text = "Accept";
             this.btnMapKey.UseVisualStyleBackColor = true;
+            this.btnMapKey.Click += new System.EventHandler(this.BtnMapKey_Click);
             // 
             // scrlMapKey
             // 
@@ -1848,6 +2050,7 @@ namespace Engine
             this.scrlMapKey.Name = "scrlMapKey";
             this.scrlMapKey.Size = new System.Drawing.Size(160, 18);
             this.scrlMapKey.TabIndex = 3;
+            this.scrlMapKey.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlMapKey_Scroll);
             // 
             // lblMapKey
             // 
@@ -1891,6 +2094,7 @@ namespace Engine
             this.btnNpcSpawn.TabIndex = 6;
             this.btnNpcSpawn.Text = "Accept";
             this.btnNpcSpawn.UseVisualStyleBackColor = false;
+            this.btnNpcSpawn.Click += new System.EventHandler(this.BtnNpcSpawn_Click);
             // 
             // scrlNpcDir
             // 
@@ -1900,6 +2104,7 @@ namespace Engine
             this.scrlNpcDir.Name = "scrlNpcDir";
             this.scrlNpcDir.Size = new System.Drawing.Size(193, 18);
             this.scrlNpcDir.TabIndex = 3;
+            this.scrlNpcDir.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlNpcDir_Scroll);
             // 
             // lblNpcDir
             // 
@@ -1930,6 +2135,7 @@ namespace Engine
             this.scrlHeal.Name = "scrlHeal";
             this.scrlHeal.Size = new System.Drawing.Size(191, 17);
             this.scrlHeal.TabIndex = 39;
+            this.scrlHeal.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlHeal_Scroll);
             // 
             // lblHeal
             // 
@@ -1944,7 +2150,9 @@ namespace Engine
             // 
             this.cmbHeal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHeal.FormattingEnabled = true;
-            this.cmbHeal.Items.AddRange(new object[] { "Hp", "Mp" });
+            this.cmbHeal.Items.AddRange(new object[] {
+            "Hp",
+            "Mp"});
             this.cmbHeal.Location = new System.Drawing.Point(7, 19);
             this.cmbHeal.Name = "cmbHeal";
             this.cmbHeal.Size = new System.Drawing.Size(192, 21);
@@ -1959,6 +2167,7 @@ namespace Engine
             this.btnHeal.TabIndex = 6;
             this.btnHeal.Text = "Accept";
             this.btnHeal.UseVisualStyleBackColor = true;
+            this.btnHeal.Click += new System.EventHandler(this.BtnHeal_Click);
             // 
             // fraShop
             // 
@@ -1990,6 +2199,7 @@ namespace Engine
             this.btnShop.TabIndex = 6;
             this.btnShop.Text = "Accept";
             this.btnShop.UseVisualStyleBackColor = true;
+            this.btnShop.Click += new System.EventHandler(this.BtnShop_Click);
             // 
             // fraResource
             // 
@@ -2013,6 +2223,7 @@ namespace Engine
             this.btnResourceOk.TabIndex = 6;
             this.btnResourceOk.Text = "Accept";
             this.btnResourceOk.UseVisualStyleBackColor = true;
+            this.btnResourceOk.Click += new System.EventHandler(this.BtnResourceOk_Click);
             // 
             // scrlResource
             // 
@@ -2020,6 +2231,7 @@ namespace Engine
             this.scrlResource.Name = "scrlResource";
             this.scrlResource.Size = new System.Drawing.Size(182, 18);
             this.scrlResource.TabIndex = 3;
+            this.scrlResource.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlResource_Scroll);
             // 
             // lblResource
             // 
@@ -2063,6 +2275,7 @@ namespace Engine
             this.btnMapItem.TabIndex = 6;
             this.btnMapItem.Text = "Accept";
             this.btnMapItem.UseVisualStyleBackColor = true;
+            this.btnMapItem.Click += new System.EventHandler(this.BtnMapItem_Click);
             // 
             // scrlMapItemValue
             // 
@@ -2070,6 +2283,7 @@ namespace Engine
             this.scrlMapItemValue.Name = "scrlMapItemValue";
             this.scrlMapItemValue.Size = new System.Drawing.Size(149, 18);
             this.scrlMapItemValue.TabIndex = 4;
+            this.scrlMapItemValue.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlMapItemValue_Scroll);
             // 
             // scrlMapItem
             // 
@@ -2077,6 +2291,7 @@ namespace Engine
             this.scrlMapItem.Name = "scrlMapItem";
             this.scrlMapItem.Size = new System.Drawing.Size(149, 18);
             this.scrlMapItem.TabIndex = 3;
+            this.scrlMapItem.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlMapItem_Scroll);
             // 
             // lblMapItem
             // 
@@ -2109,6 +2324,7 @@ namespace Engine
             this.btnTrap.TabIndex = 42;
             this.btnTrap.Text = "Accept";
             this.btnTrap.UseVisualStyleBackColor = true;
+            this.btnTrap.Click += new System.EventHandler(this.BtnTrap_Click);
             // 
             // scrlTrap
             // 
@@ -2116,6 +2332,7 @@ namespace Engine
             this.scrlTrap.Name = "scrlTrap";
             this.scrlTrap.Size = new System.Drawing.Size(191, 17);
             this.scrlTrap.TabIndex = 41;
+            this.scrlTrap.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ScrlTrap_Scroll);
             // 
             // lblTrap
             // 
@@ -2135,6 +2352,7 @@ namespace Engine
             this.scrlMapViewV.Size = new System.Drawing.Size(16, 531);
             this.scrlMapViewV.TabIndex = 10;
             this.scrlMapViewV.Text = "DarkScrollBar1";
+            this.scrlMapViewV.ValueChanged += new System.EventHandler<DarkUI.Controls.ScrollValueEventArgs>(this.ScrlMapViewV_Scroll);
             // 
             // scrlMapViewH
             // 
@@ -2146,6 +2364,7 @@ namespace Engine
             this.scrlMapViewH.ScrollOrientation = DarkUI.Controls.DarkScrollOrientation.Horizontal;
             this.scrlMapViewH.Size = new System.Drawing.Size(756, 16);
             this.scrlMapViewH.TabIndex = 3;
+            this.scrlMapViewH.ValueChanged += new System.EventHandler<DarkUI.Controls.ScrollValueEventArgs>(this.ScrlMapViewH_Scroll);
             // 
             // picScreen
             // 
@@ -2157,10 +2376,14 @@ namespace Engine
             this.picScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picScreen.TabIndex = 2;
             this.picScreen.TabStop = false;
+            this.picScreen.Paint += new System.Windows.Forms.PaintEventHandler(this.Picscreen_Paint);
+            this.picScreen.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseDown);
+            this.picScreen.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseMove);
+            this.picScreen.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseUp);
             // 
             // frmMapEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6.0F, 13.0F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1292, 626);
             this.Controls.Add(this.pnlBack2);
@@ -2169,9 +2392,14 @@ namespace Engine
             this.Controls.Add(this.DarkSectionPanel1);
             this.Controls.Add(this.ToolStripContainer2);
             this.Controls.Add(this.DarkDockPanel1);
-            this.Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMapEditor";
             this.Text = "Map Editor";
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.FrmEditor_MapEditor_Closing);
+            this.Closed += new System.EventHandler(this.FrmEditor_MapEditor_Closed);
+            this.Load += new System.EventHandler(this.FrmEditor_MapEditor_Load);
+            this.Shown += new System.EventHandler(this.FrmEditor_Map_Load);
+            this.Resize += new System.EventHandler(this.FrmEditor_MapEditor_Resize);
             this.ToolStripContainer2.ContentPanel.ResumeLayout(false);
             this.ToolStripContainer2.ResumeLayout(false);
             this.ToolStripContainer2.PerformLayout();
@@ -2181,7 +2409,7 @@ namespace Engine
             this.pnlTiles.ResumeLayout(false);
             this.pnlTiles.PerformLayout();
             this.pnlBack.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)this.picBackSelect).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBackSelect)).EndInit();
             this.pnlNpc.ResumeLayout(false);
             this.pnlDirBlock.ResumeLayout(false);
             this.pnlDirBlock.PerformLayout();
@@ -2194,32 +2422,32 @@ namespace Engine
             this.pnlMoreOptions.ResumeLayout(false);
             this.GroupBox4.ResumeLayout(false);
             this.GroupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudFogAlpha).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudFogSpeed).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudFog).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudIntensity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFogAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFogSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFog)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIntensity)).EndInit();
             this.GroupBox5.ResumeLayout(false);
             this.GroupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapAlpha).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapBlue).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapGreen).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMapRed).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapBlue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapGreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMapRed)).EndInit();
             this.GroupBox3.ResumeLayout(false);
             this.GroupBox2.ResumeLayout(false);
             this.GroupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudMaxY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudMaxX).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxX)).EndInit();
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudSpawnY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudSpawnX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudSpawnMap).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSpawnY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSpawnX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSpawnMap)).EndInit();
             this.fraMapLinks.ResumeLayout(false);
             this.fraMapLinks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.nudRight).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudLeft).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)this.nudUp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUp)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
             this.pnlBack2.ResumeLayout(false);
@@ -2232,7 +2460,7 @@ namespace Engine
             this.fraKeyOpen.PerformLayout();
             this.fraMapKey.ResumeLayout(false);
             this.fraMapKey.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picMapKey).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapKey)).EndInit();
             this.fraNpcSpawn.ResumeLayout(false);
             this.fraNpcSpawn.PerformLayout();
             this.fraHeal.ResumeLayout(false);
@@ -2242,4235 +2470,190 @@ namespace Engine
             this.fraResource.PerformLayout();
             this.fraMapItem.ResumeLayout(false);
             this.fraMapItem.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picMapItem).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapItem)).EndInit();
             this.fraTrap.ResumeLayout(false);
             this.fraTrap.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.picScreen).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picScreen)).EndInit();
             this.ResumeLayout(false);
-        }
 
-        private DarkUI.Docking.DarkDockPanel _DarkDockPanel1;
-
-        internal DarkUI.Docking.DarkDockPanel DarkDockPanel1
-        {
-            
-            get
-            {
-                return _DarkDockPanel1;
-            }
-
-            
-            set
-            {
-                if (_DarkDockPanel1 != null)
-                {
-                }
-
-                _DarkDockPanel1 = value;
-                if (_DarkDockPanel1 != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripContainer _ToolStripContainer2;
-
-        internal ToolStripContainer ToolStripContainer2
-        {
-            
-            get
-            {
-                return _ToolStripContainer2;
-            }
-
-            
-            set
-            {
-                if (_ToolStripContainer2 != null)
-                {
-                }
-
-                _ToolStripContainer2 = value;
-                if (_ToolStripContainer2 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkSectionPanel _DarkSectionPanel1;
-
-        internal DarkUI.Controls.DarkSectionPanel DarkSectionPanel1
-        {
-            
-            get
-            {
-                return _DarkSectionPanel1;
-            }
-
-            
-            set
-            {
-                if (_DarkSectionPanel1 != null)
-                {
-                }
-
-                _DarkSectionPanel1 = value;
-                if (_DarkSectionPanel1 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkSectionPanel _DarkSectionPanel2;
-
-        internal DarkUI.Controls.DarkSectionPanel DarkSectionPanel2
-        {
-            
-            get
-            {
-                return _DarkSectionPanel2;
-            }
-
-            
-            set
-            {
-                if (_DarkSectionPanel2 != null)
-                {
-                }
-
-                _DarkSectionPanel2 = value;
-                if (_DarkSectionPanel2 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkToolStrip _ToolStrip;
-
-        internal DarkUI.Controls.DarkToolStrip ToolStrip
-        {
-            
-            get
-            {
-                return _ToolStrip;
-            }
-
-            
-            set
-            {
-                if (_ToolStrip != null)
-                {
-                }
-
-                _ToolStrip = value;
-                if (_ToolStrip != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripButton _tsbSave;
-
-        internal ToolStripButton tsbSave
-        {
-            
-            get
-            {
-                return _tsbSave;
-            }
-
-            
-            set
-            {
-                if (_tsbSave != null)
-                {
-                }
-
-                _tsbSave = value;
-                if (_tsbSave != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripButton _tsbDiscard;
-
-        internal ToolStripButton tsbDiscard
-        {
-            
-            get
-            {
-                return _tsbDiscard;
-            }
-
-            
-            set
-            {
-                if (_tsbDiscard != null)
-                {
-                }
-
-                _tsbDiscard = value;
-                if (_tsbDiscard != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripSeparator _ToolStripSeparator1;
-
-        internal ToolStripSeparator ToolStripSeparator1
-        {
-            
-            get
-            {
-                return _ToolStripSeparator1;
-            }
-
-            
-            set
-            {
-                if (_ToolStripSeparator1 != null)
-                {
-                }
-
-                _ToolStripSeparator1 = value;
-                if (_ToolStripSeparator1 != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripButton _tsbMapGrid;
-
-        internal ToolStripButton tsbMapGrid
-        {
-            
-            get
-            {
-                return _tsbMapGrid;
-            }
-
-            
-            set
-            {
-                if (_tsbMapGrid != null)
-                {
-                }
-
-                _tsbMapGrid = value;
-                if (_tsbMapGrid != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripSeparator _ToolStripSeparator2;
-
-        internal ToolStripSeparator ToolStripSeparator2
-        {
-            
-            get
-            {
-                return _ToolStripSeparator2;
-            }
-
-            
-            set
-            {
-                if (_ToolStripSeparator2 != null)
-                {
-                }
-
-                _ToolStripSeparator2 = value;
-                if (_ToolStripSeparator2 != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripButton _tsbFill;
-
-        internal ToolStripButton tsbFill
-        {
-            
-            get
-            {
-                return _tsbFill;
-            }
-
-            
-            set
-            {
-                if (_tsbFill != null)
-                {
-                }
-
-                _tsbFill = value;
-                if (_tsbFill != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripButton _tsbClear;
-
-        internal ToolStripButton tsbClear
-        {
-            
-            get
-            {
-                return _tsbClear;
-            }
-
-            
-            set
-            {
-                if (_tsbClear != null)
-                {
-                }
-
-                _tsbClear = value;
-                if (_tsbClear != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripSeparator _ToolStripSeparator3;
-
-        internal ToolStripSeparator ToolStripSeparator3
-        {
-            
-            get
-            {
-                return _ToolStripSeparator3;
-            }
-
-            
-            set
-            {
-                if (_ToolStripSeparator3 != null)
-                {
-                }
-
-                _ToolStripSeparator3 = value;
-                if (_ToolStripSeparator3 != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripLabel _ToolStripLabel1;
-
-        internal ToolStripLabel ToolStripLabel1
-        {
-            
-            get
-            {
-                return _ToolStripLabel1;
-            }
-
-            
-            set
-            {
-                if (_ToolStripLabel1 != null)
-                {
-                }
-
-                _ToolStripLabel1 = value;
-                if (_ToolStripLabel1 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkSectionPanel _pnlBack2;
-
-        internal DarkUI.Controls.DarkSectionPanel pnlBack2
-        {
-            
-            get
-            {
-                return _pnlBack2;
-            }
-
-            
-            set
-            {
-                if (_pnlBack2 != null)
-                {
-                }
-
-                _pnlBack2 = value;
-                if (_pnlBack2 != null)
-                {
-                }
-            }
-        }
-
-        private PictureBox _picScreen;
-
-        internal PictureBox picScreen
-        {
-            
-            get
-            {
-                return _picScreen;
-            }
-
-            
-            set
-            {
-                if (_picScreen != null)
-                {
-                }
-
-                _picScreen = value;
-                if (_picScreen != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkStatusStrip _ssInfo;
-
-        internal DarkUI.Controls.DarkStatusStrip ssInfo
-        {
-            
-            get
-            {
-                return _ssInfo;
-            }
-
-            
-            set
-            {
-                if (_ssInfo != null)
-                {
-                }
-
-                _ssInfo = value;
-                if (_ssInfo != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripStatusLabel _tslCurMap;
-
-        internal ToolStripStatusLabel tslCurMap
-        {
-            
-            get
-            {
-                return _tslCurMap;
-            }
-
-            
-            set
-            {
-                if (_tslCurMap != null)
-                {
-                }
-
-                _tslCurMap = value;
-                if (_tslCurMap != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripComboBox _cmbMapList;
-
-        internal ToolStripComboBox cmbMapList
-        {
-            
-            get
-            {
-                return _cmbMapList;
-            }
-
-            
-            set
-            {
-                if (_cmbMapList != null)
-                {
-                }
-
-                _cmbMapList = value;
-                if (_cmbMapList != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnAttributes;
-
-        internal DarkUI.Controls.DarkButton btnAttributes
-        {
-            
-            get
-            {
-                return _btnAttributes;
-            }
-
-            
-            set
-            {
-                if (_btnAttributes != null)
-                {
-                }
-
-                _btnAttributes = value;
-                if (_btnAttributes != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnTiles;
-
-        internal DarkUI.Controls.DarkButton btnTiles
-        {
-            
-            get
-            {
-                return _btnTiles;
-            }
-
-            
-            set
-            {
-                if (_btnTiles != null)
-                {
-                }
-
-                _btnTiles = value;
-                if (_btnTiles != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkScrollBar _scrlMapViewH;
-
-        internal DarkUI.Controls.DarkScrollBar scrlMapViewH
-        {
-            
-            get
-            {
-                return _scrlMapViewH;
-            }
-
-            
-            set
-            {
-                if (_scrlMapViewH != null)
-                {
-                }
-
-                _scrlMapViewH = value;
-                if (_scrlMapViewH != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnNpc;
-
-        internal DarkUI.Controls.DarkButton btnNpc
-        {
-            
-            get
-            {
-                return _btnNpc;
-            }
-
-            
-            set
-            {
-                if (_btnNpc != null)
-                {
-                }
-
-                _btnNpc = value;
-                if (_btnNpc != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnDirBlock;
-
-        internal DarkUI.Controls.DarkButton btnDirBlock
-        {
-            
-            get
-            {
-                return _btnDirBlock;
-            }
-
-            
-            set
-            {
-                if (_btnDirBlock != null)
-                {
-                }
-
-                _btnDirBlock = value;
-                if (_btnDirBlock != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnEvents;
-
-        internal DarkUI.Controls.DarkButton btnEvents
-        {
-            
-            get
-            {
-                return _btnEvents;
-            }
-
-            
-            set
-            {
-                if (_btnEvents != null)
-                {
-                }
-
-                _btnEvents = value;
-                if (_btnEvents != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkScrollBar _scrlMapViewV;
-
-        internal DarkUI.Controls.DarkScrollBar scrlMapViewV
-        {
-            
-            get
-            {
-                return _scrlMapViewV;
-            }
-
-            
-            set
-            {
-                if (_scrlMapViewV != null)
-                {
-                }
-
-                _scrlMapViewV = value;
-                if (_scrlMapViewV != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlBack;
-
-        internal Panel pnlBack
-        {
-            
-            get
-            {
-                return _pnlBack;
-            }
-
-            
-            set
-            {
-                if (_pnlBack != null)
-                {
-                }
-
-                _pnlBack = value;
-                if (_pnlBack != null)
-                {
-                }
-            }
-        }
-
-        private PictureBox _picBackSelect;
-
-        internal PictureBox picBackSelect
-        {
-            
-            get
-            {
-                return _picBackSelect;
-            }
-
-            
-            set
-            {
-                if (_picBackSelect != null)
-                {
-                }
-
-                _picBackSelect = value;
-                if (_picBackSelect != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkScrollBar _scrlPictureY;
-
-        internal DarkUI.Controls.DarkScrollBar scrlPictureY
-        {
-            
-            get
-            {
-                return _scrlPictureY;
-            }
-
-            
-            set
-            {
-                if (_scrlPictureY != null)
-                {
-                }
-
-                _scrlPictureY = value;
-                if (_scrlPictureY != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkScrollBar _scrlPictureX;
-
-        internal DarkUI.Controls.DarkScrollBar scrlPictureX
-        {
-            
-            get
-            {
-                return _scrlPictureX;
-            }
-
-            
-            set
-            {
-                if (_scrlPictureX != null)
-                {
-                }
-
-                _scrlPictureX = value;
-                if (_scrlPictureX != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel1;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel1
-        {
-            
-            get
-            {
-                return _DarkLabel1;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel1 != null)
-                {
-                }
-
-                _DarkLabel1 = value;
-                if (_DarkLabel1 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel2;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel2
-        {
-            
-            get
-            {
-                return _DarkLabel2;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel2 != null)
-                {
-                }
-
-                _DarkLabel2 = value;
-                if (_DarkLabel2 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel3;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel3
-        {
-            
-            get
-            {
-                return _DarkLabel3;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel3 != null)
-                {
-                }
-
-                _DarkLabel3 = value;
-                if (_DarkLabel3 != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlTiles;
-
-        internal Panel pnlTiles
-        {
-            
-            get
-            {
-                return _pnlTiles;
-            }
-
-            
-            set
-            {
-                if (_pnlTiles != null)
-                {
-                }
-
-                _pnlTiles = value;
-                if (_pnlTiles != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel4;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel4
-        {
-            
-            get
-            {
-                return _DarkLabel4;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel4 != null)
-                {
-                }
-
-                _DarkLabel4 = value;
-                if (_DarkLabel4 != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlEvents;
-
-        internal Panel pnlEvents
-        {
-            
-            get
-            {
-                return _pnlEvents;
-            }
-
-            
-            set
-            {
-                if (_pnlEvents != null)
-                {
-                }
-
-                _pnlEvents = value;
-                if (_pnlEvents != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlDirBlock;
-
-        internal Panel pnlDirBlock
-        {
-            
-            get
-            {
-                return _pnlDirBlock;
-            }
-
-            
-            set
-            {
-                if (_pnlDirBlock != null)
-                {
-                }
-
-                _pnlDirBlock = value;
-                if (_pnlDirBlock != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel6;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel6
-        {
-            
-            get
-            {
-                return _DarkLabel6;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel6 != null)
-                {
-                }
-
-                _DarkLabel6 = value;
-                if (_DarkLabel6 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel5;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel5
-        {
-            
-            get
-            {
-                return _DarkLabel5;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel5 != null)
-                {
-                }
-
-                _DarkLabel5 = value;
-                if (_DarkLabel5 != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlNpc;
-
-        internal Panel pnlNpc
-        {
-            
-            get
-            {
-                return _pnlNpc;
-            }
-
-            
-            set
-            {
-                if (_pnlNpc != null)
-                {
-                }
-
-                _pnlNpc = value;
-                if (_pnlNpc != null)
-                {
-                }
-            }
-        }
-
-        private ListBox _lstMapNpc;
-
-        internal ListBox lstMapNpc
-        {
-            
-            get
-            {
-                return _lstMapNpc;
-            }
-
-            
-            set
-            {
-                if (_lstMapNpc != null)
-                {
-                }
-
-                _lstMapNpc = value;
-                if (_lstMapNpc != null)
-                {
-                }
-            }
-        }
-
-        private ComboBox _cmbNpcList;
-
-        internal ComboBox cmbNpcList
-        {
-            
-            get
-            {
-                return _cmbNpcList;
-            }
-
-            
-            set
-            {
-                if (_cmbNpcList != null)
-                {
-                }
-
-                _cmbNpcList = value;
-                if (_cmbNpcList != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlAttribute;
-
-        internal Panel pnlAttribute
-        {
-            
-            get
-            {
-                return _pnlAttribute;
-            }
-
-            
-            set
-            {
-                if (_pnlAttribute != null)
-                {
-                }
-
-                _pnlAttribute = value;
-                if (_pnlAttribute != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optBlocked;
-
-        internal DarkUI.Controls.DarkRadioButton optBlocked
-        {
-            
-            get
-            {
-                return _optBlocked;
-            }
-
-            
-            set
-            {
-                if (_optBlocked != null)
-                {
-                }
-
-                _optBlocked = value;
-                if (_optBlocked != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optNpcAvoid;
-
-        internal DarkUI.Controls.DarkRadioButton optNpcAvoid
-        {
-            
-            get
-            {
-                return _optNpcAvoid;
-            }
-
-            
-            set
-            {
-                if (_optNpcAvoid != null)
-                {
-                }
-
-                _optNpcAvoid = value;
-                if (_optNpcAvoid != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optItem;
-
-        internal DarkUI.Controls.DarkRadioButton optItem
-        {
-            
-            get
-            {
-                return _optItem;
-            }
-
-            
-            set
-            {
-                if (_optItem != null)
-                {
-                }
-
-                _optItem = value;
-                if (_optItem != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optWarp;
-
-        internal DarkUI.Controls.DarkRadioButton optWarp
-        {
-            
-            get
-            {
-                return _optWarp;
-            }
-
-            
-            set
-            {
-                if (_optWarp != null)
-                {
-                }
-
-                _optWarp = value;
-                if (_optWarp != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optHouse;
-
-        internal DarkUI.Controls.DarkRadioButton optHouse
-        {
-            
-            get
-            {
-                return _optHouse;
-            }
-
-            
-            set
-            {
-                if (_optHouse != null)
-                {
-                }
-
-                _optHouse = value;
-                if (_optHouse != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optShop;
-
-        internal DarkUI.Controls.DarkRadioButton optShop
-        {
-            
-            get
-            {
-                return _optShop;
-            }
-
-            
-            set
-            {
-                if (_optShop != null)
-                {
-                }
-
-                _optShop = value;
-                if (_optShop != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optNpcSpawn;
-
-        internal DarkUI.Controls.DarkRadioButton optNpcSpawn
-        {
-            
-            get
-            {
-                return _optNpcSpawn;
-            }
-
-            
-            set
-            {
-                if (_optNpcSpawn != null)
-                {
-                }
-
-                _optNpcSpawn = value;
-                if (_optNpcSpawn != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optBank;
-
-        internal DarkUI.Controls.DarkRadioButton optBank
-        {
-            
-            get
-            {
-                return _optBank;
-            }
-
-            
-            set
-            {
-                if (_optBank != null)
-                {
-                }
-
-                _optBank = value;
-                if (_optBank != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optCraft;
-
-        internal DarkUI.Controls.DarkRadioButton optCraft
-        {
-            
-            get
-            {
-                return _optCraft;
-            }
-
-            
-            set
-            {
-                if (_optCraft != null)
-                {
-                }
-
-                _optCraft = value;
-                if (_optCraft != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optTrap;
-
-        internal DarkUI.Controls.DarkRadioButton optTrap
-        {
-            
-            get
-            {
-                return _optTrap;
-            }
-
-            
-            set
-            {
-                if (_optTrap != null)
-                {
-                }
-
-                _optTrap = value;
-                if (_optTrap != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optHeal;
-
-        internal DarkUI.Controls.DarkRadioButton optHeal
-        {
-            
-            get
-            {
-                return _optHeal;
-            }
-
-            
-            set
-            {
-                if (_optHeal != null)
-                {
-                }
-
-                _optHeal = value;
-                if (_optHeal != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optKeyOpen;
-
-        internal DarkUI.Controls.DarkRadioButton optKeyOpen
-        {
-            
-            get
-            {
-                return _optKeyOpen;
-            }
-
-            
-            set
-            {
-                if (_optKeyOpen != null)
-                {
-                }
-
-                _optKeyOpen = value;
-                if (_optKeyOpen != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optKey;
-
-        internal DarkUI.Controls.DarkRadioButton optKey
-        {
-            
-            get
-            {
-                return _optKey;
-            }
-
-            
-            set
-            {
-                if (_optKey != null)
-                {
-                }
-
-                _optKey = value;
-                if (_optKey != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optDoor;
-
-        internal DarkUI.Controls.DarkRadioButton optDoor
-        {
-            
-            get
-            {
-                return _optDoor;
-            }
-
-            
-            set
-            {
-                if (_optDoor != null)
-                {
-                }
-
-                _optDoor = value;
-                if (_optDoor != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optResource;
-
-        internal DarkUI.Controls.DarkRadioButton optResource
-        {
-            
-            get
-            {
-                return _optResource;
-            }
-
-            
-            set
-            {
-                if (_optResource != null)
-                {
-                }
-
-                _optResource = value;
-                if (_optResource != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripStatusLabel _tslCurXY;
-
-        internal ToolStripStatusLabel tslCurXY
-        {
-            
-            get
-            {
-                return _tslCurXY;
-            }
-
-            
-            set
-            {
-                if (_tslCurXY != null)
-                {
-                }
-
-                _tslCurXY = value;
-                if (_tslCurXY != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnClearAttribute;
-
-        internal DarkUI.Controls.DarkButton btnClearAttribute
-        {
-            
-            get
-            {
-                return _btnClearAttribute;
-            }
-
-            
-            set
-            {
-                if (_btnClearAttribute != null)
-                {
-                }
-
-                _btnClearAttribute = value;
-                if (_btnClearAttribute != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel7;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel7
-        {
-            
-            get
-            {
-                return _DarkLabel7;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel7 != null)
-                {
-                }
-
-                _DarkLabel7 = value;
-                if (_DarkLabel7 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkCheckBox _chkInstance;
-
-        internal DarkUI.Controls.DarkCheckBox chkInstance
-        {
-            
-            get
-            {
-                return _chkInstance;
-            }
-
-            
-            set
-            {
-                if (_chkInstance != null)
-                {
-                }
-
-                _chkInstance = value;
-                if (_chkInstance != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkTextBox _txtName;
-
-        internal DarkUI.Controls.DarkTextBox txtName
-        {
-            
-            get
-            {
-                return _txtName;
-            }
-
-            
-            set
-            {
-                if (_txtName != null)
-                {
-                }
-
-                _txtName = value;
-                if (_txtName != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel8;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel8
-        {
-            
-            get
-            {
-                return _DarkLabel8;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel8 != null)
-                {
-                }
-
-                _DarkLabel8 = value;
-                if (_DarkLabel8 != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraMapLinks;
-
-        internal GroupBox fraMapLinks
-        {
-            
-            get
-            {
-                return _fraMapLinks;
-            }
-
-            
-            set
-            {
-                if (_fraMapLinks != null)
-                {
-                }
-
-                _fraMapLinks = value;
-                if (_fraMapLinks != null)
-                {
-                }
-            }
-        }
-
-        private ComboBox _cmbMoral;
-
-        internal ComboBox cmbMoral
-        {
-            
-            get
-            {
-                return _cmbMoral;
-            }
-
-            
-            set
-            {
-                if (_cmbMoral != null)
-                {
-                }
-
-                _cmbMoral = value;
-                if (_cmbMoral != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblMap;
-
-        internal DarkUI.Controls.DarkLabel lblMap
-        {
-            
-            get
-            {
-                return _lblMap;
-            }
-
-            
-            set
-            {
-                if (_lblMap != null)
-                {
-                }
-
-                _lblMap = value;
-                if (_lblMap != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _GroupBox1;
-
-        internal GroupBox GroupBox1
-        {
-            
-            get
-            {
-                return _GroupBox1;
-            }
-
-            
-            set
-            {
-                if (_GroupBox1 != null)
-                {
-                }
-
-                _GroupBox1 = value;
-                if (_GroupBox1 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel9;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel9
-        {
-            
-            get
-            {
-                return _DarkLabel9;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel9 != null)
-                {
-                }
-
-                _DarkLabel9 = value;
-                if (_DarkLabel9 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel11;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel11
-        {
-            
-            get
-            {
-                return _DarkLabel11;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel11 != null)
-                {
-                }
-
-                _DarkLabel11 = value;
-                if (_DarkLabel11 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel10;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel10
-        {
-            
-            get
-            {
-                return _DarkLabel10;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel10 != null)
-                {
-                }
-
-                _DarkLabel10 = value;
-                if (_DarkLabel10 != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _GroupBox2;
-
-        internal GroupBox GroupBox2
-        {
-            
-            get
-            {
-                return _GroupBox2;
-            }
-
-            
-            set
-            {
-                if (_GroupBox2 != null)
-                {
-                }
-
-                _GroupBox2 = value;
-                if (_GroupBox2 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel13;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel13
-        {
-            
-            get
-            {
-                return _DarkLabel13;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel13 != null)
-                {
-                }
-
-                _DarkLabel13 = value;
-                if (_DarkLabel13 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel12;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel12
-        {
-            
-            get
-            {
-                return _DarkLabel12;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel12 != null)
-                {
-                }
-
-                _DarkLabel12 = value;
-                if (_DarkLabel12 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnSetSize;
-
-        internal DarkUI.Controls.DarkButton btnSetSize
-        {
-            
-            get
-            {
-                return _btnSetSize;
-            }
-
-            
-            set
-            {
-                if (_btnSetSize != null)
-                {
-                }
-
-                _btnSetSize = value;
-                if (_btnSetSize != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _GroupBox3;
-
-        internal GroupBox GroupBox3
-        {
-            
-            get
-            {
-                return _GroupBox3;
-            }
-
-            
-            set
-            {
-                if (_GroupBox3 != null)
-                {
-                }
-
-                _GroupBox3 = value;
-                if (_GroupBox3 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnPreview;
-
-        internal DarkUI.Controls.DarkButton btnPreview
-        {
-            
-            get
-            {
-                return _btnPreview;
-            }
-
-            
-            set
-            {
-                if (_btnPreview != null)
-                {
-                }
-
-                _btnPreview = value;
-                if (_btnPreview != null)
-                {
-                }
-            }
-        }
-
-        private ListBox _lstMusic;
-
-        internal ListBox lstMusic
-        {
-            
-            get
-            {
-                return _lstMusic;
-            }
-
-            
-            set
-            {
-                if (_lstMusic != null)
-                {
-                }
-
-                _lstMusic = value;
-                if (_lstMusic != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlMoreOptions;
-
-        internal Panel pnlMoreOptions
-        {
-            
-            get
-            {
-                return _pnlMoreOptions;
-            }
-
-            
-            set
-            {
-                if (_pnlMoreOptions != null)
-                {
-                }
-
-                _pnlMoreOptions = value;
-                if (_pnlMoreOptions != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnMoreOptions;
-
-        internal DarkUI.Controls.DarkButton btnMoreOptions
-        {
-            
-            get
-            {
-                return _btnMoreOptions;
-            }
-
-            
-            set
-            {
-                if (_btnMoreOptions != null)
-                {
-                }
-
-                _btnMoreOptions = value;
-                if (_btnMoreOptions != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _GroupBox4;
-
-        internal GroupBox GroupBox4
-        {
-            
-            get
-            {
-                return _GroupBox4;
-            }
-
-            
-            set
-            {
-                if (_GroupBox4 != null)
-                {
-                }
-
-                _GroupBox4 = value;
-                if (_GroupBox4 != null)
-                {
-                }
-            }
-        }
-
-        private ComboBox _cmbWeather;
-
-        internal ComboBox cmbWeather
-        {
-            
-            get
-            {
-                return _cmbWeather;
-            }
-
-            
-            set
-            {
-                if (_cmbWeather != null)
-                {
-                }
-
-                _cmbWeather = value;
-                if (_cmbWeather != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel14;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel14
-        {
-            
-            get
-            {
-                return _DarkLabel14;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel14 != null)
-                {
-                }
-
-                _DarkLabel14 = value;
-                if (_DarkLabel14 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblIntensity;
-
-        internal DarkUI.Controls.DarkLabel lblIntensity
-        {
-            
-            get
-            {
-                return _lblIntensity;
-            }
-
-            
-            set
-            {
-                if (_lblIntensity != null)
-                {
-                }
-
-                _lblIntensity = value;
-                if (_lblIntensity != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblFogIndex;
-
-        internal DarkUI.Controls.DarkLabel lblFogIndex
-        {
-            
-            get
-            {
-                return _lblFogIndex;
-            }
-
-            
-            set
-            {
-                if (_lblFogIndex != null)
-                {
-                }
-
-                _lblFogIndex = value;
-                if (_lblFogIndex != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblFogSpeed;
-
-        internal DarkUI.Controls.DarkLabel lblFogSpeed
-        {
-            
-            get
-            {
-                return _lblFogSpeed;
-            }
-
-            
-            set
-            {
-                if (_lblFogSpeed != null)
-                {
-                }
-
-                _lblFogSpeed = value;
-                if (_lblFogSpeed != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblFogAlpha;
-
-        internal DarkUI.Controls.DarkLabel lblFogAlpha
-        {
-            
-            get
-            {
-                return _lblFogAlpha;
-            }
-
-            
-            set
-            {
-                if (_lblFogAlpha != null)
-                {
-                }
-
-                _lblFogAlpha = value;
-                if (_lblFogAlpha != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _GroupBox5;
-
-        internal GroupBox GroupBox5
-        {
-            
-            get
-            {
-                return _GroupBox5;
-            }
-
-            
-            set
-            {
-                if (_GroupBox5 != null)
-                {
-                }
-
-                _GroupBox5 = value;
-                if (_GroupBox5 != null)
-                {
-                }
-            }
-        }
-
-        private CheckBox _chkUseTint;
-
-        internal CheckBox chkUseTint
-        {
-            
-            get
-            {
-                return _chkUseTint;
-            }
-
-            
-            set
-            {
-                if (_chkUseTint != null)
-                {
-                }
-
-                _chkUseTint = value;
-                if (_chkUseTint != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblMapAlpha;
-
-        internal DarkUI.Controls.DarkLabel lblMapAlpha
-        {
-            
-            get
-            {
-                return _lblMapAlpha;
-            }
-
-            
-            set
-            {
-                if (_lblMapAlpha != null)
-                {
-                }
-
-                _lblMapAlpha = value;
-                if (_lblMapAlpha != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblMapBlue;
-
-        internal DarkUI.Controls.DarkLabel lblMapBlue
-        {
-            
-            get
-            {
-                return _lblMapBlue;
-            }
-
-            
-            set
-            {
-                if (_lblMapBlue != null)
-                {
-                }
-
-                _lblMapBlue = value;
-                if (_lblMapBlue != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblMapGreen;
-
-        internal DarkUI.Controls.DarkLabel lblMapGreen
-        {
-            
-            get
-            {
-                return _lblMapGreen;
-            }
-
-            
-            set
-            {
-                if (_lblMapGreen != null)
-                {
-                }
-
-                _lblMapGreen = value;
-                if (_lblMapGreen != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblMapRed;
-
-        internal DarkUI.Controls.DarkLabel lblMapRed
-        {
-            
-            get
-            {
-                return _lblMapRed;
-            }
-
-            
-            set
-            {
-                if (_lblMapRed != null)
-                {
-                }
-
-                _lblMapRed = value;
-                if (_lblMapRed != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripStatusLabel _tsCurFps;
-
-        internal ToolStripStatusLabel tsCurFps
-        {
-            
-            get
-            {
-                return _tsCurFps;
-            }
-
-            
-            set
-            {
-                if (_tsCurFps != null)
-                {
-                }
-
-                _tsCurFps = value;
-                if (_tsCurFps != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripSeparator _ToolStripSeparator4;
-
-        internal ToolStripSeparator ToolStripSeparator4
-        {
-            
-            get
-            {
-                return _ToolStripSeparator4;
-            }
-
-            
-            set
-            {
-                if (_ToolStripSeparator4 != null)
-                {
-                }
-
-                _ToolStripSeparator4 = value;
-                if (_ToolStripSeparator4 != null)
-                {
-                }
-            }
-        }
-
-        private ToolStripButton _tsbScreenShot;
-
-        internal ToolStripButton tsbScreenShot
-        {
-            
-            get
-            {
-                return _tsbScreenShot;
-            }
-
-            
-            set
-            {
-                if (_tsbScreenShot != null)
-                {
-                }
-
-                _tsbScreenShot = value;
-                if (_tsbScreenShot != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkRadioButton _optLight;
-
-        internal DarkUI.Controls.DarkRadioButton optLight
-        {
-            
-            get
-            {
-                return _optLight;
-            }
-
-            
-            set
-            {
-                if (_optLight != null)
-                {
-                }
-
-                _optLight = value;
-                if (_optLight != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkComboBox _cmbLayers;
-
-        internal DarkUI.Controls.DarkComboBox cmbLayers
-        {
-            
-            get
-            {
-                return _cmbLayers;
-            }
-
-            
-            set
-            {
-                if (_cmbLayers != null)
-                {
-                }
-
-                _cmbLayers = value;
-                if (_cmbLayers != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkComboBox _cmbTileSets;
-
-        internal DarkUI.Controls.DarkComboBox cmbTileSets
-        {
-            
-            get
-            {
-                return _cmbTileSets;
-            }
-
-            
-            set
-            {
-                if (_cmbTileSets != null)
-                {
-                }
-
-                _cmbTileSets = value;
-                if (_cmbTileSets != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkComboBox _cmbAutoTile;
-
-        internal DarkUI.Controls.DarkComboBox cmbAutoTile
-        {
-            
-            get
-            {
-                return _cmbAutoTile;
-            }
-
-            
-            set
-            {
-                if (_cmbAutoTile != null)
-                {
-                }
-
-                _cmbAutoTile = value;
-                if (_cmbAutoTile != null)
-                {
-                }
-            }
-        }
-
-        private Panel _pnlAttributes;
-
-        internal Panel pnlAttributes
-        {
-            
-            get
-            {
-                return _pnlAttributes;
-            }
-
-            
-            set
-            {
-                if (_pnlAttributes != null)
-                {
-                }
-
-                _pnlAttributes = value;
-                if (_pnlAttributes != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraMapWarp;
-
-        internal GroupBox fraMapWarp
-        {
-            
-            get
-            {
-                return _fraMapWarp;
-            }
-
-            
-            set
-            {
-                if (_fraMapWarp != null)
-                {
-                }
-
-                _fraMapWarp = value;
-                if (_fraMapWarp != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnMapWarp;
-
-        internal Button btnMapWarp
-        {
-            
-            get
-            {
-                return _btnMapWarp;
-            }
-
-            
-            set
-            {
-                if (_btnMapWarp != null)
-                {
-                }
-
-                _btnMapWarp = value;
-                if (_btnMapWarp != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlMapWarpY;
-
-        internal HScrollBar scrlMapWarpY
-        {
-            
-            get
-            {
-                return _scrlMapWarpY;
-            }
-
-            
-            set
-            {
-                if (_scrlMapWarpY != null)
-                {
-                }
-
-                _scrlMapWarpY = value;
-                if (_scrlMapWarpY != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlMapWarpX;
-
-        internal HScrollBar scrlMapWarpX
-        {
-            
-            get
-            {
-                return _scrlMapWarpX;
-            }
-
-            
-            set
-            {
-                if (_scrlMapWarpX != null)
-                {
-                }
-
-                _scrlMapWarpX = value;
-                if (_scrlMapWarpX != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlMapWarpMap;
-
-        internal HScrollBar scrlMapWarpMap
-        {
-            
-            get
-            {
-                return _scrlMapWarpMap;
-            }
-
-            
-            set
-            {
-                if (_scrlMapWarpMap != null)
-                {
-                }
-
-                _scrlMapWarpMap = value;
-                if (_scrlMapWarpMap != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblMapWarpY;
-
-        internal Label lblMapWarpY
-        {
-            
-            get
-            {
-                return _lblMapWarpY;
-            }
-
-            
-            set
-            {
-                if (_lblMapWarpY != null)
-                {
-                }
-
-                _lblMapWarpY = value;
-                if (_lblMapWarpY != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblMapWarpX;
-
-        internal Label lblMapWarpX
-        {
-            
-            get
-            {
-                return _lblMapWarpX;
-            }
-
-            
-            set
-            {
-                if (_lblMapWarpX != null)
-                {
-                }
-
-                _lblMapWarpX = value;
-                if (_lblMapWarpX != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblMapWarpMap;
-
-        internal Label lblMapWarpMap
-        {
-            
-            get
-            {
-                return _lblMapWarpMap;
-            }
-
-            
-            set
-            {
-                if (_lblMapWarpMap != null)
-                {
-                }
-
-                _lblMapWarpMap = value;
-                if (_lblMapWarpMap != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraBuyHouse;
-
-        internal GroupBox fraBuyHouse
-        {
-            
-            get
-            {
-                return _fraBuyHouse;
-            }
-
-            
-            set
-            {
-                if (_fraBuyHouse != null)
-                {
-                }
-
-                _fraBuyHouse = value;
-                if (_fraBuyHouse != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnHouseTileOk;
-
-        internal Button btnHouseTileOk
-        {
-            
-            get
-            {
-                return _btnHouseTileOk;
-            }
-
-            
-            set
-            {
-                if (_btnHouseTileOk != null)
-                {
-                }
-
-                _btnHouseTileOk = value;
-                if (_btnHouseTileOk != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlBuyHouse;
-
-        internal HScrollBar scrlBuyHouse
-        {
-            
-            get
-            {
-                return _scrlBuyHouse;
-            }
-
-            
-            set
-            {
-                if (_scrlBuyHouse != null)
-                {
-                }
-
-                _scrlBuyHouse = value;
-                if (_scrlBuyHouse != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblHouseName;
-
-        internal Label lblHouseName
-        {
-            
-            get
-            {
-                return _lblHouseName;
-            }
-
-            
-            set
-            {
-                if (_lblHouseName != null)
-                {
-                }
-
-                _lblHouseName = value;
-                if (_lblHouseName != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraKeyOpen;
-
-        internal GroupBox fraKeyOpen
-        {
-            
-            get
-            {
-                return _fraKeyOpen;
-            }
-
-            
-            set
-            {
-                if (_fraKeyOpen != null)
-                {
-                }
-
-                _fraKeyOpen = value;
-                if (_fraKeyOpen != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlKeyY;
-
-        internal HScrollBar scrlKeyY
-        {
-            
-            get
-            {
-                return _scrlKeyY;
-            }
-
-            
-            set
-            {
-                if (_scrlKeyY != null)
-                {
-                }
-
-                _scrlKeyY = value;
-                if (_scrlKeyY != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblKeyY;
-
-        internal Label lblKeyY
-        {
-            
-            get
-            {
-                return _lblKeyY;
-            }
-
-            
-            set
-            {
-                if (_lblKeyY != null)
-                {
-                }
-
-                _lblKeyY = value;
-                if (_lblKeyY != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnMapKeyOpen;
-
-        internal Button btnMapKeyOpen
-        {
-            
-            get
-            {
-                return _btnMapKeyOpen;
-            }
-
-            
-            set
-            {
-                if (_btnMapKeyOpen != null)
-                {
-                }
-
-                _btnMapKeyOpen = value;
-                if (_btnMapKeyOpen != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlKeyX;
-
-        internal HScrollBar scrlKeyX
-        {
-            
-            get
-            {
-                return _scrlKeyX;
-            }
-
-            
-            set
-            {
-                if (_scrlKeyX != null)
-                {
-                }
-
-                _scrlKeyX = value;
-                if (_scrlKeyX != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblKeyX;
-
-        internal Label lblKeyX
-        {
-            
-            get
-            {
-                return _lblKeyX;
-            }
-
-            
-            set
-            {
-                if (_lblKeyX != null)
-                {
-                }
-
-                _lblKeyX = value;
-                if (_lblKeyX != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraMapKey;
-
-        internal GroupBox fraMapKey
-        {
-            
-            get
-            {
-                return _fraMapKey;
-            }
-
-            
-            set
-            {
-                if (_fraMapKey != null)
-                {
-                }
-
-                _fraMapKey = value;
-                if (_fraMapKey != null)
-                {
-                }
-            }
-        }
-
-        private CheckBox _chkMapKey;
-
-        internal CheckBox chkMapKey
-        {
-            
-            get
-            {
-                return _chkMapKey;
-            }
-
-            
-            set
-            {
-                if (_chkMapKey != null)
-                {
-                }
-
-                _chkMapKey = value;
-                if (_chkMapKey != null)
-                {
-                }
-            }
-        }
-
-        private PictureBox _picMapKey;
-
-        internal PictureBox picMapKey
-        {
-            
-            get
-            {
-                return _picMapKey;
-            }
-
-            
-            set
-            {
-                if (_picMapKey != null)
-                {
-                }
-
-                _picMapKey = value;
-                if (_picMapKey != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnMapKey;
-
-        internal Button btnMapKey
-        {
-            
-            get
-            {
-                return _btnMapKey;
-            }
-
-            
-            set
-            {
-                if (_btnMapKey != null)
-                {
-                }
-
-                _btnMapKey = value;
-                if (_btnMapKey != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlMapKey;
-
-        internal HScrollBar scrlMapKey
-        {
-            
-            get
-            {
-                return _scrlMapKey;
-            }
-
-            
-            set
-            {
-                if (_scrlMapKey != null)
-                {
-                }
-
-                _scrlMapKey = value;
-                if (_scrlMapKey != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblMapKey;
-
-        internal Label lblMapKey
-        {
-            
-            get
-            {
-                return _lblMapKey;
-            }
-
-            
-            set
-            {
-                if (_lblMapKey != null)
-                {
-                }
-
-                _lblMapKey = value;
-                if (_lblMapKey != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraNpcSpawn;
-
-        internal GroupBox fraNpcSpawn
-        {
-            
-            get
-            {
-                return _fraNpcSpawn;
-            }
-
-            
-            set
-            {
-                if (_fraNpcSpawn != null)
-                {
-                }
-
-                _fraNpcSpawn = value;
-                if (_fraNpcSpawn != null)
-                {
-                }
-            }
-        }
-
-        private ComboBox _lstNpc;
-
-        internal ComboBox lstNpc
-        {
-            
-            get
-            {
-                return _lstNpc;
-            }
-
-            
-            set
-            {
-                if (_lstNpc != null)
-                {
-                }
-
-                _lstNpc = value;
-                if (_lstNpc != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnNpcSpawn;
-
-        internal Button btnNpcSpawn
-        {
-            
-            get
-            {
-                return _btnNpcSpawn;
-            }
-
-            
-            set
-            {
-                if (_btnNpcSpawn != null)
-                {
-                }
-
-                _btnNpcSpawn = value;
-                if (_btnNpcSpawn != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlNpcDir;
-
-        internal HScrollBar scrlNpcDir
-        {
-            
-            get
-            {
-                return _scrlNpcDir;
-            }
-
-            
-            set
-            {
-                if (_scrlNpcDir != null)
-                {
-                }
-
-                _scrlNpcDir = value;
-                if (_scrlNpcDir != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblNpcDir;
-
-        internal Label lblNpcDir
-        {
-            
-            get
-            {
-                return _lblNpcDir;
-            }
-
-            
-            set
-            {
-                if (_lblNpcDir != null)
-                {
-                }
-
-                _lblNpcDir = value;
-                if (_lblNpcDir != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraHeal;
-
-        internal GroupBox fraHeal
-        {
-            
-            get
-            {
-                return _fraHeal;
-            }
-
-            
-            set
-            {
-                if (_fraHeal != null)
-                {
-                }
-
-                _fraHeal = value;
-                if (_fraHeal != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlHeal;
-
-        internal HScrollBar scrlHeal
-        {
-            
-            get
-            {
-                return _scrlHeal;
-            }
-
-            
-            set
-            {
-                if (_scrlHeal != null)
-                {
-                }
-
-                _scrlHeal = value;
-                if (_scrlHeal != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblHeal;
-
-        internal Label lblHeal
-        {
-            
-            get
-            {
-                return _lblHeal;
-            }
-
-            
-            set
-            {
-                if (_lblHeal != null)
-                {
-                }
-
-                _lblHeal = value;
-                if (_lblHeal != null)
-                {
-                }
-            }
-        }
-
-        private ComboBox _cmbHeal;
-
-        internal ComboBox cmbHeal
-        {
-            
-            get
-            {
-                return _cmbHeal;
-            }
-
-            
-            set
-            {
-                if (_cmbHeal != null)
-                {
-                }
-
-                _cmbHeal = value;
-                if (_cmbHeal != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnHeal;
-
-        internal Button btnHeal
-        {
-            
-            get
-            {
-                return _btnHeal;
-            }
-
-            
-            set
-            {
-                if (_btnHeal != null)
-                {
-                }
-
-                _btnHeal = value;
-                if (_btnHeal != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraShop;
-
-        internal GroupBox fraShop
-        {
-            
-            get
-            {
-                return _fraShop;
-            }
-
-            
-            set
-            {
-                if (_fraShop != null)
-                {
-                }
-
-                _fraShop = value;
-                if (_fraShop != null)
-                {
-                }
-            }
-        }
-
-        private ComboBox _cmbShop;
-
-        internal ComboBox cmbShop
-        {
-            
-            get
-            {
-                return _cmbShop;
-            }
-
-            
-            set
-            {
-                if (_cmbShop != null)
-                {
-                }
-
-                _cmbShop = value;
-                if (_cmbShop != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnShop;
-
-        internal Button btnShop
-        {
-            
-            get
-            {
-                return _btnShop;
-            }
-
-            
-            set
-            {
-                if (_btnShop != null)
-                {
-                }
-
-                _btnShop = value;
-                if (_btnShop != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraResource;
-
-        internal GroupBox fraResource
-        {
-            
-            get
-            {
-                return _fraResource;
-            }
-
-            
-            set
-            {
-                if (_fraResource != null)
-                {
-                }
-
-                _fraResource = value;
-                if (_fraResource != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnResourceOk;
-
-        internal Button btnResourceOk
-        {
-            
-            get
-            {
-                return _btnResourceOk;
-            }
-
-            
-            set
-            {
-                if (_btnResourceOk != null)
-                {
-                }
-
-                _btnResourceOk = value;
-                if (_btnResourceOk != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlResource;
-
-        internal HScrollBar scrlResource
-        {
-            
-            get
-            {
-                return _scrlResource;
-            }
-
-            
-            set
-            {
-                if (_scrlResource != null)
-                {
-                }
-
-                _scrlResource = value;
-                if (_scrlResource != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblResource;
-
-        internal Label lblResource
-        {
-            
-            get
-            {
-                return _lblResource;
-            }
-
-            
-            set
-            {
-                if (_lblResource != null)
-                {
-                }
-
-                _lblResource = value;
-                if (_lblResource != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraMapItem;
-
-        internal GroupBox fraMapItem
-        {
-            
-            get
-            {
-                return _fraMapItem;
-            }
-
-            
-            set
-            {
-                if (_fraMapItem != null)
-                {
-                }
-
-                _fraMapItem = value;
-                if (_fraMapItem != null)
-                {
-                }
-            }
-        }
-
-        private PictureBox _picMapItem;
-
-        internal PictureBox picMapItem
-        {
-            
-            get
-            {
-                return _picMapItem;
-            }
-
-            
-            set
-            {
-                if (_picMapItem != null)
-                {
-                }
-
-                _picMapItem = value;
-                if (_picMapItem != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnMapItem;
-
-        internal Button btnMapItem
-        {
-            
-            get
-            {
-                return _btnMapItem;
-            }
-
-            
-            set
-            {
-                if (_btnMapItem != null)
-                {
-                }
-
-                _btnMapItem = value;
-                if (_btnMapItem != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlMapItemValue;
-
-        internal HScrollBar scrlMapItemValue
-        {
-            
-            get
-            {
-                return _scrlMapItemValue;
-            }
-
-            
-            set
-            {
-                if (_scrlMapItemValue != null)
-                {
-                }
-
-                _scrlMapItemValue = value;
-                if (_scrlMapItemValue != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlMapItem;
-
-        internal HScrollBar scrlMapItem
-        {
-            
-            get
-            {
-                return _scrlMapItem;
-            }
-
-            
-            set
-            {
-                if (_scrlMapItem != null)
-                {
-                }
-
-                _scrlMapItem = value;
-                if (_scrlMapItem != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblMapItem;
-
-        internal Label lblMapItem
-        {
-            
-            get
-            {
-                return _lblMapItem;
-            }
-
-            
-            set
-            {
-                if (_lblMapItem != null)
-                {
-                }
-
-                _lblMapItem = value;
-                if (_lblMapItem != null)
-                {
-                }
-            }
-        }
-
-        private GroupBox _fraTrap;
-
-        internal GroupBox fraTrap
-        {
-            
-            get
-            {
-                return _fraTrap;
-            }
-
-            
-            set
-            {
-                if (_fraTrap != null)
-                {
-                }
-
-                _fraTrap = value;
-                if (_fraTrap != null)
-                {
-                }
-            }
-        }
-
-        private Button _btnTrap;
-
-        internal Button btnTrap
-        {
-            
-            get
-            {
-                return _btnTrap;
-            }
-
-            
-            set
-            {
-                if (_btnTrap != null)
-                {
-                }
-
-                _btnTrap = value;
-                if (_btnTrap != null)
-                {
-                }
-            }
-        }
-
-        private HScrollBar _scrlTrap;
-
-        internal HScrollBar scrlTrap
-        {
-            
-            get
-            {
-                return _scrlTrap;
-            }
-
-            
-            set
-            {
-                if (_scrlTrap != null)
-                {
-                }
-
-                _scrlTrap = value;
-                if (_scrlTrap != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblTrap;
-
-        internal Label lblTrap
-        {
-            
-            get
-            {
-                return _lblTrap;
-            }
-
-            
-            set
-            {
-                if (_lblTrap != null)
-                {
-                }
-
-                _lblTrap = value;
-                if (_lblTrap != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudRight;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudRight
-        {
-            
-            get
-            {
-                return _nudRight;
-            }
-
-            
-            set
-            {
-                if (_nudRight != null)
-                {
-                }
-
-                _nudRight = value;
-                if (_nudRight != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudLeft;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudLeft
-        {
-            
-            get
-            {
-                return _nudLeft;
-            }
-
-            
-            set
-            {
-                if (_nudLeft != null)
-                {
-                }
-
-                _nudLeft = value;
-                if (_nudLeft != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudDown;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudDown
-        {
-            
-            get
-            {
-                return _nudDown;
-            }
-
-            
-            set
-            {
-                if (_nudDown != null)
-                {
-                }
-
-                _nudDown = value;
-                if (_nudDown != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudUp;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudUp
-        {
-            
-            get
-            {
-                return _nudUp;
-            }
-
-            
-            set
-            {
-                if (_nudUp != null)
-                {
-                }
-
-                _nudUp = value;
-                if (_nudUp != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudMaxY;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudMaxY
-        {
-            
-            get
-            {
-                return _nudMaxY;
-            }
-
-            
-            set
-            {
-                if (_nudMaxY != null)
-                {
-                }
-
-                _nudMaxY = value;
-                if (_nudMaxY != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudMaxX;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudMaxX
-        {
-            
-            get
-            {
-                return _nudMaxX;
-            }
-
-            
-            set
-            {
-                if (_nudMaxX != null)
-                {
-                }
-
-                _nudMaxX = value;
-                if (_nudMaxX != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudSpawnY;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudSpawnY
-        {
-            
-            get
-            {
-                return _nudSpawnY;
-            }
-
-            
-            set
-            {
-                if (_nudSpawnY != null)
-                {
-                }
-
-                _nudSpawnY = value;
-                if (_nudSpawnY != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudSpawnX;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudSpawnX
-        {
-            
-            get
-            {
-                return _nudSpawnX;
-            }
-
-            
-            set
-            {
-                if (_nudSpawnX != null)
-                {
-                }
-
-                _nudSpawnX = value;
-                if (_nudSpawnX != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudSpawnMap;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudSpawnMap
-        {
-            
-            get
-            {
-                return _nudSpawnMap;
-            }
-
-            
-            set
-            {
-                if (_nudSpawnMap != null)
-                {
-                }
-
-                _nudSpawnMap = value;
-                if (_nudSpawnMap != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudMapAlpha;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudMapAlpha
-        {
-            
-            get
-            {
-                return _nudMapAlpha;
-            }
-
-            
-            set
-            {
-                if (_nudMapAlpha != null)
-                {
-                }
-
-                _nudMapAlpha = value;
-                if (_nudMapAlpha != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudMapBlue;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudMapBlue
-        {
-            
-            get
-            {
-                return _nudMapBlue;
-            }
-
-            
-            set
-            {
-                if (_nudMapBlue != null)
-                {
-                }
-
-                _nudMapBlue = value;
-                if (_nudMapBlue != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudMapGreen;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudMapGreen
-        {
-            
-            get
-            {
-                return _nudMapGreen;
-            }
-
-            
-            set
-            {
-                if (_nudMapGreen != null)
-                {
-                }
-
-                _nudMapGreen = value;
-                if (_nudMapGreen != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudMapRed;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudMapRed
-        {
-            
-            get
-            {
-                return _nudMapRed;
-            }
-
-            
-            set
-            {
-                if (_nudMapRed != null)
-                {
-                }
-
-                _nudMapRed = value;
-                if (_nudMapRed != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudFogAlpha;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudFogAlpha
-        {
-            
-            get
-            {
-                return _nudFogAlpha;
-            }
-
-            
-            set
-            {
-                if (_nudFogAlpha != null)
-                {
-                }
-
-                _nudFogAlpha = value;
-                if (_nudFogAlpha != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudFogSpeed;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudFogSpeed
-        {
-            
-            get
-            {
-                return _nudFogSpeed;
-            }
-
-            
-            set
-            {
-                if (_nudFogSpeed != null)
-                {
-                }
-
-                _nudFogSpeed = value;
-                if (_nudFogSpeed != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudFog;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudFog
-        {
-            
-            get
-            {
-                return _nudFog;
-            }
-
-            
-            set
-            {
-                if (_nudFog != null)
-                {
-                }
-
-                _nudFog = value;
-                if (_nudFog != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkNumericUpDown _nudIntensity;
-
-        internal DarkUI.Controls.DarkNumericUpDown nudIntensity
-        {
-            
-            get
-            {
-                return _nudIntensity;
-            }
-
-            
-            set
-            {
-                if (_nudIntensity != null)
-                {
-                }
-
-                _nudIntensity = value;
-                if (_nudIntensity != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblPasteMode;
-
-        internal DarkUI.Controls.DarkLabel lblPasteMode
-        {
-            
-            get
-            {
-                return _lblPasteMode;
-            }
-
-            
-            set
-            {
-                if (_lblPasteMode != null)
-                {
-                }
-
-                _lblPasteMode = value;
-                if (_lblPasteMode != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnPasteEvent;
-
-        internal DarkUI.Controls.DarkButton btnPasteEvent
-        {
-            
-            get
-            {
-                return _btnPasteEvent;
-            }
-
-            
-            set
-            {
-                if (_btnPasteEvent != null)
-                {
-                }
-
-                _btnPasteEvent = value;
-                if (_btnPasteEvent != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel16;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel16
-        {
-            
-            get
-            {
-                return _DarkLabel16;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel16 != null)
-                {
-                }
-
-                _DarkLabel16 = value;
-                if (_DarkLabel16 != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _lblCopyMode;
-
-        internal DarkUI.Controls.DarkLabel lblCopyMode
-        {
-            
-            get
-            {
-                return _lblCopyMode;
-            }
-
-            
-            set
-            {
-                if (_lblCopyMode != null)
-                {
-                }
-
-                _lblCopyMode = value;
-                if (_lblCopyMode != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkButton _btnCopyEvent;
-
-        internal DarkUI.Controls.DarkButton btnCopyEvent
-        {
-            
-            get
-            {
-                return _btnCopyEvent;
-            }
-
-            
-            set
-            {
-                if (_btnCopyEvent != null)
-                {
-                }
-
-                _btnCopyEvent = value;
-                if (_btnCopyEvent != null)
-                {
-                }
-            }
-        }
-
-        private DarkUI.Controls.DarkLabel _DarkLabel15;
-
-        internal DarkUI.Controls.DarkLabel DarkLabel15
-        {
-            
-            get
-            {
-                return _DarkLabel15;
-            }
-
-            
-            set
-            {
-                if (_DarkLabel15 != null)
-                {
-                }
-
-                _DarkLabel15 = value;
-                if (_DarkLabel15 != null)
-                {
-                }
-            }
-        }
-
-        private Label _lblVisualWarp;
-
-        internal Label lblVisualWarp
-        {
-            
-            get
-            {
-                return _lblVisualWarp;
-            }
-
-            
-            set
-            {
-                if (_lblVisualWarp != null)
-                {
-                }
-
-                _lblVisualWarp = value;
-                if (_lblVisualWarp != null)
-                {
-                }
-            }
-        }
-    }
+		}
+		
+		internal DarkUI.Docking.DarkDockPanel DarkDockPanel1;
+		internal ToolStripContainer ToolStripContainer2;
+		internal DarkUI.Controls.DarkSectionPanel DarkSectionPanel1;
+		internal DarkUI.Controls.DarkSectionPanel DarkSectionPanel2;
+		internal DarkUI.Controls.DarkToolStrip ToolStrip;
+		internal ToolStripButton tsbSave;
+		internal ToolStripButton tsbDiscard;
+		internal ToolStripSeparator ToolStripSeparator1;
+		internal ToolStripButton tsbMapGrid;
+		internal ToolStripSeparator ToolStripSeparator2;
+		internal ToolStripButton tsbFill;
+		internal ToolStripButton tsbClear;
+		internal ToolStripSeparator ToolStripSeparator3;
+		internal ToolStripLabel ToolStripLabel1;
+		internal DarkUI.Controls.DarkSectionPanel pnlBack2;
+		internal PictureBox picScreen;
+		internal DarkUI.Controls.DarkStatusStrip ssInfo;
+		internal ToolStripStatusLabel tslCurMap;
+		internal ToolStripComboBox cmbMapList;
+		internal DarkUI.Controls.DarkButton btnAttributes;
+		internal DarkUI.Controls.DarkButton btnTiles;
+		internal DarkUI.Controls.DarkScrollBar scrlMapViewH;
+		internal DarkUI.Controls.DarkButton btnNpc;
+		internal DarkUI.Controls.DarkButton btnDirBlock;
+		internal DarkUI.Controls.DarkButton btnEvents;
+		internal DarkUI.Controls.DarkScrollBar scrlMapViewV;
+		internal Panel pnlBack;
+		internal PictureBox picBackSelect;
+		internal DarkUI.Controls.DarkScrollBar scrlPictureY;
+		internal DarkUI.Controls.DarkScrollBar scrlPictureX;
+		internal DarkUI.Controls.DarkLabel DarkLabel1;
+		internal DarkUI.Controls.DarkLabel DarkLabel2;
+		internal DarkUI.Controls.DarkLabel DarkLabel3;
+		internal Panel pnlTiles;
+		internal DarkUI.Controls.DarkLabel DarkLabel4;
+		internal Panel pnlEvents;
+		internal Panel pnlDirBlock;
+		internal DarkUI.Controls.DarkLabel DarkLabel6;
+		internal DarkUI.Controls.DarkLabel DarkLabel5;
+		internal Panel pnlNpc;
+		internal ListBox lstMapNpc;
+		internal ComboBox cmbNpcList;
+		internal Panel pnlAttribute;
+		internal DarkUI.Controls.DarkRadioButton optBlocked;
+		internal DarkUI.Controls.DarkRadioButton optNpcAvoid;
+		internal DarkUI.Controls.DarkRadioButton optItem;
+		internal DarkUI.Controls.DarkRadioButton optWarp;
+		internal DarkUI.Controls.DarkRadioButton optHouse;
+		internal DarkUI.Controls.DarkRadioButton optShop;
+		internal DarkUI.Controls.DarkRadioButton optNpcSpawn;
+		internal DarkUI.Controls.DarkRadioButton optBank;
+		internal DarkUI.Controls.DarkRadioButton optCraft;
+		internal DarkUI.Controls.DarkRadioButton optTrap;
+		internal DarkUI.Controls.DarkRadioButton optHeal;
+		internal DarkUI.Controls.DarkRadioButton optKeyOpen;
+		internal DarkUI.Controls.DarkRadioButton optKey;
+		internal DarkUI.Controls.DarkRadioButton optDoor;
+		internal DarkUI.Controls.DarkRadioButton optResource;
+		internal ToolStripStatusLabel tslCurXY;
+		internal DarkUI.Controls.DarkButton btnClearAttribute;
+		internal DarkUI.Controls.DarkLabel DarkLabel7;
+		internal DarkUI.Controls.DarkCheckBox chkInstance;
+		internal DarkUI.Controls.DarkTextBox txtName;
+		internal DarkUI.Controls.DarkLabel DarkLabel8;
+		internal GroupBox fraMapLinks;
+		internal ComboBox cmbMoral;
+		internal DarkUI.Controls.DarkLabel lblMap;
+		internal GroupBox GroupBox1;
+		internal DarkUI.Controls.DarkLabel DarkLabel9;
+		internal DarkUI.Controls.DarkLabel DarkLabel11;
+		internal DarkUI.Controls.DarkLabel DarkLabel10;
+		internal GroupBox GroupBox2;
+		internal DarkUI.Controls.DarkLabel DarkLabel13;
+		internal DarkUI.Controls.DarkLabel DarkLabel12;
+		internal DarkUI.Controls.DarkButton btnSetSize;
+		internal GroupBox GroupBox3;
+		internal DarkUI.Controls.DarkButton btnPreview;
+		internal ListBox lstMusic;
+		internal Panel pnlMoreOptions;
+		internal DarkUI.Controls.DarkButton btnMoreOptions;
+		internal GroupBox GroupBox4;
+		internal ComboBox cmbWeather;
+		internal DarkUI.Controls.DarkLabel DarkLabel14;
+		internal DarkUI.Controls.DarkLabel lblIntensity;
+		internal DarkUI.Controls.DarkLabel lblFogIndex;
+		internal DarkUI.Controls.DarkLabel lblFogSpeed;
+		internal DarkUI.Controls.DarkLabel lblFogAlpha;
+		internal GroupBox GroupBox5;
+		internal CheckBox chkUseTint;
+		internal DarkUI.Controls.DarkLabel lblMapAlpha;
+		internal DarkUI.Controls.DarkLabel lblMapBlue;
+		internal DarkUI.Controls.DarkLabel lblMapGreen;
+		internal DarkUI.Controls.DarkLabel lblMapRed;
+		internal ToolStripStatusLabel tsCurFps;
+		internal ToolStripSeparator ToolStripSeparator4;
+		internal ToolStripButton tsbScreenShot;
+		internal DarkUI.Controls.DarkRadioButton optLight;
+		internal DarkUI.Controls.DarkComboBox cmbLayers;
+		internal DarkUI.Controls.DarkComboBox cmbTileSets;
+		internal DarkUI.Controls.DarkComboBox cmbAutoTile;
+		internal Panel pnlAttributes;
+		internal GroupBox fraMapWarp;
+		internal Button btnMapWarp;
+		internal HScrollBar scrlMapWarpY;
+		internal HScrollBar scrlMapWarpX;
+		internal HScrollBar scrlMapWarpMap;
+		internal Label lblMapWarpY;
+		internal Label lblMapWarpX;
+		internal Label lblMapWarpMap;
+		internal GroupBox fraBuyHouse;
+		internal Button btnHouseTileOk;
+		internal HScrollBar scrlBuyHouse;
+		internal Label lblHouseName;
+		internal GroupBox fraKeyOpen;
+		internal HScrollBar scrlKeyY;
+		internal Label lblKeyY;
+		internal Button btnMapKeyOpen;
+		internal HScrollBar scrlKeyX;
+		internal Label lblKeyX;
+		internal GroupBox fraMapKey;
+		internal CheckBox chkMapKey;
+		internal PictureBox picMapKey;
+		internal Button btnMapKey;
+		internal HScrollBar scrlMapKey;
+		internal Label lblMapKey;
+		internal GroupBox fraNpcSpawn;
+		internal ComboBox lstNpc;
+		internal Button btnNpcSpawn;
+		internal HScrollBar scrlNpcDir;
+		internal Label lblNpcDir;
+		internal GroupBox fraHeal;
+		internal HScrollBar scrlHeal;
+		internal Label lblHeal;
+		internal ComboBox cmbHeal;
+		internal Button btnHeal;
+		internal GroupBox fraShop;
+		internal ComboBox cmbShop;
+		internal Button btnShop;
+		internal GroupBox fraResource;
+		internal Button btnResourceOk;
+		internal HScrollBar scrlResource;
+		internal Label lblResource;
+		internal GroupBox fraMapItem;
+		internal PictureBox picMapItem;
+		internal Button btnMapItem;
+		internal HScrollBar scrlMapItemValue;
+		internal HScrollBar scrlMapItem;
+		internal Label lblMapItem;
+		internal GroupBox fraTrap;
+		internal Button btnTrap;
+		internal HScrollBar scrlTrap;
+		internal Label lblTrap;
+		internal DarkUI.Controls.DarkNumericUpDown nudRight;
+		internal DarkUI.Controls.DarkNumericUpDown nudLeft;
+		internal DarkUI.Controls.DarkNumericUpDown nudDown;
+		internal DarkUI.Controls.DarkNumericUpDown nudUp;
+		internal DarkUI.Controls.DarkNumericUpDown nudMaxY;
+		internal DarkUI.Controls.DarkNumericUpDown nudMaxX;
+		internal DarkUI.Controls.DarkNumericUpDown nudSpawnY;
+		internal DarkUI.Controls.DarkNumericUpDown nudSpawnX;
+		internal DarkUI.Controls.DarkNumericUpDown nudSpawnMap;
+		internal DarkUI.Controls.DarkNumericUpDown nudMapAlpha;
+		internal DarkUI.Controls.DarkNumericUpDown nudMapBlue;
+		internal DarkUI.Controls.DarkNumericUpDown nudMapGreen;
+		internal DarkUI.Controls.DarkNumericUpDown nudMapRed;
+		internal DarkUI.Controls.DarkNumericUpDown nudFogAlpha;
+		internal DarkUI.Controls.DarkNumericUpDown nudFogSpeed;
+		internal DarkUI.Controls.DarkNumericUpDown nudFog;
+		internal DarkUI.Controls.DarkNumericUpDown nudIntensity;
+		internal DarkUI.Controls.DarkLabel lblPasteMode;
+		internal DarkUI.Controls.DarkButton btnPasteEvent;
+		internal DarkUI.Controls.DarkLabel DarkLabel16;
+		internal DarkUI.Controls.DarkLabel lblCopyMode;
+		internal DarkUI.Controls.DarkButton btnCopyEvent;
+		internal DarkUI.Controls.DarkLabel DarkLabel15;
+		internal Label lblVisualWarp;
+	}
+	
 }

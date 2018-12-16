@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -17,13 +17,13 @@ namespace Engine
 
         internal static Client Socket
         {
-            
+
             get
             {
                 return _Socket;
             }
 
-            
+
             set
             {
                 if (_Socket != null)

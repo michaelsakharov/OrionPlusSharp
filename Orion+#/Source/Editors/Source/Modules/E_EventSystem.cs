@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Linq;
@@ -414,7 +414,7 @@ namespace Engine
 
             if (!E_Globals.InMapEditor)
                 return;
-            if (My.MyProject.Forms.frmEvents.Visible == true)
+            if (frmEvents.Default.Visible == true)
                 return;
             count = E_Types.Map.EventCount;
             var loopTo = count;
@@ -490,38 +490,36 @@ namespace Engine
             if (eventNum > E_Types.Map.EventCount || eventNum > Information.UBound(E_Types.Map.MapEvents))
                 return;
             {
-                var withBlock = E_Types.Map.Events[eventNum];
-                withBlock.Name = "";
-                withBlock.PageCount = 0;
-                withBlock.Pages = new EventPageRec[1];
-                withBlock.Globals = 0;
-                withBlock.X = 0;
-                withBlock.Y = 0;
+                E_Types.Map.Events[eventNum].Name = "";
+                E_Types.Map.Events[eventNum].PageCount = 0;
+                E_Types.Map.Events[eventNum].Pages = new EventPageRec[1];
+                E_Types.Map.Events[eventNum].Globals = 0;
+                E_Types.Map.Events[eventNum].X = 0;
+                E_Types.Map.Events[eventNum].Y = 0;
             }
             {
-                var withBlock1 = E_Types.Map.MapEvents[eventNum];
-                withBlock1.Name = "";
-                withBlock1.Dir = 0;
-                withBlock1.ShowDir = 0;
-                withBlock1.GraphicNum = 0;
-                withBlock1.GraphicType = 0;
-                withBlock1.GraphicX = 0;
-                withBlock1.GraphicX2 = 0;
-                withBlock1.GraphicY = 0;
-                withBlock1.GraphicY2 = 0;
-                withBlock1.MovementSpeed = 0;
-                withBlock1.Moving = 0;
-                withBlock1.X = 0;
-                withBlock1.Y = 0;
-                withBlock1.XOffset = 0;
-                withBlock1.YOffset = 0;
-                withBlock1.Position = 0;
-                withBlock1.Visible = 0;
-                withBlock1.WalkAnim = 0;
-                withBlock1.DirFix = 0;
-                withBlock1.WalkThrough = 0;
-                withBlock1.ShowName = 0;
-                withBlock1.Questnum = 0;
+                E_Types.Map.MapEvents[eventNum].Name = "";
+                E_Types.Map.MapEvents[eventNum].Dir = 0;
+                E_Types.Map.MapEvents[eventNum].ShowDir = 0;
+                E_Types.Map.MapEvents[eventNum].GraphicNum = 0;
+                E_Types.Map.MapEvents[eventNum].GraphicType = 0;
+                E_Types.Map.MapEvents[eventNum].GraphicX = 0;
+                E_Types.Map.MapEvents[eventNum].GraphicX2 = 0;
+                E_Types.Map.MapEvents[eventNum].GraphicY = 0;
+                E_Types.Map.MapEvents[eventNum].GraphicY2 = 0;
+                E_Types.Map.MapEvents[eventNum].MovementSpeed = 0;
+                E_Types.Map.MapEvents[eventNum].Moving = 0;
+                E_Types.Map.MapEvents[eventNum].X = 0;
+                E_Types.Map.MapEvents[eventNum].Y = 0;
+                E_Types.Map.MapEvents[eventNum].XOffset = 0;
+                E_Types.Map.MapEvents[eventNum].YOffset = 0;
+                E_Types.Map.MapEvents[eventNum].Position = 0;
+                E_Types.Map.MapEvents[eventNum].Visible = 0;
+                E_Types.Map.MapEvents[eventNum].WalkAnim = 0;
+                E_Types.Map.MapEvents[eventNum].DirFix = 0;
+                E_Types.Map.MapEvents[eventNum].WalkThrough = 0;
+                E_Types.Map.MapEvents[eventNum].ShowName = 0;
+                E_Types.Map.MapEvents[eventNum].Questnum = 0;
             }
         }
 
@@ -540,86 +538,85 @@ namespace Engine
             // populate form
 
             {
-                var withBlock = TmpEvent.Pages[pageNum];
-                GraphicSelX = withBlock.GraphicX;
-                GraphicSelY = withBlock.GraphicY;
-                GraphicSelX2 = withBlock.GraphicX2;
-                GraphicSelY2 = withBlock.GraphicY2;
-                My.MyProject.Forms.frmEvents.cmbGraphic.SelectedIndex = withBlock.GraphicType;
-                My.MyProject.Forms.frmEvents.cmbHasItem.SelectedIndex = withBlock.HasItemindex;
-                if (withBlock.HasItemAmount == 0)
-                    My.MyProject.Forms.frmEvents.nudCondition_HasItem.Value = 1;
+                GraphicSelX = TmpEvent.Pages[pageNum].GraphicX;
+                GraphicSelY = TmpEvent.Pages[pageNum].GraphicY;
+                GraphicSelX2 = TmpEvent.Pages[pageNum].GraphicX2;
+                GraphicSelY2 = TmpEvent.Pages[pageNum].GraphicY2;
+                frmEvents.Default.cmbGraphic.SelectedIndex = TmpEvent.Pages[pageNum].GraphicType;
+                frmEvents.Default.cmbHasItem.SelectedIndex = TmpEvent.Pages[pageNum].HasItemindex;
+                if (TmpEvent.Pages[pageNum].HasItemAmount == 0)
+                    frmEvents.Default.nudCondition_HasItem.Value = 1;
                 else
-                    My.MyProject.Forms.frmEvents.nudCondition_HasItem.Value = withBlock.HasItemAmount;
-                My.MyProject.Forms.frmEvents.cmbMoveFreq.SelectedIndex = withBlock.MoveFreq;
-                My.MyProject.Forms.frmEvents.cmbMoveSpeed.SelectedIndex = withBlock.MoveSpeed;
-                My.MyProject.Forms.frmEvents.cmbMoveType.SelectedIndex = withBlock.MoveType;
-                My.MyProject.Forms.frmEvents.cmbPlayerVar.SelectedIndex = withBlock.Variableindex;
-                My.MyProject.Forms.frmEvents.cmbPlayerSwitch.SelectedIndex = withBlock.Switchindex;
-                My.MyProject.Forms.frmEvents.cmbSelfSwitch.SelectedIndex = withBlock.SelfSwitchindex;
-                My.MyProject.Forms.frmEvents.cmbSelfSwitchCompare.SelectedIndex = withBlock.SelfSwitchCompare;
-                My.MyProject.Forms.frmEvents.cmbPlayerSwitchCompare.SelectedIndex = withBlock.SwitchCompare;
-                My.MyProject.Forms.frmEvents.cmbPlayervarCompare.SelectedIndex = withBlock.VariableCompare;
-                My.MyProject.Forms.frmEvents.chkGlobal.Checked = Convert.ToBoolean(TmpEvent.Globals);
-                My.MyProject.Forms.frmEvents.cmbTrigger.SelectedIndex = withBlock.Trigger;
-                My.MyProject.Forms.frmEvents.chkDirFix.Checked = Convert.ToBoolean(withBlock.DirFix);
-                My.MyProject.Forms.frmEvents.chkHasItem.Checked = Convert.ToBoolean(withBlock.ChkHasItem);
-                My.MyProject.Forms.frmEvents.chkPlayerVar.Checked = Convert.ToBoolean(withBlock.ChkVariable);
-                My.MyProject.Forms.frmEvents.chkPlayerSwitch.Checked = Convert.ToBoolean(withBlock.ChkSwitch);
-                My.MyProject.Forms.frmEvents.chkSelfSwitch.Checked = Convert.ToBoolean(withBlock.ChkSelfSwitch);
-                My.MyProject.Forms.frmEvents.chkWalkAnim.Checked = Convert.ToBoolean(withBlock.WalkAnim);
-                My.MyProject.Forms.frmEvents.chkWalkThrough.Checked = Convert.ToBoolean(withBlock.WalkThrough);
-                My.MyProject.Forms.frmEvents.chkShowName.Checked = Convert.ToBoolean(withBlock.ShowName);
-                My.MyProject.Forms.frmEvents.nudPlayerVariable.Value = withBlock.VariableCondition;
-                My.MyProject.Forms.frmEvents.nudGraphic.Value = withBlock.Graphic;
-                if (My.MyProject.Forms.frmEvents.cmbEventQuest.Items.Count > 0)
+                    frmEvents.Default.nudCondition_HasItem.Value = TmpEvent.Pages[pageNum].HasItemAmount;
+                frmEvents.Default.cmbMoveFreq.SelectedIndex = TmpEvent.Pages[pageNum].MoveFreq;
+                frmEvents.Default.cmbMoveSpeed.SelectedIndex = TmpEvent.Pages[pageNum].MoveSpeed;
+                frmEvents.Default.cmbMoveType.SelectedIndex = TmpEvent.Pages[pageNum].MoveType;
+                frmEvents.Default.cmbPlayerVar.SelectedIndex = TmpEvent.Pages[pageNum].Variableindex;
+                frmEvents.Default.cmbPlayerSwitch.SelectedIndex = TmpEvent.Pages[pageNum].Switchindex;
+                frmEvents.Default.cmbSelfSwitch.SelectedIndex = TmpEvent.Pages[pageNum].SelfSwitchindex;
+                frmEvents.Default.cmbSelfSwitchCompare.SelectedIndex = TmpEvent.Pages[pageNum].SelfSwitchCompare;
+                frmEvents.Default.cmbPlayerSwitchCompare.SelectedIndex = TmpEvent.Pages[pageNum].SwitchCompare;
+                frmEvents.Default.cmbPlayervarCompare.SelectedIndex = TmpEvent.Pages[pageNum].VariableCompare;
+                frmEvents.Default.chkGlobal.Checked = Convert.ToBoolean(TmpEvent.Globals);
+                frmEvents.Default.cmbTrigger.SelectedIndex = TmpEvent.Pages[pageNum].Trigger;
+                frmEvents.Default.chkDirFix.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].DirFix);
+                frmEvents.Default.chkHasItem.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].ChkHasItem);
+                frmEvents.Default.chkPlayerVar.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].ChkVariable);
+                frmEvents.Default.chkPlayerSwitch.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].ChkSwitch);
+                frmEvents.Default.chkSelfSwitch.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].ChkSelfSwitch);
+                frmEvents.Default.chkWalkAnim.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].WalkAnim);
+                frmEvents.Default.chkWalkThrough.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].WalkThrough);
+                frmEvents.Default.chkShowName.Checked = Convert.ToBoolean(TmpEvent.Pages[pageNum].ShowName);
+                frmEvents.Default.nudPlayerVariable.Value = TmpEvent.Pages[pageNum].VariableCondition;
+                frmEvents.Default.nudGraphic.Value = TmpEvent.Pages[pageNum].Graphic;
+                if (frmEvents.Default.cmbEventQuest.Items.Count > 0)
                 {
-                    if (withBlock.Questnum >= 0 && withBlock.Questnum <= My.MyProject.Forms.frmEvents.cmbEventQuest.Items.Count)
-                        My.MyProject.Forms.frmEvents.cmbEventQuest.SelectedIndex = withBlock.Questnum;
+                    if (TmpEvent.Pages[pageNum].Questnum >= 0 && TmpEvent.Pages[pageNum].Questnum <= frmEvents.Default.cmbEventQuest.Items.Count)
+                        frmEvents.Default.cmbEventQuest.SelectedIndex = TmpEvent.Pages[pageNum].Questnum;
                 }
-                if (My.MyProject.Forms.frmEvents.cmbEventQuest.SelectedIndex == -1)
-                    My.MyProject.Forms.frmEvents.cmbEventQuest.SelectedIndex = 0;
-                if (withBlock.ChkHasItem == 0)
-                    My.MyProject.Forms.frmEvents.cmbHasItem.Enabled = false;
+                if (frmEvents.Default.cmbEventQuest.SelectedIndex == -1)
+                    frmEvents.Default.cmbEventQuest.SelectedIndex = 0;
+                if (TmpEvent.Pages[pageNum].ChkHasItem == 0)
+                    frmEvents.Default.cmbHasItem.Enabled = false;
                 else
-                    My.MyProject.Forms.frmEvents.cmbHasItem.Enabled = true;
-                if (withBlock.ChkSelfSwitch == 0)
+                    frmEvents.Default.cmbHasItem.Enabled = true;
+                if (TmpEvent.Pages[pageNum].ChkSelfSwitch == 0)
                 {
-                    My.MyProject.Forms.frmEvents.cmbSelfSwitch.Enabled = false;
-                    My.MyProject.Forms.frmEvents.cmbSelfSwitchCompare.Enabled = false;
-                }
-                else
-                {
-                    My.MyProject.Forms.frmEvents.cmbSelfSwitch.Enabled = true;
-                    My.MyProject.Forms.frmEvents.cmbSelfSwitchCompare.Enabled = true;
-                }
-                if (withBlock.ChkSwitch == 0)
-                {
-                    My.MyProject.Forms.frmEvents.cmbPlayerSwitch.Enabled = false;
-                    My.MyProject.Forms.frmEvents.cmbPlayerSwitchCompare.Enabled = false;
+                    frmEvents.Default.cmbSelfSwitch.Enabled = false;
+                    frmEvents.Default.cmbSelfSwitchCompare.Enabled = false;
                 }
                 else
                 {
-                    My.MyProject.Forms.frmEvents.cmbPlayerSwitch.Enabled = true;
-                    My.MyProject.Forms.frmEvents.cmbPlayerSwitchCompare.Enabled = true;
+                    frmEvents.Default.cmbSelfSwitch.Enabled = true;
+                    frmEvents.Default.cmbSelfSwitchCompare.Enabled = true;
                 }
-                if (withBlock.ChkVariable == 0)
+                if (TmpEvent.Pages[pageNum].ChkSwitch == 0)
                 {
-                    My.MyProject.Forms.frmEvents.cmbPlayerVar.Enabled = false;
-                    My.MyProject.Forms.frmEvents.nudPlayerVariable.Enabled = false;
-                    My.MyProject.Forms.frmEvents.cmbPlayervarCompare.Enabled = false;
+                    frmEvents.Default.cmbPlayerSwitch.Enabled = false;
+                    frmEvents.Default.cmbPlayerSwitchCompare.Enabled = false;
                 }
                 else
                 {
-                    My.MyProject.Forms.frmEvents.cmbPlayerVar.Enabled = true;
-                    My.MyProject.Forms.frmEvents.nudPlayerVariable.Enabled = true;
-                    My.MyProject.Forms.frmEvents.cmbPlayervarCompare.Enabled = true;
+                    frmEvents.Default.cmbPlayerSwitch.Enabled = true;
+                    frmEvents.Default.cmbPlayerSwitchCompare.Enabled = true;
                 }
-                if (My.MyProject.Forms.frmEvents.cmbMoveType.SelectedIndex == 2)
-                    My.MyProject.Forms.frmEvents.btnMoveRoute.Enabled = true;
+                if (TmpEvent.Pages[pageNum].ChkVariable == 0)
+                {
+                    frmEvents.Default.cmbPlayerVar.Enabled = false;
+                    frmEvents.Default.nudPlayerVariable.Enabled = false;
+                    frmEvents.Default.cmbPlayervarCompare.Enabled = false;
+                }
                 else
-                    My.MyProject.Forms.frmEvents.btnMoveRoute.Enabled = false;
-                My.MyProject.Forms.frmEvents.cmbPositioning.SelectedIndex = withBlock.Position;
+                {
+                    frmEvents.Default.cmbPlayerVar.Enabled = true;
+                    frmEvents.Default.nudPlayerVariable.Enabled = true;
+                    frmEvents.Default.cmbPlayervarCompare.Enabled = true;
+                }
+                if (frmEvents.Default.cmbMoveType.SelectedIndex == 2)
+                    frmEvents.Default.btnMoveRoute.Enabled = true;
+                else
+                    frmEvents.Default.btnMoveRoute.Enabled = false;
+                frmEvents.Default.cmbPositioning.SelectedIndex = TmpEvent.Pages[pageNum].Position;
                 // show the commands
                 EventListCommands();
 
@@ -633,7 +630,7 @@ namespace Engine
 
             E_Types.Map.Events[EditorEvent] = TmpEvent;
             // unload the form
-            My.MyProject.Forms.frmEvents.Dispose();
+            frmEvents.Default.Dispose();
         }
 
         internal static void EventListCommands()
@@ -645,7 +642,7 @@ namespace Engine
             int[] listleftoff;
             int[] conditionalstage;
 
-            My.MyProject.Forms.frmEvents.lstCommands.Items.Clear();
+            frmEvents.Default.lstCommands.Items.Clear();
 
             if (TmpEvent.Pages[CurPageNum].CommandListCount > 0)
             {
@@ -654,7 +651,7 @@ namespace Engine
                 // Start Up at 1
                 curlist = 1;
                 x = -1;
-            newlist:
+                newlist:
                 ;
                 var loopTo = TmpEvent.Pages[CurPageNum].CommandList[curlist].CommandCount;
                 for (i = 1; i <= loopTo; i++)
@@ -689,37 +686,37 @@ namespace Engine
                                                     {
                                                         case 0:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] == " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] == " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                                 break;
                                                             }
 
                                                         case 1:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] >= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] >= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                                 break;
                                                             }
 
                                                         case 2:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] <= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] <= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                                 break;
                                                             }
 
                                                         case 3:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] > " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] > " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                                 break;
                                                             }
 
                                                         case 4:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] < " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] < " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                                 break;
                                                             }
 
                                                         case 5:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] != " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] != " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                                 break;
                                                             }
                                                     }
@@ -730,27 +727,27 @@ namespace Engine
                                             case 1:
                                                 {
                                                     if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data2 == 0)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] == " + "True");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] == " + "True");
                                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data2 == 1)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] == " + "False");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1] + "] == " + "False");
                                                     break;
                                                 }
 
                                             case 2:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Has Item [" + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1].Name) + "] x" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data2);
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Has Item [" + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1].Name) + "] x" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data2);
                                                     break;
                                                 }
 
                                             case 3:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Class Is [" + Microsoft.VisualBasic.Strings.Trim(Types.Classes[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1].Name) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Class Is [" + Microsoft.VisualBasic.Strings.Trim(Types.Classes[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1].Name) + "]");
                                                     break;
                                                 }
 
                                             case 4:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Knows Skill [" + Microsoft.VisualBasic.Strings.Trim(Types.Skill[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1].Name) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player Knows Skill [" + Microsoft.VisualBasic.Strings.Trim(Types.Skill[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1].Name) + "]");
                                                     break;
                                                 }
 
@@ -760,37 +757,37 @@ namespace Engine
                                                     {
                                                         case 0:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is == " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is == " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
                                                                 break;
                                                             }
 
                                                         case 1:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is >= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is >= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
                                                                 break;
                                                             }
 
                                                         case 2:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is <= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is <= " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
                                                                 break;
                                                             }
 
                                                         case 3:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is > " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is > " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
                                                                 break;
                                                             }
 
                                                         case 4:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is < " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is < " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
                                                                 break;
                                                             }
 
                                                         case 5:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is NOT " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Level is NOT " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1);
                                                                 break;
                                                             }
                                                     }
@@ -806,25 +803,25 @@ namespace Engine
                                                         {
                                                             case 0:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [A] == " + "True");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [A] == " + "True");
                                                                     break;
                                                                 }
 
                                                             case 1:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [B] == " + "True");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [B] == " + "True");
                                                                     break;
                                                                 }
 
                                                             case 2:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [C] == " + "True");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [C] == " + "True");
                                                                     break;
                                                                 }
 
                                                             case 3:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [D] == " + "True");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [D] == " + "True");
                                                                     break;
                                                                 }
                                                         }
@@ -835,25 +832,25 @@ namespace Engine
                                                         {
                                                             case 0:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [A] == " + "False");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [A] == " + "False");
                                                                     break;
                                                                 }
 
                                                             case 1:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [B] == " + "False");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [B] == " + "False");
                                                                     break;
                                                                 }
 
                                                             case 2:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [C] == " + "False");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [C] == " + "False");
                                                                     break;
                                                                 }
 
                                                             case 3:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [D] == " + "False");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Self Switch [D] == " + "False");
                                                                     break;
                                                                 }
                                                         }
@@ -870,37 +867,37 @@ namespace Engine
                                                         {
                                                             case 0:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] not started.");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] not started.");
                                                                     break;
                                                                 }
 
                                                             case 1:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] is started.");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] is started.");
                                                                     break;
                                                                 }
 
                                                             case 2:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] is completed.");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] is completed.");
                                                                     break;
                                                                 }
 
                                                             case 3:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] can be started.");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] can be started.");
                                                                     break;
                                                                 }
 
                                                             case 4:
                                                                 {
-                                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] can be ended. (All tasks complete)");
+                                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] can be ended. (All tasks complete)");
                                                                     break;
                                                                 }
                                                         }
                                                     }
                                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data2 == 1)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] in progress and on task #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Quest [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data1 + "] in progress and on task #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.Data3);
                                                     break;
                                                 }
 
@@ -910,13 +907,13 @@ namespace Engine
                                                     {
                                                         case (int)Enums.SexType.Male:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Gender is Male");
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's Gender is Male");
                                                                 break;
                                                             }
 
                                                         case (int)Enums.SexType.Female:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's  Gender is Female");
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Player's  Gender is Female");
                                                                 break;
                                                             }
                                                     }
@@ -930,25 +927,25 @@ namespace Engine
                                                     {
                                                         case (int)TimeOfDay.Day:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Day");
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Day");
                                                                 break;
                                                             }
 
                                                         case (int)TimeOfDay.Night:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Night");
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Night");
                                                                 break;
                                                             }
 
                                                         case (int)TimeOfDay.Dawn:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Dawn");
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Dawn");
                                                                 break;
                                                             }
 
                                                         case (int)TimeOfDay.Dusk:
                                                             {
-                                                                My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Dusk");
+                                                                frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Conditional Branch: Time of Day is Dusk");
                                                                 break;
                                                             }
                                                     }
@@ -972,7 +969,7 @@ namespace Engine
                                             Array.Copy(oldEventList1, EventList, Math.Min(x + 1, oldEventList1.Length));
                                         EventList[x].CommandList = curlist;
                                         EventList[x].CommandNum = 0;
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "Else");
+                                        frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "Else");
                                         listleftoff[curlist] = i;
                                         conditionalstage[curlist] = 2;
                                         curlist = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].ConditionalBranch.ElseCommandList;
@@ -988,7 +985,7 @@ namespace Engine
                                             Array.Copy(oldEventList2, EventList, Math.Min(x + 1, oldEventList2.Length));
                                         EventList[x].CommandList = curlist;
                                         EventList[x].CommandNum = 0;
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "End Branch");
+                                        frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "End Branch");
                                         indent = Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 7);
                                         listleftoff[curlist] = i;
                                         conditionalstage[curlist] = 0;
@@ -1010,9 +1007,9 @@ namespace Engine
                                         EventList[x].CommandList = curlist;
                                         EventList[x].CommandNum = i;
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5 > 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Choices - Prompt: " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Face: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5);
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Choices - Prompt: " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Face: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5);
                                         else
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Choices - Prompt: " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - No Face");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Choices - Prompt: " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - No Face");
                                         indent = indent + "       ";
                                         listleftoff[curlist] = i;
                                         conditionalstage[curlist] = 1;
@@ -1030,7 +1027,7 @@ namespace Engine
                                                 Array.Copy(oldEventList6, EventList, Math.Min(x + 1, oldEventList6.Length));
                                             EventList[x].CommandList = curlist;
                                             EventList[x].CommandNum = 0;
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text2) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text2) + "]");
                                             listleftoff[curlist] = i;
                                             conditionalstage[curlist] = 2;
                                             curlist = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1;
@@ -1058,7 +1055,7 @@ namespace Engine
                                                 Array.Copy(oldEventList7, EventList, Math.Min(x + 1, oldEventList7.Length));
                                             EventList[x].CommandList = curlist;
                                             EventList[x].CommandNum = 0;
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text3) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text3) + "]");
                                             listleftoff[curlist] = i;
                                             conditionalstage[curlist] = 3;
                                             curlist = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2;
@@ -1086,7 +1083,7 @@ namespace Engine
                                                 Array.Copy(oldEventList8, EventList, Math.Min(x + 1, oldEventList8.Length));
                                             EventList[x].CommandList = curlist;
                                             EventList[x].CommandNum = 0;
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text4) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text4) + "]");
                                             listleftoff[curlist] = i;
                                             conditionalstage[curlist] = 4;
                                             curlist = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3;
@@ -1114,7 +1111,7 @@ namespace Engine
                                                 Array.Copy(oldEventList9, EventList, Math.Min(x + 1, oldEventList9.Length));
                                             EventList[x].CommandList = curlist;
                                             EventList[x].CommandNum = 0;
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text5) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "When [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text5) + "]");
                                             listleftoff[curlist] = i;
                                             conditionalstage[curlist] = 5;
                                             curlist = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4;
@@ -1140,7 +1137,7 @@ namespace Engine
                                             Array.Copy(oldEventList10, EventList, Math.Min(x + 1, oldEventList10.Length));
                                         EventList[x].CommandList = curlist;
                                         EventList[x].CommandNum = 0;
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "Branch End");
+                                        frmEvents.Default.lstCommands.Items.Add(Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 4) + " : " + "Branch End");
                                         indent = Microsoft.VisualBasic.Strings.Mid(indent, 1, Microsoft.VisualBasic.Strings.Len(indent) - 7);
                                         listleftoff[curlist] = i;
                                         conditionalstage[curlist] = 0;
@@ -1165,19 +1162,19 @@ namespace Engine
                                         {
                                             case 0:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Add Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Color: " + GetColorString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " - Chat Type: Player");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Add Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Color: " + GetColorString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " - Chat Type: Player");
                                                     break;
                                                 }
 
                                             case 1:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Add Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Color: " + GetColorString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " - Chat Type: Map");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Add Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Color: " + GetColorString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " - Chat Type: Map");
                                                     break;
                                                 }
 
                                             case 2:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Add Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Color: " + GetColorString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " - Chat Type: Global");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Add Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Color: " + GetColorString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " - Chat Type: Global");
                                                     break;
                                                 }
                                         }
@@ -1188,9 +1185,9 @@ namespace Engine
                                 case (int)EventType.EvShowText:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - No Face");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - No Face");
                                         else
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Face: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Text - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - Face: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
                                         break;
                                     }
 
@@ -1200,25 +1197,25 @@ namespace Engine
                                         {
                                             case 0:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] == " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] == " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
                                                     break;
                                                 }
 
                                             case 1:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] + " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] + " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
                                                     break;
                                                 }
 
                                             case 2:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] - " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] - " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
                                                     break;
                                                 }
 
                                             case 3:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] Random Between " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " and " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4);
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Variable [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + Variables[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] Random Between " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " and " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4);
                                                     break;
                                                 }
                                         }
@@ -1229,9 +1226,9 @@ namespace Engine
                                 case (int)EventType.EvPlayerSwitch:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] == True");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] == True");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] == False");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Switch [" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + ". " + Switches[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "] == False");
                                         break;
                                     }
 
@@ -1242,36 +1239,36 @@ namespace Engine
                                             case 0:
                                                 {
                                                     if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [A] to ON");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [A] to ON");
                                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [A] to OFF");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [A] to OFF");
                                                     break;
                                                 }
 
                                             case 1:
                                                 {
                                                     if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [B] to ON");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [B] to ON");
                                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [B] to OFF");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [B] to OFF");
                                                     break;
                                                 }
 
                                             case 2:
                                                 {
                                                     if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [C] to ON");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [C] to ON");
                                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [C] to OFF");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [C] to OFF");
                                                     break;
                                                 }
 
                                             case 3:
                                                 {
                                                     if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [D] to ON");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [D] to ON");
                                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [D] to OFF");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Self Switch [D] to OFF");
                                                     break;
                                                 }
                                         }
@@ -1281,112 +1278,112 @@ namespace Engine
 
                                 case (int)EventType.EvExitProcess:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Exit Event Processing");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Exit Event Processing");
                                         break;
                                     }
 
                                 case (int)EventType.EvChangeItems:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Item Amount of [" + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "] to " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Item Amount of [" + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "] to " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3);
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Give Player " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " " + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "(s)");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Give Player " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " " + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "(s)");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 2)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Take " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " " + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "(s) from Player.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Take " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " " + Microsoft.VisualBasic.Strings.Trim(Types.Item[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "(s) from Player.");
                                         break;
                                     }
 
                                 case (int)EventType.EvRestoreHp:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Restore Player HP");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Restore Player HP");
                                         break;
                                     }
 
                                 case (int)EventType.EvRestoreMp:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Restore Player MP");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Restore Player MP");
                                         break;
                                     }
 
                                 case (int)EventType.EvLevelUp:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Level Up Player");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Level Up Player");
                                         break;
                                     }
 
                                 case (int)EventType.EvChangeLevel:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Level to " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Level to " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
                                         break;
                                     }
 
                                 case (int)EventType.EvChangeSkills:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Teach Player Skill [" + Microsoft.VisualBasic.Strings.Trim(Types.Skill[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Teach Player Skill [" + Microsoft.VisualBasic.Strings.Trim(Types.Skill[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Remove Player Skill [" + Microsoft.VisualBasic.Strings.Trim(Types.Skill[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Remove Player Skill [" + Microsoft.VisualBasic.Strings.Trim(Types.Skill[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvChangeClass:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Class to " + Microsoft.VisualBasic.Strings.Trim(Types.Classes[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name));
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Class to " + Microsoft.VisualBasic.Strings.Trim(Types.Classes[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name));
                                         break;
                                     }
 
                                 case (int)EventType.EvChangeSprite:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Sprite to " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Sprite to " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
                                         break;
                                     }
 
                                 case (int)EventType.EvChangeSex:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Sex to Male.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Sex to Male.");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 == 1)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Sex to Female.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Sex to Female.");
                                         break;
                                     }
 
                                 case (int)EventType.EvChangePk:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player PK to No.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player PK to No.");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 == 1)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player PK to Yes.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player PK to Yes.");
                                         break;
                                     }
 
                                 case (int)EventType.EvWarpPlayer:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") while retaining direction.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") while retaining direction.");
                                         else
                                             switch (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4 - 1)
                                             {
                                                 case (int)Enums.DirectionType.Up:
                                                     {
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing upward.");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing upward.");
                                                         break;
                                                     }
 
                                                 case (int)Enums.DirectionType.Down:
                                                     {
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing downward.");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing downward.");
                                                         break;
                                                     }
 
                                                 case (int)Enums.DirectionType.Left:
                                                     {
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing left.");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing left.");
                                                         break;
                                                     }
 
                                                 case (int)Enums.DirectionType.Right:
                                                     {
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing right.");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Warp Player To Map: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + ") facing right.");
                                                         break;
                                                     }
                                             }
@@ -1397,80 +1394,80 @@ namespace Engine
                                 case (int)EventType.EvSetMoveRoute:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 <= E_Types.Map.EventCount)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Move Route for Event #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Move Route for Event #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
                                         else
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Move Route for COULD NOT FIND EVENT!");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Move Route for COULD NOT FIND EVENT!");
                                         break;
                                     }
 
                                 case (int)EventType.EvPlayAnimation:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Play Animation " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(Types.Animation[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]" + " on Player");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Play Animation " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(Types.Animation[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]" + " on Player");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 1)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Play Animation " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(Types.Animation[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]" + " on Event #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " [" + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3].Name) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Play Animation " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(Types.Animation[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]" + " on Event #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + " [" + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3].Name) + "]");
                                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2 == 2)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Play Animation " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(Types.Animation[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]" + " on Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4 + ")");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Play Animation " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(Types.Animation[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]" + " on Tile(" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3 + "," + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4 + ")");
                                         break;
                                     }
 
                                 case (int)EventType.EvCustomScript:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Execute Custom Script Case: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Execute Custom Script Case: " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1);
                                         break;
                                     }
 
                                 case (int)EventType.EvPlayBgm:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Play BGM [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Play BGM [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvFadeoutBgm:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Fadeout BGM");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Fadeout BGM");
                                         break;
                                     }
 
                                 case (int)EventType.EvPlaySound:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Play Sound [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Play Sound [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvStopSound:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Stop Sound");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Stop Sound");
                                         break;
                                     }
 
                                 case (int)EventType.EvOpenBank:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Open Bank");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Open Bank");
                                         break;
                                     }
 
                                 case (int)EventType.EvOpenMail:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Open Mail Box");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Open Mail Box");
                                         break;
                                     }
 
                                 case (int)EventType.EvOpenShop:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Open Shop [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(Types.Shop[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Open Shop [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(Types.Shop[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvSetAccess:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Player Access [" + My.MyProject.Forms.frmEvents.cmbSetAccess.Items[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Player Access [" + frmEvents.Default.cmbSetAccess.Items[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvGiveExp:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Give Player " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Experience.");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Give Player " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " Experience.");
                                         break;
                                     }
 
@@ -1480,22 +1477,22 @@ namespace Engine
                                         {
                                             case (int)Enums.TargetType.Player:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On Player");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On Player");
                                                     break;
                                                 }
 
                                             case (int)Enums.TargetType.Npc:
                                                 {
                                                     if (E_Types.Map.Npc[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2] <= 0)
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On NPC [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + ". ]");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On NPC [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + ". ]");
                                                     else
-                                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On NPC [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + ". " + Microsoft.VisualBasic.Strings.Trim(Types.Npc[E_Types.Map.Npc[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2]].Name) + "]");
+                                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On NPC [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + ". " + Microsoft.VisualBasic.Strings.Trim(Types.Npc[E_Types.Map.Npc[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2]].Name) + "]");
                                                     break;
                                                 }
 
                                             case (int)Enums.TargetType.Event:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On Event [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2].Name) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Chat Bubble - " + Microsoft.VisualBasic.Strings.Mid(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1, 1, 20) + "... - On Event [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2].Name) + "]");
                                                     break;
                                                 }
                                         }
@@ -1505,46 +1502,46 @@ namespace Engine
 
                                 case (int)EventType.EvLabel:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Label: [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Label: [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvGotoLabel:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Jump to Label: [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Jump to Label: [" + Microsoft.VisualBasic.Strings.Trim(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Text1) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvSpawnNpc:
                                     {
                                         if (E_Types.Map.Npc[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1] <= 0)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Spawn NPC: [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Spawn NPC: [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + "]");
                                         else
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Spawn NPC: [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(Types.Npc[E_Types.Map.Npc[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1]].Name) + "]");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Spawn NPC: [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(Types.Npc[E_Types.Map.Npc[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1]].Name) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvFadeIn:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Fade In");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Fade In");
                                         break;
                                     }
 
                                 case (int)EventType.EvFadeOut:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Fade Out");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Fade Out");
                                         break;
                                     }
 
                                 case (int)EventType.EvFlashWhite:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Flash White");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Flash White");
                                         break;
                                     }
 
                                 case (int)EventType.EvSetFog:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Fog [Fog: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " Speed: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " Opacity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Fog [Fog: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " Speed: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " Opacity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3) + "]");
                                         break;
                                     }
 
@@ -1554,31 +1551,31 @@ namespace Engine
                                         {
                                             case (int)Enums.WeatherType.None:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Weather [None]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Weather [None]");
                                                     break;
                                                 }
 
                                             case (int)Enums.WeatherType.Rain:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Weather [Rain - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Weather [Rain - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
                                                     break;
                                                 }
 
                                             case (int)Enums.WeatherType.Snow:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Weather [Snow - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Weather [Snow - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
                                                     break;
                                                 }
 
                                             case (int)Enums.WeatherType.Sandstorm:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Weather [Sand Storm - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Weather [Sand Storm - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
                                                     break;
                                                 }
 
                                             case (int)Enums.WeatherType.Storm:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Weather [Storm - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Weather [Storm - Intensity: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "]");
                                                     break;
                                                 }
                                         }
@@ -1588,31 +1585,31 @@ namespace Engine
 
                                 case (int)EventType.EvSetTint:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Set Map Tint RGBA [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + "," + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "," + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3) + "," + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + "]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Set Map Tint RGBA [" + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + "," + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + "," + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data3) + "," + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + "]");
                                         break;
                                     }
 
                                 case (int)EventType.EvWait:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Wait " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " Ms");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Wait " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + " Ms");
                                         break;
                                     }
 
                                 case (int)EventType.EvBeginQuest:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Begin Quest: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Quest.Quest[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name));
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Begin Quest: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Quest.Quest[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name));
                                         break;
                                     }
 
                                 case (int)EventType.EvEndQuest:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "End Quest: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Quest.Quest[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name));
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "End Quest: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Quest.Quest[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name));
                                         break;
                                     }
 
                                 case (int)EventType.EvQuestTask:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Complete Quest Task: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Quest.Quest[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + " - Task# " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2);
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Complete Quest Task: " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1) + ". " + Microsoft.VisualBasic.Strings.Trim(E_Quest.Quest[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + " - Task# " + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2);
                                         break;
                                     }
 
@@ -1622,19 +1619,19 @@ namespace Engine
                                         {
                                             case 1:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1) + ": Pic=" + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " Top Left, X: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + " Y: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5));
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1) + ": Pic=" + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " Top Left, X: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + " Y: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5));
                                                     break;
                                                 }
 
                                             case 2:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1) + ": Pic=" + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " Center Screen, X: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + " Y: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5));
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1) + ": Pic=" + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " Center Screen, X: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + " Y: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5));
                                                     break;
                                                 }
 
                                             case 3:
                                                 {
-                                                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Show Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1) + ": Pic=" + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " On Player, X: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + " Y: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5));
+                                                    frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Show Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1) + ": Pic=" + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data2) + " On Player, X: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data4) + " Y: " + Conversion.Str(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data5));
                                                     break;
                                                 }
                                         }
@@ -1644,28 +1641,28 @@ namespace Engine
 
                                 case (int)EventType.EvHidePicture:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Hide Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1));
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Hide Picture " + System.Convert.ToString(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + 1));
                                         break;
                                     }
 
                                 case (int)EventType.EvWaitMovement:
                                     {
                                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 <= E_Types.Map.EventCount)
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Wait for Event #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "] to complete move route.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Wait for Event #" + TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1 + " [" + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i].Data1].Name) + "] to complete move route.");
                                         else
-                                            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Wait for COULD NOT FIND EVENT to complete move route.");
+                                            frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Wait for COULD NOT FIND EVENT to complete move route.");
                                         break;
                                     }
 
                                 case (int)EventType.EvHoldPlayer:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Hold Player [Do not allow player to move.]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Hold Player [Do not allow player to move.]");
                                         break;
                                     }
 
                                 case (int)EventType.EvReleasePlayer:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@>" + "Release Player [Allow player to turn and move again.]");
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Release Player [Allow player to turn and move again.]");
                                         break;
                                     }
 
@@ -1698,16 +1695,16 @@ namespace Engine
                         Array.Copy(oldEventList11, EventList, Math.Min(x + 1, oldEventList11.Length));
                     EventList[x].CommandList = curlist;
                     EventList[x].CommandNum = TmpEvent.Pages[CurPageNum].CommandList[curlist].CommandCount + 1;
-                    My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@> ");
+                    frmEvents.Default.lstCommands.Items.Add(indent + "@> ");
                     curlist = TmpEvent.Pages[CurPageNum].CommandList[curlist].ParentList;
                     goto newlist;
                 }
             }
-            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(indent + "@> ");
+            frmEvents.Default.lstCommands.Items.Add(indent + "@> ");
 
             int z = 0;
             x = 0;
-            var loopTo1 = My.MyProject.Forms.frmEvents.lstCommands.Items.Count - 1;
+            var loopTo1 = frmEvents.Default.lstCommands.Items.Count - 1;
             for (i = 0; i <= loopTo1; i++)
             {
                 // X = frmEditor_Events.TextWidth(frmEditor_Events.lstCommands.Items.Item(i).ToString)
@@ -1724,7 +1721,7 @@ namespace Engine
 
         public static void ListCommandAdd(string s)
         {
-            My.MyProject.Forms.frmEvents.lstCommands.Items.Add(s);
+            frmEvents.Default.lstCommands.Items.Add(s);
         }
 
         public static void AddCommand(int index)
@@ -1742,10 +1739,10 @@ namespace Engine
                 TmpEvent.Pages[CurPageNum].CommandList = new CommandListRec[2];
             }
 
-            if (My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex == My.MyProject.Forms.frmEvents.lstCommands.Items.Count - 1)
+            if (frmEvents.Default.lstCommands.SelectedIndex == frmEvents.Default.lstCommands.Items.Count - 1)
                 curlist = 1;
             else
-                curlist = EventList[My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex].CommandList;
+                curlist = EventList[frmEvents.Default.lstCommands.SelectedIndex].CommandList;
             if (TmpEvent.Pages[CurPageNum].CommandListCount == 0)
             {
                 TmpEvent.Pages[CurPageNum].CommandListCount = 1;
@@ -1765,17 +1762,17 @@ namespace Engine
                 for (i = 1; i <= loopTo; i++)
                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[i] = oldCommandList.Commands[i];
             }
-            if (My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex == My.MyProject.Forms.frmEvents.lstCommands.Items.Count - 1)
+            if (frmEvents.Default.lstCommands.SelectedIndex == frmEvents.Default.lstCommands.Items.Count - 1)
                 curslot = TmpEvent.Pages[CurPageNum].CommandList[curlist].CommandCount;
             else
             {
-                i = EventList[My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex].CommandNum;
+                i = EventList[frmEvents.Default.lstCommands.SelectedIndex].CommandNum;
                 if (i < TmpEvent.Pages[CurPageNum].CommandList[curlist].CommandCount)
                 {
                     var loopTo1 = i;
                     for (x = TmpEvent.Pages[CurPageNum].CommandList[curlist].CommandCount - 1; x >= loopTo1; x += -1)
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[x + 1] = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[x];
-                    curslot = EventList[My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex].CommandNum;
+                    curslot = EventList[frmEvents.Default.lstCommands.SelectedIndex].CommandNum;
                 }
                 else
                     curslot = TmpEvent.Pages[CurPageNum].CommandList[curlist].CommandCount;
@@ -1786,13 +1783,13 @@ namespace Engine
                 case (int)EventType.EvAddText:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtAddText_Text.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtAddText_Text.Text;
                         // tmpEvent.Pages(curPageNum).CommandList(curlist).Commands(curslot).Data1 = frmEditor_Events.scrlAddText_Colour.Value
-                        if (My.MyProject.Forms.frmEvents.optAddText_Player.Checked == true)
+                        if (frmEvents.Default.optAddText_Player.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optAddText_Map.Checked == true)
+                        else if (frmEvents.Default.optAddText_Map.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
-                        else if (My.MyProject.Forms.frmEvents.optAddText_Global.Checked == true)
+                        else if (frmEvents.Default.optAddText_Global.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 2;
                         break;
                     }
@@ -1811,25 +1808,25 @@ namespace Engine
                         TmpEvent.Pages[CurPageNum].CommandList[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.CommandList].ParentList = curlist;
                         TmpEvent.Pages[CurPageNum].CommandList[TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.ElseCommandList].ParentList = curlist;
 
-                        if (My.MyProject.Forms.frmEvents.optCondition0.Checked == true)
+                        if (frmEvents.Default.optCondition0.Checked == true)
                             x = 0;
-                        if (My.MyProject.Forms.frmEvents.optCondition1.Checked == true)
+                        if (frmEvents.Default.optCondition1.Checked == true)
                             x = 1;
-                        if (My.MyProject.Forms.frmEvents.optCondition2.Checked == true)
+                        if (frmEvents.Default.optCondition2.Checked == true)
                             x = 2;
-                        if (My.MyProject.Forms.frmEvents.optCondition3.Checked == true)
+                        if (frmEvents.Default.optCondition3.Checked == true)
                             x = 3;
-                        if (My.MyProject.Forms.frmEvents.optCondition4.Checked == true)
+                        if (frmEvents.Default.optCondition4.Checked == true)
                             x = 4;
-                        if (My.MyProject.Forms.frmEvents.optCondition5.Checked == true)
+                        if (frmEvents.Default.optCondition5.Checked == true)
                             x = 5;
-                        if (My.MyProject.Forms.frmEvents.optCondition6.Checked == true)
+                        if (frmEvents.Default.optCondition6.Checked == true)
                             x = 6;
-                        if (My.MyProject.Forms.frmEvents.optCondition7.Checked == true)
+                        if (frmEvents.Default.optCondition7.Checked == true)
                             x = 7;
-                        if (My.MyProject.Forms.frmEvents.optCondition8.Checked == true)
+                        if (frmEvents.Default.optCondition8.Checked == true)
                             x = 8;
-                        if (My.MyProject.Forms.frmEvents.optCondition9.Checked == true)
+                        if (frmEvents.Default.optCondition9.Checked == true)
                             x = 9;
 
                         switch (x)
@@ -1838,9 +1835,9 @@ namespace Engine
                            :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 0;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarIndex.SelectedIndex + 1;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarCompare.SelectedIndex;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)My.MyProject.Forms.frmEvents.nudCondition_PlayerVarCondition.Value;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_PlayerVarIndex.SelectedIndex + 1;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondition_PlayerVarCompare.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)frmEvents.Default.nudCondition_PlayerVarCondition.Value;
                                     break;
                                 }
 
@@ -1848,8 +1845,8 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 1;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_PlayerSwitch.SelectedIndex + 1;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondtion_PlayerSwitchCondition.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_PlayerSwitch.SelectedIndex + 1;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondtion_PlayerSwitchCondition.SelectedIndex;
                                     break;
                                 }
 
@@ -1857,8 +1854,8 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 2;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_HasItem.SelectedIndex + 1;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.nudCondition_HasItem.Value;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_HasItem.SelectedIndex + 1;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.nudCondition_HasItem.Value;
                                     break;
                                 }
 
@@ -1866,7 +1863,7 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 3;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_ClassIs.SelectedIndex + 1;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_ClassIs.SelectedIndex + 1;
                                     break;
                                 }
 
@@ -1874,7 +1871,7 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 4;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_LearntSkill.SelectedIndex + 1;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_LearntSkill.SelectedIndex + 1;
                                     break;
                                 }
 
@@ -1882,8 +1879,8 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 5;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.nudCondition_LevelAmount.Value;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondition_LevelCompare.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.nudCondition_LevelAmount.Value;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondition_LevelCompare.SelectedIndex;
                                     break;
                                 }
 
@@ -1891,8 +1888,8 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 6;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitch.SelectedIndex;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitchCondition.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_SelfSwitch.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondition_SelfSwitchCondition.SelectedIndex;
                                     break;
                                 }
 
@@ -1900,16 +1897,16 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 7;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.nudCondition_Quest.Value;
-                                    if (My.MyProject.Forms.frmEvents.optCondition_Quest0.Checked)
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.nudCondition_Quest.Value;
+                                    if (frmEvents.Default.optCondition_Quest0.Checked)
                                     {
                                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = 0;
-                                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)My.MyProject.Forms.frmEvents.cmbCondition_General.SelectedIndex;
+                                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)frmEvents.Default.cmbCondition_General.SelectedIndex;
                                     }
                                     else
                                     {
                                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = 1;
-                                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)My.MyProject.Forms.frmEvents.nudCondition_QuestTask.Value;
+                                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)frmEvents.Default.nudCondition_QuestTask.Value;
                                     }
 
                                     break;
@@ -1919,7 +1916,7 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 8;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_Gender.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_Gender.SelectedIndex;
                                     break;
                                 }
 
@@ -1927,7 +1924,7 @@ namespace Engine
                      :
                                 {
                                     TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 9;
-                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_Time.SelectedIndex;
+                                    TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_Time.SelectedIndex;
                                     break;
                                 }
                         }
@@ -1939,23 +1936,23 @@ namespace Engine
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
                         string tmptxt = "";
-                        var loopTo2 = Information.UBound(My.MyProject.Forms.frmEvents.txtShowText.Lines);
+                        var loopTo2 = Information.UBound(frmEvents.Default.txtShowText.Lines);
                         for (i = 0; i <= loopTo2; i++)
-                            tmptxt = tmptxt + My.MyProject.Forms.frmEvents.txtShowText.Lines[i];
+                            tmptxt = tmptxt + frmEvents.Default.txtShowText.Lines[i];
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = tmptxt;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudShowTextFace.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudShowTextFace.Value;
                         break;
                     }
 
                 case (int)EventType.EvShowChoices:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtChoicePrompt.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text2 = My.MyProject.Forms.frmEvents.txtChoices1.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text3 = My.MyProject.Forms.frmEvents.txtChoices2.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text4 = My.MyProject.Forms.frmEvents.txtChoices3.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text5 = My.MyProject.Forms.frmEvents.txtChoices4.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)My.MyProject.Forms.frmEvents.nudShowChoicesFace.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtChoicePrompt.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text2 = frmEvents.Default.txtChoices1.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text3 = frmEvents.Default.txtChoices2.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text4 = frmEvents.Default.txtChoices3.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text5 = frmEvents.Default.txtChoices4.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)frmEvents.Default.nudShowChoicesFace.Value;
                         TmpEvent.Pages[CurPageNum].CommandListCount = TmpEvent.Pages[CurPageNum].CommandListCount + 4;
                         var oldCommandList1 = TmpEvent.Pages[CurPageNum].CommandList;
                         TmpEvent.Pages[CurPageNum].CommandList = new CommandListRec[TmpEvent.Pages[CurPageNum].CommandListCount + 1];
@@ -1975,45 +1972,45 @@ namespace Engine
                 case (int)EventType.EvPlayerVar:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbVariable.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbVariable.SelectedIndex + 1;
 
-                        if (My.MyProject.Forms.frmEvents.optVariableAction0.Checked == true)
+                        if (frmEvents.Default.optVariableAction0.Checked == true)
                             i = 0;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction1.Checked == true)
+                        if (frmEvents.Default.optVariableAction1.Checked == true)
                             i = 1;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction2.Checked == true)
+                        if (frmEvents.Default.optVariableAction2.Checked == true)
                             i = 2;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction3.Checked == true)
+                        if (frmEvents.Default.optVariableAction3.Checked == true)
                             i = 3;
 
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = i;
                         if (i == 3)
                         {
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData3.Value;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudVariableData4.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData3.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudVariableData4.Value;
                         }
                         else if (i == 0)
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData0.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData0.Value;
                         else if (i == 1)
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData1.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData1.Value;
                         else if (i == 2)
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData2.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData2.Value;
                         break;
                     }
 
                 case (int)EventType.EvPlayerSwitch:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSwitch.SelectedIndex + 1;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.cmbPlayerSwitchSet.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSwitch.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.cmbPlayerSwitchSet.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvSelfSwitch:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSetSelfSwitch.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.cmbSetSelfSwitchTo.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSetSelfSwitch.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.cmbSetSelfSwitchTo.SelectedIndex;
                         break;
                     }
 
@@ -2026,14 +2023,14 @@ namespace Engine
                 case (int)EventType.EvChangeItems:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChangeItemIndex.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.optChangeItemSet.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChangeItemIndex.SelectedIndex + 1;
+                        if (frmEvents.Default.optChangeItemSet.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optChangeItemAdd.Checked == true)
+                        else if (frmEvents.Default.optChangeItemAdd.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
-                        else if (My.MyProject.Forms.frmEvents.optChangeItemRemove.Checked == true)
+                        else if (frmEvents.Default.optChangeItemRemove.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 2;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudChangeItemsAmount.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudChangeItemsAmount.Value;
                         break;
                     }
 
@@ -2058,17 +2055,17 @@ namespace Engine
                 case (int)EventType.EvChangeLevel:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudChangeLevel.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudChangeLevel.Value;
                         break;
                     }
 
                 case (int)EventType.EvChangeSkills:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChangeSkills.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.optChangeSkillsAdd.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChangeSkills.SelectedIndex + 1;
+                        if (frmEvents.Default.optChangeSkillsAdd.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optChangeSkillsRemove.Checked == true)
+                        else if (frmEvents.Default.optChangeSkillsRemove.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
                         break;
                     }
@@ -2076,23 +2073,23 @@ namespace Engine
                 case (int)EventType.EvChangeClass:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChangeClass.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChangeClass.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvChangeSprite:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudChangeSprite.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudChangeSprite.Value;
                         break;
                     }
 
                 case (int)EventType.EvChangeSex:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        if (My.MyProject.Forms.frmEvents.optChangeSexMale.Checked == true)
+                        if (frmEvents.Default.optChangeSexMale.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optChangeSexFemale.Checked == true)
+                        else if (frmEvents.Default.optChangeSexFemale.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = 1;
                         break;
                     }
@@ -2100,30 +2097,30 @@ namespace Engine
                 case (int)EventType.EvChangePk:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSetPK.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSetPK.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvWarpPlayer:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudWPMap.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudWPX.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudWPY.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.cmbWarpPlayerDir.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudWPMap.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudWPX.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudWPY.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.cmbWarpPlayerDir.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvSetMoveRoute:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[My.MyProject.Forms.frmEvents.cmbEvent.SelectedIndex];
-                        if (My.MyProject.Forms.frmEvents.chkIgnoreMove.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[frmEvents.Default.cmbEvent.SelectedIndex];
+                        if (frmEvents.Default.chkIgnoreMove.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
                         else
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
 
-                        if (My.MyProject.Forms.frmEvents.chkRepeatRoute.Checked == true)
+                        if (frmEvents.Default.chkRepeatRoute.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = 1;
                         else
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = 0;
@@ -2136,19 +2133,19 @@ namespace Engine
                 case (int)EventType.EvPlayAnimation:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbPlayAnim.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex == 0)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbPlayAnim.SelectedIndex + 1;
+                        if (frmEvents.Default.cmbAnimTargetType.SelectedIndex == 0)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex == 1)
+                        else if (frmEvents.Default.cmbAnimTargetType.SelectedIndex == 1)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.cmbPlayAnimEvent.SelectedIndex + 1;
                         }
-                        else if (My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex == 2 == true)
+                        else if (frmEvents.Default.cmbAnimTargetType.SelectedIndex == 2 == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 2;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudPlayAnimTileX.Value;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudPlayAnimTileY.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudPlayAnimTileX.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudPlayAnimTileY.Value;
                         }
 
                         break;
@@ -2157,14 +2154,14 @@ namespace Engine
                 case (int)EventType.EvCustomScript:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudCustomScript.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudCustomScript.Value;
                         break;
                     }
 
                 case (int)EventType.EvPlayBgm:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.MusicCache[My.MyProject.Forms.frmEvents.cmbPlayBGM.SelectedIndex + 1];
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.MusicCache[frmEvents.Default.cmbPlayBGM.SelectedIndex + 1];
                         break;
                     }
 
@@ -2177,7 +2174,7 @@ namespace Engine
                 case (int)EventType.EvPlaySound:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.SoundCache[My.MyProject.Forms.frmEvents.cmbPlaySound.SelectedIndex + 1];
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.SoundCache[frmEvents.Default.cmbPlaySound.SelectedIndex + 1];
                         break;
                     }
 
@@ -2202,52 +2199,52 @@ namespace Engine
                 case (int)EventType.EvOpenShop:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbOpenShop.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbOpenShop.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvSetAccess:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSetAccess.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSetAccess.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvGiveExp:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudGiveExp.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudGiveExp.Value;
                         break;
                     }
 
                 case (int)EventType.EvShowChatBubble:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtChatbubbleText.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtChatbubbleText.Text;
 
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChatBubbleTargetType.SelectedIndex + 1;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.cmbChatBubbleTarget.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChatBubbleTargetType.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.cmbChatBubbleTarget.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvLabel:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtLabelName.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtLabelName.Text;
                         break;
                     }
 
                 case (int)EventType.EvGotoLabel:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtGotoLabel.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtGotoLabel.Text;
                         break;
                     }
 
                 case (int)EventType.EvSpawnNpc:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSpawnNpc.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSpawnNpc.SelectedIndex + 1;
                         break;
                     }
 
@@ -2272,83 +2269,83 @@ namespace Engine
                 case (int)EventType.EvSetFog:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudFogData0.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudFogData1.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudFogData2.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudFogData0.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudFogData1.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudFogData2.Value;
                         break;
                     }
 
                 case (int)EventType.EvSetWeather:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.CmbWeather.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudWeatherIntensity.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.CmbWeather.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudWeatherIntensity.Value;
                         break;
                     }
 
                 case (int)EventType.EvSetTint:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudMapTintData0.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudMapTintData1.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudMapTintData2.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudMapTintData3.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudMapTintData0.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudMapTintData1.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudMapTintData2.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudMapTintData3.Value;
                         break;
                     }
 
                 case (int)EventType.EvWait:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudWaitAmount.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudWaitAmount.Value;
                         break;
                     }
 
                 case (int)EventType.EvBeginQuest:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbBeginQuest.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbBeginQuest.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvEndQuest:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbEndQuest.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbEndQuest.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvQuestTask:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbCompleteQuest.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudCompleteQuestTask.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbCompleteQuest.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudCompleteQuestTask.Value;
                         break;
                     }
 
                 case (int)EventType.EvShowPicture:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbPicIndex.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudShowPicture.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbPicIndex.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudShowPicture.Value;
 
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.cmbPicLoc.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.cmbPicLoc.SelectedIndex + 1;
 
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudPicOffsetX.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)My.MyProject.Forms.frmEvents.nudPicOffsetY.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudPicOffsetX.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)frmEvents.Default.nudPicOffsetY.Value;
                         break;
                     }
 
                 case (int)EventType.EvHidePicture:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudHidePic.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudHidePic.Value;
                         break;
                     }
 
                 case (int)EventType.EvWaitMovement:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[My.MyProject.Forms.frmEvents.cmbMoveWait.SelectedIndex];
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[frmEvents.Default.cmbMoveWait.SelectedIndex];
                         break;
                     }
 
@@ -2374,14 +2371,14 @@ namespace Engine
             int curlist;
             int curslot;
 
-            i = My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex;
+            i = frmEvents.Default.lstCommands.SelectedIndex;
             if (i == -1)
                 return;
             if (i > Information.UBound(EventList))
                 return;
 
-            My.MyProject.Forms.frmEvents.fraConditionalBranch.Visible = false;
-            My.MyProject.Forms.frmEvents.fraDialogue.BringToFront();
+            frmEvents.Default.fraConditionalBranch.Visible = false;
+            frmEvents.Default.fraDialogue.BringToFront();
 
             curlist = EventList[i].CommandList;
             curslot = EventList[i].CommandNum;
@@ -2398,101 +2395,101 @@ namespace Engine
                 case (int)EventType.EvAddText:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.txtAddText_Text.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
+                        frmEvents.Default.txtAddText_Text.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
                         // frmEditor_Events.scrlAddText_Colour.Value = tmpEvent.Pages(curPageNum).CommandList(curlist).Commands(curslot).Data1
                         switch (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2)
                         {
                             case 0:
                                 {
-                                    My.MyProject.Forms.frmEvents.optAddText_Player.Checked = true;
+                                    frmEvents.Default.optAddText_Player.Checked = true;
                                     break;
                                 }
 
                             case 1:
                                 {
-                                    My.MyProject.Forms.frmEvents.optAddText_Map.Checked = true;
+                                    frmEvents.Default.optAddText_Map.Checked = true;
                                     break;
                                 }
 
                             case 2:
                                 {
-                                    My.MyProject.Forms.frmEvents.optAddText_Global.Checked = true;
+                                    frmEvents.Default.optAddText_Global.Checked = true;
                                     break;
                                 }
                         }
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraAddText.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraAddText.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvCondition:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraConditionalBranch.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
-                        My.MyProject.Forms.frmEvents.ClearConditionFrame();
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraConditionalBranch.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
+                        frmEvents.Default.ClearConditionFrame();
 
                         switch (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition)
                         {
                             case 0:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition0.Checked = true;
+                                    frmEvents.Default.optCondition0.Checked = true;
                                     break;
                                 }
 
                             case 1:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition1.Checked = true;
+                                    frmEvents.Default.optCondition1.Checked = true;
                                     break;
                                 }
 
                             case 2:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition2.Checked = true;
+                                    frmEvents.Default.optCondition2.Checked = true;
                                     break;
                                 }
 
                             case 3:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition3.Checked = true;
+                                    frmEvents.Default.optCondition3.Checked = true;
                                     break;
                                 }
 
                             case 4:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition4.Checked = true;
+                                    frmEvents.Default.optCondition4.Checked = true;
                                     break;
                                 }
 
                             case 5:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition5.Checked = true;
+                                    frmEvents.Default.optCondition5.Checked = true;
                                     break;
                                 }
 
                             case 6:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition6.Checked = true;
+                                    frmEvents.Default.optCondition6.Checked = true;
                                     break;
                                 }
 
                             case 7:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition7.Checked = true;
+                                    frmEvents.Default.optCondition7.Checked = true;
                                     break;
                                 }
 
                             case 8:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition8.Checked = true;
+                                    frmEvents.Default.optCondition8.Checked = true;
                                     break;
                                 }
 
                             case 9:
                                 {
-                                    My.MyProject.Forms.frmEvents.optCondition9.Checked = true;
+                                    frmEvents.Default.optCondition9.Checked = true;
                                     break;
                                 }
                         }
@@ -2501,81 +2498,81 @@ namespace Engine
                         {
                             case 0:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarIndex.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarCompare.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.nudCondition_PlayerVarCondition.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarIndex.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarCompare.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
-                                    My.MyProject.Forms.frmEvents.nudCondition_PlayerVarCondition.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3;
+                                    frmEvents.Default.cmbCondition_PlayerVarIndex.Enabled = true;
+                                    frmEvents.Default.cmbCondition_PlayerVarCompare.Enabled = true;
+                                    frmEvents.Default.nudCondition_PlayerVarCondition.Enabled = true;
+                                    frmEvents.Default.cmbCondition_PlayerVarIndex.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
+                                    frmEvents.Default.cmbCondition_PlayerVarCompare.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
+                                    frmEvents.Default.nudCondition_PlayerVarCondition.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3;
                                     break;
                                 }
 
                             case 1:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_PlayerSwitch.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondtion_PlayerSwitchCondition.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_PlayerSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
-                                    My.MyProject.Forms.frmEvents.cmbCondtion_PlayerSwitchCondition.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
+                                    frmEvents.Default.cmbCondition_PlayerSwitch.Enabled = true;
+                                    frmEvents.Default.cmbCondtion_PlayerSwitchCondition.Enabled = true;
+                                    frmEvents.Default.cmbCondition_PlayerSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
+                                    frmEvents.Default.cmbCondtion_PlayerSwitchCondition.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
                                     break;
                                 }
 
                             case 2:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_HasItem.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.nudCondition_HasItem.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_HasItem.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
-                                    My.MyProject.Forms.frmEvents.nudCondition_HasItem.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
+                                    frmEvents.Default.cmbCondition_HasItem.Enabled = true;
+                                    frmEvents.Default.nudCondition_HasItem.Enabled = true;
+                                    frmEvents.Default.cmbCondition_HasItem.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
+                                    frmEvents.Default.nudCondition_HasItem.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
                                     break;
                                 }
 
                             case 3:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_ClassIs.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_ClassIs.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
+                                    frmEvents.Default.cmbCondition_ClassIs.Enabled = true;
+                                    frmEvents.Default.cmbCondition_ClassIs.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
                                     break;
                                 }
 
                             case 4:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_LearntSkill.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_LearntSkill.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
+                                    frmEvents.Default.cmbCondition_LearntSkill.Enabled = true;
+                                    frmEvents.Default.cmbCondition_LearntSkill.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 - 1;
                                     break;
                                 }
 
                             case 5:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_LevelCompare.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.nudCondition_LevelAmount.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.nudCondition_LevelAmount.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_LevelCompare.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
+                                    frmEvents.Default.cmbCondition_LevelCompare.Enabled = true;
+                                    frmEvents.Default.nudCondition_LevelAmount.Enabled = true;
+                                    frmEvents.Default.nudCondition_LevelAmount.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
+                                    frmEvents.Default.cmbCondition_LevelCompare.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
                                     break;
                                 }
 
                             case 6:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitch.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitchCondition.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitchCondition.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
+                                    frmEvents.Default.cmbCondition_SelfSwitch.Enabled = true;
+                                    frmEvents.Default.cmbCondition_SelfSwitchCondition.Enabled = true;
+                                    frmEvents.Default.cmbCondition_SelfSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
+                                    frmEvents.Default.cmbCondition_SelfSwitchCondition.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2;
                                     break;
                                 }
 
                             case 7:
                                 {
-                                    My.MyProject.Forms.frmEvents.nudCondition_Quest.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.nudCondition_Quest.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
-                                    My.MyProject.Forms.frmEvents.fraConditions_Quest.Visible = true;
+                                    frmEvents.Default.nudCondition_Quest.Enabled = true;
+                                    frmEvents.Default.nudCondition_Quest.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
+                                    frmEvents.Default.fraConditions_Quest.Visible = true;
                                     if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 == 0)
                                     {
-                                        My.MyProject.Forms.frmEvents.optCondition_Quest0.Checked = true;
-                                        My.MyProject.Forms.frmEvents.cmbCondition_General.Enabled = true;
-                                        My.MyProject.Forms.frmEvents.cmbCondition_General.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3;
+                                        frmEvents.Default.optCondition_Quest0.Checked = true;
+                                        frmEvents.Default.cmbCondition_General.Enabled = true;
+                                        frmEvents.Default.cmbCondition_General.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3;
                                     }
                                     else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 == 1)
                                     {
-                                        My.MyProject.Forms.frmEvents.optCondition_Quest1.Checked = true;
-                                        My.MyProject.Forms.frmEvents.nudCondition_QuestTask.Enabled = true;
-                                        My.MyProject.Forms.frmEvents.nudCondition_QuestTask.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3;
+                                        frmEvents.Default.optCondition_Quest1.Checked = true;
+                                        frmEvents.Default.nudCondition_QuestTask.Enabled = true;
+                                        frmEvents.Default.nudCondition_QuestTask.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3;
                                     }
 
                                     break;
@@ -2583,15 +2580,15 @@ namespace Engine
 
                             case 8:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_Gender.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_Gender.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
+                                    frmEvents.Default.cmbCondition_Gender.Enabled = true;
+                                    frmEvents.Default.cmbCondition_Gender.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
                                     break;
                                 }
 
                             case 9:
                                 {
-                                    My.MyProject.Forms.frmEvents.cmbCondition_Time.Enabled = true;
-                                    My.MyProject.Forms.frmEvents.cmbCondition_Time.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
+                                    frmEvents.Default.cmbCondition_Time.Enabled = true;
+                                    frmEvents.Default.cmbCondition_Time.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1;
                                     break;
                                 }
                         }
@@ -2602,150 +2599,150 @@ namespace Engine
                 case (int)EventType.EvShowText:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.txtShowText.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
-                        My.MyProject.Forms.frmEvents.nudShowTextFace.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraShowText.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.txtShowText.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
+                        frmEvents.Default.nudShowTextFace.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraShowText.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvShowChoices:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.txtChoicePrompt.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
-                        My.MyProject.Forms.frmEvents.txtChoices1.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text2;
-                        My.MyProject.Forms.frmEvents.txtChoices2.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text3;
-                        My.MyProject.Forms.frmEvents.txtChoices3.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text4;
-                        My.MyProject.Forms.frmEvents.txtChoices4.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text5;
-                        My.MyProject.Forms.frmEvents.nudShowChoicesFace.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraShowChoices.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.txtChoicePrompt.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
+                        frmEvents.Default.txtChoices1.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text2;
+                        frmEvents.Default.txtChoices2.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text3;
+                        frmEvents.Default.txtChoices3.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text4;
+                        frmEvents.Default.txtChoices4.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text5;
+                        frmEvents.Default.nudShowChoicesFace.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraShowChoices.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvPlayerVar:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbVariable.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.cmbVariable.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
                         switch (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2)
                         {
                             case 0:
                                 {
-                                    My.MyProject.Forms.frmEvents.optVariableAction0.Checked = true;
-                                    My.MyProject.Forms.frmEvents.nudVariableData0.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                                    frmEvents.Default.optVariableAction0.Checked = true;
+                                    frmEvents.Default.nudVariableData0.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
                                     break;
                                 }
 
                             case 1:
                                 {
-                                    My.MyProject.Forms.frmEvents.optVariableAction1.Checked = true;
-                                    My.MyProject.Forms.frmEvents.nudVariableData1.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                                    frmEvents.Default.optVariableAction1.Checked = true;
+                                    frmEvents.Default.nudVariableData1.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
                                     break;
                                 }
 
                             case 2:
                                 {
-                                    My.MyProject.Forms.frmEvents.optVariableAction2.Checked = true;
-                                    My.MyProject.Forms.frmEvents.nudVariableData2.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                                    frmEvents.Default.optVariableAction2.Checked = true;
+                                    frmEvents.Default.nudVariableData2.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
                                     break;
                                 }
 
                             case 3:
                                 {
-                                    My.MyProject.Forms.frmEvents.optVariableAction3.Checked = true;
-                                    My.MyProject.Forms.frmEvents.nudVariableData3.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
-                                    My.MyProject.Forms.frmEvents.nudVariableData4.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
+                                    frmEvents.Default.optVariableAction3.Checked = true;
+                                    frmEvents.Default.nudVariableData3.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                                    frmEvents.Default.nudVariableData4.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
                                     break;
                                 }
                         }
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraPlayerVariable.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraPlayerVariable.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvPlayerSwitch:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
-                        My.MyProject.Forms.frmEvents.cmbPlayerSwitchSet.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraPlayerSwitch.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.cmbPlayerSwitchSet.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraPlayerSwitch.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSelfSwitch:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbSetSelfSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.cmbSetSelfSwitchTo.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraSetSelfSwitch.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbSetSelfSwitch.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.cmbSetSelfSwitchTo.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraSetSelfSwitch.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvChangeItems:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbChangeItemIndex.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.cmbChangeItemIndex.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 0)
-                            My.MyProject.Forms.frmEvents.optChangeItemSet.Checked = true;
+                            frmEvents.Default.optChangeItemSet.Checked = true;
                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 1)
-                            My.MyProject.Forms.frmEvents.optChangeItemAdd.Checked = true;
+                            frmEvents.Default.optChangeItemAdd.Checked = true;
                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 2)
-                            My.MyProject.Forms.frmEvents.optChangeItemRemove.Checked = true;
-                        My.MyProject.Forms.frmEvents.nudChangeItemsAmount.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangeItems.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                            frmEvents.Default.optChangeItemRemove.Checked = true;
+                        frmEvents.Default.nudChangeItemsAmount.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangeItems.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvChangeLevel:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudChangeLevel.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangeLevel.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudChangeLevel.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangeLevel.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvChangeSkills:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbChangeSkills.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.cmbChangeSkills.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 0)
-                            My.MyProject.Forms.frmEvents.optChangeSkillsAdd.Checked = true;
+                            frmEvents.Default.optChangeSkillsAdd.Checked = true;
                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 1)
-                            My.MyProject.Forms.frmEvents.optChangeSkillsRemove.Checked = true;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangeSkills.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                            frmEvents.Default.optChangeSkillsRemove.Checked = true;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangeSkills.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvChangeClass:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbChangeClass.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangeClass.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbChangeClass.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangeClass.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvChangeSprite:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudChangeSprite.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangeSprite.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudChangeSprite.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangeSprite.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
@@ -2753,12 +2750,12 @@ namespace Engine
                     {
                         IsEdit = true;
                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 == 0)
-                            My.MyProject.Forms.frmEvents.optChangeSexMale.Checked = true;
+                            frmEvents.Default.optChangeSexMale.Checked = true;
                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 == 1)
-                            My.MyProject.Forms.frmEvents.optChangeSexFemale.Checked = true;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangeGender.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                            frmEvents.Default.optChangeSexFemale.Checked = true;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangeGender.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
@@ -2766,55 +2763,55 @@ namespace Engine
                     {
                         IsEdit = true;
 
-                        My.MyProject.Forms.frmEvents.cmbSetPK.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.cmbSetPK.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
 
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraChangePK.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraChangePK.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvWarpPlayer:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudWPMap.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.nudWPX.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.nudWPY.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
-                        My.MyProject.Forms.frmEvents.cmbWarpPlayerDir.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraPlayerWarp.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudWPMap.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.nudWPX.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.nudWPY.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                        frmEvents.Default.cmbWarpPlayerDir.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraPlayerWarp.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSetMoveRoute:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.fraMoveRoute.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraMoveRoute.BringToFront();
-                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Clear();
-                        My.MyProject.Forms.frmEvents.cmbEvent.Items.Clear();
+                        frmEvents.Default.fraMoveRoute.Visible = true;
+                        frmEvents.Default.fraMoveRoute.BringToFront();
+                        frmEvents.Default.lstMoveRoute.Items.Clear();
+                        frmEvents.Default.cmbEvent.Items.Clear();
                         ListOfEvents = new int[E_Types.Map.EventCount + 1];
                         ListOfEvents[0] = EditorEvent;
-                        My.MyProject.Forms.frmEvents.cmbEvent.Items.Add("This Event");
-                        My.MyProject.Forms.frmEvents.cmbEvent.SelectedIndex = 0;
-                        My.MyProject.Forms.frmEvents.cmbEvent.Enabled = true;
+                        frmEvents.Default.cmbEvent.Items.Add("This Event");
+                        frmEvents.Default.cmbEvent.SelectedIndex = 0;
+                        frmEvents.Default.cmbEvent.Enabled = true;
                         var loopTo = E_Types.Map.EventCount;
                         for (i = 1; i <= loopTo; i++)
                         {
                             if (i != EditorEvent)
                             {
-                                My.MyProject.Forms.frmEvents.cmbEvent.Items.Add(Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[i].Name));
+                                frmEvents.Default.cmbEvent.Items.Add(Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[i].Name));
                                 x = (x + 1);
                                 ListOfEvents[x] = i;
                                 if (i == TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1)
-                                    My.MyProject.Forms.frmEvents.cmbEvent.SelectedIndex = x;
+                                    frmEvents.Default.cmbEvent.SelectedIndex = x;
                             }
                         }
 
                         IsMoveRouteCommand = true;
-                        My.MyProject.Forms.frmEvents.chkIgnoreMove.Checked = Convert.ToBoolean(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2);
-                        My.MyProject.Forms.frmEvents.chkRepeatRoute.Checked = Convert.ToBoolean(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3);
+                        frmEvents.Default.chkIgnoreMove.Checked = Convert.ToBoolean(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2);
+                        frmEvents.Default.chkRepeatRoute.Checked = Convert.ToBoolean(TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3);
                         TempMoveRouteCount = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].MoveRouteCount;
                         TempMoveRoute = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].MoveRoute;
                         var loopTo1 = TempMoveRouteCount;
@@ -2824,313 +2821,313 @@ namespace Engine
                             {
                                 case 1:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Up");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Up");
                                         break;
                                     }
 
                                 case 2:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Down");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Down");
                                         break;
                                     }
 
                                 case 3:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Left");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Left");
                                         break;
                                     }
 
                                 case 4:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Right");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Right");
                                         break;
                                     }
 
                                 case 5:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Randomly");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Randomly");
                                         break;
                                     }
 
                                 case 6:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Towards Player");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Towards Player");
                                         break;
                                     }
 
                                 case 7:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Move Away From Player");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Move Away From Player");
                                         break;
                                     }
 
                                 case 8:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Step Forward");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Step Forward");
                                         break;
                                     }
 
                                 case 9:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Step Back");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Step Back");
                                         break;
                                     }
 
                                 case 10:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Wait 100ms");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Wait 100ms");
                                         break;
                                     }
 
                                 case 11:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Wait 500ms");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Wait 500ms");
                                         break;
                                     }
 
                                 case 12:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Wait 1000ms");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Wait 1000ms");
                                         break;
                                     }
 
                                 case 13:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Up");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Up");
                                         break;
                                     }
 
                                 case 14:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Down");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Down");
                                         break;
                                     }
 
                                 case 15:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Left");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Left");
                                         break;
                                     }
 
                                 case 16:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Right");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Right");
                                         break;
                                     }
 
                                 case 17:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn 90 Degrees To the Right");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn 90 Degrees To the Right");
                                         break;
                                     }
 
                                 case 18:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn 90 Degrees To the Left");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn 90 Degrees To the Left");
                                         break;
                                     }
 
                                 case 19:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Around 180 Degrees");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Around 180 Degrees");
                                         break;
                                     }
 
                                 case 20:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Randomly");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Randomly");
                                         break;
                                     }
 
                                 case 21:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Towards Player");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Towards Player");
                                         break;
                                     }
 
                                 case 22:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Away from Player");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Away from Player");
                                         break;
                                     }
 
                                 case 23:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Speed 8x Slower");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Speed 8x Slower");
                                         break;
                                     }
 
                                 case 24:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Speed 4x Slower");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Speed 4x Slower");
                                         break;
                                     }
 
                                 case 25:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Speed 2x Slower");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Speed 2x Slower");
                                         break;
                                     }
 
                                 case 26:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Speed to Normal");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Speed to Normal");
                                         break;
                                     }
 
                                 case 27:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Speed 2x Faster");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Speed 2x Faster");
                                         break;
                                     }
 
                                 case 28:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Speed 4x Faster");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Speed 4x Faster");
                                         break;
                                     }
 
                                 case 29:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Frequency Lowest");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Frequency Lowest");
                                         break;
                                     }
 
                                 case 30:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Frequency Lower");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Frequency Lower");
                                         break;
                                     }
 
                                 case 31:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Frequency Normal");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Frequency Normal");
                                         break;
                                     }
 
                                 case 32:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Frequency Higher");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Frequency Higher");
                                         break;
                                     }
 
                                 case 33:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Frequency Highest");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Frequency Highest");
                                         break;
                                     }
 
                                 case 34:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn On Walking Animation");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn On Walking Animation");
                                         break;
                                     }
 
                                 case 35:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Off Walking Animation");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Off Walking Animation");
                                         break;
                                     }
 
                                 case 36:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn On Fixed Direction");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn On Fixed Direction");
                                         break;
                                     }
 
                                 case 37:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Off Fixed Direction");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Off Fixed Direction");
                                         break;
                                     }
 
                                 case 38:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn On Walk Through");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn On Walk Through");
                                         break;
                                     }
 
                                 case 39:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Turn Off Walk Through");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Turn Off Walk Through");
                                         break;
                                     }
 
                                 case 40:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Position Below Player");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Position Below Player");
                                         break;
                                     }
 
                                 case 41:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Position at Player Level");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Position at Player Level");
                                         break;
                                     }
 
                                 case 42:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Position Above Player");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Position Above Player");
                                         break;
                                     }
 
                                 case 43:
                                     {
-                                        My.MyProject.Forms.frmEvents.lstMoveRoute.Items.Add("Set Graphic");
+                                        frmEvents.Default.lstMoveRoute.Items.Add("Set Graphic");
                                         break;
                                     }
                             }
                         }
-                        My.MyProject.Forms.frmEvents.fraMoveRoute.Width = 841;
-                        My.MyProject.Forms.frmEvents.fraMoveRoute.Height = 636;
-                        My.MyProject.Forms.frmEvents.fraMoveRoute.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = false;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraMoveRoute.Width = 841;
+                        frmEvents.Default.fraMoveRoute.Height = 636;
+                        frmEvents.Default.fraMoveRoute.Visible = true;
+                        frmEvents.Default.fraDialogue.Visible = false;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvPlayAnimation:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.lblPlayAnimX.Visible = false;
-                        My.MyProject.Forms.frmEvents.lblPlayAnimY.Visible = false;
-                        My.MyProject.Forms.frmEvents.nudPlayAnimTileX.Visible = false;
-                        My.MyProject.Forms.frmEvents.nudPlayAnimTileY.Visible = false;
-                        My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.Visible = false;
-                        My.MyProject.Forms.frmEvents.cmbPlayAnim.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
-                        My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.Items.Clear();
+                        frmEvents.Default.lblPlayAnimX.Visible = false;
+                        frmEvents.Default.lblPlayAnimY.Visible = false;
+                        frmEvents.Default.nudPlayAnimTileX.Visible = false;
+                        frmEvents.Default.nudPlayAnimTileY.Visible = false;
+                        frmEvents.Default.cmbPlayAnimEvent.Visible = false;
+                        frmEvents.Default.cmbPlayAnim.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.cmbPlayAnimEvent.Items.Clear();
                         var loopTo2 = E_Types.Map.EventCount;
                         for (i = 1; i <= loopTo2; i++)
-                            My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.Items.Add(i + ". " + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[i].Name));
-                        My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.SelectedIndex = 0;
+                            frmEvents.Default.cmbPlayAnimEvent.Items.Add(i + ". " + Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[i].Name));
+                        frmEvents.Default.cmbPlayAnimEvent.SelectedIndex = 0;
                         if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 0)
-                            My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex = 0;
+                            frmEvents.Default.cmbAnimTargetType.SelectedIndex = 0;
                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 1)
                         {
-                            My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex = 1;
-                            My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 - 1;
+                            frmEvents.Default.cmbAnimTargetType.SelectedIndex = 1;
+                            frmEvents.Default.cmbPlayAnimEvent.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 - 1;
                         }
                         else if (TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 == 2)
                         {
-                            My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex = 2;
-                            My.MyProject.Forms.frmEvents.nudPlayAnimTileX.Maximum = E_Types.Map.MaxX;
-                            My.MyProject.Forms.frmEvents.nudPlayAnimTileY.Maximum = E_Types.Map.MaxY;
-                            My.MyProject.Forms.frmEvents.nudPlayAnimTileX.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
-                            My.MyProject.Forms.frmEvents.nudPlayAnimTileY.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
+                            frmEvents.Default.cmbAnimTargetType.SelectedIndex = 2;
+                            frmEvents.Default.nudPlayAnimTileX.Maximum = E_Types.Map.MaxX;
+                            frmEvents.Default.nudPlayAnimTileY.Maximum = E_Types.Map.MaxY;
+                            frmEvents.Default.nudPlayAnimTileX.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                            frmEvents.Default.nudPlayAnimTileY.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
                         }
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraPlayAnimation.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraPlayAnimation.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvCustomScript:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudCustomScript.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCustomScript.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudCustomScript.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraCustomScript.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
@@ -3141,11 +3138,11 @@ namespace Engine
                         for (i = 1; i <= loopTo3; i++)
                         {
                             if (E_Sound.MusicCache[i] == TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1)
-                                My.MyProject.Forms.frmEvents.cmbPlayBGM.SelectedIndex = i - 1;
+                                frmEvents.Default.cmbPlayBGM.SelectedIndex = i - 1;
                         }
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraPlayBGM.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraPlayBGM.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
@@ -3156,211 +3153,211 @@ namespace Engine
                         for (i = 1; i <= loopTo4; i++)
                         {
                             if (E_Sound.SoundCache[i] == TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1)
-                                My.MyProject.Forms.frmEvents.cmbPlaySound.SelectedIndex = i - 1;
+                                frmEvents.Default.cmbPlaySound.SelectedIndex = i - 1;
                         }
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraPlaySound.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraPlaySound.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvOpenShop:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbOpenShop.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraOpenShop.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbOpenShop.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraOpenShop.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSetAccess:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbSetAccess.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraSetAccess.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbSetAccess.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraSetAccess.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvGiveExp:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudGiveExp.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraGiveExp.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudGiveExp.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraGiveExp.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvShowChatBubble:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.txtChatbubbleText.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
-                        My.MyProject.Forms.frmEvents.cmbChatBubbleTargetType.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
-                        My.MyProject.Forms.frmEvents.cmbChatBubbleTarget.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 - 1;
+                        frmEvents.Default.txtChatbubbleText.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
+                        frmEvents.Default.cmbChatBubbleTargetType.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.cmbChatBubbleTarget.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 - 1;
 
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraShowChatBubble.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraShowChatBubble.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvLabel:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.txtLabelName.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCreateLabel.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.txtLabelName.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraCreateLabel.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvGotoLabel:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.txtGotoLabel.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraGoToLabel.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.txtGotoLabel.Text = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraGoToLabel.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSpawnNpc:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbSpawnNpc.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraSpawnNpc.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbSpawnNpc.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 - 1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraSpawnNpc.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSetFog:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudFogData0.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.nudFogData1.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.nudFogData2.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraSetFog.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudFogData0.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.nudFogData1.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.nudFogData2.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraSetFog.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSetWeather:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.CmbWeather.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.nudWeatherIntensity.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraSetWeather.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.CmbWeather.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.nudWeatherIntensity.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraSetWeather.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvSetTint:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudMapTintData0.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.nudMapTintData1.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.nudMapTintData2.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
-                        My.MyProject.Forms.frmEvents.nudMapTintData3.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraMapTint.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudMapTintData0.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.nudMapTintData1.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.nudMapTintData2.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3;
+                        frmEvents.Default.nudMapTintData3.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraMapTint.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvWait:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudWaitAmount.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraSetWait.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudWaitAmount.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraSetWait.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvBeginQuest:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbBeginQuest.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraBeginQuest.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbBeginQuest.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraBeginQuest.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvEndQuest:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbEndQuest.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraEndQuest.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbEndQuest.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraEndQuest.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvQuestTask:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbCompleteQuest.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.nudCompleteQuestTask.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCompleteTask.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.cmbCompleteQuest.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.nudCompleteQuestTask.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraCompleteTask.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvShowPicture:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.cmbPicIndex.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.nudShowPicture.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
+                        frmEvents.Default.cmbPicIndex.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.nudShowPicture.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2;
 
-                        My.MyProject.Forms.frmEvents.cmbPicLoc.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 - 1;
+                        frmEvents.Default.cmbPicLoc.SelectedIndex = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 - 1;
 
-                        My.MyProject.Forms.frmEvents.nudPicOffsetX.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
-                        My.MyProject.Forms.frmEvents.nudPicOffsetY.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraShowPic.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudPicOffsetX.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4;
+                        frmEvents.Default.nudPicOffsetY.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraShowPic.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvHidePicture:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.nudHidePic.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraHidePic.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
+                        frmEvents.Default.nudHidePic.Value = TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1;
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraHidePic.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
                         break;
                     }
 
                 case (int)EventType.EvWaitMovement:
                     {
                         IsEdit = true;
-                        My.MyProject.Forms.frmEvents.fraDialogue.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraMoveRouteWait.Visible = true;
-                        My.MyProject.Forms.frmEvents.fraCommands.Visible = false;
-                        My.MyProject.Forms.frmEvents.cmbMoveWait.Items.Clear();
+                        frmEvents.Default.fraDialogue.Visible = true;
+                        frmEvents.Default.fraMoveRouteWait.Visible = true;
+                        frmEvents.Default.fraCommands.Visible = false;
+                        frmEvents.Default.cmbMoveWait.Items.Clear();
                         ListOfEvents = new int[E_Types.Map.EventCount + 1];
                         ListOfEvents[0] = EditorEvent;
-                        My.MyProject.Forms.frmEvents.cmbMoveWait.Items.Add("This Event");
-                        My.MyProject.Forms.frmEvents.cmbMoveWait.SelectedIndex = 0;
+                        frmEvents.Default.cmbMoveWait.Items.Add("This Event");
+                        frmEvents.Default.cmbMoveWait.SelectedIndex = 0;
                         var loopTo5 = E_Types.Map.EventCount;
                         for (i = 1; i <= loopTo5; i++)
                         {
                             if (i != EditorEvent)
                             {
-                                My.MyProject.Forms.frmEvents.cmbMoveWait.Items.Add(Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[i].Name));
+                                frmEvents.Default.cmbMoveWait.Items.Add(Microsoft.VisualBasic.Strings.Trim(E_Types.Map.Events[i].Name));
                                 x = x + 1;
                                 ListOfEvents[x] = i;
                                 if (i == TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1)
-                                    My.MyProject.Forms.frmEvents.cmbMoveWait.SelectedIndex = x;
+                                    frmEvents.Default.cmbMoveWait.SelectedIndex = x;
                             }
                         }
 
@@ -3378,7 +3375,7 @@ namespace Engine
             int p;
             CommandListRec oldCommandList;
 
-            i = My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex;
+            i = frmEvents.Default.lstCommands.SelectedIndex;
             if (i == -1)
                 return;
             if (i > Information.UBound(EventList))
@@ -3457,7 +3454,7 @@ namespace Engine
             int curlist;
             int curslot;
 
-            i = My.MyProject.Forms.frmEvents.lstCommands.SelectedIndex;
+            i = frmEvents.Default.lstCommands.SelectedIndex;
             if (i == -1)
                 return;
             if (i > Information.UBound(EventList))
@@ -3477,84 +3474,84 @@ namespace Engine
             {
                 case (int)EventType.EvAddText:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtAddText_Text.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtAddText_Text.Text;
                         // tmpEvent.Pages(curPageNum).CommandList(curlist).Commands(curslot).Data1 = frmEditor_Events.scrlAddText_Colour.Value
-                        if (My.MyProject.Forms.frmEvents.optAddText_Player.Checked == true)
+                        if (frmEvents.Default.optAddText_Player.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optAddText_Map.Checked == true)
+                        else if (frmEvents.Default.optAddText_Map.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
-                        else if (My.MyProject.Forms.frmEvents.optAddText_Global.Checked == true)
+                        else if (frmEvents.Default.optAddText_Global.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 2;
                         break;
                     }
 
                 case (int)EventType.EvCondition:
                     {
-                        if (My.MyProject.Forms.frmEvents.optCondition0.Checked == true)
+                        if (frmEvents.Default.optCondition0.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 0;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarIndex.SelectedIndex + 1;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondition_PlayerVarCompare.SelectedIndex;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)My.MyProject.Forms.frmEvents.nudCondition_PlayerVarCondition.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_PlayerVarIndex.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondition_PlayerVarCompare.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)frmEvents.Default.nudCondition_PlayerVarCondition.Value;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition1.Checked == true)
+                        else if (frmEvents.Default.optCondition1.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 1;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_PlayerSwitch.SelectedIndex + 1;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondtion_PlayerSwitchCondition.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_PlayerSwitch.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondtion_PlayerSwitchCondition.SelectedIndex;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition2.Checked == true)
+                        else if (frmEvents.Default.optCondition2.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 2;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_HasItem.SelectedIndex + 1;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.nudCondition_HasItem.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_HasItem.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.nudCondition_HasItem.Value;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition3.Checked == true)
+                        else if (frmEvents.Default.optCondition3.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 3;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_ClassIs.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_ClassIs.SelectedIndex + 1;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition4.Checked == true)
+                        else if (frmEvents.Default.optCondition4.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 4;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_LearntSkill.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_LearntSkill.SelectedIndex + 1;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition5.Checked == true)
+                        else if (frmEvents.Default.optCondition5.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 5;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.nudCondition_LevelAmount.Value;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondition_LevelCompare.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.nudCondition_LevelAmount.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondition_LevelCompare.SelectedIndex;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition6.Checked == true)
+                        else if (frmEvents.Default.optCondition6.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 6;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitch.SelectedIndex;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)My.MyProject.Forms.frmEvents.cmbCondition_SelfSwitchCondition.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_SelfSwitch.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = (int)frmEvents.Default.cmbCondition_SelfSwitchCondition.SelectedIndex;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition7.Checked == true)
+                        else if (frmEvents.Default.optCondition7.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 7;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.nudCondition_Quest.Value;
-                            if (My.MyProject.Forms.frmEvents.optCondition_Quest0.Checked)
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.nudCondition_Quest.Value;
+                            if (frmEvents.Default.optCondition_Quest0.Checked)
                             {
                                 TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = 0;
-                                TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)My.MyProject.Forms.frmEvents.cmbCondition_General.SelectedIndex;
+                                TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)frmEvents.Default.cmbCondition_General.SelectedIndex;
                             }
                             else
                             {
                                 TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data2 = 1;
-                                TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)My.MyProject.Forms.frmEvents.nudCondition_QuestTask.Value;
+                                TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data3 = (int)frmEvents.Default.nudCondition_QuestTask.Value;
                             }
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition8.Checked == true)
+                        else if (frmEvents.Default.optCondition8.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 8;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_Gender.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_Gender.SelectedIndex;
                         }
-                        else if (My.MyProject.Forms.frmEvents.optCondition9.Checked == true)
+                        else if (frmEvents.Default.optCondition9.Checked == true)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Condition = 9;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)My.MyProject.Forms.frmEvents.cmbCondition_Time.SelectedIndex;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].ConditionalBranch.Data1 = (int)frmEvents.Default.cmbCondition_Time.SelectedIndex;
                         }
 
                         break;
@@ -3562,44 +3559,44 @@ namespace Engine
 
                 case (int)EventType.EvShowText:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtShowText.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudShowTextFace.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtShowText.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudShowTextFace.Value;
                         break;
                     }
 
                 case (int)EventType.EvShowChoices:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtChoicePrompt.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text2 = My.MyProject.Forms.frmEvents.txtChoices1.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text3 = My.MyProject.Forms.frmEvents.txtChoices2.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text4 = My.MyProject.Forms.frmEvents.txtChoices3.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text5 = My.MyProject.Forms.frmEvents.txtChoices4.Text;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)My.MyProject.Forms.frmEvents.nudShowChoicesFace.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtChoicePrompt.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text2 = frmEvents.Default.txtChoices1.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text3 = frmEvents.Default.txtChoices2.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text4 = frmEvents.Default.txtChoices3.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text5 = frmEvents.Default.txtChoices4.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)frmEvents.Default.nudShowChoicesFace.Value;
                         break;
                     }
 
                 case (int)EventType.EvPlayerVar:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbVariable.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction0.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbVariable.SelectedIndex + 1;
+                        if (frmEvents.Default.optVariableAction0.Checked == true)
                             i = 0;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction1.Checked == true)
+                        if (frmEvents.Default.optVariableAction1.Checked == true)
                             i = 1;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction2.Checked == true)
+                        if (frmEvents.Default.optVariableAction2.Checked == true)
                             i = 2;
-                        if (My.MyProject.Forms.frmEvents.optVariableAction3.Checked == true)
+                        if (frmEvents.Default.optVariableAction3.Checked == true)
                             i = 3;
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = i;
                         if (i == 0)
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData0.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData0.Value;
                         else if (i == 1)
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData1.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData1.Value;
                         else if (i == 2)
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData2.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData2.Value;
                         else if (i == 3)
                         {
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudVariableData3.Value;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudVariableData4.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudVariableData3.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudVariableData4.Value;
                         }
 
                         break;
@@ -3607,92 +3604,92 @@ namespace Engine
 
                 case (int)EventType.EvPlayerSwitch:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSwitch.SelectedIndex + 1;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.cmbPlayerSwitchSet.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSwitch.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.cmbPlayerSwitchSet.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvSelfSwitch:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSetSelfSwitch.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.cmbSetSelfSwitchTo.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSetSelfSwitch.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.cmbSetSelfSwitchTo.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvChangeItems:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChangeItemIndex.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.optChangeItemSet.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChangeItemIndex.SelectedIndex + 1;
+                        if (frmEvents.Default.optChangeItemSet.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optChangeItemAdd.Checked == true)
+                        else if (frmEvents.Default.optChangeItemAdd.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
-                        else if (My.MyProject.Forms.frmEvents.optChangeItemRemove.Checked == true)
+                        else if (frmEvents.Default.optChangeItemRemove.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 2;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudChangeItemsAmount.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudChangeItemsAmount.Value;
                         break;
                     }
 
                 case (int)EventType.EvChangeLevel:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudChangeLevel.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudChangeLevel.Value;
                         break;
                     }
 
                 case (int)EventType.EvChangeSkills:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChangeSkills.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.optChangeSkillsAdd.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChangeSkills.SelectedIndex + 1;
+                        if (frmEvents.Default.optChangeSkillsAdd.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optChangeSkillsRemove.Checked == true)
+                        else if (frmEvents.Default.optChangeSkillsRemove.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
                         break;
                     }
 
                 case (int)EventType.EvChangeClass:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChangeClass.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChangeClass.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvChangeSprite:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudChangeSprite.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudChangeSprite.Value;
                         break;
                     }
 
                 case (int)EventType.EvChangeSex:
                     {
-                        if (My.MyProject.Forms.frmEvents.optChangeSexMale.Checked == true)
+                        if (frmEvents.Default.optChangeSexMale.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = 0;
-                        else if (My.MyProject.Forms.frmEvents.optChangeSexFemale.Checked == true)
+                        else if (frmEvents.Default.optChangeSexFemale.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = 1;
                         break;
                     }
 
                 case (int)EventType.EvChangePk:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSetPK.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSetPK.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvWarpPlayer:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudWPMap.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudWPX.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudWPY.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.cmbWarpPlayerDir.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudWPMap.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudWPX.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudWPY.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.cmbWarpPlayerDir.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvSetMoveRoute:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[My.MyProject.Forms.frmEvents.cmbEvent.SelectedIndex];
-                        if (My.MyProject.Forms.frmEvents.chkIgnoreMove.Checked == true)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[frmEvents.Default.cmbEvent.SelectedIndex];
+                        if (frmEvents.Default.chkIgnoreMove.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
                         else
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
 
-                        if (My.MyProject.Forms.frmEvents.chkRepeatRoute.Checked == true)
+                        if (frmEvents.Default.chkRepeatRoute.Checked == true)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = 1;
                         else
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = 0;
@@ -3703,19 +3700,19 @@ namespace Engine
 
                 case (int)EventType.EvPlayAnimation:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbPlayAnim.SelectedIndex + 1;
-                        if (My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex == 0)
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbPlayAnim.SelectedIndex + 1;
+                        if (frmEvents.Default.cmbAnimTargetType.SelectedIndex == 0)
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 0;
-                        else if (My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex == 1)
+                        else if (frmEvents.Default.cmbAnimTargetType.SelectedIndex == 1)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 1;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.cmbPlayAnimEvent.SelectedIndex + 1;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.cmbPlayAnimEvent.SelectedIndex + 1;
                         }
-                        else if (My.MyProject.Forms.frmEvents.cmbAnimTargetType.SelectedIndex == 2)
+                        else if (frmEvents.Default.cmbAnimTargetType.SelectedIndex == 2)
                         {
                             TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = 2;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudPlayAnimTileX.Value;
-                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudPlayAnimTileY.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudPlayAnimTileX.Value;
+                            TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudPlayAnimTileY.Value;
                         }
 
                         break;
@@ -3723,137 +3720,137 @@ namespace Engine
 
                 case (int)EventType.EvCustomScript:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudCustomScript.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudCustomScript.Value;
                         break;
                     }
 
                 case (int)EventType.EvPlayBgm:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.MusicCache[My.MyProject.Forms.frmEvents.cmbPlayBGM.SelectedIndex + 1];
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.MusicCache[frmEvents.Default.cmbPlayBGM.SelectedIndex + 1];
                         break;
                     }
 
                 case (int)EventType.EvPlaySound:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.SoundCache[My.MyProject.Forms.frmEvents.cmbPlaySound.SelectedIndex + 1];
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = E_Sound.SoundCache[frmEvents.Default.cmbPlaySound.SelectedIndex + 1];
                         break;
                     }
 
                 case (int)EventType.EvOpenShop:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbOpenShop.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbOpenShop.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvSetAccess:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSetAccess.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSetAccess.SelectedIndex;
                         break;
                     }
 
                 case (int)EventType.EvGiveExp:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudGiveExp.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudGiveExp.Value;
                         break;
                     }
 
                 case (int)EventType.EvShowChatBubble:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtChatbubbleText.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtChatbubbleText.Text;
 
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbChatBubbleTargetType.SelectedIndex + 1;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.cmbChatBubbleTarget.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbChatBubbleTargetType.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.cmbChatBubbleTarget.SelectedIndex + 1;
                         break;
                     }
 
                 case (int)EventType.EvLabel:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtLabelName.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtLabelName.Text;
                         break;
                     }
 
                 case (byte)EventType.EvGotoLabel:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = My.MyProject.Forms.frmEvents.txtGotoLabel.Text;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Text1 = frmEvents.Default.txtGotoLabel.Text;
                         break;
                     }
 
                 case (byte)EventType.EvSpawnNpc:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbSpawnNpc.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbSpawnNpc.SelectedIndex + 1;
                         break;
                     }
 
                 case (byte)EventType.EvSetFog:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudFogData0.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudFogData1.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudFogData2.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudFogData0.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudFogData1.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudFogData2.Value;
                         break;
                     }
 
                 case (byte)EventType.EvSetWeather:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.CmbWeather.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudWeatherIntensity.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.CmbWeather.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudWeatherIntensity.Value;
                         break;
                     }
 
                 case (byte)EventType.EvSetTint:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudMapTintData0.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudMapTintData1.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.nudMapTintData2.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudMapTintData3.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudMapTintData0.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudMapTintData1.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.nudMapTintData2.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudMapTintData3.Value;
                         break;
                     }
 
                 case (byte)EventType.EvWait:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudWaitAmount.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudWaitAmount.Value;
                         break;
                     }
 
                 case (byte)EventType.EvBeginQuest:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbBeginQuest.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbBeginQuest.SelectedIndex;
                         break;
                     }
 
                 case (byte)EventType.EvEndQuest:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbEndQuest.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbEndQuest.SelectedIndex;
                         break;
                     }
 
                 case (byte)EventType.EvQuestTask:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbCompleteQuest.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudCompleteQuestTask.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbCompleteQuest.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudCompleteQuestTask.Value;
                         break;
                     }
 
                 case (byte)EventType.EvShowPicture:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.cmbPicIndex.SelectedIndex;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)My.MyProject.Forms.frmEvents.nudShowPicture.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.cmbPicIndex.SelectedIndex;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data2 = (int)frmEvents.Default.nudShowPicture.Value;
 
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)My.MyProject.Forms.frmEvents.cmbPicLoc.SelectedIndex + 1;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data3 = (int)frmEvents.Default.cmbPicLoc.SelectedIndex + 1;
 
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)My.MyProject.Forms.frmEvents.nudPicOffsetX.Value;
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)My.MyProject.Forms.frmEvents.nudPicOffsetY.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data4 = (int)frmEvents.Default.nudPicOffsetX.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data5 = (int)frmEvents.Default.nudPicOffsetY.Value;
                         break;
                     }
 
                 case (byte)EventType.EvHidePicture:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)My.MyProject.Forms.frmEvents.nudHidePic.Value;
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = (int)frmEvents.Default.nudHidePic.Value;
                         break;
                     }
 
                 case (byte)EventType.EvWaitMovement:
                     {
-                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[My.MyProject.Forms.frmEvents.cmbMoveWait.SelectedIndex];
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Data1 = ListOfEvents[frmEvents.Default.cmbMoveWait.SelectedIndex];
                         break;
                     }
             }
@@ -3904,29 +3901,28 @@ namespace Engine
             }
 
             {
-                var withBlock = E_Types.Map.MapEvents[id];
-                withBlock.Name = buffer.ReadString();
-                withBlock.Dir = buffer.ReadInt32();
-                withBlock.ShowDir = withBlock.Dir;
-                withBlock.GraphicNum = buffer.ReadInt32();
-                withBlock.GraphicType = buffer.ReadInt32();
-                withBlock.GraphicX = buffer.ReadInt32();
-                withBlock.GraphicX2 = buffer.ReadInt32();
-                withBlock.GraphicY = buffer.ReadInt32();
-                withBlock.GraphicY2 = buffer.ReadInt32();
-                withBlock.MovementSpeed = buffer.ReadInt32();
-                withBlock.Moving = 0;
-                withBlock.X = buffer.ReadInt32();
-                withBlock.Y = buffer.ReadInt32();
-                withBlock.XOffset = 0;
-                withBlock.YOffset = 0;
-                withBlock.Position = buffer.ReadInt32();
-                withBlock.Visible = buffer.ReadInt32();
-                withBlock.WalkAnim = buffer.ReadInt32();
-                withBlock.DirFix = buffer.ReadInt32();
-                withBlock.WalkThrough = buffer.ReadInt32();
-                withBlock.ShowName = buffer.ReadInt32();
-                withBlock.Questnum = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].Name = buffer.ReadString();
+                E_Types.Map.MapEvents[id].Dir = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].ShowDir = E_Types.Map.MapEvents[id].Dir;
+                E_Types.Map.MapEvents[id].GraphicNum = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].GraphicType = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].GraphicX = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].GraphicX2 = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].GraphicY = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].GraphicY2 = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].MovementSpeed = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].Moving = 0;
+                E_Types.Map.MapEvents[id].X = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].Y = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].XOffset = 0;
+                E_Types.Map.MapEvents[id].YOffset = 0;
+                E_Types.Map.MapEvents[id].Position = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].Visible = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].WalkAnim = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].DirFix = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].WalkThrough = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].ShowName = buffer.ReadInt32();
+                E_Types.Map.MapEvents[id].Questnum = buffer.ReadInt32();
             }
             buffer.Dispose();
         }
@@ -3950,39 +3946,38 @@ namespace Engine
                 return;
 
             {
-                var withBlock = E_Types.Map.MapEvents[id];
-                withBlock.X = x;
-                withBlock.Y = y;
-                withBlock.Dir = dir;
-                withBlock.XOffset = 0;
-                withBlock.YOffset = 0;
-                withBlock.Moving = 1;
-                withBlock.ShowDir = showDir;
-                withBlock.MovementSpeed = movementSpeed;
+                E_Types.Map.MapEvents[id].X = x;
+                E_Types.Map.MapEvents[id].Y = y;
+                E_Types.Map.MapEvents[id].Dir = dir;
+                E_Types.Map.MapEvents[id].XOffset = 0;
+                E_Types.Map.MapEvents[id].YOffset = 0;
+                E_Types.Map.MapEvents[id].Moving = 1;
+                E_Types.Map.MapEvents[id].ShowDir = showDir;
+                E_Types.Map.MapEvents[id].MovementSpeed = movementSpeed;
 
                 switch (dir)
                 {
                     case (int)Enums.DirectionType.Up:
                         {
-                            withBlock.YOffset = E_Globals.PIC_Y;
+                            E_Types.Map.MapEvents[id].YOffset = E_Globals.PIC_Y;
                             break;
                         }
 
                     case (int)Enums.DirectionType.Down:
                         {
-                            withBlock.YOffset = E_Globals.PIC_Y * -1;
+                            E_Types.Map.MapEvents[id].YOffset = E_Globals.PIC_Y * -1;
                             break;
                         }
 
                     case (int)Enums.DirectionType.Left:
                         {
-                            withBlock.XOffset = E_Globals.PIC_X;
+                            E_Types.Map.MapEvents[id].XOffset = E_Globals.PIC_X;
                             break;
                         }
 
                     case (int)Enums.DirectionType.Right:
                         {
-                            withBlock.XOffset = E_Globals.PIC_X * -1;
+                            E_Types.Map.MapEvents[id].XOffset = E_Globals.PIC_X * -1;
                             break;
                         }
                 }
@@ -4000,12 +3995,11 @@ namespace Engine
                 return;
 
             {
-                var withBlock = E_Types.Map.MapEvents[i];
-                withBlock.Dir = dir;
-                withBlock.ShowDir = dir;
-                withBlock.XOffset = 0;
-                withBlock.YOffset = 0;
-                withBlock.Moving = 0;
+                E_Types.Map.MapEvents[i].Dir = dir;
+                E_Types.Map.MapEvents[i].ShowDir = dir;
+                E_Types.Map.MapEvents[i].XOffset = 0;
+                E_Types.Map.MapEvents[i].YOffset = 0;
+                E_Types.Map.MapEvents[i].Moving = 0;
             }
         }
 
@@ -4039,12 +4033,11 @@ namespace Engine
                 for (i = 1; i <= loopTo; i++)
                 {
                     {
-                        var withBlock = E_Types.Map.Events[i];
-                        withBlock.Name = buffer.ReadString();
-                        withBlock.Globals = buffer.ReadInt32();
-                        withBlock.X = buffer.ReadInt32();
-                        withBlock.Y = buffer.ReadInt32();
-                        withBlock.PageCount = buffer.ReadInt32();
+                        E_Types.Map.Events[i].Name = buffer.ReadString();
+                        E_Types.Map.Events[i].Globals = buffer.ReadInt32();
+                        E_Types.Map.Events[i].X = buffer.ReadInt32();
+                        E_Types.Map.Events[i].Y = buffer.ReadInt32();
+                        E_Types.Map.Events[i].PageCount = buffer.ReadInt32();
                     }
                     if (E_Types.Map.Events[i].PageCount > 0)
                     {
@@ -4053,55 +4046,54 @@ namespace Engine
                         for (x = 1; x <= loopTo1; x++)
                         {
                             {
-                                var withBlock1 = E_Types.Map.Events[i].Pages[x];
-                                withBlock1.ChkVariable = buffer.ReadInt32();
-                                withBlock1.Variableindex = buffer.ReadInt32();
-                                withBlock1.VariableCondition = buffer.ReadInt32();
-                                withBlock1.VariableCompare = buffer.ReadInt32();
-                                withBlock1.ChkSwitch = buffer.ReadInt32();
-                                withBlock1.Switchindex = buffer.ReadInt32();
-                                withBlock1.SwitchCompare = buffer.ReadInt32();
-                                withBlock1.ChkHasItem = buffer.ReadInt32();
-                                withBlock1.HasItemindex = buffer.ReadInt32();
-                                withBlock1.HasItemAmount = buffer.ReadInt32();
-                                withBlock1.ChkSelfSwitch = buffer.ReadInt32();
-                                withBlock1.SelfSwitchindex = buffer.ReadInt32();
-                                withBlock1.SelfSwitchCompare = buffer.ReadInt32();
-                                withBlock1.GraphicType = (byte)buffer.ReadInt32();
-                                withBlock1.Graphic = buffer.ReadInt32();
-                                withBlock1.GraphicX = buffer.ReadInt32();
-                                withBlock1.GraphicY = buffer.ReadInt32();
-                                withBlock1.GraphicX2 = buffer.ReadInt32();
-                                withBlock1.GraphicY2 = buffer.ReadInt32();
-                                withBlock1.MoveType = (byte)buffer.ReadInt32();
-                                withBlock1.MoveSpeed = (byte)buffer.ReadInt32();
-                                withBlock1.MoveFreq = (byte)buffer.ReadInt32();
-                                withBlock1.MoveRouteCount = buffer.ReadInt32();
-                                withBlock1.IgnoreMoveRoute = buffer.ReadInt32();
-                                withBlock1.RepeatMoveRoute = buffer.ReadInt32();
-                                if (withBlock1.MoveRouteCount > 0)
+                                E_Types.Map.Events[i].Pages[x].ChkVariable = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].Variableindex = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].VariableCondition = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].VariableCompare = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].ChkSwitch = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].Switchindex = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].SwitchCompare = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].ChkHasItem = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].HasItemindex = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].HasItemAmount = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].ChkSelfSwitch = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].SelfSwitchindex = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].SelfSwitchCompare = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].GraphicType = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].Graphic = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].GraphicX = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].GraphicY = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].GraphicX2 = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].GraphicY2 = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].MoveType = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].MoveSpeed = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].MoveFreq = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].MoveRouteCount = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].IgnoreMoveRoute = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].RepeatMoveRoute = buffer.ReadInt32();
+                                if (E_Types.Map.Events[i].Pages[x].MoveRouteCount > 0)
                                 {
-                                    E_Types.Map.Events[i].Pages[x].MoveRoute = new MoveRouteRec[withBlock1.MoveRouteCount + 1];
-                                    var loopTo2 = withBlock1.MoveRouteCount;
+                                    E_Types.Map.Events[i].Pages[x].MoveRoute = new MoveRouteRec[E_Types.Map.Events[i].Pages[x].MoveRouteCount + 1];
+                                    var loopTo2 = E_Types.Map.Events[i].Pages[x].MoveRouteCount;
                                     for (y = 1; y <= loopTo2; y++)
                                     {
-                                        withBlock1.MoveRoute[y].Index = buffer.ReadInt32();
-                                        withBlock1.MoveRoute[y].Data1 = buffer.ReadInt32();
-                                        withBlock1.MoveRoute[y].Data2 = buffer.ReadInt32();
-                                        withBlock1.MoveRoute[y].Data3 = buffer.ReadInt32();
-                                        withBlock1.MoveRoute[y].Data4 = buffer.ReadInt32();
-                                        withBlock1.MoveRoute[y].Data5 = buffer.ReadInt32();
-                                        withBlock1.MoveRoute[y].Data6 = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Index = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Data1 = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Data2 = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Data3 = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Data4 = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Data5 = buffer.ReadInt32();
+                                        E_Types.Map.Events[i].Pages[x].MoveRoute[y].Data6 = buffer.ReadInt32();
                                     }
                                 }
-                                withBlock1.WalkAnim = (byte)buffer.ReadInt32();
-                                withBlock1.DirFix = (byte)buffer.ReadInt32();
-                                withBlock1.WalkThrough = (byte)buffer.ReadInt32();
-                                withBlock1.ShowName = (byte)buffer.ReadInt32();
-                                withBlock1.Trigger = (byte)buffer.ReadInt32();
-                                withBlock1.CommandListCount = buffer.ReadInt32();
-                                withBlock1.Position = (byte)buffer.ReadInt32();
-                                withBlock1.Questnum = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].WalkAnim = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].DirFix = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].WalkThrough = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].ShowName = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].Trigger = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].CommandListCount = buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].Position = (byte)buffer.ReadInt32();
+                                E_Types.Map.Events[i].Pages[x].Questnum = buffer.ReadInt32();
                             }
                             if (E_Types.Map.Events[i].Pages[x].CommandListCount > 0)
                             {
@@ -4118,42 +4110,41 @@ namespace Engine
                                         for (z = 1; z <= loopTo4; z++)
                                         {
                                             {
-                                                var withBlock2 = E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z];
-                                                withBlock2.Index = buffer.ReadInt32();
-                                                withBlock2.Text1 = buffer.ReadString();
-                                                withBlock2.Text2 = buffer.ReadString();
-                                                withBlock2.Text3 = buffer.ReadString();
-                                                withBlock2.Text4 = buffer.ReadString();
-                                                withBlock2.Text5 = buffer.ReadString();
-                                                withBlock2.Data1 = buffer.ReadInt32();
-                                                withBlock2.Data2 = buffer.ReadInt32();
-                                                withBlock2.Data3 = buffer.ReadInt32();
-                                                withBlock2.Data4 = buffer.ReadInt32();
-                                                withBlock2.Data5 = buffer.ReadInt32();
-                                                withBlock2.Data6 = buffer.ReadInt32();
-                                                withBlock2.ConditionalBranch.CommandList = buffer.ReadInt32();
-                                                withBlock2.ConditionalBranch.Condition = buffer.ReadInt32();
-                                                withBlock2.ConditionalBranch.Data1 = buffer.ReadInt32();
-                                                withBlock2.ConditionalBranch.Data2 = buffer.ReadInt32();
-                                                withBlock2.ConditionalBranch.Data3 = buffer.ReadInt32();
-                                                withBlock2.ConditionalBranch.ElseCommandList = buffer.ReadInt32();
-                                                withBlock2.MoveRouteCount = buffer.ReadInt32();
-                                                if (withBlock2.MoveRouteCount > 0)
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Index = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Text1 = buffer.ReadString();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Text2 = buffer.ReadString();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Text3 = buffer.ReadString();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Text4 = buffer.ReadString();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Text5 = buffer.ReadString();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Data1 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Data2 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Data3 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Data4 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Data5 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].Data6 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.CommandList = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Condition = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data1 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data2 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data3 = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.ElseCommandList = buffer.ReadInt32();
+                                                E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount = buffer.ReadInt32();
+                                                if (E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount > 0)
                                                 {
-                                                    var oldMoveRoute = withBlock2.MoveRoute;
-                                                    withBlock2.MoveRoute = new MoveRouteRec[withBlock2.MoveRouteCount + 1];
+                                                    var oldMoveRoute = E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute;
+                                                    E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute = new MoveRouteRec[E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount + 1];
                                                     if (oldMoveRoute != null)
-                                                        Array.Copy(oldMoveRoute, withBlock2.MoveRoute, Math.Min(withBlock2.MoveRouteCount + 1, oldMoveRoute.Length));
-                                                    var loopTo5 = withBlock2.MoveRouteCount;
+                                                        Array.Copy(oldMoveRoute, E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute, Math.Min(E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount + 1, oldMoveRoute.Length));
+                                                    var loopTo5 = E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount;
                                                     for (w = 1; w <= loopTo5; w++)
                                                     {
-                                                        withBlock2.MoveRoute[w].Index = buffer.ReadInt32();
-                                                        withBlock2.MoveRoute[w].Data1 = buffer.ReadInt32();
-                                                        withBlock2.MoveRoute[w].Data2 = buffer.ReadInt32();
-                                                        withBlock2.MoveRoute[w].Data3 = buffer.ReadInt32();
-                                                        withBlock2.MoveRoute[w].Data4 = buffer.ReadInt32();
-                                                        withBlock2.MoveRoute[w].Data5 = buffer.ReadInt32();
-                                                        withBlock2.MoveRoute[w].Data6 = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Index = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data1 = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data2 = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data3 = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data4 = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data5 = buffer.ReadInt32();
+                                                        E_Types.Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data6 = buffer.ReadInt32();
                                                     }
                                                 }
                                             }
@@ -4239,23 +4230,23 @@ namespace Engine
             Bitmap sourceBitmap; // This is our sprite or tileset that we are drawing from
             Graphics g; // This is our graphics class that helps us draw to the targetBitmap
 
-            if (My.MyProject.Forms.frmEvents.picGraphicSel.Visible)
+            if (frmEvents.Default.picGraphicSel.Visible)
             {
-                switch (My.MyProject.Forms.frmEvents.cmbGraphic.SelectedIndex)
+                switch (frmEvents.Default.cmbGraphic.SelectedIndex)
                 {
                     case 0:
                         {
                             // None
-                            My.MyProject.Forms.frmEvents.picGraphicSel.BackgroundImage = null;
+                            frmEvents.Default.picGraphicSel.BackgroundImage = null;
                             break;
                         }
 
                     case 1:
                         {
-                            if (My.MyProject.Forms.frmEvents.nudGraphic.Value > 0 && My.MyProject.Forms.frmEvents.nudGraphic.Value <= E_Graphics.NumCharacters)
+                            if (frmEvents.Default.nudGraphic.Value > 0 && frmEvents.Default.nudGraphic.Value <= E_Graphics.NumCharacters)
                             {
                                 // Load character from Contents into our sourceBitmap
-                                sourceBitmap = new Bitmap(Application.StartupPath + "/Data/graphics/characters/" + My.MyProject.Forms.frmEvents.nudGraphic.Value + ".png");
+                                sourceBitmap = new Bitmap(Application.StartupPath + "/Data/graphics/characters/" + frmEvents.Default.nudGraphic.Value + ".png");
                                 targetBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height); // Create our target Bitmap
 
                                 g = Graphics.FromImage(targetBitmap);
@@ -4269,15 +4260,15 @@ namespace Engine
 
                                 g.Dispose();
 
-                                My.MyProject.Forms.frmEvents.picGraphicSel.Width = targetBitmap.Width;
-                                My.MyProject.Forms.frmEvents.picGraphicSel.Height = targetBitmap.Height;
-                                My.MyProject.Forms.frmEvents.picGraphicSel.Visible = true;
-                                My.MyProject.Forms.frmEvents.picGraphicSel.BackgroundImage = targetBitmap;
-                                My.MyProject.Forms.frmEvents.picGraphic.BackgroundImage = targetBitmap;
+                                frmEvents.Default.picGraphicSel.Width = targetBitmap.Width;
+                                frmEvents.Default.picGraphicSel.Height = targetBitmap.Height;
+                                frmEvents.Default.picGraphicSel.Visible = true;
+                                frmEvents.Default.picGraphicSel.BackgroundImage = targetBitmap;
+                                frmEvents.Default.picGraphic.BackgroundImage = targetBitmap;
                             }
                             else
                             {
-                                My.MyProject.Forms.frmEvents.picGraphicSel.BackgroundImage = null;
+                                frmEvents.Default.picGraphicSel.BackgroundImage = null;
                                 return;
                             }
 
@@ -4286,10 +4277,10 @@ namespace Engine
 
                     case 2:
                         {
-                            if (My.MyProject.Forms.frmEvents.nudGraphic.Value > 0 && My.MyProject.Forms.frmEvents.nudGraphic.Value <= E_Graphics.NumTileSets)
+                            if (frmEvents.Default.nudGraphic.Value > 0 && frmEvents.Default.nudGraphic.Value <= E_Graphics.NumTileSets)
                             {
                                 // Load tilesheet from Contents into our sourceBitmap
-                                sourceBitmap = new Bitmap(Application.StartupPath + "/Data/graphics/tilesets/" + My.MyProject.Forms.frmEvents.nudGraphic.Value + ".png");
+                                sourceBitmap = new Bitmap(Application.StartupPath + "/Data/graphics/tilesets/" + frmEvents.Default.nudGraphic.Value + ".png");
                                 targetBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height); // Create our target Bitmap
 
                                 if (TmpEvent.Pages[CurPageNum].GraphicX2 == 0 && TmpEvent.Pages[CurPageNum].GraphicY2 == 0)
@@ -4300,7 +4291,6 @@ namespace Engine
                                     sRect.Right = sRect.Left + 32;
 
                                     {
-                                        var withBlock = dRect;
                                         dRect.Top = (193 / (int)2) - ((sRect.Bottom - sRect.Top) / (int)2);
                                         dRect.Bottom = dRect.Top + (sRect.Bottom - sRect.Top);
                                         dRect.Left = (120 / (int)2) - ((sRect.Right - sRect.Left) / (int)2);
@@ -4315,7 +4305,6 @@ namespace Engine
                                     sRect.Right = sRect.Left + ((TmpEvent.Pages[CurPageNum].GraphicX2 - TmpEvent.Pages[CurPageNum].GraphicX) * 32);
 
                                     {
-                                        var withBlock1 = dRect;
                                         dRect.Top = (193 / (int)2) - ((sRect.Bottom - sRect.Top) / (int)2);
                                         dRect.Bottom = dRect.Top + (sRect.Bottom - sRect.Top);
                                         dRect.Left = (120 / (int)2) - ((sRect.Right - sRect.Left) / (int)2);
@@ -4334,14 +4323,14 @@ namespace Engine
 
                                 g.Dispose();
 
-                                My.MyProject.Forms.frmEvents.picGraphicSel.Width = targetBitmap.Width;
-                                My.MyProject.Forms.frmEvents.picGraphicSel.Height = targetBitmap.Height;
-                                My.MyProject.Forms.frmEvents.picGraphicSel.Visible = true;
-                                My.MyProject.Forms.frmEvents.picGraphicSel.BackgroundImage = targetBitmap;
+                                frmEvents.Default.picGraphicSel.Width = targetBitmap.Width;
+                                frmEvents.Default.picGraphicSel.Height = targetBitmap.Height;
+                                frmEvents.Default.picGraphicSel.Visible = true;
+                                frmEvents.Default.picGraphicSel.BackgroundImage = targetBitmap;
                             }
                             else
                             {
-                                My.MyProject.Forms.frmEvents.picGraphicSel.BackgroundImage = null;
+                                frmEvents.Default.picGraphicSel.BackgroundImage = null;
                                 return;
                             }
 
@@ -4355,7 +4344,7 @@ namespace Engine
                 {
                     case 0:
                         {
-                            My.MyProject.Forms.frmEvents.picGraphicSel.BackgroundImage = null;
+                            frmEvents.Default.picGraphicSel.BackgroundImage = null;
                             break;
                         }
 
@@ -4376,13 +4365,13 @@ namespace Engine
 
                                 g.Dispose();
 
-                                My.MyProject.Forms.frmEvents.picGraphic.Width = targetBitmap.Width;
-                                My.MyProject.Forms.frmEvents.picGraphic.Height = targetBitmap.Height;
-                                My.MyProject.Forms.frmEvents.picGraphic.BackgroundImage = targetBitmap;
+                                frmEvents.Default.picGraphic.Width = targetBitmap.Width;
+                                frmEvents.Default.picGraphic.Height = targetBitmap.Height;
+                                frmEvents.Default.picGraphic.BackgroundImage = targetBitmap;
                             }
                             else
                             {
-                                My.MyProject.Forms.frmEvents.picGraphic.BackgroundImage = null;
+                                frmEvents.Default.picGraphic.BackgroundImage = null;
                                 return;
                             }
 
@@ -4405,7 +4394,6 @@ namespace Engine
                                     sRect.Right = sRect.Left + 32;
 
                                     {
-                                        var withBlock2 = dRect;
                                         dRect.Top = 0;
                                         dRect.Bottom = E_Globals.PIC_Y;
                                         dRect.Left = 0;
@@ -4420,7 +4408,6 @@ namespace Engine
                                     sRect.Right = TmpEvent.Pages[CurPageNum].GraphicX2 * 32;
 
                                     {
-                                        var withBlock3 = dRect;
                                         dRect.Top = 0;
                                         dRect.Bottom = sRect.Bottom;
                                         dRect.Left = 0;
@@ -4437,9 +4424,9 @@ namespace Engine
 
                                 g.Dispose();
 
-                                My.MyProject.Forms.frmEvents.picGraphic.Width = targetBitmap.Width;
-                                My.MyProject.Forms.frmEvents.picGraphic.Height = targetBitmap.Height;
-                                My.MyProject.Forms.frmEvents.picGraphic.BackgroundImage = targetBitmap;
+                                frmEvents.Default.picGraphic.Width = targetBitmap.Width;
+                                frmEvents.Default.picGraphic.Height = targetBitmap.Height;
+                                frmEvents.Default.picGraphic.BackgroundImage = targetBitmap;
                             }
 
                             break;
@@ -4471,11 +4458,10 @@ namespace Engine
                 if (E_Types.Map.Events[i].PageCount <= 0)
                 {
                     {
-                        var withBlock = rec;
-                        withBlock.Y = 0;
-                        withBlock.Height = E_Globals.PIC_Y;
-                        withBlock.X = 0;
-                        withBlock.Width = E_Globals.PIC_X;
+                        rec.Y = 0;
+                        rec.Height = E_Globals.PIC_Y;
+                        rec.X = 0;
+                        rec.Width = E_Globals.PIC_X;
                     }
 
                     RectangleShape rec2 = new RectangleShape()
@@ -4501,7 +4487,7 @@ namespace Engine
                         {
                             tX = ((x) - 4) + (E_Globals.PIC_X * (int)0.5);
                             tY = ((y) - 7) + (E_Globals.PIC_Y * (int)0.5);
-                            E_Text.DrawText(tX, tY, "EV", (SFML.Graphics.Color.Green), (SFML.Graphics.Color.Black), ref E_Graphics.GameWindow);
+                            E_Text.DrawText(tX, tY, "EV", (SFML.Graphics.Color.Green), (SFML.Graphics.Color.Black), E_Graphics.GameWindow);
                             break;
                         }
 
@@ -4514,15 +4500,13 @@ namespace Engine
 
                                 // seeying we still use it, lets update timer
                                 {
-                                    var withBlock1 = E_Graphics.CharacterGFXInfo[E_Types.Map.Events[i].Pages[1].Graphic];
-                                    withBlock1.TextureTimer = ClientDataBase.GetTickCount() + 100000;
+                                    E_Graphics.CharacterGFXInfo[E_Types.Map.Events[i].Pages[1].Graphic].TextureTimer = ClientDataBase.GetTickCount() + 100000;
                                 }
                                 {
-                                    var withBlock2 = rec;
-                                    withBlock2.Y = (E_Types.Map.Events[i].Pages[1].GraphicY * (E_Graphics.CharacterGFXInfo[E_Types.Map.Events[i].Pages[1].Graphic].height / (int)4));
-                                    withBlock2.Height = withBlock2.Y + E_Globals.PIC_Y;
-                                    withBlock2.X = (E_Types.Map.Events[i].Pages[1].GraphicX * (E_Graphics.CharacterGFXInfo[E_Types.Map.Events[i].Pages[1].Graphic].width / (int)4));
-                                    withBlock2.Width = withBlock2.X + E_Globals.PIC_X;
+                                    rec.Y = (E_Types.Map.Events[i].Pages[1].GraphicY * (E_Graphics.CharacterGFXInfo[E_Types.Map.Events[i].Pages[1].Graphic].height / (int)4));
+                                    rec.Height = rec.Y + E_Globals.PIC_Y;
+                                    rec.X = (E_Types.Map.Events[i].Pages[1].GraphicX * (E_Graphics.CharacterGFXInfo[E_Types.Map.Events[i].Pages[1].Graphic].width / (int)4));
+                                    rec.Width = rec.X + E_Globals.PIC_X;
                                 }
 
                                 Sprite tmpSprite = new Sprite(E_Graphics.CharacterGFX[E_Types.Map.Events[i].Pages[1].Graphic])
@@ -4535,11 +4519,10 @@ namespace Engine
                             else
                             {
                                 {
-                                    var withBlock3 = rec;
-                                    withBlock3.Y = 0;
-                                    withBlock3.Height = E_Globals.PIC_Y;
-                                    withBlock3.X = 0;
-                                    withBlock3.Width = E_Globals.PIC_X;
+                                    rec.Y = 0;
+                                    rec.Height = E_Globals.PIC_Y;
+                                    rec.X = 0;
+                                    rec.Width = E_Globals.PIC_X;
                                 }
 
                                 RectangleShape rec2 = new RectangleShape()
@@ -4561,19 +4544,17 @@ namespace Engine
                             if (E_Types.Map.Events[i].Pages[1].Graphic > 0 && E_Types.Map.Events[i].Pages[1].Graphic <= E_Graphics.NumTileSets)
                             {
                                 {
-                                    var withBlock4 = rec;
-                                    withBlock4.X = E_Types.Map.Events[i].Pages[1].GraphicX * 32;
-                                    withBlock4.Width = E_Types.Map.Events[i].Pages[1].GraphicX2 * 32;
-                                    withBlock4.Y = E_Types.Map.Events[i].Pages[1].GraphicY * 32;
-                                    withBlock4.Height = E_Types.Map.Events[i].Pages[1].GraphicY2 * 32;
+                                    rec.X = E_Types.Map.Events[i].Pages[1].GraphicX * 32;
+                                    rec.Width = E_Types.Map.Events[i].Pages[1].GraphicX2 * 32;
+                                    rec.Y = E_Types.Map.Events[i].Pages[1].GraphicY * 32;
+                                    rec.Height = E_Types.Map.Events[i].Pages[1].GraphicY2 * 32;
                                 }
 
                                 if (E_Graphics.TileSetTextureInfo[E_Types.Map.Events[i].Pages[1].Graphic].IsLoaded == false)
                                     E_Graphics.LoadTexture(E_Types.Map.Events[i].Pages[1].Graphic, 1);
                                 // we use it, lets update timer
                                 {
-                                    var withBlock5 = E_Graphics.TileSetTextureInfo[E_Types.Map.Events[i].Pages[1].Graphic];
-                                    withBlock5.TextureTimer = ClientDataBase.GetTickCount() + 100000;
+                                    E_Graphics.TileSetTextureInfo[E_Types.Map.Events[i].Pages[1].Graphic].TextureTimer = ClientDataBase.GetTickCount() + 100000;
                                 }
 
                                 if (rec.Height > 32)
@@ -4584,18 +4565,17 @@ namespace Engine
                             else
                             {
                                 {
-                                    var withBlock6 = rec;
-                                    withBlock6.Y = 0;
-                                    withBlock6.Height = E_Globals.PIC_Y;
-                                    withBlock6.X = 0;
-                                    withBlock6.Width = E_Globals.PIC_X;
+                                    rec.Y = 0;
+                                    rec.Height = E_Globals.PIC_Y;
+                                    rec.X = 0;
+                                    rec.Width = E_Globals.PIC_X;
                                 }
 
                                 RectangleShape rec2 = new RectangleShape()
                                 {
                                     OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.Blue),
                                     OutlineThickness = 0.6f,
-                                    FillColor = new  SFML.Graphics.Color(SFML.Graphics.Color.Transparent),
+                                    FillColor = new SFML.Graphics.Color(SFML.Graphics.Color.Transparent),
                                     Size = new Vector2f(rec.Width, rec.Height),
                                     Position = new Vector2f(E_Graphics.ConvertMapX(E_Globals.CurX * E_Globals.PIC_X), E_Graphics.ConvertMapY(E_Globals.CurY * E_Globals.PIC_Y))
                                 };
@@ -4606,7 +4586,7 @@ namespace Engine
                         }
                 }
 
-            nextevent:
+                nextevent:
                 ;
             }
         }
@@ -4733,28 +4713,25 @@ namespace Engine
                         if (E_Types.Map.MapEvents[id].GraphicY2 > 0 || E_Types.Map.MapEvents[id].GraphicX2 > 0)
                         {
                             {
-                                var withBlock = sRect;
-                                withBlock.X = E_Types.Map.MapEvents[id].GraphicX * 32;
-                                withBlock.Y = E_Types.Map.MapEvents[id].GraphicY * 32;
-                                withBlock.Width = E_Types.Map.MapEvents[id].GraphicX2 * 32;
-                                withBlock.Height = E_Types.Map.MapEvents[id].GraphicY2 * 32;
+                                sRect.X = E_Types.Map.MapEvents[id].GraphicX * 32;
+                                sRect.Y = E_Types.Map.MapEvents[id].GraphicY * 32;
+                                sRect.Width = E_Types.Map.MapEvents[id].GraphicX2 * 32;
+                                sRect.Height = E_Types.Map.MapEvents[id].GraphicY2 * 32;
                             }
                         }
                         else
                         {
-                            var withBlock1 = sRect;
-                            withBlock1.X = E_Types.Map.MapEvents[id].GraphicY * 32;
-                            withBlock1.Height = withBlock1.Top + 32;
-                            withBlock1.Y = E_Types.Map.MapEvents[id].GraphicX * 32;
-                            withBlock1.Width = withBlock1.Left + 32;
+                            sRect.X = E_Types.Map.MapEvents[id].GraphicY * 32;
+                            sRect.Height = sRect.Top + 32;
+                            sRect.Y = E_Types.Map.MapEvents[id].GraphicX * 32;
+                            sRect.Width = sRect.Left + 32;
                         }
 
                         if (E_Graphics.TileSetTextureInfo[E_Types.Map.MapEvents[id].GraphicNum].IsLoaded == false)
                             E_Graphics.LoadTexture(E_Types.Map.MapEvents[id].GraphicNum, 1);
                         // we use it, lets update timer
                         {
-                            var withBlock2 = E_Graphics.TileSetTextureInfo[E_Types.Map.MapEvents[id].GraphicNum];
-                            withBlock2.TextureTimer = ClientDataBase.GetTickCount() + 100000;
+                            E_Graphics.TileSetTextureInfo[E_Types.Map.MapEvents[id].GraphicNum].TextureTimer = ClientDataBase.GetTickCount() + 100000;
                         }
 
                         x = E_Types.Map.MapEvents[id].X * 32;
@@ -4889,29 +4866,28 @@ namespace Engine
                 E_Types.Map.MapEvents = new MapEventRec[E_Types.Map.EventCount + 1];
                 E_Types.Map.CurrentEvents = 0;
                 {
-                    var withBlock = E_Types.Map.MapEvents[i];
-                    withBlock.Name = "";
-                    withBlock.Dir = 0;
-                    withBlock.ShowDir = 0;
-                    withBlock.GraphicNum = 0;
-                    withBlock.GraphicType = 0;
-                    withBlock.GraphicX = 0;
-                    withBlock.GraphicX2 = 0;
-                    withBlock.GraphicY = 0;
-                    withBlock.GraphicY2 = 0;
-                    withBlock.MovementSpeed = 0;
-                    withBlock.Moving = 0;
-                    withBlock.X = 0;
-                    withBlock.Y = 0;
-                    withBlock.XOffset = 0;
-                    withBlock.YOffset = 0;
-                    withBlock.Position = 0;
-                    withBlock.Visible = 0;
-                    withBlock.WalkAnim = 0;
-                    withBlock.DirFix = 0;
-                    withBlock.WalkThrough = 0;
-                    withBlock.ShowName = 0;
-                    withBlock.Questnum = 0;
+                    E_Types.Map.MapEvents[i].Name = "";
+                    E_Types.Map.MapEvents[i].Dir = 0;
+                    E_Types.Map.MapEvents[i].ShowDir = 0;
+                    E_Types.Map.MapEvents[i].GraphicNum = 0;
+                    E_Types.Map.MapEvents[i].GraphicType = 0;
+                    E_Types.Map.MapEvents[i].GraphicX = 0;
+                    E_Types.Map.MapEvents[i].GraphicX2 = 0;
+                    E_Types.Map.MapEvents[i].GraphicY = 0;
+                    E_Types.Map.MapEvents[i].GraphicY2 = 0;
+                    E_Types.Map.MapEvents[i].MovementSpeed = 0;
+                    E_Types.Map.MapEvents[i].Moving = 0;
+                    E_Types.Map.MapEvents[i].X = 0;
+                    E_Types.Map.MapEvents[i].Y = 0;
+                    E_Types.Map.MapEvents[i].XOffset = 0;
+                    E_Types.Map.MapEvents[i].YOffset = 0;
+                    E_Types.Map.MapEvents[i].Position = 0;
+                    E_Types.Map.MapEvents[i].Visible = 0;
+                    E_Types.Map.MapEvents[i].WalkAnim = 0;
+                    E_Types.Map.MapEvents[i].DirFix = 0;
+                    E_Types.Map.MapEvents[i].WalkThrough = 0;
+                    E_Types.Map.MapEvents[i].ShowName = 0;
+                    E_Types.Map.MapEvents[i].Questnum = 0;
                 }
             }
         }

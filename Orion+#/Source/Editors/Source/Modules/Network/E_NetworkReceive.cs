@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;

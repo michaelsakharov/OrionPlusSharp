@@ -1160,7 +1160,6 @@ namespace Engine
                 for (i = 1; i <= loopTo2; i++)
                 {
                     {
-                       // var withBlock1 = modTypes.Map[mapNum].Events[i];
                         modTypes.Map[mapNum].Events[i].Name = buffer.ReadString();
                         modTypes.Map[mapNum].Events[i].Globals = (byte)buffer.ReadInt32();
                         modTypes.Map[mapNum].Events[i].X = buffer.ReadInt32();
@@ -1253,7 +1252,6 @@ namespace Engine
                                         for (var z = 1; z <= loopTo6; z++)
                                         {
                                             {
-                                                //var withBlock3 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z];
                                                 modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Index = (byte)buffer.ReadInt32();
                                                 modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text1 = buffer.ReadString();
                                                 modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text2 = buffer.ReadString();
@@ -2955,7 +2953,6 @@ namespace Engine
                 for (i = 1; i <= loopTo2; i++)
                 {
                     {
-                        //var withBlock1 = modTypes.Map[mapNum].Events[i];
                         modTypes.Map[mapNum].Events[i].Name = buffer.ReadString();
                         modTypes.Map[mapNum].Events[i].Globals = (byte)buffer.ReadInt32();
                         modTypes.Map[mapNum].Events[i].X = buffer.ReadInt32();
@@ -3048,7 +3045,6 @@ namespace Engine
                                         for (var z = 1; z <= loopTo6; z++)
                                         {
                                             {
-                                                //var withBlock3 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z];
                                                 modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Index = (byte)buffer.ReadInt32();
                                                 modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text1 = buffer.ReadString();
                                                 modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text2 = buffer.ReadString();

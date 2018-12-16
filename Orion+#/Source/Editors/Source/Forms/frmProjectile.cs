@@ -1,73 +1,134 @@
-﻿using System;
+
+using System.Collections.Generic;
+using System;
+using System.Drawing;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.VisualBasic;
+using System.Windows.Forms;
+using System.Collections;
+using System.Linq;
+
+
+using Engine;
 
 namespace Engine
 {
-    internal partial class frmProjectile
-    {
-        private void FrmEditor_Projectile_Load(object sender, EventArgs e)
-        {
-            nudPic.Maximum = E_Projectiles.NumProjectiles;
-        }
-
-        private void LstIndex_Click(object sender, EventArgs e)
-        {
-            E_Projectiles.ProjectileEditorInit();
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            E_Projectiles.ProjectileEditorOk();
-        }
-
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            E_Projectiles.ProjectileEditorCancel();
-        }
-
-        private void TxtName_TextChanged(System.Object sender, EventArgs e)
-        {
-            int tmpindex;
-
-            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
-                return;
-
-            tmpindex = lstIndex.SelectedIndex;
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Name = Microsoft.VisualBasic.Strings.Trim(txtName.Text);
-            lstIndex.Items.RemoveAt(E_Globals.Editorindex - 1);
-            lstIndex.Items.Insert(E_Globals.Editorindex - 1, E_Globals.Editorindex + ": " + E_Projectiles.Projectiles[E_Globals.Editorindex].Name);
-            lstIndex.SelectedIndex = tmpindex;
-        }
-
-        private void NudPic_ValueChanged(object sender, EventArgs e)
-        {
-            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
-                return;
-
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Sprite = (byte)nudPic.Value;
-        }
-
-        private void NudRange_ValueChanged(object sender, EventArgs e)
-        {
-            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
-                return;
-
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Range = (byte)nudRange.Value;
-        }
-
-        private void NudSpeed_ValueChanged(object sender, EventArgs e)
-        {
-            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
-                return;
-
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Speed = (byte)nudSpeed.Value;
-        }
-
-        private void NudDamage_ValueChanged(object sender, EventArgs e)
-        {
-            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
-                return;
-
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Damage = (byte)nudDamage.Value;
-        }
-    }
+	partial class frmProjectile
+	{
+		public frmProjectile()
+		{
+			InitializeComponent();
+			
+			
+			if (defaultInstance == null)
+				defaultInstance = this;
+		}
+		
+#region Default Instance
+		
+		private static frmProjectile defaultInstance;
+		
+		public static frmProjectile Default
+		{
+			get
+			{
+				if (defaultInstance == null)
+				{
+					defaultInstance = new frmProjectile();
+					defaultInstance.FormClosed += new System.Windows.Forms.FormClosedEventHandler(defaultInstance_FormClosed);
+				}
+				
+				return defaultInstance;
+			}
+			set
+			{
+				defaultInstance = value;
+			}
+		}
+		
+		static void defaultInstance_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+		{
+			defaultInstance = null;
+		}
+		
+#endregion
+		
+		public void FrmEditor_Projectile_Load(object sender, EventArgs e)
+		{
+			nudPic.Maximum = E_Projectiles.NumProjectiles;
+		}
+		
+		public void LstIndex_Click(object sender, EventArgs e)
+		{
+			E_Projectiles.ProjectileEditorInit();
+		}
+		
+		public void BtnSave_Click(object sender, EventArgs e)
+		{
+			E_Projectiles.ProjectileEditorOk();
+		}
+		
+		public void BtnCancel_Click(object sender, EventArgs e)
+		{
+			E_Projectiles.ProjectileEditorCancel();
+		}
+		
+		public void TxtName_TextChanged(System.Object sender, EventArgs e)
+		{
+			int tmpindex = 0;
+			
+			if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+			{
+				return;
+			}
+			
+			tmpindex = lstIndex.SelectedIndex;
+			E_Projectiles.Projectiles[E_Globals.Editorindex].Name = txtName.Text.Trim();
+			lstIndex.Items.RemoveAt(E_Globals.Editorindex - 1);
+			lstIndex.Items.Insert(E_Globals.Editorindex - 1, E_Globals.Editorindex + ": " + E_Projectiles.Projectiles[E_Globals.Editorindex].Name);
+			lstIndex.SelectedIndex = tmpindex;
+		}
+		
+		public void NudPic_ValueChanged(object sender, EventArgs e)
+		{
+			if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+			{
+				return;
+			}
+			
+			E_Projectiles.Projectiles[E_Globals.Editorindex].Sprite = (int) nudPic.Value;
+		}
+		
+		public void NudRange_ValueChanged(object sender, EventArgs e)
+		{
+			if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+			{
+				return;
+			}
+			
+			E_Projectiles.Projectiles[E_Globals.Editorindex].Range = (byte) nudRange.Value;
+		}
+		
+		public void NudSpeed_ValueChanged(object sender, EventArgs e)
+		{
+			if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+			{
+				return;
+			}
+			
+			E_Projectiles.Projectiles[E_Globals.Editorindex].Speed = (int) nudSpeed.Value;
+		}
+		
+		public void NudDamage_ValueChanged(object sender, EventArgs e)
+		{
+			if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+			{
+				return;
+			}
+			
+			E_Projectiles.Projectiles[E_Globals.Editorindex].Damage = (int) nudDamage.Value;
+		}
+		
+	}
 }

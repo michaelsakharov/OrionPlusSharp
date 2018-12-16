@@ -3122,7 +3122,6 @@ namespace Engine
             }
 
             {
-                //var withBlock1 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot];
                 OldPrefix = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Prefix;
                 OldSuffix = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Suffix;
                 OldDamage = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Damage;
@@ -3133,7 +3132,6 @@ namespace Engine
             }
 
             {
-                //var withBlock2 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot];
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Prefix = OldPrefix;
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Suffix = OldSuffix;
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[NewSlot].Damage = OldDamage;
@@ -3144,7 +3142,6 @@ namespace Engine
             }
 
             {
-                //var withBlock3 = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot];
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Prefix = NewPrefix;
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Suffix = NewSuffix;
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[OldSlot].Damage = NewDamage;
@@ -3440,10 +3437,9 @@ namespace Engine
             SetPlayerDir(index, (byte)Enums.DirectionType.Down);
 
             {
-                var withBlock = modTypes.Map[GetPlayerMap(index)];
                 // to the bootmap if it is set
-                if (withBlock.BootMap > 0)
-                    PlayerWarp(index, withBlock.BootMap, withBlock.BootX, withBlock.BootY);
+                if (modTypes.Map[GetPlayerMap(index)].BootMap > 0)
+                    PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].BootMap, modTypes.Map[GetPlayerMap(index)].BootX, modTypes.Map[GetPlayerMap(index)].BootY);
                 else
                     PlayerWarp(index, modTypes.Options.StartMap, modTypes.Options.StartX, modTypes.Options.StartY);
             }
@@ -3992,7 +3988,6 @@ namespace Engine
             }
 
             {
-                //var withBlock2 = modTypes.Bank[index].ItemRand[NewSlot];
                 modTypes.Bank[index].ItemRand[NewSlot].Prefix = OldPrefix;
                 modTypes.Bank[index].ItemRand[NewSlot].Suffix = OldSuffix;
                 modTypes.Bank[index].ItemRand[NewSlot].Damage = OldDamage;
@@ -4003,7 +3998,6 @@ namespace Engine
             }
 
             {
-                //var withBlock3 = modTypes.Bank[index].ItemRand[OldSlot];
                 modTypes.Bank[index].ItemRand[OldSlot].Prefix = NewPrefix;
                 modTypes.Bank[index].ItemRand[OldSlot].Suffix = NewSuffix;
                 modTypes.Bank[index].ItemRand[OldSlot].Damage = NewDamage;

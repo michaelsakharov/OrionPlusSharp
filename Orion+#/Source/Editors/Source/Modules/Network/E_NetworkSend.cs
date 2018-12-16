@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using ASFW;
 using ASFW.IO;
