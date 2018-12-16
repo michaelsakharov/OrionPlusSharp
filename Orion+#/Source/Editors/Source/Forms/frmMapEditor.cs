@@ -510,7 +510,14 @@ namespace Engine
 			{
 				if (E_Types.Map.Npc[n] > 0)
 				{
-					lstNpc.Items.Add(n + ": " + Types.Npc[E_Types.Map.Npc[n]].Name);
+                    if(Types.Npc[E_Types.Map.Npc[n]].Name != null)
+                    {
+                        lstNpc.Items.Add(n + ": " + Types.Npc[E_Types.Map.Npc[n]].Name);
+                    }
+                    else
+                    {
+                        lstNpc.Items.Add(n + ": " + "Null");
+                    }
 				}
 				else
 				{

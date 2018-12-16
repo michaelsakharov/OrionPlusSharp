@@ -255,8 +255,15 @@ namespace Engine
 			lstRewards.Items.Clear();
 			for (var i = 1; i <= E_Quest.Quest[E_Globals.Editorindex].RewardCount; i++)
 			{
-				lstRewards.Items.Add(i + ":" + E_Quest.Quest[E_Globals.Editorindex].RewardItemAmount[(int) i] + " X " + Types.Item[E_Quest.Quest[E_Globals.Editorindex].RewardItem[(int) i]].Name.Trim());
-			}
+                if (Types.Item[E_Quest.Quest[E_Globals.Editorindex].RewardItem[(int)i]].Name != null && E_Quest.Quest[E_Globals.Editorindex].RewardItemAmount[(int)i] != null)
+                {
+                    lstRewards.Items.Add(i + ":" + E_Quest.Quest[E_Globals.Editorindex].RewardItemAmount[(int)i] + " X " + Types.Item[E_Quest.Quest[E_Globals.Editorindex].RewardItem[(int)i]].Name.Trim());
+                }
+                else
+                {
+                    lstRewards.Items.Add(i + ":" + "Null" + " X " + "Null");
+                }
+            }
 		}
 		
 		public void BtnRemoveReward_Click(object sender, EventArgs e)
@@ -374,7 +381,15 @@ namespace Engine
 			lstTasks.Items.Clear();
 			for (i = 1; i <= E_Quest.Quest[E_Globals.Editorindex].TaskCount; i++)
 			{
-				lstTasks.Items.Add(i + ":" + E_Quest.Quest[E_Globals.Editorindex].Task[i].TaskLog);
+                if (E_Quest.Quest[E_Globals.Editorindex].Task[i].TaskLog != null)
+                {
+                    lstTasks.Items.Add(i + ":" + E_Quest.Quest[E_Globals.Editorindex].Task[i].TaskLog);
+                }
+                else
+                {
+                    lstTasks.Items.Add(i + ":" + "Null");
+                }
+				
 			}
 			
 		}
@@ -445,7 +460,14 @@ namespace Engine
 			lstTasks.Items.Clear();
 			for (var i = 1; i <= E_Quest.Quest[E_Globals.Editorindex].TaskCount; i++)
 			{
-				lstTasks.Items.Add(i + ":" + E_Quest.Quest[E_Globals.Editorindex].Task[(int) i].TaskLog);
+                if (E_Quest.Quest[E_Globals.Editorindex].Task[i].TaskLog != null)
+                {
+                    lstTasks.Items.Add(i + ":" + E_Quest.Quest[E_Globals.Editorindex].Task[(int)i].TaskLog);
+                }
+                else
+                {
+                    lstTasks.Items.Add(i + ":" + "Null");
+                }
 			}
 			
 			fraTasks.Visible = false;
@@ -632,22 +654,24 @@ namespace Engine
 			lstRequirements.Items.Clear();
 			for (i = 1; i <= E_Quest.Quest[E_Globals.Editorindex].ReqCount; i++)
 			{
-				if ((int) (E_Quest.Quest[E_Globals.Editorindex].Requirement[i]) == 1)
-				{
-					lstRequirements.Items.Add(i + ":" + "Item Requirement: " + Types.Item[E_Quest.Quest[E_Globals.Editorindex].RequirementIndex[i]].Name.Trim());
-				}
-				else if ((int) (E_Quest.Quest[E_Globals.Editorindex].Requirement[i]) == 2)
-				{
-					lstRequirements.Items.Add(i + ":" + "Quest Requirement: " + E_Quest.Quest[E_Quest.Quest[E_Globals.Editorindex].RequirementIndex[i]].Name.Trim());
-				}
-				else if ((int) (E_Quest.Quest[E_Globals.Editorindex].Requirement[i]) == 3)
-				{
-					lstRequirements.Items.Add(i + ":" + "Class Requirement: " + Types.Classes[E_Quest.Quest[E_Globals.Editorindex].RequirementIndex[i]].Name.Trim());
-				}
-				else
-				{
-					lstRequirements.Items.Add(i + ":");
-				}
+
+                if ((int)(E_Quest.Quest[E_Globals.Editorindex].Requirement[i]) == 1)
+                {
+                    lstRequirements.Items.Add(i + ":" + "Item Requirement: " + Types.Item[E_Quest.Quest[E_Globals.Editorindex].RequirementIndex[i]].Name.Trim());
+                }
+                else if ((int)(E_Quest.Quest[E_Globals.Editorindex].Requirement[i]) == 2)
+                {
+                    lstRequirements.Items.Add(i + ":" + "Quest Requirement: " + E_Quest.Quest[E_Quest.Quest[E_Globals.Editorindex].RequirementIndex[i]].Name.Trim());
+                }
+                else if ((int)(E_Quest.Quest[E_Globals.Editorindex].Requirement[i]) == 3)
+                {
+                    lstRequirements.Items.Add(i + ":" + "Class Requirement: " + Types.Classes[E_Quest.Quest[E_Globals.Editorindex].RequirementIndex[i]].Name.Trim());
+                }
+                else
+                {
+                    lstRequirements.Items.Add(i + ":");
+                }
+                
 				
 			}
 		}

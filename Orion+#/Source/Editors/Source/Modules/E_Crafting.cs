@@ -118,7 +118,14 @@ namespace Engine
 			// Add the names
 			for (i = 1; i <= Constants.MAX_RECIPE; i++)
 			{
-				FrmRecipe.Default.lstIndex.Items.Add(i + ": " + Recipe[i].Name.Trim());
+                if(Recipe[i].Name != null)
+                {
+                    FrmRecipe.Default.lstIndex.Items.Add(i + ": " + Recipe[i].Name.Trim());
+                }
+                else
+                {
+                    FrmRecipe.Default.lstIndex.Items.Add(i + ": " + "Null");
+                }
 			}
 			
 			//fill comboboxes
@@ -129,8 +136,16 @@ namespace Engine
 			FrmRecipe.Default.cmbIngredient.Items.Add("None");
 			for (i = 1; i <= Constants.MAX_ITEMS; i++)
 			{
-				FrmRecipe.Default.cmbMakeItem.Items.Add(Types.Item[i].Name.Trim());
-				FrmRecipe.Default.cmbIngredient.Items.Add(Types.Item[i].Name.Trim());
+                if (Types.Item[i].Name != null)
+                {
+                    FrmRecipe.Default.cmbMakeItem.Items.Add(Types.Item[i].Name.Trim());
+                    FrmRecipe.Default.cmbIngredient.Items.Add(Types.Item[i].Name.Trim());
+                }
+                else
+                {
+                    FrmRecipe.Default.cmbMakeItem.Items.Add("Null");
+                    FrmRecipe.Default.cmbIngredient.Items.Add("Null");
+                }
 			}
 			
 			FrmRecipe.Default.Show();
@@ -212,7 +227,14 @@ namespace Engine
 				}
 				else
 				{
-					FrmRecipe.Default.lstIngredients.Items.Add(Types.Item[Recipe[E_Globals.Editorindex].Ingredients[i].ItemNum].Name.Trim() + " X " + System.Convert.ToString(Recipe[E_Globals.Editorindex].Ingredients[i].Value));
+                    if (Types.Item[Recipe[E_Globals.Editorindex].Ingredients[i].ItemNum].Name != null)
+                    {
+                        FrmRecipe.Default.lstIngredients.Items.Add(Types.Item[Recipe[E_Globals.Editorindex].Ingredients[i].ItemNum].Name.Trim() + " X " + System.Convert.ToString(Recipe[E_Globals.Editorindex].Ingredients[i].Value));
+                    }
+                    else
+                    {
+                        FrmRecipe.Default.lstIngredients.Items.Add("Null" + " X " + System.Convert.ToString(Recipe[E_Globals.Editorindex].Ingredients[i].Value));
+                    }
 				}
 				
 			}

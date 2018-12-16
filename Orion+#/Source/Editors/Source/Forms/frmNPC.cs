@@ -64,7 +64,14 @@ namespace Engine
 			cmbItem.Items.Add("None");
 			for (var i = 1; i <= Constants.MAX_ITEMS; i++)
 			{
-				cmbItem.Items.Add(i + ": " + Types.Item[(int) i].Name);
+                if (Types.Item[(int)i].Name != null)
+                {
+                    cmbItem.Items.Add(i + ": " + Types.Item[(int)i].Name);
+                }
+                else
+                {
+                    cmbItem.Items.Add(i + ": " + "Null");
+                }
 			}
 		}
 		

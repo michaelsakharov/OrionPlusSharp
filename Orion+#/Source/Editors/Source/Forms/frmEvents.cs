@@ -67,7 +67,14 @@ namespace Engine
 
             for (i = 1; i <= E_EventSystem.MaxVariables; i++)
             {
-                cmbCondition_PlayerVarIndex.Items.Add(i + ". " + E_EventSystem.Variables[i]);
+                if(E_EventSystem.Variables[i] != null)
+                {
+                    cmbCondition_PlayerVarIndex.Items.Add(i + ". " + E_EventSystem.Variables[i]);
+                }
+                else
+                {
+                    cmbCondition_PlayerVarIndex.Items.Add(i + ". " + "Null");
+                }
             }
             cmbCondition_PlayerVarIndex.SelectedIndex = 0;
             cmbCondition_PlayerVarCompare.SelectedIndex = 0;
@@ -79,7 +86,14 @@ namespace Engine
 
             for (i = 1; i <= E_EventSystem.MaxSwitches; i++)
             {
-                cmbCondition_PlayerSwitch.Items.Add(i + ". " + E_EventSystem.Switches[i]);
+                if (E_EventSystem.Switches[i] != null)
+                {
+                    cmbCondition_PlayerSwitch.Items.Add(i + ". " + E_EventSystem.Switches[i]);
+                }
+                else
+                {
+                    cmbCondition_PlayerSwitch.Items.Add(i + ". " + "Null");
+                }
             }
             cmbCondition_PlayerSwitch.SelectedIndex = 0;
             cmbCondtion_PlayerSwitchCondition.Enabled = false;
@@ -89,7 +103,14 @@ namespace Engine
 
             for (i = 1; i <= Constants.MAX_ITEMS; i++)
             {
-                cmbCondition_HasItem.Items.Add(i + ". " + Types.Item[i].Name.Trim());
+                if (Types.Item[i].Name != null)
+                {
+                    cmbCondition_HasItem.Items.Add(i + ". " + Types.Item[i].Name.Trim());
+                }
+                else
+                {
+                    cmbCondition_HasItem.Items.Add(i + ". " + "Null");
+                }
             }
             cmbCondition_HasItem.SelectedIndex = 0;
             nudCondition_HasItem.Enabled = false;
@@ -99,7 +120,15 @@ namespace Engine
 
             for (i = 1; i <= E_Globals.Max_Classes; i++)
             {
-                cmbCondition_ClassIs.Items.Add(i + ". " + Convert.ToString(Types.Classes[i].Name));
+                if (Types.Classes[i].Name != null)
+                {
+                    cmbCondition_ClassIs.Items.Add(i + ". " + Types.Classes[i].Name.Trim());
+                }
+                else
+                {
+                    cmbCondition_ClassIs.Items.Add(i + ". " + "Null");
+                }
+                
             }
             cmbCondition_ClassIs.SelectedIndex = 0;
             cmbCondition_LearntSkill.Enabled = false;
@@ -107,7 +136,14 @@ namespace Engine
 
             for (i = 1; i <= Constants.MAX_SKILLS; i++)
             {
-                cmbCondition_LearntSkill.Items.Add(i + ". " + Types.Skill[i].Name.Trim());
+                if (Types.Skill[i].Name != null)
+                {
+                    cmbCondition_LearntSkill.Items.Add(i + ". " + Types.Skill[i].Name.Trim());
+                }
+                else
+                {
+                    cmbCondition_LearntSkill.Items.Add(i + ". " + "Null");
+                }
             }
             cmbCondition_LearntSkill.SelectedIndex = 0;
             cmbCondition_LevelCompare.Enabled = false;
@@ -571,7 +607,14 @@ namespace Engine
 
                             for (var i = 1; i <= E_Globals.Max_Classes; i++)
                             {
-                                cmbChangeClass.Items.Add(Types.Classes[(int)i].Name.Trim());
+                                if (Types.Classes[(int)i].Name != null)
+                                {
+                                    cmbChangeClass.Items.Add(Types.Classes[(int)i].Name.Trim());
+                                }
+                                else
+                                {
+                                    cmbChangeClass.Items.Add("Null");
+                                }
                             }
                             cmbChangeClass.SelectedIndex = 0;
                         }
@@ -634,9 +677,18 @@ namespace Engine
                     {
                         if (i != E_EventSystem.EditorEvent)
                         {
-                            cmbEvent.Items.Add(E_Types.Map.Events[(int)i].Name.Trim());
-                            x++;
-                            E_EventSystem.ListOfEvents[x] = System.Convert.ToInt32(i);
+                            if (E_Types.Map.Events[(int)i].Name != null)
+                            {
+                                cmbEvent.Items.Add(E_Types.Map.Events[(int)i].Name.Trim());
+                                x++;
+                                E_EventSystem.ListOfEvents[x] = System.Convert.ToInt32(i);
+                            }
+                            else
+                            {
+                                cmbEvent.Items.Add("Null");
+                                x++;
+                                E_EventSystem.ListOfEvents[x] = System.Convert.ToInt32(i);
+                            }
                         }
                     }
                     E_EventSystem.IsMoveRouteCommand = true;
@@ -660,9 +712,18 @@ namespace Engine
                     {
                         if (i != E_EventSystem.EditorEvent)
                         {
-                            cmbMoveWait.Items.Add(E_Types.Map.Events[(int)i].Name.Trim());
-                            x++;
-                            E_EventSystem.ListOfEvents[x] = System.Convert.ToInt32(i);
+                            if (E_Types.Map.Events[(int)i].Name != null)
+                            {
+                                cmbMoveWait.Items.Add(E_Types.Map.Events[(int)i].Name.Trim());
+                                x++;
+                                E_EventSystem.ListOfEvents[x] = System.Convert.ToInt32(i);
+                            }
+                            else
+                            {
+                                cmbMoveWait.Items.Add("Null");
+                                x++;
+                                E_EventSystem.ListOfEvents[x] = System.Convert.ToInt32(i);
+                            }
                         }
                     }
                     fraDialogue.Visible = true;
@@ -675,7 +736,14 @@ namespace Engine
                     cmbSpawnNpc.Items.Clear();
                     for (var i = 1; i <= Constants.MAX_NPCS; i++)
                     {
-                        cmbSpawnNpc.Items.Add(Types.Npc[(int)i].Name.Trim());
+                        if (Types.Npc[i].Name != null)
+                        {
+                            cmbSpawnNpc.Items.Add(Types.Npc[(int)i].Name.Trim());
+                        }
+                        else
+                        {
+                            cmbSpawnNpc.Items.Add("Null");
+                        }
                     }
                     cmbSpawnNpc.SelectedIndex = 0;
                     fraDialogue.Visible = true;
@@ -702,7 +770,14 @@ namespace Engine
 
                     for (var i = 1; i <= E_Types.Map.EventCount; i++)
                     {
-                        cmbPlayAnimEvent.Items.Add(i + ". " + E_Types.Map.Events[(int)i].Name.Trim());
+                        if (E_Types.Map.Events[(int)i].Name != null)
+                        {
+                            cmbPlayAnimEvent.Items.Add(i + ". " + E_Types.Map.Events[(int)i].Name.Trim());
+                        }
+                        else
+                        {
+                            cmbPlayAnimEvent.Items.Add(i + ". " + "Null");
+                        }
                     }
                     cmbPlayAnimEvent.SelectedIndex = 0;
                     cmbAnimTargetType.SelectedIndex = 0;
@@ -1654,14 +1729,29 @@ namespace Engine
 
             for (var i = 1; i <= E_EventSystem.MaxSwitches; i++)
             {
-                lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                if (E_EventSystem.Switches[(int)i] != null)
+                {
+                    lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                }
+                else
+                {
+                    lstSwitches.Items.Add(Convert.ToString(i) + ". " + "Null");
+                }
             }
             lstSwitches.SelectedIndex = 0;
             lstVariables.Items.Clear();
 
             for (var i = 1; i <= E_EventSystem.MaxVariables; i++)
             {
-                lstVariables.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Variables[(int)i].Trim());
+                if (E_EventSystem.Variables[(int)i] != null)
+                {
+                    lstVariables.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Variables[(int)i].Trim());
+                }
+                else
+                {
+                    lstVariables.Items.Add(Convert.ToString(i) + ". " + "Null");
+                }
+                
             }
             lstVariables.SelectedIndex = 0;
 
@@ -1698,14 +1788,28 @@ namespace Engine
 
             for (var i = 1; i <= E_EventSystem.MaxSwitches; i++)
             {
-                lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                if (E_EventSystem.Switches[(int)i] != null)
+                {
+                    lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                }
+                else
+                {
+                    lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                }
             }
             lstSwitches.SelectedIndex = 0;
             lstVariables.Items.Clear();
 
             for (var i = 1; i <= E_EventSystem.MaxVariables; i++)
             {
-                lstVariables.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Variables[(int)i].Trim());
+                if (E_EventSystem.Variables[(int)i] != null)
+                {
+                    lstVariables.Items.Add(Convert.ToString(i) + ". " + "Null");
+                }
+                else
+                {
+                    lstVariables.Items.Add(Convert.ToString(i) + ". " + "Null");
+                }
             }
             lstVariables.SelectedIndex = 0;
         }
@@ -1719,14 +1823,29 @@ namespace Engine
 
             for (var i = 1; i <= E_EventSystem.MaxSwitches; i++)
             {
-                lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                if (E_EventSystem.Switches[(int)i] != null)
+                {
+                    lstSwitches.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Switches[(int)i].Trim());
+                }
+                else
+                {
+                    lstSwitches.Items.Add(Convert.ToString(i) + ". " + "Null");
+                }
             }
             lstSwitches.SelectedIndex = 0;
             lstVariables.Items.Clear();
 
             for (var i = 1; i <= E_EventSystem.MaxVariables; i++)
             {
-                lstVariables.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Variables[(int)i].Trim());
+                if (E_EventSystem.Variables[(int)i] != null)
+                {
+                    lstVariables.Items.Add(Convert.ToString(i) + ". " + E_EventSystem.Variables[(int)i].Trim());
+                }
+                else
+                {
+                    lstVariables.Items.Add(Convert.ToString(i) + ". " + "Null");
+                }
+                
             }
             lstVariables.SelectedIndex = 0;
         }
@@ -2271,7 +2390,14 @@ namespace Engine
                     }
                     else
                     {
-                        cmbChatBubbleTarget.Items.Add(i + ". " + Types.Npc[E_Types.Map.Npc[(int)i]].Name.Trim());
+                        if (Types.Npc[E_Types.Map.Npc[(int)i]].Name != null)
+                        {
+                            cmbChatBubbleTarget.Items.Add(i + ". " + Types.Npc[E_Types.Map.Npc[(int)i]].Name.Trim());
+                        }
+                        else
+                        {
+                            cmbChatBubbleTarget.Items.Add(i + ". " + "Null");
+                        }
                     }
                 }
                 cmbChatBubbleTarget.SelectedIndex = 0;
@@ -2283,7 +2409,14 @@ namespace Engine
 
                 for (var i = 1; i <= E_Types.Map.EventCount; i++)
                 {
-                    cmbChatBubbleTarget.Items.Add(i + ". " + E_Types.Map.Events[(int)i].Name.Trim());
+                    if (E_Types.Map.Events[(int)i].Name != null)
+                    {
+                        cmbChatBubbleTarget.Items.Add(i + ". " + E_Types.Map.Events[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        cmbChatBubbleTarget.Items.Add(i + ". " + "Null");
+                    }
                 }
                 cmbChatBubbleTarget.SelectedIndex = 0;
             }
