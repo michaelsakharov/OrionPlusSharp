@@ -75,6 +75,7 @@
             House,
             Craft,
             Light,
+            AllBlocked,
             Count
         }
 

@@ -617,8 +617,16 @@ namespace Engine
 				pnlAttributes.Visible = false;
 			}
 		}
-		
-		public void OptHouse_CheckedChanged(object sender, EventArgs e)
+
+        public void OptAllBlocked_CheckedChanged(object sender, EventArgs e)
+        {
+            if (optAllBlocked.Checked)
+            {
+                pnlAttributes.Visible = false;
+            }
+        }
+
+        public void OptHouse_CheckedChanged(object sender, EventArgs e)
 		{
 			E_Editors.ClearAttributeDialogue();
 			pnlAttributes.Visible = true;
@@ -975,8 +983,7 @@ namespace Engine
 			Application.DoEvents();
 			this.WindowState = FormWindowState.Normal;
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+    }
 }

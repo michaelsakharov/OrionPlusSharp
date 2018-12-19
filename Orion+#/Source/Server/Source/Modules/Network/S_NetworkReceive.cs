@@ -151,6 +151,7 @@ namespace Engine
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CReleasePet] = S_Pets.Packet_ReleasePet;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CPetSkill] = S_Pets.Packet_PetSkill;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CPetUseStatPoint] = S_Pets.Packet_UsePetStatPoint;
+            S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CPetMount] = S_Pets.Packet_PetMount;
                                             
             // editor login                 
             S_NetworkConfig.Socket.PacketId[(int)Packets.EditorPackets.EditorLogin] = Packet_EditorLogin;

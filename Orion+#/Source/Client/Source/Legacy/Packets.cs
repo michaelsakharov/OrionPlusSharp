@@ -311,6 +311,7 @@ namespace Engine
 			CReleasePet,
 			CPetSkill,
 			CPetUseStatPoint,
+			CPetMount,
 			
 			// Make sure COUNT is below everything else
 			Count

@@ -45,17 +45,17 @@
     <Element Name="Position" Value="0" />
     <Element Name="QuestNum" Value="0" />
     <Element Name="PlayerGender" Value="0" />
-    <Element Name="CommandList1CommandCount" Value="1" />
+    <Element Name="CommandList1CommandCount" Value="2" />
     <Element Name="CommandList1ParentList" Value="0" />
-    <Element Name="CommandList1Command1Index" Value="2" />
-    <Element Name="CommandList1Command1Text1" Value="sdasd" />
+    <Element Name="CommandList1Command1Index" Value="9" />
+    <Element Name="CommandList1Command1Text1" Value="" />
     <Element Name="CommandList1Command1Text2" Value="" />
     <Element Name="CommandList1Command1Text3" Value="" />
     <Element Name="CommandList1Command1Text4" Value="" />
     <Element Name="CommandList1Command1Text5" Value="" />
-    <Element Name="CommandList1Command1Data1" Value="0" />
-    <Element Name="CommandList1Command1Data2" Value="0" />
-    <Element Name="CommandList1Command1Data3" Value="0" />
+    <Element Name="CommandList1Command1Data1" Value="2" />
+    <Element Name="CommandList1Command1Data2" Value="1" />
+    <Element Name="CommandList1Command1Data3" Value="1" />
     <Element Name="CommandList1Command1Data4" Value="0" />
     <Element Name="CommandList1Command1Data5" Value="0" />
     <Element Name="CommandList1Command1Data6" Value="0" />
@@ -66,5 +66,24 @@
     <Element Name="CommandList1Command1ConditionalBranchData3" Value="0" />
     <Element Name="CommandList1Command1ConditionalBranchElseCommandList" Value="0" />
     <Element Name="CommandList1Command1MoveRouteCount" Value="0" />
+    <Element Name="CommandList1Command2Index" Value="2" />
+    <Element Name="CommandList1Command2Text1" Value="SUMMON THE MASTER OF US ALLLLL" />
+    <Element Name="CommandList1Command2Text2" Value="" />
+    <Element Name="CommandList1Command2Text3" Value="" />
+    <Element Name="CommandList1Command2Text4" Value="" />
+    <Element Name="CommandList1Command2Text5" Value="" />
+    <Element Name="CommandList1Command2Data1" Value="1" />
+    <Element Name="CommandList1Command2Data2" Value="0" />
+    <Element Name="CommandList1Command2Data3" Value="0" />
+    <Element Name="CommandList1Command2Data4" Value="0" />
+    <Element Name="CommandList1Command2Data5" Value="0" />
+    <Element Name="CommandList1Command2Data6" Value="0" />
+    <Element Name="CommandList1Command2ConditionalBranchCommandList" Value="0" />
+    <Element Name="CommandList1Command2ConditionalBranchCondition" Value="0" />
+    <Element Name="CommandList1Command2ConditionalBranchData1" Value="0" />
+    <Element Name="CommandList1Command2ConditionalBranchData2" Value="0" />
+    <Element Name="CommandList1Command2ConditionalBranchData3" Value="0" />
+    <Element Name="CommandList1Command2ConditionalBranchElseCommandList" Value="0" />
+    <Element Name="CommandList1Command2MoveRouteCount" Value="0" />
   </Event1Page1>
 </Data>

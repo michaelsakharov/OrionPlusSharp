@@ -1565,8 +1565,11 @@ namespace Engine
 		
 		internal static void DrawMapTint()
 		{
-			//If InMapEditor Then Exit Sub
-			
+            //If InMapEditor Then Exit Sub
+
+            return;
+            //Needs to be rewritten, HUGE performance hit
+
 			if (E_Types.Map.HasMapTint == 0)
 			{
 				return;

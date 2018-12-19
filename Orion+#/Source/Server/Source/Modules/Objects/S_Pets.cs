@@ -21,6 +21,8 @@ namespace Engine
         internal const byte PetAttackBehaviourGuard = 3; // If attacked, the pet will fight back
         internal const byte PetAttackBehaviourDonothing = 4; // The pet will not attack even if attacked
 
+        internal static bool isMounted = false;
+
         internal struct PetRec
         {
             public int Num;
@@ -30,6 +32,9 @@ namespace Engine
             public int Range;
 
             public int Level;
+
+            public byte IsMount;
+            public byte IsFlying;
 
             public int MaxLevel;
             public int ExpGain;
@@ -92,6 +97,8 @@ namespace Engine
             writer.WriteInt32(Pet[petNum].Sprite);
             writer.WriteInt32(Pet[petNum].Range);
             writer.WriteInt32(Pet[petNum].Level);
+            writer.WriteInt32(Pet[petNum].IsMount);
+            writer.WriteInt32(Pet[petNum].IsFlying);
             writer.WriteInt32(Pet[petNum].MaxLevel);
             writer.WriteInt32(Pet[petNum].ExpGain);
             writer.WriteInt32(Pet[petNum].LevelPnts);
@@ -211,6 +218,8 @@ namespace Engine
                 buffer.WriteInt32(Pet[petNum].Sprite);
                 buffer.WriteInt32(Pet[petNum].Range);
                 buffer.WriteInt32(Pet[petNum].Level);
+                buffer.WriteInt32(Pet[petNum].IsMount);
+                buffer.WriteInt32(Pet[petNum].IsFlying);
                 buffer.WriteInt32(Pet[petNum].MaxLevel);
                 buffer.WriteInt32(Pet[petNum].ExpGain);
                 buffer.WriteInt32(Pet[petNum].LevelPnts);
@@ -247,6 +256,8 @@ namespace Engine
                 buffer.WriteInt32(Pet[petNum].Sprite);
                 buffer.WriteInt32(Pet[petNum].Range);
                 buffer.WriteInt32(Pet[petNum].Level);
+                buffer.WriteInt32(Pet[petNum].IsMount);
+                buffer.WriteInt32(Pet[petNum].IsFlying);
                 buffer.WriteInt32(Pet[petNum].MaxLevel);
                 buffer.WriteInt32(Pet[petNum].ExpGain);
                 buffer.WriteInt32(Pet[petNum].LevelPnts);
@@ -281,6 +292,7 @@ namespace Engine
             buffer.WriteInt32(GetPetVital(index, Enums.VitalType.HP));
             buffer.WriteInt32(GetPetVital(index, Enums.VitalType.MP));
             buffer.WriteInt32(GetPetLevel(index));
+            buffer.WriteInt32(Convert.ToByte(isMounted));
 
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
                 buffer.WriteInt32(GetPetStat(index, (Enums.StatType)i));
@@ -426,6 +438,8 @@ namespace Engine
                 Pet[petNum].Sprite = buffer.ReadInt32();
                 Pet[petNum].Range = buffer.ReadInt32();
                 Pet[petNum].Level = buffer.ReadInt32();
+                Pet[petNum].IsMount = (byte)buffer.ReadInt32();
+                Pet[petNum].IsFlying = (byte)buffer.ReadInt32();
                 Pet[petNum].MaxLevel = buffer.ReadInt32();
                 Pet[petNum].ExpGain = buffer.ReadInt32();
                 Pet[petNum].LevelPnts = buffer.ReadInt32();
@@ -710,6 +724,29 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             SendUpdatePlayerPet(index, true);
         }
 
+
+        public static void Packet_PetMount(int index, ref byte[] data)
+        {
+            bool isMounting;
+            string sMes = "";
+            ByteStream buffer = new ByteStream(data);
+            buffer.Dispose();
+
+            // Prevent hacking
+            if ((buffer.ReadInt32() < 0) || (buffer.ReadInt32() > 1))
+                return;
+
+            if (!PetAlive(index))
+                return;
+
+            isMounting = Convert.ToBoolean(buffer.ReadInt32());
+            isMounted = isMounting;
+
+
+
+            // Send the update
+            SendUpdatePlayerPet(index, true);
+        }
 
 
         internal static void UpdatePetAi()
@@ -1326,7 +1363,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                             // Directional blocking
                             byte directionRef = (byte)(Enums.DirectionType.Up + 1);
-                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            if (IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
                             {
                                 return false;
                             }
@@ -1377,7 +1414,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                             // Directional blocking
                             byte directionRef = (byte)(Enums.DirectionType.Down + 1);
-                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            if (IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
                             {
                                 return false;
                             }
@@ -1428,7 +1465,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                             // Directional blocking
                             byte directionRef = (byte)(Enums.DirectionType.Left + 1);
-                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            if (IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
                             {
                                 return false;
                             }
@@ -1447,7 +1484,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x + 1, y].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn && n != (int)Enums.TileType.AllBlocked)
                             {
                                 return false;
                             }
@@ -1479,7 +1516,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                             // Directional blocking
                             byte directionRef = (byte)(Enums.DirectionType.Right + 1);
-                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            if (IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
                             {
                                 return false;
                             }
@@ -1490,6 +1527,11 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                     }
             }
             return CanPetMove;
+        }
+
+        internal static bool IsDirBlocked(ref byte Blockvar, ref byte Dir)
+        {
+            return !(~Blockvar <= 0 || Math.Pow(2.0, (double)Dir) == 0.0);
         }
 
         public static void PetDir(int index, int dir)

@@ -103,8 +103,43 @@ namespace Engine
 			
 			EditorPet_DrawPet();
 		}
-		
-		internal void EditorPet_DrawPet()
+
+
+        private void optIsMount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (E_Globals.Editorindex <= 0 || E_Globals.Editorindex > Constants.MAX_PETS)
+            {
+                return;
+            }
+
+            if (optIsMount.Checked == true)
+            {
+                E_Pets.Pet[E_Globals.Editorindex].StatType = 1;
+            }
+            else
+            {
+                E_Pets.Pet[E_Globals.Editorindex].StatType = 0;
+            }
+        }
+
+        private void optIsFlying_CheckedChanged(object sender, EventArgs e)
+        {
+            if (E_Globals.Editorindex <= 0 || E_Globals.Editorindex > Constants.MAX_PETS)
+            {
+                return;
+            }
+
+            if (optIsFlying.Checked == true)
+            {
+                E_Pets.Pet[E_Globals.Editorindex].StatType = 1;
+            }
+            else
+            {
+                E_Pets.Pet[E_Globals.Editorindex].StatType = 0;
+            }
+        }
+
+        internal void EditorPet_DrawPet()
 		{
 			int petnum = 0;
 			
@@ -407,8 +442,8 @@ namespace Engine
 			
 			E_Pets.Pet[E_Globals.Editorindex].EvolveNum = cmbEvolve.SelectedIndex;
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+
+    }
 }

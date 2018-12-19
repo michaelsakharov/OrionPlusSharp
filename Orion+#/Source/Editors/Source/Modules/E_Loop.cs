@@ -380,7 +380,7 @@ namespace Engine
 							
 							if (rendercount < Tick)
 							{
-								//Auctual Game Loop Stuff :/
+								//Actual Game Loop Stuff :/
 								E_Graphics.Render_Graphics();
 								rendercount = Tick + 32;
 							}
