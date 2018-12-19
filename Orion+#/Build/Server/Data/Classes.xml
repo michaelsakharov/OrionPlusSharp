@@ -1,22 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Data>
   <INIT>
-    <Element Name="MaxClasses" Value="1" />
+    <Element Name="MaxClasses" Value=" 2" />
   </INIT>
   <CLASS1>
     <Element Name="Name" Value="Warrior" />
     <Element Name="Desc" Value="Warrior Description" />
     <Element Name="MaleSprite" Value="1" />
     <Element Name="FemaleSprite" Value="2" />
-    <Element Name="Str" Value="5" />
-    <Element Name="End" Value="5" />
-    <Element Name="Vit" Value="5" />
-    <Element Name="Luck" Value="5" />
-    <Element Name="Int" Value="5" />
+    <Element Name="Str" Value=" 4" />
+    <Element Name="End" Value=" 5" />
+    <Element Name="Vit" Value=" 5" />
+    <Element Name="Luck" Value=" 5" />
+    <Element Name="Int" Value=" 5" />
     <Element Name="Spir" Value="5" />
-    <Element Name="BaseExp" Value="25" />
-    <Element Name="StartMap" Value="1" />
-    <Element Name="StartX" Value="13" />
-    <Element Name="StartY" Value="7" />
+    <Element Name="BaseExp" Value=" 25" />
+    <Element Name="StartMap" Value=" 1" />
+    <Element Name="StartX" Value=" 13" />
+    <Element Name="StartY" Value=" 7" />
+    <Element Name="Speed" Value=" 1" />
+    <Element Name="StartItem1" Value=" 0" />
+    <Element Name="StartValue1" Value=" 0" />
+    <Element Name="StartItem2" Value=" 0" />
+    <Element Name="StartValue2" Value=" 0" />
+    <Element Name="StartItem3" Value=" 0" />
+    <Element Name="StartValue3" Value=" 0" />
+    <Element Name="StartItem4" Value=" 0" />
+    <Element Name="StartValue4" Value=" 0" />
+    <Element Name="StartItem5" Value=" 0" />
+    <Element Name="StartValue5" Value=" 0" />
   </CLASS1>
+  <CLASS2>
+    <Element Name="Name" Value="New Class" />
+    <Element Name="Desc" Value="" />
+    <Element Name="MaleSprite" Value="0,0" />
+    <Element Name="FemaleSprite" Value="0,0" />
+    <Element Name="Str" Value=" 1" />
+    <Element Name="End" Value=" 1" />
+    <Element Name="Vit" Value=" 1" />
+    <Element Name="Luck" Value=" 1" />
+    <Element Name="Int" Value=" 1" />
+    <Element Name="Speed" Value=" 1" />
+    <Element Name="BaseExp" Value=" 0" />
+    <Element Name="StartMap" Value=" 1" />
+    <Element Name="StartX" Value=" 1" />
+    <Element Name="StartY" Value=" 1" />
+    <Element Name="StartItem1" Value=" 0" />
+    <Element Name="StartValue1" Value=" 0" />
+    <Element Name="StartItem2" Value=" 0" />
+    <Element Name="StartValue2" Value=" 0" />
+    <Element Name="StartItem3" Value=" 0" />
+    <Element Name="StartValue3" Value=" 0" />
+    <Element Name="StartItem4" Value=" 0" />
+    <Element Name="StartValue4" Value=" 0" />
+    <Element Name="StartItem5" Value=" 0" />
+    <Element Name="StartValue5" Value=" 0" />
+  </CLASS2>
 </Data>

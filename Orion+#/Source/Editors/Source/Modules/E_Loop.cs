@@ -449,7 +449,14 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_PETS; i++)
 				{
-					frmPet.Default.lstIndex.Items.Add(i + ": " + E_Pets.Pet[(int) i].Name.Trim());
+                    if (E_Pets.Pet[(int)i].Name != null)
+                    {
+                        frmPet.Default.lstIndex.Items.Add(i + ": " + E_Pets.Pet[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmPet.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				frmPet.Default.cmbEvolve.Items.Clear();
@@ -459,10 +466,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_PETS; i++)
 				{
-					frmPet.Default.cmbEvolve.Items.Add(i + ": " + E_Pets.Pet[(int) i].Name.Trim());
+                    if (E_Pets.Pet[(int)i].Name != null)
+                    {
+                        frmPet.Default.cmbEvolve.Items.Add(i + ": " + E_Pets.Pet[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmPet.Default.cmbEvolve.Items.Add(i + ": " + "Null");
+                    }
 				}
 				
 				frmPet.Default.Show();
+				frmPet.Default.Visible = true;
 				frmPet.Default.lstIndex.SelectedIndex = 0;
 				frmPet.Default.cmbEvolve.SelectedIndex = 0;
 				E_Pets.PetEditorInit();
@@ -478,11 +493,20 @@ namespace Engine
 				// Add the names
 				for (var I = 1; I <= E_Quest.MAX_QUESTS; I++)
 				{
-					FrmQuest.Default.lstIndex.Items.Add(I + ": " + E_Quest.Quest[(int) I].Name.Trim());
-					FrmQuest.Default.cmbQuestReq.Items.Add(I + ": " + E_Quest.Quest[(int) I].Name.Trim());
+                    if (E_Quest.Quest[(int)I].Name != null)
+                    {
+                        FrmQuest.Default.lstIndex.Items.Add(I + ": " + E_Quest.Quest[(int)I].Name.Trim());
+                        FrmQuest.Default.cmbQuestReq.Items.Add(I + ": " + E_Quest.Quest[(int)I].Name.Trim());
+                    }
+                    else
+                    {
+                        FrmQuest.Default.lstIndex.Items.Add(I + ": " + "");
+                        FrmQuest.Default.cmbQuestReq.Items.Add(I + ": " + "");
+                    }
 				}
 				
 				FrmQuest.Default.Show();
+				FrmQuest.Default.Visible = true;
 				FrmQuest.Default.lstIndex.SelectedIndex = 0;
 				E_Quest.QuestEditorInit();
 				E_Quest.QuestEditorShow = false;
@@ -496,10 +520,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_ANIMATIONS; i++)
 				{
-					FrmAnimation.Default.lstIndex.Items.Add(i + ": " + Types.Animation[(int) i].Name.Trim());
+                    if (Types.Animation[(int)i].Name != null)
+                    {
+                        FrmAnimation.Default.lstIndex.Items.Add(i + ": " + Types.Animation[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        FrmAnimation.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				FrmAnimation.Default.Show();
+				FrmAnimation.Default.Visible = true;
 				FrmAnimation.Default.lstIndex.SelectedIndex = 0;
 				E_Editors.AnimationEditorInit();
 				E_Globals.InitAnimationEditor = false;
@@ -551,15 +583,15 @@ namespace Engine
 				// Add the names
 				for (i = 1; i <= Constants.MAX_RESOURCES; i++)
 				{
-					if (ReferenceEquals(Types.Resource[i].Name, null))
+					if (Types.Resource[i].Name == null)
 					{
 						Types.Resource[i].Name = "";
 					}
-					if (ReferenceEquals(Types.Resource[i].SuccessMessage, null))
+					if (Types.Resource[i].SuccessMessage == null)
 					{
 						Types.Resource[i].SuccessMessage = "";
 					}
-					if (ReferenceEquals(Types.Resource[i].EmptyMessage, null))
+					if (Types.Resource[i].EmptyMessage == null)
 					{
 						Types.Resource[i].EmptyMessage = "";
 					}
@@ -567,6 +599,7 @@ namespace Engine
 				}
 				
 				FrmResource.Default.Show();
+				FrmResource.Default.Visible = true;
 				FrmResource.Default.lstIndex.SelectedIndex = 0;
 				E_Editors.ResourceEditorInit();
 				E_Globals.InitResourceEditor = false;
@@ -580,10 +613,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_NPCS; i++)
 				{
-					frmNPC.Default.lstIndex.Items.Add(i + ": " + Types.Npc[(int) i].Name.Trim());
+                    if (Types.Npc[(int)i].Name != null)
+                    {
+                        frmNPC.Default.lstIndex.Items.Add(i + ": " + Types.Npc[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmNPC.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				frmNPC.Default.Show();
+				frmNPC.Default.Visible = true;
 				frmNPC.Default.lstIndex.SelectedIndex = 0;
 				E_Editors.NpcEditorInit();
 				E_Globals.InitNPCEditor = false;
@@ -597,10 +638,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_SKILLS; i++)
 				{
-					frmSkill.Default.lstIndex.Items.Add(i + ": " + Types.Skill[(int) i].Name.Trim());
+                    if (Types.Skill[(int)i].Name != null)
+                    {
+                        frmSkill.Default.lstIndex.Items.Add(i + ": " + Types.Skill[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmSkill.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				frmSkill.Default.Show();
+				frmSkill.Default.Visible = true;
 				frmSkill.Default.lstIndex.SelectedIndex = 0;
 				E_Editors.SkillEditorInit();
 				E_Globals.InitSkillEditor = false;
@@ -614,10 +663,20 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_SHOPS; i++)
 				{
-					frmShop.Default.lstIndex.Items.Add(i + ": " + Types.Shop[(int) i].Name.Trim());
+                    if (Types.Shop[(int)i].Name != null)
+                    {
+                        frmShop.Default.lstIndex.Items.Add(i + ": " + Types.Shop[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmShop.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				frmShop.Default.Show();
+                frmShop.Default.Visible = true;
+
+                frmShop.Default.Visible = true;
 				frmShop.Default.lstIndex.SelectedIndex = 0;
 				E_Editors.ShopEditorInit();
 				E_Globals.InitShopEditor = false;
@@ -631,10 +690,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= Constants.MAX_ANIMATIONS; i++)
 				{
-					FrmAnimation.Default.lstIndex.Items.Add(i + ": " + Types.Animation[(int) i].Name.Trim());
+                    if (Types.Animation[(int)i].Name != null)
+                    {
+                        FrmAnimation.Default.lstIndex.Items.Add(i + ": " + Types.Animation[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        FrmAnimation.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				FrmAnimation.Default.Show();
+				FrmAnimation.Default.Visible = true;
 				FrmAnimation.Default.lstIndex.SelectedIndex = 0;
 				E_Editors.AnimationEditorInit();
 				E_Globals.InitAnimationEditor = false;
@@ -648,10 +715,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= E_Housing.MAX_HOUSES; i++)
 				{
-					FrmHouse.Default.lstIndex.Items.Add(i + ": " + E_Housing.House[(int) i].ConfigName.Trim());
+                    if (E_Housing.House[(int)i].ConfigName != null)
+                    {
+                        FrmHouse.Default.lstIndex.Items.Add(i + ": " + E_Housing.House[(int)i].ConfigName.Trim());
+                    }
+                    else
+                    {
+                        FrmHouse.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				FrmHouse.Default.Show();
+				FrmHouse.Default.Visible = true;
 				FrmHouse.Default.lstIndex.SelectedIndex = 0;
 				
 				E_Housing.HouseEditorInit();
@@ -669,7 +744,7 @@ namespace Engine
 				
 				for (var i = 1; i <= E_EventSystem.TmpEvent.PageCount; i++)
 				{
-					frmEvents.Default.tabPages.TabPages.Add(Conversion.Str(i));
+                    frmEvents.Default.tabPages.TabPages.Add(Conversion.Str(i));
 				}
 				// items
 				frmEvents.Default.cmbHasItem.Items.Clear();
@@ -682,7 +757,7 @@ namespace Engine
                     }
                     else
                     {
-                        frmEvents.Default.cmbHasItem.Items.Add(i + ": " + "Null");
+                        frmEvents.Default.cmbHasItem.Items.Add(i + ": " + "");
                     }
 				}
 				// variables
@@ -696,7 +771,7 @@ namespace Engine
                     }
                     else
                     {
-                        frmEvents.Default.cmbPlayerVar.Items.Add(i + ". " + "Null");
+                        frmEvents.Default.cmbPlayerVar.Items.Add(i + ". " + "");
                     }
 				}
 				// variables
@@ -710,7 +785,7 @@ namespace Engine
                     }
                     else
                     {
-                        frmEvents.Default.cmbPlayerSwitch.Items.Add(i + ". " + "Null");
+                        frmEvents.Default.cmbPlayerSwitch.Items.Add(i + ". " + "");
                     }
                     
 				}
@@ -734,6 +809,7 @@ namespace Engine
 				frmEvents.Default.nudShowChoicesFace.Maximum = E_Graphics.NumFaces;
 				// show the editor
 				frmEvents.Default.Show();
+				frmEvents.Default.Visible = true;
 				
 				E_EventSystem.InitEventEditorForm = false;
 			}
@@ -746,10 +822,18 @@ namespace Engine
 				// Add the names
 				for (var i = 1; i <= E_Projectiles.MAX_PROJECTILES; i++)
 				{
-					frmProjectile.Default.lstIndex.Items.Add(i + ": " + E_Projectiles.Projectiles[(int) i].Name.Trim());
+                    if (E_Projectiles.Projectiles[(int)i].Name != null)
+                    {
+                        frmProjectile.Default.lstIndex.Items.Add(i + ": " + E_Projectiles.Projectiles[(int)i].Name.Trim());
+                    }
+                    else
+                    {
+                        frmProjectile.Default.lstIndex.Items.Add(i + ": " + "");
+                    }
 				}
 				
 				frmProjectile.Default.Show();
+				frmProjectile.Default.Visible = true;
 				frmProjectile.Default.lstIndex.SelectedIndex = 0;
 				E_Projectiles.ProjectileEditorInit();
 				

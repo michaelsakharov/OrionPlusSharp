@@ -258,6 +258,10 @@ namespace Engine
 			}
 			E_Globals.Editorindex = frmProjectile.Default.lstIndex.SelectedIndex + 1;
 			
+            if(Projectiles[E_Globals.Editorindex].Name == null)
+            {
+                Projectiles[E_Globals.Editorindex].Name = "";
+            }
 			frmProjectile.Default.txtName.Text = Projectiles[E_Globals.Editorindex].Name.Trim();
 			frmProjectile.Default.nudPic.Value = Projectiles[E_Globals.Editorindex].Sprite;
 			frmProjectile.Default.nudRange.Value = Projectiles[E_Globals.Editorindex].Range;

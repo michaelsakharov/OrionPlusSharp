@@ -88,7 +88,7 @@ namespace Engine
                 for (i = 1; i <= loopTo2; i++)
                 {
                     {
-                        var withBlock = E_Types.Map.Events[i];
+                        ref var withBlock = ref E_Types.Map.Events[i];
                         buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(withBlock.Name)));
                         buffer.WriteInt32(withBlock.Globals);
                         buffer.WriteInt32(withBlock.X);
@@ -101,7 +101,7 @@ namespace Engine
                         for (X = 1; X <= loopTo3; X++)
                         {
                             {
-                                var withBlock1 = E_Types.Map.Events[i].Pages[X];
+                                ref var withBlock1 = ref E_Types.Map.Events[i].Pages[X];
                                 buffer.WriteInt32(withBlock1.ChkVariable);
                                 buffer.WriteInt32(withBlock1.Variableindex);
                                 buffer.WriteInt32(withBlock1.VariableCondition);
@@ -165,7 +165,7 @@ namespace Engine
                                         for (var z = 1; z <= loopTo6; z++)
                                         {
                                             {
-                                                var withBlock2 = E_Types.Map.Events[i].Pages[X].CommandList[Y].Commands[z];
+                                                ref var withBlock2 = ref E_Types.Map.Events[i].Pages[X].CommandList[Y].Commands[z];
                                                 buffer.WriteInt32(withBlock2.Index);
                                                 buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(withBlock2.Text1)));
                                                 buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(withBlock2.Text2)));

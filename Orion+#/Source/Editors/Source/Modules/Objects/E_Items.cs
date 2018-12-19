@@ -251,7 +251,11 @@ namespace Engine
 			// Add the names
 			for (i = 1; i <= Constants.MAX_ITEMS; i++)
 			{
-				FrmItem.Default.lstIndex.Items.Add(i + ": " + Types.Item[i].Name.Trim());
+                if (Types.Item[i].Name == null)
+                {
+                    Types.Item[i].Name = "";
+                }
+                FrmItem.Default.lstIndex.Items.Add(i + ": " + Types.Item[i].Name.Trim());
 			}
 			
 			FrmItem.Default.Show();
@@ -274,45 +278,76 @@ namespace Engine
 			FrmItem.Default.cmbAnimation.Items.Add("None");
 			for (i = 1; i <= Constants.MAX_ANIMATIONS; i++)
 			{
-				FrmItem.Default.cmbAnimation.Items.Add(i + ": " + Types.Animation[i].Name);
+                if (Types.Animation[i].Name == null)
+                {
+                    Types.Animation[i].Name = "";
+                }
+                FrmItem.Default.cmbAnimation.Items.Add(i + ": " + Types.Animation[i].Name);
 			}
 			
 			FrmItem.Default.cmbAmmo.Items.Clear();
 			FrmItem.Default.cmbAmmo.Items.Add("None");
 			for (i = 1; i <= Constants.MAX_ITEMS; i++)
 			{
-				FrmItem.Default.cmbAmmo.Items.Add(i + ": " + Types.Item[i].Name);
+                if (Types.Item[i].Name == null)
+                {
+                    Types.Item[i].Name = "";
+                }
+                FrmItem.Default.cmbAmmo.Items.Add(i + ": " + Types.Item[i].Name);
 			}
 			
 			FrmItem.Default.cmbProjectile.Items.Clear();
 			FrmItem.Default.cmbProjectile.Items.Add("None");
 			for (i = 1; i <= E_Projectiles.MAX_PROJECTILES; i++)
 			{
-				FrmItem.Default.cmbProjectile.Items.Add(i + ": " + E_Projectiles.Projectiles[i].Name);
+                if (E_Projectiles.Projectiles[i].Name == null)
+                {
+                    E_Projectiles.Projectiles[i].Name = "";
+                }
+                FrmItem.Default.cmbProjectile.Items.Add(i + ": " + E_Projectiles.Projectiles[i].Name);
 			}
 			
 			FrmItem.Default.cmbSkills.Items.Clear();
 			FrmItem.Default.cmbSkills.Items.Add("None");
 			for (i = 1; i <= Constants.MAX_SKILLS; i++)
 			{
-				FrmItem.Default.cmbSkills.Items.Add(i + ": " + Types.Skill[i].Name);
+                if (Types.Skill[i].Name == null)
+                {
+                    Types.Skill[i].Name = "";
+                }
+                FrmItem.Default.cmbSkills.Items.Add(i + ": " + Types.Skill[i].Name);
 			}
 			
 			FrmItem.Default.cmbPet.Items.Clear();
 			FrmItem.Default.cmbPet.Items.Add("None");
 			for (i = 1; i <= Constants.MAX_PETS; i++)
 			{
-				FrmItem.Default.cmbPet.Items.Add(i + ": " + E_Pets.Pet[i].Name);
+                if (E_Pets.Pet[i].Name == null)
+                {
+                    E_Pets.Pet[i].Name = "";
+                }
+                FrmItem.Default.cmbPet.Items.Add(i + ": " + E_Pets.Pet[i].Name);
 			}
 			
 			FrmItem.Default.cmbRecipe.Items.Clear();
 			FrmItem.Default.cmbRecipe.Items.Add("None");
 			for (i = 1; i <= Constants.MAX_RECIPE; i++)
 			{
-				FrmItem.Default.cmbRecipe.Items.Add(i + ": " + E_Crafting.Recipe[i].Name);
+                if (E_Crafting.Recipe[i].Name == null)
+                {
+                    E_Crafting.Recipe[i].Name = "";
+                }
+                FrmItem.Default.cmbRecipe.Items.Add(i + ": " + E_Crafting.Recipe[i].Name);
 			}
-			
-			FrmItem.Default.txtName.Text = Types.Item[E_Globals.Editorindex].Name.Trim();
+            if (Types.Item[E_Globals.Editorindex].Name == null)
+            {
+                Types.Item[E_Globals.Editorindex].Name = "";
+            }
+            if (Types.Item[E_Globals.Editorindex].Description == null)
+            {
+                Types.Item[E_Globals.Editorindex].Description = "";
+            }
+            FrmItem.Default.txtName.Text = Types.Item[E_Globals.Editorindex].Name.Trim();
 			FrmItem.Default.txtDescription.Text = Types.Item[E_Globals.Editorindex].Description.Trim();
 			
 			if (Types.Item[E_Globals.Editorindex].Pic > FrmItem.Default.nudPic.Maximum)
@@ -460,7 +495,11 @@ namespace Engine
 			
 			for (i = 1; i <= E_Globals.Max_Classes; i++)
 			{
-				FrmItem.Default.cmbClassReq.Items.Add(Types.Classes[i].Name);
+                if (Types.Classes[i].Name == null)
+                {
+                    Types.Classes[i].Name = "";
+                }
+                FrmItem.Default.cmbClassReq.Items.Add(Types.Classes[i].Name);
 			}
 			
 			FrmItem.Default.cmbClassReq.SelectedIndex = Types.Item[E_Globals.Editorindex].ClassReq;

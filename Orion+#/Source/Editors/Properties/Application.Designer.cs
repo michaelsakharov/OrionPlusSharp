@@ -39,7 +39,7 @@ namespace Engine
 			[STAThread]
 			static void Main()
 			{
-				(new MyApplication()).Run(new string[] {});
+				new MyApplication().Run(new string[] {});
 			}
 			
 			[global::System.Diagnostics.DebuggerStepThrough()]public MyApplication() : base(global::Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)

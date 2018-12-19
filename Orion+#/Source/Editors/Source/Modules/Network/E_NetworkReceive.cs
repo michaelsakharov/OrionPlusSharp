@@ -145,7 +145,7 @@ namespace Engine
             for (i = 1; i <= loopTo2; i++)
             {
                 {
-                    var withBlock = Types.Classes[i];
+                    ref var withBlock = ref Types.Classes[i];
                     withBlock.Name = buffer.ReadString();
                     withBlock.Desc = buffer.ReadString();
 
@@ -281,7 +281,7 @@ namespace Engine
                         for (i = 1; i <= loopTo2; i++)
                         {
                             {
-                                var withBlock = E_Types.Map.Events[i];
+                                ref var withBlock = ref E_Types.Map.Events[i];
                                 withBlock.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
                                 withBlock.Globals = buffer.ReadInt32();
                                 withBlock.X = buffer.ReadInt32();
@@ -295,7 +295,7 @@ namespace Engine
                                 for (X = 1; X <= loopTo3; X++)
                                 {
                                     {
-                                        var withBlock1 = E_Types.Map.Events[i].Pages[X];
+                                        ref var withBlock1 = ref E_Types.Map.Events[i].Pages[X];
                                         withBlock1.ChkVariable = buffer.ReadInt32();
                                         withBlock1.Variableindex = buffer.ReadInt32();
                                         withBlock1.VariableCondition = buffer.ReadInt32();
@@ -373,7 +373,7 @@ namespace Engine
                                                 for (var z = 1; z <= loopTo6; z++)
                                                 {
                                                     {
-                                                        var withBlock2 = E_Types.Map.Events[i].Pages[X].CommandList[Y].Commands[z];
+                                                        ref var withBlock2 = ref E_Types.Map.Events[i].Pages[X].CommandList[Y].Commands[z];
                                                         withBlock2.Index = buffer.ReadInt32();
                                                         withBlock2.Text1 = buffer.ReadString().Trim();
                                                         withBlock2.Text2 = buffer.ReadString().Trim();
@@ -493,7 +493,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
             {
                 {
-                    var withBlock = E_Types.MapNpc[i];
+                    ref var withBlock = ref E_Types.MapNpc[i];
                     withBlock.Num = (byte)buffer.ReadInt32();
                     withBlock.X = (byte)buffer.ReadInt32();
                     withBlock.Y = (byte)buffer.ReadInt32();
@@ -515,7 +515,7 @@ namespace Engine
             NpcNum = buffer.ReadInt32();
 
             {
-                var withBlock = E_Types.MapNpc[NpcNum];
+                ref var withBlock = ref E_Types.MapNpc[NpcNum];
                 withBlock.Num = (byte)buffer.ReadInt32();
                 withBlock.X = (byte)buffer.ReadInt32();
                 withBlock.Y = (byte)buffer.ReadInt32();
@@ -760,7 +760,7 @@ namespace Engine
             for (i = 1; i <= loopTo2; i++)
             {
                 {
-                    var withBlock = Types.Classes[i];
+                    ref var withBlock = ref Types.Classes[i];
                     withBlock.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
                     withBlock.Desc = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 

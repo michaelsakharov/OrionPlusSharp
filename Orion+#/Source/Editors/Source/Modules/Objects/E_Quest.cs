@@ -167,7 +167,11 @@ namespace Engine
 			
 			for (var i = 1; i <= Constants.MAX_ITEMS; i++)
 			{
-				FrmQuest.Default.cmbStartItem.Items.Add(i + ": " + Types.Item[(int) i].Name);
+                if (Types.Item[(int)i].Name == null)
+                {
+                    Types.Item[(int)i].Name = "";
+                }
+                FrmQuest.Default.cmbStartItem.Items.Add(i + ": " + Types.Item[(int) i].Name);
 				FrmQuest.Default.cmbItemReq.Items.Add(i + ": " + Types.Item[(int) i].Name);
 				FrmQuest.Default.cmbEndItem.Items.Add(i + ": " + Types.Item[(int) i].Name);
 				FrmQuest.Default.cmbItemReward.Items.Add(i + ": " + Types.Item[(int) i].Name);
@@ -182,7 +186,11 @@ namespace Engine
 			FrmQuest.Default.cmbClassReq.Items.Add("None");
 			for (var i = 1; i <= E_Globals.Max_Classes; i++)
 			{
-				FrmQuest.Default.cmbClassReq.Items.Add(Types.Classes[(int) i].Name.Trim());
+                if (Types.Classes[(int)i].Name == null)
+                {
+                    Types.Classes[(int)i].Name = "";
+                }
+                FrmQuest.Default.cmbClassReq.Items.Add(Types.Classes[(int) i].Name.Trim());
 			}
 			
 			FrmQuest.Default.cmbStartItem.SelectedIndex = Quest[E_Globals.Editorindex].QuestGiveItem;
@@ -195,7 +203,15 @@ namespace Engine
 			FrmQuest.Default.lstRewards.Items.Clear();
 			for (var i = 1; i <= Quest[E_Globals.Editorindex].RewardCount; i++)
 			{
-				FrmQuest.Default.lstRewards.Items.Add(i + ":" + Quest[E_Globals.Editorindex].RewardItemAmount[(int) i] + " X " + Types.Item[Quest[E_Globals.Editorindex].RewardItem[(int) i]].Name.Trim());
+                if (Quest[E_Globals.Editorindex].RewardItemAmount[(int)i] == null)
+                {
+                    Types.Classes[(int)i].Name = "";
+                }
+                if (Types.Item[Quest[E_Globals.Editorindex].RewardItem[(int)i]].Name == null)
+                {
+                    Types.Classes[(int)i].Name = "";
+                }
+                FrmQuest.Default.lstRewards.Items.Add(i + ":" + Quest[E_Globals.Editorindex].RewardItemAmount[(int) i] + " X " + Types.Item[Quest[E_Globals.Editorindex].RewardItem[(int) i]].Name.Trim());
 			}
 			
 			FrmQuest.Default.nudExpReward.Value = Quest[E_Globals.Editorindex].RewardExp;
@@ -226,7 +242,11 @@ namespace Engine
 			FrmQuest.Default.lstTasks.Items.Clear();
 			for (var i = 1; i <= Quest[E_Globals.Editorindex].TaskCount; i++)
 			{
-				FrmQuest.Default.lstTasks.Items.Add(i + ":" + Quest[E_Globals.Editorindex].Task[(int) i].TaskLog);
+                if (Quest[E_Globals.Editorindex].Task[(int)i].TaskLog == null)
+                {
+                    Quest[E_Globals.Editorindex].Task[(int)i].TaskLog = "";
+                }
+                FrmQuest.Default.lstTasks.Items.Add(i + ":" + Quest[E_Globals.Editorindex].Task[(int) i].TaskLog);
 			}
 			
 			FrmQuest.Default.rdbNoneReq.Checked = true;

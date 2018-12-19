@@ -17,7 +17,7 @@ namespace Engine
 
             // Write blank xml document.
             {
-                var withBlock = xmlTextWrite;
+                ref var withBlock = ref xmlTextWrite;
                 withBlock.WriteStartDocument(true);
                 withBlock.WriteStartElement(Root);
                 withBlock.WriteEndElement();
