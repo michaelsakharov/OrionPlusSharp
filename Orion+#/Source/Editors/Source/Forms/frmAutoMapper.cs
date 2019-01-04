@@ -214,15 +214,6 @@ namespace Engine
 			{
 				chkBlocked.Checked = false;
 			}
-            //AllBlocked isnt supported by Auto Mapper
-            if (E_AutoMap.Tile[Prefab].Type == (byte)Enums.TileType.AllBlocked)
-			{
-				//chkAllBlocked.Checked = true;
-			}
-			else
-			{
-				//chkAllBlocked.Checked = false;
-			}
 		}
 		
 		public void BtnTileSetClose_Click(object sender, EventArgs e)

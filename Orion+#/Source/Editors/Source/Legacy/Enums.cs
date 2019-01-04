@@ -89,7 +89,7 @@ namespace Engine
 			House,
 			Craft,
 			Light,
-			AllBlocked,
+			
 			Count
 		}
 		

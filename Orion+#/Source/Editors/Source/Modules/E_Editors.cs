@@ -453,13 +453,8 @@ namespace Engine
 					{
 						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Type = (byte)Enums.TileType.Blocked;
 					}
-                    // all blocked tile
-                    if (frmMapEditor.Default.optAllBlocked.Checked == true)
-                    {
-                        E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Type = (byte)Enums.TileType.AllBlocked;
-                    }
-                    // warp tile
-                    if (frmMapEditor.Default.optWarp.Checked == true)
+					// warp tile
+					if (frmMapEditor.Default.optWarp.Checked == true)
 					{
 						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Type = (byte)Enums.TileType.Warp;
 						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Data1 = E_Globals.EditorWarpMap;

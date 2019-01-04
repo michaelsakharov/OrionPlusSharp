@@ -179,13 +179,7 @@ namespace Engine
 								E_Graphics.GameWindow.Draw(rec);
 								DrawText(tX, tY, "B", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, E_Graphics.GameWindow);
 							}
-                            else if (E_Types.Map.Tile[X, y].Type == (byte)Enums.TileType.AllBlocked)
-                            {
-                                rec.FillColor = SFML.Graphics.Color.Magenta;
-                                E_Graphics.GameWindow.Draw(rec);
-                                DrawText(tX, tY, "B", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, E_Graphics.GameWindow);
-                            }
-                            else if (E_Types.Map.Tile[X, y].Type == (byte)Enums.TileType.Warp)
+							else if (E_Types.Map.Tile[X, y].Type == (byte)Enums.TileType.Warp)
 							{
 								DrawText(tX, tY, "W", SFML.Graphics.Color.Blue, SFML.Graphics.Color.Black, E_Graphics.GameWindow);
 							}

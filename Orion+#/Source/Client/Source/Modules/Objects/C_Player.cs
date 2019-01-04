@@ -454,7 +454,7 @@ namespace Engine
 			}
 			
 			// Check to see if the map tile is blocked or not
-			if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Blocked || C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.AllBlocked)
+			if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Blocked)
 			{
 				return true;
 				

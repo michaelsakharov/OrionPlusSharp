@@ -390,7 +390,7 @@ namespace Engine
 						{
 							if (hotbarslot > 0)
 							{
-								if (hotbarslot >= 1 && hotbarslot <= 4)
+								if (hotbarslot >= 1 && hotbarslot <= 3)
 								{
 									if (hotbarslot == 1)
 									{
@@ -405,13 +405,9 @@ namespace Engine
 									{
 										C_Pets.SendPetBehaviour(C_Pets.PetAttackBehaviourGuard);
 									}
-                                    else if (hotbarslot == 4)
-									{
-										C_Pets.SendPetMount();
-									}
 									
 								}
-								else if (hotbarslot >= 5 && hotbarslot <= 8)
+								else if (hotbarslot >= 4 && hotbarslot <= 7)
 								{
 									slotnum = System.Convert.ToInt32(C_Types.Player[C_Variables.Myindex].Pet.Skill[hotbarslot - 3]);
 									

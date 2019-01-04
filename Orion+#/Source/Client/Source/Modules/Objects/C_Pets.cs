@@ -23,7 +23,7 @@ namespace Engine
 		internal const byte PetbarTop = 2;
 		internal const byte PetbarLeft = 2;
 		internal const byte PetbarOffsetX = 4;
-		internal const byte MaxPetbar = 8;
+		internal const byte MaxPetbar = 7;
 		internal const int PetHpBarWidth = 129;
 		internal const int PetMpBarWidth = 129;
 		
@@ -32,8 +32,6 @@ namespace Engine
 		internal static int[] PetSkillCd;
 		
 		internal static bool ShowPetStats;
-
-		internal static bool isMounted;
 		
 		//Pet Constants
 		internal const byte PetBehaviourFollow = 0; //The pet will attack all npcs around
@@ -52,11 +50,8 @@ namespace Engine
 			public int Range;
 			
 			public int Level;
-
-            public byte IsMount;
-            public byte IsFlying;
-
-            public int MaxLevel;
+			
+			public int MaxLevel;
 			public int ExpGain;
 			public int LevelPnts;
 			
@@ -78,7 +73,6 @@ namespace Engine
 			public int Health;
 			public int Mana;
 			public int Level;
-			public bool isMounted;
 			public byte[] Stat;
 			public int[] Skill;
 			public int Points;
@@ -195,30 +189,8 @@ namespace Engine
 			buffer.Dispose();
 			
 		}
-
-        public static void SendPetMount()
-        {
-            ByteStream buffer = new ByteStream(4);
-
-            buffer.WriteInt32((System.Int32)Packets.ClientPackets.CPetMount);
-            
-            if (isMounted == false)
-            {
-                //Mount
-                buffer.WriteInt32(1);
-            }
-            else
-            {
-                //Unmount
-                buffer.WriteInt32(0);
-            }
-
-            C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
-            buffer.Dispose();
-
-        }
-
-        public static void SendReleasePet()
+		
+		public static void SendReleasePet()
 		{
 			ByteStream buffer = new ByteStream(4);
 			
@@ -245,8 +217,6 @@ namespace Engine
 			C_Types.Player[n].Pet.Health = buffer.ReadInt32();
 			C_Types.Player[n].Pet.Mana = buffer.ReadInt32();
 			C_Types.Player[n].Pet.Level = buffer.ReadInt32();
-			C_Types.Player[n].Pet.isMounted = Convert.ToBoolean(buffer.ReadInt32());
-			isMounted = C_Types.Player[n].Pet.isMounted;
 			
 			for (i = 1; i <= (int) Enums.StatType.Count - 1; i++)
 			{
@@ -288,8 +258,6 @@ namespace Engine
 			with_1.Sprite = buffer.ReadInt32();
 			with_1.Range = buffer.ReadInt32();
 			with_1.Level = buffer.ReadInt32();
-			with_1.IsMount = (byte)buffer.ReadInt32();
-			with_1.IsFlying = (byte)buffer.ReadInt32();
 			with_1.MaxLevel = buffer.ReadInt32();
 			with_1.ExpGain = buffer.ReadInt32();
 			with_1.LevelPnts = buffer.ReadInt32();
@@ -475,7 +443,7 @@ namespace Engine
 						break;
 						
 				}
-
+				
 				// Check if completed walking over to the next tile
 				if (C_Types.Player[index].Pet.Moving > 0)
 				{
@@ -510,14 +478,9 @@ namespace Engine
 						}
 					}
 				}
-
 			}
-            if (isMounted)
-            {
-                C_Types.Player[index].Pet.YOffset = (C_Types.Player[index].Pet.YOffset - 1);
-            }
-
-        }
+			
+		}
 		
 		internal static void PetMove(int x, int y)
 		{

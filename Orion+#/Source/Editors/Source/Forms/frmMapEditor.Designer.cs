@@ -83,7 +83,6 @@ namespace Engine
             this.DarkLabel15 = new DarkUI.Controls.DarkLabel();
             this.DarkLabel5 = new DarkUI.Controls.DarkLabel();
             this.pnlAttribute = new System.Windows.Forms.Panel();
-            this.optAllBlocked = new DarkUI.Controls.DarkRadioButton();
             this.optLight = new DarkUI.Controls.DarkRadioButton();
             this.btnClearAttribute = new DarkUI.Controls.DarkButton();
             this.optHouse = new DarkUI.Controls.DarkRadioButton();
@@ -371,7 +370,7 @@ namespace Engine
             this.pnlTiles.Controls.Add(this.scrlPictureX);
             this.pnlTiles.Controls.Add(this.DarkLabel2);
             this.pnlTiles.Controls.Add(this.DarkLabel1);
-            this.pnlTiles.Location = new System.Drawing.Point(0, 51);
+            this.pnlTiles.Location = new System.Drawing.Point(1, 51);
             this.pnlTiles.Name = "pnlTiles";
             this.pnlTiles.Size = new System.Drawing.Size(316, 546);
             this.pnlTiles.TabIndex = 0;
@@ -469,7 +468,7 @@ namespace Engine
             // 
             this.pnlBack.BackColor = System.Drawing.Color.Black;
             this.pnlBack.Controls.Add(this.picBackSelect);
-            this.pnlBack.Location = new System.Drawing.Point(0, 3);
+            this.pnlBack.Location = new System.Drawing.Point(3, 3);
             this.pnlBack.Name = "pnlBack";
             this.pnlBack.Size = new System.Drawing.Size(286, 442);
             this.pnlBack.TabIndex = 10;
@@ -545,7 +544,7 @@ namespace Engine
             this.pnlNpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlNpc.Controls.Add(this.cmbNpcList);
             this.pnlNpc.Controls.Add(this.lstMapNpc);
-            this.pnlNpc.Location = new System.Drawing.Point(0, 50);
+            this.pnlNpc.Location = new System.Drawing.Point(2, 50);
             this.pnlNpc.Name = "pnlNpc";
             this.pnlNpc.Size = new System.Drawing.Size(314, 548);
             this.pnlNpc.TabIndex = 8;
@@ -568,7 +567,7 @@ namespace Engine
             this.lstMapNpc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstMapNpc.ForeColor = System.Drawing.Color.LightGray;
             this.lstMapNpc.FormattingEnabled = true;
-            this.lstMapNpc.Location = new System.Drawing.Point(5, 4);
+            this.lstMapNpc.Location = new System.Drawing.Point(3, 4);
             this.lstMapNpc.Name = "lstMapNpc";
             this.lstMapNpc.Size = new System.Drawing.Size(307, 431);
             this.lstMapNpc.TabIndex = 0;
@@ -578,7 +577,7 @@ namespace Engine
             // 
             this.pnlDirBlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.pnlDirBlock.Controls.Add(this.DarkLabel6);
-            this.pnlDirBlock.Location = new System.Drawing.Point(0, 51);
+            this.pnlDirBlock.Location = new System.Drawing.Point(2, 51);
             this.pnlDirBlock.Name = "pnlDirBlock";
             this.pnlDirBlock.Size = new System.Drawing.Size(314, 548);
             this.pnlDirBlock.TabIndex = 7;
@@ -658,7 +657,7 @@ namespace Engine
             this.pnlEvents.Controls.Add(this.btnCopyEvent);
             this.pnlEvents.Controls.Add(this.DarkLabel15);
             this.pnlEvents.Controls.Add(this.DarkLabel5);
-            this.pnlEvents.Location = new System.Drawing.Point(0, 50);
+            this.pnlEvents.Location = new System.Drawing.Point(4, 50);
             this.pnlEvents.Name = "pnlEvents";
             this.pnlEvents.Size = new System.Drawing.Size(314, 548);
             this.pnlEvents.TabIndex = 6;
@@ -733,7 +732,6 @@ namespace Engine
             // pnlAttribute
             // 
             this.pnlAttribute.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.pnlAttribute.Controls.Add(this.optAllBlocked);
             this.pnlAttribute.Controls.Add(this.optLight);
             this.pnlAttribute.Controls.Add(this.btnClearAttribute);
             this.pnlAttribute.Controls.Add(this.optHouse);
@@ -756,17 +754,6 @@ namespace Engine
             this.pnlAttribute.Name = "pnlAttribute";
             this.pnlAttribute.Size = new System.Drawing.Size(314, 548);
             this.pnlAttribute.TabIndex = 9;
-            // 
-            // optAllBlocked
-            // 
-            this.optAllBlocked.AutoSize = true;
-            this.optAllBlocked.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.optAllBlocked.Location = new System.Drawing.Point(10, 185);
-            this.optAllBlocked.Name = "optAllBlocked";
-            this.optAllBlocked.Size = new System.Drawing.Size(78, 17);
-            this.optAllBlocked.TabIndex = 17;
-            this.optAllBlocked.Text = "All Blocked";
-            this.optAllBlocked.CheckedChanged += new System.EventHandler(this.OptAllBlocked_CheckedChanged);
             // 
             // optLight
             // 
@@ -2667,7 +2654,6 @@ namespace Engine
 		internal DarkUI.Controls.DarkButton btnCopyEvent;
 		internal DarkUI.Controls.DarkLabel DarkLabel15;
 		internal Label lblVisualWarp;
-        internal DarkUI.Controls.DarkRadioButton optAllBlocked;
-    }
+	}
 	
 }

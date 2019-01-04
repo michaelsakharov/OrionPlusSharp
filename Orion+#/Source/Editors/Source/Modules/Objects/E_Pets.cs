@@ -51,11 +51,8 @@ namespace Engine
 			public int Range;
 			
 			public int Level;
-
-            public byte IsMount;
-            public byte IsFlying;
-
-            public int MaxLevel;
+			
+			public int MaxLevel;
 			public int ExpGain;
 			public int LevelPnts;
 			
@@ -143,9 +140,7 @@ namespace Engine
 			buffer.WriteInt32(Pet[petNum].Sprite);
 			buffer.WriteInt32(Pet[petNum].Range);
 			buffer.WriteInt32(Pet[petNum].Level);
-            buffer.WriteInt32(Pet[petNum].IsMount);
-            buffer.WriteInt32(Pet[petNum].IsFlying);
-            buffer.WriteInt32(Pet[petNum].MaxLevel);
+			buffer.WriteInt32(Pet[petNum].MaxLevel);
 			buffer.WriteInt32(Pet[petNum].ExpGain);
 			buffer.WriteInt32(Pet[petNum].LevelPnts);
 			buffer.WriteInt32(Pet[petNum].StatType);
@@ -195,9 +190,7 @@ namespace Engine
 			Pet[n].Sprite = buffer.ReadInt32();
 			Pet[n].Range = buffer.ReadInt32();
 			Pet[n].Level = buffer.ReadInt32();
-            Pet[n].IsMount = (byte)(buffer.ReadInt32());
-            Pet[n].IsFlying = (byte)(buffer.ReadInt32());
-            Pet[n].MaxLevel = buffer.ReadInt32();
+			Pet[n].MaxLevel = buffer.ReadInt32();
 			Pet[n].ExpGain = buffer.ReadInt32();
 			Pet[n].LevelPnts = buffer.ReadInt32();
 			Pet[n].StatType = (byte) (buffer.ReadInt32());
