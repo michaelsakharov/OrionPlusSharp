@@ -637,7 +637,7 @@ endOfWhileLoop:
 			
 			while (true)
 			{
-				int index = str.IndexOfAny(splitChars.ToString().ToCharArray(), startindex);
+				int index = str.IndexOfAny(splitChars, startindex);
 				
 				if (index == -1)
 				{
