@@ -975,8 +975,8 @@ namespace Engine
 			Application.DoEvents();
 			this.WindowState = FormWindowState.Normal;
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+
+    }
 }

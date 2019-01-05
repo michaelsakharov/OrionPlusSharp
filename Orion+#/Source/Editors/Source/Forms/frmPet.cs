@@ -407,8 +407,7 @@ namespace Engine
 			
 			E_Pets.Pet[E_Globals.Editorindex].EvolveNum = cmbEvolve.SelectedIndex;
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+    }
 }
