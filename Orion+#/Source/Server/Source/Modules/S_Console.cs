@@ -39,6 +39,8 @@ namespace Engine
                             Console.WriteLine("/setadmin, Sets player access level, use with '/setadmin playername powerlvl' powerlevel goes from 0 for player, to 4 to creator.");
                             Console.WriteLine("/kick, Kicks user from server, use with '/kick playername'");
                             Console.WriteLine("/ban, Bans user from server, use with '/ban playername'");
+                            Console.WriteLine("/timespeed, Set Game Speed '/timespeed 1'");
+                            Console.WriteLine("/ip, View the ip of the server '/ip'");
                             break;
                         }
 
@@ -162,6 +164,12 @@ namespace Engine
                             double.TryParse(parts[1], out speed);
                             Time.Instance.GameSpeed = speed;
                             Console.WriteLine("Set GameSpeed to " + Time.Instance.GameSpeed + " secs per seconds");
+                            break;
+                        }
+
+                    case "/ip":
+                        {
+                            Console.WriteLine("Ip:" + S_General.MyIPAddress);
                             break;
                         }
 
