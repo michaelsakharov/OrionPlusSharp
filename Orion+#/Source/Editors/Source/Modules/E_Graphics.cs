@@ -1337,7 +1337,8 @@ namespace Engine
 				
 				E_Weather.DrawWeather();
 				E_Weather.DrawThunderEffect();
-				DrawMapTint();
+                //Orion+# TODO: MapTint is Extremely heavy on Performance find out why and fix it.
+				//DrawMapTint();
 				
 				// Draw out a square at mouse cursor
 				if (E_Globals.MapGrid == true)
