@@ -1955,6 +1955,7 @@ namespace Engine
             myXml.WriteString("Settings", "StartMap", modTypes.Options.StartMap.ToString());
             myXml.WriteString("Settings", "StartX", modTypes.Options.StartX.ToString());
             myXml.WriteString("Settings", "StartY", modTypes.Options.StartY.ToString());
+            myXml.WriteString("Game", "xpMultiplier", modTypes.Options.xpMultiplier.ToString());
             myXml.CloseXml(true);
         }
 
@@ -1973,6 +1974,7 @@ namespace Engine
             modTypes.Options.StartMap = Convert.ToInt32(myXml.ReadString("Settings", "StartMap", "1"));
             modTypes.Options.StartX = Convert.ToInt32(myXml.ReadString("Settings", "StartX", "13+"));
             modTypes.Options.StartY = Convert.ToInt32(myXml.ReadString("Settings", "StartY", "7"));
+            modTypes.Options.xpMultiplier = Convert.ToSingle(myXml.ReadString("Game", "xpMultiplier", "1"));
             myXml.CloseXml(false);
         }
 

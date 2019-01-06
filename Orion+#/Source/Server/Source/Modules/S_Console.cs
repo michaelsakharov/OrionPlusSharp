@@ -40,9 +40,10 @@ namespace Engine
                             Console.WriteLine("/setadmin, Sets player access level, use with '/setadmin playername powerlvl' powerlevel goes from 0 for player, to 4 to creator.");
                             Console.WriteLine("/kick, Kicks user from server, use with '/kick playername'");
                             Console.WriteLine("/ban, Bans user from server, use with '/ban playername'");
-                            Console.WriteLine("/timespeed, Set Game Speed '/timespeed 1'");
+                            Console.WriteLine("/timespeed, Set Game Speed '/timespeed speed'");
                             Console.WriteLine("/ip, View the ip of the server '/ip'");
                             Console.WriteLine("/say, Send a global message for everyone to see '/say message'");
+                            Console.WriteLine("/setxpmultiplier, Set the Global XP multiplier '/setxpmultiplier multiplayer'");
                             break;
                         }
 
@@ -187,7 +188,7 @@ namespace Engine
                         }
                     case "/say":
                         {
-                            if (parts.Length > 2 || parts.Length < 2)
+                            if (parts.Length > 2)
                             {
                                 Console.WriteLine("Incorrect usage.");
                                 break;
@@ -205,6 +206,19 @@ namespace Engine
                                 }
                             S_NetworkSend.GlobalMsg(message);
                             Console.WriteLine(message);
+                            break;
+                        }
+                    case "/setxpmultiplier":
+                        {
+                            if (parts.Length > 2 || parts.Length < 2)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
+                            float xpMultiplayer;
+                            float.TryParse(parts[1], out xpMultiplayer);
+                            modTypes.Options.xpMultiplier = xpMultiplayer;
+                            Console.WriteLine("Global XP Multiplayer set to: " + xpMultiplayer);
                             break;
                         }
 

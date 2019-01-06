@@ -3506,7 +3506,7 @@ namespace Engine
         internal static void HandleNpcKillExperience(int index, int NpcNum)
         {
             // Get the experience we'll have to hand out. If it's negative, just ignore this method.
-            var Experience = Types.Npc[NpcNum].Exp;
+            int Experience = (int)(Types.Npc[NpcNum].Exp * modTypes.Options.xpMultiplier);
             if (Experience <= 0)
                 return;
 
@@ -3520,7 +3520,7 @@ namespace Engine
         internal static void HandlePlayerKillExperience(int Attacker, int Victim)
         {
             // Calculate exp to give attacker
-            var exp = (GetPlayerExp(Victim) / 10);
+            var exp = (int)((GetPlayerExp(Victim) / 10) * modTypes.Options.xpMultiplier);
 
             // Make sure we dont get less then 0
             if (exp < 0)
