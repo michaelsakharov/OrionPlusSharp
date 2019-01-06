@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 
 namespace Engine
@@ -41,6 +42,7 @@ namespace Engine
                             Console.WriteLine("/ban, Bans user from server, use with '/ban playername'");
                             Console.WriteLine("/timespeed, Set Game Speed '/timespeed 1'");
                             Console.WriteLine("/ip, View the ip of the server '/ip'");
+                            Console.WriteLine("/say, Send a global message for everyone to see '/say message'");
                             break;
                         }
 
@@ -170,6 +172,24 @@ namespace Engine
                     case "/ip":
                         {
                             Console.WriteLine("Ip:" + S_General.MyIPAddress);
+                            break;
+                        }
+                    case "/say":
+                        {
+                            if (parts.Length < 2)
+                                return;
+                            string message = "";
+                            foreach (var item in parts.ToList().Skip(1))
+                                if (message == "")
+                                {
+                                    message += item;
+                                }
+                                else
+                                {
+                                    message += " " + item;
+                                }
+                            S_NetworkSend.GlobalMsg(message);
+                            Console.WriteLine(message);
                             break;
                         }
 
