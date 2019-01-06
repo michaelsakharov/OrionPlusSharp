@@ -1338,7 +1338,7 @@ namespace Engine
 				E_Weather.DrawWeather();
 				E_Weather.DrawThunderEffect();
                 //Orion+# TODO: MapTint is Extremely heavy on Performance find out why and fix it.
-				//DrawMapTint();
+				DrawMapTint();
 				
 				// Draw out a square at mouse cursor
 				if (E_Globals.MapGrid == true)
@@ -1563,25 +1563,25 @@ namespace Engine
 			}
 			
 		}
-		
-		internal static void DrawMapTint()
-		{
-			//If InMapEditor Then Exit Sub
-			
-			if (E_Types.Map.HasMapTint == 0)
-			{
-				return;
-			}
-			
-			MapTintSprite = new Sprite(new Texture(new SFML.Graphics.Image((uint) (E_Types.Map.MaxX * E_Globals.PIC_X), (uint) (E_Types.Map.MaxY * E_Globals.PIC_Y), SFML.Graphics.Color.White))) {
-					Color = new SFML.Graphics.Color((byte)E_Globals.CurrentTintR, (Byte)E_Globals.CurrentTintG, (Byte)E_Globals.CurrentTintB, (Byte)E_Globals.CurrentTintA),
-					TextureRect = new IntRect(0, 0, (E_Types.Map.MaxX * E_Globals.PIC_X) + E_Globals.PIC_X, (E_Types.Map.MaxY * E_Globals.PIC_Y) + E_Globals.PIC_Y),
-					Position = new Vector2f(0, 0)
-				};
-			
-			GameWindow.Draw(MapTintSprite);
-			
-		}
+
+        internal static void DrawMapTint()
+        {
+            //If InMapEditor Then Exit Sub
+
+            if (E_Types.Map.HasMapTint == 0)
+            {
+                return;
+            }
+
+            E_Graphics.MapTintSprite = checked(new Sprite(new Texture(new SFML.Graphics.Image((uint)(E_Types.Map.MaxX * 32), (uint)(E_Types.Map.MaxY * 32), SFML.Graphics.Color.White)))
+            {
+                Color = new SFML.Graphics.Color((byte)E_Globals.CurrentTintR, (byte)E_Globals.CurrentTintG, (byte)E_Globals.CurrentTintB, (byte)E_Globals.CurrentTintA),
+                TextureRect = new IntRect(0, 0, (int)(E_Types.Map.MaxX * 32 + 32), (int)(E_Types.Map.MaxY * 32 + 32)),
+                Position = new Vector2f(0f, 0f)
+            });
+            E_Graphics.GameWindow.Draw(E_Graphics.MapTintSprite);
+
+        }
 		
 		internal static void EditorMap_DrawTileset()
 		{
