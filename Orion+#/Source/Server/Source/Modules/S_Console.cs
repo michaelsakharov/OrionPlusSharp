@@ -54,8 +54,11 @@ namespace Engine
 
                     case "/setadmin":
                         {
-                            if (parts.Length < 3)
-                                continue;
+                            if (parts.Length > 3 || parts.Length < 3)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
 
 
                             string Name = parts[1];
@@ -124,8 +127,10 @@ namespace Engine
 
                     case "/kick":
                         {
-                            if (parts.Length < 2)
-                                continue;
+                            if (parts.Length > 2 || parts.Length < 2) {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                                }
 
 
                             string Name = parts[1];
@@ -143,8 +148,11 @@ namespace Engine
 
                     case "/ban":
                         {
-                            if (parts.Length < 2)
-                                continue;
+                            if (parts.Length > 2 || parts.Length < 2)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
 
 
                             string Name = parts[1];
@@ -158,8 +166,11 @@ namespace Engine
 
                     case "/timespeed":
                         {
-                            if (parts.Length < 2)
-                                return;
+                            if (parts.Length > 2 || parts.Length < 2)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
 
 
                             double speed;
@@ -176,8 +187,12 @@ namespace Engine
                         }
                     case "/say":
                         {
-                            if (parts.Length < 2)
-                                return;
+                            if (parts.Length > 2 || parts.Length < 2)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
+
                             string message = "";
                             foreach (var item in parts.ToList().Skip(1))
                                 if (message == "")
