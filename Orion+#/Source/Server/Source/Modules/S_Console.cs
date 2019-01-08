@@ -44,6 +44,7 @@ namespace Engine
                             Console.WriteLine("/ip, View the ip of the server '/ip'");
                             Console.WriteLine("/say, Send a global message for everyone to see '/say message'");
                             Console.WriteLine("/setxpmultiplier, Set the Global XP multiplier '/setxpmultiplier multiplayer'");
+                            Console.WriteLine("/debugtext, Toggle Debug Text '/debugtext'");
                             break;
                         }
 
@@ -221,7 +222,17 @@ namespace Engine
                             Console.WriteLine("Global XP Multiplayer set to: " + xpMultiplayer);
                             break;
                         }
-
+                    case "/debugtext":
+                        {
+                            if (parts.Length > 1)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
+                            S_Globals.DebugTxt = !S_Globals.DebugTxt;
+                            Console.WriteLine("Debug Text: " + S_Globals.DebugTxt);
+                            break;
+                        }
                     case "":
                         {
                             continue;
