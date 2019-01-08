@@ -159,7 +159,7 @@ namespace Engine
                                     S_NetworkConfig.Socket.SendDataTo(i, Buffer.Data, Buffer.Head);
 
                                     modDatabase.Addlog("Sent SMSG: SSpawnEvent Remove Dead Events", S_Constants.PACKET_LOG);
-                                    Console.WriteLine("Sent SMSG: SSpawnEvent Remove Dead Events");
+                                    S_General.AddDebug("Sent SMSG: SSpawnEvent Remove Dead Events");
 
                                     Buffer.Dispose();
                                 }
@@ -1141,7 +1141,7 @@ namespace Engine
                                                                 S_NetworkConfig.SendDataToMap(i, ref Buffer.Data, Buffer.Head);
 
                                                                 modDatabase.Addlog("Sent SMSG: SSpawnEvent Process Event Movement", S_Constants.PACKET_LOG);
-                                                                Console.WriteLine("Sent SMSG: SSpawnEvent Process Event Movement");
+                                                                S_General.AddDebug("Sent SMSG: SSpawnEvent Process Event Movement");
 
                                                                 Buffer.Dispose();
                                                             }
@@ -3074,7 +3074,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPlayBGM", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SPlayBGM");
+                                                                    S_General.AddDebug("Sent SMSG: SPlayBGM");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3087,7 +3087,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SFadeoutBGM", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SFadeoutBGM");
+                                                                    S_General.AddDebug("Sent SMSG: SFadeoutBGM");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3101,7 +3101,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPlaySound", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SPlaySound");
+                                                                    S_General.AddDebug("Sent SMSG: SPlaySound");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3114,7 +3114,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SStopSound", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SStopSound");
+                                                                    S_General.AddDebug("Sent SMSG: SStopSound");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3289,7 +3289,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPic evShowPicture", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SPic evShowPicture");
+                                                                    S_General.AddDebug("Sent SMSG: SPic evShowPicture");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3304,7 +3304,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPic evHidePicture", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SPic evHidePicture");
+                                                                    S_General.AddDebug("Sent SMSG: SPic evHidePicture");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3339,7 +3339,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SHoldPlayer", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SHoldPlayer");
+                                                                    S_General.AddDebug("Sent SMSG: SHoldPlayer");
 
                                                                     buffer.Dispose();
                                                                     break;
@@ -3353,7 +3353,7 @@ namespace Engine
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SHoldPlayer Release", S_Constants.PACKET_LOG);
-                                                                    Console.WriteLine("Sent SMSG: SHoldPlayer Release");
+                                                                    S_General.AddDebug("Sent SMSG: SHoldPlayer Release");
 
                                                                     buffer.Dispose();
                                                                     break;

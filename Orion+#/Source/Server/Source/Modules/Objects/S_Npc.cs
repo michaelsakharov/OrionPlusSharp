@@ -394,7 +394,7 @@ namespace Engine
                         buffer.WriteInt32(Movement);
 
                         modDatabase.Addlog("Sent SMSG: SNpcMove Up", S_Constants.PACKET_LOG);
-                        Console.WriteLine("Sent SMSG: SNpcMove Up");
+                        S_General.AddDebug("Sent SMSG: SNpcMove Up");
 
                         S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
                         break;
@@ -412,7 +412,7 @@ namespace Engine
                         buffer.WriteInt32(Movement);
 
                         modDatabase.Addlog("Sent SMSG: SNpcMove Down", S_Constants.PACKET_LOG);
-                        Console.WriteLine("Sent SMSG: SNpcMove Down");
+                        S_General.AddDebug("Sent SMSG: SNpcMove Down");
 
                         S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
                         break;
@@ -430,7 +430,7 @@ namespace Engine
                         buffer.WriteInt32(Movement);
 
                         modDatabase.Addlog("Sent SMSG: SNpcMove Left", S_Constants.PACKET_LOG);
-                        Console.WriteLine("Sent SMSG: SNpcMove Left");
+                        S_General.AddDebug("Sent SMSG: SNpcMove Left");
 
                         S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
                         break;
@@ -448,7 +448,7 @@ namespace Engine
                         buffer.WriteInt32(Movement);
 
                         modDatabase.Addlog("Sent SMSG: SNpcMove Right", S_Constants.PACKET_LOG);
-                        Console.WriteLine("Sent SMSG: SNpcMove Right");
+                        S_General.AddDebug("Sent SMSG: SNpcMove Right");
 
                         S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
                         break;
@@ -473,7 +473,7 @@ namespace Engine
             buffer.WriteInt32(Dir);
 
             modDatabase.Addlog("Sent SMSG: SNpcDir", S_Constants.PACKET_LOG);
-            Console.WriteLine("Sent SMSG: SNpcDir");
+            S_General.AddDebug("Sent SMSG: SNpcDir");
 
             S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
 
