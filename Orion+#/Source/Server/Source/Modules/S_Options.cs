@@ -11,5 +11,6 @@
         public int StartX;
         public int StartY;
         public float xpMultiplier;
+        public bool unlockCPS;
     }
 }

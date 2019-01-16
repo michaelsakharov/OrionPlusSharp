@@ -45,6 +45,9 @@ namespace Engine
                             Console.WriteLine("/say, Send a global message for everyone to see '/say message'");
                             Console.WriteLine("/setxpmultiplier, Set the Global XP multiplier '/setxpmultiplier multiplayer'");
                             Console.WriteLine("/debugtext, Toggle Debug Text '/debugtext'");
+                            Console.WriteLine("/unlockcps, unlock CPS '/unlockcps'");
+                            Console.WriteLine("/lockcps, lock CPS '/lockcps'");
+                            Console.WriteLine("/cps, view CPS '/cps'");
                             break;
                         }
 
@@ -220,6 +223,38 @@ namespace Engine
                             float.TryParse(parts[1], out xpMultiplayer);
                             modTypes.Options.xpMultiplier = xpMultiplayer;
                             Console.WriteLine("Global XP Multiplayer set to: " + xpMultiplayer);
+                            break;
+                        }
+                    case "/unlockcps":
+                        {
+                            if (parts.Length > 1 || parts.Length < 1)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
+                            modTypes.Options.unlockCPS = true;
+                            Console.WriteLine("CPS: " + S_General.gameCPS + " CPS is Unlocked");
+                            break;
+                        }
+                    case "/lockcps":
+                        {
+                            if (parts.Length > 1 || parts.Length < 1)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
+                            modTypes.Options.unlockCPS = false;
+                            Console.WriteLine("CPS: " + S_General.gameCPS + " CPS is locked");
+                            break;
+                        }
+                    case "/cps":
+                        {
+                            if (parts.Length > 1 || parts.Length < 1)
+                            {
+                                Console.WriteLine("Incorrect usage.");
+                                break;
+                            }
+                            Console.WriteLine("CPS: " + S_General.gameCPS);
                             break;
                         }
                     case "/debugtext":

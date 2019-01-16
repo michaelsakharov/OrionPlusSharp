@@ -12,6 +12,8 @@ namespace Engine
         public static void ServerLoop()
         {
             int tick = 0;
+            int tickCPS = 0;
+            int cps = 0;
             int tmr25 = 0;
             int tmr300 = 0;
             int tmr500 = 0;
@@ -123,8 +125,22 @@ namespace Engine
                 }
 
                 Application.DoEvents();
-                // Thread.Yield()
-                Thread.Sleep(1);
+                
+                if (!modTypes.Options.unlockCPS)
+                {
+                    Thread.Sleep(1);
+                }
+                // Calculator CPS
+                if(tickCPS < tick)
+                {
+                    S_General.gameCPS = cps;
+                    tickCPS = tick + 1000;
+                    cps = 0;
+                }
+                else
+                {
+                    cps++;
+                }
             }
             while (true);
         }

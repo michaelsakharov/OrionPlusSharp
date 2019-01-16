@@ -24,6 +24,8 @@ namespace Engine
         internal static string MyIPAddress;
         internal static Stopwatch myStopWatch = new Stopwatch();
 
+        public static int gameCPS;
+
         internal static int GetTimeMs()
         {
             return (int)myStopWatch.ElapsedMilliseconds;
