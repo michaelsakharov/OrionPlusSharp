@@ -1801,7 +1801,7 @@ namespace Engine
             if (E_Types.Map.Moral == (byte)Enums.MapMoralType.Indoors)
             {
                 NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)E_Globals.CurrentBrightness));
-                return;
+                //return;
             }
 
             if (E_Globals.CurrentBrightness > 0)

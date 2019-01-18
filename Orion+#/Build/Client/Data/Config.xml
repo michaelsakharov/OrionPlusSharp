@@ -16,8 +16,8 @@
     <Element Name="Volume" Value="100" />
   </Sfx>
   <Misc>
-    <Element Name="ScreenSize" Value="0" />
+    <Element Name="ScreenSize" Value="1" />
     <Element Name="HighEnd" Value="0" />
-    <Element Name="ShowNpcBar" Value="0" />
+    <Element Name="ShowNpcBar" Value="1" />
   </Misc>
 </Options>

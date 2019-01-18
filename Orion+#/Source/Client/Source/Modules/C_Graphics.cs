@@ -4185,7 +4185,7 @@ NextLoop:
 			if (C_Maps.Map.Moral == (byte)Enums.MapMoralType.Indoors)
 			{
                 NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)C_Maps.Map.Brightness));
-                return;
+                //return;
 			}
 
             if (C_Maps.Map.Brightness > 0)
