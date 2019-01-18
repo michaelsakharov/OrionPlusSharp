@@ -591,7 +591,7 @@ namespace Engine
 							if (Y >= E_Globals.DirArrowY[i] && Y <= E_Globals.DirArrowY[i] + 8)
 							{
 								// flip the value.
-								E_Graphics.SetDirBlock(ref E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].DirBlock, (byte) (i), !E_Graphics.IsDirBlocked(ref E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].DirBlock, (byte) (i)));
+								E_Graphics.SetDirBlock(ref E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].DirBlock, (byte) (i), !E_Graphics.IsDirBlocked(E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].DirBlock, (byte) (i)));
 								return;
 							}
 						}

@@ -133,7 +133,7 @@ namespace Engine
 		internal static int NumFaces;
 		internal static int NumFogs;
 		
-		internal static RenderTexture NightGfx = new RenderTexture((uint) 245, (uint) 245);
+		internal static RenderTexture NightGfx = new RenderTexture((uint)1024, (uint)1024);
 		internal static Sprite NightSprite;
 		internal static GraphicInfo NightGfxInfo;
 		
@@ -510,7 +510,7 @@ namespace Engine
 				rec.X = (i - 1) * 8;
 				rec.Width = 8;
 				// find out whether render blocked or not
-				if (!IsDirBlocked(ref E_Types.Map.Tile[X, Y].DirBlock, (byte) (i)))
+				if (!IsDirBlocked(E_Types.Map.Tile[X, Y].DirBlock, (byte) (i)))
 				{
 					rec.Y = 8;
 				}
@@ -540,9 +540,9 @@ namespace Engine
             }
         }
 
-        internal static bool IsDirBlocked(ref byte blockvar, byte Dir)
+        internal static bool IsDirBlocked(byte Blockvar, byte Dir)
         {
-            return !(~blockvar <= 0 || Math.Pow(2.0, (double)Dir) == 0.0);
+            return !(~Blockvar <= 0 || Math.Pow(2.0, (double)Dir) == 0.0);
         }
 
         internal static int ConvertMapX(int X)
@@ -1583,24 +1583,19 @@ namespace Engine
 
         internal static void DrawMapTint()
         {
-            //If InMapEditor Then Exit Sub
-
-            if (E_Types.Map.HasMapTint == 0)
+            if (E_Types.Map.HasMapTint == 1)
             {
-                return;
+                E_Graphics.MapTintSprite = checked(new Sprite(new Texture(new SFML.Graphics.Image((uint)(E_Types.Map.MaxX * 32), (uint)(E_Types.Map.MaxY * 32), SFML.Graphics.Color.White)))
+                {
+                    Color = new SFML.Graphics.Color((byte)E_Globals.CurrentTintR, (byte)E_Globals.CurrentTintG, (byte)E_Globals.CurrentTintB, (byte)E_Globals.CurrentTintA),
+                    TextureRect = new IntRect(0, 0, (int)(E_Types.Map.MaxX * 32 + 32), (int)(E_Types.Map.MaxY * 32 + 32)),
+                    Position = new Vector2f(0f, 0f)
+                });
+                E_Graphics.GameWindow.Draw(E_Graphics.MapTintSprite);
             }
-
-            E_Graphics.MapTintSprite = checked(new Sprite(new Texture(new SFML.Graphics.Image((uint)(E_Types.Map.MaxX * 32), (uint)(E_Types.Map.MaxY * 32), SFML.Graphics.Color.White)))
-            {
-                Color = new SFML.Graphics.Color((byte)E_Globals.CurrentTintR, (byte)E_Globals.CurrentTintG, (byte)E_Globals.CurrentTintB, (byte)E_Globals.CurrentTintA),
-                TextureRect = new IntRect(0, 0, (int)(E_Types.Map.MaxX * 32 + 32), (int)(E_Types.Map.MaxY * 32 + 32)),
-                Position = new Vector2f(0f, 0f)
-            });
-            E_Graphics.GameWindow.Draw(E_Graphics.MapTintSprite);
-
         }
-		
-		internal static void EditorMap_DrawTileset()
+
+        internal static void EditorMap_DrawTileset()
 		{
 			int height = 0;
 			int width = 0;
