@@ -56,6 +56,7 @@ namespace Engine
             buffer.WriteInt32(E_Types.Map.Instanced);
             buffer.WriteInt32(E_Types.Map.Panorama);
             buffer.WriteInt32(E_Types.Map.Parallax);
+            buffer.WriteInt32(E_Types.Map.Brightness);
 
             for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
                 buffer.WriteInt32(E_Types.Map.Npc[i]);

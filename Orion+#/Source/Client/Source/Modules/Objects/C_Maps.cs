@@ -242,6 +242,7 @@ namespace Engine
 					Map.Instanced = (byte) (buffer.ReadInt32());
 					Map.Panorama = (byte) (buffer.ReadInt32());
 					Map.Parallax = (byte) (buffer.ReadInt32());
+					Map.Brightness = (byte) (buffer.ReadInt32());
 					
 					Map.Tile = new Types.TileRec[Map.MaxX + 1, Map.MaxY + 1];
 					
@@ -620,6 +621,7 @@ namespace Engine
 			buffer.WriteInt32(Map.Instanced);
 			buffer.WriteInt32(Map.Panorama);
 			buffer.WriteInt32(Map.Parallax);
+			buffer.WriteInt32(Map.Brightness);
 			
 			for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
 			{

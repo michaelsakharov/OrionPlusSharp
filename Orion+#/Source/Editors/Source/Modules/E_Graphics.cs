@@ -140,8 +140,12 @@ namespace Engine
 		internal static Texture LightGfx;
 		internal static Sprite LightSprite;
 		internal static GraphicInfo LightGfxInfo;
-		
-		public struct GraphicInfo
+
+        internal static Texture ShadowGfx;
+        internal static Sprite ShadowSprite;
+        internal static GraphicInfo ShadowGfxInfo;
+
+        public struct GraphicInfo
 		{
 			public int width;
 			public int height;
@@ -264,8 +268,19 @@ namespace Engine
 				LightGfxInfo.width = (int)LightGfx.Size.X;
 				LightGfxInfo.height = (int)LightGfx.Size.Y;
 			}
-			
-		}
+
+            ShadowGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + E_Globals.GFX_PATH + "Misc\\Shadow" + E_Globals.GFX_EXT))
+            {
+                ShadowGfx = new Texture(Application.StartupPath + E_Globals.GFX_PATH + "Misc\\Shadow" + E_Globals.GFX_EXT);
+                ShadowSprite = new Sprite(ShadowGfx);
+
+                //Cache the width and height
+                ShadowGfxInfo.width = (int)ShadowGfx.Size.X;
+                ShadowGfxInfo.height = (int)ShadowGfx.Size.Y;
+            }
+
+        }
 		
 		internal static void LoadTexture(int index, byte TexType)
 		{
@@ -1334,8 +1349,10 @@ namespace Engine
 						}
 					}
 				}
-				
-				E_Weather.DrawWeather();
+
+                DrawNight();
+
+                E_Weather.DrawWeather();
 				E_Weather.DrawThunderEffect();
                 //Orion+# TODO: MapTint is Extremely heavy on Performance find out why and fix it.
 				//DrawMapTint();
@@ -1764,10 +1781,85 @@ namespace Engine
 			{
 				WeatherGFX.Dispose();
 			}
-			
-		}
-		
-		internal static void EditorMap_DrawMapItem()
+
+
+            if (!ReferenceEquals(LightGfx, null))
+            {
+                LightGfx.Dispose();
+            }
+            if (!ReferenceEquals(NightGfx, null))
+            {
+                NightGfx.Dispose();
+            }
+        }
+
+        public static void DrawNight()
+        {
+            int x = 0;
+            int y = 0;
+
+            if (E_Types.Map.Moral == (byte)Enums.MapMoralType.Indoors)
+            {
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)E_Globals.CurrentBrightness));
+                return;
+            }
+
+            if (E_Globals.CurrentBrightness > 0)
+            {
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)E_Globals.CurrentBrightness));
+            }
+            else if (Time.Instance.TimeOfDay == TimeOfDay.Dawn)
+            {
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)100));
+            }
+            else if (Time.Instance.TimeOfDay == TimeOfDay.Dusk)
+            {
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)150));
+            }
+            else if (Time.Instance.TimeOfDay == TimeOfDay.Night)
+            {
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)200));
+            }
+            else
+            {
+                return;
+            }
+
+            for (x = E_Globals.TileView.Left; x <= E_Globals.TileView.Right + 1; x++)
+            {
+                for (y = E_Globals.TileView.Top; y <= E_Globals.TileView.Bottom + 1; y++)
+                {
+                    if (IsValidMapPoint(x, y))
+                    {
+                        if (E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
+                        {
+                            var x1 = ConvertMapX(x * 32) + 16 - (double)LightGfxInfo.width / 2;
+                            var y1 = ConvertMapY(y * 32) + 16 - (double)LightGfxInfo.height / 2;
+
+                            //Create the light texture to multiply over the dark texture.
+                            LightSprite.Position = new Vector2f((float)x1, (float)y1);
+                            LightSprite.Color = SFML.Graphics.Color.Red;
+                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+
+                            //'Create the light texture to multiply over the dark texture.
+                            //LightSprite.Position = New Vector2f(X1, Y1)
+                            //LightAreaSprite.Position = New Vector2f(X1, Y1)
+                            //'LightSprite.Color = New SFML.Graphics.Color(SFML.Graphics.Color.Red)
+                            //'LightAreaSprite.Color = New SFML.Graphics.Color(SFML.Graphics.Color.Red)
+                            //NightGfx.Draw(LightSprite, New RenderStates(BlendMode.Multiply))
+                            //NightGfx.Draw(LightAreaSprite, New RenderStates(BlendMode.Multiply))
+                        }
+                    }
+                }
+            }
+
+            NightSprite = new Sprite(NightGfx.Texture);
+
+            NightGfx.Display();
+            GameWindow.Draw(NightSprite);
+        }
+
+        internal static void EditorMap_DrawMapItem()
 		{
 			int itemnum = 0;
 			itemnum = Types.Item[frmMapEditor.Default.scrlMapItem.Value].Pic;
@@ -2061,6 +2153,8 @@ namespace Engine
 			g.Dispose();
 		}
 		
+
+
 		internal static SFML.Graphics.Color ToSFMLColor(System.Drawing.Color ToConvert)
 		{
 			return new SFML.Graphics.Color(ToConvert.R, ToConvert.G, ToConvert.G, ToConvert.A);

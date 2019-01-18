@@ -722,6 +722,12 @@ namespace Engine
 			E_Types.Map.WeatherIntensity = (int) nudIntensity.Value;
 			E_Globals.CurrentWeatherIntensity = (int) nudIntensity.Value;
 		}
+
+        public void ScrlBrightness_Scroll(object sender, EventArgs e)
+		{
+			E_Types.Map.Brightness = (byte)nudBrightness.Value;
+			E_Globals.CurrentBrightness = (int)nudBrightness.Value;
+		}
 		
 		public void ScrlFogSpeed_Scroll(object sender, EventArgs e)
 		{
@@ -977,6 +983,5 @@ namespace Engine
 		}
 
         #endregion
-
     }
 }

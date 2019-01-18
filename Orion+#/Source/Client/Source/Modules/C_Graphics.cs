@@ -4184,21 +4184,26 @@ NextLoop:
 			
 			if (C_Maps.Map.Moral == (byte)Enums.MapMoralType.Indoors)
 			{
-				return;
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)C_Maps.Map.Brightness));
+                return;
 			}
-			
-			if (Time.Instance.TimeOfDay == TimeOfDay.Dawn)
+
+            if (C_Maps.Map.Brightness > 0)
+            {
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)C_Maps.Map.Brightness));
+            }
+            else if (Time.Instance.TimeOfDay == TimeOfDay.Dawn)
 			{
-				NightGfx.Clear(new SFML.Graphics.Color((byte) 0, (byte) 0, (byte) 0, (byte) 100));
-			}
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)100));
+            }
 			else if (Time.Instance.TimeOfDay == TimeOfDay.Dusk)
 			{
-				NightGfx.Clear(new SFML.Graphics.Color((byte) 0, (byte) 0, (byte) 0, (byte) 150));
-			}
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)150));
+            }
 			else if (Time.Instance.TimeOfDay == TimeOfDay.Night)
 			{
-				NightGfx.Clear(new SFML.Graphics.Color((byte) 0, (byte) 0, (byte) 0, (byte) 200));
-			}
+                NightGfx.Clear(new SFML.Graphics.Color((byte)0, (byte)0, (byte)0, (byte)200));
+            }
 			else
 			{
 				return;
@@ -4238,6 +4243,17 @@ NextLoop:
 			GameWindow.Draw(NightSprite);
 		}
 		
+        private static void ActuallyDrawNight(byte brightness)
+        {
+            //Sprite night = new Sprite();
+            //night.Color = new SFML.Graphics.Color(255, 255, 255, (byte)brightness);
+            //night.TextureRect = new IntRect(0, 0, (int)C_Graphics.GameWindow.Size.X + 200, (int)C_Graphics.GameWindow.Size.Y + 200);
+            //night.Position = new Vector2f((float)(0 - 50), (float)(0 - 50));
+            //night.Scale = new Vector2f((float)(C_Graphics.GameWindow.Size.X + 200), (float)(C_Graphics.GameWindow.Size.Y + 200));
+            //
+            //C_Graphics.GameWindow.Draw(night);
+        }
+
 		public static void DrawCursor()
 		{
 			RenderSprite(CursorSprite, GameWindow, C_Variables.CurMouseX, C_Variables.CurMouseY, 0, 0, CursorInfo.Width, CursorInfo.Height);

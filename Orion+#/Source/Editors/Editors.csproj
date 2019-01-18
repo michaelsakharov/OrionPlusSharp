@@ -24,6 +24,7 @@
     <DocumentationFile>Editors.xml</DocumentationFile>
     <NOWARN>1591,660,661</NOWARN>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

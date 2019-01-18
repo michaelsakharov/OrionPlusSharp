@@ -338,6 +338,7 @@ namespace Engine
             writer.WriteByte(modTypes.Map[mapNum].Instanced);
             writer.WriteByte(modTypes.Map[mapNum].Panorama);
             writer.WriteByte(modTypes.Map[mapNum].Parallax);
+            writer.WriteByte(modTypes.Map[mapNum].Brightness);
             var loopTo = modTypes.Map[mapNum].MaxX;
             for (x = 0; x <= loopTo; x++)
             {
@@ -737,6 +738,7 @@ namespace Engine
             modTypes.Map[mapNum].Instanced = reader.ReadByte();
             modTypes.Map[mapNum].Panorama = reader.ReadByte();
             modTypes.Map[mapNum].Parallax = reader.ReadByte();
+            modTypes.Map[mapNum].Brightness = reader.ReadByte();
 
             // have to set the tile()
             modTypes.Map[mapNum].Tile = new TileRec[modTypes.Map[mapNum].MaxX + 1, modTypes.Map[mapNum].MaxY + 1];

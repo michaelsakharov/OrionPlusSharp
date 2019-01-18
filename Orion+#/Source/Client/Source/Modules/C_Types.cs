@@ -170,6 +170,8 @@ namespace Engine
 			
 			public byte Panorama;
 			public byte Parallax;
+
+            public byte Brightness;
 			
 			//Client Side Only -- Temporary
 			public int CurrentEvents;

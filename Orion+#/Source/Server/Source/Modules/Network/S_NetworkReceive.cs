@@ -1117,6 +1117,7 @@ namespace Engine
             modTypes.Map[mapNum].Instanced = (byte)buffer.ReadInt32();
             modTypes.Map[mapNum].Panorama = (byte)buffer.ReadInt32();
             modTypes.Map[mapNum].Parallax = (byte)buffer.ReadInt32();
+            modTypes.Map[mapNum].Brightness = (byte)buffer.ReadInt32();
 
             modTypes.Map[mapNum].Tile = new TileRec[modTypes.Map[mapNum].MaxX + 1, modTypes.Map[mapNum].MaxY + 1];
 
@@ -2910,6 +2911,7 @@ namespace Engine
             modTypes.Map[mapNum].Instanced = (byte)buffer.ReadInt32();
             modTypes.Map[mapNum].Panorama = (byte)buffer.ReadInt32();
             modTypes.Map[mapNum].Parallax = (byte)buffer.ReadInt32();
+            modTypes.Map[mapNum].Brightness = (byte)buffer.ReadInt32();
 
             modTypes.Map[mapNum].Tile = new TileRec[modTypes.Map[mapNum].MaxX + 1, modTypes.Map[mapNum].MaxY + 1];
 

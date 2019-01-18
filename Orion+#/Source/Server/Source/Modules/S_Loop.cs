@@ -58,7 +58,7 @@ namespace Engine
                     var petregen = (from p in onlinePlayers
                                     where p.player.PetstopRegen == true && p.player.PetstopRegenTimer + 5000 < S_General.GetTimeMs()
                                     select new { p.Index, Success = HandleStopPetRegen(p.Index) }).ToArray();
-
+                    
                     // HoT and DoT logic
                     // For x = 1 To MAX_DOTS
                     // HandleDoT_Pet i, x

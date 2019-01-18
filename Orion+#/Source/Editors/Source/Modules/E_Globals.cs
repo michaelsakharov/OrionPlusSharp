@@ -63,6 +63,7 @@ namespace Engine
 		internal static int CurrentFog;
 		internal static int CurrentFogSpeed;
 		internal static int CurrentFogOpacity;
+		internal static int CurrentBrightness;
 		internal static int CurrentTintR;
 		internal static int CurrentTintG;
 		internal static int CurrentTintB;

@@ -759,6 +759,12 @@ namespace Engine
 			C_Maps.Map.FogAlpha = System.Convert.ToByte(scrlFogAlpha.Value);
 			lblFogAlpha.Text = "Fog Alpha: " + scrlFogAlpha.Value;
 		}
+
+        public void ScrlFBrightness_Scroll(object sender, EventArgs e)
+		{
+			C_Maps.Map.Brightness = System.Convert.ToByte(scrlBrightness.Value);
+			lblBrightness.Text = "Brightness: " + scrlBrightness.Value;
+		}
 		
 		public void ChkUseTint_CheckedChanged(object sender, EventArgs e)
 		{

@@ -240,6 +240,7 @@ namespace Engine
                     E_Types.Map.Instanced = (byte)buffer.ReadInt32();
                     E_Types.Map.Panorama = (byte)buffer.ReadInt32();
                     E_Types.Map.Parallax = (byte)buffer.ReadInt32();
+                    E_Types.Map.Brightness = (byte)buffer.ReadInt32();
 
                     E_Types.Map.Tile = new TileRec[E_Types.Map.MaxX + 1, E_Types.Map.MaxY + 1];
 

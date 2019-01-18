@@ -230,6 +230,8 @@
 
             public byte Panorama;
             public byte Parallax;
+
+            public byte Brightness;
         }
 
         internal struct ClassRec

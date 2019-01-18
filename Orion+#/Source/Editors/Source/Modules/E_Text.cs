@@ -150,15 +150,20 @@ namespace Engine
 		
 		internal static void DrawMapAttributes()
 		{
-			int X = 0;
-			int y = 0;
-			int tX = 0;
-			int tY = 0;
-			RectangleShape rec = new RectangleShape();
-			
-			if (E_Globals.SelectedTab == 2)
+
+            if (E_Globals.SelectedTab == 2)
 			{
-				for (X = E_Globals.TileView.Left; X <= E_Globals.TileView.Right; X++)
+                int X = 0;
+                int y = 0;
+                int tX = 0;
+                int tY = 0;
+                RectangleShape rec = new RectangleShape();
+                rec.OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.White);
+                rec.OutlineThickness = (float)(0.6F);
+                rec.Size = new Vector2f(E_Globals.PIC_X, E_Globals.PIC_X);
+
+
+                for (X = E_Globals.TileView.Left; X <= E_Globals.TileView.Right; X++)
 				{
 					for (y = E_Globals.TileView.Top; y <= E_Globals.TileView.Bottom; y++)
 					{
@@ -167,15 +172,15 @@ namespace Engine
 							tX = System.Convert.ToInt32(((E_Graphics.ConvertMapX(X * E_Globals.PIC_X)) - 4) + (E_Globals.PIC_X * 0.5));
 							tY = System.Convert.ToInt32(((E_Graphics.ConvertMapY(y * E_Globals.PIC_Y)) - 7) + (E_Globals.PIC_Y * 0.5));
 							
-							rec.OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.White);
-							rec.OutlineThickness = (float) (0.6F);
+							//rec.OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.White);
+							//rec.OutlineThickness = (float) (0.6F);
 							
-							rec.Size = new Vector2f(E_Globals.PIC_X, E_Globals.PIC_X);
+							//rec.Size = new Vector2f(E_Globals.PIC_X, E_Globals.PIC_X);
 							rec.Position = new Vector2f(E_Graphics.ConvertMapX((X) * E_Globals.PIC_X), E_Graphics.ConvertMapY((y) * E_Globals.PIC_Y));
 							
 							if (E_Types.Map.Tile[X, y].Type == (byte)Enums.TileType.Blocked)
 							{
-								rec.FillColor = new SFML.Graphics.Color(255, 0, 0, 100);
+								rec.FillColor = SFML.Graphics.Color.Red;
 								E_Graphics.GameWindow.Draw(rec);
 								DrawText(tX, tY, "B", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, E_Graphics.GameWindow);
 							}
@@ -209,7 +214,7 @@ namespace Engine
 							}
 							else if (E_Types.Map.Tile[X, y].Type == (byte)Enums.TileType.NpcSpawn)
 							{
-								rec.FillColor = new SFML.Graphics.Color(255, 255, 0, 100);
+								rec.FillColor = SFML.Graphics.Color.Yellow;
 								E_Graphics.GameWindow.Draw(rec);
 								DrawText(tX, tY, "S", SFML.Graphics.Color.White, SFML.Graphics.Color.Black, E_Graphics.GameWindow);
 							}

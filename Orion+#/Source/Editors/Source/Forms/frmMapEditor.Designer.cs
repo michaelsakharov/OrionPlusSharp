@@ -103,6 +103,8 @@ namespace Engine
             this.DarkSectionPanel2 = new DarkUI.Controls.DarkSectionPanel();
             this.pnlMoreOptions = new System.Windows.Forms.Panel();
             this.GroupBox4 = new System.Windows.Forms.GroupBox();
+            this.nudBrightness = new DarkUI.Controls.DarkNumericUpDown();
+            this.lblBrightness = new DarkUI.Controls.DarkLabel();
             this.nudFogAlpha = new DarkUI.Controls.DarkNumericUpDown();
             this.nudFogSpeed = new DarkUI.Controls.DarkNumericUpDown();
             this.nudFog = new DarkUI.Controls.DarkNumericUpDown();
@@ -221,6 +223,7 @@ namespace Engine
             this.scrlMapViewV = new DarkUI.Controls.DarkScrollBar();
             this.scrlMapViewH = new DarkUI.Controls.DarkScrollBar();
             this.picScreen = new System.Windows.Forms.PictureBox();
+            this.darkLabel17 = new DarkUI.Controls.DarkLabel();
             this.ToolStripContainer2.ContentPanel.SuspendLayout();
             this.ToolStripContainer2.SuspendLayout();
             this.ssInfo.SuspendLayout();
@@ -235,6 +238,7 @@ namespace Engine
             this.DarkSectionPanel2.SuspendLayout();
             this.pnlMoreOptions.SuspendLayout();
             this.GroupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFogAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFogSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFog)).BeginInit();
@@ -973,6 +977,9 @@ namespace Engine
             // 
             // GroupBox4
             // 
+            this.GroupBox4.Controls.Add(this.darkLabel17);
+            this.GroupBox4.Controls.Add(this.nudBrightness);
+            this.GroupBox4.Controls.Add(this.lblBrightness);
             this.GroupBox4.Controls.Add(this.nudFogAlpha);
             this.GroupBox4.Controls.Add(this.nudFogSpeed);
             this.GroupBox4.Controls.Add(this.nudFog);
@@ -986,10 +993,40 @@ namespace Engine
             this.GroupBox4.ForeColor = System.Drawing.Color.LightGray;
             this.GroupBox4.Location = new System.Drawing.Point(5, 7);
             this.GroupBox4.Name = "GroupBox4";
-            this.GroupBox4.Size = new System.Drawing.Size(200, 96);
+            this.GroupBox4.Size = new System.Drawing.Size(200, 146);
             this.GroupBox4.TabIndex = 0;
             this.GroupBox4.TabStop = false;
-            this.GroupBox4.Text = "Weather Options";
+            this.GroupBox4.Text = "Weather and Lighting Options";
+            // 
+            // nudBrightness
+            // 
+            this.nudBrightness.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudBrightness.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudBrightness.Location = new System.Drawing.Point(91, 118);
+            this.nudBrightness.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudBrightness.Name = "nudBrightness";
+            this.nudBrightness.Size = new System.Drawing.Size(103, 20);
+            this.nudBrightness.TabIndex = 31;
+            this.nudBrightness.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudBrightness.ValueChanged += new System.EventHandler(this.ScrlBrightness_Scroll);
+            // 
+            // lblBrightness
+            // 
+            this.lblBrightness.AutoSize = true;
+            this.lblBrightness.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.lblBrightness.Location = new System.Drawing.Point(7, 120);
+            this.lblBrightness.Name = "lblBrightness";
+            this.lblBrightness.Size = new System.Drawing.Size(59, 13);
+            this.lblBrightness.TabIndex = 30;
+            this.lblBrightness.Text = "Brightness:";
             // 
             // nudFogAlpha
             // 
@@ -2381,6 +2418,17 @@ namespace Engine
             this.picScreen.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseMove);
             this.picScreen.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseUp);
             // 
+            // darkLabel17
+            // 
+            this.darkLabel17.AutoSize = true;
+            this.darkLabel17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.darkLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel17.Location = new System.Drawing.Point(18, 107);
+            this.darkLabel17.Name = "darkLabel17";
+            this.darkLabel17.Size = new System.Drawing.Size(168, 9);
+            this.darkLabel17.TabIndex = 32;
+            this.darkLabel17.Text = "A value above 0 overwrites the Day/Night cycles";
+            // 
             // frmMapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2422,6 +2470,7 @@ namespace Engine
             this.pnlMoreOptions.ResumeLayout(false);
             this.GroupBox4.ResumeLayout(false);
             this.GroupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBrightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFogAlpha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFogSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFog)).EndInit();
@@ -2654,6 +2703,9 @@ namespace Engine
 		internal DarkUI.Controls.DarkButton btnCopyEvent;
 		internal DarkUI.Controls.DarkLabel DarkLabel15;
 		internal Label lblVisualWarp;
-	}
+        internal DarkUI.Controls.DarkNumericUpDown nudBrightness;
+        internal DarkUI.Controls.DarkLabel lblBrightness;
+        internal DarkUI.Controls.DarkLabel darkLabel17;
+    }
 	
 }

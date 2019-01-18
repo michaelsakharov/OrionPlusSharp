@@ -217,6 +217,7 @@ namespace Engine
 			frmMapEditor.Default.cmbWeather.SelectedIndex = E_Types.Map.WeatherType;
 			frmMapEditor.Default.nudFog.Value = E_Types.Map.Fogindex;
 			frmMapEditor.Default.nudIntensity.Value = E_Types.Map.WeatherIntensity;
+			frmMapEditor.Default.nudBrightness.Value = E_Types.Map.Brightness;
 			
 			E_Globals.SelectedTab = (byte) 1;
 			

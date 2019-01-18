@@ -709,6 +709,7 @@ namespace Engine
                 buffer.WriteInt32(modTypes.Map[mapNum].Instanced);
                 buffer.WriteInt32(modTypes.Map[mapNum].Panorama);
                 buffer.WriteInt32(modTypes.Map[mapNum].Parallax);
+                buffer.WriteInt32(modTypes.Map[mapNum].Brightness);
 
                 for (var i = 1; i <= Constants.MAX_MAP_NPCS; i++)
                     buffer.WriteInt32(modTypes.Map[mapNum].Npc[i]);
