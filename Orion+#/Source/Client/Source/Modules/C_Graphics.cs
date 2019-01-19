@@ -4235,6 +4235,20 @@ NextLoop:
 							//NightGfx.Draw(LightSprite, New RenderStates(BlendMode.Multiply))
 							//NightGfx.Draw(LightAreaSprite, New RenderStates(BlendMode.Multiply))
 						}
+
+                        //Comment out this entire IF statement to remove the Light around players
+                        if(x == C_Types.Player[C_Variables.Myindex].X && y == C_Types.Player[C_Variables.Myindex].Y)
+                        {
+
+                            var x1 = ConvertMapX(x * 32) + 16 + C_Types.Player[C_Variables.Myindex].XOffset - (double)LightGfxInfo.Width / 2;
+                            var y1 = ConvertMapY(y * 32) + 16 + C_Types.Player[C_Variables.Myindex].YOffset - (double)LightGfxInfo.Height / 2;
+
+                            //Create the light texture to multiply over the dark texture.
+                            LightSprite.Position = new Vector2f((float)x1, (float)y1);
+                            LightSprite.Color = SFML.Graphics.Color.Red;
+                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+
+                        }
 					}
 				}
 			}
