@@ -74,8 +74,77 @@ namespace Engine
                 }
 			}
 		}
-		
-		public void LstIndex_Click(object sender, EventArgs e)
+
+        private long RandomNumber(long high, long low)
+        {
+            System.Random rnd = new System.Random();
+
+            return rnd.Next((int)low, (int)high);
+
+        }
+
+        private void btnGenStats_Click(object sender, EventArgs e)
+        {
+            long High;
+            long Low;
+            long HighExp;
+            long LowExp;
+            long HighHP;
+            long LowHP;
+            long HighDam;
+            long LowDam;
+
+            if (!chkIsBoss.Checked)
+            {
+                High = (long)(nudLevel.Value + 4);
+                Low = (long)(nudLevel.Value - 4);
+                HighExp = (long)(nudLevel.Value * 5 + 2);
+                LowExp = (long)(nudLevel.Value * 5 - 2);
+                HighHP = (long)(nudLevel.Value * 10 + 3);
+                LowHP = (long)(nudLevel.Value * 10 - 3);
+                HighDam = (long)(nudLevel.Value + 4);
+                LowDam = (long)(nudLevel.Value - 4);
+            }
+            else
+            {
+                High = (long)(nudLevel.Value + 10);
+                Low = (long)(nudLevel.Value + 4);
+                HighExp = (long)(nudLevel.Value * 8 + 6);
+                LowExp = (long)(nudLevel.Value * 8 + 2);
+                HighHP = (long)(nudLevel.Value * 15 + 3);
+                LowHP = (long)(nudLevel.Value * 15 - 3);
+                HighDam = (long)(nudLevel.Value + 4);
+                LowDam = (long)(nudLevel.Value - 4);
+            }
+
+            if (Low <= 0)
+            {
+                nudStrength.Value =     RandomNumber(High, 0);
+                nudEndurance.Value =    RandomNumber(High, 0);
+                nudVitality.Value =     RandomNumber(High, 0);
+                nudLuck.Value =         RandomNumber(High, 0);
+                nudIntelligence.Value = RandomNumber(High, 0);
+                nudSpirit.Value =       RandomNumber(High, 0);
+                nudExp.Value =          RandomNumber(HighExp, LowExp);
+                nudHp.Value =           RandomNumber(HighHP, LowHP);
+                nudDamage.Value =       RandomNumber(HighDam, 2);
+            }
+            else
+            {
+                nudStrength.Value =     RandomNumber(High, Low);
+                nudEndurance.Value =    RandomNumber(High, Low);
+                nudVitality.Value =     RandomNumber(High, Low);
+                nudLuck.Value =         RandomNumber(High, Low);
+                nudIntelligence.Value = RandomNumber(High, Low);
+                nudSpirit.Value =       RandomNumber(High, Low);
+                nudExp.Value =          RandomNumber(HighExp, LowExp);
+                nudHp.Value =           RandomNumber(HighHP, LowHP);
+                nudDamage.Value =       RandomNumber(HighDam, LowDam);
+            }
+
+        }
+
+        public void LstIndex_Click(object sender, EventArgs e)
 		{
 			E_Editors.NpcEditorInit();
 		}
@@ -436,8 +505,7 @@ namespace Engine
 			
 			Types.Npc[E_Globals.Editorindex].Skill[6] = (byte)cmbSkill6.SelectedIndex;
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+    }
 }
