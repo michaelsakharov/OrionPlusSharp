@@ -4209,14 +4209,16 @@ NextLoop:
 				return;
 			}
 			
-			for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
+			for (x = C_Variables.TileView.Left - 4; x <= C_Variables.TileView.Right + 5; x++)
 			{
-				for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
+				for (y = C_Variables.TileView.Top - 4; y <= C_Variables.TileView.Bottom + 5; y++)
 				{
 					if (IsValidMapPoint(x, y))
 					{
-						if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
-						{
+                        //Basic Light around player, Follows grid though so not game worthy
+                        //if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light || (x == C_Types.Player[C_Variables.Myindex].X && y == C_Types.Player[C_Variables.Myindex].Y))
+                        if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
+                        {
 							var x1 = ConvertMapX(x * 32) + 16 - (double) LightGfxInfo.Width / 2;
 							var y1 = ConvertMapY(y * 32) + 16 - (double) LightGfxInfo.Height / 2;
 							
