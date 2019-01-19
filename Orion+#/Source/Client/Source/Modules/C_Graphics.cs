@@ -4223,7 +4223,9 @@ NextLoop:
 							//Create the light texture to multiply over the dark texture.
 							LightSprite.Position = new Vector2f((float) x1, (float) y1);
 							LightSprite.Color = SFML.Graphics.Color.Red;
-							NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+                            LightSprite.Scale = new Vector2f(1, 1);
+
+                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
 							
 							//'Create the light texture to multiply over the dark texture.
 							//LightSprite.Position = New Vector2f(X1, Y1)
@@ -4238,12 +4240,13 @@ NextLoop:
                         if(x == C_Types.Player[C_Variables.Myindex].X && y == C_Types.Player[C_Variables.Myindex].Y)
                         {
 
-                            var x1 = ConvertMapX(x * 32) + 16 + C_Types.Player[C_Variables.Myindex].XOffset - (double)LightGfxInfo.Width / 2;
-                            var y1 = ConvertMapY(y * 32) + 16 + C_Types.Player[C_Variables.Myindex].YOffset - (double)LightGfxInfo.Height / 2;
+                            var x1 = ConvertMapX(x * 32) + 56 + C_Types.Player[C_Variables.Myindex].XOffset - (double)LightGfxInfo.Width / 2;
+                            var y1 = ConvertMapY(y * 32) + 56 + C_Types.Player[C_Variables.Myindex].YOffset - (double)LightGfxInfo.Height / 2;
 
                             //Create the light texture to multiply over the dark texture.
                             LightSprite.Position = new Vector2f((float)x1, (float)y1);
                             LightSprite.Color = SFML.Graphics.Color.Red;
+                            LightSprite.Scale = new Vector2f(0.7f, 0.7f);
                             NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
 
                         }
@@ -4256,17 +4259,6 @@ NextLoop:
 			NightGfx.Display();
 			GameWindow.Draw(NightSprite);
 		}
-		
-        private static void ActuallyDrawNight(byte brightness)
-        {
-            //Sprite night = new Sprite();
-            //night.Color = new SFML.Graphics.Color(255, 255, 255, (byte)brightness);
-            //night.TextureRect = new IntRect(0, 0, (int)C_Graphics.GameWindow.Size.X + 200, (int)C_Graphics.GameWindow.Size.Y + 200);
-            //night.Position = new Vector2f((float)(0 - 50), (float)(0 - 50));
-            //night.Scale = new Vector2f((float)(C_Graphics.GameWindow.Size.X + 200), (float)(C_Graphics.GameWindow.Size.Y + 200));
-            //
-            //C_Graphics.GameWindow.Draw(night);
-        }
 
 		public static void DrawCursor()
 		{
