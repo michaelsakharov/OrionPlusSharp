@@ -41,6 +41,8 @@ namespace Engine
 			int tmrconnect = 0;
 			int rendercount = 0;
 			int fadetmr = 0;
+			int x = 0;
+			int Y = 0;
 			
 			starttime = C_General.GetTickCount();
 			FrmMenu.Default.lblNextChar.Left = C_UpdateUI.Lblnextcharleft;
@@ -270,14 +272,82 @@ namespace Engine
 							C_Pets.PetSkillBufferTimer = 0;
 						}
 					}
-					
-					lock(C_Maps.MapLock)
-					{
-						if (C_Variables.CanMoveNow)
-						{
-							C_Player.CheckMovement(); // Check if player is trying to move
-							C_Player.CheckAttack(); // Check to see if player is trying to attack
-						}
+
+                    lock (C_Maps.MapLock)
+                    {
+                        //Set this to True to use Auto Attack on Client
+                        bool UseAutoAttack = false;
+                        //AutoAttack
+                        if (UseAutoAttack)
+                        {
+                            if (C_Variables.CanMoveNow)
+                            {
+                                switch (C_Player.GetPlayerDir(C_Variables.Myindex))
+                                {
+                                    case (int)Enums.DirectionType.Up:
+                                        x = C_Player.GetPlayerX(C_Variables.Myindex);
+                                        Y = C_Player.GetPlayerY(C_Variables.Myindex) - 1;
+                                        break;
+                                    case (int)Enums.DirectionType.Down:
+                                        x = C_Player.GetPlayerX(C_Variables.Myindex);
+                                        Y = C_Player.GetPlayerY(C_Variables.Myindex) + 1;
+                                        break;
+                                    case (int)Enums.DirectionType.Left:
+                                        x = C_Player.GetPlayerX(C_Variables.Myindex) - 1;
+                                        Y = C_Player.GetPlayerY(C_Variables.Myindex);
+                                        break;
+                                    case (int)Enums.DirectionType.Right:
+                                        x = C_Player.GetPlayerX(C_Variables.Myindex) + 1;
+                                        Y = C_Player.GetPlayerY(C_Variables.Myindex);
+                                        break;
+                                }
+                                if (C_Variables.MyTarget > 0)
+                                {
+                                    if (x == C_Maps.MapNpc[C_Variables.MyTarget].X && Y == C_Maps.MapNpc[C_Variables.MyTarget].Y)
+                                    {
+                                        C_Variables.ControlDown = true;
+                                    }
+                                    else
+                                    {
+                                        C_Player.CheckMovement(); // Check if player is trying to move
+                                        C_Player.CheckAttack(); // Check to see if player is trying to attack
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (C_Variables.CanMoveNow)
+                                {
+                                    switch (C_Player.GetPlayerDir(C_Variables.Myindex))
+                                    {
+                                        case (int)Enums.DirectionType.Up:
+                                            x = C_Player.GetPlayerX(C_Variables.Myindex);
+                                            Y = C_Player.GetPlayerY(C_Variables.Myindex) - 1;
+                                            break;
+                                        case (int)Enums.DirectionType.Down:
+                                            x = C_Player.GetPlayerX(C_Variables.Myindex);
+                                            Y = C_Player.GetPlayerY(C_Variables.Myindex) + 1;
+                                            break;
+                                        case (int)Enums.DirectionType.Left:
+                                            x = C_Player.GetPlayerX(C_Variables.Myindex) - 1;
+                                            Y = C_Player.GetPlayerY(C_Variables.Myindex);
+                                            break;
+                                        case (int)Enums.DirectionType.Right:
+                                            x = C_Player.GetPlayerX(C_Variables.Myindex) + 1;
+                                            Y = C_Player.GetPlayerY(C_Variables.Myindex);
+                                            break;
+                                    }
+                                    C_Player.CheckMovement(); // Check if player is trying to move
+                                }
+                            }
+                        }
+
+                        if (C_Variables.CanMoveNow && !UseAutoAttack)
+                        {
+
+                            C_Player.CheckMovement(); // Check if player is trying to move
+                            C_Player.CheckAttack(); // Check to see if player is trying to attack
+                        }
 						
 						// Process input before rendering, otherwise input will be behind by 1 frame
 						if (walkTimer < tick)
