@@ -4215,8 +4215,6 @@ NextLoop:
 				{
 					if (IsValidMapPoint(x, y))
 					{
-                        //Basic Light around player, Follows grid though so not game worthy
-                        //if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light || (x == C_Types.Player[C_Variables.Myindex].X && y == C_Types.Player[C_Variables.Myindex].Y))
                         if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
                         {
 							var x1 = ConvertMapX(x * 32) + 16 - (double) LightGfxInfo.Width / 2;
