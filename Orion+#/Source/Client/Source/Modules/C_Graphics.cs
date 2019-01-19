@@ -4226,14 +4226,6 @@ NextLoop:
                             LightSprite.Scale = new Vector2f(1, 1);
 
                             NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
-							
-							//'Create the light texture to multiply over the dark texture.
-							//LightSprite.Position = New Vector2f(X1, Y1)
-							//LightAreaSprite.Position = New Vector2f(X1, Y1)
-							//'LightSprite.Color = New SFML.Graphics.Color(SFML.Graphics.Color.Red)
-							//'LightAreaSprite.Color = New SFML.Graphics.Color(SFML.Graphics.Color.Red)
-							//NightGfx.Draw(LightSprite, New RenderStates(BlendMode.Multiply))
-							//NightGfx.Draw(LightAreaSprite, New RenderStates(BlendMode.Multiply))
 						}
 
                         //Comment out this entire IF statement to remove the Light around players
