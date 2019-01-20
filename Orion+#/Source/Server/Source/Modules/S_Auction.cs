@@ -1,15 +1,4 @@
-﻿
-
-//  -Auction System-
-//Converting https://web.archive.org/web/20130106171048/http://www.touchofdeathforums.com:80/community/index.php?/topic/130033-auction-house-system/#entry859552
-//From vb6 to c# for Orion+#
-
-//First Converting the Server side, Do this then the Database
-//Figure out the FileGet stuff find out whats going on there and update it to the new system with ByteStream and stuff
-
-
-
-using System;
+﻿using System;
 using System.Windows.Forms;
 using ASFW;
 using Microsoft.VisualBasic;
