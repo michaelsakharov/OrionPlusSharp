@@ -316,7 +316,7 @@ namespace Engine
 			CPetSkill,
 			CPetUseStatPoint,
 
-            //auction
+            // auction
             CAddAuct,
             CCheckAuct,
             CBid,

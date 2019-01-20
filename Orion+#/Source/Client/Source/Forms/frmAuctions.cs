@@ -364,16 +364,14 @@ namespace frmAuctions
 
 		private void lstAuctions_DoubleClick(object sender, System.EventArgs e)
 		{
-			string tmpString = ""; 
-
-			tmpString = lstAuctions.Items[lstAuctions.SelectedIndex].ToString();
+			string tmpString = lstAuctions.Items[lstAuctions.SelectedIndex].ToString();
 
 
-			if (tmpString=="Empty") return;
+			if (tmpString == "Empty") return;
 
 
 
-			CurrentAuction = lstAuctions.SelectedIndex+1;
+			CurrentAuction = lstAuctions.SelectedIndex + 1;
             C_Auction.LoadAuctionItem(CurrentAuction);
 		}
 

@@ -56,6 +56,7 @@ namespace Engine
                 PacketDisconnectCount = 150 // If the other thing was even remotely reasonable, this is DEFINITELY spam count!
             };
             // END THE ESTABLISHMENT! WOOH ANARCHY! ~SpiceyWolf
+            // And this children is why we dont give Wolves Spicy food. ~Wolf
 
             S_NetworkReceive.PacketRouter(); // Need them packet ids boah!
         }

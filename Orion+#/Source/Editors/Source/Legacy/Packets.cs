@@ -181,9 +181,13 @@ namespace Engine
 			
 			STime,
 			SClock,
-			
-			// Make sure COUNT is below everything else
-			COUNT
+
+            // auctions
+            SAuct,
+            SOpenAuction,
+
+            // Make sure COUNT is below everything else
+            COUNT
 		}
 		
 		// Packets sent by client to server
@@ -315,9 +319,14 @@ namespace Engine
 			CReleasePet,
 			CPetSkill,
 			CPetUseStatPoint,
-			
-			// Make sure COUNT is below everything else
-			Count
+
+            // auctions
+            CAddAuct,
+            CCheckAuct,
+            CBid,
+
+            // Make sure COUNT is below everything else
+            Count
 		}
 		
 		internal enum EditorPackets

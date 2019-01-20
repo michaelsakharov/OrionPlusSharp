@@ -93,21 +93,22 @@ namespace Engine
             }
             else
             {
-                frmAuctions.frmAuctions.InstancePtr.lstAuctions.Invoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.Items.Clear()));
-                frmAuctions.frmAuctions.InstancePtr.lstAuctions.Invoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.ClearSelected()));
+                frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.Items.Clear()));
+                frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.ClearSelected()));
                 for (i = 1; i < 100; i++)
                 {
                     if (Auction[i].Owner != "")
                     {
-                        frmAuctions.frmAuctions.InstancePtr.lstAuctions.Invoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.Items.Add(Types.Item[Auction[i].Item].Name + " Price: " + Auction[i].Price)));
+                        frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.Items.Add(Types.Item[Auction[i].Item].Name + " Price: " + Auction[i].Price)));
                     }
                     else
                     {
-                        frmAuctions.frmAuctions.InstancePtr.lstAuctions.Invoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.Items.Add("Empty")));
+                        frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.lstAuctions.Items.Add("Empty")));
                     }
                 }
+                Application.DoEvents();
             }
-            Application.DoEvents();
+            
         }
 
         public static void HandleOpenAuction(ref byte[] data)
@@ -128,8 +129,8 @@ namespace Engine
                 frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.fraMain.Visible = true));
                 frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.fraNew.Visible = false));
                 frmAuctions.frmAuctions.InstancePtr.lstAuctions.BeginInvoke(new Action(() => frmAuctions.frmAuctions.InstancePtr.fraBuy.Visible = false));
+                Application.DoEvents();
             }
-            Application.DoEvents();
 
             C_NetworkSend.SendGetAuction();
         }

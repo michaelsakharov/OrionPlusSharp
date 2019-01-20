@@ -1,0 +1,34 @@
+21/01/2019 12:56:42 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.S_Players.GetPlayerInvItemNum(Int32 index, Int32 InvSlot) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 1993
+   at Engine.S_Auction.HandleAddAuction(Int32 index, Byte[]& data) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Auction.cs:line 324
+   at ASFW.Network.Server.PacketHandler(ReceiveState& so)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1993 Filename: S_Players.cs
+Line:324 Filename: S_Auction.cs
+
+21/01/2019 12:57:34 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.S_Players.GetPlayerInvItemNum(Int32 index, Int32 InvSlot) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 1993
+   at Engine.S_Auction.HandleAddAuction(Int32 index, Byte[]& data) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Auction.cs:line 324
+   at ASFW.Network.Server.PacketHandler(ReceiveState& so)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1993 Filename: S_Players.cs
+Line:324 Filename: S_Auction.cs
+

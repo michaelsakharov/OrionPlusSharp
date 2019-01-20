@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Options>
   <UserInfo>
-    <Element Name="Username" Value="asdf" />
-    <Element Name="Password" Value="asdf" />
+    <Element Name="Username" Value="asd" />
+    <Element Name="Password" Value="asd" />
     <Element Name="SavePass" Value="True" />
   </UserInfo>
   <Connection>

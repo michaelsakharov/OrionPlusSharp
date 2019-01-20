@@ -426,7 +426,7 @@ namespace Engine
 
         public static void SendAddAuction(int ItemNum, int Price, int Max)
 		{
-            ByteStream buffer = new ByteStream(100);
+            ByteStream buffer = new ByteStream(4);
             buffer.WriteInt32((int)Packets.ClientPackets.CAddAuct);
             buffer.WriteInt32(ItemNum);
             buffer.WriteInt32(Price);
@@ -438,7 +438,7 @@ namespace Engine
 
         public static void SendGetAuction()
 		{
-            ByteStream buffer = new ByteStream(100);
+            ByteStream buffer = new ByteStream(4);
             buffer.WriteInt32((int)Packets.ClientPackets.CCheckAuct);
 
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
@@ -447,7 +447,7 @@ namespace Engine
 
         public static void SendBid(int AuctionNum, int Bid)
 		{
-            ByteStream buffer = new ByteStream(100);
+            ByteStream buffer = new ByteStream(4);
             buffer.WriteInt32((int)Packets.ClientPackets.CBid);
             buffer.WriteInt32(AuctionNum);
             buffer.WriteInt32(Bid);

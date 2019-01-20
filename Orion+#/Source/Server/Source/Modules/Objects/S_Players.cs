@@ -3297,7 +3297,9 @@ namespace Engine
             S_Projectiles.SendProjectiles(index);
             S_NetworkSend.SendVitals(index);
             S_NetworkSend.SendExp(index);
+
             S_NetworkSend.SendAuctions(index);
+
             S_Quest.SendQuests(index);
             S_Quest.SendPlayerQuests(index);
             S_NetworkSend.SendMapNames(index);

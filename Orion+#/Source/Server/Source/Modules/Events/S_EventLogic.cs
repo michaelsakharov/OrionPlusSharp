@@ -3144,6 +3144,7 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvOpenAuction:
                                                                 {
+                                                                    //ORION+# todo: Learn how this damn Event system works so i can figure out how to stop this from spamming.
                                                                     S_NetworkSend.SendAuction(i);
                                                                     break;
                                                                 }
