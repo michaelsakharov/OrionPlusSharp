@@ -47,8 +47,8 @@
     <Element Name="PlayerGender" Value="0" />
     <Element Name="CommandList1CommandCount" Value="1" />
     <Element Name="CommandList1ParentList" Value="0" />
-    <Element Name="CommandList1Command1Index" Value="2" />
-    <Element Name="CommandList1Command1Text1" Value="sdasd" />
+    <Element Name="CommandList1Command1Index" Value="30" />
+    <Element Name="CommandList1Command1Text1" Value="" />
     <Element Name="CommandList1Command1Text2" Value="" />
     <Element Name="CommandList1Command1Text3" Value="" />
     <Element Name="CommandList1Command1Text4" Value="" />

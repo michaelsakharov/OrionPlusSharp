@@ -500,3 +500,4 @@ C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Orion+ Cli
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Orion+ Client.exe
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Orion+ Client.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Engine.Source.Forms.frmAuctions.resources

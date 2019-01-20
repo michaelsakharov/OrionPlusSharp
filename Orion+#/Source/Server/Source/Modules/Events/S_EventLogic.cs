@@ -3142,6 +3142,12 @@ namespace Engine
                                                                     break;
                                                                 }
 
+                                                            case (int)S_Events.EventType.EvOpenAuction:
+                                                                {
+                                                                    S_NetworkSend.SendAuction(i);
+                                                                    break;
+                                                                }
+
                                                             case (int)S_Events.EventType.EvOpenBank:
                                                                 {
                                                                     S_NetworkSend.SendBank(i);

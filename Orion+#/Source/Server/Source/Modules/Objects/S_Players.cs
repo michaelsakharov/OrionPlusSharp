@@ -3297,6 +3297,7 @@ namespace Engine
             S_Projectiles.SendProjectiles(index);
             S_NetworkSend.SendVitals(index);
             S_NetworkSend.SendExp(index);
+            S_NetworkSend.SendAuctions(index);
             S_Quest.SendQuests(index);
             S_Quest.SendPlayerQuests(index);
             S_NetworkSend.SendMapNames(index);
@@ -3324,6 +3325,20 @@ namespace Engine
 
             // Send the flag so they know they can start doing stuff
             S_NetworkSend.SendInGame(index);
+
+            if(Player[index].BidWon > 0)
+            {
+                S_NetworkSend.PlayerMsg(index, "You have won an Auction!", (int)Enums.ColorType.Red);
+                S_Players.GiveInvItem(index, (int)Player[index].BidWon, (int)Player[index].BidWonAmount, true);
+                Player[index].BidWon = 0;
+                Player[index].BidWonAmount = 0;
+            }
+            if (Player[index].Money > 0)
+            {
+                S_NetworkSend.PlayerMsg(index, "You have recieved Money from the Auction house!", (int)Enums.ColorType.Red);
+                S_Players.GiveInvItem(index, 1, (int)Player[index].Money, true);
+                Player[index].Money = 0;
+            }
 
             S_General.UpdateCaption();
         }

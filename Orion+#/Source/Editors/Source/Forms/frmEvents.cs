@@ -915,6 +915,11 @@ namespace Engine
                     cmbOpenShop.SelectedIndex = 0;
                     fraCommands.Visible = false;
                     break;
+                case "Open Auction":
+                    E_EventSystem.AddCommand((System.Int32)E_EventSystem.EventType.EvOpenAuction);
+                    fraCommands.Visible = false;
+                    fraDialogue.Visible = false;
+                    break;
                 //Open Mail
                 case "45":
                     E_EventSystem.AddCommand((System.Int32)E_EventSystem.EventType.EvOpenMail);

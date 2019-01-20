@@ -370,6 +370,7 @@ namespace Engine
             // Shop/Bank
             EvOpenBank,
             EvOpenShop,
+            EvOpenAuction,
 
             // New
             EvGiveExp,

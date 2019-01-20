@@ -174,12 +174,16 @@ namespace Engine
 			SPetAttack,
 			SPetXY,
 			SPetExp,
-			
+
 			STime,
 			SClock,
-			
-			// Make sure COUNT is below everything else
-			COUNT
+
+            //auction
+            SAuct,
+            SOpenAuction,
+
+            // Make sure COUNT is below everything else
+            COUNT
 		}
 		
 		// Packets sent by client to server
@@ -311,10 +315,16 @@ namespace Engine
 			CReleasePet,
 			CPetSkill,
 			CPetUseStatPoint,
-			
-			// Make sure COUNT is below everything else
-			Count
-		}
+
+            //auction
+            CAddAuct,
+            CCheckAuct,
+            CBid,
+
+
+            // Make sure COUNT is below everything else
+            Count
+        }
 		
 		internal enum EditorPackets
 		{

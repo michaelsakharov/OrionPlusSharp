@@ -344,8 +344,8 @@ namespace Engine
 			
 			//Shop/Bank
 			EvOpenBank,
-			
 			EvOpenShop,
+			EvOpenAuction,
 			
 			//New
 			EvGiveExp,
@@ -1266,6 +1266,9 @@ newlist:
 									break;
 								case (int) EventType.EvOpenBank:
 									FrmEditor_Events.Default.lstCommands.Items.Add(indent + "@>" + "Open Bank");
+                                    break;
+                                case (int) EventType.EvOpenAuction:
+									FrmEditor_Events.Default.lstCommands.Items.Add(indent + "@>" + "Open Auction");
 									break;
 								case (int) EventType.EvOpenMail:
 									FrmEditor_Events.Default.lstCommands.Items.Add(indent + "@>" + "Open Mail Box");
@@ -1874,6 +1877,9 @@ newlist:
 					break;
 					
 				case (int) EventType.EvOpenBank:
+					TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = Index;
+					break;
+                case (int) EventType.EvOpenAuction:
 					TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = Index;
 					break;
 					

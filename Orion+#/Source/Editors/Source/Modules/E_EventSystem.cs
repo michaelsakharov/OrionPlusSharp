@@ -320,9 +320,10 @@ namespace Engine
             EvCustomScript,
             EvSetAccess,
 
-            // Shop/Bank
+            // Shop/Bank/Auction
             EvOpenBank,
             EvOpenShop,
+            EvOpenAuction,
 
             // New
             EvGiveExp,
@@ -1447,6 +1448,12 @@ namespace Engine
                                         break;
                                     }
 
+                                case (int)EventType.EvOpenAuction:
+                                    {
+                                        frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Open Auction");
+                                        break;
+                                    }
+
                                 case (int)EventType.EvOpenMail:
                                     {
                                         frmEvents.Default.lstCommands.Items.Add(indent + "@>" + "Open Mail Box");
@@ -2185,6 +2192,12 @@ namespace Engine
                     }
 
                 case (int)EventType.EvOpenBank:
+                    {
+                        TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
+                        break;
+                    }
+
+                case (int)EventType.EvOpenAuction:
                     {
                         TmpEvent.Pages[CurPageNum].CommandList[curlist].Commands[curslot].Index = index;
                         break;

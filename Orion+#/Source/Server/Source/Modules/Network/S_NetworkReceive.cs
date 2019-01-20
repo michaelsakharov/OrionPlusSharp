@@ -151,7 +151,12 @@ namespace Engine
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CReleasePet] = S_Pets.Packet_ReleasePet;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CPetSkill] = S_Pets.Packet_PetSkill;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CPetUseStatPoint] = S_Pets.Packet_UsePetStatPoint;
-                                            
+
+            // auction
+            S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CAddAuct] = S_Auction.HandleAddAuction;
+            S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CCheckAuct] = S_Auction.HandleGetAuctions;
+            S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CBid] = S_Auction.HandleBid;
+
             // editor login                 
             S_NetworkConfig.Socket.PacketId[(int)Packets.EditorPackets.EditorLogin] = Packet_EditorLogin;
             S_NetworkConfig.Socket.PacketId[(int)Packets.EditorPackets.EditorRequestMap] = Packet_EditorRequestMap;
