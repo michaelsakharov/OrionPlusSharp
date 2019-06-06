@@ -299,22 +299,22 @@ namespace Engine
             int ItemNum;
             int Price;
             int MaxPrice;
-
+        
             ByteStream buffer = new ByteStream(data);
-
+        
             InvItem = buffer.ReadInt32();
-
+        
             Price = buffer.ReadInt32();
-
+        
             MaxPrice = buffer.ReadInt32();
-
+        
             buffer.Dispose();
-
+        
             ItemNum = S_Players.GetPlayerInvItemNum(index, InvItem);
-
+        
             if (Price > 0)
             {
-
+        
                 AddAuction(index, ItemNum, 1, Price, MaxPrice);
             }
             else

@@ -90,6 +90,10 @@ namespace Engine
             // Auto Mapper
             E_NetworkConfig.Socket.PacketId[(int)Packets.ServerPackets.SAutoMapper] = E_AutoMap.Packet_AutoMapper;
 
+            // auctions
+            E_NetworkConfig.Socket.PacketId[(int)Packets.ServerPackets.SAuct] = null;
+            E_NetworkConfig.Socket.PacketId[(int)Packets.ServerPackets.SOpenAuction] = null;
+
             // pets
             E_NetworkConfig.Socket.PacketId[(int)Packets.ServerPackets.SPetEditor] = E_Pets.Packet_PetEditor;
             E_NetworkConfig.Socket.PacketId[(int)Packets.ServerPackets.SUpdatePet] = E_Pets.Packet_UpdatePet;

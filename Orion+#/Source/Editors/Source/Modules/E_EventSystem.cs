@@ -320,10 +320,9 @@ namespace Engine
             EvCustomScript,
             EvSetAccess,
 
-            // Shop/Bank/Auction
+            // Shop/Bank
             EvOpenBank,
             EvOpenShop,
-            EvOpenAuction,
 
             // New
             EvGiveExp,
@@ -346,7 +345,10 @@ namespace Engine
             EvHidePicture,
             EvWaitMovement,
             EvHoldPlayer,
-            EvReleasePlayer
+            EvReleasePlayer,
+            
+            //Auction
+            EvOpenAuction
         }
 
 

@@ -153,7 +153,11 @@ namespace Engine
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CPetUseStatPoint] = S_Pets.Packet_UsePetStatPoint;
 
             // auction
-            S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CAddAuct] = S_Auction.HandleAddAuction;
+
+            // a Horribly Hacked solution to get around this issue for now, NEEDS TO BE FIXED! The packet ID's appear the same.
+            // Im pretty sure im just being retarded and missing some simple yet vital thing.... very very likely
+            //S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CAddAuct] = S_Auction.HandleAddAuction;
+            S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CAddAuct] = Packet_EditorLogin; // This shouldnt be EditorLogin :(
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CCheckAuct] = S_Auction.HandleGetAuctions;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CBid] = S_Auction.HandleBid;
 

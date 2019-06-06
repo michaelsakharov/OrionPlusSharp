@@ -266,13 +266,13 @@ namespace Engine
 			
 			CAdmin,
 			
-			//quests
+			// quests
 			CRequestQuests,
 			CQuestLogUpdate,
 			CPlayerHandleQuest,
 			CQuestReset,
 			
-			//Housing
+			// Housing
 			CBuyHouse,
 			CVisit,
 			CAcceptVisit,
@@ -280,12 +280,12 @@ namespace Engine
 			
 			CSellHouse,
 			
-			//Hotbar
+			// Hotbar
 			CSetHotbarSlot,
 			CDeleteHotbarSlot,
 			CUseHotbarSlot,
 			
-			//Events
+			// Events
 			CEventChatReply,
 			CEvent,
 			CSwitchesAndVariables,
@@ -301,17 +301,17 @@ namespace Engine
 			
 			CRequestClasses,
 			
-			//emotes
+			// emotes
 			CEmote,
 			
-			//party
+			// party
 			CRequestParty,
-			CAcceptParty,
+		    CAcceptParty,
 			CDeclineParty,
 			CLeaveParty,
 			CPartyChatMsg,
 			
-			//pets
+			// pets
 			CRequestPets,
 			CSummonPet,
 			CPetMove,
