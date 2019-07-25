@@ -160,34 +160,6 @@ namespace Engine
             Buffer.Dispose();
         }
 
-        public static void SendAuctions(int index = 0)
-        {
-            ByteStream buffer = new ByteStream(100);
-            buffer.WriteInt32((int)Packets.ServerPackets.SAuct);
-
-            for (int i = 1; i <= 100; i++)
-            {
-
-                buffer.WriteString(S_Auction.Auction[i].Owner);
-                buffer.WriteInt32(S_Auction.Auction[i].Item);
-                buffer.WriteInt32(S_Auction.Auction[i].Price);
-                buffer.WriteInt32(S_Auction.Auction[i].MaxBid);
-                buffer.WriteInt32(S_Auction.Auction[i].EndDate);
-                buffer.WriteInt32(S_Auction.Auction[i].Amount);
-                buffer.WriteInt32(S_Auction.Auction[i].Bid);
-
-            }
-
-            if (index == 0)
-            {
-                S_NetworkConfig.Socket.SendDataToAll(buffer.Data, buffer.Head);
-            }
-            else
-            {
-                S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
-            }
-        }
-
         public static void SendInGame(int index)
         {
             ByteStream Buffer = new ByteStream(4);
@@ -1330,20 +1302,6 @@ namespace Engine
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
                     buffer.WriteInt32(modTypes.Bank[index].ItemRand[i].Stat[x]);
             }
-
-            S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
-
-            buffer.Dispose();
-        }
-
-        public static void SendAuction(int index)
-        {
-            ByteStream buffer = new ByteStream(4);
-            int i;
-
-            buffer.WriteInt32((int)Packets.ServerPackets.SOpenAuction);
-
-            S_General.AddDebug("Sent SMSG: SOpenAuction");
 
             S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
 

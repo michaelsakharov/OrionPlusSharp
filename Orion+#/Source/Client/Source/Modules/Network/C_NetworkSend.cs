@@ -423,6 +423,7 @@ namespace Engine
 			C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
 		}
+<<<<<<< HEAD
 
         public static void SendAddAuction(int ItemNum, int Price, int Max)
 		{
@@ -455,6 +456,8 @@ namespace Engine
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
 		}
+=======
+>>>>>>> parent of 0c70923... Added Auction House
 		
 		internal static void ForgetSkill(int skillslot)
 		{

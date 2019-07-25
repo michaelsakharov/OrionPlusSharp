@@ -3936,14 +3936,7 @@ NextLoop:
 				xoffset = C_UpdateUI.TradeWindowX;
 				yoffset = C_UpdateUI.TradeWindowY;
 			}
-
-            if(frmAuctions.frmAuctions.InstancePtr.fraNew.Visible){
-                if(C_Auction.CurrentAuctionSelections != 0)
-                {
-                    DrawAuctionItemDesc(C_Auction.CurrentAuctionSelections);
-                }
-            }
-
+			
 			//first render panel
 			RenderSprite(DescriptionSprite, GameWindow, xoffset - DescriptionGfxInfo.Width, yoffset, 0, 0, DescriptionGfxInfo.Width, DescriptionGfxInfo.Height);
 			
@@ -4268,34 +4261,6 @@ NextLoop:
 		{
 			RenderSprite(CursorSprite, GameWindow, C_Variables.CurMouseX, C_Variables.CurMouseY, 0, 0, CursorInfo.Width, CursorInfo.Height);
 		}
-
-        public static void DrawAuctionItemDesc(int ItemNum)
-        {
-
-            Rectangle srcrec = new Rectangle();
-            Rectangle destrec;
-            int PicNum = 0;
-            int x = 0;
-            int y = 0;
-            PicNum = Types.Item[ItemNum].Pic;
-
-            if (PicNum < 1 || PicNum > NumItems)
-            {
-                return;
-            }
-
-            if (ItemsGfxInfo[PicNum].IsLoaded == false)
-            {
-               // LoadTexture(PicNum, (byte)4);
-            }
-
-            //seeing we still use it, lets update the timer
-            //ItemsGfxInfo[PicNum].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(C_General.GetTickCount()) + 100000);
-
-            //frmAuctions.frmAuctions.InstancePtr.pictureBox1.Image = ItemsGfx[PicNum].CopyToImage();
-            
-
-        }
-
-    }
+		
+	}
 }

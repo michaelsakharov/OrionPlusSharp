@@ -26,10 +26,6 @@
 
             // multi char
             public CharacterRec[] Character;
-
-            public long Money;
-            public long BidWon;
-            public long BidWonAmount;
         }
 
         internal struct CharacterRec

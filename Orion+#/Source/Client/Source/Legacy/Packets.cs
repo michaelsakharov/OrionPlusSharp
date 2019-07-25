@@ -174,16 +174,12 @@ namespace Engine
 			SPetAttack,
 			SPetXY,
 			SPetExp,
-
+			
 			STime,
 			SClock,
-
-            //auction
-            SAuct,
-            SOpenAuction,
-
-            // Make sure COUNT is below everything else
-            COUNT
+			
+			// Make sure COUNT is below everything else
+			COUNT
 		}
 		
 		// Packets sent by client to server
@@ -315,6 +311,7 @@ namespace Engine
 			CReleasePet,
 			CPetSkill,
 			CPetUseStatPoint,
+<<<<<<< HEAD
 
             // auction
             CAddAuct,
@@ -325,6 +322,12 @@ namespace Engine
             // Make sure COUNT is below everything else
             Count
         }
+=======
+			
+			// Make sure COUNT is below everything else
+			Count
+		}
+>>>>>>> parent of 0c70923... Added Auction House
 		
 		internal enum EditorPackets
 		{

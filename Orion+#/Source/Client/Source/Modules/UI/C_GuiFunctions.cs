@@ -1025,13 +1025,7 @@ namespace Engine
 							C_Trade.TradeItem(invNum, 0);
 							return false;
 						}
-
-                        if (C_Auction.IsPickingItem)
-                        {
-                            C_Auction.CurrentAuctionSelections = invNum;
-                            C_Auction.IsPickingItem = false;
-                        }
-
+						
 						// use item if not doing anything else
 						if (Types.Item[C_Player.GetPlayerInvItemNum(C_Variables.Myindex, invNum)].Type == (byte)Enums.ItemType.None)
 						{

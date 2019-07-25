@@ -159,13 +159,9 @@ namespace Engine
 			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetAttack] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetAttack);
 			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetXY] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetXY);
 			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetExp] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetExperience);
+			
 			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClock] = new ASFW.Network.Client.DataArgs(C_Time.Packet_Clock);
 			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STime] = new ASFW.Network.Client.DataArgs(C_Time.Packet_Time);
-
-            //auctions
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAuct] = new ASFW.Network.Client.DataArgs(C_Auction.HandleAddAuction);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SOpenAuction] = new ASFW.Network.Client.DataArgs(C_Auction.HandleOpenAuction);
-
         }
 		
 		private static void Packet_AlertMSG(ref byte[] data)

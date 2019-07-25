@@ -163,10 +163,6 @@
             SPetExp,
             STime,
             SClock,
-            
-            // auctions
-            SAuct,
-            SOpenAuction,
 
             // Make sure COUNT is below everything else
             COUNT
@@ -291,11 +287,6 @@
             CReleasePet,
             CPetSkill,
             CPetUseStatPoint,
-
-            // auctions
-            CAddAuct,
-            CCheckAuct,
-            CBid,
 
             // Make sure COUNT is below everything else
             Count

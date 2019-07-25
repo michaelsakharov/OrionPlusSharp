@@ -1272,78 +1272,6 @@ namespace Engine
         }
 
 
-        #region Auctions (Untested)
-        public static void SaveAuction(int auctionNum)
-        {
-            string filename = Application.StartupPath + @"\Data\auctions\auction" + auctionNum + ".bin";
-
-            ByteStream writer = new ByteStream(100);
-
-            writer.WriteString(S_Auction.Auction[auctionNum].Owner);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].OwnerID);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].Amount);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].Bid);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].EndDate);
-            writer.WriteString(S_Auction.Auction[auctionNum].Date);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].Item);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].MaxBid);
-            writer.WriteInt32(S_Auction.Auction[auctionNum].Price);
-            writer.WriteString(S_Auction.Auction[auctionNum].LastBidder);
-
-            BinaryFile.Save(filename, ref writer);
-        }
-
-
-        public static void CheckAuctions()
-        {
-            for (var i = 1; i <= 100; i++)
-            {
-
-                if(!File.Exists(Application.StartupPath + @"\Data\auctions\auction" + i + ".bin"))
-                {
-                    SaveAuction(i);
-                }
-
-            }
-        }
-
-
-        public static void LoadAuctions()
-        {
-            CheckAuctions();
-            for (var i = 1; i <= 100; i++)
-            {
-
-                if (File.Exists(Application.StartupPath + @"\Data\auctions\auction" + i + ".bin"))
-                {
-                    string filename = Application.StartupPath + @"\Data\auctions\auction" + i + ".bin";
-                    ByteStream reader = new ByteStream();
-                    BinaryFile.Load(filename, ref reader);
-                    
-                    S_Auction.Auction[i].Owner = reader.ReadString();
-                    S_Auction.Auction[i].OwnerID = reader.ReadInt32();
-                    S_Auction.Auction[i].Amount = reader.ReadInt32();
-                    S_Auction.Auction[i].Bid = reader.ReadInt32();
-                    S_Auction.Auction[i].EndDate = reader.ReadInt32();
-                    S_Auction.Auction[i].Date = reader.ReadString();
-                    S_Auction.Auction[i].Item = reader.ReadInt32();
-                    S_Auction.Auction[i].MaxBid = reader.ReadInt32();
-                    S_Auction.Auction[i].Price = reader.ReadInt32();
-                    S_Auction.Auction[i].LastBidder = reader.ReadString();
-                }
-
-            }
-        }
-
-        public static void ClearAuctions()
-        {
-            for (var i = 1; i <= 100; i++)
-            {
-                S_Auction.DestroyAuction(i);
-            }
-        }
-        #endregion
-
 
         public static void SaveAllPlayersOnline()
         {
@@ -1368,9 +1296,6 @@ namespace Engine
             writer.WriteString(modTypes.Player[index].Login);
             writer.WriteString(modTypes.Player[index].Password);
             writer.WriteByte(modTypes.Player[index].Access);
-            writer.WriteInt64(modTypes.Player[index].Money);
-            writer.WriteInt64(modTypes.Player[index].BidWon);
-            writer.WriteInt64(modTypes.Player[index].BidWonAmount);
 
             BinaryFile.Save(filename, ref writer);
 
@@ -1388,9 +1313,6 @@ namespace Engine
             modTypes.Player[index].Login = reader.ReadString();
             modTypes.Player[index].Password = reader.ReadString();
             modTypes.Player[index].Access = reader.ReadByte();
-            modTypes.Player[index].Money = reader.ReadInt64();
-            modTypes.Player[index].BidWon = reader.ReadInt64();
-            modTypes.Player[index].BidWonAmount = reader.ReadInt64();
 
             for (int i = 1; i <= S_Constants.MAX_CHARS; i++)
                 LoadCharacter(index, i);
@@ -1405,10 +1327,6 @@ namespace Engine
             modTypes.Player[index].Password = "";
 
             modTypes.Player[index].Access = 0;
-
-            modTypes.Player[index].Money = 0;
-            modTypes.Player[index].BidWon = 0;
-            modTypes.Player[index].BidWonAmount = 0;
 
             for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
                 ClearCharacter(index, i);

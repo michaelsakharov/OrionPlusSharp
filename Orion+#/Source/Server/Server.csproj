@@ -101,7 +101,6 @@
     <Compile Include="Source\Modules\Objects\S_Animations.cs" />
     <Compile Include="Source\Modules\Objects\S_Items.cs" />
     <Compile Include="Source\Modules\Objects\S_Npc.cs" />
-    <Compile Include="Source\Modules\S_Auction.cs" />
     <Compile Include="Source\Modules\S_AutoMap.cs" />
     <Compile Include="Source\Modules\S_Console.cs" />
     <Compile Include="Source\Modules\S_Constants.cs" />

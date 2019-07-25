@@ -21,7 +21,6 @@ namespace Engine
             int lastUpdateSavePlayers = 0;
             int lastUpdateMapSpawnItems = 0;
             int lastUpdatePlayerVitals = 0;
-            int lastUpdateSaveAuction = 0;
 
             do
             {
@@ -123,19 +122,6 @@ namespace Engine
                 {
                     UpdateSavePlayers();
                     lastUpdateSavePlayers = S_General.GetTimeMs() + 600000;
-                }
-                
-                // Checks to save auctions every 5 minutes - Can be tweaked
-                if (tick > lastUpdateSaveAuction)
-                {
-                    for (int i = 1; i < 100; i++)
-                    {
-                        if (S_Auction.Auction[i].Owner == null)
-                        {
-                            S_Auction.RemoveDeadAuction(i);
-                        }
-                    }
-                    lastUpdateSaveAuction = S_General.GetTimeMs() + 300000;
                 }
 
                 Application.DoEvents();
