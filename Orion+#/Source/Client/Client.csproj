@@ -101,9 +101,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Source\Common\Time.cs" />
-    <Compile Include="Source\Forms\frmAuctions.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Source\Forms\FrmEditor_Events.Designer.cs">
       <DependentUpon>FrmEditor_Events.cs</DependentUpon>
     </Compile>
@@ -123,7 +120,6 @@
     <Compile Include="Source\Legacy\Strings.cs" />
     <Compile Include="Source\Legacy\Types.cs" />
     <Compile Include="Source\Legacy\Xml.cs" />
-    <Compile Include="Source\Modules\C_Auction.cs" />
     <Compile Include="Source\Modules\C_Options.cs" />
     <Compile Include="Source\Modules\Objects\C_Items.cs" />
     <Compile Include="Source\Modules\Objects\C_Maps.cs" />
@@ -198,7 +194,6 @@
       <DependentUpon>FrmAdmin.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Forms\frmAuctions.resx" />
     <EmbeddedResource Include="Source\Forms\FrmEditor_Events.resx">
       <DependentUpon>FrmEditor_Events.cs</DependentUpon>
     </EmbeddedResource>

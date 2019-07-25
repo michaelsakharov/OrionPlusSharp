@@ -197,7 +197,6 @@ namespace Engine
             CheckDir(Path.Combine(Application.StartupPath, "data", "recipes"));
             CheckDir(Path.Combine(Application.StartupPath, "data", "pets"));
             CheckDir(Path.Combine(Application.StartupPath, "data", "projectiles"));
-            CheckDir(Path.Combine(Application.StartupPath, "data", "auctions"));
 
             // load options, set if they dont exist
             if (!File.Exists(Path.Combine(Application.StartupPath, "Data", "Config.xml")))
@@ -325,7 +324,6 @@ namespace Engine
             Console.WriteLine("Clearing Resources..."); S_Resources.ClearResources();
             Console.WriteLine("Clearing Items..."); S_Items.ClearItems();
             Console.WriteLine("Clearing Shops..."); modDatabase.ClearShops();
-            Console.WriteLine("Clearing Auctions..."); modDatabase.ClearAuctions();
             Console.WriteLine("Clearing Skills..."); modDatabase.ClearSkills();
             Console.WriteLine("Clearing Animations..."); S_Animations.ClearAnimations();
             Console.WriteLine("Clearing Quests..."); S_Quest.ClearQuests();
@@ -343,7 +341,6 @@ namespace Engine
             Console.WriteLine("Loading Npc's..."); modDatabase.LoadNpcs();
             Console.WriteLine("Loading Resources..."); S_Resources.LoadResources();
             Console.WriteLine("Loading Shops..."); modDatabase.LoadShops();
-            Console.WriteLine("Loading Auctions..."); modDatabase.LoadAuctions();
             Console.WriteLine("Loading Skills..."); modDatabase.LoadSkills();
             Console.WriteLine("Loading Animations..."); S_Animations.LoadAnimations();
             Console.WriteLine("Loading Quests..."); S_Quest.LoadQuests();
