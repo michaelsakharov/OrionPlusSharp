@@ -2,13 +2,8 @@
 <Options>
   <UserInfo>
     <Element Name="Username" Value="asd" />
-<<<<<<< HEAD
     <Element Name="Password" Value="asd" />
     <Element Name="SavePass" Value="True" />
-=======
-    <Element Name="Password" Value="" />
-    <Element Name="SavePass" Value="False" />
->>>>>>> parent of 0c70923... Added Auction House
   </UserInfo>
   <Connection>
     <Element Name="Ip" Value="127.0.0.1" />
@@ -21,7 +16,7 @@
     <Element Name="Volume" Value="100" />
   </Sfx>
   <Misc>
-    <Element Name="ScreenSize" Value="1" />
+    <Element Name="ScreenSize" Value="0" />
     <Element Name="HighEnd" Value="0" />
     <Element Name="ShowNpcBar" Value="1" />
   </Misc>

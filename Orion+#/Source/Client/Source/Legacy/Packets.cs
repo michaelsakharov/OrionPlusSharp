@@ -311,23 +311,10 @@ namespace Engine
 			CReleasePet,
 			CPetSkill,
 			CPetUseStatPoint,
-<<<<<<< HEAD
 
-            // auction
-            CAddAuct,
-            CCheckAuct,
-            CBid,
-
-
-            // Make sure COUNT is below everything else
-            Count
-        }
-=======
-			
 			// Make sure COUNT is below everything else
 			Count
 		}
->>>>>>> parent of 0c70923... Added Auction House
 		
 		internal enum EditorPackets
 		{

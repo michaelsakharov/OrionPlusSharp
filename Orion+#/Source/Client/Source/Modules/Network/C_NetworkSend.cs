@@ -423,41 +423,6 @@ namespace Engine
 			C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
 		}
-<<<<<<< HEAD
-
-        public static void SendAddAuction(int ItemNum, int Price, int Max)
-		{
-            ByteStream buffer = new ByteStream(4);
-            buffer.WriteInt32((int)Packets.ClientPackets.CAddAuct);
-            buffer.WriteInt32(ItemNum);
-            buffer.WriteInt32(Price);
-            buffer.WriteInt32(Max);
-
-            C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
-			buffer.Dispose();
-		}
-
-        public static void SendGetAuction()
-		{
-            ByteStream buffer = new ByteStream(4);
-            buffer.WriteInt32((int)Packets.ClientPackets.CCheckAuct);
-
-            C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
-			buffer.Dispose();
-		}
-
-        public static void SendBid(int AuctionNum, int Bid)
-		{
-            ByteStream buffer = new ByteStream(4);
-            buffer.WriteInt32((int)Packets.ClientPackets.CBid);
-            buffer.WriteInt32(AuctionNum);
-            buffer.WriteInt32(Bid);
-
-            C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
-			buffer.Dispose();
-		}
-=======
->>>>>>> parent of 0c70923... Added Auction House
 		
 		internal static void ForgetSkill(int skillslot)
 		{

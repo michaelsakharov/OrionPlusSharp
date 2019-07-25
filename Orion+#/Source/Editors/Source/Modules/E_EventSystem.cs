@@ -345,10 +345,7 @@ namespace Engine
             EvHidePicture,
             EvWaitMovement,
             EvHoldPlayer,
-            EvReleasePlayer,
-            
-            //Auction
-            EvOpenAuction
+            EvReleasePlayer
         }
 
 
