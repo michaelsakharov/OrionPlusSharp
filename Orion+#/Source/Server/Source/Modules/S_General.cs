@@ -119,7 +119,7 @@ namespace Engine
                     modTypes.Player[i].Character[x].Switches = new byte[501];
                     modTypes.Player[i].Character[x].Variables = new int[501];
                     modTypes.Player[i].Character[x].Vital = new int[4];
-                    modTypes.Player[i].Character[x].Stat = new byte[7];
+                    modTypes.Player[i].Character[x].Stat = new int[7];
                     modTypes.Player[i].Character[x].Equipment = new int[7];
                     modTypes.Player[i].Character[x].Inv = new PlayerInvRec[Constants.MAX_INV + 1];
                     modTypes.Player[i].Character[x].Skill = new int[Constants.MAX_PLAYER_SKILLS + 1];

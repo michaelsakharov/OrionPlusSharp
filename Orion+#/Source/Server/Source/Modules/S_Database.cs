@@ -1539,7 +1539,7 @@ namespace Engine
             modTypes.Player[index].Character[CharNum].Pet.Mana = 0;
             modTypes.Player[index].Character[CharNum].Pet.Level = 0;
 
-            modTypes.Player[index].Character[CharNum].Pet.Stat = new byte[7];
+            modTypes.Player[index].Character[CharNum].Pet.Stat = new int[7];
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
                 modTypes.Player[index].Character[CharNum].Pet.Stat[i] = 0;
 
@@ -1580,11 +1580,11 @@ namespace Engine
                 modTypes.Player[index].Character[CharNum].Inv[i].Value = reader.ReadInt32();
             }
 
-            modTypes.Player[index].Character[CharNum].Level = reader.ReadByte();
+            modTypes.Player[index].Character[CharNum].Level = reader.ReadInt32();
             modTypes.Player[index].Character[CharNum].Map = reader.ReadInt32();
             modTypes.Player[index].Character[CharNum].Name = reader.ReadString();
             modTypes.Player[index].Character[CharNum].Pk = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Points = reader.ReadByte();
+            modTypes.Player[index].Character[CharNum].Points = reader.ReadInt32();
             modTypes.Player[index].Character[CharNum].Sex = reader.ReadByte();
 
             for (var i = 0; i <= Constants.MAX_PLAYER_SKILLS; i++)
@@ -1593,7 +1593,7 @@ namespace Engine
             modTypes.Player[index].Character[CharNum].Sprite = reader.ReadInt32();
 
             for (var i = 0; i <= (int)Enums.StatType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Stat[i] = reader.ReadByte();
+                modTypes.Player[index].Character[CharNum].Stat[i] = reader.ReadInt32();
 
             for (int i = 0; i <= (int)Enums.VitalType.Count - 1; i++)
                 modTypes.Player[index].Character[CharNum].Vital[i] = reader.ReadInt32();
@@ -1688,9 +1688,9 @@ namespace Engine
             modTypes.Player[index].Character[CharNum].Pet.Mana = reader.ReadInt32();
             modTypes.Player[index].Character[CharNum].Pet.Level = reader.ReadInt32();
 
-            modTypes.Player[index].Character[CharNum].Pet.Stat = new byte[7];
+            modTypes.Player[index].Character[CharNum].Pet.Stat = new int[7];
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Pet.Stat[i] = reader.ReadByte();
+                modTypes.Player[index].Character[CharNum].Pet.Stat[i] = reader.ReadInt32();
 
             modTypes.Player[index].Character[CharNum].Pet.Skill = new int[5];
             for (var i = 1; i <= 4; i++)
@@ -1726,11 +1726,11 @@ namespace Engine
                 writer.WriteInt32(modTypes.Player[index].Character[CharNum].Inv[i].Value);
             }
 
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Level);
+            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Level);
             writer.WriteInt32(modTypes.Player[index].Character[CharNum].Map);
             writer.WriteString(modTypes.Player[index].Character[CharNum].Name);
             writer.WriteByte(modTypes.Player[index].Character[CharNum].Pk);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Points);
+            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Points);
             writer.WriteByte(modTypes.Player[index].Character[CharNum].Sex);
 
             for (var i = 0; i <= Constants.MAX_PLAYER_SKILLS; i++)
@@ -1739,7 +1739,7 @@ namespace Engine
             writer.WriteInt32(modTypes.Player[index].Character[CharNum].Sprite);
 
             for (var i = 0; i <= (int)Enums.StatType.Count - 1; i++)
-                writer.WriteByte(modTypes.Player[index].Character[CharNum].Stat[i]);
+                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Stat[i]);
 
             for (int i = 0; i <= (int)Enums.VitalType.Count - 1; i++)
                 writer.WriteInt32(modTypes.Player[index].Character[CharNum].Vital[i]);
@@ -1821,7 +1821,7 @@ namespace Engine
             writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Level);
 
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                writer.WriteByte(modTypes.Player[index].Character[CharNum].Pet.Stat[i]);
+                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Stat[i]);
 
             for (int i = 1; i <= 4; i++)
                 writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Skill[i]);

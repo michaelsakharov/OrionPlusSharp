@@ -801,7 +801,7 @@ namespace Engine
 			{
 				return;
 			}
-			C_Types.Player[index].Points = (byte) points;
+			C_Types.Player[index].Points = points;
 		}
 		
 		public static void SetPlayerStat(int index, Enums.StatType stat, int value)
@@ -818,7 +818,7 @@ namespace Engine
 			{
 				value = byte.MaxValue;
 			}
-			C_Types.Player[index].Stat[(int)stat] = (byte)value;
+			C_Types.Player[index].Stat[(int)stat] = value;
 		}
 		
 		public static void SetPlayerInvItemNum(int index, int invslot, int itemnum)
@@ -960,7 +960,7 @@ namespace Engine
 			{
 				return;
 			}
-			C_Types.Player[index].Level = (byte) level;
+			C_Types.Player[index].Level = level;
 		}
 		
 		public static void SetPlayerDir(int index, int dir)
@@ -1127,7 +1127,7 @@ namespace Engine
 			}
 			
 			C_Types.Player[index].Exp = 0;
-			C_Types.Player[index].Level = (byte) 0;
+			C_Types.Player[index].Level = 0;
 			C_Types.Player[index].Map = 0;
 			C_Types.Player[index].MapGetTimer = 0;
 			C_Types.Player[index].MaxHp = 0;
@@ -1135,10 +1135,10 @@ namespace Engine
 			C_Types.Player[index].MaxSp = 0;
 			C_Types.Player[index].Moving = (byte) 0;
 			C_Types.Player[index].Pk = (byte) 0;
-			C_Types.Player[index].Points = (byte) 0;
+			C_Types.Player[index].Points = 0;
 			C_Types.Player[index].Sprite = 0;
 			
-			C_Types.Player[index].Stat = new byte[(int) Enums.StatType.Count];
+			C_Types.Player[index].Stat = new int[(int)Enums.StatType.Count];
 			for (var x = 1; x <= (int) Enums.StatType.Count - 1; x++)
 			{
 				C_Types.Player[index].Stat[(int) x] = 0;

@@ -53,7 +53,7 @@ namespace Engine
             public int Health;
             public int Mana;
             public int Level;
-            public byte[] Stat;
+            public int[] Stat;
             public int[] Skill;
             public int X;
             public int Y;
@@ -4528,7 +4528,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
         internal static void SetPetStat(int index, Enums.StatType stat, int amount)
         {
             if (PetAlive(index))
-                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)stat] = (byte)amount;
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)stat] = amount;
         }
 
         internal static int GetPetPoints(int index)

@@ -202,6 +202,7 @@ namespace Engine
             int X;
             int Y;
             int i;
+            int mapDir;
             ByteStream buffer = new ByteStream(Compression.DecompressBytes(data));
 
             E_Globals.MapData = false;
@@ -212,6 +213,7 @@ namespace Engine
                 {
                     ClientDataBase.ClearMap();
                     E_Types.Map.mapNum = buffer.ReadInt32();
+                    mapDir = buffer.ReadInt32(); // In the Editor we dont care about this
                     E_Types.Map.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
                     E_Types.Map.Music = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
                     E_Types.Map.Revision = buffer.ReadInt32();

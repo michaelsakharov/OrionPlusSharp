@@ -2946,7 +2946,6 @@ namespace Engine
 			
 			MapTintGfx.Clear(new SFML.Graphics.Color((byte) C_Weather.CurrentTintR, (byte) C_Weather.CurrentTintG, (byte) C_Weather.CurrentTintB, (byte) C_Weather.CurrentTintA));
 			
-			//MapTintSprite.Color = New SFML.Graphics.Color(CurrentTintR, CurrentTintG, CurrentTintB, CurrentTintA)
 			MapTintSprite = new Sprite(MapTintGfx.Texture) {
 					TextureRect = new IntRect(0, 0, (int)GameWindow.Size.X, (int)GameWindow.Size.Y),
 					Position = new Vector2f(0, 0)

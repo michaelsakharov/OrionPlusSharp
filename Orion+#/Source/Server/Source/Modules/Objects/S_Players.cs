@@ -1048,14 +1048,14 @@ namespace Engine
             if (index > Constants.MAX_PLAYERS)
                 return 0;
 
-            x = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(byte)Stat];
+            x = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Stat];
 
             for (i = 1; i <= (byte)Enums.EquipmentType.Count - 1; i++)
             {
                 if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Equipment[i] > 0)
                 {
-                    if (Types.Item[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Equipment[i]].Add_Stat[(byte)Stat] > 0)
-                        x = x + Types.Item[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Equipment[i]].Add_Stat[(byte)Stat];
+                    if (Types.Item[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Equipment[i]].Add_Stat[(int)Stat] > 0)
+                        x = x + Types.Item[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Equipment[i]].Add_Stat[(int)Stat];
                 }
             }
 
@@ -1216,12 +1216,12 @@ namespace Engine
         {
             if (Level > Constants.MAX_LEVELS)
                 return;
-            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Level = (byte)Level;
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Level = Level;
         }
 
         public static void SetPlayerPOINTS(int index, int Points)
         {
-            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Points = (byte)Points;
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Points = Points;
         }
 
         public static void CheckPlayerLevelUp(int index)

@@ -62,7 +62,7 @@ namespace Engine
 			
 			public byte Classes;
 			public int Sprite;
-			public byte Level;
+			public int Level;
 			public int Exp;
 			public byte Access;
 			public byte Pk;
@@ -71,9 +71,9 @@ namespace Engine
 			public int[] Vital;
 			
 			// Stats
-			public byte[] Stat;
+			public int[] Stat;
 			
-			public byte Points;
+			public int Points;
 			
 			// Worn equipment
 			public int[] Equipment;
