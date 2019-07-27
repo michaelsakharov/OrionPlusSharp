@@ -1,0 +1,18 @@
+28/07/2019 1:28:55 AM
+System.IO.IOException(0x80070020): The process cannot access the file 'C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\data\maps\map209.dat' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.IO.File.Open(String path, FileMode mode)
+   at ASFW.IO.FileIO.BinaryFile.Load(String src, ByteStream& stream)
+   at Engine.modDatabase.LoadMap(Int32 mapNum) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 712
+   at Engine.modDatabase.LoadMaps() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 700
+   at Engine.S_General.LoadGameData() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_General.cs:line 339
+   at Engine.S_General.InitServer() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_General.cs:line 227
+   at Engine.S_Console.Main() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Console.cs:line 17
+Line:712 Filename: S_Database.cs
+Line:700 Filename: S_Database.cs
+Line:339 Filename: S_General.cs
+Line:227 Filename: S_General.cs
+Line:17 Filename: S_Console.cs
+

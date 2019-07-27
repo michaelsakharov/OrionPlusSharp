@@ -9,4 +9,7 @@
     <Element Name="StartX" Value="13" />
     <Element Name="StartY" Value="7" />
   </Settings>
+  <Game>
+    <Element Name="xpMultiplier" Value="0" />
+  </Game>
 </Options>

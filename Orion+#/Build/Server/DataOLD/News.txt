@@ -1,0 +1,5 @@
+Welcome to the Orion + Client. This is a free open source VB.Net game engine! 
+
+For help or support please visit our site at http://ascensionforums.com. 
+
+This project is based off of Orion.
