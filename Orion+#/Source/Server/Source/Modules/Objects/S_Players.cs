@@ -1221,7 +1221,14 @@ namespace Engine
 
         public static void SetPlayerPOINTS(int index, int Points)
         {
-            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Points = Points;
+            if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Points + Points > Constants.MAX_POINTS)
+            {
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Points = Constants.MAX_POINTS;
+            }
+            else
+            {
+                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Points = Points;
+            }
         }
 
         public static void CheckPlayerLevelUp(int index)

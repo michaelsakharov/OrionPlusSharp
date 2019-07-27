@@ -32,9 +32,13 @@ namespace Engine
 		
 		//TileSets
 		internal static Texture[] TileSetTexture;
+		internal static Bitmap[] TileSetImgsGFX;
+
 		
 		internal static Sprite[] TileSetSprite;
 		internal static GraphicInfo[] TileSetTextureInfo;
+
+		internal static Bitmap MapEditorBackBuffer;
 		
 		//Characters
 		internal static Texture[] CharacterGfx;
@@ -322,9 +326,10 @@ namespace Engine
 			TilesetWindow = new RenderWindow(FrmEditor_MapEditor.Default.picBackSelect.Handle);
 			
 			SfmlGameFont = new SFML.Graphics.Font(Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + C_Constants.FontName);
-			
-			//this stuff only loads when needed :)
-			
+
+            //this stuff only loads when needed :)
+
+            TileSetImgsGFX = new Bitmap[NumTileSets + 1];
 			TileSetTexture = new Texture[NumTileSets + 1];
 			TileSetSprite = new Sprite[NumTileSets + 1];
 			TileSetTextureInfo = new C_Graphics.GraphicInfo[NumTileSets + 1];
@@ -1749,76 +1754,81 @@ namespace Engine
 
 			startX = System.Convert.ToInt32(C_Player.GetPlayerX(C_Variables.Myindex) - ((C_Constants.ScreenMapx + 1) / 2) - 1);
 			startY = System.Convert.ToInt32(C_Player.GetPlayerY(C_Variables.Myindex) - ((C_Constants.ScreenMapy + 1) / 2) - 1);
-			
 
-            //Uncomment this to Lock camera to inside Map Borders
-			//if (startX < 0)
-			//{
-			//	offsetX = 0;
-			//	
-			//	if (startX == -1)
-			//	{
-			//		if (C_Types.Player[C_Variables.Myindex].XOffset > 0)
-			//		{
-			//			offsetX = C_Types.Player[C_Variables.Myindex].XOffset;
-			//		}
-			//	}
-			//	
-			//	startX = 0;
-			//}
-			
-			//if (startY < 0)
-			//{
-			//	offsetY = 0;
-			//	
-			//	if (startY == -1)
-			//	{
-			//		if (C_Types.Player[C_Variables.Myindex].YOffset > 0)
-			//		{
-			//			offsetY = C_Types.Player[C_Variables.Myindex].YOffset;
-			//		}
-			//	}
-			//	
-			//	startY = 0;
-			//}
+            bool lockCameraInsideBorders = true;
+
+            if (lockCameraInsideBorders)
+            {
+                if (startX < 0)
+                {
+                	offsetX = 0;
+                	
+                	if (startX == -1)
+                	{
+                		if (C_Types.Player[C_Variables.Myindex].XOffset > 0)
+                		{
+                			offsetX = C_Types.Player[C_Variables.Myindex].XOffset;
+                		}
+                	}
+                	
+                	startX = 0;
+                }
+
+                if (startY < 0)
+                {
+                	offsetY = 0;
+                	
+                	if (startY == -1)
+                	{
+                		if (C_Types.Player[C_Variables.Myindex].YOffset > 0)
+                		{
+                			offsetY = C_Types.Player[C_Variables.Myindex].YOffset;
+                		}
+                	}
+                	
+                	startY = 0;
+                }
+            }
 			
 			endX = startX + (C_Constants.ScreenMapx + 1) + 1;
 			endY = startY + (C_Constants.ScreenMapy + 1) + 1;
 
-            //Uncomment this to Lock camera to inside Map Borders
-            //if (endX > C_Maps.Map.MaxX)
-            //{
-            //	offsetX = 32;
-            //	
-            //	if (endX == C_Maps.Map.MaxX + 1)
-            //	{
-            //		if (C_Types.Player[C_Variables.Myindex].XOffset < 0)
-            //		{
-            //			offsetX = C_Types.Player[C_Variables.Myindex].XOffset + C_Constants.PicX;
-            //		}
-            //	}
-            //	
-            //	endX = C_Maps.Map.MaxX;
-            //	startX = endX - C_Constants.ScreenMapx - 1;
-            //}
+            if (lockCameraInsideBorders)
+            {
+                if (endX > C_Maps.Map.MaxX)
+                {
+                	offsetX = 32;
+                	
+                	if (endX == C_Maps.Map.MaxX + 1)
+                	{
+                		if (C_Types.Player[C_Variables.Myindex].XOffset < 0)
+                		{
+                			offsetX = C_Types.Player[C_Variables.Myindex].XOffset + C_Constants.PicX;
+                		}
+                	}
+                	
+                	endX = C_Maps.Map.MaxX;
+                	startX = endX - C_Constants.ScreenMapx - 1;
+                }
 
-            //if (endY > C_Maps.Map.MaxY)
-            //{
-            //	offsetY = 32;
-            //	
-            //	if (endY == C_Maps.Map.MaxY + 1)
-            //	{
-            //		if (C_Types.Player[C_Variables.Myindex].YOffset < 0)
-            //		{
-            //			offsetY = C_Types.Player[C_Variables.Myindex].YOffset + C_Constants.PicY;
-            //		}
-            //	}
-            //	
-            //	endY = C_Maps.Map.MaxY;
-            //	startY = endY - C_Constants.ScreenMapy - 1;
-            //}
+                if (endY > C_Maps.Map.MaxY)
+                {
+                	offsetY = 32;
+                	
+                	if (endY == C_Maps.Map.MaxY + 1)
+                	{
+                		if (C_Types.Player[C_Variables.Myindex].YOffset < 0)
+                		{
+                			offsetY = C_Types.Player[C_Variables.Myindex].YOffset + C_Constants.PicY;
+                		}
+                	}
+                	
+                	endY = C_Maps.Map.MaxY;
+                	startY = endY - C_Constants.ScreenMapy - 1;
+                }
+            }
 
-            C_Variables.TileView.Top = startY;
+                C_Variables.TileView.Top = startY;
 			C_Variables.TileView.Bottom = endY;
 			C_Variables.TileView.Left = startX;
 			C_Variables.TileView.Right = endX;

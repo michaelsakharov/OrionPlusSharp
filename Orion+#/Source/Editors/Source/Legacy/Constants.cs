@@ -21,7 +21,8 @@ namespace Engine
 		internal const byte MAX_INGREDIENT = 5;
 		internal const byte MAX_INV = 35;
 		internal const int MAX_ITEMS = 500;
-		internal const byte MAX_LEVELS = 100;
+		internal const int MAX_LEVELS = 1000;
+		internal const int MAX_POINTS = 1000;
 		internal const int MAX_MAPS = 500;
 		internal const byte MAX_MAP_ITEMS = 255;
 		internal const byte MAX_MAP_NPCS = 30;

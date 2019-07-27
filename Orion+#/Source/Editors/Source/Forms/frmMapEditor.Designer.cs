@@ -103,6 +103,7 @@ namespace Engine
             this.DarkSectionPanel2 = new DarkUI.Controls.DarkSectionPanel();
             this.pnlMoreOptions = new System.Windows.Forms.Panel();
             this.GroupBox4 = new System.Windows.Forms.GroupBox();
+            this.darkLabel17 = new DarkUI.Controls.DarkLabel();
             this.nudBrightness = new DarkUI.Controls.DarkNumericUpDown();
             this.lblBrightness = new DarkUI.Controls.DarkLabel();
             this.nudFogAlpha = new DarkUI.Controls.DarkNumericUpDown();
@@ -223,7 +224,6 @@ namespace Engine
             this.scrlMapViewV = new DarkUI.Controls.DarkScrollBar();
             this.scrlMapViewH = new DarkUI.Controls.DarkScrollBar();
             this.picScreen = new System.Windows.Forms.PictureBox();
-            this.darkLabel17 = new DarkUI.Controls.DarkLabel();
             this.ToolStripContainer2.ContentPanel.SuspendLayout();
             this.ToolStripContainer2.SuspendLayout();
             this.ssInfo.SuspendLayout();
@@ -997,6 +997,17 @@ namespace Engine
             this.GroupBox4.TabIndex = 0;
             this.GroupBox4.TabStop = false;
             this.GroupBox4.Text = "Weather and Lighting Options";
+            // 
+            // darkLabel17
+            // 
+            this.darkLabel17.AutoSize = true;
+            this.darkLabel17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.darkLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel17.Location = new System.Drawing.Point(18, 107);
+            this.darkLabel17.Name = "darkLabel17";
+            this.darkLabel17.Size = new System.Drawing.Size(168, 9);
+            this.darkLabel17.TabIndex = 32;
+            this.darkLabel17.Text = "A value above 0 overwrites the Day/Night cycles";
             // 
             // nudBrightness
             // 
@@ -2417,17 +2428,6 @@ namespace Engine
             this.picScreen.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseDown);
             this.picScreen.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseMove);
             this.picScreen.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picscreen_MouseUp);
-            // 
-            // darkLabel17
-            // 
-            this.darkLabel17.AutoSize = true;
-            this.darkLabel17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.darkLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.darkLabel17.Location = new System.Drawing.Point(18, 107);
-            this.darkLabel17.Name = "darkLabel17";
-            this.darkLabel17.Size = new System.Drawing.Size(168, 9);
-            this.darkLabel17.TabIndex = 32;
-            this.darkLabel17.Text = "A value above 0 overwrites the Day/Night cycles";
             // 
             // frmMapEditor
             // 
