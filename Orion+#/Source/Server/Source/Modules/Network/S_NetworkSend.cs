@@ -939,7 +939,6 @@ namespace Engine
         public static byte[] PlayerData(int index)
         {
             ByteStream buffer = new ByteStream(4);
-            byte[] PlayerData = null;
             if (index > Constants.MAX_PLAYERS)
                 return null;
 
@@ -974,9 +973,10 @@ namespace Engine
             for (int i = 1; i <= Constants.MAX_RECIPE; i++)
                 buffer.WriteInt32(modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RecipeLearned[i]);
 
-            return buffer.ToArray();
-
+            byte[] bufferData = buffer.ToArray(); ;
             buffer.Dispose();
+
+            return bufferData;
         }
 
         public static void SendPlayerXY(int index)
