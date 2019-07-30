@@ -3261,12 +3261,6 @@ namespace Engine
 			
 			//Hp Bar etc
 			DrawStatBars();
-			
-			//Fps etc
-			if (C_Variables.Fps > 64)
-			{
-				C_Variables.Fps = 64;
-			}
 
             string timeFormat = "h:mm";
 

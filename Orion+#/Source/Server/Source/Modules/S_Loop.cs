@@ -176,7 +176,6 @@ namespace Engine
                 }
                 
                 //Application.DoEvents();
-                
 
                 if (!modTypes.Options.unlockCPS)
                 {
