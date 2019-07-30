@@ -506,8 +506,8 @@ namespace Engine
 					tmplps++;
 					rendercount = tick + 16;
 				}
-				
-				Application.DoEvents();
+
+                Application.DoEvents();
 				
 				if (C_Types.Options.HighEnd == 1)
 				{

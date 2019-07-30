@@ -1527,7 +1527,7 @@ namespace Engine
 
         #region Drawing
 
-        public void EditorMap_DrawTileset() {
+        public void EditorMap_DrawTileset3() {
 
             int height;
             int width;
@@ -1612,7 +1612,7 @@ namespace Engine
             g.Dispose();
     }
 
-        public void EditorMap_DrawTileset2()
+        public void EditorMap_DrawTileset()
 		{
 			int height = 0;
 			int width = 0;
@@ -1622,7 +1622,7 @@ namespace Engine
 			C_Graphics.TilesetWindow.Clear(SFML.Graphics.Color.Black);
 			
 			// find tileset number
-			tileset = System.Convert.ToByte(this.cmbTileSets.SelectedIndex + 1);
+			tileset = (byte)(this.cmbTileSets.SelectedIndex + 1);
 			
 			// exit out if doesn't exist
 			if (tileset <= 0 || tileset > C_Graphics.NumTileSets)
@@ -1641,8 +1641,7 @@ namespace Engine
 				C_Graphics.LoadTexture(tileset, (byte) 1);
 			}
 			// we use it, lets update timer
-			ref var with_1 = ref C_Graphics.TileSetTextureInfo[tileset];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+            C_Graphics.TileSetTextureInfo[tileset].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			height = C_Graphics.TileSetTextureInfo[tileset].Height;
 			width = C_Graphics.TileSetTextureInfo[tileset].Width;
