@@ -53,9 +53,9 @@ namespace Engine
 
         private static void Socket_ConnectionLost()
         {
-            MessageBox.Show("Connection was terminated!");
+            MessageBox.Show("Connection was terminated! Returning to Main Menu");
             DestroyNetwork();
-            C_General.DestroyGame();
+            C_General.DestroyGame(true);
         }
 
         private static void Socket_CrashReport(string err)

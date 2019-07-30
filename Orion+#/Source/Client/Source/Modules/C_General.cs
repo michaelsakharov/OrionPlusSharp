@@ -394,18 +394,32 @@ namespace Engine
 			C_UpdateUI.PetStatY = C_UpdateUI.PetbarY - C_Graphics.PetStatsGfxInfo.Height - 10;
 		}
 		
-		internal static void DestroyGame()
+		internal static void DestroyGame(bool restart = false)
 		{
 			//SendLeaveGame()
 			// break out of GameLoop
-			C_Variables.InGame = false;
-			
-			C_Graphics.DestroyGraphics();
-			C_UpdateUI.GameDestroyed = true;
-			C_NetworkConfig.DestroyNetwork();
-			Application.Exit();
-			ProjectData.EndApp();
+            if (restart)
+            {
+                RestartGame();
+            }
+            else
+            {
+                C_Variables.InGame = false;
+
+                C_Graphics.DestroyGraphics();
+                C_UpdateUI.GameDestroyed = true;
+                C_NetworkConfig.DestroyNetwork();
+                Application.Exit();
+                ProjectData.EndApp();
+            }
 		}
+
+        internal static void RestartGame()
+        {
+            // Return to main Menu
+            Application.Restart();
+            Application.ExitThread();
+        }
 		
 		internal static void CheckDir(string dirPath)
 		{

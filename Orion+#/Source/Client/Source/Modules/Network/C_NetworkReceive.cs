@@ -184,8 +184,8 @@ namespace Engine
 			msg = buffer.ReadString();
 			
 			buffer.Dispose();
-			
-			Interaction.MsgBox(msg, Microsoft.VisualBasic.Constants.vbOKOnly, C_Constants.GameName);
+
+            MessageBox.Show(msg, C_Constants.GameName);
 			C_General.DestroyGame();
 		}
 		
@@ -1809,7 +1809,7 @@ namespace Engine
 		
 		private static void Packet_LeftGame(ref byte[] data)
 		{
-			C_General.DestroyGame();
+			C_General.DestroyGame(true);
 		}
 		
 	}
