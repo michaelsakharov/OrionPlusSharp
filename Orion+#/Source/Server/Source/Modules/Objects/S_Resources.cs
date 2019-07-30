@@ -77,7 +77,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_RESOURCES; i++)
             {
                 LoadResource(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 

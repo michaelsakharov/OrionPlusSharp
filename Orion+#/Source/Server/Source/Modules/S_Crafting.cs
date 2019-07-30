@@ -40,7 +40,7 @@ namespace Engine
                 if (!File.Exists(Path.Combine(Application.StartupPath, "data", "recipes", string.Format("recipe{0}.dat", i))))
                 {
                     SaveRecipe(i);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_RECIPE; i++)
             {
                 SaveRecipe(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -88,7 +88,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_RECIPE; i++)
             {
                 LoadRecipe(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -125,7 +125,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_RECIPE; i++)
             {
                 ClearRecipe(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 

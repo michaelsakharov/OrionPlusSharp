@@ -95,7 +95,7 @@ namespace Engine
                 if (!File.Exists(Path.Combine(Application.StartupPath, "data", "animations", string.Format("animation{0}.dat", i))))
                 {
                     SaveAnimation(i);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
             }
         }

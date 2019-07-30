@@ -1191,7 +1191,7 @@ namespace Engine
                         }
                     }
                 }
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1933,7 +1933,7 @@ namespace Engine
                         }
                     }
                 }
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -3693,7 +3693,7 @@ namespace Engine
                                     }
                                 }
                             }
-                            Application.DoEvents();
+                            //Application.DoEvents();
                         }
                     }
                     bool flag16 = !reachable;
@@ -3780,7 +3780,7 @@ namespace Engine
                     }
                     path[tim].X = LastX;
                     path[tim].Y = LastY;
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
                 bool flag29 = path[1].X > LastX;
                 if (flag29)

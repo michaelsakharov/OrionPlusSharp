@@ -833,7 +833,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_NPCS; i++)
             {
                 SaveNpc(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -887,7 +887,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_NPCS; i++)
             {
                 LoadNpc(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -946,7 +946,7 @@ namespace Engine
                 if (!File.Exists(Path.Combine(Application.StartupPath, "data", "npcs", string.Format("npc{0}.dat", i))))
                 {
                     SaveNpc(i);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
             }
         }
@@ -966,7 +966,7 @@ namespace Engine
             for (y = 1; y <= S_Instances.MAX_CACHED_MAPS; y++)
             {
                 ClearMapNpcs(y);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -978,7 +978,7 @@ namespace Engine
             for (x = 1; x <= Constants.MAX_MAP_NPCS; x++)
             {
                 ClearMapNpc(x, y);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1012,7 +1012,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_SHOPS; i++)
             {
                 SaveShop(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1049,7 +1049,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_SHOPS; i++)
             {
                 LoadShop(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1084,7 +1084,7 @@ namespace Engine
                 if (!File.Exists(Path.Combine(Application.StartupPath, "data", "shops", string.Format("shop{0}.dat", i))))
                 {
                     SaveShop(i);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
             }
         }
@@ -1117,7 +1117,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_SKILLS; i++)
             {
                 SaveSkill(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1169,7 +1169,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_SKILLS; i++)
             {
                 LoadSkill(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1220,7 +1220,7 @@ namespace Engine
                 if (!File.Exists(Path.Combine(Application.StartupPath, "data", "skills", string.Format("skills{0}.dat", i))))
                 {
                     SaveSkill(i);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
             }
         }

@@ -458,7 +458,7 @@ namespace Engine
             int tick;
 
             Console.WriteLine("Working...");
-            Application.DoEvents();
+            //Application.DoEvents();
             tick = S_General.GetTimeMs();
             totalMaps = size * size;
             var loopTo = mapStart + totalMaps - 1;
@@ -470,7 +470,7 @@ namespace Engine
 
             tick = S_General.GetTimeMs() - tick;
             Console.WriteLine("Done and cached resources in " + System.Convert.ToString(tick / (double)1000) + "s");
-            Application.DoEvents();
+            //Application.DoEvents();
         }
 
         public static void MakeOvergrasses(int mapStart, int size)
@@ -480,7 +480,7 @@ namespace Engine
             int tick;
 
             Console.WriteLine("Working...");
-            Application.DoEvents();
+            //Application.DoEvents();
             tick = S_General.GetTimeMs();
             totalMaps = size * size;
             var loopTo = mapStart + totalMaps - 1;
@@ -489,7 +489,7 @@ namespace Engine
 
             tick = S_General.GetTimeMs() - tick;
             Console.WriteLine("Done overgrasses in " + System.Convert.ToString(tick / (double)1000) + "s");
-            Application.DoEvents();
+            //Application.DoEvents();
         }
 
         public static void MakeOvergrass(int mapNum)
@@ -705,7 +705,7 @@ namespace Engine
             int tick;
 
             Console.WriteLine("Working...");
-            Application.DoEvents();
+            //Application.DoEvents();
             tick = S_General.GetTimeMs();
             riverBorder = 4;
             madeRivers = 0;
@@ -871,7 +871,7 @@ namespace Engine
 
             tick = S_General.GetTimeMs() - tick;
             Console.WriteLine("Done " + totalRivers + " rivers in " + System.Convert.ToString(tick / (double)1000) + "s");
-            Application.DoEvents();
+            //Application.DoEvents();
         }
 
         static void PlaceMountain(int mapNum, int x, int y, MountainTile mountainPrefab)
@@ -1205,7 +1205,7 @@ namespace Engine
             int tick;
             int mapCount;
             Console.WriteLine("Working...");
-            Application.DoEvents();
+            //Application.DoEvents();
             tick = S_General.GetTimeMs();
             totalMaps = size * size;
             mapCount = 0;
@@ -1220,7 +1220,7 @@ namespace Engine
             }
             tick = S_General.GetTimeMs() - tick;
             Console.WriteLine("Done mountains in " + (mapCount) + " maps in " + System.Convert.ToString(tick / (double)1000) + "s");
-            Application.DoEvents();
+            //Application.DoEvents();
         }
 
         static void MakeMap(int mapNum, MapPrefab prefab)
@@ -1767,7 +1767,7 @@ namespace Engine
             int tick = 0;
 
             Console.WriteLine("Working...");
-            Application.DoEvents();
+            //Application.DoEvents();
             tick = S_General.GetTimeMs();
 
             maxTries = 30;
@@ -1836,7 +1836,7 @@ namespace Engine
 
             tick = S_General.GetTimeMs() - tick;
             Console.WriteLine("Done " + totalPaths + " paths in " + System.Convert.ToString(tick / (double)1000) + "s");
-            Application.DoEvents();
+            //Application.DoEvents();
         }
 
         public static void MakePaths(int mapStart, int size)
@@ -1931,7 +1931,7 @@ namespace Engine
 
             tick = S_General.GetTimeMs() - tick;
             Console.WriteLine("Done " + totalMaps + " maps models in " + System.Convert.ToString(tick / (double)1000) + "s");
-            Application.DoEvents();
+            //Application.DoEvents();
 
             if (PathsChecked == true)
                 MakePaths(mapStart, size);
@@ -1946,7 +1946,7 @@ namespace Engine
 
             tick = S_General.GetTimeMs();
             Console.WriteLine("Working...");
-            Application.DoEvents();
+            //Application.DoEvents();
             var loopTo1 = mapStart + totalMaps - 1;
             for (mapNum = mapStart; mapNum <= loopTo1; mapNum++)
                 modDatabase.SaveMap(mapNum);

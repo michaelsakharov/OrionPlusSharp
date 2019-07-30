@@ -92,7 +92,7 @@ namespace Engine
             for (I = 1; I <= MAX_QUESTS; I++)
             {
                 SaveQuest(I);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -162,7 +162,7 @@ namespace Engine
             for (I = 1; I <= MAX_QUESTS; I++)
             {
                 LoadQuest(I);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -236,7 +236,7 @@ namespace Engine
                 if (!File.Exists(Path.Combine(Application.StartupPath, "data", "quests", string.Format("quest{0}.dat", I))))
                 {
                     SaveQuest(I);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
             }
         }

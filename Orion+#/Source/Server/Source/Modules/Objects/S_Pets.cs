@@ -74,7 +74,7 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_PETS; i++)
             {
                 SavePet(i);
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -1930,7 +1930,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             }
                         }
 
-                        Application.DoEvents();
+                        //Application.DoEvents();
                     }
                 }
 
@@ -2037,7 +2037,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                 path[tim].Y = lastY;
 
                 // Now we loop back and decrease tim, and look for the next square with lower value
-                Application.DoEvents();
+                //Application.DoEvents();
             }
 
             // Ok we got a path. Now, lets look at the first step and see what direction we should take.

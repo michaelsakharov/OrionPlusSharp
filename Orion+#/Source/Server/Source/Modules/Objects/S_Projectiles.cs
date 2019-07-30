@@ -80,7 +80,7 @@ namespace Engine
                 Projectiles[i].Speed = reader.ReadInt32();
                 Projectiles[i].Damage = reader.ReadInt32();
 
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
