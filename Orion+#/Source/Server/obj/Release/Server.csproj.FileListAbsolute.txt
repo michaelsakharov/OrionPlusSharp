@@ -9,3 +9,14 @@ C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Serve
 C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Orion+ Server.exe.config
 C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Build\Server\Orion+ Server.exe
 C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Server\obj\Release\Server.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Data\AutoMapper.xml
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Data\SkillExp.xml
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Data\News.txt
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Orion+ Server.exe.config
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Orion+ Server.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Release\Engine.My_Project.Resources.resources
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Release\Server.csproj.GenerateResource.cache
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Release\Server.csproj.CoreCompileInputs.cache
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Release\Server.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Release\Orion+ Server.exe
