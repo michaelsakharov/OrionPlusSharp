@@ -1163,7 +1163,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                 S_NetworkSend.PlayerMsg(index, "You have adopted a " + Pet[petNum].Name.Trim(), (int)Enums.ColorType.BrightGreen);
             else
             {
-                S_NetworkSend.PlayerMsg(index, "You allready have a " + Pet[petNum].Name.Trim() + ", release your old pet first!", (int)Enums.ColorType.BrightGreen);
+                S_NetworkSend.PlayerMsg(index, "You already have a " + Pet[petNum].Name.Trim() + ", release your old pet first!", (int)Enums.ColorType.BrightGreen);
                 return;
             }
 
