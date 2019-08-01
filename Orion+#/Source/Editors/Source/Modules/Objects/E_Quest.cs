@@ -267,7 +267,7 @@ namespace Engine
 				}
 			}
 			
-			FrmQuest.Default.Dispose();
+			FrmQuest.Default.Close();
 			E_Globals.Editor = (byte) 0;
 			ClearChanged_Quest();
 			

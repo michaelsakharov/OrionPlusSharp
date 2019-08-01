@@ -284,7 +284,7 @@ namespace Engine
 				}
 			}
 			
-			frmProjectile.Default.Dispose();
+			frmProjectile.Default.Close();
 			E_Globals.Editor = (byte) 0;
 			ClearChanged_Projectile();
 			
@@ -294,7 +294,7 @@ namespace Engine
 		{
 			
 			E_Globals.Editor = (byte) 0;
-			frmProjectile.Default.Dispose();
+			frmProjectile.Default.Close();
 			ClearChanged_Projectile();
 			ClearProjectiles();
 			SendRequestProjectiles();

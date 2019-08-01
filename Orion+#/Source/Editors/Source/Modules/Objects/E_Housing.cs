@@ -218,7 +218,7 @@ namespace Engine
 		{
 			
 			E_Globals.Editor = (byte) 0;
-			FrmHouse.Default.Dispose();
+			FrmHouse.Default.Close();
 			
 			ClearChanged_House();
 			
@@ -262,7 +262,7 @@ namespace Engine
 			
 			E_NetworkConfig.Socket.SendData(Buffer.Data, Buffer.Head);
 			Buffer.Dispose();
-			FrmHouse.Default.Dispose();
+			FrmHouse.Default.Close();
 			E_Globals.Editor = (byte) 0;
 			
 			ClearChanged_House();

@@ -630,7 +630,7 @@ namespace Engine
 
             E_Types.Map.Events[EditorEvent] = TmpEvent;
             // unload the form
-            frmEvents.Default.Dispose();
+            frmEvents.Default.Close();
         }
 
         internal static void EventListCommands()
