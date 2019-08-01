@@ -393,7 +393,6 @@ namespace Engine
                         myXml.WriteString("Event" + i, "x", modTypes.Map[mapNum].Events[i].X.ToString());
                         myXml.WriteString("Event" + i, "y", modTypes.Map[mapNum].Events[i].Y.ToString());
                         myXml.WriteString("Event" + i, "PageCount", modTypes.Map[mapNum].Events[i].PageCount.ToString());
-                        Console.WriteLine(modTypes.Map[mapNum].Events[i].PageCount);
                     }
                     if (modTypes.Map[mapNum].Events[i].PageCount + 1 > 0)
                     {
