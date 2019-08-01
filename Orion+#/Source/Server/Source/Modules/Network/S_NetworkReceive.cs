@@ -2879,7 +2879,7 @@ namespace Engine
             S_Globals.Gettingmap = true;
 
             mapNum = buffer.ReadInt32();
-
+            
             i = modTypes.Map[mapNum].Revision + 1;
             modDatabase.ClearMap(mapNum);
 

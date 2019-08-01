@@ -277,7 +277,7 @@ namespace Engine
 		{
 			lock(E_Types.MapLock)
 			{
-				E_Types.Map.mapNum = 0;
+				E_Types.Map.mapNum = 1;
 				E_Types.Map.Name = "";
 				E_Types.Map.tileset = 1;
 				E_Types.Map.MaxX = E_Globals.SCREEN_MAPX;
