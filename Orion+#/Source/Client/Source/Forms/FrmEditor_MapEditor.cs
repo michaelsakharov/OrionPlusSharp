@@ -75,6 +75,8 @@ namespace Engine
             tabpages.SelectedIndex = 0;
 
             scrlFog.Maximum = C_Graphics.NumFogs;
+
+            TopMost = true;
         }
 
         #endregion

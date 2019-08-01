@@ -710,7 +710,7 @@ namespace Engine
                 buffer.WriteInt32(modTypes.Map[mapNum].Panorama);
                 buffer.WriteInt32(modTypes.Map[mapNum].Parallax);
                 buffer.WriteInt32(modTypes.Map[mapNum].Brightness);
-
+            
                 for (var i = 1; i <= Constants.MAX_MAP_NPCS; i++)
                     buffer.WriteInt32(modTypes.Map[mapNum].Npc[i]);
                 var loopTo = modTypes.Map[mapNum].MaxX;
@@ -733,7 +733,7 @@ namespace Engine
                         buffer.WriteInt32(modTypes.Map[mapNum].Tile[x, y].Type);
                     }
                 }
-
+            
                 // Event Data
                 buffer.WriteInt32(modTypes.Map[mapNum].EventCount);
                 if (modTypes.Map[mapNum].EventCount > 0)
@@ -802,7 +802,7 @@ namespace Engine
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandListCount);
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Position);
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].QuestNum);
-
+            
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkPlayerGender);
                                 }
                                 if (modTypes.Map[mapNum].Events[i].Pages[X].CommandListCount > 0)
@@ -862,7 +862,9 @@ namespace Engine
                 }
             }
             else
+            {
                 buffer.WriteInt32(0);
+            }
 
             for (var i = 1; i <= Constants.MAX_MAP_ITEMS; i++)
             {
