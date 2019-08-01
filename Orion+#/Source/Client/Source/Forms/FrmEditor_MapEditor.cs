@@ -1058,7 +1058,14 @@ namespace Engine
                 if (X > C_Constants.EditorTileX) // drag right
                 {
                     //EditorTileWidth = X
-                    C_Constants.EditorTileWidth = System.Convert.ToInt32(X - C_Constants.EditorTileX);
+                    if (System.Convert.ToInt32(X - C_Constants.EditorTileX) < 1)
+                    {
+                        C_Constants.EditorTileWidth = 1;
+                    }
+                    else
+                    {
+                        C_Constants.EditorTileWidth = System.Convert.ToInt32(X - C_Constants.EditorTileX);
+                    }
                 }
                 else // drag left
                 {
@@ -1067,7 +1074,14 @@ namespace Engine
                 if (Y > C_Constants.EditorTileY) // drag down
                 {
                     //EditorTileHeight = Y
-                    C_Constants.EditorTileHeight = System.Convert.ToInt32(Y - C_Constants.EditorTileY);
+                    if (System.Convert.ToInt32(Y - C_Constants.EditorTileY) < 1)
+                    {
+                        C_Constants.EditorTileHeight = 1;
+                    }
+                    else
+                    {
+                        C_Constants.EditorTileHeight = System.Convert.ToInt32(Y - C_Constants.EditorTileY);
+                    }
                 }
                 else // drag up
                 {
