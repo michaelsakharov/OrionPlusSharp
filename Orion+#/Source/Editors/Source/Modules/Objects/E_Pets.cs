@@ -369,7 +369,7 @@ namespace Engine
 				}
 			}
 			
-			frmPet.Default.Dispose();
+			frmPet.Default.Close();
 			
 			E_Globals.Editor = (byte) 0;
 			ClearChanged_Pet();
@@ -381,7 +381,7 @@ namespace Engine
 			
 			E_Globals.Editor = (byte) 0;
 			
-			frmPet.Default.Dispose();
+			frmPet.Default.Close();
 			
 			ClearChanged_Pet();
 			ClearPets();
