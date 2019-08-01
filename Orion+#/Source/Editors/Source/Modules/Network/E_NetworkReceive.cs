@@ -202,7 +202,6 @@ namespace Engine
             int X;
             int Y;
             int i;
-            int mapDir;
             ByteStream buffer = new ByteStream(Compression.DecompressBytes(data));
 
             E_Globals.MapData = false;

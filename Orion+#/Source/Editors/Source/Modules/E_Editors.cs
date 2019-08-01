@@ -391,8 +391,15 @@ namespace Engine
 				// find out what to set the width + height of map editor to
 				if (X > E_Globals.EditorTileX) // drag right
 				{
-					//EditorTileWidth = X
-					E_Globals.EditorTileWidth = System.Convert.ToInt32(X - E_Globals.EditorTileX);
+                    //EditorTileWidth = X
+                    if (System.Convert.ToInt32(X - E_Globals.EditorTileX) < 1)
+                    {
+                        E_Globals.EditorTileWidth = 1;
+                    }
+                    else
+                    {
+                        E_Globals.EditorTileWidth = System.Convert.ToInt32(X - E_Globals.EditorTileX);
+                    }
 				}
 				else // drag left
 				{
@@ -400,8 +407,15 @@ namespace Engine
 				}
 				if (Y > E_Globals.EditorTileY) // drag down
 				{
-					//EditorTileHeight = Y
-					E_Globals.EditorTileHeight = System.Convert.ToInt32(Y - E_Globals.EditorTileY);
+                    //EditorTileHeight = Y
+                    if (System.Convert.ToInt32(Y - E_Globals.EditorTileY) < 1)
+                    {
+                        E_Globals.EditorTileHeight = 1;
+                    }
+                    else
+                    {
+                        E_Globals.EditorTileHeight = System.Convert.ToInt32(Y - E_Globals.EditorTileY);
+                    }
 				}
 				else // drag up
 				{
