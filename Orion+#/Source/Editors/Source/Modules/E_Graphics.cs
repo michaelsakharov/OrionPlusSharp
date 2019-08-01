@@ -1246,8 +1246,8 @@ namespace Engine
 						
 						if (E_Types.MapItem[I].Num > 0)
 						{
-							DrawItem(I);
-						}
+                            DrawItem(I);
+                        }
 						
 					}
 				}
