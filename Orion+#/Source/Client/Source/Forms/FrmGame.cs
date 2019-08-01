@@ -121,7 +121,24 @@ namespace Engine
 				{
 					C_UpdateUI.VbKeyRight = true;
 				}
-				if (e.KeyCode == Keys.ShiftKey)
+                if (e.KeyCode == Keys.Down)
+                {
+                    C_UpdateUI.VbKeyDown = true;
+                }
+                if (e.KeyCode == Keys.Up)
+                {
+                    C_UpdateUI.VbKeyUp = true;
+                }
+                if (e.KeyCode == Keys.Left)
+                {
+                    C_UpdateUI.VbKeyLeft = true;
+                }
+                if (e.KeyCode == Keys.Right)
+                {
+                    C_UpdateUI.VbKeyRight = true;
+                }
+
+                if (e.KeyCode == Keys.ShiftKey)
 				{
 					C_UpdateUI.VbKeyShift = true;
 				}
@@ -160,7 +177,24 @@ namespace Engine
 			{
 				C_UpdateUI.VbKeyRight = false;
 			}
-			if (e.KeyCode == Keys.ShiftKey)
+            if (e.KeyCode == Keys.Down)
+            {
+                C_UpdateUI.VbKeyDown = false;
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                C_UpdateUI.VbKeyUp = false;
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                C_UpdateUI.VbKeyLeft = false;
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                C_UpdateUI.VbKeyRight = false;
+            }
+
+            if (e.KeyCode == Keys.ShiftKey)
 			{
 				C_UpdateUI.VbKeyShift = false;
 			}
