@@ -676,7 +676,11 @@ namespace Engine
 			}
 			
 			//Load textboxes
-			FrmQuest.Default.txtTaskLog.Text = "" + TaskToLoad.TaskLog.Trim();
+            if(TaskToLoad.TaskLog == null)
+            {
+                TaskToLoad.TaskLog = "";
+            }
+			FrmQuest.Default.txtTaskLog.Text = "" + TaskToLoad.TaskLog;
 			
 			//Populate combo boxes
 			FrmQuest.Default.cmbNpc.Items.Clear();
