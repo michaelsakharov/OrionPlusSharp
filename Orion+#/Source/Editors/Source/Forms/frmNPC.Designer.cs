@@ -99,6 +99,8 @@ namespace Engine
             this.DarkLabel27 = new DarkUI.Controls.DarkLabel();
             this.DarkLabel26 = new DarkUI.Controls.DarkLabel();
             this.DarkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
+            this.chkIsBoss = new DarkUI.Controls.DarkCheckBox();
+            this.btnGenStats = new DarkUI.Controls.DarkButton();
             this.nudSpirit = new DarkUI.Controls.DarkNumericUpDown();
             this.DarkLabel23 = new DarkUI.Controls.DarkLabel();
             this.nudIntelligence = new DarkUI.Controls.DarkNumericUpDown();
@@ -114,8 +116,7 @@ namespace Engine
             this.btnCancel = new DarkUI.Controls.DarkButton();
             this.btnDelete = new DarkUI.Controls.DarkButton();
             this.btnSave = new DarkUI.Controls.DarkButton();
-            this.btnGenStats = new DarkUI.Controls.DarkButton();
-            this.chkIsBoss = new DarkUI.Controls.DarkCheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpawnSecs)).BeginInit();
@@ -865,6 +866,11 @@ namespace Engine
             this.nudAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudAmount.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudAmount.Location = new System.Drawing.Point(268, 44);
+            this.nudAmount.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.nudAmount.Name = "nudAmount";
             this.nudAmount.Size = new System.Drawing.Size(120, 20);
             this.nudAmount.TabIndex = 7;
@@ -950,6 +956,11 @@ namespace Engine
             this.nudChance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudChance.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudChance.Location = new System.Drawing.Point(294, 14);
+            this.nudChance.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.nudChance.Name = "nudChance";
             this.nudChance.Size = new System.Drawing.Size(94, 20);
             this.nudChance.TabIndex = 2;
@@ -984,6 +995,7 @@ namespace Engine
             // 
             this.DarkGroupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.DarkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.DarkGroupBox5.Controls.Add(this.label1);
             this.DarkGroupBox5.Controls.Add(this.chkIsBoss);
             this.DarkGroupBox5.Controls.Add(this.btnGenStats);
             this.DarkGroupBox5.Controls.Add(this.nudSpirit);
@@ -1005,6 +1017,25 @@ namespace Engine
             this.DarkGroupBox5.TabIndex = 4;
             this.DarkGroupBox5.TabStop = false;
             this.DarkGroupBox5.Text = "Stats";
+            // 
+            // chkIsBoss
+            // 
+            this.chkIsBoss.AutoSize = true;
+            this.chkIsBoss.Location = new System.Drawing.Point(197, 77);
+            this.chkIsBoss.Name = "chkIsBoss";
+            this.chkIsBoss.Size = new System.Drawing.Size(60, 17);
+            this.chkIsBoss.TabIndex = 62;
+            this.chkIsBoss.Text = "Is Boss";
+            // 
+            // btnGenStats
+            // 
+            this.btnGenStats.Location = new System.Drawing.Point(259, 73);
+            this.btnGenStats.Name = "btnGenStats";
+            this.btnGenStats.Padding = new System.Windows.Forms.Padding(5);
+            this.btnGenStats.Size = new System.Drawing.Size(124, 23);
+            this.btnGenStats.TabIndex = 8;
+            this.btnGenStats.Text = "Generate Stats";
+            this.btnGenStats.Click += new System.EventHandler(this.btnGenStats_Click);
             // 
             // nudSpirit
             // 
@@ -1186,24 +1217,14 @@ namespace Engine
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // btnGenStats
+            // label1
             // 
-            this.btnGenStats.Location = new System.Drawing.Point(259, 73);
-            this.btnGenStats.Name = "btnGenStats";
-            this.btnGenStats.Padding = new System.Windows.Forms.Padding(5);
-            this.btnGenStats.Size = new System.Drawing.Size(124, 23);
-            this.btnGenStats.TabIndex = 8;
-            this.btnGenStats.Text = "Generate Stats";
-            this.btnGenStats.Click += new System.EventHandler(this.btnGenStats_Click);
-            // 
-            // chkIsBoss
-            // 
-            this.chkIsBoss.AutoSize = true;
-            this.chkIsBoss.Location = new System.Drawing.Point(197, 77);
-            this.chkIsBoss.Name = "chkIsBoss";
-            this.chkIsBoss.Size = new System.Drawing.Size(60, 17);
-            this.chkIsBoss.TabIndex = 62;
-            this.chkIsBoss.Text = "Is Boss";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 13);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "Make sure to assign level first:";
             // 
             // frmNPC
             // 
@@ -1325,6 +1346,7 @@ namespace Engine
 		internal DarkUI.Controls.DarkLabel DarkLabel30;
         internal DarkUI.Controls.DarkButton btnGenStats;
         internal DarkUI.Controls.DarkCheckBox chkIsBoss;
+        private Label label1;
     }
 	
 }
