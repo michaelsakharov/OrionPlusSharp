@@ -6,7 +6,7 @@
     <Element Name="SavePass" Value="True" />
   </UserInfo>
   <Connection>
-    <Element Name="Ip" Value="127.0.0.1" />
+    <Element Name="Ip" Value="Localhost" />
     <Element Name="Port" Value="7001" />
   </Connection>
   <Sfx>
@@ -16,7 +16,7 @@
     <Element Name="Volume" Value="100" />
   </Sfx>
   <Misc>
-    <Element Name="ScreenSize" Value="0" />
+    <Element Name="ScreenSize" Value="1" />
     <Element Name="HighEnd" Value="0" />
     <Element Name="ShowNpcBar" Value="1" />
   </Misc>
