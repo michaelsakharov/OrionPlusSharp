@@ -6,7 +6,7 @@
     <Element Name="SavePass" Value="True" />
   </UserInfo>
   <Connection>
-    <Element Name="Ip" Value="localhost" />
+    <Element Name="Ip" Value="Localhost" />
     <Element Name="Port" Value="7001" />
   </Connection>
   <Sfx>

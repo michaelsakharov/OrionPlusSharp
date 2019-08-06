@@ -250,8 +250,8 @@ namespace Engine
 				E_Types.Map.tileset = 1;
 			}
 			
-			E_Globals.EditorTileSelStart = new Point(0, 0);
-			E_Globals.EditorTileSelEnd = new Point(1, 1);
+			E_Globals.EditorTileSelStart = new Point(1, 1);
+			E_Globals.EditorTileSelEnd = new Point(2, 2);
 			
 			//clear memory
 			//ReDim TileSetImgsLoaded(NumTileSets)

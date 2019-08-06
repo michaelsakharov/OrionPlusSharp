@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Data>
   <Events>
-    <Element Name="EventCount" Value="3" />
+    <Element Name="EventCount" Value="1" />
   </Events>
   <Event1>
     <Element Name="Name" Value="Bob" />
