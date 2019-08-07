@@ -64,7 +64,7 @@ namespace Engine
             E_Loop.CloseEditor();
 		}
 		
-		private int TmrConnect_Tick_i = 0;
+		private int TmrConnect_Tick_i = 6;
 		
 		public void TmrConnect_Tick(object sender, EventArgs e)
 		{
@@ -78,7 +78,7 @@ namespace Engine
 			{
 				lblConnectionStatus.ForeColor = Color.Red;
 				TmrConnect_Tick_i++;
-				if (TmrConnect_Tick_i == 5)
+				if (TmrConnect_Tick_i >= 5)
 				{
 					E_NetworkConfig.Connect();
 					lblConnectionStatus.Text = "Reconnecting...";
