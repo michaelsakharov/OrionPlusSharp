@@ -489,6 +489,7 @@ namespace Engine
             this.picBackSelect.Paint += new System.Windows.Forms.PaintEventHandler(this.PicBackSelect_Paint);
             this.picBackSelect.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicBackSelect_MouseDown);
             this.picBackSelect.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicBackSelect_MouseMove);
+            this.picBackSelect.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picBackSelect_MouseUp);
             // 
             // DarkLabel3
             // 

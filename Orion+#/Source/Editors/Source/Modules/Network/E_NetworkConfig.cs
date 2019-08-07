@@ -83,7 +83,10 @@ namespace Engine
 
         private static void Socket_CrashReport(string err)
         {
-            Interaction.MsgBox("There was a network error -> Report: " + err);
+            if (!E_Globals.GameDestroyed)
+            {
+                Interaction.MsgBox("There was a network error -> Report: " + err);
+            }
             DestroyNetwork();
             E_Loop.CloseEditor();
         }

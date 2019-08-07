@@ -116,8 +116,13 @@ namespace Engine
 		{
 			E_Editors.MapEditorChooseTile((System.Int32) e.Button, e.X, e.Y);
 		}
-		
-		public void PicBackSelect_MouseMove(object sender, MouseEventArgs e)
+
+        public void picBackSelect_MouseUp(object sender, MouseEventArgs e)
+        {
+            picScreen.Focus();
+        }
+
+        public void PicBackSelect_MouseMove(object sender, MouseEventArgs e)
 		{
 			E_Editors.MapEditorDrag((System.Int32) e.Button, e.X, e.Y);
 		}
@@ -983,5 +988,6 @@ namespace Engine
 		}
 
         #endregion
+        
     }
 }

@@ -858,8 +858,8 @@ namespace Engine
 			
 			E_Globals.GameDestroyed = true;
 			E_Globals.GameStarted = false;
-			
-			Application.Exit();
+
+            Application.Exit();
 		}
 		
 	}
