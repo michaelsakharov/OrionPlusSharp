@@ -62,6 +62,11 @@ namespace Engine
         {
             // Calling a disconnect is not necessary when using destroy network as
             // Dispose already calls it and cleans up the memory internally.
+            // But if our Socket is alive, lets try to send one last thing to the server
+            if (Socket != null && Socket.IsConnected)
+            {
+                E_NetworkSend.SendLeaveGame();
+            }
             Socket.Dispose();
         }
 

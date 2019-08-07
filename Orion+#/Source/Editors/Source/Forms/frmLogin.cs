@@ -60,7 +60,8 @@ namespace Engine
 		
 		public void FrmLogin_UnLoad(object sender, EventArgs e)
 		{
-			E_Loop.CloseEditor();
+            E_NetworkSend.SendLeaveGame();
+            E_Loop.CloseEditor();
 		}
 		
 		private int TmrConnect_Tick_i = 0;

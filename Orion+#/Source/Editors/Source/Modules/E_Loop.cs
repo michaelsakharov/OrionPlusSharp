@@ -854,7 +854,10 @@ namespace Engine
 		
 		public static void CloseEditor()
 		{
-			E_NetworkSend.SendLeaveGame();
+            if (E_NetworkConfig.Socket != null && E_NetworkConfig.Socket.IsConnected)
+            {
+                E_NetworkSend.SendLeaveGame();
+            }
 			
 			E_Globals.GameDestroyed = true;
 			E_Globals.GameStarted = false;
