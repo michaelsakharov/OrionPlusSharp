@@ -1398,7 +1398,8 @@ namespace Engine
                 frmClasses.Default.cmbItems.Items.Add(Types.Item[i].Name.Trim());
 			}
 			
-			frmClasses.Default.lstIndex.SelectedIndex = 0;
+			//frmClasses.Default.lstIndex.SelectedIndex = 0;
+			frmClasses.Default.lstIndex.SelectedIndex = -1; // Fixed Crash when no Classes?
 			
 			frmClasses.Default.Visible = true;
 		}
