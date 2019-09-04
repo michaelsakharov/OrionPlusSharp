@@ -60,7 +60,10 @@ namespace Engine
 		
 		public void FrmLogin_UnLoad(object sender, EventArgs e)
 		{
-            E_NetworkSend.SendLeaveGame();
+            if (E_NetworkConfig.Socket != null && E_NetworkConfig.Socket.IsConnected)
+            {
+                E_NetworkSend.SendLeaveGame();
+            }
             E_Loop.CloseEditor();
 		}
 		

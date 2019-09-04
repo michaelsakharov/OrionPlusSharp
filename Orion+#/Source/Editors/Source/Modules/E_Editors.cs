@@ -703,10 +703,10 @@ namespace Engine
 			else // multitile
 			{
 				y2 = 0; // starting tile for y axis
-				for (var Yy = E_Globals.CurY; Yy <= E_Globals.CurY + E_Globals.EditorTileHeight - 1; Yy++)
+				for (var Yy = E_Globals.CurY; Yy < E_Globals.CurY + E_Globals.EditorTileHeight - 1; Yy++)
 				{
 					x2 = 0; // re-set x count every y loop
-					for (var Xx = E_Globals.CurX; Xx <= E_Globals.CurX + E_Globals.EditorTileWidth - 1; Xx++)
+					for (var Xx = E_Globals.CurX; Xx < E_Globals.CurX + E_Globals.EditorTileWidth - 1; Xx++)
 					{
 						if (Xx >= 0 && Xx <= E_Types.Map.MaxX)
 						{

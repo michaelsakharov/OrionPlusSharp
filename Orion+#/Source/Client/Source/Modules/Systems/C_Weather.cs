@@ -138,7 +138,7 @@ namespace Engine
 			int i = 0;
 			int x;
 			
-			if (CurrentWeather > 0)
+			if (CurrentWeather > 0 && CurrentWeather <= (int)Enums.WeatherType.Fog)
 			{
 				if (CurrentWeather == (int) Enums.WeatherType.Rain || CurrentWeather == (int) Enums.WeatherType.Storm)
 				{
