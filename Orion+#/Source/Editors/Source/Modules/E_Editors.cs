@@ -56,7 +56,7 @@ namespace Engine
 				{
 					if (FrmAnimation.Default.cmbSound.Items[i - 1].ToString() == Types.Animation[E_Globals.Editorindex].Sound.Trim())
 					{
-						FrmAnimation.Default.cmbSound.SelectedIndex = System.Convert.ToInt32(i - 1);
+						FrmAnimation.Default.cmbSound.SelectedIndex = (int)(i - 1);
 						break;
 					}
 				}
@@ -260,8 +260,8 @@ namespace Engine
 			//Next
 			
 			// set the scrollbars
-			frmMapEditor.Default.scrlPictureY.Maximum = System.Convert.ToInt32((frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y) / 2); // \2 is new, lets test
-			frmMapEditor.Default.scrlPictureX.Maximum = System.Convert.ToInt32((frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X) / 2);
+			frmMapEditor.Default.scrlPictureY.Maximum = (int)((frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y) / 2); // \2 is new, lets test
+			frmMapEditor.Default.scrlPictureX.Maximum = (int)((frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X) / 2);
 			
 			//set map names
 			frmMapEditor.Default.cmbMapList.Items.Clear();
@@ -392,13 +392,13 @@ namespace Engine
 				if (X > E_Globals.EditorTileX) // drag right
 				{
                     //EditorTileWidth = X
-                    if (System.Convert.ToInt32(X - E_Globals.EditorTileX) < 1)
+                    if ((int)(X - E_Globals.EditorTileX) < 1)
                     {
                         E_Globals.EditorTileWidth = 1;
                     }
                     else
                     {
-                        E_Globals.EditorTileWidth = System.Convert.ToInt32(X - E_Globals.EditorTileX);
+                        E_Globals.EditorTileWidth = (int)(X - E_Globals.EditorTileX);
                     }
 				}
 				else // drag left
@@ -408,13 +408,13 @@ namespace Engine
 				if (Y > E_Globals.EditorTileY) // drag down
 				{
                     //EditorTileHeight = Y
-                    if (System.Convert.ToInt32(Y - E_Globals.EditorTileY) < 1)
+                    if ((int)(Y - E_Globals.EditorTileY) < 1)
                     {
                         E_Globals.EditorTileHeight = 1;
                     }
                     else
                     {
-                        E_Globals.EditorTileHeight = System.Convert.ToInt32(Y - E_Globals.EditorTileY);
+                        E_Globals.EditorTileHeight = (int)(Y - E_Globals.EditorTileY);
                     }
 				}
 				else // drag up

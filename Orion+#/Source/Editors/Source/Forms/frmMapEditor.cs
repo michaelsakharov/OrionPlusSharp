@@ -76,8 +76,8 @@ namespace Engine
 			picScreen.Width = (E_Types.Map.MaxX * E_Globals.PIC_X) + E_Globals.PIC_X;
 			picScreen.Height = (E_Types.Map.MaxY * E_Globals.PIC_Y) + E_Globals.PIC_Y;
 			
-			scrlMapViewH.Maximum = System.Convert.ToInt32((E_Types.Map.MaxX / E_Globals.PIC_X) + E_Globals.PIC_X);
-			scrlMapViewV.Maximum = System.Convert.ToInt32((E_Types.Map.MaxY / E_Globals.PIC_Y) + E_Globals.PIC_Y);
+			scrlMapViewH.Maximum = (int)((E_Types.Map.MaxX / E_Globals.PIC_X) + E_Globals.PIC_X);
+			scrlMapViewV.Maximum = (int)((E_Types.Map.MaxY / E_Globals.PIC_Y) + E_Globals.PIC_Y);
 			
 			E_Graphics.GameWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picScreen.Width, picScreen.Height)));
 			E_Graphics.TilesetWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picBackSelect.Width, picBackSelect.Height)));
@@ -97,8 +97,8 @@ namespace Engine
 			picScreen.Height = (E_Types.Map.MaxY * E_Globals.PIC_Y) + E_Globals.PIC_Y;
 			
 			// set the scrollbars
-			scrlMapViewH.Maximum = System.Convert.ToInt32((E_Types.Map.MaxX / E_Globals.PIC_X) + E_Globals.PIC_X);
-			scrlMapViewV.Maximum = System.Convert.ToInt32((E_Types.Map.MaxY / E_Globals.PIC_Y) + E_Globals.PIC_Y);
+			scrlMapViewH.Maximum = (int)((E_Types.Map.MaxX / E_Globals.PIC_X) + E_Globals.PIC_X);
+			scrlMapViewV.Maximum = (int)((E_Types.Map.MaxY / E_Globals.PIC_Y) + E_Globals.PIC_Y);
 			
 			E_Graphics.GameWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picScreen.Width, picScreen.Height)));
 			
@@ -177,8 +177,8 @@ namespace Engine
 			picBackSelect.Height = E_Graphics.TileSetTextureInfo[cmbTileSets.SelectedIndex + 1].height;
 			picBackSelect.Width = E_Graphics.TileSetTextureInfo[cmbTileSets.SelectedIndex + 1].width;
 			
-			scrlPictureY.Maximum = System.Convert.ToInt32((picBackSelect.Height / E_Globals.PIC_Y) + E_Globals.PIC_Y);
-			scrlPictureX.Maximum = System.Convert.ToInt32((picBackSelect.Width / E_Globals.PIC_X) + E_Globals.PIC_X);
+			scrlPictureY.Maximum = (int)((picBackSelect.Height / E_Globals.PIC_Y) + E_Globals.PIC_Y);
+			scrlPictureX.Maximum = (int)((picBackSelect.Width / E_Globals.PIC_X) + E_Globals.PIC_X);
 		}
 		
 		public void CmbAutoTile_SelectedIndexChanged(object sender, EventArgs e)
@@ -260,7 +260,7 @@ namespace Engine
             E_Sound.StopMusic();
             E_Sound.StopPreview();
             E_Globals.HideCursor = true;
-			E_Globals.ScreenShotTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 500);
+			E_Globals.ScreenShotTimer = (int)((int)(ClientDataBase.GetTickCount()) + 500);
 			E_Globals.MakeCache = true;
 		}
 		
@@ -294,7 +294,7 @@ namespace Engine
 		public void TsbScreenShot_Click(object sender, EventArgs e)
 		{
 			E_Globals.HideCursor = true;
-			E_Globals.ScreenShotTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 1000);
+			E_Globals.ScreenShotTimer = (int)((int)(ClientDataBase.GetTickCount()) + 1000);
 			E_Globals.TakeScreenShot = true;
 		}
 		
@@ -440,7 +440,7 @@ namespace Engine
 		public void BtnMapKey_Click(object sender, EventArgs e)
 		{
 			E_Globals.KeyEditorNum = scrlMapKey.Value;
-			E_Globals.KeyEditorTake = System.Convert.ToInt32(chkMapKey.Checked);
+			E_Globals.KeyEditorTake = Convert.ToInt32(chkMapKey.Checked);
 			pnlAttributes.Visible = false;
 			fraMapKey.Visible = false;
 		}
