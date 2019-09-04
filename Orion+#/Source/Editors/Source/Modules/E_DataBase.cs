@@ -250,7 +250,7 @@ namespace Engine
 				
 				E_Sound.SoundCache[Counter] = Path.GetFileName(FileName);
 				Counter++;
-				Application.DoEvents();
+//				Application.DoEvents();
 			}
 			
 		}

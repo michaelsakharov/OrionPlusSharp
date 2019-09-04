@@ -996,7 +996,7 @@ namespace Engine
 			//Find and yell at JC. But leave this code in place
 			//Have a nice day
 			this.WindowState = FormWindowState.Maximized;
-			Application.DoEvents();
+//			Application.DoEvents();
 			this.WindowState = FormWindowState.Normal;
 		}
 

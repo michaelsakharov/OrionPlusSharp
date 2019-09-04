@@ -384,7 +384,8 @@ namespace Engine
 								E_Graphics.Render_Graphics();
 								rendercount = Tick + 32;
 							}
-							Application.DoEvents();
+
+//							Application.DoEvents();
 							
 							E_Graphics.EditorMap_DrawTileset();
 							
