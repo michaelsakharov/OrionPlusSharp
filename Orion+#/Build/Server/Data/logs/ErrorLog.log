@@ -97,3 +97,34 @@ System.Net.Sockets.SocketException(0x80004005): A request to send or receive dat
 Line:347 Filename: S_NetworkSend.cs
 Line:1896 Filename: S_NetworkReceive.cs
 
+5/09/2019 2:32:20 AM
+System.Net.Sockets.SocketException(0x80004005): A request to send or receive data was disallowed because the socket had already been shut down in that direction with a previous shutdown call
+   at System.Net.Sockets.Socket.BeginSend(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.SendDataTo(Int32 index, Byte[] data, Int32 head)
+   at Engine.S_NetworkSend.SendLeftGame(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkSend.cs:line 347
+   at Engine.S_NetworkReceive.Packet_QuitGame(Int32 index, Byte[]& data) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkReceive.cs:line 1896
+   at ASFW.Network.Server.PacketHandler(ReceiveState& so)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:347 Filename: S_NetworkSend.cs
+Line:1896 Filename: S_NetworkReceive.cs
+
+5/09/2019 2:33:05 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at ASFW.Network.Server.DoDisconnect(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+

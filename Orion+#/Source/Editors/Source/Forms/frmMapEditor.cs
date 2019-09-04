@@ -22,9 +22,10 @@ namespace Engine
 		public frmMapEditor()
 		{
 			InitializeComponent();
-			
-			
-			if (defaultInstance == null)
+
+            this.MouseWheel += ScrlMapViewH_MouseWheel;
+
+            if (defaultInstance == null)
 				defaultInstance = this;
 		}
 		
@@ -903,7 +904,25 @@ namespace Engine
 			E_Globals.EditorViewY = scrlMapViewV.Value;
 		}
 		
-		public void ChkInstance_CheckedChanged(object sender, EventArgs e)
+        public void ScrlMapViewH_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (Control.ModifierKeys != Keys.Shift)
+            {
+                E_Globals.EditorViewY -= (e.Delta / 120);
+                if (E_Globals.EditorViewY < 0) { E_Globals.EditorViewY = 0; }
+                if (E_Globals.EditorViewY > scrlMapViewV.Maximum) { E_Globals.EditorViewY = scrlMapViewV.Maximum; }
+            }
+            else
+            {
+                E_Globals.EditorViewX -= (e.Delta / 120);
+                if (E_Globals.EditorViewX < 0) { E_Globals.EditorViewX = 0; }
+                if (E_Globals.EditorViewX > scrlMapViewH.Maximum) { E_Globals.EditorViewX = scrlMapViewH.Maximum; }
+            }
+            scrlMapViewV.Value = E_Globals.EditorViewY;
+            scrlMapViewH.Value = E_Globals.EditorViewX;
+        }
+        
+        public void ChkInstance_CheckedChanged(object sender, EventArgs e)
 		{
 			if (chkInstance.Checked == true)
 			{
