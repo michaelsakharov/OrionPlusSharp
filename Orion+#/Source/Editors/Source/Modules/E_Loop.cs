@@ -385,9 +385,10 @@ namespace Engine
 								rendercount = Tick + 32;
 							}
 
-//							Application.DoEvents();
-							
-							E_Graphics.EditorMap_DrawTileset();
+                            //Do we need this?
+                            //Application.DoEvents();
+
+                            E_Graphics.EditorMap_DrawTileset();
 							
 							if (E_Globals.TakeScreenShot)
 							{
@@ -429,8 +430,10 @@ namespace Engine
 					}
 				}
 				
+                // This should be the only one we need?
 				Application.DoEvents();
-				Thread.Sleep(1);
+                //Do we need to pause the thread? without it we gain like 200+ fps
+				//Thread.Sleep(1);
 			} while (true);
 		}
 		

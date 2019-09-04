@@ -233,10 +233,11 @@ namespace Engine
 				
 				E_Sound.MusicCache[Counter] = Path.GetFileName(FileName);
 				Counter++;
-				Application.DoEvents();
-			}
-			
-		}
+                //Do we need this?
+                //Application.DoEvents();
+            }
+
+        }
 		
 		internal static void CacheSound()
 		{
@@ -250,10 +251,11 @@ namespace Engine
 				
 				E_Sound.SoundCache[Counter] = Path.GetFileName(FileName);
 				Counter++;
-//				Application.DoEvents();
-			}
-			
-		}
+                //Do we need this?
+                //Application.DoEvents();
+            }
+
+        }
 		
 		internal static string GetFileContents(string FullPath, ref string ErrInfo)
 		{

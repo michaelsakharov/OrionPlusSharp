@@ -1186,11 +1186,12 @@ namespace Engine
 			
 			//update view around player
 			UpdateCamera();
-			
-			//let program do other things
-			Application.DoEvents();
-			
-			frmMapEditor.Default.picScreen.Width = (E_Types.Map.MaxX * E_Globals.PIC_X) + E_Globals.PIC_X;
+
+            //let program do other things
+            //Do we need this?
+            //Application.DoEvents();
+
+            frmMapEditor.Default.picScreen.Width = (E_Types.Map.MaxX * E_Globals.PIC_X) + E_Globals.PIC_X;
 			frmMapEditor.Default.picScreen.Height = (E_Types.Map.MaxY * E_Globals.PIC_Y) + E_Globals.PIC_Y;
 			
 			//Clear each of our render targets
