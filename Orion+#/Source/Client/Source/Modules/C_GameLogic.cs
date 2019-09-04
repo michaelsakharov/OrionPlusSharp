@@ -677,14 +677,13 @@ namespace Engine
 				C_Variables.ActionMsgIndex = (byte) 1;
 			}
 			
-			ref var with_1 = ref C_Types.ActionMsg[C_Variables.ActionMsgIndex];
-			with_1.Message = message;
-			with_1.Color = color;
-			with_1.Type = msgType;
-			with_1.Created = C_General.GetTickCount();
-			with_1.Scroll = 1;
-			with_1.X = x;
-			with_1.Y = y;
+            C_Types.ActionMsg[C_Variables.ActionMsgIndex].Message = message;
+			C_Types.ActionMsg[C_Variables.ActionMsgIndex].Color = color;
+			C_Types.ActionMsg[C_Variables.ActionMsgIndex].Type = msgType;
+			C_Types.ActionMsg[C_Variables.ActionMsgIndex].Created = C_General.GetTickCount();
+			C_Types.ActionMsg[C_Variables.ActionMsgIndex].Scroll = 1;
+			C_Types.ActionMsg[C_Variables.ActionMsgIndex].X = x;
+			C_Types.ActionMsg[C_Variables.ActionMsgIndex].Y = y;
 			
 			if (C_Types.ActionMsg[C_Variables.ActionMsgIndex].Type == (int) Enums.ActionMsgType.Scroll)
 			{
@@ -731,21 +730,21 @@ namespace Engine
 		{
 			string returnValue = "";
 			
-			if (Conversion.Int(amount) < 10000)
+			if (amount < 10000)
 			{
-				returnValue = System.Convert.ToString(amount);
+				returnValue = amount.ToString();
 			}
-			else if (Conversion.Int(amount) < 999999)
+			else if (amount < 999999)
 			{
-				returnValue = Conversion.Int((double) amount / 1000) + "k";
+				returnValue = (amount / 1000) + "k";
 			}
-			else if (Conversion.Int(amount) < 999999999)
+			else if (amount < 999999999)
 			{
-				return Conversion.Int((double) amount / 1000000) + "m";
+				return (amount / 1000000) + "m";
 			}
 			else
 			{
-				return Conversion.Int((double) amount / 1000000000) + "b";
+				return (amount / 1000000000) + "b";
 			}
 			
 			return returnValue;
@@ -753,19 +752,22 @@ namespace Engine
 		
 		public static void HandlePressEnter()
 		{
-			string chatText = "";
+
+            string chatText = "";
+            chatText = ChatModule.ChatInput.CurrentMessage.Trim();
+
+            if (chatText.Length == 0)
+            {
+                return;
+            }
+
 			string name = "";
 			int i = 0;
 			int n = 0;
 			string[] command;
 			ByteStream buffer = new ByteStream();
-			chatText = ChatModule.ChatInput.CurrentMessage.Trim();
 			name = "";
 			
-			if (chatText.Length == 0)
-			{
-				return;
-			}
 			ChatModule.ChatInput.CurrentMessage = chatText.ToLower();
 			
 			if (C_EventSystem.EventChat == true)
@@ -1786,9 +1788,6 @@ Continue1:
 		
 		internal static int GetBankItemNum(byte bankslot)
 		{
-			int returnValue = 0;
-			returnValue = 0;
-			
 			if (bankslot == 0)
 			{
 				return 0;
@@ -1904,11 +1903,6 @@ Continue1:
 		
 		internal static void CheckAnimInstance(int index)
 		{
-			int looptime = 0;
-			int layer = 0;
-			string sound = "";
-			int frameCount = 0;
-			
 			// if doesn't exist then exit sub
 			if (C_Types.AnimInstance[index].Animation <= 0)
 			{
@@ -1918,15 +1912,20 @@ Continue1:
 			{
 				return;
 			}
-			
-			sound = Types.Animation[C_Types.AnimInstance[index].Animation].Sound;
+
+            int looptime = 0;
+            int layer = 0;
+            string sound = "";
+            int frameCount = 0;
+
+            sound = Types.Animation[C_Types.AnimInstance[index].Animation].Sound;
 			
 			for (layer = 0; layer <= 1; layer++)
 			{
 				if (C_Types.AnimInstance[index].Used[layer])
 				{
-					looptime = System.Convert.ToInt32(Types.Animation[C_Types.AnimInstance[index].Animation].LoopTime[layer]);
-					frameCount = System.Convert.ToInt32(Types.Animation[C_Types.AnimInstance[index].Animation].Frames[layer]);
+					looptime = (Types.Animation[C_Types.AnimInstance[index].Animation].LoopTime[layer]);
+					frameCount = (Types.Animation[C_Types.AnimInstance[index].Animation].Frames[layer]);
 					
 					// if zero'd then set so we don't have extra loop and/or frame
 					if (C_Types.AnimInstance[index].FrameIndex[layer] == 0)
