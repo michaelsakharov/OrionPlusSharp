@@ -1506,10 +1506,7 @@ namespace Engine
                                 }
                             }
                         }
-                        else
-
-                            // Check to see if we can move them to the another map
-                            if (modTypes.Map[GetPlayerMap(index)].Up > 0)
+                        else if (modTypes.Map[GetPlayerMap(index)].Up > 0)
                         {
                             NewMapY = modTypes.Map[modTypes.Map[GetPlayerMap(index)].Up].MaxY;
                             PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].Up, GetPlayerX(index), NewMapY);

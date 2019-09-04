@@ -676,14 +676,25 @@ namespace Engine
         public static void SendMapData(int index, int mapNum, bool SendMap)
         {
             ByteStream buffer = new ByteStream(4);
-            byte[] data;
+            buffer.WriteInt32((int)Packets.ServerPackets.SMapData);
+            buffer.WriteBlock(CompressMapData(index, mapNum, SendMap));
+            S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
 
-            if (SendMap)
+            S_General.AddDebug("Sent SMSG: SMapData");
+
+            buffer.Dispose();
+        }
+
+        public static byte[] CompressMapData(int index, int mapNum, bool mapTileData)
+        {
+
+            ByteStream buffer = new ByteStream(4);
+            if (mapTileData)
             {
                 buffer.WriteInt32(1);
                 buffer.WriteInt32(mapNum);
-                buffer.WriteString((modTypes.Map[mapNum].Name.Trim()));
-                buffer.WriteString((modTypes.Map[mapNum].Music.Trim()));
+                buffer.WriteString(modTypes.Map[mapNum].Name.Trim());
+                buffer.WriteString(modTypes.Map[mapNum].Music.Trim());
                 buffer.WriteInt32(modTypes.Map[mapNum].Revision);
                 buffer.WriteInt32(modTypes.Map[mapNum].Moral);
                 buffer.WriteInt32(modTypes.Map[mapNum].Tileset);
@@ -710,7 +721,7 @@ namespace Engine
                 buffer.WriteInt32(modTypes.Map[mapNum].Panorama);
                 buffer.WriteInt32(modTypes.Map[mapNum].Parallax);
                 buffer.WriteInt32(modTypes.Map[mapNum].Brightness);
-            
+
                 for (var i = 1; i <= Constants.MAX_MAP_NPCS; i++)
                     buffer.WriteInt32(modTypes.Map[mapNum].Npc[i]);
                 var loopTo = modTypes.Map[mapNum].MaxX;
@@ -733,7 +744,7 @@ namespace Engine
                         buffer.WriteInt32(modTypes.Map[mapNum].Tile[x, y].Type);
                     }
                 }
-            
+
                 // Event Data
                 buffer.WriteInt32(modTypes.Map[mapNum].EventCount);
                 if (modTypes.Map[mapNum].EventCount > 0)
@@ -802,7 +813,7 @@ namespace Engine
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].CommandListCount);
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].Position);
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].QuestNum);
-            
+
                                     buffer.WriteInt32(modTypes.Map[mapNum].Events[i].Pages[X].ChkPlayerGender);
                                 }
                                 if (modTypes.Map[mapNum].Events[i].Pages[X].CommandListCount > 0)
@@ -900,15 +911,7 @@ namespace Engine
             else
                 buffer.WriteInt32(0);
 
-            data = Compression.CompressBytes(buffer.ToArray());
-            buffer = new ByteStream(4);
-            buffer.WriteInt32((int)Packets.ServerPackets.SMapData);
-            buffer.WriteBlock(data);
-            S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
-
-            S_General.AddDebug("Sent SMSG: SMapData");
-
-            buffer.Dispose();
+            return(Compression.CompressBytes(buffer.ToArray()));
         }
 
         public static void SendJoinMap(int index)
