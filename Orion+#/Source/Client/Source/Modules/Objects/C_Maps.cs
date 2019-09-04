@@ -791,9 +791,6 @@ namespace Engine
 		
 		internal static void DrawMapTile(int x, int y)
 		{
-			int i = 0;
-			Rectangle srcrect = new Rectangle(0, 0, 0, 0);
-			
 			if (C_Variables.GettingMap)
 			{
 				return;
@@ -806,8 +803,13 @@ namespace Engine
 			{
 				return;
 			}
-			
-			for (i = (byte)Enums.LayerType.Ground; i <= (byte)Enums.LayerType.Mask2; i++)
+
+
+
+            int i = 0;
+            Rectangle srcrect = new Rectangle(0, 0, 0, 0);
+
+            for (i = (byte)Enums.LayerType.Ground; i <= (byte)Enums.LayerType.Mask2; i++)
 			{
 				if (ReferenceEquals(Map.Tile[x, y].Layer, null))
 				{
@@ -820,13 +822,12 @@ namespace Engine
 					{
 						C_Graphics.LoadTexture(Map.Tile[x, y].Layer[i].Tileset, (byte) 1);
 					}
-					// we use it, lets update timer
-					ref var with_1 = ref C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset];
-					with_1.TextureTimer = C_General.GetTickCount() + 100000;
+                    // we use it, lets update timer
+                    C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].TextureTimer = C_General.GetTickCount() + 100000;
 					if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateNormal)
 					{
-						srcrect.X = System.Convert.ToInt32(Map.Tile[x, y].Layer[i].X * 32);
-						srcrect.Y = System.Convert.ToInt32(Map.Tile[x, y].Layer[i].Y * 32);
+						srcrect.X = (Map.Tile[x, y].Layer[i].X * 32);
+						srcrect.Y = (Map.Tile[x, y].Layer[i].Y * 32);
 						srcrect.Width = 32;
 						srcrect.Height = 32;
 						
@@ -848,8 +849,6 @@ namespace Engine
 		
 		internal static void DrawMapFringeTile(int x, int y)
 		{
-			int i = 0;
-			Rectangle srcrect = new Rectangle(0, 0, 0, 0);
 			//Dim dest As Rectangle = New Rectangle(FrmMainGame.PointToScreen(FrmMainGame.picscreen.Location), New Size(32, 32))
 			
 			if (C_Variables.GettingMap)
@@ -864,8 +863,11 @@ namespace Engine
 			{
 				return;
 			}
-			
-			for (i = (byte)Enums.LayerType.Fringe; i <= (byte)Enums.LayerType.Fringe2; i++)
+
+            int i = 0;
+            Rectangle srcrect = new Rectangle(0, 0, 0, 0);
+
+            for (i = (byte)Enums.LayerType.Fringe; i <= (byte)Enums.LayerType.Fringe2; i++)
 			{
 				if (ReferenceEquals(Map.Tile[x, y].Layer, null))
 				{
@@ -876,18 +878,17 @@ namespace Engine
 				{
 					if (C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].IsLoaded == false)
 					{
-						C_Graphics.LoadTexture(Map.Tile[x, y].Layer[i].Tileset, (byte) 1);
+						C_Graphics.LoadTexture(Map.Tile[x, y].Layer[i].Tileset, 1);
 					}
-					
-					// we use it, lets update timer
-					ref var with_1 = ref C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset];
-					with_1.TextureTimer = C_General.GetTickCount() + 100000;
+
+                    // we use it, lets update timer
+                    C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].TextureTimer = C_General.GetTickCount() + 100000;
 					
 					// render
 					if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateNormal)
 					{
-						srcrect.X = System.Convert.ToInt32(Map.Tile[x, y].Layer[i].X * 32);
-						srcrect.Y = System.Convert.ToInt32(Map.Tile[x, y].Layer[i].Y * 32);
+						srcrect.X = Map.Tile[x, y].Layer[i].X * 32;
+						srcrect.Y = Map.Tile[x, y].Layer[i].Y * 32;
 						srcrect.Width = 32;
 						srcrect.Height = 32;
 						

@@ -2380,12 +2380,12 @@ namespace Engine
             {
                 C_Weather.DrawFog();
             }
-
+            
             C_Weather.DrawWeather();
             C_Weather.DrawThunderEffect();
             
             DrawMapTint();
-
+            
             DrawNight();
 			
 			// Draw out a square at mouse cursor
