@@ -73,7 +73,7 @@ namespace Engine
                     // Make sure we dont try to check a name thats to small
                     if (Microsoft.VisualBasic.Strings.Len(S_Players.GetPlayerName(i)) >= Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Name)))
                     {
-                        if (Microsoft.VisualBasic.Strings.UCase(Microsoft.VisualBasic.Strings.Mid(S_Players.GetPlayerName(i), 1, Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Name)))) == Microsoft.VisualBasic.Strings.UCase(Microsoft.VisualBasic.Strings.Trim(Name)))
+                        if (Microsoft.VisualBasic.Strings.Mid(S_Players.GetPlayerName(i), 1, Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Name))).ToUpper() == Microsoft.VisualBasic.Strings.Trim(Name).ToUpper())
                         {
                             return i;
                         }
