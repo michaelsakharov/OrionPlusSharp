@@ -71,10 +71,12 @@ namespace Engine
 		{
 			if (lstIndex.SelectedIndex < 0)
 			{
+                DarkGroupBox2.Hide();
 				return;
 			}
-			
-			E_Globals.Editorindex = lstIndex.SelectedIndex + 1;
+            DarkGroupBox2.Show();
+
+            E_Globals.Editorindex = lstIndex.SelectedIndex + 1;
 			
 			E_Globals.LoadClassInfo = true;
 		}
@@ -107,12 +109,19 @@ namespace Engine
 			Types.Classes[E_Globals.Max_Classes].StartY = (byte) 1;
 			
 			E_Editors.ClassEditorInit();
+
+            lstIndex.SelectedIndex = lstIndex.Items.Count - 1;
 		}
 		
 		public void BtnRemoveClass_Click(object sender, EventArgs e)
 		{
 			int i = 0;
 			
+            if(E_Globals.Max_Classes == 0)
+            {
+                return;
+            }
+
 			//If its The Last class, its simple, just remove and redim
 			if (E_Globals.Editorindex == E_Globals.Max_Classes)
 			{
