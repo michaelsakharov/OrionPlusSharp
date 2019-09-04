@@ -353,8 +353,8 @@ namespace Engine
 					}
 				}
 				
-				E_Globals.EditorTileX = System.Convert.ToInt32(X / E_Globals.PIC_X);
-				E_Globals.EditorTileY = System.Convert.ToInt32(Y / E_Globals.PIC_Y);
+				E_Globals.EditorTileX = (int)(X / E_Globals.PIC_X);
+				E_Globals.EditorTileY = (int)(Y / E_Globals.PIC_Y);
 				
 				E_Globals.EditorTileSelStart = new Point(E_Globals.EditorTileX, E_Globals.EditorTileY);
 				E_Globals.EditorTileSelEnd = new Point(E_Globals.EditorTileX + E_Globals.EditorTileWidth, E_Globals.EditorTileY + E_Globals.EditorTileHeight);
