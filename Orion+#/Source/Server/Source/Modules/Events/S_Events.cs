@@ -1092,7 +1092,7 @@ namespace Engine
             else if (modTypes.Map[mapNum].Events[eventId].Pages[modTypes.TempPlayer[playerindex].EventMap.EventPages[eventindex].PageId].DirFix == 0)
                 modTypes.TempPlayer[playerindex].EventMap.EventPages[eventindex].Dir = dir;
 
-            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventDir));
+            buffer.WriteInt32((int)(Packets.ServerPackets.SEventDir));
             buffer.WriteInt32(eventId);
 
             modDatabase.Addlog("Sent SMSG: SEventDir", S_Constants.PACKET_LOG);
@@ -1162,7 +1162,7 @@ namespace Engine
                         if (globalevent)
                         {
                             TempEventMap[mapNum].Events[eventindex].Y = TempEventMap[mapNum].Events[eventindex].Y - 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].X);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].Y);
@@ -1182,7 +1182,7 @@ namespace Engine
                         else
                         {
                             modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y = modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y - 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y);
@@ -1208,7 +1208,7 @@ namespace Engine
                         if (globalevent)
                         {
                             TempEventMap[mapNum].Events[eventindex].Y = TempEventMap[mapNum].Events[eventindex].Y + 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].X);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].Y);
@@ -1228,7 +1228,7 @@ namespace Engine
                         else
                         {
                             modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y = modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y + 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y);
@@ -1254,7 +1254,7 @@ namespace Engine
                         if (globalevent)
                         {
                             TempEventMap[mapNum].Events[eventindex].X = TempEventMap[mapNum].Events[eventindex].X - 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].X);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].Y);
@@ -1274,7 +1274,7 @@ namespace Engine
                         else
                         {
                             modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X = modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X - 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y);
@@ -1300,7 +1300,7 @@ namespace Engine
                         if (globalevent)
                         {
                             TempEventMap[mapNum].Events[eventindex].X = TempEventMap[mapNum].Events[eventindex].X + 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].X);
                             buffer.WriteInt32(TempEventMap[mapNum].Events[eventindex].Y);
@@ -1320,7 +1320,7 @@ namespace Engine
                         else
                         {
                             modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X = modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X + 1;
-                            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventMove));
+                            buffer.WriteInt32((int)(Packets.ServerPackets.SEventMove));
                             buffer.WriteInt32(eventId);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].X);
                             buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[eventindex].Y);
@@ -1640,7 +1640,7 @@ namespace Engine
                             int x2 = modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].X;
                             int y2 = modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].Y;
                             int walkThrough = modTypes.Map[mapNum].Events[modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].EventId].Pages[modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].PageId].WalkThrough;
-                            int i = checked((int)Math.Round((double)Convert.ToInt32(unchecked(Microsoft.VisualBasic.VBMath.Rnd() * 5f))));
+                            int i = checked((int)Math.Round((double)(int)(unchecked(Microsoft.VisualBasic.VBMath.Rnd() * 5f))));
                             bool didwalk = false;
                             switch (i)
                             {

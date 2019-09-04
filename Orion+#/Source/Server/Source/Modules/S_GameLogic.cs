@@ -71,9 +71,9 @@ namespace Engine
                 if (S_NetworkConfig.IsPlaying(i))
                 {
                     // Make sure we dont try to check a name thats to small
-                    if (Microsoft.VisualBasic.Strings.Len(S_Players.GetPlayerName(i)) >= Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Name)))
+                    if (Microsoft.VisualBasic.Strings.Len(S_Players.GetPlayerName(i)) >= Microsoft.VisualBasic.Strings.Len(Name.Trim()))
                     {
-                        if (Microsoft.VisualBasic.Strings.Mid(S_Players.GetPlayerName(i), 1, Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Name))).ToUpper() == Microsoft.VisualBasic.Strings.Trim(Name).ToUpper())
+                        if (Microsoft.VisualBasic.Strings.Mid(S_Players.GetPlayerName(i), 1, Microsoft.VisualBasic.Strings.Len(Name.Trim())).ToUpper() == Name.Trim().ToUpper())
                         {
                             return i;
                         }
@@ -94,7 +94,7 @@ namespace Engine
         {
             string FirstLetter;
 
-            FirstLetter = Microsoft.VisualBasic.Strings.LCase(Microsoft.VisualBasic.Strings.Left(Word, 1));
+            FirstLetter = Microsoft.VisualBasic.Strings.Left(Word, 1).ToLower();
 
             if (FirstLetter == "$")
             {

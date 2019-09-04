@@ -377,7 +377,7 @@ namespace Engine
 
                     buffer.Dispose();
                     buffer = new ByteStream(4);
-                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SLoginOk));
+                    buffer.WriteInt32((int)(Packets.ServerPackets.SLoginOk));
                     buffer.WriteInt32(S_Constants.MAX_CHARS);
 
                     S_General.AddDebug("Sent SMSG: SLoginOk");
@@ -553,7 +553,7 @@ namespace Engine
 
                         buffer.Dispose();
                         buffer = new ByteStream(4);
-                        buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SLoginOk));
+                        buffer.WriteInt32((int)(Packets.ServerPackets.SLoginOk));
                         buffer.WriteInt32(S_Constants.MAX_CHARS);
 
                         S_General.AddDebug("Sent SMSG: SLoginOk");
@@ -745,7 +745,7 @@ namespace Engine
             S_Players.SetPlayerDir(index, dir);
 
             buffer = new ByteStream(4);
-            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SPlayerDir));
+            buffer.WriteInt32((int)(Packets.ServerPackets.SPlayerDir));
             buffer.WriteInt32(index);
             buffer.WriteInt32(S_Players.GetPlayerDir(index));
             S_NetworkConfig.SendDataToMapBut(index, S_Players.GetPlayerMap(index), ref buffer.Data, buffer.Head);
@@ -788,7 +788,7 @@ namespace Engine
 
             // Send this packet so they can see the person attacking
             buffer = new ByteStream(4);
-            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SAttack));
+            buffer.WriteInt32((int)(Packets.ServerPackets.SAttack));
             buffer.WriteInt32(index);
             S_NetworkConfig.SendDataToMap(S_Players.GetPlayerMap(index), ref buffer.Data, buffer.Head);
             buffer.Dispose();
@@ -1922,7 +1922,7 @@ namespace Engine
         {
             ByteStream buffer;
             buffer = new ByteStream(4);
-            buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSendPing));
+            buffer.WriteInt32((int)(Packets.ServerPackets.SSendPing));
             S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
 
             S_General.AddDebug("Sent SMSG: SSendPing");

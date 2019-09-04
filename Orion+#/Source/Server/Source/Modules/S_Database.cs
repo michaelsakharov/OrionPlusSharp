@@ -1925,7 +1925,7 @@ namespace Engine
             var loopTo = Information.UBound(characters);
             for (var i = 0; i <= loopTo; i++)
             {
-                if (Microsoft.VisualBasic.Strings.LCase(characters[i]).Trim() == Microsoft.VisualBasic.Strings.Trim(Microsoft.VisualBasic.Strings.LCase(Name).Trim()))
+                if (characters[i].ToLower().Trim() == Name.ToLower().Trim())
                     FindChar = true;
             }
 
@@ -2089,7 +2089,7 @@ namespace Engine
                 while (sr.Peek() >= 0)
                 {
                     string line = sr.ReadLine();
-                    if (Microsoft.VisualBasic.Strings.Trim(Microsoft.VisualBasic.Strings.LCase(line)) == Microsoft.VisualBasic.Strings.Trim(Microsoft.VisualBasic.Strings.LCase(Microsoft.VisualBasic.Strings.Mid(IP, 1, Microsoft.VisualBasic.Strings.Len(line)))))
+                    if (Microsoft.VisualBasic.Strings.Trim(line.ToLower()) == Microsoft.VisualBasic.Strings.Trim(Microsoft.VisualBasic.Strings.Mid(IP, 1, Microsoft.VisualBasic.Strings.Len(line)).ToLower()))
                     {
                         IsBanned = true;
                     }

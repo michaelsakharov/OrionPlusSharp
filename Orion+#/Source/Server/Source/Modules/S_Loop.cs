@@ -210,7 +210,6 @@ namespace Engine
                         modDatabase.SavePlayer(i);
                         modDatabase.SaveBank(i);
                     }
-                    //Application.DoEvents();
                 }
             }
         }
@@ -588,7 +587,7 @@ namespace Engine
                                         if (targetVerify)
                                         {
                                             // Gonna make the npcs smarter.. Implementing a pathfinding algorithm.. we shall see what happens.
-                                            if (S_Events.IsOneBlockAway(targetX, targetY, System.Convert.ToInt32(modTypes.MapNpc[mapNum].Npc[x].X), System.Convert.ToInt32(modTypes.MapNpc[mapNum].Npc[x].Y)) == false)
+                                            if (S_Events.IsOneBlockAway(targetX, targetY, (int)modTypes.MapNpc[mapNum].Npc[x].X, (int)modTypes.MapNpc[mapNum].Npc[x].Y) == false)
                                             {
                                                 i = S_EventLogic.FindNpcPath(mapNum, x, targetX, targetY);
                                                 if (i < 4)
@@ -609,7 +608,7 @@ namespace Engine
                                                 }
                                             }
                                             else
-                                                S_Npc.NpcDir(mapNum, x, S_Events.GetNpcDir(targetX, targetY, System.Convert.ToInt32(modTypes.MapNpc[mapNum].Npc[x].X), System.Convert.ToInt32(modTypes.MapNpc[mapNum].Npc[x].Y)));
+                                                S_Npc.NpcDir(mapNum, x, S_Events.GetNpcDir(targetX, targetY, (int)(modTypes.MapNpc[mapNum].Npc[x].X), (int)(modTypes.MapNpc[mapNum].Npc[x].Y)));
                                         }
                                         else
                                         {

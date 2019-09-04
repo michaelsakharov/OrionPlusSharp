@@ -134,7 +134,7 @@ namespace Engine
                                 if (modTypes.TempPlayer[i].EventMap.EventPages[x].Visible == 0)
                                 {
                                     ByteStream Buffer = new ByteStream(4);
-                                    Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
+                                    Buffer.WriteInt32((int)(Packets.ServerPackets.SSpawnEvent));
                                     Buffer.WriteInt32(id);
                                     {
                                         Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].Name)));
@@ -432,7 +432,7 @@ namespace Engine
                                 }
 
                                 var Buffer = new ByteStream(4);
-                                Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
+                                Buffer.WriteInt32((int)(Packets.ServerPackets.SSpawnEvent));
                                 Buffer.WriteInt32(id);
                                 {
                                     Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventMap.EventPages[x].EventId].Name)));
@@ -1116,7 +1116,7 @@ namespace Engine
                                                             if (sendupdate)
                                                             {
                                                                 Buffer = new ByteStream(4);
-                                                                Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
+                                                                Buffer.WriteInt32((int)(Packets.ServerPackets.SSpawnEvent));
                                                                 Buffer.WriteInt32(eventID);
                                                                 {
                                                                     Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[i].Events[x].Name)));
@@ -1862,7 +1862,7 @@ namespace Engine
                                                                 if (sendupdate)
                                                                 {
                                                                     Buffer = new ByteStream(4);
-                                                                    Buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
+                                                                    Buffer.WriteInt32((int)(Packets.ServerPackets.SSpawnEvent));
                                                                     Buffer.WriteInt32(modTypes.TempPlayer[playerID].EventMap.EventPages[eventID].EventId);
                                                                     {
                                                                         Buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(playerID)].Events[modTypes.TempPlayer[playerID].EventMap.EventPages[eventID].EventId].Name)));
@@ -2125,7 +2125,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvShowText:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventChat));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SEventChat));
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].EventId);
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].PageId);
                                                                     buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
@@ -2154,7 +2154,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvShowChoices:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SEventChat));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SEventChat));
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].EventId);
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].PageId);
                                                                     buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data5);
@@ -3069,7 +3069,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvPlayBgm:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SPlayBGM));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SPlayBGM));
                                                                     buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1)));
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
@@ -3083,7 +3083,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvFadeoutBgm:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SFadeoutBGM));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SFadeoutBGM));
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SFadeoutBGM", S_Constants.PACKET_LOG);
@@ -3096,7 +3096,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvPlaySound:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SPlaySound));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SPlaySound));
                                                                     buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1)));
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
@@ -3110,7 +3110,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvStopSound:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SStopSound));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SStopSound));
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SStopSound", S_Constants.PACKET_LOG);
@@ -3278,7 +3278,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvShowPicture:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SPic));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SPic));
                                                                     buffer.WriteInt32(0);
                                                                     buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1);
                                                                     buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2);
@@ -3297,7 +3297,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvHidePicture:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SPic));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SPic));
                                                                     buffer.WriteInt32(1);
                                                                     buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1);
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
@@ -3333,7 +3333,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvHoldPlayer:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SHoldPlayer));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SHoldPlayer));
                                                                     buffer.WriteInt32(0);
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
@@ -3347,7 +3347,7 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvReleasePlayer:
                                                                 {
                                                                     buffer = new ByteStream(4);
-                                                                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SHoldPlayer));
+                                                                    buffer.WriteInt32((int)(Packets.ServerPackets.SHoldPlayer));
                                                                     buffer.WriteInt32(1);
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
@@ -3432,7 +3432,7 @@ namespace Engine
                     newtxt = Microsoft.VisualBasic.Strings.Mid(txt, 1, x - 1);
                     parsestring = Microsoft.VisualBasic.Strings.Mid(txt, x + 2, i);
                     z = modTypes.Player[index].Character[modTypes.TempPlayer[i].CurChar].Variables[(int)Conversion.Val(parsestring)];
-                    newtxt = newtxt + System.Convert.ToString(z);
+                    newtxt = newtxt + z.ToString();
                     newtxt = newtxt + Microsoft.VisualBasic.Strings.Mid(txt, x + 2 + i, Microsoft.VisualBasic.Strings.Len(txt) - (x + i));
                     txt = newtxt;
                 }
@@ -3493,16 +3493,16 @@ namespace Engine
                         {
                             case (int)S_Events.EventType.EvShowChoices:
                                 {
-                                    if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text2)) > 0)
+                                    if (Microsoft.VisualBasic.Strings.Len(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text2.Trim()) > 0)
                                     {
                                         w = 1;
-                                        if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text3)) > 0)
+                                        if (Microsoft.VisualBasic.Strings.Len(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text3.Trim()) > 0)
                                         {
                                             w = 2;
-                                            if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text4)) > 0)
+                                            if (Microsoft.VisualBasic.Strings.Len(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text4.Trim()) > 0)
                                             {
                                                 w = 3;
-                                                if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text5)) > 0)
+                                                if (Microsoft.VisualBasic.Strings.Len(modTypes.Map[mapNum].Events[eventID].Pages[pageID].CommandList[CurList].Commands[CurSlot].Text5.Trim()) > 0)
                                                     w = 4;
                                             }
                                         }
@@ -4370,7 +4370,7 @@ namespace Engine
                 for (i = 1; i <= loopTo2; i++)
                 {
                     buffer = new ByteStream(4);
-                    buffer.WriteInt32(Convert.ToInt32(Packets.ServerPackets.SSpawnEvent));
+                    buffer.WriteInt32((int)(Packets.ServerPackets.SSpawnEvent));
                     buffer.WriteInt32(modTypes.TempPlayer[index].EventMap.EventPages[i].EventId);
                     {
                         //var modTypes.TempPlayer[i].EventProcessing[x] = modTypes.TempPlayer[index].EventMap.EventPages[i];
