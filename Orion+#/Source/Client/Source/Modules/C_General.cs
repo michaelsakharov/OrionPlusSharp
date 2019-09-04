@@ -32,8 +32,10 @@ namespace Engine
 			SetStatus(Strings.Get("loadscreen", "loading"));
 			
 			FrmMenu.Default.Visible = true;
-			
-			C_Types.CharSelection = new C_Types.CharSelRec[4];
+
+            Application.DoEvents();
+
+            C_Types.CharSelection = new C_Types.CharSelRec[4];
 			
 			C_Types.Player = new C_Types.PlayerRec[Constants.MAX_PLAYERS + 1];
 			

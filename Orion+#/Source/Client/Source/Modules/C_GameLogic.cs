@@ -63,7 +63,7 @@ namespace Engine
 				{
 					if (tmrconnect < C_General.GetTickCount())
 					{
-						if (C_NetworkConfig.Socket.IsConnected== true)
+						if (C_NetworkConfig.Socket.IsConnected == true)
 						{
 							FrmMenu.Default.lblServerStatus.ForeColor = Color.LightGreen;
 							FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serveronline");
@@ -117,11 +117,11 @@ namespace Engine
 						if (tmr100 < tick)
 						{
 							
-							if (System.Convert.ToBoolean(C_Banks.InBank))
+							if (C_Banks.InBank == 1)
 							{
 								C_Banks.DrawBank();
 							}
-							if (System.Convert.ToBoolean(C_Shops.InShop))
+							if (C_Shops.InShop == 1)
 							{
 								C_Shops.DrawShop();
 							}
@@ -502,8 +502,8 @@ namespace Engine
 				
 				if (rendercount < tick)
 				{
-					//Actual Game Loop Stuff :/
-					C_Graphics.Render_Graphics();
+                    //Actual Game Loop Stuff :/
+                    C_Graphics.Render_Graphics();
 					tmplps++;
 					rendercount = tick + 16;
 				}

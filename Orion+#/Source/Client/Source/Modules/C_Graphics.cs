@@ -2075,8 +2075,8 @@ namespace Engine
 			//update view around player
 			UpdateCamera();
 			
-			//let program do other things
-			Application.DoEvents();
+			//let program do other things - Theres already one in GameLogic being called every frame.. do we need this?
+			//Application.DoEvents();
 			
 			//Clear each of our render targets
 			GameWindow.DispatchEvents();
@@ -2375,9 +2375,7 @@ namespace Engine
 					}
 				}
 			}
-
-
-
+            
             if (C_Weather.CurrentFog > 0)
             {
                 C_Weather.DrawFog();
