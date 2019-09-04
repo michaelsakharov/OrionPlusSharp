@@ -260,8 +260,8 @@ namespace Engine
 			//Next
 			
 			// set the scrollbars
-			frmMapEditor.Default.scrlPictureY.Maximum = (int)((frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y) / 2); // \2 is new, lets test
-			frmMapEditor.Default.scrlPictureX.Maximum = (int)((frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X) / 2);
+			frmMapEditor.Default.scrlPictureY.Maximum = System.Convert.ToInt32((frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y) / 2); // \2 is new, lets test
+			frmMapEditor.Default.scrlPictureX.Maximum = System.Convert.ToInt32((frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X) / 2);
 			
 			//set map names
 			frmMapEditor.Default.cmbMapList.Items.Clear();
@@ -369,24 +369,24 @@ namespace Engine
 			if (Button == (int) MouseButtons.Left) //Left Mouse Button
 			{
 				// convert the pixel number to tile number
-				X = System.Convert.ToSingle((X / E_Globals.PIC_X) + 1);
-				Y = System.Convert.ToSingle((Y / E_Globals.PIC_Y) + 1);
+				X = ((X / E_Globals.PIC_X) + 1);
+				Y = ((Y / E_Globals.PIC_Y) + 1);
 				// check it's not out of bounds
 				if (X < 0)
 				{
 					X = 0;
 				}
-				if (X > (double) frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X)
+				if (X > (double)frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X)
 				{
-					X = (float) ((double) frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X);
+					X = (float)((double)frmMapEditor.Default.picBackSelect.Width / E_Globals.PIC_X);
 				}
 				if (Y < 0)
 				{
 					Y = 0;
 				}
-				if (Y > (double) frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y)
+				if (Y > (double)frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y)
 				{
-					Y = (float) ((double) frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y);
+					Y = (float)((double)frmMapEditor.Default.picBackSelect.Height / E_Globals.PIC_Y);
 				}
 				// find out what to set the width + height of map editor to
 				if (X > E_Globals.EditorTileX) // drag right
@@ -699,25 +699,25 @@ namespace Engine
 				E_Types.Map.Tile[X, Y].Layer[CurLayer].Tileset = (byte)(frmMapEditor.Default.cmbTileSets.SelectedIndex + 1);
 				E_Types.Map.Tile[X, Y].Layer[CurLayer].AutoTile = 0;
 				E_AutoTiles.CacheRenderState(X, Y, CurLayer);
-			}
+            }
 			else // multitile
 			{
 				y2 = 0; // starting tile for y axis
-				for (var Yy = E_Globals.CurY; Yy < E_Globals.CurY + E_Globals.EditorTileHeight - 1; Yy++)
+				for (var Yy = E_Globals.CurY; Yy < E_Globals.CurY + E_Globals.EditorTileHeight; Yy++)
 				{
 					x2 = 0; // re-set x count every y loop
-					for (var Xx = E_Globals.CurX; Xx < E_Globals.CurX + E_Globals.EditorTileWidth - 1; Xx++)
+					for (var Xx = E_Globals.CurX; Xx < E_Globals.CurX + E_Globals.EditorTileWidth; Xx++)
 					{
 						if (Xx >= 0 && Xx <= E_Types.Map.MaxX)
 						{
 							if (Yy >= 0 && Yy <= E_Types.Map.MaxY)
 							{
-                                E_Types.Map.Tile[(int)Xx, (int)Yy].Layer[CurLayer].X = (byte)(E_Globals.EditorTileX + x2);
-								E_Types.Map.Tile[(int) Xx, (int) Yy].Layer[CurLayer].Y = (byte)(E_Globals.EditorTileY + y2);
-								E_Types.Map.Tile[(int) Xx, (int) Yy].Layer[CurLayer].Tileset = (byte)(frmMapEditor.Default.cmbTileSets.SelectedIndex + 1);
-								E_Types.Map.Tile[(int) Xx, (int) Yy].Layer[CurLayer].AutoTile = 0;
+                                E_Types.Map.Tile[Xx, Yy].Layer[CurLayer].X = (byte)(E_Globals.EditorTileX + x2);
+								E_Types.Map.Tile[Xx, Yy].Layer[CurLayer].Y = (byte)(E_Globals.EditorTileY + y2);
+								E_Types.Map.Tile[Xx, Yy].Layer[CurLayer].Tileset = (byte)(frmMapEditor.Default.cmbTileSets.SelectedIndex + 1);
+								E_Types.Map.Tile[Xx, Yy].Layer[CurLayer].AutoTile = 0;
 								E_AutoTiles.CacheRenderState(X, Y, CurLayer);
-							}
+                            }
 						}
 						x2++;
 					}

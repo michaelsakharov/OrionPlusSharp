@@ -337,8 +337,11 @@ namespace Engine
 		
 		public void Picscreen_MouseUp(object sender, MouseEventArgs e)
 		{
-			
-			E_Globals.CurX = E_Globals.TileView.Left + ((e.Location.X + E_Globals.Camera.Left) / E_Globals.PIC_X);
+
+            // do a re-init so we can see our changes
+            E_AutoTiles.InitAutotiles();
+
+            E_Globals.CurX = E_Globals.TileView.Left + ((e.Location.X + E_Globals.Camera.Left) / E_Globals.PIC_X);
 			E_Globals.CurY = E_Globals.TileView.Top + ((e.Location.Y + E_Globals.Camera.Top) / E_Globals.PIC_Y);
 			
 		}
