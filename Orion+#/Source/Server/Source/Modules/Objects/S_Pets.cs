@@ -1751,77 +1751,112 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                         }
                     }
                 }
+                else if (S_Events.PathfindingType == 2)
+                {
+                    // Gonna make the pets smarter.. Implementing a pathfinding algorithm.. we shall see what happens.
+                    i = S_EventLogic.FindPetPath(mapNum, x, targetX, targetY);
+                    if (i < 4)
+                    {
+                        if (CanPetMove(mapNum, x, (byte)i))
+                        {
+                            PetMove(mapNum, x, i, (int)Enums.MovementType.Walking);
+                            didwalk = true;
+                        }
+                    }
+                    else
+                    {
+                        i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                        if (i == 1)
+                        {
+                            i = (int)Conversion.Int(VBMath.Rnd() * 4);
+
+                            if (CanPetMove(mapNum, x, (byte)i))
+                            {
+                                PetMove(mapNum, x, i, (int)Enums.MovementType.Walking);
+                                didwalk = true;
+                            }
+                        }
+                    }
+                }
             }
             else
+            {
+                if (S_Events.PathfindingType == 2)
+                {
+                    PetDir(mapNum, S_Events.GetNpcDir(targetX, targetY, GetPetX(x), GetPetY(x)));
+                }
+            }
 
+            if (S_Events.PathfindingType == 1)
+            {
                 // Look to target
                 if (GetPetX(index) > modTypes.TempPlayer[index].GoToX)
-            {
-                if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Left))
                 {
-                    PetMove(x, mapNum, (int)Enums.DirectionType.Left, (int)Enums.MovementType.Walking);
-                    didwalk = true;
+                    if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Left))
+                    {
+                        PetMove(x, mapNum, (int)Enums.DirectionType.Left, (int)Enums.MovementType.Walking);
+                        didwalk = true;
+                    }
+                    else
+                    {
+                        PetDir(x, (int)Enums.DirectionType.Left);
+                        didwalk = true;
+                    }
                 }
-                else
+                else if (GetPetX(index) < modTypes.TempPlayer[index].GoToX)
                 {
-                    PetDir(x, (int)Enums.DirectionType.Left);
-                    didwalk = true;
+                    if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Right))
+                    {
+                        PetMove(x, mapNum, (int)Enums.DirectionType.Right, (int)Enums.MovementType.Walking);
+                        didwalk = true;
+                    }
+                    else
+                    {
+                        PetDir(x, (int)Enums.DirectionType.Right);
+                        didwalk = true;
+                    }
                 }
-            }
-            else if (GetPetX(index) < modTypes.TempPlayer[index].GoToX)
-            {
-                if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Right))
+                else if (GetPetY(index) > modTypes.TempPlayer[index].GoToY)
                 {
-                    PetMove(x, mapNum, (int)Enums.DirectionType.Right, (int)Enums.MovementType.Walking);
-                    didwalk = true;
+                    if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Up))
+                    {
+                        PetMove(x, mapNum, (int)Enums.DirectionType.Up, (int)Enums.MovementType.Walking);
+                        didwalk = true;
+                    }
+                    else
+                    {
+                        PetDir(x, (int)Enums.DirectionType.Up);
+                        didwalk = true;
+                    }
                 }
-                else
+                else if (GetPetY(index) < modTypes.TempPlayer[index].GoToY)
                 {
-                    PetDir(x, (int)Enums.DirectionType.Right);
-                    didwalk = true;
+                    if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Down))
+                    {
+                        PetMove(x, mapNum, (int)Enums.DirectionType.Down, (int)Enums.MovementType.Walking);
+                        didwalk = true;
+                    }
+                    else
+                    {
+                        PetDir(x, (int)Enums.DirectionType.Down);
+                        didwalk = true;
+                    }
                 }
-            }
-            else if (GetPetY(index) > modTypes.TempPlayer[index].GoToY)
-            {
-                if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Up))
-                {
-                    PetMove(x, mapNum, (int)Enums.DirectionType.Up, (int)Enums.MovementType.Walking);
-                    didwalk = true;
-                }
-                else
-                {
-                    PetDir(x, (int)Enums.DirectionType.Up);
-                    didwalk = true;
-                }
-            }
-            else if (GetPetY(index) < modTypes.TempPlayer[index].GoToY)
-            {
-                if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Down))
-                {
-                    PetMove(x, mapNum, (int)Enums.DirectionType.Down, (int)Enums.MovementType.Walking);
-                    didwalk = true;
-                }
-                else
-                {
-                    PetDir(x, (int)Enums.DirectionType.Down);
-                    didwalk = true;
-                }
-            }
 
-            // We could not move so Target must be behind something, walk randomly.
-            if (!didwalk)
-            {
-                i = (int)Conversion.Int(VBMath.Rnd() * 2);
-
-                if (i == 1)
+                // We could not move so Target must be behind something, walk randomly.
+                if (!didwalk)
                 {
-                    i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                    i = (int)Conversion.Int(VBMath.Rnd() * 2);
 
-                    if (CanPetMove(x, mapNum, (byte)i))
-                        PetMove(x, mapNum, i, (int)Enums.MovementType.Walking);
+                    if (i == 1)
+                    {
+                        i = (int)Conversion.Int(VBMath.Rnd() * 4);
+
+                        if (CanPetMove(x, mapNum, (byte)i))
+                            PetMove(x, mapNum, i, (int)Enums.MovementType.Walking);
+                    }
                 }
             }
-
             return didwalk;
         }
 

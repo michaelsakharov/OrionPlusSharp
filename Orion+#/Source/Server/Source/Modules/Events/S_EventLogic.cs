@@ -3806,6 +3806,221 @@ namespace Engine
             }
         }
 
+        public static int FindPetPath(int mapNum, int mappetnum, int targetx, int targety)
+        {
+            int tim = 0;
+            int sX = modTypes.Player[mappetnum].Character[modTypes.TempPlayer[mappetnum].CurChar].Pet.X;
+            int sY = modTypes.Player[mappetnum].Character[modTypes.TempPlayer[mappetnum].CurChar].Pet.Y;
+            int FX = targetx;
+            int FY = targety;
+            bool flag = FX == -1;
+            if (flag)
+            {
+                FX = 0;
+            }
+            bool flag2 = FY == -1;
+            if (flag2)
+            {
+                FY = 0;
+            }
+            checked
+            {
+                int[,] pos = new int[(int)(modTypes.Map[mapNum].MaxX + 1), (int)(modTypes.Map[mapNum].MaxY + 1)];
+                pos[sX, sY] = 100 + tim;
+                pos[FX, FY] = 2;
+                bool reachable = false;
+                int FindNpcPath = 0;
+                while (!reachable)
+                {
+                    int maxY = (int)modTypes.Map[mapNum].MaxY;
+                    for (int i = 0; i <= maxY; i++)
+                    {
+                        int maxX = (int)modTypes.Map[mapNum].MaxX;
+                        for (int j = 0; j <= maxX; j++)
+                        {
+                            bool flag3 = pos[j, i] == 100 + tim;
+                            if (flag3)
+                            {
+                                bool flag4 = j < (int)modTypes.Map[mapNum].MaxX;
+                                if (flag4)
+                                {
+                                    bool flag5 = pos[j + 1, i] == 0;
+                                    if (flag5)
+                                    {
+                                        pos[j + 1, i] = 100 + tim + 1;
+                                    }
+                                    else
+                                    {
+                                        bool flag6 = pos[j + 1, i] == 2;
+                                        if (flag6)
+                                        {
+                                            reachable = true;
+                                        }
+                                    }
+                                }
+                                bool flag7 = j > 0;
+                                if (flag7)
+                                {
+                                    bool flag8 = pos[j - 1, i] == 0;
+                                    if (flag8)
+                                    {
+                                        pos[j - 1, i] = 100 + tim + 1;
+                                    }
+                                    else
+                                    {
+                                        bool flag9 = pos[j - 1, i] == 2;
+                                        if (flag9)
+                                        {
+                                            reachable = true;
+                                        }
+                                    }
+                                }
+                                bool flag10 = i < (int)modTypes.Map[mapNum].MaxY;
+                                if (flag10)
+                                {
+                                    bool flag11 = pos[j, i + 1] == 0;
+                                    if (flag11)
+                                    {
+                                        pos[j, i + 1] = 100 + tim + 1;
+                                    }
+                                    else
+                                    {
+                                        bool flag12 = pos[j, i + 1] == 2;
+                                        if (flag12)
+                                        {
+                                            reachable = true;
+                                        }
+                                    }
+                                }
+                                bool flag13 = i > 0;
+                                if (flag13)
+                                {
+                                    bool flag14 = pos[j, i - 1] == 0;
+                                    if (flag14)
+                                    {
+                                        pos[j, i - 1] = 100 + tim + 1;
+                                    }
+                                    else
+                                    {
+                                        bool flag15 = pos[j, i - 1] == 2;
+                                        if (flag15)
+                                        {
+                                            reachable = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    bool flag16 = !reachable;
+                    if (flag16)
+                    {
+                        int Sum = 0;
+                        int maxY2 = (int)modTypes.Map[mapNum].MaxY;
+                        for (int i = 0; i <= maxY2; i++)
+                        {
+                            int maxX2 = (int)modTypes.Map[mapNum].MaxX;
+                            for (int j = 0; j <= maxX2; j++)
+                            {
+                                Sum += pos[j, i];
+                            }
+                        }
+                        int LastSum = 0;
+                        bool flag17 = Sum == LastSum;
+                        if (flag17)
+                        {
+                            FindNpcPath = 4;
+                            return FindNpcPath;
+                        }
+                        LastSum = Sum;
+                    }
+                    tim++;
+                }
+                int LastX = FX;
+                int LastY = FY;
+                Point[] path = new Point[tim + 1 + 1];
+                while (LastX != sX || LastY != sY)
+                {
+                    tim--;
+                    bool did = false;
+                    bool flag18 = LastX < (int)modTypes.Map[mapNum].MaxX;
+                    if (flag18)
+                    {
+                        bool flag19 = pos[LastX + 1, LastY] == 100 + tim;
+                        if (flag19)
+                        {
+                            LastX++;
+                            did = true;
+                        }
+                    }
+                    bool flag20 = !did;
+                    if (flag20)
+                    {
+                        bool flag21 = LastX > 0;
+                        if (flag21)
+                        {
+                            bool flag22 = pos[LastX - 1, LastY] == 100 + tim;
+                            if (flag22)
+                            {
+                                LastX--;
+                                did = true;
+                            }
+                        }
+                    }
+                    bool flag23 = !did;
+                    if (flag23)
+                    {
+                        bool flag24 = LastY < (int)modTypes.Map[mapNum].MaxY;
+                        if (flag24)
+                        {
+                            bool flag25 = pos[LastX, LastY + 1] == 100 + tim;
+                            if (flag25)
+                            {
+                                LastY++;
+                                did = true;
+                            }
+                        }
+                    }
+                    bool flag26 = !did;
+                    if (flag26)
+                    {
+                        bool flag27 = LastY > 0;
+                        if (flag27)
+                        {
+                            bool flag28 = pos[LastX, LastY - 1] == 100 + tim;
+                            if (flag28)
+                            {
+                                LastY--;
+                            }
+                        }
+                    }
+                    path[tim].X = LastX;
+                    path[tim].Y = LastY;
+                }
+                bool flag29 = path[1].X > LastX;
+                if (flag29)
+                {
+                    return 3;
+                }
+                bool flag30 = path[1].Y > LastY;
+                if (flag30)
+                {
+                    return 1;
+                }
+                bool flag31 = path[1].Y < LastY;
+                if (flag31)
+                {
+                    return 0;
+                }
+                bool flag32 = path[1].X < LastX;
+                if (flag32)
+                {
+                    return 2;
+                }
+                return FindNpcPath;
+            }
+        }
+
         public static void SpawnAllMapGlobalEvents()
         {
             int i;
