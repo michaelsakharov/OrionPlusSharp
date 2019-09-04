@@ -24,12 +24,18 @@ namespace Engine
 
             do
             {
+
+
+                //Because everything in here is called every single cycle we wanna make sure its all as fast as possible!
+                //So we need to pull out as much work from everything
+
                 // Update our current tick value.
                 tick = S_General.GetTimeMs();
 
                 // Don't process anything else if we're going down.
                 if (S_General.ServerDestroyed)
                     System.Environment.Exit(0);
+
                 // Get all our online players.
                 var onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new { Index = index + 1, player }).ToArray();
                 if (tick > tmr25)
@@ -66,41 +72,29 @@ namespace Engine
                     }
                     else
                     {
-
-                        for (int a = 0; a < onlinePlayers.Count(); a++)
+                        int onlinePlayerCount = onlinePlayers.Count();
+                        for (int a = 0; a < onlinePlayerCount; a++)
                         {
                             if (onlinePlayers[a].player.SkillBuffer > 0 && S_General.GetTimeMs() > (onlinePlayers[a].player.SkillBufferTimer + Types.Skill[onlinePlayers[a].player.SkillBuffer].CastTime * 1000))
                             {
                                 HandleCastSkill(onlinePlayers[a].Index);
                             }
-                        }
 
-                        for (int a = 0; a < onlinePlayers.Count(); a++)
-                        {
                             if (onlinePlayers[a].player.StunDuration > 0 && onlinePlayers[a].player.StunTimer > (onlinePlayers[a].player.StunDuration * 1000))
                             {
                                 HandleClearStun(onlinePlayers[a].Index);
                             }
-                        }
 
-                        for (int a = 0; a < onlinePlayers.Count(); a++)
-                        {
                             if (modTypes.Player[onlinePlayers[a].Index].Character[onlinePlayers[a].player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[onlinePlayers[a].Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > onlinePlayers[a].player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[onlinePlayers[a].Index].Character[onlinePlayers[a].player.CurChar].Pet.Skill[onlinePlayers[a].player.PetskillBuffer.Skill]].CastTime * 1000))
                             {
                                 HandlePetSkill(onlinePlayers[a].Index);
                             }
-                        }
 
-                        for (int a = 0; a < onlinePlayers.Count(); a++)
-                        {
                             if (onlinePlayers[a].player.PetStunDuration > 0 && onlinePlayers[a].player.PetStunTimer > (onlinePlayers[a].player.PetStunDuration * 1000))
                             {
                                 HandleClearPetStun(onlinePlayers[a].Index);
                             }
-                        }
 
-                        for (int a = 0; a < onlinePlayers.Count(); a++)
-                        {
                             if (onlinePlayers[a].player.PetstopRegen == true && onlinePlayers[a].player.PetstopRegenTimer + 5000 < S_General.GetTimeMs())
                             {
                                 HandleStopPetRegen(onlinePlayers[a].Index);
