@@ -90,6 +90,8 @@ namespace Engine
             scrlFogAlpha.Value = C_Maps.Map.FogAlpha;
             lblFogAlpha.Text = "Fog Alpha: " + C_Maps.Map.FogAlpha;
 
+
+
             TopMost = true;
         }
 
