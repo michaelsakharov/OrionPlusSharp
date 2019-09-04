@@ -21,7 +21,7 @@ namespace Engine
 		
 #region Types and Globals
 		
-		internal const int MaxWeatherParticles = 100;
+		internal const int MaxWeatherParticles = 250;
 		
 		internal static WeatherParticleRec[] WeatherParticle = new WeatherParticleRec[MaxWeatherParticles + 1];
 		internal static Sound WeatherSoundPlayer;
@@ -114,8 +114,7 @@ namespace Engine
 			}
 			
 			//seeying we still use it, lets update timer
-			ref var with_1 = ref C_Graphics.FogGfxInfo[fogNum];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+            C_Graphics.FogGfxInfo[fogNum].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			C_Graphics.FogGfx[fogNum].Repeated = true;
 			C_Graphics.FogGfx[fogNum].Smooth = true;
@@ -137,46 +136,51 @@ namespace Engine
 		{
 			int i = 0;
 			int x;
-			
-			if (CurrentWeather > 0 && CurrentWeather <= (int)Enums.WeatherType.Fog)
-			{
-				if (CurrentWeather == (int) Enums.WeatherType.Rain || CurrentWeather == (int) Enums.WeatherType.Storm)
-				{
-					PlayWeatherSound("Rain.ogg", true);
-				}
-				x = C_GameLogic.Rand(1, 101 - CurrentWeatherIntensity);
-				if (x == 1)
-				{
-					//Add a new particle
-					for (i = 1; i <= MaxWeatherParticles; i++)
-					{
-						if (WeatherParticle[i].InUse == 0)
-						{
-							if (C_GameLogic.Rand(1, 3) == 1)
-							{
-								WeatherParticle[i].InUse = 1;
-								WeatherParticle[i].Type = CurrentWeather;
-								WeatherParticle[i].Velocity = C_GameLogic.Rand(8, 14);
-								WeatherParticle[i].X = (C_Variables.TileView.Left * 32) - 32;
-								WeatherParticle[i].Y = (C_Variables.TileView.Top * 32) + C_GameLogic.Rand(-32, (int)C_Graphics.GameWindow.Size.Y);
-							}
-							else
-							{
-								WeatherParticle[i].InUse = 1;
-								WeatherParticle[i].Type = CurrentWeather;
-								WeatherParticle[i].Velocity = C_GameLogic.Rand(10, 15);
-								WeatherParticle[i].X = (C_Variables.TileView.Left * 32) + C_GameLogic.Rand(-32, (int)C_Graphics.GameWindow.Size.X);
-								WeatherParticle[i].Y = (C_Variables.TileView.Top * 32) - 32;
-							}
-							//Exit For
-						}
-					}
-				}
-			}
-			else
-			{
-				StopWeatherSound();
-			}
+
+            if (CurrentWeather > 0 && CurrentWeather <= (int)Enums.WeatherType.Fog)
+            {
+                if (CurrentWeather == (int)Enums.WeatherType.Rain || CurrentWeather == (int)Enums.WeatherType.Storm)
+                {
+                    PlayWeatherSound("Rain.ogg", true);
+                }
+                //Add a new particle
+                for (i = 1; i <= MaxWeatherParticles; i++)
+                {
+                    if (WeatherParticle[i].InUse == 0)
+                    {
+                        WeatherParticle[i].InUse = 1;
+                        WeatherParticle[i].Type = CurrentWeather;
+                        if (C_GameLogic.Rand(1, 3) == 1)
+                        {
+                            WeatherParticle[i].Velocity = C_GameLogic.Rand(8, 14);
+                            WeatherParticle[i].X = ((C_Variables.TileView.Left * 32) - 32);
+                            WeatherParticle[i].Y = ((C_Variables.TileView.Top * 32) + C_GameLogic.Rand(-32, (int)C_Graphics.GameWindow.Size.Y));
+                        }
+                        else
+                        {
+                            WeatherParticle[i].Velocity = C_GameLogic.Rand(10, 15);
+                            WeatherParticle[i].X = ((C_Variables.TileView.Left * 32) + C_GameLogic.Rand(-32, (int)C_Graphics.GameWindow.Size.X));
+                            WeatherParticle[i].Y = ((C_Variables.TileView.Top * 32) - 32);
+                        }
+                    }
+                    else
+                    {
+
+                        WeatherParticle[i].Type = CurrentWeather;
+                    }
+                }
+            }
+            else
+            {
+                StopWeatherSound();
+                for (i = 1; i <= MaxWeatherParticles; i++)
+                {
+                    if (WeatherParticle[i].InUse == 1)
+                    {
+                        WeatherParticle[i].InUse = 0;
+                    }
+                }
+            }
 			if (CurrentWeather == (int) Enums.WeatherType.Storm)
 			{
 				x = C_GameLogic.Rand(1, 400 - CurrentWeatherIntensity);
@@ -193,8 +197,18 @@ namespace Engine
 				{
 					if (WeatherParticle[i].X > C_Variables.TileView.Right * 32 || WeatherParticle[i].Y > C_Variables.TileView.Bottom * 32)
 					{
-						WeatherParticle[i].InUse = 0;
-					}
+						//WeatherParticle[i].InUse = 0;
+                        if (C_GameLogic.Rand(1, 3) == 1)
+                        {
+                            WeatherParticle[i].X = (C_Variables.TileView.Left * 32) - 32;
+                            WeatherParticle[i].Y = (C_Variables.TileView.Top * 32) + C_GameLogic.Rand(-32, (int)C_Graphics.GameWindow.Size.Y);
+                        }
+                        else
+                        {
+                            WeatherParticle[i].X = (C_Variables.TileView.Left * 32) + C_GameLogic.Rand(-32, (int)C_Graphics.GameWindow.Size.X);
+                            WeatherParticle[i].Y = (C_Variables.TileView.Top * 32) - 32;
+                        }
+                    }
 					else
 					{
 						WeatherParticle[i].X = WeatherParticle[i].X + WeatherParticle[i].Velocity;
