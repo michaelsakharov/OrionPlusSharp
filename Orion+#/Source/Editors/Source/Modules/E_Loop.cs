@@ -433,8 +433,10 @@ namespace Engine
                 // This should be the only one we need?
 				Application.DoEvents();
                 //Do we need to pause the thread? without it we gain like 200+ fps
-				//Thread.Sleep(1);
-			} while (true);
+                //Thread.Sleep(1);
+                // Lets Yield Instead
+                Thread.Yield();
+            } while (true);
 		}
 		
 		public static void UpdateUI()
