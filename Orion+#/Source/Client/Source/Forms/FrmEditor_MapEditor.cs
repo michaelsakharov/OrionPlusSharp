@@ -150,7 +150,7 @@ namespace Engine
                 cmbTileSets.SelectedIndex = 0;
             }
 
-            C_Maps.Map.Tileset = System.Convert.ToInt32(cmbTileSets.SelectedIndex + 1);
+            C_Maps.Map.Tileset = (int)(cmbTileSets.SelectedIndex + 1);
 
             C_Constants.EditorTileSelStart = new Point(0, 0);
             C_Constants.EditorTileSelEnd = new Point(1, 1);
@@ -273,8 +273,7 @@ namespace Engine
 
         public void BtnMapKey_Click(object sender, EventArgs e)
         {
-            C_Variables.KeyEditorNum = scrlMapKey.Value;
-            C_Variables.KeyEditorTake = System.Convert.ToInt32(chkMapKey.Checked);
+            C_Variables.KeyEditorNum = Convert.ToInt32(chkMapKey.Checked);
             pnlAttributes.Visible = false;
             fraMapKey.Visible = false;
         }
@@ -515,7 +514,7 @@ namespace Engine
 
         public void BtnHouseTileOk_Click(object sender, EventArgs e)
         {
-            C_Housing.HouseTileindex = System.Convert.ToInt32(scrlBuyHouse.Value);
+            C_Housing.HouseTileindex = (int)(scrlBuyHouse.Value);
             pnlAttributes.Visible = false;
             fraBuyHouse.Visible = false;
         }
@@ -567,7 +566,7 @@ namespace Engine
                 if (cmbNpcList.SelectedIndex > 0)
                 {
                     lstMapNpc.Items[lstMapNpc.SelectedIndex] = cmbNpcList.SelectedIndex + ": " + Types.Npc[cmbNpcList.SelectedIndex].Name;
-                    C_Maps.Map.Npc[lstMapNpc.SelectedIndex + 1] = System.Convert.ToInt32(cmbNpcList.SelectedIndex);
+                    C_Maps.Map.Npc[lstMapNpc.SelectedIndex + 1] = (int)(cmbNpcList.SelectedIndex);
                 }
                 else
                 {
@@ -624,12 +623,12 @@ namespace Engine
             {
                 C_Maps.Map.Music = "";
             }
-            C_Maps.Map.Up = System.Convert.ToInt32(Conversion.Val(txtUp.Text));
-            C_Maps.Map.Down = System.Convert.ToInt32(Conversion.Val(txtDown.Text));
-            C_Maps.Map.Left = System.Convert.ToInt32(Conversion.Val(txtLeft.Text));
-            C_Maps.Map.Right = System.Convert.ToInt32(Conversion.Val(txtRight.Text));
+            C_Maps.Map.Up = (int)(Conversion.Val(txtUp.Text));
+            C_Maps.Map.Down = (int)(Conversion.Val(txtDown.Text));
+            C_Maps.Map.Left = (int)(Conversion.Val(txtLeft.Text));
+            C_Maps.Map.Right = (int)(Conversion.Val(txtRight.Text));
             C_Maps.Map.Moral = System.Convert.ToByte(cmbMoral.SelectedIndex);
-            C_Maps.Map.BootMap = System.Convert.ToInt32(Conversion.Val(txtBootMap.Text));
+            C_Maps.Map.BootMap = (int)(Conversion.Val(txtBootMap.Text));
             C_Maps.Map.BootX = (byte)(Conversion.Val(txtBootX.Text));
             C_Maps.Map.BootY = (byte)(Conversion.Val(txtBootY.Text));
 
@@ -740,13 +739,13 @@ namespace Engine
 
         public void ScrlFog_Scroll(object sender, EventArgs e)
         {
-            C_Maps.Map.Fogindex = System.Convert.ToInt32(scrlFog.Value);
+            C_Maps.Map.Fogindex = (int)(scrlFog.Value);
             lblFogIndex.Text = "Fog: " + scrlFog.Value;
         }
 
         public void ScrlIntensity_Scroll(object sender, EventArgs e)
         {
-            C_Maps.Map.WeatherIntensity = System.Convert.ToInt32(scrlIntensity.Value);
+            C_Maps.Map.WeatherIntensity = (int)(scrlIntensity.Value);
             lblIntensity.Text = "Intensity: " + scrlIntensity.Value;
         }
 
@@ -945,8 +944,8 @@ namespace Engine
             C_Constants.EditorTileSelEnd = new Point(1, 1);
 
             // set the scrollbars
-            scrlPictureY.Maximum = System.Convert.ToInt32((picBackSelect.Height / C_Constants.PicY) / 2); // \2 is new, lets test
-            scrlPictureX.Maximum = System.Convert.ToInt32((picBackSelect.Width / C_Constants.PicX) / 2);
+            scrlPictureY.Maximum = (int)((picBackSelect.Height / C_Constants.PicY) / 2); // \2 is new, lets test
+            scrlPictureX.Maximum = (int)((picBackSelect.Width / C_Constants.PicX) / 2);
 
             // set shops for the shop attribute
             cmbShop.Items.Add("None");
@@ -1021,8 +1020,8 @@ namespace Engine
                     }
                 }
 
-                C_Constants.EditorTileX = System.Convert.ToInt32(X / C_Constants.PicX);
-                C_Constants.EditorTileY = System.Convert.ToInt32(Y / C_Constants.PicY);
+                C_Constants.EditorTileX = (int)(X / C_Constants.PicX);
+                C_Constants.EditorTileY = (int)(Y / C_Constants.PicY);
 
                 C_Constants.EditorTileSelStart = new Point(C_Constants.EditorTileX, C_Constants.EditorTileY);
                 C_Constants.EditorTileSelEnd = new Point(C_Constants.EditorTileX + C_Constants.EditorTileWidth, C_Constants.EditorTileY + C_Constants.EditorTileHeight);
@@ -1060,13 +1059,13 @@ namespace Engine
                 if (X > C_Constants.EditorTileX) // drag right
                 {
                     //EditorTileWidth = X
-                    if (System.Convert.ToInt32(X - C_Constants.EditorTileX) < 1)
+                    if ((int)(X - C_Constants.EditorTileX) < 1)
                     {
                         C_Constants.EditorTileWidth = 1;
                     }
                     else
                     {
-                        C_Constants.EditorTileWidth = System.Convert.ToInt32(X - C_Constants.EditorTileX);
+                        C_Constants.EditorTileWidth = (int)(X - C_Constants.EditorTileX);
                     }
                 }
                 else // drag left
@@ -1076,13 +1075,13 @@ namespace Engine
                 if (Y > C_Constants.EditorTileY) // drag down
                 {
                     //EditorTileHeight = Y
-                    if (System.Convert.ToInt32(Y - C_Constants.EditorTileY) < 1)
+                    if ((int)(Y - C_Constants.EditorTileY) < 1)
                     {
                         C_Constants.EditorTileHeight = 1;
                     }
                     else
                     {
-                        C_Constants.EditorTileHeight = System.Convert.ToInt32(Y - C_Constants.EditorTileY);
+                        C_Constants.EditorTileHeight = (int)(Y - C_Constants.EditorTileY);
                     }
                 }
                 else // drag up
@@ -1101,7 +1100,7 @@ namespace Engine
             int i = 0;
             int CurLayer = 0;
 
-            CurLayer = System.Convert.ToInt32(cmbLayers.SelectedIndex + 1);
+            CurLayer = (int)(cmbLayers.SelectedIndex + 1);
 
             if (!C_GameLogic.IsInBounds())
             {
@@ -1418,7 +1417,7 @@ namespace Engine
             int Y = 0;
             int CurLayer = 0;
 
-            CurLayer = System.Convert.ToInt32(cmbLayers.SelectedIndex + 1);
+            CurLayer = (int)(cmbLayers.SelectedIndex + 1);
 
             if (CurLayer == 0)
             {
@@ -1449,7 +1448,7 @@ namespace Engine
             int Y = 0;
             int CurLayer = 0;
 
-            CurLayer = System.Convert.ToInt32(cmbLayers.SelectedIndex + 1);
+            CurLayer = (int)(cmbLayers.SelectedIndex + 1);
 
             if (Interaction.MsgBox("Are you sure you wish to fill this layer?", Microsoft.VisualBasic.Constants.vbYesNo, "Map Editor") == Microsoft.VisualBasic.Constants.vbYes)
             {
@@ -1778,7 +1777,7 @@ namespace Engine
 			{
 				if (C_Graphics.TileSetTextureInfo[this.cmbTileSets.SelectedIndex + 1].IsLoaded == false)
 				{
-					C_Graphics.LoadTexture(System.Convert.ToInt32(this.cmbTileSets.SelectedIndex + 1), (byte) 1);
+					C_Graphics.LoadTexture((int)(this.cmbTileSets.SelectedIndex + 1), (byte) 1);
 				}
 				// we use it, lets update timer
 				ref var with_2 = ref C_Graphics.TileSetTextureInfo[this.cmbTileSets.SelectedIndex + 1];

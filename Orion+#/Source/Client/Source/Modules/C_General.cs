@@ -39,7 +39,7 @@ namespace Engine
 			
 			for (var i = 1; i <= Constants.MAX_PLAYERS; i++)
 			{
-				C_Player.ClearPlayer(System.Convert.ToInt32(i));
+				C_Player.ClearPlayer(i);
 			}
 			
 			C_AutoTiles.ClearAutotiles();

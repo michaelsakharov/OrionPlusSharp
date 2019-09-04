@@ -203,10 +203,11 @@ namespace Engine
 				
 				C_Sound.MusicCache[counter] = Path.GetFileName(FileName);
 				counter++;
-				Application.DoEvents();
-			}
-			
-		}
+                //Do we need todo this?
+                //Application.DoEvents();
+            }
+
+        }
 		
 		internal static void CacheSound()
 		{
@@ -220,10 +221,11 @@ namespace Engine
 				
 				C_Sound.SoundCache[counter] = Path.GetFileName(FileName);
 				counter++;
-				Application.DoEvents();
-			}
-			
-		}
+                //Do we need todo this?
+                //Application.DoEvents();
+            }
+
+        }
 		
 #endregion
 		
@@ -313,7 +315,7 @@ namespace Engine
 			C_Types.Options.SavePass = bool.Parse(myXml.ReadString("UserInfo", "SavePass", "False"));
 			
 			C_Types.Options.Ip = myXml.ReadString("Connection", "Ip", "127.0.0.1");
-			C_Types.Options.Port = System.Convert.ToInt32(Conversion.Val(myXml.ReadString("Connection", "Port", "7001")));
+			C_Types.Options.Port = (int)(Conversion.Val(myXml.ReadString("Connection", "Port", "7001")));
 			
 			C_Types.Options.MenuMusic = myXml.ReadString("Sfx", "MenuMusic", "");
 			C_Types.Options.Music = byte.Parse(myXml.ReadString("Sfx", "Music", "1"));

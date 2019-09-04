@@ -453,7 +453,8 @@ namespace Engine
 							FrmEditor_MapEditor.Default.EditorMap_DrawTileset();
 						}
 						
-						Application.DoEvents();
+                        //Do we need todo this?
+						//Application.DoEvents();
 						
 						if (C_Variables.GettingMap)
 						{
@@ -506,10 +507,10 @@ namespace Engine
 					tmplps++;
 					rendercount = tick + 16;
 				}
-
+                
                 Application.DoEvents();
-				
-				if (C_Types.Options.HighEnd == 1)
+
+                if (C_Types.Options.HighEnd == 1)
 				{
 					Thread.Yield();
 				}
@@ -546,7 +547,7 @@ namespace Engine
 				
 				if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Up)
 				{
-					C_Maps.MapNpc[mapNpcNum].YOffset = System.Convert.ToInt32(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
 					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].YOffset = 0;
@@ -554,7 +555,7 @@ namespace Engine
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down)
 				{
-					C_Maps.MapNpc[mapNpcNum].YOffset = System.Convert.ToInt32(C_Maps.MapNpc[mapNpcNum].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
 					if (C_Maps.MapNpc[mapNpcNum].YOffset > 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].YOffset = 0;
@@ -562,7 +563,7 @@ namespace Engine
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Left)
 				{
-					C_Maps.MapNpc[mapNpcNum].XOffset = System.Convert.ToInt32(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
 					if (C_Maps.MapNpc[mapNpcNum].XOffset < 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].XOffset = 0;
@@ -570,7 +571,7 @@ namespace Engine
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Right)
 				{
-					C_Maps.MapNpc[mapNpcNum].XOffset = System.Convert.ToInt32(C_Maps.MapNpc[mapNpcNum].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
 					if (C_Maps.MapNpc[mapNpcNum].XOffset > 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].XOffset = 0;
