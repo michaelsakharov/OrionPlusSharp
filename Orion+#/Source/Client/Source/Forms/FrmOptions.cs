@@ -109,8 +109,17 @@ namespace Engine
 			{
 				C_Types.Options.HighEnd = (byte) 0;
 			}
-			
-			if (chkNpcBars.Checked)
+
+            if (checkBox1.Checked)
+            {
+                C_Types.Options.UnlockFPS = (byte)1;
+            }
+            else
+            {
+                C_Types.Options.UnlockFPS = (byte)0;
+            }
+
+            if (chkNpcBars.Checked)
 			{
 				C_Types.Options.ShowNpcBar = (byte) 1;
 			}
@@ -129,8 +138,8 @@ namespace Engine
 			
 			this.Visible = false;
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+        
+    }
 }

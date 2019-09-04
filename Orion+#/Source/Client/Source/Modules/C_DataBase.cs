@@ -251,6 +251,7 @@ namespace Engine
 			C_Types.Options.Volume = 100;
 			C_Types.Options.ScreenSize = (byte) 0;
 			C_Types.Options.HighEnd = (byte) 0;
+			C_Types.Options.UnlockFPS = (byte) 0;
 			C_Types.Options.ShowNpcBar = (byte) 0;
 			
 			myXml.LoadXml();
@@ -269,6 +270,7 @@ namespace Engine
 			
 			myXml.WriteString("Misc", "ScreenSize", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ScreenSize.ToString()));
 			myXml.WriteString("Misc", "HighEnd", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.HighEnd.ToString()));
+			myXml.WriteString("Misc", "UnlockFPS", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.UnlockFPS.ToString()));
 			myXml.WriteString("Misc", "ShowNpcBar", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ShowNpcBar.ToString()));
 			
 			myXml.CloseXml(true);
@@ -297,6 +299,7 @@ namespace Engine
 			
 			myXml.WriteString("Misc", "ScreenSize", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ScreenSize.ToString()));
 			myXml.WriteString("Misc", "HighEnd", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.HighEnd.ToString()));
+			myXml.WriteString("Misc", "UnlockFPS", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.UnlockFPS.ToString()));
 			myXml.WriteString("Misc", "ShowNpcBar", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ShowNpcBar.ToString()));
 			
 			myXml.CloseXml(true);
@@ -324,6 +327,7 @@ namespace Engine
 			
 			C_Types.Options.ScreenSize = byte.Parse(myXml.ReadString("Misc", "ScreenSize", "0"));
 			C_Types.Options.HighEnd = (byte) (Conversion.Val(myXml.ReadString("Misc", "HighEnd", "0")));
+			C_Types.Options.UnlockFPS = (byte) (Conversion.Val(myXml.ReadString("Misc", "UnlockFPS", "0")));
 			C_Types.Options.ShowNpcBar = (byte) (Conversion.Val(myXml.ReadString("Misc", "ShowNpcBar", "1")));
 			myXml.CloseXml(true);
 			

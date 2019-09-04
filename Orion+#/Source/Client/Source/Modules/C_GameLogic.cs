@@ -19,8 +19,24 @@ namespace Engine
 	sealed class C_GameLogic
 	{
 		internal static Random GameRand = new Random();
-		
-		public static void GameLoop()
+
+        private static int lastTick;
+        private static int lastFrameRate;
+        private static int frameRate;
+
+        public static int CalculateFrameRate()
+        {
+            if (System.Environment.TickCount - lastTick >= 1000)
+            {
+                lastFrameRate = frameRate;
+                frameRate = 0;
+                lastTick = System.Environment.TickCount;
+            }
+            frameRate++;
+            return lastFrameRate;
+        }
+
+        public static void GameLoop()
 		{
 			int i = 0;
             Point dest = new Point((Size)FrmGame.Default.PointToScreen(FrmGame.Default.picscreen.Location));
@@ -98,18 +114,15 @@ namespace Engine
 					
 					frameTime = tick;
 					C_UpdateUI.Frmmaingamevisible = true;
-					
-					//Calculate FPS
-					if (starttime < tick)
+
+                    //Calculate FPS
+                    if (starttime < tick)
 					{
-						C_Variables.Fps = tmpfps;
 						C_Variables.Lps = tmplps;
-						tmpfps = 0;
 						tmplps = 0;
 						starttime = tick + 1000;
 					}
 					tmplps++;
-					tmpfps++;
 					
 					// Update inv animation
 					if (C_Graphics.NumItems > 0)
@@ -500,9 +513,10 @@ namespace Engine
 					fadetmr = tick + 30;
 				}
 				
-				if (rendercount < tick)
+				if (rendercount < tick || C_Types.Options.UnlockFPS == 1)
 				{
                     //Actual Game Loop Stuff :/
+                    C_Variables.Fps = CalculateFrameRate();
                     C_Graphics.Render_Graphics();
 					tmplps++;
 					rendercount = tick + 16;

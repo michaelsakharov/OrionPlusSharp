@@ -25,6 +25,7 @@ namespace Engine
 		public int Port;
 		public byte ScreenSize;
 		public byte HighEnd;
+		public byte UnlockFPS;
 		public byte ShowNpcBar;
 	}
 }
