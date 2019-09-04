@@ -143,7 +143,7 @@ namespace Engine
                 {
                     PlayWeatherSound("Rain.ogg", true);
                 }
-                //Add a new particle
+                //Setup a particle
                 for (i = 1; i <= MaxWeatherParticles; i++)
                 {
                     if (WeatherParticle[i].InUse == 0)
