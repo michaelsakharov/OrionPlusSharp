@@ -1901,10 +1901,10 @@ namespace Engine
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label21.Location = new System.Drawing.Point(32, 160);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label21.Location = new System.Drawing.Point(3, 160);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(167, 9);
+            this.label21.Size = new System.Drawing.Size(232, 13);
             this.label21.TabIndex = 10;
             this.label21.Text = "A Value above 0 Overwrites the Day/Night cycle";
             // 
