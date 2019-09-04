@@ -300,7 +300,7 @@ namespace Engine
 				TileSetTextureInfo[index].width = (int)TileSetTexture[index].Size.X;
 				TileSetTextureInfo[index].height = (int)TileSetTexture[index].Size.Y;
 				TileSetTextureInfo[index].IsLoaded = true;
-				TileSetTextureInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				TileSetTextureInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 2) //characters
@@ -318,7 +318,7 @@ namespace Engine
 				CharacterGFXInfo[index].width = (int)CharacterGFX[index].Size.X;
 				CharacterGFXInfo[index].height = (int)CharacterGFX[index].Size.Y;
 				CharacterGFXInfo[index].IsLoaded = true;
-				CharacterGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				CharacterGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 3) //paperdoll
@@ -336,7 +336,7 @@ namespace Engine
 				PaperDollGFXInfo[index].width = (int)PaperDollGFX[index].Size.X;
 				PaperDollGFXInfo[index].height = (int)PaperDollGFX[index].Size.Y;
 				PaperDollGFXInfo[index].IsLoaded = true;
-				PaperDollGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				PaperDollGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 4) //items
@@ -354,7 +354,7 @@ namespace Engine
 				ItemsGFXInfo[index].width = (int)ItemsGFX[index].Size.X;
 				ItemsGFXInfo[index].height = (int)ItemsGFX[index].Size.Y;
 				ItemsGFXInfo[index].IsLoaded = true;
-				ItemsGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				ItemsGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 5) //resources
@@ -372,7 +372,7 @@ namespace Engine
                 ResourcesGFXInfo[index].width = (int)ResourcesGFX[index].Size.X;
                 ResourcesGFXInfo[index].height = (int)ResourcesGFX[index].Size.Y;
                 ResourcesGFXInfo[index].IsLoaded = true;
-                ResourcesGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+                ResourcesGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 6) //animations
@@ -390,7 +390,7 @@ namespace Engine
                 AnimationsGFXInfo[index].width = (int)AnimationsGFX[index].Size.X;
                 AnimationsGFXInfo[index].height = (int)AnimationsGFX[index].Size.Y;
                 AnimationsGFXInfo[index].IsLoaded = true;
-                AnimationsGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+                AnimationsGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 7) //faces
@@ -408,7 +408,7 @@ namespace Engine
                 FacesGFXInfo[index].width = (int)FacesGFX[index].Size.X;
                 FacesGFXInfo[index].height = (int)FacesGFX[index].Size.Y;
                 FacesGFXInfo[index].IsLoaded = true;
-                FacesGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+                FacesGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 8) //fogs
@@ -426,7 +426,7 @@ namespace Engine
                 FogGFXInfo[index].width = (int)FogGFX[index].Size.X;
                 FogGFXInfo[index].height = (int)FogGFX[index].Size.Y;
                 FogGFXInfo[index].IsLoaded = true;
-                FogGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+                FogGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 			}
 			else if (TexType == 9) //skill icons
@@ -444,7 +444,7 @@ namespace Engine
                 SkillIconsGFXInfo[index].width = (int)SkillIconsGFX[index].Size.X;
                 SkillIconsGFXInfo[index].height = (int)SkillIconsGFX[index].Size.Y;
                 SkillIconsGFXInfo[index].IsLoaded = true;
-                SkillIconsGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+                SkillIconsGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			}
 			else if (TexType == 10) //furniture
 			{
@@ -461,7 +461,7 @@ namespace Engine
 				FurnitureGFXInfo[index].width = (int)FurnitureGFX[index].Size.X;
 				FurnitureGFXInfo[index].height = (int)FurnitureGFX[index].Size.Y;
 				FurnitureGFXInfo[index].IsLoaded = true;
-				FurnitureGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				FurnitureGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			}
 			else if (TexType == 11) //projectiles
 			{
@@ -478,7 +478,7 @@ namespace Engine
 				ProjectileGFXInfo[index].width = (int)ProjectileGFX[index].Size.X;
 				ProjectileGFXInfo[index].height = (int)ProjectileGFX[index].Size.Y;
 				ProjectileGFXInfo[index].IsLoaded = true;
-				ProjectileGFXInfo[index].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				ProjectileGFXInfo[index].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			}
 			
 		}
@@ -634,7 +634,7 @@ namespace Engine
 			}
 			
 			// Check to see if we want to stop making him attack
-			if (E_Types.MapNpc[MapNpcNum].AttackTimer + attackspeed < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+			if (E_Types.MapNpc[MapNpcNum].AttackTimer + attackspeed < (int)(ClientDataBase.GetTickCount()))
 			{
 				E_Types.MapNpc[MapNpcNum].Attacking = (byte) 0;
 				E_Types.MapNpc[MapNpcNum].AttackTimer = 0;
@@ -658,16 +658,16 @@ namespace Engine
 				spriteleft = 1;
 			}
 			
-			srcrec = new Rectangle(System.Convert.ToInt32((anim) * ((double) CharacterGFXInfo[Sprite].width / 4)), System.Convert.ToInt32(spriteleft * ((double) CharacterGFXInfo[Sprite].height / 4)), System.Convert.ToInt32((double) CharacterGFXInfo[Sprite].width / 4), System.Convert.ToInt32((double) CharacterGFXInfo[Sprite].height / 4));
+			srcrec = new Rectangle((int)((anim) * ((double) CharacterGFXInfo[Sprite].width / 4)), (int)(spriteleft * ((double) CharacterGFXInfo[Sprite].height / 4)), (int)((double) CharacterGFXInfo[Sprite].width / 4), (int)((double) CharacterGFXInfo[Sprite].height / 4));
 			
 			// Calculate the X
-			X = System.Convert.ToInt32(E_Types.MapNpc[MapNpcNum].X * E_Globals.PIC_X + E_Types.MapNpc[MapNpcNum].XOffset - (((double) CharacterGFXInfo[Sprite].width / 4 - 32) / 2));
+			X = (int)(E_Types.MapNpc[MapNpcNum].X * E_Globals.PIC_X + E_Types.MapNpc[MapNpcNum].XOffset - (((double) CharacterGFXInfo[Sprite].width / 4 - 32) / 2));
 			
 			// Is the player's height more than 32..
 			if (((double) CharacterGFXInfo[Sprite].height / 4) > 32)
 			{
 				// Create a 32 pixel offset for larger sprites
-				Y = System.Convert.ToInt32(E_Types.MapNpc[MapNpcNum].Y * E_Globals.PIC_Y + E_Types.MapNpc[MapNpcNum].YOffset - (((double) CharacterGFXInfo[Sprite].height / 4) - 32));
+				Y = (int)(E_Types.MapNpc[MapNpcNum].Y * E_Globals.PIC_Y + E_Types.MapNpc[MapNpcNum].YOffset - (((double) CharacterGFXInfo[Sprite].height / 4) - 32));
 			}
 			else
 			{
@@ -675,7 +675,7 @@ namespace Engine
 				Y = E_Types.MapNpc[MapNpcNum].Y * E_Globals.PIC_Y + E_Types.MapNpc[MapNpcNum].YOffset;
 			}
 			
-			destrec = new Rectangle(X, Y, System.Convert.ToInt32((double) CharacterGFXInfo[Sprite].width / 4), System.Convert.ToInt32((double) CharacterGFXInfo[Sprite].height / 4));
+			destrec = new Rectangle(X, Y, (int)((double) CharacterGFXInfo[Sprite].width / 4), (int)((double) CharacterGFXInfo[Sprite].height / 4));
 			
 			DrawCharacter(Sprite, X, Y, srcrec);
 			
@@ -708,7 +708,7 @@ namespace Engine
 			}
 			
 			//seeying we still use it, lets update timer
-			ResourcesGFXInfo[Resource].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+			ResourcesGFXInfo[Resource].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			
 			RenderSprite(ResourcesSprite[Resource], GameWindow, X, Y, rec.X, rec.Y, rec.Width, rec.Height);
 		}
@@ -768,7 +768,7 @@ namespace Engine
 			rec.Width = ResourcesGFXInfo[Resource_sprite].width;
 			
 			// Set base x + y, then the offset due to size
-			X = System.Convert.ToInt32((E_Globals.MapResource[Resource_num].X * E_Globals.PIC_X) - ((double) ResourcesGFXInfo[Resource_sprite].width / 2) + 16);
+			X = (int)((E_Globals.MapResource[Resource_num].X * E_Globals.PIC_X) - ((double) ResourcesGFXInfo[Resource_sprite].width / 2) + 16);
 			Y = (E_Globals.MapResource[Resource_num].Y * E_Globals.PIC_Y) - ResourcesGFXInfo[Resource_sprite].height + 32;
 			
 			DrawResource(Resource_sprite, X, Y, rec);
@@ -795,7 +795,7 @@ namespace Engine
 			}
 			
 			//seeying we still use it, lets update timer
-			ItemsGFXInfo[PicNum].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+			ItemsGFXInfo[PicNum].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			
 			if (E_Types.MapItem[itemnum].X < E_Globals.TileView.Left || E_Types.MapItem[itemnum].X > E_Globals.TileView.Right)
 			{
@@ -843,7 +843,7 @@ namespace Engine
 				}
 				
 				//seeying we still use it, lets update timer
-				CharacterGFXInfo[Sprite].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				CharacterGFXInfo[Sprite].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 				X = ConvertMapX(x2);
 				y = ConvertMapY(y2);
@@ -880,14 +880,14 @@ namespace Engine
 				{
 					if (TileSetTextureInfo[E_Types.Map.Tile[X, Y].Layer[i].Tileset].IsLoaded == false)
 					{
-						LoadTexture(System.Convert.ToInt32(E_Types.Map.Tile[X, Y].Layer[i].Tileset), (byte) 1);
+						LoadTexture((int)(E_Types.Map.Tile[X, Y].Layer[i].Tileset), (byte) 1);
 					}
 					// we use it, lets update timer
-					TileSetTextureInfo[i].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+					TileSetTextureInfo[i].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 					if (E_AutoTiles.Autotile[X, Y].Layer[i].renderState == E_AutoTiles.RENDER_STATE_NORMAL)
 					{
-						srcrect.X = System.Convert.ToInt32(E_Types.Map.Tile[X, Y].Layer[i].X * 32);
-						srcrect.Y = System.Convert.ToInt32(E_Types.Map.Tile[X, Y].Layer[i].Y * 32);
+						srcrect.X = (int)(E_Types.Map.Tile[X, Y].Layer[i].X * 32);
+						srcrect.Y = (int)(E_Types.Map.Tile[X, Y].Layer[i].Y * 32);
 						srcrect.Width = 32;
 						srcrect.Height = 32;
 						
@@ -930,17 +930,17 @@ namespace Engine
 				{
 					if (TileSetTextureInfo[E_Types.Map.Tile[X, Y].Layer[i].Tileset].IsLoaded == false)
 					{
-						LoadTexture(System.Convert.ToInt32(E_Types.Map.Tile[X, Y].Layer[i].Tileset), (byte) 1);
+						LoadTexture((int)(E_Types.Map.Tile[X, Y].Layer[i].Tileset), (byte) 1);
 					}
 					
 					// we use it, lets update timer
-					TileSetTextureInfo[E_Types.Map.Tile[X, Y].Layer[i].Tileset].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+					TileSetTextureInfo[E_Types.Map.Tile[X, Y].Layer[i].Tileset].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 					
 					// render
 					if (E_AutoTiles.Autotile[X, Y].Layer[i].renderState == E_AutoTiles.RENDER_STATE_NORMAL)
 					{
-						srcrect.X = System.Convert.ToInt32(E_Types.Map.Tile[X, Y].Layer[i].X * 32);
-						srcrect.Y = System.Convert.ToInt32(E_Types.Map.Tile[X, Y].Layer[i].Y * 32);
+						srcrect.X = (int)(E_Types.Map.Tile[X, Y].Layer[i].X * 32);
+						srcrect.Y = (int)(E_Types.Map.Tile[X, Y].Layer[i].Y * 32);
 						srcrect.Width = 32;
 						srcrect.Height = 32;
 						
@@ -1090,7 +1090,7 @@ namespace Engine
 			{
 				if (TileSetTextureInfo[(int) I].IsLoaded)
 				{
-					if (TileSetTextureInfo[(int) I].TextureTimer < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+					if (TileSetTextureInfo[(int) I].TextureTimer < (int)(ClientDataBase.GetTickCount()))
 					{
 						TileSetTexture[(int) I].Dispose();
 						TileSetTextureInfo[(int) I].IsLoaded = false;
@@ -1104,7 +1104,7 @@ namespace Engine
 			{
 				if (CharacterGFXInfo[(int) I].IsLoaded)
 				{
-					if (CharacterGFXInfo[(int) I].TextureTimer < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+					if (CharacterGFXInfo[(int) I].TextureTimer < (int)(ClientDataBase.GetTickCount()))
 					{
 						CharacterGFX[(int) I].Dispose();
 						CharacterGFXInfo[(int) I].IsLoaded = false;
@@ -1118,7 +1118,7 @@ namespace Engine
 			{
 				if (PaperDollGFXInfo[(int) I].IsLoaded)
 				{
-					if (PaperDollGFXInfo[(int) I].TextureTimer < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+					if (PaperDollGFXInfo[(int) I].TextureTimer < (int)(ClientDataBase.GetTickCount()))
 					{
 						PaperDollGFX[(int) I].Dispose();
 						PaperDollGFXInfo[(int) I].IsLoaded = false;
@@ -1132,7 +1132,7 @@ namespace Engine
 			{
 				if (ItemsGFXInfo[(int) I].IsLoaded)
 				{
-					if (ItemsGFXInfo[(int) I].TextureTimer < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+					if (ItemsGFXInfo[(int) I].TextureTimer < (int)(ClientDataBase.GetTickCount()))
 					{
 						ItemsGFX[(int) I].Dispose();
 						ItemsGFXInfo[(int) I].IsLoaded = false;
@@ -1146,7 +1146,7 @@ namespace Engine
 			{
 				if (ResourcesGFXInfo[(int) I].IsLoaded)
 				{
-					if (ResourcesGFXInfo[(int) I].TextureTimer < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+					if (ResourcesGFXInfo[(int) I].TextureTimer < (int)(ClientDataBase.GetTickCount()))
 					{
 						ResourcesGFX[(int) I].Dispose();
 						ResourcesGFXInfo[(int) I].IsLoaded = false;
@@ -1160,7 +1160,7 @@ namespace Engine
 			{
 				if (FacesGFXInfo[(int) I].IsLoaded)
 				{
-					if (FacesGFXInfo[(int) I].TextureTimer < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+					if (FacesGFXInfo[(int) I].TextureTimer < (int)(ClientDataBase.GetTickCount()))
 					{
 						FacesGFX[(int) I].Dispose();
 						FacesGFXInfo[(int) I].IsLoaded = false;
@@ -1426,7 +1426,7 @@ namespace Engine
 		
 		public static void DrawMapName()
 		{
-			E_Text.DrawText(System.Convert.ToInt32(E_Globals.DrawMapNameX), System.Convert.ToInt32(E_Globals.DrawMapNameY), E_Types.Map.Name, E_Globals.DrawMapNameColor, SFML.Graphics.Color.Black, GameWindow);
+			E_Text.DrawText((int)(E_Globals.DrawMapNameX), (int)(E_Globals.DrawMapNameY), E_Types.Map.Name, E_Globals.DrawMapNameColor, SFML.Graphics.Color.Black, GameWindow);
 		}
 		
 		internal static void DrawDoor(int X, int Y)
@@ -1439,7 +1439,7 @@ namespace Engine
 			// sort out animation
 			if (E_Types.TempTile[X, Y].DoorAnimate == 1) // opening
 			{
-				if (E_Types.TempTile[X, Y].DoorTimer + 100 < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+				if (E_Types.TempTile[X, Y].DoorTimer + 100 < (int)(ClientDataBase.GetTickCount()))
 				{
 					if (E_Types.TempTile[X, Y].DoorFrame < 4)
 					{
@@ -1449,12 +1449,12 @@ namespace Engine
 					{
 						E_Types.TempTile[X, Y].DoorAnimate = (byte) 2; // set to closing
 					}
-					E_Types.TempTile[X, Y].DoorTimer = System.Convert.ToInt32(ClientDataBase.GetTickCount());
+					E_Types.TempTile[X, Y].DoorTimer = (int)(ClientDataBase.GetTickCount());
 				}
 			}
 			else if (E_Types.TempTile[X, Y].DoorAnimate == 2) // closing
 			{
-				if (E_Types.TempTile[X, Y].DoorTimer + 100 < System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+				if (E_Types.TempTile[X, Y].DoorTimer + 100 < (int)(ClientDataBase.GetTickCount()))
 				{
 					if (E_Types.TempTile[X, Y].DoorFrame > 1)
 					{
@@ -1464,7 +1464,7 @@ namespace Engine
 					{
 						E_Types.TempTile[X, Y].DoorAnimate = (byte) 0; // end animation
 					}
-					E_Types.TempTile[X, Y].DoorTimer = System.Convert.ToInt32(ClientDataBase.GetTickCount());
+					E_Types.TempTile[X, Y].DoorTimer = (int)(ClientDataBase.GetTickCount());
 				}
 			}
 			
@@ -1475,11 +1475,11 @@ namespace Engine
 			
 			rec.Y = 0;
 			rec.Height = DoorGFXInfo.height;
-			rec.X = System.Convert.ToInt32((E_Types.TempTile[X, Y].DoorFrame - 1) * DoorGFXInfo.width / 4);
-			rec.Width = System.Convert.ToInt32((double) DoorGFXInfo.width / 4);
+			rec.X = (int)((E_Types.TempTile[X, Y].DoorFrame - 1) * DoorGFXInfo.width / 4);
+			rec.Width = (int)((double) DoorGFXInfo.width / 4);
 			
 			x2 = X * E_Globals.PIC_X;
-			y2 = System.Convert.ToInt32((Y * E_Globals.PIC_Y) - ((double) DoorGFXInfo.height / 2) + 4);
+			y2 = (int)((Y * E_Globals.PIC_Y) - ((double) DoorGFXInfo.height / 2) + 4);
 			
 			RenderSprite(DoorSprite, GameWindow, ConvertMapX(X * E_Globals.PIC_X), ConvertMapY(Y * E_Globals.PIC_Y), rec.X, rec.Y, rec.Width, rec.Height);
 		}
@@ -1524,7 +1524,7 @@ namespace Engine
 					LoadTexture(frmMapEditor.Default.cmbTileSets.SelectedIndex + 1, (byte) 1);
 				}
 				// we use it, lets update timer
-				TileSetTextureInfo[frmMapEditor.Default.cmbTileSets.SelectedIndex + 1].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				TileSetTextureInfo[frmMapEditor.Default.cmbTileSets.SelectedIndex + 1].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 				if (E_Globals.EditorTileWidth == 1 && E_Globals.EditorTileHeight == 1)
 				{
@@ -1563,14 +1563,14 @@ namespace Engine
 				for (var y = E_Globals.TileView.Top; y <= E_Globals.TileView.Bottom; y++) // - 1
 				{
 					
-					if (IsValidMapPoint(System.Convert.ToInt32(x), System.Convert.ToInt32(y)))
+					if (IsValidMapPoint((int)(x), (int)(y)))
 					{
 						
 						rec.OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.White);
 						rec.OutlineThickness = (float) (0.6F);
 						rec.FillColor = new SFML.Graphics.Color(SFML.Graphics.Color.Transparent);
 						rec.Size = new Vector2f(System.Convert.ToSingle(x * E_Globals.PIC_X), System.Convert.ToSingle(y * E_Globals.PIC_X));
-						rec.Position = new Vector2f(ConvertMapX(System.Convert.ToInt32((x - 1) * E_Globals.PIC_X)), ConvertMapY(System.Convert.ToInt32((y - 1) * E_Globals.PIC_Y)));
+						rec.Position = new Vector2f(ConvertMapX((int)((x - 1) * E_Globals.PIC_X)), ConvertMapY((int)((y - 1) * E_Globals.PIC_Y)));
 						
 						GameWindow.Draw(rec);
 					}
@@ -1624,7 +1624,7 @@ namespace Engine
 				LoadTexture(tileset, (byte) 1);
 			}
 			// we use it, lets update timer
-			TileSetTextureInfo[tileset].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+			TileSetTextureInfo[tileset].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			
 			height = TileSetTextureInfo[tileset].height;
 			width = TileSetTextureInfo[tileset].width;
@@ -1905,8 +1905,8 @@ namespace Engine
 			
 			if (File.Exists(Application.StartupPath + E_Globals.GFX_PATH + "characters\\" + System.Convert.ToString(Sprite) + E_Globals.GFX_EXT))
 			{
-				frmNPC.Default.picSprite.Width = System.Convert.ToInt32((double) System.Drawing.Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "characters\\" + System.Convert.ToString(Sprite) + E_Globals.GFX_EXT).Width / 4);
-				frmNPC.Default.picSprite.Height = System.Convert.ToInt32((double) System.Drawing.Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "characters\\" + System.Convert.ToString(Sprite) + E_Globals.GFX_EXT).Height / 4);
+				frmNPC.Default.picSprite.Width = (int)((double) System.Drawing.Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "characters\\" + System.Convert.ToString(Sprite) + E_Globals.GFX_EXT).Width / 4);
+				frmNPC.Default.picSprite.Height = (int)((double) System.Drawing.Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "characters\\" + System.Convert.ToString(Sprite) + E_Globals.GFX_EXT).Height / 4);
 				frmNPC.Default.picSprite.BackgroundImage = System.Drawing.Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "characters\\" + System.Convert.ToString(Sprite) + E_Globals.GFX_EXT);
 			}
 		}
@@ -1966,7 +1966,7 @@ namespace Engine
 			}
 			
 			//seeying we still use it, lets update timer
-			SkillIconsGFXInfo[iconnum].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+			SkillIconsGFXInfo[iconnum].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 			
 			sRECT.Y = 0;
 			sRECT.Height = E_Globals.PIC_Y;
@@ -2009,7 +2009,7 @@ namespace Engine
 				}
 				
 				//seeying we still use it, lets update timer
-				AnimationsGFXInfo[Animationnum].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				AnimationsGFXInfo[Animationnum].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 				looptime = (int) FrmAnimation.Default.nudLoopTime0.Value;
 				FrameCount = (int) FrmAnimation.Default.nudFrameCount0.Value;
@@ -2017,7 +2017,7 @@ namespace Engine
 				ShouldRender = false;
 				
 				// check if we need to render new frame
-				if (E_Globals.AnimEditorTimer[0] + looptime <= System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+				if (E_Globals.AnimEditorTimer[0] + looptime <= (int)(ClientDataBase.GetTickCount()))
 				{
 					// check if out of range
 					if (E_Globals.AnimEditorFrame[0] >= FrameCount)
@@ -2028,7 +2028,7 @@ namespace Engine
 					{
 						E_Globals.AnimEditorFrame[0] = E_Globals.AnimEditorFrame[0] + 1;
 					}
-					E_Globals.AnimEditorTimer[0] = System.Convert.ToInt32(ClientDataBase.GetTickCount());
+					E_Globals.AnimEditorTimer[0] = (int)(ClientDataBase.GetTickCount());
 					ShouldRender = true;
 				}
 				
@@ -2074,7 +2074,7 @@ namespace Engine
 				}
 				
 				//seeying we still use it, lets update timer
-				AnimationsGFXInfo[Animationnum].TextureTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 100000);
+				AnimationsGFXInfo[Animationnum].TextureTimer = (int)((int)(ClientDataBase.GetTickCount()) + 100000);
 				
 				looptime = (int) FrmAnimation.Default.nudLoopTime1.Value;
 				FrameCount = (int) FrmAnimation.Default.nudFrameCount1.Value;
@@ -2082,7 +2082,7 @@ namespace Engine
 				ShouldRender = false;
 				
 				// check if we need to render new frame
-				if (E_Globals.AnimEditorTimer[1] + looptime <= System.Convert.ToInt32(ClientDataBase.GetTickCount()))
+				if (E_Globals.AnimEditorTimer[1] + looptime <= (int)(ClientDataBase.GetTickCount()))
 				{
 					// check if out of range
 					if (E_Globals.AnimEditorFrame[1] >= FrameCount)
@@ -2093,7 +2093,7 @@ namespace Engine
 					{
 						E_Globals.AnimEditorFrame[1] = E_Globals.AnimEditorFrame[1] + 1;
 					}
-					E_Globals.AnimEditorTimer[1] = System.Convert.ToInt32(ClientDataBase.GetTickCount());
+					E_Globals.AnimEditorTimer[1] = (int)(ClientDataBase.GetTickCount());
 					ShouldRender = true;
 				}
 				
@@ -2129,7 +2129,7 @@ namespace Engine
 		{
 			Graphics g = Graphics.FromImage(new Bitmap(1, 1));
 			int width = 0;
-			width = System.Convert.ToInt32(g.MeasureString(E_Types.Map.Name.Trim(), new System.Drawing.Font(E_Globals.FONT_NAME, E_Globals.FONT_SIZE, FontStyle.Bold, GraphicsUnit.Pixel)).Width);
+			width = (int)(g.MeasureString(E_Types.Map.Name.Trim(), new System.Drawing.Font(E_Globals.FONT_NAME, E_Globals.FONT_SIZE, FontStyle.Bold, GraphicsUnit.Pixel)).Width);
 			E_Globals.DrawMapNameX = (float) (((double) (E_Globals.SCREEN_MAPX + 1) * E_Globals.PIC_X / 2) - width + 32);
 			E_Globals.DrawMapNameY = 1;
 			
