@@ -51,8 +51,10 @@ namespace Engine
 		}
 		
 		static void defaultInstance_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
-		{
-			defaultInstance = null;
+        {
+            E_Sound.StopMusic();
+            E_Sound.StopPreview();
+            defaultInstance = null;
 		}
 		
 #endregion
@@ -103,13 +105,17 @@ namespace Engine
 		}
 		
 		public void FrmEditor_MapEditor_Closing(object sender, CancelEventArgs e)
-		{
-			E_Editors.MapEditorCancel();
+        {
+            E_Sound.StopMusic();
+            E_Sound.StopPreview();
+            E_Editors.MapEditorCancel();
 		}
 		
 		public void FrmEditor_MapEditor_Closed(object sender, EventArgs e)
-		{
-			E_Editors.MapEditorCancel();
+        {
+            E_Sound.StopMusic();
+            E_Sound.StopPreview();
+            E_Editors.MapEditorCancel();
 		}
 		
 		public void PicBackSelect_MouseDown(object sender, MouseEventArgs e)
@@ -251,14 +257,18 @@ namespace Engine
 		
 		public void TsbSave_Click(object sender, EventArgs e)
 		{
-			E_Globals.HideCursor = true;
+            E_Sound.StopMusic();
+            E_Sound.StopPreview();
+            E_Globals.HideCursor = true;
 			E_Globals.ScreenShotTimer = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 500);
 			E_Globals.MakeCache = true;
 		}
 		
 		public void TsbDiscard_Click(object sender, EventArgs e)
-		{
-			E_Editors.MapEditorCancel();
+        {
+            E_Sound.StopMusic();
+            E_Sound.StopPreview();
+            E_Editors.MapEditorCancel();
 		}
 		
 		public void TsbMapGrid_Click(object sender, EventArgs e)
