@@ -2375,13 +2375,20 @@ namespace Engine
 					}
 				}
 			}
-			
-			DrawNight();
 
-            DrawMapTint();
+
+
+            if (C_Weather.CurrentFog > 0)
+            {
+                C_Weather.DrawFog();
+            }
 
             C_Weather.DrawWeather();
-			C_Weather.DrawThunderEffect();
+            C_Weather.DrawThunderEffect();
+            
+            DrawMapTint();
+
+            DrawNight();
 			
 			// Draw out a square at mouse cursor
 			if (C_Constants.MapGrid == true && C_Constants.InMapEditor)
@@ -2457,11 +2464,6 @@ namespace Engine
 				{
 					C_Text.DrawNpcName(I);
 				}
-			}
-			
-			if (C_Weather.CurrentFog > 0)
-			{
-				C_Weather.DrawFog();
 			}
 			
 			// draw the messages

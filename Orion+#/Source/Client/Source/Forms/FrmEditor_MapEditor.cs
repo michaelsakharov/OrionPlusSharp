@@ -84,6 +84,11 @@ namespace Engine
             scrlMapAlpha.Value = C_Maps.Map.MapTintA;
 
             scrlFog.Maximum = C_Graphics.NumFogs;
+            scrlFog.Value = C_Maps.Map.Fogindex;
+            scrlFogSpeed.Value = C_Maps.Map.FogSpeed;
+            lblFogSpeed.Text = "Fog Speed: " + C_Maps.Map.FogSpeed;
+            scrlFogAlpha.Value = C_Maps.Map.FogAlpha;
+            lblFogAlpha.Text = "Fog Alpha: " + C_Maps.Map.FogAlpha;
 
             TopMost = true;
         }
@@ -761,7 +766,7 @@ namespace Engine
         public void ScrlFogSpeed_Scroll(object sender, EventArgs e)
         {
             C_Maps.Map.FogSpeed = System.Convert.ToByte(scrlFogSpeed.Value);
-            lblFogSpeed.Text = "FogSpeed: " + scrlFogSpeed.Value;
+            lblFogSpeed.Text = "Fog Speed: " + scrlFogSpeed.Value;
         }
 
         public void ScrlFogAlpha_Scroll(object sender, EventArgs e)
@@ -1277,9 +1282,9 @@ namespace Engine
                     // see if it hits an arrow
                     for (i = 1; i <= 4; i++)
                     {
-                        if (X >= C_Variables.DirArrowX[i] && X <= C_Variables.DirArrowX[i] + 8)
+                        if (X >= C_Variables.DirArrowX[i] && X <= C_Variables.DirArrowX[i] + 26)
                         {
-                            if (Y >= C_Variables.DirArrowY[i] && Y <= C_Variables.DirArrowY[i] + 8)
+                            if (Y >= C_Variables.DirArrowY[i] && Y <= C_Variables.DirArrowY[i] + 26)
                             {
                                 // flip the value.
                                 C_GameLogic.SetDirBlock(ref C_Maps.Map.Tile[C_Variables.CurX, C_Variables.CurY].DirBlock, (byte)(i), !C_GameLogic.IsDirBlocked(C_Maps.Map.Tile[C_Variables.CurX, C_Variables.CurY].DirBlock, (byte)(i)));

@@ -144,10 +144,13 @@ namespace Engine
 			// set values for directional blocking arrows
 			C_Variables.DirArrowX[1] = (byte) 12; // up
 			C_Variables.DirArrowY[1] = (byte) 0;
+
 			C_Variables.DirArrowX[2] = (byte) 12; // down
 			C_Variables.DirArrowY[2] = (byte) 23;
+
 			C_Variables.DirArrowX[3] = (byte) 0; // left
 			C_Variables.DirArrowY[3] = (byte) 12;
+
 			C_Variables.DirArrowX[4] = (byte) 23; // right
 			C_Variables.DirArrowY[4] = (byte) 12;
 			
