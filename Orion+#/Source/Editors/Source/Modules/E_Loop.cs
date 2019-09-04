@@ -248,7 +248,7 @@ namespace Engine
 			E_Types.Options.SavePass = bool.Parse(myXml.ReadString("UserInfo", "SavePass", "False"));
 			
 			E_Types.Options.IP = myXml.ReadString("Connection", "Ip", "127.0.0.1");
-			E_Types.Options.Port = System.Convert.ToInt32(Conversion.Val(myXml.ReadString("Connection", "Port", "7001")));
+			E_Types.Options.Port = (int)(Conversion.Val(myXml.ReadString("Connection", "Port", "7001")));
 			
 			E_Types.Options.MenuMusic = myXml.ReadString("Sfx", "MenuMusic", "");
 			E_Types.Options.Music = byte.Parse(myXml.ReadString("Sfx", "Music", "1"));
@@ -275,7 +275,7 @@ namespace Engine
 			int tmpfps = 0;
 			int rendercount = 0;
 			
-			starttime = System.Convert.ToInt32(ClientDataBase.GetTickCount());
+			starttime = ClientDataBase.GetTickCount();
 			
 			do
 			{
@@ -288,7 +288,7 @@ namespace Engine
 				
 				if (E_Globals.GameStarted == true)
 				{
-					Tick = System.Convert.ToInt32(ClientDataBase.GetTickCount());
+					Tick = ClientDataBase.GetTickCount();
 					
 					// update animation editor
 					if (E_Globals.Editor == E_Globals.EDITOR_ANIMATION)
@@ -305,9 +305,9 @@ namespace Engine
 						{
 							E_Globals.FPS = tmpfps;
 							
-							frmMapEditor.Default.tsCurFps.Text = "Current FPS: " + System.Convert.ToString(E_Globals.FPS);
+							frmMapEditor.Default.tsCurFps.Text = "Current FPS: " + E_Globals.FPS;
 							tmpfps = 0;
-							starttime = System.Convert.ToInt32(System.Convert.ToInt32(ClientDataBase.GetTickCount()) + 1000);
+							starttime = (ClientDataBase.GetTickCount() + 1000);
 						}
 						tmpfps++;
 						
