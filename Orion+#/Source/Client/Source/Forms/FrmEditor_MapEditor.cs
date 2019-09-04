@@ -77,7 +77,11 @@ namespace Engine
             scrlBrightness.Value = C_Maps.Map.Brightness;
             lblBrightness.Text = "Brightness: " + scrlBrightness.Value;
 
-
+            chkUseTint.Checked = Convert.ToBoolean(C_Maps.Map.HasMapTint);
+            scrlMapRed.Value = C_Maps.Map.MapTintR;
+            scrlMapGreen.Value = C_Maps.Map.MapTintG;
+            scrlMapBlue.Value = C_Maps.Map.MapTintB;
+            scrlMapAlpha.Value = C_Maps.Map.MapTintA;
 
             scrlFog.Maximum = C_Graphics.NumFogs;
 
