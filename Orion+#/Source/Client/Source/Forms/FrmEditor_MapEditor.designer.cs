@@ -196,6 +196,9 @@ namespace Engine
             this.scrlMapGreen = new System.Windows.Forms.HScrollBar();
             this.scrlMapRed = new System.Windows.Forms.HScrollBar();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.scrlBrightness = new System.Windows.Forms.HScrollBar();
+            this.lblBrightness = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.scrlFogAlpha = new System.Windows.Forms.HScrollBar();
             this.lblFogAlpha = new System.Windows.Forms.Label();
             this.scrlFogSpeed = new System.Windows.Forms.HScrollBar();
@@ -206,9 +209,6 @@ namespace Engine
             this.lblFogIndex = new System.Windows.Forms.Label();
             this.Label14 = new System.Windows.Forms.Label();
             this.cmbWeather = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lblBrightness = new System.Windows.Forms.Label();
-            this.scrlBrightness = new System.Windows.Forms.HScrollBar();
             this.pnlBack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBackSelect)).BeginInit();
             this.pnlAttributes.SuspendLayout();
@@ -1879,6 +1879,35 @@ namespace Engine
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Map Weather";
             // 
+            // scrlBrightness
+            // 
+            this.scrlBrightness.LargeChange = 1;
+            this.scrlBrightness.Location = new System.Drawing.Point(88, 178);
+            this.scrlBrightness.Maximum = 255;
+            this.scrlBrightness.Name = "scrlBrightness";
+            this.scrlBrightness.Size = new System.Drawing.Size(145, 17);
+            this.scrlBrightness.TabIndex = 12;
+            this.scrlBrightness.ValueChanged += new System.EventHandler(this.ScrlFBrightness_Scroll);
+            // 
+            // lblBrightness
+            // 
+            this.lblBrightness.AutoSize = true;
+            this.lblBrightness.Location = new System.Drawing.Point(6, 179);
+            this.lblBrightness.Name = "lblBrightness";
+            this.lblBrightness.Size = new System.Drawing.Size(80, 13);
+            this.lblBrightness.TabIndex = 11;
+            this.lblBrightness.Text = "Brightness: 255";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label21.Location = new System.Drawing.Point(32, 160);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(167, 9);
+            this.label21.TabIndex = 10;
+            this.label21.Text = "A Value above 0 Overwrites the Day/Night cycle";
+            // 
             // scrlFogAlpha
             // 
             this.scrlFogAlpha.LargeChange = 1;
@@ -1977,35 +2006,6 @@ namespace Engine
             this.cmbWeather.Size = new System.Drawing.Size(145, 21);
             this.cmbWeather.TabIndex = 0;
             this.cmbWeather.SelectedIndexChanged += new System.EventHandler(this.CmbWeather_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label21.Location = new System.Drawing.Point(32, 160);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(167, 9);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "A Value above 0 Overwrites the Day/Night cycle";
-            // 
-            // lblBrightness
-            // 
-            this.lblBrightness.AutoSize = true;
-            this.lblBrightness.Location = new System.Drawing.Point(6, 179);
-            this.lblBrightness.Name = "lblBrightness";
-            this.lblBrightness.Size = new System.Drawing.Size(80, 13);
-            this.lblBrightness.TabIndex = 11;
-            this.lblBrightness.Text = "Brightness: 255";
-            // 
-            // scrlBrightness
-            // 
-            this.scrlBrightness.LargeChange = 1;
-            this.scrlBrightness.Location = new System.Drawing.Point(88, 178);
-            this.scrlBrightness.Maximum = 255;
-            this.scrlBrightness.Name = "scrlBrightness";
-            this.scrlBrightness.Size = new System.Drawing.Size(145, 17);
-            this.scrlBrightness.TabIndex = 12;
-            this.scrlBrightness.ValueChanged += new System.EventHandler(this.ScrlFBrightness_Scroll);
             // 
             // FrmEditor_MapEditor
             // 

@@ -2377,10 +2377,11 @@ namespace Engine
 			}
 			
 			DrawNight();
-			
-			C_Weather.DrawWeather();
+
+            DrawMapTint();
+
+            C_Weather.DrawWeather();
 			C_Weather.DrawThunderEffect();
-			DrawMapTint();
 			
 			// Draw out a square at mouse cursor
 			if (C_Constants.MapGrid == true && C_Constants.InMapEditor)

@@ -74,6 +74,11 @@ namespace Engine
             optBlocked.Checked = true;
             tabpages.SelectedIndex = 0;
 
+            scrlBrightness.Value = C_Maps.Map.Brightness;
+            lblBrightness.Text = "Brightness: " + scrlBrightness.Value;
+
+
+
             scrlFog.Maximum = C_Graphics.NumFogs;
 
             TopMost = true;
@@ -1811,8 +1816,7 @@ namespace Engine
 			rec2.Position = new Vector2f(C_Graphics.ConvertMapX(C_Variables.CurX * C_Constants.PicX), C_Graphics.ConvertMapY(C_Variables.CurY * C_Constants.PicY));
 			C_Graphics.GameWindow.Draw(rec2);
 		}
-		
-#endregion
-		
-	}
+
+        #endregion
+    }
 }
