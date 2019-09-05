@@ -84,6 +84,8 @@ namespace Engine
 			E_Graphics.TilesetWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picBackSelect.Width, picBackSelect.Height)));
 			
 			picScreen.Focus();
+
+            this.WindowState = FormWindowState.Maximized;
 			
 		}
 		
