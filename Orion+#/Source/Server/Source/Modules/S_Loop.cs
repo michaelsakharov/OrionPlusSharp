@@ -7,7 +7,7 @@ using static Engine.Enums;
 
 namespace Engine
 {
-    static class modLoop
+    static class ModLoop
     {
         public static void ServerLoop()
         {
@@ -31,10 +31,6 @@ namespace Engine
 
                 // Update our current tick value.
                 tick = S_General.GetTimeMs();
-
-                // Don't process anything else if we're going down.
-                if (S_General.ServerDestroyed)
-                    System.Environment.Exit(0);
 
                 // Get all our online players.
                 var onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new { Index = index + 1, player }).ToArray();
@@ -272,9 +268,6 @@ namespace Engine
 
         private static void UpdateNpcAi()
         {
-            if (S_General.ServerDestroyed)
-                return;
-
             int i = 0;
             int x = 0;
             int n = 0;

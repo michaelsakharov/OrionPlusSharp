@@ -20,7 +20,6 @@ namespace Engine
     {
         [System.Runtime.InteropServices.DllImport("user32")]
         internal static extern int GetQueueStatus(int fuFlags);
-        internal static bool ServerDestroyed;
         internal static string MyIPAddress;
         internal static Stopwatch myStopWatch = new Stopwatch();
 
@@ -267,7 +266,7 @@ namespace Engine
             S_NetworkConfig.Socket.StartListening(modTypes.Options.Port, 5, 1);
 
             // Starts the server loop
-            modLoop.ServerLoop();
+            ModLoop.ServerLoop();
         }
 
         private static bool ConsoleEventCallback(int eventType)
@@ -309,8 +308,7 @@ namespace Engine
 
             S_NetworkConfig.DestroyNetwork();
             ClearGameData();
-
-            /* TODO ERROR: Skipped IfDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElseDirectiveTrivia */
+            
             Environment.Exit(0);
         }
 
