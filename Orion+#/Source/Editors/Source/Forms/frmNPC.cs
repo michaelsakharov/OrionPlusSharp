@@ -73,7 +73,9 @@ namespace Engine
                     cmbItem.Items.Add(i + ": " + "Null");
                 }
 			}
-		}
+            E_Editors.NpcEditorInit()
+
+        }
 
         private long RandomNumber(long high, long low)
         {
