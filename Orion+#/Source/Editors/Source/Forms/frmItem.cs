@@ -116,7 +116,8 @@ namespace Engine
 			nudPaperdoll.Maximum = E_Graphics.NumPaperdolls;
 			nudFurniture.Maximum = E_Housing.NumFurniture;
 			cmbFurnitureType.SelectedIndex = 0;
-		}
+            E_Items.ItemEditorInit();
+        }
 		
 		public void BtnBasics_Click(object sender, EventArgs e)
 		{
