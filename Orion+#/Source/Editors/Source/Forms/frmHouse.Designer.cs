@@ -314,6 +314,7 @@ namespace Engine
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FrmHouse";
             this.Text = "House Editor";
+            this.Load += new System.EventHandler(this.FrmHouse_Load);
             this.DarkGroupBox1.ResumeLayout(false);
             this.DarkGroupBox2.ResumeLayout(false);
             this.DarkGroupBox2.PerformLayout();

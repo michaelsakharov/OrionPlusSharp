@@ -166,6 +166,10 @@ namespace Engine
 		{
 			E_Housing.HouseEditorCancel();
 		}
-		
-	}
+
+        private void FrmHouse_Load(object sender, EventArgs e)
+        {
+            E_Housing.HouseEditorInit();
+        }
+    }
 }
