@@ -303,15 +303,10 @@ namespace Engine
 		
 		public void NudPrice_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Price = (int) nudPrice.Value;
-		}
-		
-		public void ChkStackable_CheckedChanged(object sender, EventArgs e)
+
+        }
+
+        public void ChkStackable_CheckedChanged(object sender, EventArgs e)
 		{
 			if (chkStackable.Checked == true)
 			{
@@ -355,15 +350,10 @@ namespace Engine
 		
 		public void NudItemLvl_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].ItemLevel = (byte) nudItemLvl.Value;
-		}
-		
-		public void CmbPet_SelectedIndexChanged(object sender, EventArgs e)
+
+        }
+
+        public void CmbPet_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
 			{
@@ -399,55 +389,30 @@ namespace Engine
 		
 		public void NudLevelReq_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].LevelReq = (int) nudLevelReq.Value;
-		}
-		
-		public void NudStrReq_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudStrReq_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Stat_Req[(byte)Enums.StatType.Strength] = (byte)nudStrReq.Value;
-		}
-		
-		public void NudEndReq_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudEndReq_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Stat_Req[(byte)Enums.StatType.Endurance] = (byte)nudEndReq.Value;
-		}
-		
-		public void NudVitReq_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudVitReq_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Stat_Req[(byte)Enums.StatType.Vitality] = (byte)nudVitReq.Value;
-		}
-		
-		public void NudLuckReq_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudLuckReq_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Stat_Req[(byte)Enums.StatType.Luck] = (byte)nudLuckReq.Value;
-		}
-		
-		public void NudIntReq_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudIntReq_ValueChanged(object sender, EventArgs e)
 		{
 			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
 			{
@@ -459,19 +424,14 @@ namespace Engine
 		
 		public void NudSprReq_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Stat_Req[(byte)Enums.StatType.Spirit] = (byte)nudSprReq.Value;
-		}
-		
-#endregion
-		
-#region Equipment
-		
-		public void CmbTool_SelectedIndexChanged(object sender, EventArgs e)
+
+        }
+
+        #endregion
+
+        #region Equipment
+
+        public void CmbTool_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
 			{
@@ -482,15 +442,10 @@ namespace Engine
 		
 		public void NudDamage_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			
-			Types.Item[E_Globals.Editorindex].Data2 = (int) nudDamage.Value;
-		}
-		
-		public void NudSpeed_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudSpeed_ValueChanged(object sender, EventArgs e)
 		{
 
         }

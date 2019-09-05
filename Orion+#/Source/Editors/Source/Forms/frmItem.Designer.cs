@@ -369,7 +369,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudItemLvl.Click += new System.EventHandler(this.NudItemLvl_ValueChanged);
+            this.nudItemLvl.ValueChanged += new System.EventHandler(this.NudItemLvl_ValueChanged);
             // 
             // DarkLabel8
             // 
@@ -399,7 +399,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudPrice.Click += new System.EventHandler(this.NudPrice_ValueChanged);
+            this.nudPrice.ValueChanged += new System.EventHandler(this.NudPrice_ValueChanged);
             // 
             // DarkLabel7
             // 
@@ -578,7 +578,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudRarity.Click += new System.EventHandler(this.NudRarity_ValueChanged);
+            this.nudRarity.ValueChanged += new System.EventHandler(this.NudRarity_ValueChanged);
             // 
             // DarkLabel3
             // 
@@ -604,7 +604,6 @@ namespace Engine
             0,
             0});
             this.nudPic.ValueChanged += new System.EventHandler(this.NudPic_ValueChanged);
-            this.nudPic.Click += new System.EventHandler(this.NudPic_ValueChanged);
             // 
             // DarkLabel2
             // 
@@ -888,7 +887,6 @@ namespace Engine
             0,
             0});
             this.nudPaperdoll.ValueChanged += new System.EventHandler(this.NudPaperdoll_ValueChanged);
-            this.nudPaperdoll.Click += new System.EventHandler(this.NudPaperdoll_ValueChanged);
             // 
             // DarkLabel23
             // 
@@ -1217,7 +1215,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudDamage.Click += new System.EventHandler(this.NudDamage_ValueChanged);
+            this.nudDamage.ValueChanged += new System.EventHandler(this.NudDamage_ValueChanged);
             // 
             // DarkLabel15
             // 
@@ -1349,7 +1347,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSprReq.Click += new System.EventHandler(this.NudSprReq_ValueChanged);
+            this.nudSprReq.ValueChanged += new System.EventHandler(this.NudSprReq_ValueChanged);
             // 
             // DarkLabel32
             // 
@@ -1379,7 +1377,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudIntReq.Click += new System.EventHandler(this.NudIntReq_ValueChanged);
+            this.nudIntReq.ValueChanged += new System.EventHandler(this.NudIntReq_ValueChanged);
             // 
             // DarkLabel33
             // 
@@ -1409,7 +1407,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudVitReq.Click += new System.EventHandler(this.NudVitReq_ValueChanged);
+            this.nudVitReq.ValueChanged += new System.EventHandler(this.NudVitReq_ValueChanged);
             // 
             // DarkLabel34
             // 
@@ -1439,7 +1437,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLuckReq.Click += new System.EventHandler(this.NudLuckReq_ValueChanged);
+            this.nudLuckReq.ValueChanged += new System.EventHandler(this.NudLuckReq_ValueChanged);
             // 
             // DarkLabel29
             // 
@@ -1469,7 +1467,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudEndReq.Click += new System.EventHandler(this.NudEndReq_ValueChanged);
+            this.nudEndReq.ValueChanged += new System.EventHandler(this.NudEndReq_ValueChanged);
             // 
             // DarkLabel30
             // 
@@ -1499,7 +1497,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudStrReq.Click += new System.EventHandler(this.NudStrReq_ValueChanged);
+            this.nudStrReq.ValueChanged += new System.EventHandler(this.NudStrReq_ValueChanged);
             // 
             // DarkLabel31
             // 
@@ -1534,7 +1532,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLevelReq.Click += new System.EventHandler(this.NudLevelReq_ValueChanged);
+            this.nudLevelReq.ValueChanged += new System.EventHandler(this.NudLevelReq_ValueChanged);
             // 
             // cmbAccessReq
             // 
@@ -1776,13 +1774,13 @@ namespace Engine
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(677, 498);
             this.ControlBox = false;
+            this.Controls.Add(this.fraBasics);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRequirements);
             this.Controls.Add(this.btnBasics);
             this.Controls.Add(this.DarkGroupBox1);
-            this.Controls.Add(this.fraBasics);
             this.Controls.Add(this.fraEquipment);
             this.Controls.Add(this.fraFurniture);
             this.Controls.Add(this.fraRequirements);
