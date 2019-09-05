@@ -221,7 +221,7 @@ namespace Engine
 				{
 					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
 				}
-				MapProjectiles[projectileNum].TravelTime = C_General.GetTickCount() + Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed;
+				MapProjectiles[projectileNum].TravelTime = C_General.GetTickCount() + (Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed * 2);
 				MapProjectiles[projectileNum].Range = MapProjectiles[projectileNum].Range + 1;
 			}
 			
