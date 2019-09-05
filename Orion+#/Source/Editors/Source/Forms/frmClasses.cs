@@ -63,8 +63,10 @@ namespace Engine
 		{
 			nudMaleSprite.Maximum = E_Graphics.NumCharacters;
 			nudFemaleSprite.Maximum = E_Graphics.NumCharacters;
-			
-			DrawPreview();
+
+            E_Editors.ClassEditorInit();
+
+            DrawPreview();
 		}
 		
 		public void LstIndex_SelectedIndexChanged(object sender, EventArgs e)
