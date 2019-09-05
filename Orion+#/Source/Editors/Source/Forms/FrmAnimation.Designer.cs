@@ -199,7 +199,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLoopTime1.Click += new System.EventHandler(this.NudLoopTime1_ValueChanged);
+            this.nudLoopTime1.ValueChanged += new System.EventHandler(this.NudLoopTime1_ValueChanged);
             // 
             // nudFrameCount1
             // 
@@ -214,7 +214,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudFrameCount1.Click += new System.EventHandler(this.NudFrameCount1_ValueChanged);
+            this.nudFrameCount1.ValueChanged += new System.EventHandler(this.NudFrameCount1_ValueChanged);
             // 
             // nudLoopCount1
             // 
@@ -229,7 +229,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLoopCount1.Click += new System.EventHandler(this.NudLoopCount1_ValueChanged);
+            this.nudLoopCount1.ValueChanged += new System.EventHandler(this.NudLoopCount1_ValueChanged);
             // 
             // nudSprite1
             // 
@@ -244,7 +244,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSprite1.Click += new System.EventHandler(this.NudSprite1_ValueChanged);
+            this.nudSprite1.ValueChanged += new System.EventHandler(this.NudSprite1_ValueChanged);
             // 
             // lblLoopTime1
             // 
@@ -329,7 +329,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLoopTime0.Click += new System.EventHandler(this.NudLoopTime0_ValueChanged);
+            this.nudLoopTime0.ValueChanged += new System.EventHandler(this.NudLoopTime0_ValueChanged);
             // 
             // nudFrameCount0
             // 
@@ -344,7 +344,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudFrameCount0.Click += new System.EventHandler(this.NudFrameCount0_ValueChanged);
+            this.nudFrameCount0.ValueChanged += new System.EventHandler(this.NudFrameCount0_ValueChanged);
             // 
             // nudLoopCount0
             // 
@@ -359,7 +359,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLoopCount0.Click += new System.EventHandler(this.NudLoopCount0_ValueChanged);
+            this.nudLoopCount0.ValueChanged += new System.EventHandler(this.NudLoopCount0_ValueChanged);
             // 
             // nudSprite0
             // 
@@ -374,7 +374,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSprite0.Click += new System.EventHandler(this.NudSprite0_ValueChanged);
+            this.nudSprite0.ValueChanged += new System.EventHandler(this.NudSprite0_ValueChanged);
             // 
             // lblLoopTime0
             // 
