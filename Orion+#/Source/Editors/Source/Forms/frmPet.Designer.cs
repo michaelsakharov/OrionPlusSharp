@@ -444,7 +444,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudMaxLevel.Click += new System.EventHandler(this.NudMaxLevel_ValueChanged);
+            this.nudMaxLevel.ValueChanged += new System.EventHandler(this.NudMaxLevel_ValueChanged);
             // 
             // DarkLabel12
             // 
@@ -474,7 +474,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudPetPnts.Click += new System.EventHandler(this.NudPetPnts_ValueChanged);
+            this.nudPetPnts.ValueChanged += new System.EventHandler(this.NudPetPnts_ValueChanged);
             // 
             // DarkLabel13
             // 
@@ -499,7 +499,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudPetExp.Click += new System.EventHandler(this.NudPetExp_ValueChanged);
+            this.nudPetExp.ValueChanged += new System.EventHandler(this.NudPetExp_ValueChanged);
             // 
             // DarkLabel11
             // 
@@ -787,7 +787,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudRange.Click += new System.EventHandler(this.NudRange_ValueChanged);
+            this.nudRange.ValueChanged += new System.EventHandler(this.NudRange_ValueChanged);
             // 
             // DarkLabel2
             // 
@@ -812,7 +812,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSprite.Click += new System.EventHandler(this.NudSprite_ValueChanged);
+            this.nudSprite.ValueChanged += new System.EventHandler(this.NudSprite_ValueChanged);
             // 
             // picSprite
             // 
