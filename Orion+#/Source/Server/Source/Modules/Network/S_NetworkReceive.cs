@@ -250,7 +250,9 @@ namespace Engine
                 {
                     modDatabase.AddAccount(index, username, password);
 
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Account " + username + " has been created.");
+                    Console.ResetColor();
                     modDatabase.Addlog("Account " + username + " has been created.", S_Constants.PLAYER_LOG);
 
                     // Load the player
@@ -406,8 +408,9 @@ namespace Engine
 
                     // Show the player up on the socket status
                     modDatabase.Addlog(S_Players.GetPlayerLogin(index) + " has logged in from " + S_NetworkConfig.Socket.ClientIp(index) + ".", S_Constants.PLAYER_LOG);
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine(S_Players.GetPlayerLogin(index) + " has logged in from " + S_NetworkConfig.Socket.ClientIp(index) + ".");
-
+                    Console.ResetColor();
                     // ' Check if character data has been created
                     // If Len(Trim$(Player(index).Character(TempPlayer(index).CurChar).Name)) > 0 Then
                     // ' we have a char!
@@ -2826,8 +2829,9 @@ namespace Engine
 
                 // Show the player up on the socket status
                 modDatabase.Addlog(S_Players.GetPlayerLogin(index) + " has logged in from " + S_NetworkConfig.Socket.ClientIp(index) + ".", S_Constants.PLAYER_LOG);
-
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(S_Players.GetPlayerLogin(index) + " has logged in from " + S_NetworkConfig.Socket.ClientIp(index) + ".");
+                Console.ResetColor();
             }
 
             buffer.Dispose();

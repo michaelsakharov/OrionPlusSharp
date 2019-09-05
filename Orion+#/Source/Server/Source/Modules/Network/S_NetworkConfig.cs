@@ -151,40 +151,45 @@ namespace Engine
 
         internal static void Socket_ConnectionReceived(int index)
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Connection received on index[" + index + "] - IP[" + Socket.ClientIp(index) + "]");
+            Console.ResetColor();
             S_NetworkSend.SendKeyPair(index);
             S_NetworkSend.SendNews(index);
         }
 
         internal static void Socket_ConnectionLost(int index)
         {
-            Console.WriteLine("Connection lost on index[" + index + "] - IP[" + Socket.ClientIp(index) + "]");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Connection lost on index[" + index + "] - WAS IN GAME: " + modTypes.TempPlayer[index].InGame);
+            Console.ResetColor();
             S_Players.LeftGame(index);
         }
 
         internal static void Socket_CrashReport(int index, string err)
         {
-            Console.WriteLine("There was a network error -> Index[" + index + "]");
+            Console.ForegroundColor = ConsoleColor.Red;
+            if (S_Globals.DebugTxt == true)
+                Console.WriteLine("There was a network error -> Index[" + index + "]");
+            Console.ResetColor();
             Console.WriteLine("Report: " + err);
             S_Players.LeftGame(index);
         }
 
         private static void Socket_TrafficReceived(int size, ref byte[] data)
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             if (S_Globals.DebugTxt == true)
                 Console.WriteLine("Traffic Received : [Size: " + size + "]");
-
-            var tmpData = data;
-            int BreakPointDummy = 0;
+            Console.ResetColor();
         }
 
         private static void Socket_PacketReceived(int size, int header, ref byte[] data)
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             if (S_Globals.DebugTxt == true)
                 Console.WriteLine("Packet Received : [Size: " + size + "| Packet: " + ((Packets.ClientPackets)header).ToString() + "]");
-
-            var tmpData = data;
-            int BreakPointDummy = 0;
+            Console.ResetColor();
         }
     }
 }

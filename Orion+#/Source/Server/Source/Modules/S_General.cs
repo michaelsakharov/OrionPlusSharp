@@ -214,6 +214,8 @@ namespace Engine
 
             // Get that network READY SUN! ~ SpiceyWOlf
             S_NetworkConfig.InitNetwork();
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             // Init all the player sockets
             Console.WriteLine("Initializing player array...");
@@ -240,6 +242,8 @@ namespace Engine
 
             UpdateCaption();
             time2 = GetTimeMs();
+            
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
             Console.Clear();
             Console.WriteLine("   ____       _                   _  _   ");
@@ -250,10 +254,14 @@ namespace Engine
             Console.WriteLine(@"  \____/|_|  |_|\___/|_| |_|     |_||_|  ");
 
             Console.WriteLine("");
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("Initialization complete. Server loaded in " + (time2 - time1).ToString() + "ms.");
             Console.WriteLine("");
             Console.WriteLine("Use /help for the available commands.");
+
+            Console.ResetColor();
 
             MyIPAddress = S_NetworkConfig.GetIP();
 
@@ -312,6 +320,7 @@ namespace Engine
 
         internal static void ClearGameData()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Clearing temp tile fields..."); modDatabase.ClearTempTiles();
             Console.WriteLine("Clearing Maps..."); modDatabase.ClearMaps();
             Console.WriteLine("Clearing Map Items..."); modDatabase.ClearMapItems();
@@ -327,10 +336,12 @@ namespace Engine
             Console.WriteLine("Clearing projectiles..."); S_Projectiles.ClearProjectiles();
             Console.WriteLine("Clearing Recipes..."); modCrafting.ClearRecipes();
             Console.WriteLine("Clearing pets..."); S_Pets.ClearPets();
+            Console.ResetColor();
         }
 
         private static void LoadGameData()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Loading Classes..."); modDatabase.LoadClasses();
             Console.WriteLine("Loading Maps..."); modDatabase.LoadMaps();
             Console.WriteLine("Loading Items..."); S_Items.LoadItems();
@@ -347,6 +358,7 @@ namespace Engine
             Console.WriteLine("Loading projectiles..."); S_Projectiles.LoadProjectiles();
             Console.WriteLine("Loading Recipes..."); modCrafting.LoadRecipes();
             Console.WriteLine("Loading Pets..."); S_Pets.LoadPets();
+            Console.ResetColor();
         }
 
         // Used for checking validity of names
@@ -399,7 +411,9 @@ namespace Engine
             if (S_Globals.DebugTxt == true)
             {
                 modDatabase.Addlog(Msg, S_Constants.PACKET_LOG);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine(Msg);
+                Console.ResetColor();
             }
         }
     }

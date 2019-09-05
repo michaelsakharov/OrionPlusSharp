@@ -22,7 +22,9 @@ namespace Engine
             string line;
             string[] parts;
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Initializing Console Loop");
+            Console.ResetColor();
 
             while ((true))
             {
@@ -35,6 +37,7 @@ namespace Engine
                 {
                     case "help":
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("/help, Shows this message.");
                             Console.WriteLine("/exit, Closes down the server.");
                             Console.WriteLine("/setadmin, Sets player access level, usage '/setadmin playername powerlvl' powerlevel goes from 0 for player, to 4 to creator.");
@@ -47,6 +50,7 @@ namespace Engine
                             Console.WriteLine("/debugtext, Toggle Debug Text");
                             Console.WriteLine("/unlockcps, unlock CPS");
                             Console.WriteLine("/lockcps, lock CPS");
+                            Console.ResetColor();
                             break;
                         }
 
@@ -60,7 +64,9 @@ namespace Engine
                         {
                             if (parts.Length > 3 || parts.Length < 3)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
 
@@ -69,8 +75,12 @@ namespace Engine
                             int Pindex = S_GameLogic.FindPlayer(Name);
                             int.TryParse(parts[2], out int Power);
 
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             if (!(Pindex > 0))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Player name is empty or invalid. [Name not found]");
+                            }
                             else
                                 switch (Power)
                                 {
@@ -125,20 +135,23 @@ namespace Engine
                                             break;
                                         }
                                 }
-
+                            Console.ResetColor();
                             break;
                         }
 
                     case "kick":
                         {
                             if (parts.Length > 2 || parts.Length < 2) {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                                 }
 
 
                             string Name = parts[1];
                             int Pindex = S_GameLogic.FindPlayer(Name);
+                            Console.ForegroundColor = ConsoleColor.Red;
                             if (!(Pindex > 0))
                                 Console.WriteLine("Player name is empty or invalid. [Name not found]");
                             else
@@ -146,7 +159,7 @@ namespace Engine
                                 S_NetworkSend.AlertMsg(Pindex, "You have been kicked by the server owner!");
                                 S_Players.LeftGame(Pindex);
                             }
-
+                            Console.ResetColor();
                             break;
                         }
 
@@ -154,17 +167,23 @@ namespace Engine
                         {
                             if (parts.Length > 2 || parts.Length < 2)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
 
 
                             string Name = parts[1];
                             int Pindex = S_GameLogic.FindPlayer(Name);
+
+                            Console.ForegroundColor = ConsoleColor.Red;
                             if (!(Pindex > 0))
                                 Console.WriteLine("Player name is empty or invalid. [Name not found]");
                             else
                                 modDatabase.ServerBanIndex(Pindex);
+                            
+                            Console.ResetColor();
                             break;
                         }
 
@@ -172,14 +191,18 @@ namespace Engine
                         {
                             if (parts.Length > 2 || parts.Length < 2)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
 
 
                             double.TryParse(parts[1], out double speed);
                             Time.Instance.GameSpeed = speed;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Set GameSpeed to " + Time.Instance.GameSpeed + " secs per seconds");
+                            Console.ResetColor();
                             break;
                         }
 
@@ -192,7 +215,9 @@ namespace Engine
                         {
                             if (parts.Length > 2)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
 
@@ -214,45 +239,61 @@ namespace Engine
                         {
                             if (parts.Length > 2 || parts.Length < 2)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
                             float.TryParse(parts[1], out float xpMultiplayer);
                             modTypes.Options.xpMultiplier = xpMultiplayer;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Global XP Multiplayer set to: " + xpMultiplayer);
+                            Console.ResetColor();
                             break;
                         }
                     case "unlockcps":
                         {
                             if (parts.Length > 1 || parts.Length < 1)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
                             modTypes.Options.unlockCPS = true;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("CPS: " + S_General.gameCPS + " CPS is Unlocked");
+                            Console.ResetColor();
                             break;
                         }
                     case "lockcps":
                         {
                             if (parts.Length > 1 || parts.Length < 1)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
                             modTypes.Options.unlockCPS = false;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("CPS: " + S_General.gameCPS + " CPS is locked");
+                            Console.ResetColor();
                             break;
                         }
                     case "debugtext":
                         {
                             if (parts.Length > 1)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Incorrect usage.");
+                                Console.ResetColor();
                                 break;
                             }
                             S_Globals.DebugTxt = !S_Globals.DebugTxt;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Debug Text: " + S_Globals.DebugTxt);
+                            Console.ResetColor();
                             break;
                         }
                     case "":
@@ -262,7 +303,10 @@ namespace Engine
 
                     default:
                         {
+                            
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Invalid Command. If you are unsure of the functions type 'help'.");
+                            Console.ResetColor();
                             break;
                         }
                 }
