@@ -156,11 +156,16 @@ namespace Engine
             this.nudSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudSpeed.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudSpeed.Location = new System.Drawing.Point(119, 167);
+            this.nudSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudSpeed.Name = "nudSpeed";
             this.nudSpeed.Size = new System.Drawing.Size(120, 20);
             this.nudSpeed.TabIndex = 8;
             this.nudSpeed.Value = new decimal(new int[] {
-            0,
+            1,
             0,
             0,
             0});

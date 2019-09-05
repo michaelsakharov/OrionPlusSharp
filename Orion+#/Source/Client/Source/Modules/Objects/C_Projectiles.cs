@@ -146,7 +146,7 @@ namespace Engine
 			Projectiles[index].Name = "";
 			Projectiles[index].Sprite = 0;
 			Projectiles[index].Range = (byte) 0;
-			Projectiles[index].Speed = 0;
+			Projectiles[index].Speed = 1;
 			Projectiles[index].Damage = 0;
 			
 		}
