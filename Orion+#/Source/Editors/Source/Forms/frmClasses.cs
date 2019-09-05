@@ -67,7 +67,12 @@ namespace Engine
             E_Editors.ClassEditorInit();
 
             DrawPreview();
-		}
+
+            lstIndex.SelectedIndex = 0;
+
+            E_Globals.LoadClassInfo = true;
+
+        }
 		
 		public void LstIndex_SelectedIndexChanged(object sender, EventArgs e)
 		{
