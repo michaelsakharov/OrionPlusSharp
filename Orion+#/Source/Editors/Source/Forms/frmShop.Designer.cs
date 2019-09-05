@@ -435,6 +435,7 @@ namespace Engine
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmShop";
             this.Text = "Shop Editor";
+            this.Load += new System.EventHandler(this.frmShop_Load);
             this.DarkGroupBox1.ResumeLayout(false);
             this.DarkGroupBox2.ResumeLayout(false);
             this.DarkGroupBox2.PerformLayout();

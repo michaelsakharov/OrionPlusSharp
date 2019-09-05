@@ -401,6 +401,7 @@ namespace Engine
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FrmRecipe";
             this.Text = "Recipe Editor";
+            this.Load += new System.EventHandler(this.FrmRecipe_Load);
             this.DarkGroupBox1.ResumeLayout(false);
             this.DarkGroupBox2.ResumeLayout(false);
             this.DarkGroupBox2.PerformLayout();

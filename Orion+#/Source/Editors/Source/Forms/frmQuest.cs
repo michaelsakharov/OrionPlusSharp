@@ -70,8 +70,9 @@ namespace Engine
 			nudGiveAmount.Maximum = byte.MaxValue;
 			nudTakeAmount.Maximum = byte.MaxValue;
 			nudItemRewValue.Maximum = 999999;
-			
-		}
+            E_Quest.QuestEditorInit();
+
+        }
 		
 		public void LstIndex_Click(object sender, EventArgs e)
 		{

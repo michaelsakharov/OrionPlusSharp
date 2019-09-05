@@ -216,7 +216,8 @@ namespace Engine
 		{
 			nudIcon.Maximum = E_Graphics.NumSkillIcons;
 			nudCast.Value = 1;
-		}
+            E_Editors.SkillEditorInit();
+        }
 		
 		public void ChkProjectile_CheckedChanged(object sender, EventArgs e)
 		{

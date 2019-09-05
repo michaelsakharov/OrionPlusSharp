@@ -66,8 +66,10 @@ namespace Engine
 			nudRange.Maximum = 50;
 			nudLevel.Maximum = Constants.MAX_LEVELS;
 			nudMaxLevel.Maximum = Constants.MAX_LEVELS;
-			
-		}
+
+            E_Pets.PetEditorInit();
+
+        }
 		
 		public void LstIndex_Click(object sender, EventArgs e)
 		{

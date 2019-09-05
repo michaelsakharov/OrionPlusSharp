@@ -141,6 +141,10 @@ namespace Engine
 		{
 			E_Crafting.Recipe[E_Globals.Editorindex].CreateTime = (byte) nudCreateTime.Value;
 		}
-		
-	}
+
+        private void FrmRecipe_Load(object sender, EventArgs e)
+        {
+            E_Crafting.RecipeEditorInit();
+        }
+    }
 }

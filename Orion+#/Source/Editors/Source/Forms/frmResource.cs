@@ -138,8 +138,8 @@ namespace Engine
 		
 		public void FrmEditor_Resource_Load(object sender, EventArgs e)
 		{
-			
-		}
+            E_Editors.ResourceEditorInit();
+        }
 		
 		public void TxtName_TextChanged(object sender, EventArgs e)
 		{

@@ -152,6 +152,10 @@ namespace Engine
 			
 			Types.Shop[E_Globals.Editorindex].Face = (byte) nudFace.Value;
 		}
-		
-	}
+
+        private void frmShop_Load(object sender, EventArgs e)
+        {
+            E_Editors.ShopEditorInit();
+        }
+    }
 }

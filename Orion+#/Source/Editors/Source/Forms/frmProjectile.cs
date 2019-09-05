@@ -57,7 +57,8 @@ namespace Engine
 		public void FrmEditor_Projectile_Load(object sender, EventArgs e)
 		{
 			nudPic.Maximum = E_Projectiles.NumProjectiles;
-		}
+            E_Projectiles.ProjectileEditorInit();
+        }
 		
 		public void LstIndex_Click(object sender, EventArgs e)
 		{
