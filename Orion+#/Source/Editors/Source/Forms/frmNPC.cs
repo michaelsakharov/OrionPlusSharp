@@ -73,7 +73,7 @@ namespace Engine
                     cmbItem.Items.Add(i + ": " + "Null");
                 }
 			}
-            E_Editors.NpcEditorInit()
+            E_Editors.NpcEditorInit();
 
         }
 
