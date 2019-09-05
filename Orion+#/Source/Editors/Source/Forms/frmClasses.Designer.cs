@@ -204,7 +204,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudStartY.Click += new System.EventHandler(this.NumStartY_ValueChanged);
+            this.nudStartY.ValueChanged += new System.EventHandler(this.NumStartY_ValueChanged);
             // 
             // DarkLabel15
             // 
@@ -234,7 +234,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudStartX.Click += new System.EventHandler(this.NumStartX_ValueChanged);
+            this.nudStartX.ValueChanged += new System.EventHandler(this.NumStartX_ValueChanged);
             // 
             // DarkLabel14
             // 
@@ -264,7 +264,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudStartMap.Click += new System.EventHandler(this.NumStartMap_ValueChanged);
+            this.nudStartMap.ValueChanged += new System.EventHandler(this.NumStartMap_ValueChanged);
             // 
             // DarkLabel13
             // 
@@ -425,7 +425,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudBaseExp.Click += new System.EventHandler(this.NumBaseExp_ValueChanged);
+            this.nudBaseExp.ValueChanged += new System.EventHandler(this.NumBaseExp_ValueChanged);
             // 
             // DarkLabel10
             // 
@@ -455,7 +455,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSpirit.Click += new System.EventHandler(this.NumSpirit_ValueChanged);
+            this.nudSpirit.ValueChanged += new System.EventHandler(this.NumSpirit_ValueChanged);
             // 
             // nudEndurance
             // 
@@ -480,7 +480,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudEndurance.Click += new System.EventHandler(this.NumEndurance_ValueChanged);
+            this.nudEndurance.ValueChanged += new System.EventHandler(this.NumEndurance_ValueChanged);
             // 
             // DarkLabel8
             // 
@@ -520,7 +520,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudVitality.Click += new System.EventHandler(this.NumVitality_ValueChanged);
+            this.nudVitality.ValueChanged += new System.EventHandler(this.NumVitality_ValueChanged);
             // 
             // nudLuck
             // 
@@ -545,7 +545,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLuck.Click += new System.EventHandler(this.NumLuck_ValueChanged);
+            this.nudLuck.ValueChanged += new System.EventHandler(this.NumLuck_ValueChanged);
             // 
             // DarkLabel6
             // 
@@ -585,7 +585,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudIntelligence.Click += new System.EventHandler(this.NumIntelligence_ValueChanged);
+            this.nudIntelligence.ValueChanged += new System.EventHandler(this.NumIntelligence_ValueChanged);
             // 
             // nudStrength
             // 
@@ -610,7 +610,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudStrength.Click += new System.EventHandler(this.NumStrength_ValueChanged);
+            this.nudStrength.ValueChanged += new System.EventHandler(this.NumStrength_ValueChanged);
             // 
             // DarkLabel5
             // 
@@ -663,7 +663,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudFemaleSprite.Click += new System.EventHandler(this.NudFemaleSprite_ValueChanged);
+            this.nudFemaleSprite.ValueChanged += new System.EventHandler(this.NudFemaleSprite_ValueChanged);
             // 
             // DarkLabel4
             // 
@@ -759,7 +759,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudMaleSprite.Click += new System.EventHandler(this.NudMaleSprite_ValueChanged);
+            this.nudMaleSprite.ValueChanged += new System.EventHandler(this.NudMaleSprite_ValueChanged);
             // 
             // lblMaleSprite
             // 
