@@ -44,19 +44,16 @@ namespace Engine
                 case Enums.VitalType.HP:
                     {
                         return Types.Npc[NpcNum].Hp;
-                        break;
                     }
 
                 case Enums.VitalType.MP:
                     {
                         return Types.Npc[NpcNum].Stat[(int)Enums.StatType.Intelligence] * 2;
-                        break;
                     }
 
                 case Enums.VitalType.SP:
                     {
                         return Types.Npc[NpcNum].Stat[(int)Enums.StatType.Spirit] * 2;
-                        break;
                     }
             }
             return 0;
