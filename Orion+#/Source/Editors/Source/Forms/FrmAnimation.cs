@@ -145,7 +145,8 @@ namespace Engine
 		{
 			nudSprite0.Maximum = E_Graphics.NumAnimations;
 			nudSprite1.Maximum = E_Graphics.NumAnimations;
-		}
+            E_Editors.AnimationEditorInit();
+        }
 		
 		public void CmbSound_SelectedIndexChanged(object sender, EventArgs e)
 		{
