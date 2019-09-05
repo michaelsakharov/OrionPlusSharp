@@ -603,6 +603,7 @@ namespace Engine
             0,
             0,
             0});
+            this.nudPic.ValueChanged += new System.EventHandler(this.NudPic_ValueChanged);
             this.nudPic.Click += new System.EventHandler(this.NudPic_ValueChanged);
             // 
             // DarkLabel2
