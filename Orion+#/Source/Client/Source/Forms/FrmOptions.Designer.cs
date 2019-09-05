@@ -183,9 +183,9 @@ namespace Engine
             this.chkHighEnd.AutoSize = true;
             this.chkHighEnd.Location = new System.Drawing.Point(12, 143);
             this.chkHighEnd.Name = "chkHighEnd";
-            this.chkHighEnd.Size = new System.Drawing.Size(90, 17);
+            this.chkHighEnd.Size = new System.Drawing.Size(108, 17);
             this.chkHighEnd.TabIndex = 15;
-            this.chkHighEnd.Text = "HighEnd PC?";
+            this.chkHighEnd.Text = "Yield Main Loop?";
             this.chkHighEnd.UseVisualStyleBackColor = true;
             // 
             // chkNpcBars

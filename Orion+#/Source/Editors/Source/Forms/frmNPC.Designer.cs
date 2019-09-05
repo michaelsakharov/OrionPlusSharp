@@ -99,6 +99,7 @@ namespace Engine
             this.DarkLabel27 = new DarkUI.Controls.DarkLabel();
             this.DarkLabel26 = new DarkUI.Controls.DarkLabel();
             this.DarkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chkIsBoss = new DarkUI.Controls.DarkCheckBox();
             this.btnGenStats = new DarkUI.Controls.DarkButton();
             this.nudSpirit = new DarkUI.Controls.DarkNumericUpDown();
@@ -116,7 +117,6 @@ namespace Engine
             this.btnCancel = new DarkUI.Controls.DarkButton();
             this.btnDelete = new DarkUI.Controls.DarkButton();
             this.btnSave = new DarkUI.Controls.DarkButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpawnSecs)).BeginInit();
@@ -1018,6 +1018,15 @@ namespace Engine
             this.DarkGroupBox5.TabStop = false;
             this.DarkGroupBox5.Text = "Stats";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 13);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "Make sure to assign level first:";
+            // 
             // chkIsBoss
             // 
             this.chkIsBoss.AutoSize = true;
@@ -1217,15 +1226,6 @@ namespace Engine
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 13);
-            this.label1.TabIndex = 63;
-            this.label1.Text = "Make sure to assign level first:";
-            // 
             // frmNPC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1241,7 +1241,7 @@ namespace Engine
             this.Controls.Add(this.DarkGroupBox3);
             this.Controls.Add(this.DarkGroupBox2);
             this.Controls.Add(this.DarkGroupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmNPC";
             this.Text = "Npc Editor";
             this.Load += new System.EventHandler(this.FrmEditor_NPC_Load);

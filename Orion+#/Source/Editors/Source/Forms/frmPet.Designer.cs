@@ -875,7 +875,7 @@ namespace Engine
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.DarkGroupBox2);
             this.Controls.Add(this.DarkGroupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmPet";
             this.Text = "frmEditor_Pet_Dark";
             this.Load += new System.EventHandler(this.FrmEditor_Pet_Load);
