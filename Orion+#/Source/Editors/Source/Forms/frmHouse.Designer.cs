@@ -132,8 +132,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudFurniture.Click += new System.EventHandler(this.NudFurniture_ValueChanged);
-            this.nudFurniture.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NudFurniture_ValueChanged);
+            this.nudFurniture.ValueChanged += new System.EventHandler(this.NudFurniture_ValueChanged);
             // 
             // DarkLabel6
             // 
@@ -158,8 +157,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudPrice.Click += new System.EventHandler(this.NudPrice_ValueChanged);
-            this.nudPrice.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NudPrice_ValueChanged);
+            this.nudPrice.ValueChanged += new System.EventHandler(this.NudPrice_ValueChanged);
             // 
             // DarkLabel5
             // 
@@ -189,8 +187,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudY.Click += new System.EventHandler(this.NudY_ValueChanged);
-            this.nudY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NudY_ValueChanged);
+            this.nudY.ValueChanged += new System.EventHandler(this.NudY_ValueChanged);
             // 
             // DarkLabel4
             // 
@@ -220,8 +217,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudX.Click += new System.EventHandler(this.NudX_ValueChanged);
-            this.nudX.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NudX_ValueChanged);
+            this.nudX.ValueChanged += new System.EventHandler(this.NudX_ValueChanged);
             // 
             // DarkLabel3
             // 
@@ -251,8 +247,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudBaseMap.Click += new System.EventHandler(this.NudBaseMap_ValueChanged);
-            this.nudBaseMap.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NudBaseMap_ValueChanged);
+            this.nudBaseMap.ValueChanged += new System.EventHandler(this.NudBaseMap_ValueChanged);
             // 
             // DarkLabel2
             // 
