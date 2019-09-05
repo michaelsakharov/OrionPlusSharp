@@ -123,7 +123,7 @@ namespace Engine
 		
 		public void PicBackSelect_MouseDown(object sender, MouseEventArgs e)
 		{
-			E_Editors.MapEditorChooseTile((System.Int32) e.Button, e.X, e.Y);
+			E_Editors.MapEditorChooseTile((int)e.Button, e.X, e.Y);
         }
 
         public void picBackSelect_MouseUp(object sender, MouseEventArgs e)
@@ -133,7 +133,7 @@ namespace Engine
 
         public void PicBackSelect_MouseMove(object sender, MouseEventArgs e)
 		{
-			E_Editors.MapEditorDrag((System.Int32) e.Button, e.X, e.Y);
+            E_Editors.MapEditorDrag((int)e.Button, e.X, e.Y);
 		}
 		
 		public void PicBackSelect_Paint(object sender, PaintEventArgs e)
@@ -311,7 +311,7 @@ namespace Engine
 			{
 				return;
 			}
-			E_Editors.MapEditorMouseDown((System.Int32) e.Button, e.X, e.Y, false);
+			E_Editors.MapEditorMouseDown((int) e.Button, e.X, e.Y, false);
 			
 		}
 		
@@ -332,10 +332,10 @@ namespace Engine
 			
 			if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
 			{
-				E_Editors.MapEditorMouseDown((System.Int32) e.Button, e.X, e.Y);
+				E_Editors.MapEditorMouseDown((int) e.Button, e.X, e.Y);
 			}
 			
-			tslCurXY.Text = "X: " + System.Convert.ToString(E_Globals.CurX) + " - " + " Y: " + System.Convert.ToString(E_Globals.CurY);
+			tslCurXY.Text = "X: " + E_Globals.CurX.ToString() + " - " + " Y: " + E_Globals.CurY.ToString();
 		}
 		
 		public void Picscreen_MouseUp(object sender, MouseEventArgs e)
@@ -361,17 +361,17 @@ namespace Engine
 		
 		public void ScrlMapWarpMap_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblMapWarpMap.Text = "Map: " + System.Convert.ToString(scrlMapWarpMap.Value);
+			lblMapWarpMap.Text = "Map: " + scrlMapWarpMap.Value.ToString();
 		}
 		
 		public void ScrlMapWarpX_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblMapWarpX.Text = "X: " + System.Convert.ToString(scrlMapWarpX.Value);
+			lblMapWarpX.Text = "X: " + scrlMapWarpX.Value.ToString();
 		}
 		
 		public void ScrlMapWarpY_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblMapWarpY.Text = "Y: " + System.Convert.ToString(scrlMapWarpY.Value);
+			lblMapWarpY.Text = "Y: " + scrlMapWarpY.Value.ToString();
 		}
 		
 		public void BtnMapWarp_Click(object sender, EventArgs e)
@@ -409,12 +409,12 @@ namespace Engine
 			}
 			
 			E_Graphics.EditorMap_DrawMapItem();
-			lblMapItem.Text = "Item: " + System.Convert.ToString(scrlMapItem.Value) +". " + Types.Item[scrlMapItem.Value].Name.Trim() + " x" + System.Convert.ToString(scrlMapItemValue.Value);
+			lblMapItem.Text = "Item: " + scrlMapItem.Value.ToString() +". " + Types.Item[scrlMapItem.Value].Name.Trim() + " x" + scrlMapItemValue.Value.ToString();
 		}
 		
 		public void ScrlMapItemValue_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblMapItem.Text = Types.Item[scrlMapItem.Value].Name.Trim() + " x" + System.Convert.ToString(scrlMapItemValue.Value);
+			lblMapItem.Text = Types.Item[scrlMapItem.Value].Name.Trim() + " x" + scrlMapItemValue.Value.ToString();
 		}
 		
 		public void BtnMapItem_Click(object sender, EventArgs e)
@@ -433,7 +433,7 @@ namespace Engine
 			
 			scrlMapItem.Maximum = Constants.MAX_ITEMS;
 			scrlMapItem.Value = 1;
-			lblMapItem.Text = Types.Item[scrlMapItem.Value].Name.Trim() + " x" + System.Convert.ToString(scrlMapItemValue.Value);
+			lblMapItem.Text = Types.Item[scrlMapItem.Value].Name.Trim() + " x" + scrlMapItemValue.Value.ToString();
 			E_Graphics.EditorMap_DrawMapItem();
 		}
 		
@@ -466,12 +466,12 @@ namespace Engine
 		
 		public void ScrlKeyX_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblKeyX.Text = "X: " + System.Convert.ToString(scrlKeyX.Value);
+			lblKeyX.Text = "X: " + scrlKeyX.Value.ToString();
 		}
 		
 		public void ScrlKeyY_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblKeyY.Text = "X: " + System.Convert.ToString(scrlKeyY.Value);
+			lblKeyY.Text = "X: " + scrlKeyY.Value.ToString();
 		}
 		
 		public void BtnMapKeyOpen_Click(object sender, EventArgs e)
@@ -578,7 +578,7 @@ namespace Engine
 		
 		public void ScrlHeal_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblHeal.Text = "Amount: " + System.Convert.ToString(scrlHeal.Value);
+			lblHeal.Text = "Amount: " + scrlHeal.Value.ToString();
 		}
 		
 		public void OptHeal_CheckedChanged(object sender, EventArgs e)
@@ -590,7 +590,7 @@ namespace Engine
 		
 		public void ScrlTrap_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblTrap.Text = "Amount: " + System.Convert.ToString(scrlTrap.Value);
+			lblTrap.Text = "Amount: " + scrlTrap.Value.ToString();
 		}
 		
 		public void BtnTrap_Click(object sender, EventArgs e)
