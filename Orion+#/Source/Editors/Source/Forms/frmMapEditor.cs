@@ -644,7 +644,7 @@ namespace Engine
 		
 		public void ScrlBuyHouse_Scroll(object sender, ScrollEventArgs e)
 		{
-			lblHouseName.Text = scrlBuyHouse.Value +". " + E_Housing.HouseConfig[scrlBuyHouse.Value].ConfigName;
+			lblHouseName.Text = scrlBuyHouse.Value + ". " + E_Housing.HouseConfig[scrlBuyHouse.Value].ConfigName;
 		}
 		
 		public void BtnHouseTileOk_Click(object sender, EventArgs e)

@@ -945,7 +945,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
         }
@@ -975,7 +974,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
 
@@ -994,7 +992,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
         }
@@ -1026,7 +1023,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
 
@@ -1076,7 +1072,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
 
@@ -1127,7 +1122,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
 
@@ -1178,7 +1172,6 @@ namespace Engine
                 default:
                     {
                         throw new NotImplementedException();
-                        break;
                     }
             }
 
