@@ -280,8 +280,6 @@ namespace Engine
             return false;
         }
 
-        private static ConsoleEventDelegate handler;
-
         // Keeps it from getting garbage collected
         // Pinvoke
         private delegate bool ConsoleEventDelegate(int eventType);
@@ -289,7 +287,7 @@ namespace Engine
 
         public static void UpdateCaption()
         {
-            Console.Title = string.Format("{0} <IP {1}:{2}> ({3} Players Online) - Current Errors: {4} - Time: {5}", modTypes.Options.GameName, MyIPAddress, modTypes.Options.Port, S_GameLogic.GetPlayersOnline(), S_Globals.ErrorCount, Time.Instance.ToString());
+            Console.Title = string.Format("{0} <IP {1}:{2}> ({3} Players Online) - Current Errors: {4} - Time: {5} - CPS: {6}", modTypes.Options.GameName, MyIPAddress, modTypes.Options.Port, S_GameLogic.GetPlayersOnline(), S_Globals.ErrorCount, Time.Instance.ToString(), S_General.gameCPS);
         }
 
         public static void DestroyServer()

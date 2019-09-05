@@ -47,7 +47,6 @@ namespace Engine
                             Console.WriteLine("/debugtext, Toggle Debug Text '/debugtext'");
                             Console.WriteLine("/unlockcps, unlock CPS '/unlockcps'");
                             Console.WriteLine("/lockcps, lock CPS '/lockcps'");
-                            Console.WriteLine("/cps, view CPS '/cps'");
                             break;
                         }
 
@@ -243,16 +242,6 @@ namespace Engine
                             }
                             modTypes.Options.unlockCPS = false;
                             Console.WriteLine("CPS: " + S_General.gameCPS + " CPS is locked");
-                            break;
-                        }
-                    case "/cps":
-                        {
-                            if (parts.Length > 1 || parts.Length < 1)
-                            {
-                                Console.WriteLine("Incorrect usage.");
-                                break;
-                            }
-                            Console.WriteLine("CPS: " + S_General.gameCPS);
                             break;
                         }
                     case "/debugtext":
