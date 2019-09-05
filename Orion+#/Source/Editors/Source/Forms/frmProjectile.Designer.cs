@@ -149,7 +149,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudDamage.Click += new System.EventHandler(this.NudDamage_ValueChanged);
+            this.nudDamage.ValueChanged += new System.EventHandler(this.NudDamage_ValueChanged);
             // 
             // nudSpeed
             // 
@@ -164,7 +164,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSpeed.Click += new System.EventHandler(this.NudSpeed_ValueChanged);
+            this.nudSpeed.ValueChanged += new System.EventHandler(this.NudSpeed_ValueChanged);
             // 
             // DarkLabel3
             // 
@@ -189,7 +189,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudRange.Click += new System.EventHandler(this.NudRange_ValueChanged);
+            this.nudRange.ValueChanged += new System.EventHandler(this.NudRange_ValueChanged);
             // 
             // nudPic
             // 
@@ -204,7 +204,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudPic.Click += new System.EventHandler(this.NudPic_ValueChanged);
+            this.nudPic.ValueChanged += new System.EventHandler(this.NudPic_ValueChanged);
             // 
             // DarkLabel2
             // 
