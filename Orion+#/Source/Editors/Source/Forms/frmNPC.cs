@@ -405,11 +405,11 @@ namespace Engine
 				return;
 			}
 			
-			cmbItem.SelectedIndex = System.Convert.ToInt32(Types.Npc[E_Globals.Editorindex].DropItem[cmbDropSlot.SelectedIndex + 1]);
+			cmbItem.SelectedIndex = Types.Npc[E_Globals.Editorindex].DropItem[cmbDropSlot.SelectedIndex + 1];
 			
-			nudAmount.Value = System.Convert.ToDecimal(Types.Npc[E_Globals.Editorindex].DropItemValue[cmbDropSlot.SelectedIndex + 1]);
+			nudAmount.Value = Types.Npc[E_Globals.Editorindex].DropItemValue[cmbDropSlot.SelectedIndex + 1];
 			
-			nudChance.Value = System.Convert.ToDecimal(Types.Npc[E_Globals.Editorindex].DropChance[cmbDropSlot.SelectedIndex + 1]);
+			nudChance.Value = Types.Npc[E_Globals.Editorindex].DropChance[cmbDropSlot.SelectedIndex + 1];
 		}
 		
 		public void CmbItem_SelectedIndexChanged(object sender, EventArgs e)

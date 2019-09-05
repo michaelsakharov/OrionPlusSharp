@@ -1435,8 +1435,8 @@ namespace Engine
 				frmClasses.Default.cmbFemaleSprite.Items.Add("Sprite " + (i + 1).ToString());
 			}
 			
-			frmClasses.Default.nudMaleSprite.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].MaleSprite[0]);
-			frmClasses.Default.nudFemaleSprite.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].FemaleSprite[0]);
+			frmClasses.Default.nudMaleSprite.Value = Types.Classes[E_Globals.Editorindex].MaleSprite[0];
+			frmClasses.Default.nudFemaleSprite.Value = Types.Classes[E_Globals.Editorindex].FemaleSprite[0];
 			
 			frmClasses.Default.cmbMaleSprite.SelectedIndex = 0;
 			frmClasses.Default.cmbFemaleSprite.SelectedIndex = 0;
@@ -1451,12 +1451,12 @@ namespace Engine
 				}
 			}
 			
-			frmClasses.Default.nudStrength.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Strength]);
-			frmClasses.Default.nudLuck.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Luck]);
-			frmClasses.Default.nudEndurance.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Endurance]);
-			frmClasses.Default.nudIntelligence.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Intelligence]);
-			frmClasses.Default.nudVitality.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Vitality]);
-			frmClasses.Default.nudSpirit.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Spirit]);
+			frmClasses.Default.nudStrength.Value = Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Strength];
+			frmClasses.Default.nudLuck.Value = Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Luck];
+			frmClasses.Default.nudEndurance.Value = Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Endurance];
+			frmClasses.Default.nudIntelligence.Value = Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Intelligence];
+			frmClasses.Default.nudVitality.Value = Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Vitality];
+			frmClasses.Default.nudSpirit.Value = Types.Classes[E_Globals.Editorindex].Stat[(byte)Enums.StatType.Spirit];
 			
 			if (Types.Classes[E_Globals.Editorindex].BaseExp < 10)
 			{
