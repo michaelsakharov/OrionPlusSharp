@@ -21,7 +21,7 @@ namespace Engine
 {
 	internal sealed class E_Weather
 	{
-		internal const int MAX_WEATHER_PARTICLES = 100;
+		internal const int MAX_WEATHER_PARTICLES = 250;
 		
 		internal static WeatherParticleRec[] WeatherParticle = new WeatherParticleRec[MAX_WEATHER_PARTICLES + 1];
 		internal static Sound WeatherSoundPlayer;
@@ -40,46 +40,50 @@ namespace Engine
 		{
 			int i = 0;
 			int x;
-			
-			if (E_Globals.CurrentWeather > 0)
-			{
-				if (E_Globals.CurrentWeather == (int) Enums.WeatherType.Rain || E_Globals.CurrentWeather == (int) Enums.WeatherType.Storm)
-				{
-					PlayWeatherSound("Rain.ogg", true);
-				}
-				x = ClientDataBase.Rand(1, 101 - E_Globals.CurrentWeatherIntensity);
-				if (x == 1)
-				{
-					//Add a new particle
-					for (i = 1; i <= MAX_WEATHER_PARTICLES; i++)
-					{
-						if (WeatherParticle[i].InUse == 0)
-						{
-							if (ClientDataBase.Rand(1, 3) == 1)
-							{
-								WeatherParticle[i].InUse = 1;
-								WeatherParticle[i].type = E_Globals.CurrentWeather;
-								WeatherParticle[i].Velocity = ClientDataBase.Rand(8, 14);
-								WeatherParticle[i].X = (E_Globals.TileView.Left * 32) - 32;
-								WeatherParticle[i].Y = (E_Globals.TileView.Top * 32) + ClientDataBase.Rand(-32, (int)E_Graphics.GameWindow.Size.Y);
-							}
-							else
-							{
-								WeatherParticle[i].InUse = 1;
-								WeatherParticle[i].type = E_Globals.CurrentWeather;
-								WeatherParticle[i].Velocity = ClientDataBase.Rand(10, 15);
-								WeatherParticle[i].X = (E_Globals.TileView.Left * 32) + ClientDataBase.Rand(-32, (int)E_Graphics.GameWindow.Size.X);
-								WeatherParticle[i].Y = (E_Globals.TileView.Top * 32) - 32;
-							}
-							//Exit For
-						}
-					}
-				}
-			}
-			else
-			{
-				StopWeatherSound();
-			}
+
+            if (E_Globals.CurrentWeather > 0)
+            {
+                if (E_Globals.CurrentWeather == (int)Enums.WeatherType.Rain || E_Globals.CurrentWeather == (int)Enums.WeatherType.Storm)
+                {
+                    PlayWeatherSound("Rain.ogg", true);
+                }
+                //Setup a particle
+                for (i = 1; i <= MAX_WEATHER_PARTICLES; i++)
+                {
+                    if (WeatherParticle[i].InUse == 0)
+                    {
+                        WeatherParticle[i].InUse = 1;
+                        WeatherParticle[i].type = E_Globals.CurrentWeather;
+                        if (ClientDataBase.Rand(1, 3) == 1)
+                        {
+                            WeatherParticle[i].Velocity = ClientDataBase.Rand(8, 14);
+                            WeatherParticle[i].X = (E_Globals.TileView.Left * 32) - 32;
+                            WeatherParticle[i].Y = (E_Globals.TileView.Top * 32) + ClientDataBase.Rand(-32, (int)E_Graphics.GameWindow.Size.Y);
+                        }
+                        else
+                        {
+                            WeatherParticle[i].Velocity = ClientDataBase.Rand(10, 15);
+                            WeatherParticle[i].X = (E_Globals.TileView.Left * 32) + ClientDataBase.Rand(-32, (int)E_Graphics.GameWindow.Size.X);
+                            WeatherParticle[i].Y = (E_Globals.TileView.Top * 32) - 32;
+                        }
+                    }
+                    else
+                    {
+                        WeatherParticle[i].type = E_Globals.CurrentWeather;
+                    }
+                }
+            }
+            else
+            {
+                StopWeatherSound();
+                for (i = 1; i <= MAX_WEATHER_PARTICLES; i++)
+                {
+                    if (WeatherParticle[i].InUse == 1)
+                    {
+                        WeatherParticle[i].InUse = 0;
+                    }
+                }
+            }
 			if (E_Globals.CurrentWeather == (int) Enums.WeatherType.Storm)
 			{
 				x = ClientDataBase.Rand(1, 400 - E_Globals.CurrentWeatherIntensity);
@@ -96,8 +100,18 @@ namespace Engine
 				{
 					if (WeatherParticle[i].X > E_Globals.TileView.Right * 32 || WeatherParticle[i].Y > E_Globals.TileView.Bottom * 32)
 					{
-						WeatherParticle[i].InUse = 0;
-					}
+						//WeatherParticle[i].InUse = 0;
+                        if (ClientDataBase.Rand(1, 3) == 1)
+                        {
+                            WeatherParticle[i].X = (E_Globals.TileView.Left * 32) - 32;
+                            WeatherParticle[i].Y = (E_Globals.TileView.Top * 32) + ClientDataBase.Rand(-32, (int)E_Graphics.GameWindow.Size.Y);
+                        }
+                        else
+                        {
+                            WeatherParticle[i].X = (E_Globals.TileView.Left * 32) + ClientDataBase.Rand(-32, (int)E_Graphics.GameWindow.Size.X);
+                            WeatherParticle[i].Y = (E_Globals.TileView.Top * 32) - 32;
+                        }
+                    }
 					else
 					{
 						WeatherParticle[i].X = WeatherParticle[i].X + WeatherParticle[i].Velocity;

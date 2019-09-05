@@ -165,7 +165,6 @@ namespace Engine
                     }
                     else
                     {
-
                         WeatherParticle[i].Type = CurrentWeather;
                     }
                 }
