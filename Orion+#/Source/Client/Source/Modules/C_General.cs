@@ -164,7 +164,7 @@ namespace Engine
 			C_UpdateUI.Frmmenuvisible = true;
 			C_UpdateUI.Pnlloadvisible = false;
 			
-			C_UpdateUI.PnlInventoryVisible = true;
+			//C_UpdateUI.PnlInventoryVisible = true;
 			
 			C_NetworkConfig.InitNetwork();
 			
