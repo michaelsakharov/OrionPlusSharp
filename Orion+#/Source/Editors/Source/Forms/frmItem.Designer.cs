@@ -953,7 +953,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSpirit.ValueChanged += new System.EventHandler(this.NudSpirit_ValueChanged);
+            this.nudSpirit.Click += new System.EventHandler(this.NudSpirit_ValueChanged);
             // 
             // DarkLabel22
             // 
@@ -983,7 +983,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudIntelligence.ValueChanged += new System.EventHandler(this.NudIntelligence_ValueChanged);
+            this.nudIntelligence.Click += new System.EventHandler(this.NudIntelligence_ValueChanged);
             // 
             // DarkLabel21
             // 
@@ -1013,7 +1013,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudVitality.ValueChanged += new System.EventHandler(this.NudVitality_ValueChanged);
+            this.nudVitality.Click += new System.EventHandler(this.NudVitality_ValueChanged);
             // 
             // DarkLabel20
             // 
@@ -1043,7 +1043,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudLuck.ValueChanged += new System.EventHandler(this.NudLuck_ValueChanged);
+            this.nudLuck.Click += new System.EventHandler(this.NudLuck_ValueChanged);
             // 
             // DarkLabel19
             // 
@@ -1073,7 +1073,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudEndurance.ValueChanged += new System.EventHandler(this.NudEndurance_ValueChanged);
+            this.nudEndurance.Click += new System.EventHandler(this.NudEndurance_ValueChanged);
             // 
             // DarkLabel18
             // 
@@ -1103,7 +1103,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudStrength.ValueChanged += new System.EventHandler(this.NudStrength_ValueChanged);
+            this.nudStrength.Click += new System.EventHandler(this.NudStrength_ValueChanged);
             // 
             // DarkLabel17
             // 

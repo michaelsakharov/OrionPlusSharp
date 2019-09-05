@@ -508,30 +508,55 @@ namespace Engine
 		
 		public void NudStrength_ValueChanged(object sender, EventArgs e)
 		{
-
-        }
-
-        public void NudLuck_ValueChanged(object sender, EventArgs e)
+			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
+			{
+				return;
+			}
+			
+			Types.Item[E_Globals.Editorindex].Add_Stat[(byte)Enums.StatType.Strength] = (byte)nudStrength.Value;
+		}
+		
+		public void NudLuck_ValueChanged(object sender, EventArgs e)
 		{
-
-        }
-
-        public void NudEndurance_ValueChanged(object sender, EventArgs e)
+			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
+			{
+				return;
+			}
+			
+			Types.Item[E_Globals.Editorindex].Add_Stat[(byte)Enums.StatType.Luck] = (byte)nudLuck.Value;
+		}
+		
+		public void NudEndurance_ValueChanged(object sender, EventArgs e)
 		{
-
-        }
-
-        public void NudIntelligence_ValueChanged(object sender, EventArgs e)
+			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
+			{
+				return;
+			}
+			
+			Types.Item[E_Globals.Editorindex].Add_Stat[(byte)Enums.StatType.Endurance] = (byte)nudEndurance.Value;
+		}
+		
+		public void NudIntelligence_ValueChanged(object sender, EventArgs e)
 		{
-
-        }
-
-        public void NudVitality_ValueChanged(object sender, EventArgs e)
+			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
+			{
+				return;
+			}
+			
+			Types.Item[E_Globals.Editorindex].Add_Stat[(byte)Enums.StatType.Intelligence] = (byte)nudIntelligence.Value;
+		}
+		
+		public void NudVitality_ValueChanged(object sender, EventArgs e)
 		{
-
-        }
-
-        public void NudSpirit_ValueChanged(object sender, EventArgs e)
+			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
+			{
+				return;
+			}
+			
+			Types.Item[E_Globals.Editorindex].Add_Stat[(byte)Enums.StatType.Vitality] = (byte)nudVitality.Value;
+		}
+		
+		public void NudSpirit_ValueChanged(object sender, EventArgs e)
 		{
 			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
 			{
