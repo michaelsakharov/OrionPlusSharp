@@ -1,9 +1,6 @@
-
 using System.Collections.Generic;
 using System;
 using System.Drawing;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
 using System.Collections;
@@ -96,13 +93,13 @@ namespace Engine
 			}
 			
 			FrmAnimation.Default.Visible = false;
-			E_Globals.Editor = (byte) 0;
+			E_Globals.Editor = 0;
 			ClearChanged_Animation();
 		}
 		
 		internal static void AnimationEditorCancel()
 		{
-			E_Globals.Editor = (byte) 0;
+			E_Globals.Editor = 0;
 			FrmAnimation.Default.Visible = false;
 			ClearChanged_Animation();
 			ClientDataBase.ClearAnimations();
@@ -113,7 +110,7 @@ namespace Engine
 		{
 			for (var i = 0; i <= Constants.MAX_ANIMATIONS; i++)
 			{
-				E_Globals.Animation_Changed[(int) i] = false;
+				E_Globals.Animation_Changed[i] = false;
 			}
 		}
 		
@@ -206,7 +203,7 @@ namespace Engine
                 }
 			}
 			
-			frmMapEditor.Default.lblMap.Text = "Current Map: " + System.Convert.ToString(E_Types.Map.mapNum);
+			frmMapEditor.Default.lblMap.Text = "Current Map: " + E_Types.Map.mapNum.ToString();
 			frmMapEditor.Default.nudMaxX.Value = E_Types.Map.MaxX;
 			frmMapEditor.Default.nudMaxY.Value = E_Types.Map.MaxY;
 			
@@ -223,7 +220,7 @@ namespace Engine
 			
 			E_Graphics.GameWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, frmMapEditor.Default.picScreen.Width, frmMapEditor.Default.picScreen.Height)));
 			
-			frmMapEditor.Default.tslCurMap.Text = "Map: " + System.Convert.ToString(E_Types.Map.mapNum);
+			frmMapEditor.Default.tslCurMap.Text = "Map: " + E_Types.Map.mapNum.ToString();
 			
 			// show the form
 			frmMapEditor.Default.Show();
@@ -296,7 +293,7 @@ namespace Engine
 			frmMapEditor.Default.cmbTileSets.Items.Clear();
 			for (var i = 1; i <= E_Graphics.NumTileSets; i++)
 			{
-				frmMapEditor.Default.cmbTileSets.Items.Add("Tileset " + System.Convert.ToString(i));
+				frmMapEditor.Default.cmbTileSets.Items.Add("Tileset " + i.ToString());
 			}
 			
 			frmMapEditor.Default.cmbTileSets.SelectedIndex = 0;
@@ -740,7 +737,7 @@ namespace Engine
 			}
 			
 			// ask to clear layer
-			if (Interaction.MsgBox("Are you sure you wish to clear this layer?",Microsoft.VisualBasic.Constants.vbYesNo, "MapEditor") ==Microsoft.VisualBasic.Constants.vbYes)
+			if (Interaction.MsgBox("Are you sure you wish to clear this layer?", MsgBoxStyle.YesNo, "MapEditor") == MsgBoxResult.Yes)
 			{
 				for (X = 0; X <= E_Types.Map.MaxX; X++)
 				{
@@ -764,7 +761,7 @@ namespace Engine
 			
 			CurLayer = frmMapEditor.Default.cmbLayers.SelectedIndex + 1;
 			
-			if (Interaction.MsgBox("Are you sure you wish to fill this layer?", Microsoft.VisualBasic.Constants.vbYesNo, "Map Editor") == Microsoft.VisualBasic.Constants.vbYes)
+			if (Interaction.MsgBox("Are you sure you wish to fill this layer?", MsgBoxStyle.YesNo, "Map Editor") == MsgBoxResult.Yes)
 			{
 				if (theAutotile > 0)
 				{
@@ -820,7 +817,7 @@ namespace Engine
 			int X = 0;
 			int Y = 0;
 			
-			if (Interaction.MsgBox("Are you sure you wish to clear the attributes on this map?", Microsoft.VisualBasic.Constants.vbYesNo, "MapEditor") == Microsoft.VisualBasic.Constants.vbYes)
+			if (Interaction.MsgBox("Are you sure you wish to clear the attributes on this map?", MsgBoxStyle.YesNo, "MapEditor") == MsgBoxResult.Yes)
 			{
 				
 				for (X = 0; X <= E_Types.Map.MaxX; X++)
@@ -840,7 +837,7 @@ namespace Engine
 			
 			if (E_Globals.InMapEditor)
 			{
-				if (Interaction.MsgBox("Save changes to current map?", Microsoft.VisualBasic.Constants.vbYesNo, null) == Microsoft.VisualBasic.Constants.vbYes)
+				if (Interaction.MsgBox("Save changes to current map?", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
 				{
 					MapEditorSend();
 				}
@@ -1264,9 +1261,9 @@ namespace Engine
 			}
 			
 			frmShop.Default.nudFace.Value = Types.Shop[E_Globals.Editorindex].Face;
-			if (File.Exists(Application.StartupPath + E_Globals.GFX_PATH + "Faces\\" + System.Convert.ToString(Types.Shop[E_Globals.Editorindex].Face) + E_Globals.GFX_EXT))
+			if (File.Exists(Application.StartupPath + E_Globals.GFX_PATH + "Faces\\" + Types.Shop[E_Globals.Editorindex].Face.ToString() + E_Globals.GFX_EXT))
 			{
-				frmShop.Default.picFace.BackgroundImage = Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "Faces\\" + System.Convert.ToString(Types.Shop[E_Globals.Editorindex].Face) + E_Globals.GFX_EXT);
+				frmShop.Default.picFace.BackgroundImage = Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "Faces\\" + Types.Shop[E_Globals.Editorindex].Face.ToString() + E_Globals.GFX_EXT);
 			}
 			
 			frmShop.Default.cmbItem.Items.Clear();
@@ -1306,7 +1303,7 @@ namespace Engine
 				}
 				else
 				{
-					frmShop.Default.lstTradeItem.Items.Add(i + ": " + System.Convert.ToString(Types.Shop[E_Globals.Editorindex].TradeItem[i].ItemValue) + "x " + Types.Item[Types.Shop[E_Globals.Editorindex].TradeItem[i].Item].Name.Trim() + " for " + System.Convert.ToString(Types.Shop[E_Globals.Editorindex].TradeItem[i].CostValue) + "x " + Types.Item[Types.Shop[E_Globals.Editorindex].TradeItem[i].CostItem].Name.Trim());
+					frmShop.Default.lstTradeItem.Items.Add(i + ": " + Types.Shop[E_Globals.Editorindex].TradeItem[i].ItemValue.ToString() + "x " + Types.Item[Types.Shop[E_Globals.Editorindex].TradeItem[i].Item].Name.Trim() + " for " + Types.Shop[E_Globals.Editorindex].TradeItem[i].CostValue.ToString() + "x " + Types.Item[Types.Shop[E_Globals.Editorindex].TradeItem[i].CostItem].Name.Trim());
 				}
 			}
 			
@@ -1424,7 +1421,7 @@ namespace Engine
             }
             for (i = 0; i <= (Types.Classes[E_Globals.Editorindex].MaleSprite.Length - 1); i++)
 			{
-				frmClasses.Default.cmbMaleSprite.Items.Add("Sprite " + System.Convert.ToString(i + 1));
+				frmClasses.Default.cmbMaleSprite.Items.Add("Sprite " + (i + 1).ToString());
 			}
 			
 			frmClasses.Default.cmbFemaleSprite.Items.Clear();
@@ -1435,7 +1432,7 @@ namespace Engine
             }
             for (i = 0; i <= (Types.Classes[E_Globals.Editorindex].FemaleSprite.Length - 1); i++)
 			{
-				frmClasses.Default.cmbFemaleSprite.Items.Add("Sprite " + System.Convert.ToString(i + 1));
+				frmClasses.Default.cmbFemaleSprite.Items.Add("Sprite " + (i + 1).ToString());
 			}
 			
 			frmClasses.Default.nudMaleSprite.Value = System.Convert.ToDecimal(Types.Classes[E_Globals.Editorindex].MaleSprite[0]);
