@@ -134,63 +134,62 @@ namespace Engine
             ByteStream buffer = new ByteStream(data);
             // Max classes
             E_Globals.Max_Classes = (byte)buffer.ReadInt32();
-            Types.Classes = new ClassRec[E_Globals.Max_Classes + 1];
+            Classes = new ClassRec[E_Globals.Max_Classes + 1];
             var loopTo = E_Globals.Max_Classes;
             for (i = 0; i <= loopTo; i++)
-                Types.Classes[i].Stat = new byte[7];
+                Classes[i].Stat = new byte[7];
             var loopTo1 = E_Globals.Max_Classes;
             for (i = 0; i <= loopTo1; i++)
-                Types.Classes[i].Vital = new int[4];
+                Classes[i].Vital = new int[4];
             var loopTo2 = E_Globals.Max_Classes;
             for (i = 1; i <= loopTo2; i++)
             {
                 {
-                    ref var withBlock = ref Types.Classes[i];
-                    withBlock.Name = buffer.ReadString();
-                    withBlock.Desc = buffer.ReadString();
+                    Classes[i].Name = buffer.ReadString();
+                    Classes[i].Desc = buffer.ReadString();
 
-                    withBlock.Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
-                    withBlock.Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
-                    withBlock.Vital[(int)Enums.VitalType.SP] = buffer.ReadInt32();
+                    Classes[i].Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
+                    Classes[i].Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
+                    Classes[i].Vital[(int)Enums.VitalType.SP] = buffer.ReadInt32();
 
                     // get array size
                     z = buffer.ReadInt32();
                     // redim array
-                    withBlock.MaleSprite = new int[z + 1];
+                    Classes[i].MaleSprite = new int[z + 1];
                     var loopTo3 = z;
                     // loop-receive data
                     for (X = 0; X <= loopTo3; X++)
-                        withBlock.MaleSprite[X] = buffer.ReadInt32();
+                        Classes[i].MaleSprite[X] = buffer.ReadInt32();
 
                     // get array size
                     z = buffer.ReadInt32();
                     // redim array
-                    withBlock.FemaleSprite = new int[z + 1];
+                    Classes[i].FemaleSprite = new int[z + 1];
                     var loopTo4 = z;
                     // loop-receive data
                     for (X = 0; X <= loopTo4; X++)
-                        withBlock.FemaleSprite[X] = buffer.ReadInt32();
+                        Classes[i].FemaleSprite[X] = buffer.ReadInt32();
 
-                    withBlock.Stat[(int)Enums.StatType.Strength] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Endurance] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Vitality] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Intelligence] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Luck] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Spirit] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Strength] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Endurance] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Vitality] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Intelligence] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Luck] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Spirit] = (byte)buffer.ReadInt32();
 
-                    withBlock.StartItem = new int[6];
-                    withBlock.StartValue = new int[6];
+                    Classes[i].StartItem = new int[6];
+                    Classes[i].StartValue = new int[6];
                     for (var q = 1; q <= 5; q++)
                     {
-                        withBlock.StartItem[q] = buffer.ReadInt32();
-                        withBlock.StartValue[q] = buffer.ReadInt32();
+                        Classes[i].StartItem[q] = buffer.ReadInt32();
+                        Classes[i].StartValue[q] = buffer.ReadInt32();
                     }
 
-                    withBlock.StartMap = buffer.ReadInt32();
-                    withBlock.StartX = (byte)buffer.ReadInt32();
-                    withBlock.StartY = (byte)buffer.ReadInt32();
+                    Classes[i].StartMap = buffer.ReadInt32();
+                    Classes[i].StartX = (byte)buffer.ReadInt32();
+                    Classes[i].StartY = (byte)buffer.ReadInt32();
 
-                    withBlock.BaseExp = buffer.ReadInt32();
+                    Classes[i].BaseExp = buffer.ReadInt32();
                 }
             }
 
@@ -206,210 +205,207 @@ namespace Engine
 
             E_Globals.MapData = false;
 
-            lock (E_Types.MapLock)
+            lock (MapLock)
             {
                 if (buffer.ReadInt32() == 1)
                 {
                     ClientDataBase.ClearMap();
-                    E_Types.Map.mapNum = buffer.ReadInt32();
-                    E_Types.Map.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                    E_Types.Map.Music = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                    E_Types.Map.Revision = buffer.ReadInt32();
-                    E_Types.Map.Moral = (byte)buffer.ReadInt32();
-                    E_Types.Map.tileset = buffer.ReadInt32();
-                    E_Types.Map.Up = buffer.ReadInt32();
-                    E_Types.Map.Down = buffer.ReadInt32();
-                    E_Types.Map.Left = buffer.ReadInt32();
-                    E_Types.Map.Right = buffer.ReadInt32();
-                    E_Types.Map.BootMap = buffer.ReadInt32();
-                    E_Types.Map.BootX = (byte)buffer.ReadInt32();
-                    E_Types.Map.BootY = (byte)buffer.ReadInt32();
-                    E_Types.Map.MaxX = (byte)buffer.ReadInt32();
-                    E_Types.Map.MaxY = (byte)buffer.ReadInt32();
-                    E_Types.Map.WeatherType = (byte)buffer.ReadInt32();
-                    E_Types.Map.Fogindex = buffer.ReadInt32();
-                    E_Types.Map.WeatherIntensity = buffer.ReadInt32();
-                    E_Types.Map.FogAlpha = (byte)buffer.ReadInt32();
-                    E_Types.Map.FogSpeed = (byte)buffer.ReadInt32();
-                    E_Types.Map.HasMapTint = (byte)buffer.ReadInt32();
-                    E_Types.Map.MapTintR = (byte)buffer.ReadInt32();
-                    E_Types.Map.MapTintG = (byte)buffer.ReadInt32();
-                    E_Types.Map.MapTintB = (byte)buffer.ReadInt32();
-                    E_Types.Map.MapTintA = (byte)buffer.ReadInt32();
+                    Map.mapNum = buffer.ReadInt32();
+                    Map.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                    Map.Music = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                    Map.Revision = buffer.ReadInt32();
+                    Map.Moral = (byte)buffer.ReadInt32();
+                    Map.tileset = buffer.ReadInt32();
+                    Map.Up = buffer.ReadInt32();
+                    Map.Down = buffer.ReadInt32();
+                    Map.Left = buffer.ReadInt32();
+                    Map.Right = buffer.ReadInt32();
+                    Map.BootMap = buffer.ReadInt32();
+                    Map.BootX = (byte)buffer.ReadInt32();
+                    Map.BootY = (byte)buffer.ReadInt32();
+                    Map.MaxX = (byte)buffer.ReadInt32();
+                    Map.MaxY = (byte)buffer.ReadInt32();
+                    Map.WeatherType = (byte)buffer.ReadInt32();
+                    Map.Fogindex = buffer.ReadInt32();
+                    Map.WeatherIntensity = buffer.ReadInt32();
+                    Map.FogAlpha = (byte)buffer.ReadInt32();
+                    Map.FogSpeed = (byte)buffer.ReadInt32();
+                    Map.HasMapTint = (byte)buffer.ReadInt32();
+                    Map.MapTintR = (byte)buffer.ReadInt32();
+                    Map.MapTintG = (byte)buffer.ReadInt32();
+                    Map.MapTintB = (byte)buffer.ReadInt32();
+                    Map.MapTintA = (byte)buffer.ReadInt32();
 
-                    E_Types.Map.Instanced = (byte)buffer.ReadInt32();
-                    E_Types.Map.Panorama = (byte)buffer.ReadInt32();
-                    E_Types.Map.Parallax = (byte)buffer.ReadInt32();
-                    E_Types.Map.Brightness = (byte)buffer.ReadInt32();
+                    Map.Instanced = (byte)buffer.ReadInt32();
+                    Map.Panorama = (byte)buffer.ReadInt32();
+                    Map.Parallax = (byte)buffer.ReadInt32();
+                    Map.Brightness = (byte)buffer.ReadInt32();
 
-                    E_Types.Map.Tile = new TileRec[E_Types.Map.MaxX + 1, E_Types.Map.MaxY + 1];
+                    Map.Tile = new TileRec[Map.MaxX + 1, Map.MaxY + 1];
 
                     for (X = 1; X <= Constants.MAX_MAP_NPCS; X++)
-                        E_Types.Map.Npc[X] = buffer.ReadInt32();
-                    var loopTo = E_Types.Map.MaxX;
+                        Map.Npc[X] = buffer.ReadInt32();
+                    var loopTo = Map.MaxX;
                     for (X = 0; X <= loopTo; X++)
                     {
-                        var loopTo1 = E_Types.Map.MaxY;
+                        var loopTo1 = Map.MaxY;
                         for (Y = 0; Y <= loopTo1; Y++)
                         {
-                            E_Types.Map.Tile[X, Y].Data1 = buffer.ReadInt32();
-                            E_Types.Map.Tile[X, Y].Data2 = buffer.ReadInt32();
-                            E_Types.Map.Tile[X, Y].Data3 = buffer.ReadInt32();
-                            E_Types.Map.Tile[X, Y].DirBlock = (byte)buffer.ReadInt32();
+                            Map.Tile[X, Y].Data1 = buffer.ReadInt32();
+                            Map.Tile[X, Y].Data2 = buffer.ReadInt32();
+                            Map.Tile[X, Y].Data3 = buffer.ReadInt32();
+                            Map.Tile[X, Y].DirBlock = (byte)buffer.ReadInt32();
 
-                            E_Types.Map.Tile[X, Y].Layer = new TileDataRec[6];
+                            Map.Tile[X, Y].Layer = new TileDataRec[6];
 
                             for (i = 0; i <= (byte)Enums.LayerType.Count - 1; i++)
                             {
-                                E_Types.Map.Tile[X, Y].Layer[i].Tileset = (byte)buffer.ReadInt32();
-                                E_Types.Map.Tile[X, Y].Layer[i].X = (byte)buffer.ReadInt32();
-                                E_Types.Map.Tile[X, Y].Layer[i].Y = (byte)buffer.ReadInt32();
-                                E_Types.Map.Tile[X, Y].Layer[i].AutoTile = (byte)buffer.ReadInt32();
+                                Map.Tile[X, Y].Layer[i].Tileset = (byte)buffer.ReadInt32();
+                                Map.Tile[X, Y].Layer[i].X = (byte)buffer.ReadInt32();
+                                Map.Tile[X, Y].Layer[i].Y = (byte)buffer.ReadInt32();
+                                Map.Tile[X, Y].Layer[i].AutoTile = (byte)buffer.ReadInt32();
                             }
-                            E_Types.Map.Tile[X, Y].Type = (byte)buffer.ReadInt32();
+                            Map.Tile[X, Y].Type = (byte)buffer.ReadInt32();
                         }
                     }
 
                     // Event Data!
                     E_EventSystem.ResetEventdata();
 
-                    E_Types.Map.EventCount = buffer.ReadInt32();
+                    Map.EventCount = buffer.ReadInt32();
 
-                    if (E_Types.Map.EventCount > 0)
+                    if (Map.EventCount > 0)
                     {
-                        E_Types.Map.Events = new EventRec[E_Types.Map.EventCount + 1];
-                        var loopTo2 = E_Types.Map.EventCount;
+                        Map.Events = new EventRec[Map.EventCount + 1];
+                        var loopTo2 = Map.EventCount;
                         for (i = 1; i <= loopTo2; i++)
                         {
                             {
-                                ref var withBlock = ref E_Types.Map.Events[i];
-                                withBlock.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                                withBlock.Globals = buffer.ReadInt32();
-                                withBlock.X = buffer.ReadInt32();
-                                withBlock.Y = buffer.ReadInt32();
-                                withBlock.PageCount = buffer.ReadInt32();
+                                Map.Events[i].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                                Map.Events[i].Globals = buffer.ReadInt32();
+                                Map.Events[i].X = buffer.ReadInt32();
+                                Map.Events[i].Y = buffer.ReadInt32();
+                                Map.Events[i].PageCount = buffer.ReadInt32();
                             }
-                            if (E_Types.Map.Events[i].PageCount > 0)
+                            if (Map.Events[i].PageCount > 0)
                             {
-                                E_Types.Map.Events[i].Pages = new EventPageRec[E_Types.Map.Events[i].PageCount + 1];
-                                var loopTo3 = E_Types.Map.Events[i].PageCount;
+                                Map.Events[i].Pages = new EventPageRec[Map.Events[i].PageCount + 1];
+                                var loopTo3 = Map.Events[i].PageCount;
                                 for (X = 1; X <= loopTo3; X++)
                                 {
                                     {
-                                        ref var withBlock1 = ref E_Types.Map.Events[i].Pages[X];
-                                        withBlock1.ChkVariable = buffer.ReadInt32();
-                                        withBlock1.Variableindex = buffer.ReadInt32();
-                                        withBlock1.VariableCondition = buffer.ReadInt32();
-                                        withBlock1.VariableCompare = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].ChkVariable = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].Variableindex = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].VariableCondition = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].VariableCompare = buffer.ReadInt32();
 
-                                        withBlock1.ChkSwitch = buffer.ReadInt32();
-                                        withBlock1.Switchindex = buffer.ReadInt32();
-                                        withBlock1.SwitchCompare = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].ChkSwitch = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].Switchindex = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].SwitchCompare = buffer.ReadInt32();
 
-                                        withBlock1.ChkHasItem = buffer.ReadInt32();
-                                        withBlock1.HasItemindex = buffer.ReadInt32();
-                                        withBlock1.HasItemAmount = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].ChkHasItem = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].HasItemindex = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].HasItemAmount = buffer.ReadInt32();
 
-                                        withBlock1.ChkSelfSwitch = buffer.ReadInt32();
-                                        withBlock1.SelfSwitchindex = buffer.ReadInt32();
-                                        withBlock1.SelfSwitchCompare = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].ChkSelfSwitch = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].SelfSwitchindex = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].SelfSwitchCompare = buffer.ReadInt32();
 
-                                        withBlock1.GraphicType = (byte)buffer.ReadInt32();
-                                        withBlock1.Graphic = buffer.ReadInt32();
-                                        withBlock1.GraphicX = buffer.ReadInt32();
-                                        withBlock1.GraphicY = buffer.ReadInt32();
-                                        withBlock1.GraphicX2 = buffer.ReadInt32();
-                                        withBlock1.GraphicY2 = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].GraphicType = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].Graphic = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].GraphicX = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].GraphicY = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].GraphicX2 = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].GraphicY2 = buffer.ReadInt32();
 
-                                        withBlock1.MoveType = (byte)buffer.ReadInt32();
-                                        withBlock1.MoveSpeed = (byte)buffer.ReadInt32();
-                                        withBlock1.MoveFreq = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].MoveType = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].MoveSpeed = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].MoveFreq = (byte)buffer.ReadInt32();
 
-                                        withBlock1.MoveRouteCount = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].MoveRouteCount = buffer.ReadInt32();
 
-                                        withBlock1.IgnoreMoveRoute = buffer.ReadInt32();
-                                        withBlock1.RepeatMoveRoute = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].IgnoreMoveRoute = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].RepeatMoveRoute = buffer.ReadInt32();
 
-                                        if (withBlock1.MoveRouteCount > 0)
+                                        if (Map.Events[i].Pages[X].MoveRouteCount > 0)
                                         {
-                                            E_Types.Map.Events[i].Pages[X].MoveRoute = new MoveRouteRec[withBlock1.MoveRouteCount + 1];
-                                            var loopTo4 = withBlock1.MoveRouteCount;
+                                            Map.Events[i].Pages[X].MoveRoute = new MoveRouteRec[Map.Events[i].Pages[X].MoveRouteCount + 1];
+                                            var loopTo4 = Map.Events[i].Pages[X].MoveRouteCount;
                                             for (Y = 1; Y <= loopTo4; Y++)
                                             {
-                                                withBlock1.MoveRoute[Y].Index = buffer.ReadInt32();
-                                                withBlock1.MoveRoute[Y].Data1 = buffer.ReadInt32();
-                                                withBlock1.MoveRoute[Y].Data2 = buffer.ReadInt32();
-                                                withBlock1.MoveRoute[Y].Data3 = buffer.ReadInt32();
-                                                withBlock1.MoveRoute[Y].Data4 = buffer.ReadInt32();
-                                                withBlock1.MoveRoute[Y].Data5 = buffer.ReadInt32();
-                                                withBlock1.MoveRoute[Y].Data6 = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Index = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Data1 = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Data2 = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Data3 = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Data4 = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Data5 = buffer.ReadInt32();
+                                                Map.Events[i].Pages[X].MoveRoute[Y].Data6 = buffer.ReadInt32();
                                             }
                                         }
 
-                                        withBlock1.WalkAnim = (byte)buffer.ReadInt32();
-                                        withBlock1.DirFix = (byte)buffer.ReadInt32();
-                                        withBlock1.WalkThrough = (byte)buffer.ReadInt32();
-                                        withBlock1.ShowName = (byte)buffer.ReadInt32();
-                                        withBlock1.Trigger = (byte)buffer.ReadInt32();
-                                        withBlock1.CommandListCount = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].WalkAnim = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].DirFix = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].WalkThrough = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].ShowName = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].Trigger = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].CommandListCount = buffer.ReadInt32();
 
-                                        withBlock1.Position = (byte)buffer.ReadInt32();
-                                        withBlock1.Questnum = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].Position = (byte)buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].Questnum = buffer.ReadInt32();
 
-                                        withBlock1.ChkPlayerGender = buffer.ReadInt32();
+                                        Map.Events[i].Pages[X].ChkPlayerGender = buffer.ReadInt32();
                                     }
 
-                                    if (E_Types.Map.Events[i].Pages[X].CommandListCount > 0)
+                                    if (Map.Events[i].Pages[X].CommandListCount > 0)
                                     {
-                                        E_Types.Map.Events[i].Pages[X].CommandList = new CommandListRec[E_Types.Map.Events[i].Pages[X].CommandListCount + 1];
-                                        var loopTo5 = E_Types.Map.Events[i].Pages[X].CommandListCount;
+                                        Map.Events[i].Pages[X].CommandList = new CommandListRec[Map.Events[i].Pages[X].CommandListCount + 1];
+                                        var loopTo5 = Map.Events[i].Pages[X].CommandListCount;
                                         for (Y = 1; Y <= loopTo5; Y++)
                                         {
-                                            E_Types.Map.Events[i].Pages[X].CommandList[Y].CommandCount = buffer.ReadInt32();
-                                            E_Types.Map.Events[i].Pages[X].CommandList[Y].ParentList = buffer.ReadInt32();
-                                            if (E_Types.Map.Events[i].Pages[X].CommandList[Y].CommandCount > 0)
+                                            Map.Events[i].Pages[X].CommandList[Y].CommandCount = buffer.ReadInt32();
+                                            Map.Events[i].Pages[X].CommandList[Y].ParentList = buffer.ReadInt32();
+                                            if (Map.Events[i].Pages[X].CommandList[Y].CommandCount > 0)
                                             {
-                                                E_Types.Map.Events[i].Pages[X].CommandList[Y].Commands = new EventCommandRec[E_Types.Map.Events[i].Pages[X].CommandList[Y].CommandCount + 1];
-                                                var loopTo6 = E_Types.Map.Events[i].Pages[X].CommandList[Y].CommandCount;
+                                                Map.Events[i].Pages[X].CommandList[Y].Commands = new EventCommandRec[Map.Events[i].Pages[X].CommandList[Y].CommandCount + 1];
+                                                var loopTo6 = Map.Events[i].Pages[X].CommandList[Y].CommandCount;
                                                 for (var z = 1; z <= loopTo6; z++)
                                                 {
                                                     {
-                                                        ref var withBlock2 = ref E_Types.Map.Events[i].Pages[X].CommandList[Y].Commands[z];
-                                                        withBlock2.Index = buffer.ReadInt32();
-                                                        withBlock2.Text1 = buffer.ReadString().Trim();
-                                                        withBlock2.Text2 = buffer.ReadString().Trim();
-                                                        withBlock2.Text3 = buffer.ReadString().Trim();
-                                                        withBlock2.Text4 = buffer.ReadString().Trim();
-                                                        withBlock2.Text5 = buffer.ReadString().Trim();
-                                                        withBlock2.Data1 = buffer.ReadInt32();
-                                                        withBlock2.Data2 = buffer.ReadInt32();
-                                                        withBlock2.Data3 = buffer.ReadInt32();
-                                                        withBlock2.Data4 = buffer.ReadInt32();
-                                                        withBlock2.Data5 = buffer.ReadInt32();
-                                                        withBlock2.Data6 = buffer.ReadInt32();
-                                                        withBlock2.ConditionalBranch.CommandList = buffer.ReadInt32();
-                                                        withBlock2.ConditionalBranch.Condition = buffer.ReadInt32();
-                                                        withBlock2.ConditionalBranch.Data1 = buffer.ReadInt32();
-                                                        withBlock2.ConditionalBranch.Data2 = buffer.ReadInt32();
-                                                        withBlock2.ConditionalBranch.Data3 = buffer.ReadInt32();
-                                                        withBlock2.ConditionalBranch.ElseCommandList = buffer.ReadInt32();
-                                                        withBlock2.MoveRouteCount = buffer.ReadInt32();
-                                                        if (withBlock2.MoveRouteCount > 0)
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Index = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Text1 = buffer.ReadString().Trim();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Text2 = buffer.ReadString().Trim();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Text3 = buffer.ReadString().Trim();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Text4 = buffer.ReadString().Trim();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Text5 = buffer.ReadString().Trim();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Data1 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Data2 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Data3 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Data4 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Data5 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].Data6 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.CommandList = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Condition = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Data1 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Data2 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.Data3 = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].ConditionalBranch.ElseCommandList = buffer.ReadInt32();
+                                                        Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount = buffer.ReadInt32();
+                                                        if (Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount > 0)
                                                         {
-                                                            var oldMoveRoute = withBlock2.MoveRoute;
-                                                            withBlock2.MoveRoute = new MoveRouteRec[withBlock2.MoveRouteCount + 1];
+                                                            var oldMoveRoute = Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute;
+                                                            Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute = new MoveRouteRec[Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount + 1];
                                                             if (oldMoveRoute != null)
-                                                                Array.Copy(oldMoveRoute, withBlock2.MoveRoute, Math.Min(withBlock2.MoveRouteCount + 1, oldMoveRoute.Length));
-                                                            var loopTo7 = withBlock2.MoveRouteCount;
+                                                                Array.Copy(oldMoveRoute, Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute, Math.Min(Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount + 1, oldMoveRoute.Length));
+                                                            var loopTo7 = Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRouteCount;
                                                             for (var w = 1; w <= loopTo7; w++)
                                                             {
-                                                                withBlock2.MoveRoute[w].Index = buffer.ReadInt32();
-                                                                withBlock2.MoveRoute[w].Data1 = buffer.ReadInt32();
-                                                                withBlock2.MoveRoute[w].Data2 = buffer.ReadInt32();
-                                                                withBlock2.MoveRoute[w].Data3 = buffer.ReadInt32();
-                                                                withBlock2.MoveRoute[w].Data4 = buffer.ReadInt32();
-                                                                withBlock2.MoveRoute[w].Data5 = buffer.ReadInt32();
-                                                                withBlock2.MoveRoute[w].Data6 = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Index = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data1 = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data2 = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data3 = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data4 = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data5 = buffer.ReadInt32();
+                                                                Map.Events[i].Pages[X].CommandList[Y].Commands[z].MoveRoute[w].Data6 = buffer.ReadInt32();
                                                             }
                                                         }
                                                     }
@@ -425,20 +421,20 @@ namespace Engine
 
                 for (i = 1; i <= Constants.MAX_MAP_ITEMS; i++)
                 {
-                    E_Types.MapItem[i].Num = buffer.ReadInt32();
-                    E_Types.MapItem[i].Value = buffer.ReadInt32();
-                    E_Types.MapItem[i].X = (byte)buffer.ReadInt32();
-                    E_Types.MapItem[i].Y = (byte)buffer.ReadInt32();
+                    MapItem[i].Num = buffer.ReadInt32();
+                    MapItem[i].Value = buffer.ReadInt32();
+                    MapItem[i].X = (byte)buffer.ReadInt32();
+                    MapItem[i].Y = (byte)buffer.ReadInt32();
                 }
 
                 for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
                 {
-                    E_Types.MapNpc[i].Num = (byte)buffer.ReadInt32();
-                    E_Types.MapNpc[i].X = (byte)buffer.ReadInt32();
-                    E_Types.MapNpc[i].Y = (byte)buffer.ReadInt32();
-                    E_Types.MapNpc[i].Dir = (byte)buffer.ReadInt32();
-                    E_Types.MapNpc[i].Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
-                    E_Types.MapNpc[i].Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
+                    MapNpc[i].Num = (byte)buffer.ReadInt32();
+                    MapNpc[i].X = (byte)buffer.ReadInt32();
+                    MapNpc[i].Y = (byte)buffer.ReadInt32();
+                    MapNpc[i].Dir = (byte)buffer.ReadInt32();
+                    MapNpc[i].Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
+                    MapNpc[i].Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
                 }
 
                 if (buffer.ReadInt32() == 1)
@@ -471,15 +467,15 @@ namespace Engine
 
             E_Globals.MapData = true;
 
-            E_Globals.CurrentWeather = E_Types.Map.WeatherType;
-            E_Globals.CurrentWeatherIntensity = E_Types.Map.WeatherIntensity;
-            E_Globals.CurrentFog = E_Types.Map.Fogindex;
-            E_Globals.CurrentFogSpeed = E_Types.Map.FogSpeed;
-            E_Globals.CurrentFogOpacity = E_Types.Map.FogAlpha;
-            E_Globals.CurrentTintR = E_Types.Map.MapTintR;
-            E_Globals.CurrentTintG = E_Types.Map.MapTintG;
-            E_Globals.CurrentTintB = E_Types.Map.MapTintB;
-            E_Globals.CurrentTintA = E_Types.Map.MapTintA;
+            E_Globals.CurrentWeather = Map.WeatherType;
+            E_Globals.CurrentWeatherIntensity = Map.WeatherIntensity;
+            E_Globals.CurrentFog = Map.Fogindex;
+            E_Globals.CurrentFogSpeed = Map.FogSpeed;
+            E_Globals.CurrentFogOpacity = Map.FogAlpha;
+            E_Globals.CurrentTintR = Map.MapTintR;
+            E_Globals.CurrentTintG = Map.MapTintG;
+            E_Globals.CurrentTintB = Map.MapTintB;
+            E_Globals.CurrentTintA = Map.MapTintA;
 
             E_Globals.InMapEditor = true;
 
@@ -494,13 +490,12 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
             {
                 {
-                    ref var withBlock = ref E_Types.MapNpc[i];
-                    withBlock.Num = (byte)buffer.ReadInt32();
-                    withBlock.X = (byte)buffer.ReadInt32();
-                    withBlock.Y = (byte)buffer.ReadInt32();
-                    withBlock.Dir = (byte)buffer.ReadInt32();
-                    withBlock.Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
-                    withBlock.Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
+                    MapNpc[i].Num = (byte)buffer.ReadInt32();
+                    MapNpc[i].X = (byte)buffer.ReadInt32();
+                    MapNpc[i].Y = (byte)buffer.ReadInt32();
+                    MapNpc[i].Dir = (byte)buffer.ReadInt32();
+                    MapNpc[i].Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
+                    MapNpc[i].Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
                 }
             }
 
@@ -516,13 +511,12 @@ namespace Engine
             NpcNum = buffer.ReadInt32();
 
             {
-                ref var withBlock = ref E_Types.MapNpc[NpcNum];
-                withBlock.Num = (byte)buffer.ReadInt32();
-                withBlock.X = (byte)buffer.ReadInt32();
-                withBlock.Y = (byte)buffer.ReadInt32();
-                withBlock.Dir = (byte)buffer.ReadInt32();
-                withBlock.Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
-                withBlock.Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
+                MapNpc[NpcNum].Num = (byte)buffer.ReadInt32();
+                MapNpc[NpcNum].X = (byte)buffer.ReadInt32();
+                MapNpc[NpcNum].Y = (byte)buffer.ReadInt32();
+                MapNpc[NpcNum].Dir = (byte)buffer.ReadInt32();
+                MapNpc[NpcNum].Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
+                MapNpc[NpcNum].Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
             }
 
             buffer.Dispose();
@@ -544,43 +538,43 @@ namespace Engine
 
             i = buffer.ReadInt32();
             // Update the Npc
-            Types.Npc[i].Animation = buffer.ReadInt32();
-            Types.Npc[i].AttackSay = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Npc[i].Behaviour = (byte)buffer.ReadInt32();
-            Types.Npc[i].DropChance = new int[6];
-            Types.Npc[i].DropItem = new int[6];
-            Types.Npc[i].DropItemValue = new int[6];
+            Npc[i].Animation = buffer.ReadInt32();
+            Npc[i].AttackSay = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Npc[i].Behaviour = (byte)buffer.ReadInt32();
+            Npc[i].DropChance = new int[6];
+            Npc[i].DropItem = new int[6];
+            Npc[i].DropItemValue = new int[6];
             for (x = 1; x <= 5; x++)
             {
-                Types.Npc[i].DropChance[x] = buffer.ReadInt32();
-                Types.Npc[i].DropItem[x] = buffer.ReadInt32();
-                Types.Npc[i].DropItemValue[x] = buffer.ReadInt32();
+                Npc[i].DropChance[x] = buffer.ReadInt32();
+                Npc[i].DropItem[x] = buffer.ReadInt32();
+                Npc[i].DropItemValue[x] = buffer.ReadInt32();
             }
 
-            Types.Npc[i].Exp = buffer.ReadInt32();
-            Types.Npc[i].Faction = (byte)buffer.ReadInt32();
-            Types.Npc[i].Hp = buffer.ReadInt32();
-            Types.Npc[i].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Npc[i].Range = (byte)buffer.ReadInt32();
-            Types.Npc[i].SpawnTime = (byte)buffer.ReadInt32();
-            Types.Npc[i].SpawnSecs = buffer.ReadInt32();
-            Types.Npc[i].Sprite = buffer.ReadInt32();
+            Npc[i].Exp = buffer.ReadInt32();
+            Npc[i].Faction = (byte)buffer.ReadInt32();
+            Npc[i].Hp = buffer.ReadInt32();
+            Npc[i].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Npc[i].Range = (byte)buffer.ReadInt32();
+            Npc[i].SpawnTime = (byte)buffer.ReadInt32();
+            Npc[i].SpawnSecs = buffer.ReadInt32();
+            Npc[i].Sprite = buffer.ReadInt32();
 
             for (x = 0; x <= (byte)Enums.StatType.Count - 1; x++)
-                Types.Npc[i].Stat[x] = (byte)buffer.ReadInt32();
+                Npc[i].Stat[x] = (byte)buffer.ReadInt32();
 
-            Types.Npc[i].QuestNum = buffer.ReadInt32();
+            Npc[i].QuestNum = buffer.ReadInt32();
 
             for (x = 1; x <= Constants.MAX_NPC_SKILLS; x++)
-                Types.Npc[i].Skill[x] = (byte)buffer.ReadInt32();
+                Npc[i].Skill[x] = (byte)buffer.ReadInt32();
 
-            Types.Npc[i].Level = buffer.ReadInt32();
-            Types.Npc[i].Damage = buffer.ReadInt32();
+            Npc[i].Level = buffer.ReadInt32();
+            Npc[i].Damage = buffer.ReadInt32();
 
-            if (Types.Npc[i].AttackSay == null)
-                Types.Npc[i].AttackSay = "";
-            if (Types.Npc[i].Name == null)
-                Types.Npc[i].Name = "";
+            if (Npc[i].AttackSay == null)
+                Npc[i].AttackSay = "";
+            if (Npc[i].Name == null)
+                Npc[i].Name = "";
 
             buffer.Dispose();
         }
@@ -601,20 +595,20 @@ namespace Engine
             ByteStream buffer = new ByteStream(data);
             shopnum = buffer.ReadInt32();
 
-            Types.Shop[shopnum].BuyRate = buffer.ReadInt32();
-            Types.Shop[shopnum].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Shop[shopnum].Face = (byte)buffer.ReadInt32();
+            Shop[shopnum].BuyRate = buffer.ReadInt32();
+            Shop[shopnum].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Shop[shopnum].Face = (byte)buffer.ReadInt32();
 
             for (var i = 0; i <= Constants.MAX_TRADES; i++)
             {
-                Types.Shop[shopnum].TradeItem[i].CostItem = buffer.ReadInt32();
-                Types.Shop[shopnum].TradeItem[i].CostValue = buffer.ReadInt32();
-                Types.Shop[shopnum].TradeItem[i].Item = buffer.ReadInt32();
-                Types.Shop[shopnum].TradeItem[i].ItemValue = buffer.ReadInt32();
+                Shop[shopnum].TradeItem[i].CostItem = buffer.ReadInt32();
+                Shop[shopnum].TradeItem[i].CostValue = buffer.ReadInt32();
+                Shop[shopnum].TradeItem[i].Item = buffer.ReadInt32();
+                Shop[shopnum].TradeItem[i].ItemValue = buffer.ReadInt32();
             }
 
-            if (Types.Shop[shopnum].Name == null)
-                Types.Shop[shopnum].Name = "";
+            if (Shop[shopnum].Name == null)
+                Shop[shopnum].Name = "";
 
             buffer.Dispose();
         }
@@ -630,37 +624,37 @@ namespace Engine
             ByteStream buffer = new ByteStream(data);
             skillnum = buffer.ReadInt32();
 
-            Types.Skill[skillnum].AccessReq = buffer.ReadInt32();
-            Types.Skill[skillnum].AoE = buffer.ReadInt32();
-            Types.Skill[skillnum].CastAnim = buffer.ReadInt32();
-            Types.Skill[skillnum].CastTime = buffer.ReadInt32();
-            Types.Skill[skillnum].CdTime = buffer.ReadInt32();
-            Types.Skill[skillnum].ClassReq = buffer.ReadInt32();
-            Types.Skill[skillnum].Dir = (byte)buffer.ReadInt32();
-            Types.Skill[skillnum].Duration = buffer.ReadInt32();
-            Types.Skill[skillnum].Icon = buffer.ReadInt32();
-            Types.Skill[skillnum].Interval = buffer.ReadInt32();
-            Types.Skill[skillnum].IsAoE = Convert.ToBoolean(buffer.ReadInt32());
-            Types.Skill[skillnum].LevelReq = buffer.ReadInt32();
-            Types.Skill[skillnum].Map = buffer.ReadInt32();
-            Types.Skill[skillnum].MpCost = buffer.ReadInt32();
-            Types.Skill[skillnum].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Skill[skillnum].Range = buffer.ReadInt32();
-            Types.Skill[skillnum].SkillAnim = buffer.ReadInt32();
-            Types.Skill[skillnum].StunDuration = buffer.ReadInt32();
-            Types.Skill[skillnum].Type = (byte)buffer.ReadInt32();
-            Types.Skill[skillnum].Vital = buffer.ReadInt32();
-            Types.Skill[skillnum].X = buffer.ReadInt32();
-            Types.Skill[skillnum].Y = buffer.ReadInt32();
+            Skill[skillnum].AccessReq = buffer.ReadInt32();
+            Skill[skillnum].AoE = buffer.ReadInt32();
+            Skill[skillnum].CastAnim = buffer.ReadInt32();
+            Skill[skillnum].CastTime = buffer.ReadInt32();
+            Skill[skillnum].CdTime = buffer.ReadInt32();
+            Skill[skillnum].ClassReq = buffer.ReadInt32();
+            Skill[skillnum].Dir = (byte)buffer.ReadInt32();
+            Skill[skillnum].Duration = buffer.ReadInt32();
+            Skill[skillnum].Icon = buffer.ReadInt32();
+            Skill[skillnum].Interval = buffer.ReadInt32();
+            Skill[skillnum].IsAoE = Convert.ToBoolean(buffer.ReadInt32());
+            Skill[skillnum].LevelReq = buffer.ReadInt32();
+            Skill[skillnum].Map = buffer.ReadInt32();
+            Skill[skillnum].MpCost = buffer.ReadInt32();
+            Skill[skillnum].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Skill[skillnum].Range = buffer.ReadInt32();
+            Skill[skillnum].SkillAnim = buffer.ReadInt32();
+            Skill[skillnum].StunDuration = buffer.ReadInt32();
+            Skill[skillnum].Type = (byte)buffer.ReadInt32();
+            Skill[skillnum].Vital = buffer.ReadInt32();
+            Skill[skillnum].X = buffer.ReadInt32();
+            Skill[skillnum].Y = buffer.ReadInt32();
 
-            Types.Skill[skillnum].IsProjectile = buffer.ReadInt32();
-            Types.Skill[skillnum].Projectile = buffer.ReadInt32();
+            Skill[skillnum].IsProjectile = buffer.ReadInt32();
+            Skill[skillnum].Projectile = buffer.ReadInt32();
 
-            Types.Skill[skillnum].KnockBack = (byte)buffer.ReadInt32();
-            Types.Skill[skillnum].KnockBackTiles = (byte)buffer.ReadInt32();
+            Skill[skillnum].KnockBack = (byte)buffer.ReadInt32();
+            Skill[skillnum].KnockBackTiles = (byte)buffer.ReadInt32();
 
-            if (Types.Skill[skillnum].Name == null)
-                Types.Skill[skillnum].Name = "";
+            if (Skill[skillnum].Name == null)
+                Skill[skillnum].Name = "";
 
             buffer.Dispose();
         }
@@ -676,27 +670,27 @@ namespace Engine
             ByteStream buffer = new ByteStream(data);
             ResourceNum = buffer.ReadInt32();
 
-            Types.Resource[ResourceNum].Animation = buffer.ReadInt32();
-            Types.Resource[ResourceNum].EmptyMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Resource[ResourceNum].ExhaustedImage = buffer.ReadInt32();
-            Types.Resource[ResourceNum].Health = buffer.ReadInt32();
-            Types.Resource[ResourceNum].ExpReward = buffer.ReadInt32();
-            Types.Resource[ResourceNum].ItemReward = buffer.ReadInt32();
-            Types.Resource[ResourceNum].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Resource[ResourceNum].ResourceImage = buffer.ReadInt32();
-            Types.Resource[ResourceNum].ResourceType = buffer.ReadInt32();
-            Types.Resource[ResourceNum].RespawnTime = buffer.ReadInt32();
-            Types.Resource[ResourceNum].SuccessMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Resource[ResourceNum].LvlRequired = buffer.ReadInt32();
-            Types.Resource[ResourceNum].ToolRequired = buffer.ReadInt32();
-            Types.Resource[ResourceNum].Walkthrough = Convert.ToBoolean(buffer.ReadInt32());
+            Resource[ResourceNum].Animation = buffer.ReadInt32();
+            Resource[ResourceNum].EmptyMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Resource[ResourceNum].ExhaustedImage = buffer.ReadInt32();
+            Resource[ResourceNum].Health = buffer.ReadInt32();
+            Resource[ResourceNum].ExpReward = buffer.ReadInt32();
+            Resource[ResourceNum].ItemReward = buffer.ReadInt32();
+            Resource[ResourceNum].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Resource[ResourceNum].ResourceImage = buffer.ReadInt32();
+            Resource[ResourceNum].ResourceType = buffer.ReadInt32();
+            Resource[ResourceNum].RespawnTime = buffer.ReadInt32();
+            Resource[ResourceNum].SuccessMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Resource[ResourceNum].LvlRequired = buffer.ReadInt32();
+            Resource[ResourceNum].ToolRequired = buffer.ReadInt32();
+            Resource[ResourceNum].Walkthrough = Convert.ToBoolean(buffer.ReadInt32());
 
-            if (Types.Resource[ResourceNum].Name == null)
-                Types.Resource[ResourceNum].Name = "";
-            if (Types.Resource[ResourceNum].EmptyMessage == null)
-                Types.Resource[ResourceNum].EmptyMessage = "";
-            if (Types.Resource[ResourceNum].SuccessMessage == null)
-                Types.Resource[ResourceNum].SuccessMessage = "";
+            if (Resource[ResourceNum].Name == null)
+                Resource[ResourceNum].Name = "";
+            if (Resource[ResourceNum].EmptyMessage == null)
+                Resource[ResourceNum].EmptyMessage = "";
+            if (Resource[ResourceNum].SuccessMessage == null)
+                Resource[ResourceNum].SuccessMessage = "";
 
             buffer.Dispose();
         }
@@ -712,27 +706,27 @@ namespace Engine
             int i;
             ByteStream buffer = new ByteStream(data);
             n = buffer.ReadInt32();
-            var loopTo = Information.UBound(Types.Animation[n].Frames);
+            var loopTo = Information.UBound(Animation[n].Frames);
             // Update the Animation
             for (i = 0; i <= loopTo; i++)
-                Types.Animation[n].Frames[i] = buffer.ReadInt32();
-            var loopTo1 = Information.UBound(Types.Animation[n].LoopCount);
+                Animation[n].Frames[i] = buffer.ReadInt32();
+            var loopTo1 = Information.UBound(Animation[n].LoopCount);
             for (i = 0; i <= loopTo1; i++)
-                Types.Animation[n].LoopCount[i] = buffer.ReadInt32();
-            var loopTo2 = Information.UBound(Types.Animation[n].LoopTime);
+                Animation[n].LoopCount[i] = buffer.ReadInt32();
+            var loopTo2 = Information.UBound(Animation[n].LoopTime);
             for (i = 0; i <= loopTo2; i++)
-                Types.Animation[n].LoopTime[i] = buffer.ReadInt32();
+                Animation[n].LoopTime[i] = buffer.ReadInt32();
 
-            Types.Animation[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-            Types.Animation[n].Sound = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Animation[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+            Animation[n].Sound = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 
-            if (Types.Animation[n].Name == null)
-                Types.Animation[n].Name = "";
-            if (Types.Animation[n].Sound == null)
-                Types.Animation[n].Sound = "";
-            var loopTo3 = Information.UBound(Types.Animation[n].Sprite);
+            if (Animation[n].Name == null)
+                Animation[n].Name = "";
+            if (Animation[n].Sound == null)
+                Animation[n].Sound = "";
+            var loopTo3 = Information.UBound(Animation[n].Sprite);
             for (i = 0; i <= loopTo3; i++)
-                Types.Animation[n].Sprite[i] = buffer.ReadInt32();
+                Animation[n].Sprite[i] = buffer.ReadInt32();
             buffer.Dispose();
         }
 
@@ -750,63 +744,62 @@ namespace Engine
 
             // Max classes
             E_Globals.Max_Classes = (byte)buffer.ReadInt32();
-            Types.Classes = new ClassRec[E_Globals.Max_Classes + 1];
+            Classes = new ClassRec[E_Globals.Max_Classes + 1];
             var loopTo = E_Globals.Max_Classes;
             for (i = 0; i <= loopTo; i++)
-                Types.Classes[i].Stat = new byte[7];
+                Classes[i].Stat = new byte[7];
             var loopTo1 = E_Globals.Max_Classes;
             for (i = 0; i <= loopTo1; i++)
-                Types.Classes[i].Vital = new int[4];
+                Classes[i].Vital = new int[4];
             var loopTo2 = E_Globals.Max_Classes;
             for (i = 1; i <= loopTo2; i++)
             {
                 {
-                    ref var withBlock = ref Types.Classes[i];
-                    withBlock.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                    withBlock.Desc = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                    Classes[i].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                    Classes[i].Desc = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 
-                    withBlock.Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
-                    withBlock.Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
-                    withBlock.Vital[(int)Enums.VitalType.SP] = buffer.ReadInt32();
+                    Classes[i].Vital[(int)Enums.VitalType.HP] = buffer.ReadInt32();
+                    Classes[i].Vital[(int)Enums.VitalType.MP] = buffer.ReadInt32();
+                    Classes[i].Vital[(int)Enums.VitalType.SP] = buffer.ReadInt32();
 
                     // get array size
                     z = buffer.ReadInt32();
                     // redim array
-                    withBlock.MaleSprite = new int[z + 1];
+                    Classes[i].MaleSprite = new int[z + 1];
                     var loopTo3 = z;
                     // loop-receive data
                     for (x = 0; x <= loopTo3; x++)
-                        withBlock.MaleSprite[x] = buffer.ReadInt32();
+                        Classes[i].MaleSprite[x] = buffer.ReadInt32();
 
                     // get array size
                     z = buffer.ReadInt32();
                     // redim array
-                    withBlock.FemaleSprite = new int[z + 1];
+                    Classes[i].FemaleSprite = new int[z + 1];
                     var loopTo4 = z;
                     // loop-receive data
                     for (x = 0; x <= loopTo4; x++)
-                        withBlock.FemaleSprite[x] = buffer.ReadInt32();
+                        Classes[i].FemaleSprite[x] = buffer.ReadInt32();
 
-                    withBlock.Stat[(int)Enums.StatType.Strength] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Endurance] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Vitality] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Intelligence] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Luck] = (byte)buffer.ReadInt32();
-                    withBlock.Stat[(int)Enums.StatType.Spirit] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Strength] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Endurance] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Vitality] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Intelligence] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Luck] = (byte)buffer.ReadInt32();
+                    Classes[i].Stat[(int)Enums.StatType.Spirit] = (byte)buffer.ReadInt32();
 
-                    withBlock.StartItem = new int[6];
-                    withBlock.StartValue = new int[6];
+                    Classes[i].StartItem = new int[6];
+                    Classes[i].StartValue = new int[6];
                     for (var q = 1; q <= 5; q++)
                     {
-                        withBlock.StartItem[q] = buffer.ReadInt32();
-                        withBlock.StartValue[q] = buffer.ReadInt32();
+                        Classes[i].StartItem[q] = buffer.ReadInt32();
+                        Classes[i].StartValue[q] = buffer.ReadInt32();
                     }
 
-                    withBlock.StartMap = buffer.ReadInt32();
-                    withBlock.StartX = (byte)buffer.ReadInt32();
-                    withBlock.StartY = (byte)buffer.ReadInt32();
+                    Classes[i].StartMap = buffer.ReadInt32();
+                    Classes[i].StartX = (byte)buffer.ReadInt32();
+                    Classes[i].StartY = (byte)buffer.ReadInt32();
 
-                    withBlock.BaseExp = buffer.ReadInt32();
+                    Classes[i].BaseExp = buffer.ReadInt32();
                 }
             }
 
@@ -825,60 +818,60 @@ namespace Engine
                 n = buffer.ReadInt32();
 
                 // Update the item
-                Types.Item[n].AccessReq = buffer.ReadInt32();
+                Item[n].AccessReq = buffer.ReadInt32();
 
                 for (z = 0; z <= (byte)Enums.StatType.Count - 1; z++)
-                    Types.Item[n].Add_Stat[z] = (byte)buffer.ReadInt32();
+                    Item[n].Add_Stat[z] = (byte)buffer.ReadInt32();
 
-                Types.Item[n].Animation = buffer.ReadInt32();
-                Types.Item[n].BindType = (byte)buffer.ReadInt32();
-                Types.Item[n].ClassReq = buffer.ReadInt32();
-                Types.Item[n].Data1 = buffer.ReadInt32();
-                Types.Item[n].Data2 = buffer.ReadInt32();
-                Types.Item[n].Data3 = buffer.ReadInt32();
-                Types.Item[n].TwoHanded = buffer.ReadInt32();
-                Types.Item[n].LevelReq = buffer.ReadInt32();
-                Types.Item[n].Mastery = (byte)buffer.ReadInt32();
-                Types.Item[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Item[n].Paperdoll = buffer.ReadInt32();
-                Types.Item[n].Pic = buffer.ReadInt32();
-                Types.Item[n].Price = buffer.ReadInt32();
-                Types.Item[n].Rarity = (byte)buffer.ReadInt32();
-                Types.Item[n].Speed = buffer.ReadInt32();
+                Item[n].Animation = buffer.ReadInt32();
+                Item[n].BindType = (byte)buffer.ReadInt32();
+                Item[n].ClassReq = buffer.ReadInt32();
+                Item[n].Data1 = buffer.ReadInt32();
+                Item[n].Data2 = buffer.ReadInt32();
+                Item[n].Data3 = buffer.ReadInt32();
+                Item[n].TwoHanded = buffer.ReadInt32();
+                Item[n].LevelReq = buffer.ReadInt32();
+                Item[n].Mastery = (byte)buffer.ReadInt32();
+                Item[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Item[n].Paperdoll = buffer.ReadInt32();
+                Item[n].Pic = buffer.ReadInt32();
+                Item[n].Price = buffer.ReadInt32();
+                Item[n].Rarity = (byte)buffer.ReadInt32();
+                Item[n].Speed = buffer.ReadInt32();
 
-                Types.Item[n].Randomize = (byte)buffer.ReadInt32();
-                Types.Item[n].RandomMin = (byte)buffer.ReadInt32();
-                Types.Item[n].RandomMax = (byte)buffer.ReadInt32();
+                Item[n].Randomize = (byte)buffer.ReadInt32();
+                Item[n].RandomMin = (byte)buffer.ReadInt32();
+                Item[n].RandomMax = (byte)buffer.ReadInt32();
 
-                Types.Item[n].Stackable = (byte)buffer.ReadInt32();
-                Types.Item[n].Description = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Item[n].Stackable = (byte)buffer.ReadInt32();
+                Item[n].Description = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 
                 for (z = 0; z <= (byte)Enums.StatType.Count - 1; z++)
-                    Types.Item[n].Stat_Req[z] = (byte)buffer.ReadInt32();
+                    Item[n].Stat_Req[z] = (byte)buffer.ReadInt32();
 
-                Types.Item[n].Type = (byte)buffer.ReadInt32();
-                Types.Item[n].SubType = (byte)buffer.ReadInt32();
+                Item[n].Type = (byte)buffer.ReadInt32();
+                Item[n].SubType = (byte)buffer.ReadInt32();
 
-                Types.Item[n].ItemLevel = (byte)buffer.ReadInt32();
+                Item[n].ItemLevel = (byte)buffer.ReadInt32();
 
                 // Housing
-                Types.Item[n].FurnitureWidth = buffer.ReadInt32();
-                Types.Item[n].FurnitureHeight = buffer.ReadInt32();
+                Item[n].FurnitureWidth = buffer.ReadInt32();
+                Item[n].FurnitureHeight = buffer.ReadInt32();
 
                 for (a = 0; a <= 3; a++)
                 {
                     for (b = 0; b <= 3; b++)
                     {
-                        Types.Item[n].FurnitureBlocks[a, b] = buffer.ReadInt32();
-                        Types.Item[n].FurnitureFringe[a, b] = buffer.ReadInt32();
+                        Item[n].FurnitureBlocks[a, b] = buffer.ReadInt32();
+                        Item[n].FurnitureFringe[a, b] = buffer.ReadInt32();
                     }
                 }
 
-                Types.Item[n].KnockBack = (byte)buffer.ReadInt32();
-                Types.Item[n].KnockBackTiles = (byte)buffer.ReadInt32();
+                Item[n].KnockBack = (byte)buffer.ReadInt32();
+                Item[n].KnockBackTiles = (byte)buffer.ReadInt32();
 
-                Types.Item[n].Projectile = buffer.ReadInt32();
-                Types.Item[n].Ammo = buffer.ReadInt32();
+                Item[n].Projectile = buffer.ReadInt32();
+                Item[n].Ammo = buffer.ReadInt32();
             }
 
             i = 0;
@@ -894,27 +887,27 @@ namespace Engine
             for (i = 1; i <= loopTo6; i++)
             {
                 n = buffer.ReadInt32();
-                var loopTo7 = Information.UBound(Types.Animation[n].Frames);
+                var loopTo7 = Information.UBound(Animation[n].Frames);
                 // Update the Animation
                 for (z = 0; z <= loopTo7; z++)
-                    Types.Animation[n].Frames[z] = buffer.ReadInt32();
-                var loopTo8 = Information.UBound(Types.Animation[n].LoopCount);
+                    Animation[n].Frames[z] = buffer.ReadInt32();
+                var loopTo8 = Information.UBound(Animation[n].LoopCount);
                 for (z = 0; z <= loopTo8; z++)
-                    Types.Animation[n].LoopCount[z] = buffer.ReadInt32();
-                var loopTo9 = Information.UBound(Types.Animation[n].LoopTime);
+                    Animation[n].LoopCount[z] = buffer.ReadInt32();
+                var loopTo9 = Information.UBound(Animation[n].LoopTime);
                 for (z = 0; z <= loopTo9; z++)
-                    Types.Animation[n].LoopTime[z] = buffer.ReadInt32();
+                    Animation[n].LoopTime[z] = buffer.ReadInt32();
 
-                Types.Animation[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Animation[n].Sound = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Animation[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Animation[n].Sound = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 
-                if (Types.Animation[n].Name == null)
-                    Types.Animation[n].Name = "";
-                if (Types.Animation[n].Sound == null)
-                    Types.Animation[n].Sound = "";
-                var loopTo10 = Information.UBound(Types.Animation[n].Sprite);
+                if (Animation[n].Name == null)
+                    Animation[n].Name = "";
+                if (Animation[n].Sound == null)
+                    Animation[n].Sound = "";
+                var loopTo10 = Information.UBound(Animation[n].Sprite);
                 for (z = 0; z <= loopTo10; z++)
-                    Types.Animation[n].Sprite[z] = buffer.ReadInt32();
+                    Animation[n].Sprite[z] = buffer.ReadInt32();
             }
 
             i = 0;
@@ -931,41 +924,41 @@ namespace Engine
             {
                 n = buffer.ReadInt32();
                 // Update the Npc
-                Types.Npc[n].Animation = buffer.ReadInt32();
-                Types.Npc[n].AttackSay = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Npc[n].Behaviour = (byte)buffer.ReadInt32();
+                Npc[n].Animation = buffer.ReadInt32();
+                Npc[n].AttackSay = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Npc[n].Behaviour = (byte)buffer.ReadInt32();
                 for (z = 1; z <= 5; z++)
                 {
-                    Types.Npc[n].DropChance[z] = buffer.ReadInt32();
-                    Types.Npc[n].DropItem[z] = buffer.ReadInt32();
-                    Types.Npc[n].DropItemValue[z] = buffer.ReadInt32();
+                    Npc[n].DropChance[z] = buffer.ReadInt32();
+                    Npc[n].DropItem[z] = buffer.ReadInt32();
+                    Npc[n].DropItemValue[z] = buffer.ReadInt32();
                 }
 
-                Types.Npc[n].Exp = buffer.ReadInt32();
-                Types.Npc[n].Faction = (byte)buffer.ReadInt32();
-                Types.Npc[n].Hp = buffer.ReadInt32();
-                Types.Npc[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Npc[n].Range = (byte)buffer.ReadInt32();
-                Types.Npc[n].SpawnTime = (byte)buffer.ReadInt32();
-                Types.Npc[n].SpawnSecs = buffer.ReadInt32();
-                Types.Npc[n].Sprite = buffer.ReadInt32();
+                Npc[n].Exp = buffer.ReadInt32();
+                Npc[n].Faction = (byte)buffer.ReadInt32();
+                Npc[n].Hp = buffer.ReadInt32();
+                Npc[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Npc[n].Range = (byte)buffer.ReadInt32();
+                Npc[n].SpawnTime = (byte)buffer.ReadInt32();
+                Npc[n].SpawnSecs = buffer.ReadInt32();
+                Npc[n].Sprite = buffer.ReadInt32();
 
                 for (z = 0; z <= (byte)Enums.StatType.Count - 1; z++)
-                    Types.Npc[n].Stat[z] = (byte)buffer.ReadInt32();
+                    Npc[n].Stat[z] = (byte)buffer.ReadInt32();
 
-                Types.Npc[n].QuestNum = buffer.ReadInt32();
+                Npc[n].QuestNum = buffer.ReadInt32();
 
-                Types.Npc[n].Skill = new byte[Constants.MAX_NPC_SKILLS + 1];
+                Npc[n].Skill = new byte[Constants.MAX_NPC_SKILLS + 1];
                 for (z = 1; z <= Constants.MAX_NPC_SKILLS; z++)
-                    Types.Npc[n].Skill[z] = (byte)buffer.ReadInt32();
+                    Npc[n].Skill[z] = (byte)buffer.ReadInt32();
 
-                Types.Npc[i].Level = buffer.ReadInt32();
-                Types.Npc[i].Damage = buffer.ReadInt32();
+                Npc[i].Level = buffer.ReadInt32();
+                Npc[i].Damage = buffer.ReadInt32();
 
-                if (Types.Npc[n].AttackSay == null)
-                    Types.Npc[n].AttackSay = "";
-                if (Types.Npc[n].Name == null)
-                    Types.Npc[n].Name = "";
+                if (Npc[n].AttackSay == null)
+                    Npc[n].AttackSay = "";
+                if (Npc[n].Name == null)
+                    Npc[n].Name = "";
             }
 
             i = 0;
@@ -982,20 +975,20 @@ namespace Engine
             {
                 n = buffer.ReadInt32();
 
-                Types.Shop[n].BuyRate = buffer.ReadInt32();
-                Types.Shop[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Shop[n].Face = (byte)buffer.ReadInt32();
+                Shop[n].BuyRate = buffer.ReadInt32();
+                Shop[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Shop[n].Face = (byte)buffer.ReadInt32();
 
                 for (z = 0; z <= Constants.MAX_TRADES; z++)
                 {
-                    Types.Shop[n].TradeItem[z].CostItem = buffer.ReadInt32();
-                    Types.Shop[n].TradeItem[z].CostValue = buffer.ReadInt32();
-                    Types.Shop[n].TradeItem[z].Item = buffer.ReadInt32();
-                    Types.Shop[n].TradeItem[z].ItemValue = buffer.ReadInt32();
+                    Shop[n].TradeItem[z].CostItem = buffer.ReadInt32();
+                    Shop[n].TradeItem[z].CostValue = buffer.ReadInt32();
+                    Shop[n].TradeItem[z].Item = buffer.ReadInt32();
+                    Shop[n].TradeItem[z].ItemValue = buffer.ReadInt32();
                 }
 
-                if (Types.Shop[n].Name == null)
-                    Types.Shop[n].Name = "";
+                if (Shop[n].Name == null)
+                    Shop[n].Name = "";
             }
 
             i = 0;
@@ -1012,37 +1005,37 @@ namespace Engine
             {
                 n = buffer.ReadInt32();
 
-                Types.Skill[n].AccessReq = buffer.ReadInt32();
-                Types.Skill[n].AoE = buffer.ReadInt32();
-                Types.Skill[n].CastAnim = buffer.ReadInt32();
-                Types.Skill[n].CastTime = buffer.ReadInt32();
-                Types.Skill[n].CdTime = buffer.ReadInt32();
-                Types.Skill[n].ClassReq = buffer.ReadInt32();
-                Types.Skill[n].Dir = (byte)buffer.ReadInt32();
-                Types.Skill[n].Duration = buffer.ReadInt32();
-                Types.Skill[n].Icon = buffer.ReadInt32();
-                Types.Skill[n].Interval = buffer.ReadInt32();
-                Types.Skill[n].IsAoE = Convert.ToBoolean(buffer.ReadInt32());
-                Types.Skill[n].LevelReq = buffer.ReadInt32();
-                Types.Skill[n].Map = buffer.ReadInt32();
-                Types.Skill[n].MpCost = buffer.ReadInt32();
-                Types.Skill[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Skill[n].Range = buffer.ReadInt32();
-                Types.Skill[n].SkillAnim = buffer.ReadInt32();
-                Types.Skill[n].StunDuration = buffer.ReadInt32();
-                Types.Skill[n].Type = (byte)buffer.ReadInt32();
-                Types.Skill[n].Vital = buffer.ReadInt32();
-                Types.Skill[n].X = buffer.ReadInt32();
-                Types.Skill[n].Y = buffer.ReadInt32();
+                Skill[n].AccessReq = buffer.ReadInt32();
+                Skill[n].AoE = buffer.ReadInt32();
+                Skill[n].CastAnim = buffer.ReadInt32();
+                Skill[n].CastTime = buffer.ReadInt32();
+                Skill[n].CdTime = buffer.ReadInt32();
+                Skill[n].ClassReq = buffer.ReadInt32();
+                Skill[n].Dir = (byte)buffer.ReadInt32();
+                Skill[n].Duration = buffer.ReadInt32();
+                Skill[n].Icon = buffer.ReadInt32();
+                Skill[n].Interval = buffer.ReadInt32();
+                Skill[n].IsAoE = Convert.ToBoolean(buffer.ReadInt32());
+                Skill[n].LevelReq = buffer.ReadInt32();
+                Skill[n].Map = buffer.ReadInt32();
+                Skill[n].MpCost = buffer.ReadInt32();
+                Skill[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Skill[n].Range = buffer.ReadInt32();
+                Skill[n].SkillAnim = buffer.ReadInt32();
+                Skill[n].StunDuration = buffer.ReadInt32();
+                Skill[n].Type = (byte)buffer.ReadInt32();
+                Skill[n].Vital = buffer.ReadInt32();
+                Skill[n].X = buffer.ReadInt32();
+                Skill[n].Y = buffer.ReadInt32();
 
-                Types.Skill[n].IsProjectile = buffer.ReadInt32();
-                Types.Skill[n].Projectile = buffer.ReadInt32();
+                Skill[n].IsProjectile = buffer.ReadInt32();
+                Skill[n].Projectile = buffer.ReadInt32();
 
-                Types.Skill[n].KnockBack = (byte)buffer.ReadInt32();
-                Types.Skill[n].KnockBackTiles = (byte)buffer.ReadInt32();
+                Skill[n].KnockBack = (byte)buffer.ReadInt32();
+                Skill[n].KnockBackTiles = (byte)buffer.ReadInt32();
 
-                if (Types.Skill[n].Name == null)
-                    Types.Skill[n].Name = "";
+                if (Skill[n].Name == null)
+                    Skill[n].Name = "";
             }
 
             i = 0;
@@ -1059,27 +1052,27 @@ namespace Engine
             {
                 n = buffer.ReadInt32();
 
-                Types.Resource[n].Animation = buffer.ReadInt32();
-                Types.Resource[n].EmptyMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Resource[n].ExhaustedImage = buffer.ReadInt32();
-                Types.Resource[n].Health = buffer.ReadInt32();
-                Types.Resource[n].ExpReward = buffer.ReadInt32();
-                Types.Resource[n].ItemReward = buffer.ReadInt32();
-                Types.Resource[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Resource[n].ResourceImage = buffer.ReadInt32();
-                Types.Resource[n].ResourceType = buffer.ReadInt32();
-                Types.Resource[n].RespawnTime = buffer.ReadInt32();
-                Types.Resource[n].SuccessMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                Types.Resource[n].LvlRequired = buffer.ReadInt32();
-                Types.Resource[n].ToolRequired = buffer.ReadInt32();
-                Types.Resource[n].Walkthrough = Convert.ToBoolean(buffer.ReadInt32());
+                Resource[n].Animation = buffer.ReadInt32();
+                Resource[n].EmptyMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Resource[n].ExhaustedImage = buffer.ReadInt32();
+                Resource[n].Health = buffer.ReadInt32();
+                Resource[n].ExpReward = buffer.ReadInt32();
+                Resource[n].ItemReward = buffer.ReadInt32();
+                Resource[n].Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Resource[n].ResourceImage = buffer.ReadInt32();
+                Resource[n].ResourceType = buffer.ReadInt32();
+                Resource[n].RespawnTime = buffer.ReadInt32();
+                Resource[n].SuccessMessage = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                Resource[n].LvlRequired = buffer.ReadInt32();
+                Resource[n].ToolRequired = buffer.ReadInt32();
+                Resource[n].Walkthrough = Convert.ToBoolean(buffer.ReadInt32());
 
-                if (Types.Resource[n].Name == null)
-                    Types.Resource[n].Name = "";
-                if (Types.Resource[n].EmptyMessage == null)
-                    Types.Resource[n].EmptyMessage = "";
-                if (Types.Resource[n].SuccessMessage == null)
-                    Types.Resource[n].SuccessMessage = "";
+                if (Resource[n].Name == null)
+                    Resource[n].Name = "";
+                if (Resource[n].EmptyMessage == null)
+                    Resource[n].EmptyMessage = "";
+                if (Resource[n].SuccessMessage == null)
+                    Resource[n].SuccessMessage = "";
             }
 
             i = 0;
@@ -1097,7 +1090,7 @@ namespace Engine
             int I;
             ByteStream buffer = new ByteStream(data);
             for (I = 1; I <= Constants.MAX_MAPS; I++)
-                E_Types.MapNames[I] = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                MapNames[I] = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 
             E_Globals.UpdateMapnames = true;
 
@@ -1109,7 +1102,7 @@ namespace Engine
             int I;
             ByteStream buffer = new ByteStream(data);
             for (I = 1; I <= Constants.MAX_MAPS; I++)
-                E_Types.MapNames[I] = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                MapNames[I] = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
 
             buffer.Dispose();
         }

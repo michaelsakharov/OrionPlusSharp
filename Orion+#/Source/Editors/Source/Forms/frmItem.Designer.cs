@@ -887,6 +887,7 @@ namespace Engine
             0,
             0,
             0});
+            this.nudPaperdoll.ValueChanged += new System.EventHandler(this.NudPaperdoll_ValueChanged);
             this.nudPaperdoll.Click += new System.EventHandler(this.NudPaperdoll_ValueChanged);
             // 
             // DarkLabel23
