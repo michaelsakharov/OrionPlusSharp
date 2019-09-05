@@ -248,22 +248,22 @@ namespace Engine
             {
                 if (S_NetworkConfig.IsPlaying(i))
                 {
-                    if (S_Players.GetPlayerVital(i, Enums.VitalType.HP) != S_Players.GetPlayerMaxVital(i, Enums.VitalType.HP))
+                    if (S_Players.GetPlayerVital(i, VitalType.HP) != S_Players.GetPlayerMaxVital(i, VitalType.HP))
                     {
-                        S_Players.SetPlayerVital(i, Enums.VitalType.HP, S_Players.GetPlayerVital(i, Enums.VitalType.HP) + S_Players.GetPlayerVitalRegen(i, Enums.VitalType.HP));
-                        S_NetworkSend.SendVital(i, Enums.VitalType.HP);
+                        S_Players.SetPlayerVital(i, VitalType.HP, S_Players.GetPlayerVital(i, VitalType.HP) + S_Players.GetPlayerVitalRegen(i, VitalType.HP));
+                        S_NetworkSend.SendVital(i, VitalType.HP);
                     }
 
-                    if (S_Players.GetPlayerVital(i, Enums.VitalType.MP) != S_Players.GetPlayerMaxVital(i, Enums.VitalType.MP))
+                    if (S_Players.GetPlayerVital(i, VitalType.MP) != S_Players.GetPlayerMaxVital(i, VitalType.MP))
                     {
-                        S_Players.SetPlayerVital(i, Enums.VitalType.MP, S_Players.GetPlayerVital(i, Enums.VitalType.MP) + S_Players.GetPlayerVitalRegen(i, Enums.VitalType.MP));
-                        S_NetworkSend.SendVital(i, Enums.VitalType.MP);
+                        S_Players.SetPlayerVital(i, VitalType.MP, S_Players.GetPlayerVital(i, VitalType.MP) + S_Players.GetPlayerVitalRegen(i, VitalType.MP));
+                        S_NetworkSend.SendVital(i, VitalType.MP);
                     }
 
-                    if (S_Players.GetPlayerVital(i, Enums.VitalType.SP) != S_Players.GetPlayerMaxVital(i, Enums.VitalType.SP))
+                    if (S_Players.GetPlayerVital(i, VitalType.SP) != S_Players.GetPlayerMaxVital(i, VitalType.SP))
                     {
-                        S_Players.SetPlayerVital(i, Enums.VitalType.SP, S_Players.GetPlayerVital(i, Enums.VitalType.SP) + S_Players.GetPlayerVitalRegen(i, Enums.VitalType.SP));
-                        S_NetworkSend.SendVital(i, Enums.VitalType.SP);
+                        S_Players.SetPlayerVital(i, VitalType.SP, S_Players.GetPlayerVital(i, VitalType.SP) + S_Players.GetPlayerVitalRegen(i, VitalType.SP));
+                        S_NetworkSend.SendVital(i, VitalType.SP);
                     }
                 }
                 // send vitals to party if in one
@@ -337,7 +337,7 @@ namespace Engine
                         var loopTo1 = modTypes.Map[mapNum].MaxY;
                         for (y1 = 0; y1 <= loopTo1; y1++)
                         {
-                            if (modTypes.Map[mapNum].Tile[x1, y1].Type == (int)Enums.TileType.Key && modTypes.TempTile[mapNum].DoorOpen[x1, y1] == 1)
+                            if (modTypes.Map[mapNum].Tile[x1, y1].Type == (int)TileType.Key && modTypes.TempTile[mapNum].DoorOpen[x1, y1] == 1)
                             {
                                 modTypes.TempTile[mapNum].DoorOpen[x1, y1] = 0;
                                 S_NetworkSend.SendMapKeyToMap(mapNum, x1, y1, 0);
@@ -404,7 +404,7 @@ namespace Engine
                             {
 
                                 // If the npc is a attack on sight, search for a player on the map
-                                if (Types.Npc[npcNum].Behaviour == (int)Enums.NpcBehavior.AttackOnSight || Types.Npc[npcNum].Behaviour == (int)Enums.NpcBehavior.Guard)
+                                if (Types.Npc[npcNum].Behaviour == (int)NpcBehavior.AttackOnSight || Types.Npc[npcNum].Behaviour == (int)NpcBehavior.Guard)
                                 {
 
                                     // make sure it's not stunned
@@ -415,7 +415,7 @@ namespace Engine
                                         {
                                             if (S_NetworkConfig.IsPlaying(i))
                                             {
-                                                if (S_Players.GetPlayerMap(i) == mapNum && modTypes.MapNpc[mapNum].Npc[x].Target == 0 && S_Players.GetPlayerAccess(i) <= (int)Enums.AdminType.Monitor)
+                                                if (S_Players.GetPlayerMap(i) == mapNum && modTypes.MapNpc[mapNum].Npc[x].Target == 0 && S_Players.GetPlayerAccess(i) <= (int)AdminType.Monitor)
                                                 {
                                                     if (S_Pets.PetAlive(i))
                                                     {
@@ -432,11 +432,11 @@ namespace Engine
                                                         // Are they in range?  if so GET'M!
                                                         if (distanceX <= n && distanceY <= n)
                                                         {
-                                                            if (Types.Npc[npcNum].Behaviour == (int)Enums.NpcBehavior.AttackOnSight || S_Players.GetPlayerPK(i) == i)
+                                                            if (Types.Npc[npcNum].Behaviour == (int)NpcBehavior.AttackOnSight || S_Players.GetPlayerPK(i) == i)
                                                             {
                                                                 if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].AttackSay)) > 0)
-                                                                    S_NetworkSend.PlayerMsg(i, Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].Name) + " says: " + Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].AttackSay), (int)Enums.QColorType.SayColor);
-                                                                modTypes.MapNpc[mapNum].Npc[x].TargetType = (int)Enums.TargetType.Pet;
+                                                                    S_NetworkSend.PlayerMsg(i, Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].Name) + " says: " + Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].AttackSay), (int)QColorType.SayColor);
+                                                                modTypes.MapNpc[mapNum].Npc[x].TargetType = (int)TargetType.Pet;
                                                                 modTypes.MapNpc[mapNum].Npc[x].Target = i;
                                                             }
                                                         }
@@ -456,11 +456,11 @@ namespace Engine
                                                         // Are they in range?  if so GET'M!
                                                         if (distanceX <= n && distanceY <= n)
                                                         {
-                                                            if (Types.Npc[npcNum].Behaviour == (int)Enums.NpcBehavior.AttackOnSight || S_Players.GetPlayerPK(i) == 1)
+                                                            if (Types.Npc[npcNum].Behaviour == (int)NpcBehavior.AttackOnSight || S_Players.GetPlayerPK(i) == 1)
                                                             {
                                                                 if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].AttackSay)) > 0)
-                                                                    S_NetworkSend.PlayerMsg(i, S_GameLogic.CheckGrammar(Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].Name), 1) + " says, '" + Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].AttackSay) + "' to you.", (int)Enums.ColorType.Yellow);
-                                                                modTypes.MapNpc[mapNum].Npc[x].TargetType = (int)Enums.TargetType.Player;
+                                                                    S_NetworkSend.PlayerMsg(i, S_GameLogic.CheckGrammar(Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].Name), 1) + " says, '" + Microsoft.VisualBasic.Strings.Trim(Types.Npc[npcNum].AttackSay) + "' to you.", (int)ColorType.Yellow);
+                                                                modTypes.MapNpc[mapNum].Npc[x].TargetType = (int)TargetType.Player;
                                                                 modTypes.MapNpc[mapNum].Npc[x].Target = i;
                                                             }
                                                         }
@@ -482,8 +482,8 @@ namespace Engine
                                                     if (Types.Npc[modTypes.MapNpc[mapNum].Npc[i].Num].Faction > 0 && Types.Npc[modTypes.MapNpc[mapNum].Npc[i].Num].Faction != Types.Npc[npcNum].Faction)
                                                     {
                                                         n = Types.Npc[npcNum].Range;
-                                                        distanceX = (int)(modTypes.MapNpc[mapNum].Npc[x].X - System.Convert.ToInt64(modTypes.MapNpc[mapNum].Npc[i].X));
-                                                        distanceY = (int)(modTypes.MapNpc[mapNum].Npc[x].Y - System.Convert.ToInt64(modTypes.MapNpc[mapNum].Npc[i].Y));
+                                                        distanceX = (modTypes.MapNpc[mapNum].Npc[x].X - modTypes.MapNpc[mapNum].Npc[i].X);
+                                                        distanceY = (modTypes.MapNpc[mapNum].Npc[x].Y - modTypes.MapNpc[mapNum].Npc[i].Y);
 
                                                         // Make sure we get a positive value
                                                         if (distanceX < 0)
@@ -492,7 +492,7 @@ namespace Engine
                                                             distanceY = distanceY * -1;
 
                                                         // Are they in range?  if so GET'M!
-                                                        if (distanceX <= n && distanceY <= n && Types.Npc[npcNum].Behaviour == (int)Enums.NpcBehavior.AttackOnSight)
+                                                        if (distanceX <= n && distanceY <= n && Types.Npc[npcNum].Behaviour == (int)NpcBehavior.AttackOnSight)
                                                         {
                                                             modTypes.MapNpc[mapNum].Npc[x].TargetType = 2; // npc
                                                             modTypes.MapNpc[mapNum].Npc[x].Target = i;
@@ -528,9 +528,9 @@ namespace Engine
                                     targetTypes = modTypes.MapNpc[mapNum].Npc[x].TargetType;
 
                                     // Check to see if its time for the npc to walk
-                                    if (Types.Npc[npcNum].Behaviour != (int)Enums.NpcBehavior.ShopKeeper && Types.Npc[npcNum].Behaviour != (int)Enums.NpcBehavior.Quest)
+                                    if (Types.Npc[npcNum].Behaviour != (int)NpcBehavior.ShopKeeper && Types.Npc[npcNum].Behaviour != (int)NpcBehavior.Quest)
                                     {
-                                        if (targetTypes == (int)Enums.TargetType.Player)
+                                        if (targetTypes == (int)TargetType.Player)
                                         {
                                             // Check to see if we are following a player or not
                                             if (target > 0)
@@ -549,7 +549,7 @@ namespace Engine
                                                 }
                                             }
                                         }
-                                        else if (targetTypes == (int)Enums.TargetType.Npc)
+                                        else if (targetTypes == (int)TargetType.Npc)
                                         {
                                             if (target > 0)
                                             {
@@ -566,7 +566,7 @@ namespace Engine
                                                 }
                                             }
                                         }
-                                        else if (targetTypes == (int)Enums.TargetType.Pet)
+                                        else if (targetTypes == (int)TargetType.Pet)
                                         {
                                             if (target > 0)
                                             {
@@ -593,17 +593,17 @@ namespace Engine
                                                 if (i < 4)
                                                 {
                                                     if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
-                                                        S_Npc.NpcMove(mapNum, x, i, (int)Enums.MovementType.Walking);
+                                                        S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);
                                                 }
                                                 else
                                                 {
-                                                    i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                                    i = (int)(VBMath.Rnd() * 4);
                                                     if (i == 1)
                                                     {
-                                                        i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                                        i = (int)(VBMath.Rnd() * 4);
 
                                                         if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
-                                                            S_Npc.NpcMove(mapNum, x, i, (int)Enums.MovementType.Walking);
+                                                            S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);
                                                     }
                                                 }
                                             }
@@ -612,14 +612,14 @@ namespace Engine
                                         }
                                         else
                                         {
-                                            i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                            i = (int)(VBMath.Rnd() * 4);
 
                                             if (i == 1)
                                             {
-                                                i = (int)Conversion.Int(VBMath.Rnd() * 4);
+                                                i = (int)(VBMath.Rnd() * 4);
 
                                                 if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
-                                                    S_Npc.NpcMove(mapNum, x, i, (int)Enums.MovementType.Walking);
+                                                    S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);
                                             }
                                         }
                                     }
@@ -639,7 +639,7 @@ namespace Engine
                             // Check if the npc can attack the targeted player player
                             if (target > 0)
                             {
-                                if (targetTypes == (int)Enums.TargetType.Player)
+                                if (targetTypes == (int)TargetType.Player)
                                 {
 
                                     // Is the target playing and on the same map?
@@ -672,14 +672,14 @@ namespace Engine
                                         modTypes.MapNpc[mapNum].Npc[x].TargetType = 0; // clear
                                     }
                                 }
-                                else if (targetTypes == (int)Enums.TargetType.Npc)
+                                else if (targetTypes == (int)TargetType.Npc)
                                 {
                                     if (modTypes.MapNpc[mapNum].Npc[target].Num > 0)
                                     {
                                         // Can the npc attack the npc?
                                         if (S_Npc.CanNpcAttackNpc(mapNum, x, target))
                                         {
-                                            damage = (int)(Types.Npc[npcNum].Stat[(byte)Enums.StatType.Strength] - System.Convert.ToInt64(Types.Npc[target].Stat[(byte)Enums.StatType.Endurance]));
+                                            damage = (Types.Npc[npcNum].Stat[(byte)StatType.Strength] -Types.Npc[target].Stat[(byte)StatType.Endurance]);
                                             if (damage < 1)
                                                 damage = 1;
                                             S_Npc.NpcAttackNpc(mapNum, x, target, damage);
@@ -692,7 +692,7 @@ namespace Engine
                                         modTypes.MapNpc[mapNum].Npc[x].TargetType = 0; // clear
                                     }
                                 }
-                                else if (targetTypes == (int)Enums.TargetType.Pet)
+                                else if (targetTypes == (int)TargetType.Pet)
                                 {
                                     if (S_NetworkConfig.IsPlaying(target) && S_Players.GetPlayerMap(target) == mapNum && S_Pets.PetAlive(target))
                                         S_Pets.TryNpcAttackPet(x, target);
@@ -712,34 +712,34 @@ namespace Engine
                         // Check to see if we want to regen some of the npc's hp
                         if (modTypes.MapNpc[mapNum].Npc[x].Num > 0 && tickCount > S_Globals.GiveNPCHPTimer + 10000)
                         {
-                            if (modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.HP] > 0)
+                            if (modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.HP] > 0)
                             {
-                                modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.HP] = modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.HP] + GetNpcVitalRegen(npcNum, VitalType.HP);
+                                modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.HP] = modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.HP] + GetNpcVitalRegen(npcNum, VitalType.HP);
 
                                 // Check if they have more then they should and if so just set it to max
-                                if (modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.HP] > S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.HP))
-                                    modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.HP] = S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.HP);
+                                if (modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.HP] > S_GameLogic.GetNpcMaxVital(npcNum, VitalType.HP))
+                                    modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.HP] = S_GameLogic.GetNpcMaxVital(npcNum, VitalType.HP);
                             }
                         }
 
-                        if (modTypes.MapNpc[mapNum].Npc[x].Num > 0 && tickCount > S_Globals.GiveNPCMPTimer + 10000 && modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.MP] > 0)
+                        if (modTypes.MapNpc[mapNum].Npc[x].Num > 0 && tickCount > S_Globals.GiveNPCMPTimer + 10000 && modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.MP] > 0)
                         {
-                            modTypes.MapNpc[mapNum].Npc[x].Vital[(int)Enums.VitalType.MP] = modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.MP] + GetNpcVitalRegen(npcNum, Enums.VitalType.MP);
+                            modTypes.MapNpc[mapNum].Npc[x].Vital[(int)VitalType.MP] = modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.MP] + GetNpcVitalRegen(npcNum, VitalType.MP);
 
                             // Check if they have more then they should and if so just set it to max
-                            if (modTypes.MapNpc[mapNum].Npc[x].Vital[(int)Enums.VitalType.MP] > S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.MP))
-                                modTypes.MapNpc[mapNum].Npc[x].Vital[(int)Enums.VitalType.MP] = S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.MP);
+                            if (modTypes.MapNpc[mapNum].Npc[x].Vital[(int)VitalType.MP] > S_GameLogic.GetNpcMaxVital(npcNum, VitalType.MP))
+                                modTypes.MapNpc[mapNum].Npc[x].Vital[(int)VitalType.MP] = S_GameLogic.GetNpcMaxVital(npcNum, VitalType.MP);
                         }
 
                         // ////////////////////////////////////////////////////////
                         // // This is used for checking if an NPC is dead or not //
                         // ////////////////////////////////////////////////////////
                         // Check if the npc is dead or not
-                        if (modTypes.MapNpc[mapNum].Npc[x].Num > 0 && modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)Enums.VitalType.HP] <= 0)
+                        if (modTypes.MapNpc[mapNum].Npc[x].Num > 0 && modTypes.MapNpc[mapNum].Npc[x].Vital[(byte)VitalType.HP] <= 0)
                         {
                             modTypes.MapNpc[mapNum].Npc[x].Num = 0;
                             modTypes.MapNpc[mapNum].Npc[x].SpawnWait = S_General.GetTimeMs();
-                            modTypes.MapNpc[mapNum].Npc[x].Vital[(int)Enums.VitalType.HP] = 0;
+                            modTypes.MapNpc[mapNum].Npc[x].Vital[(int)VitalType.HP] = 0;
                         }
 
                         // //////////////////////////////////////
@@ -767,7 +767,7 @@ namespace Engine
                 S_Globals.KeyTimer = S_General.GetTimeMs();
         }
 
-        public static int GetNpcVitalRegen(int npcNum, Enums.VitalType vital)
+        public static int GetNpcVitalRegen(int npcNum, VitalType vital)
         {
             int i;
             int GetNpcVitalRegen = 0;
@@ -779,9 +779,9 @@ namespace Engine
 
             switch (vital)
             {
-                case Enums.VitalType.HP:
+                case VitalType.HP:
                     {
-                        i = Types.Npc[npcNum].Stat[(int)Enums.StatType.Vitality] / 3;
+                        i = Types.Npc[npcNum].Stat[(int)StatType.Vitality] / 3;
 
                         if (i < 1)
                             i = 1;
@@ -789,9 +789,9 @@ namespace Engine
                         break;
                     }
 
-                case Enums.VitalType.MP:
+                case VitalType.MP:
                     {
-                        i = Types.Npc[npcNum].Stat[(int)Enums.StatType.Intelligence] / 3;
+                        i = Types.Npc[npcNum].Stat[(int)StatType.Intelligence] / 3;
 
                         if (i < 1)
                             i = 1;
@@ -812,7 +812,7 @@ namespace Engine
         {
             modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse = 0;
             S_Players.PlayerWarp(index, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastMap, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastX, modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastY);
-            S_NetworkSend.PlayerMsg(index, "Your visitation has ended. Possibly due to a disconnection. You are being warped back to your previous location.", (int)Enums.ColorType.Yellow);
+            S_NetworkSend.PlayerMsg(index, "Your visitation has ended. Possibly due to a disconnection. You are being warped back to your previous location.", (int)ColorType.Yellow);
             return true;
         }
 
@@ -875,31 +875,31 @@ namespace Engine
                 return;
 
             // Check if the player is able to cast the spell.
-            if (S_Players.GetPlayerVital(index, Enums.VitalType.MP) < Types.Skill[skillId].MpCost)
+            if (S_Players.GetPlayerVital(index, VitalType.MP) < Types.Skill[skillId].MpCost)
             {
-                S_NetworkSend.PlayerMsg(index, "Not enough mana!", (int)Enums.ColorType.BrightRed);
+                S_NetworkSend.PlayerMsg(index, "Not enough mana!", (int)ColorType.BrightRed);
                 return;
             }
             else if (S_Players.GetPlayerLevel(index) < Types.Skill[skillId].LevelReq)
             {
-                S_NetworkSend.PlayerMsg(index, string.Format("You must be level {0} to use this skill.", Types.Skill[skillId].LevelReq), (int)Enums.ColorType.BrightRed);
+                S_NetworkSend.PlayerMsg(index, string.Format("You must be level {0} to use this skill.", Types.Skill[skillId].LevelReq), (int)ColorType.BrightRed);
                 return;
             }
             else if (S_Players.GetPlayerAccess(index) < Types.Skill[skillId].AccessReq)
             {
-                S_NetworkSend.PlayerMsg(index, "You must be an administrator to use this skill.", (int)Enums.ColorType.BrightRed);
+                S_NetworkSend.PlayerMsg(index, "You must be an administrator to use this skill.", (int)ColorType.BrightRed);
                 return;
             }
             else if (!(Types.Skill[skillId].ClassReq == 0) && S_Players.GetPlayerClass(index) != Types.Skill[skillId].ClassReq)
             {
-                S_NetworkSend.PlayerMsg(index, string.Format("Only {0} can use this skill.", S_GameLogic.CheckGrammar((Types.Classes[Types.Skill[skillId].ClassReq].Name.Trim()))), (int)Enums.ColorType.BrightRed);
+                S_NetworkSend.PlayerMsg(index, string.Format("Only {0} can use this skill.", S_GameLogic.CheckGrammar((Types.Classes[Types.Skill[skillId].ClassReq].Name.Trim()))), (int)ColorType.BrightRed);
                 return;
             }
             else if (Types.Skill[skillId].Range > 0 && !IsTargetOnMap(index))
                 return;
             else if (Types.Skill[skillId].Range > 0 && !IsInSkillRange(index, skillId) && Types.Skill[skillId].IsProjectile == 0)
             {
-                S_NetworkSend.PlayerMsg(index, "Target not in range.", (int)Enums.ColorType.BrightRed);
+                S_NetworkSend.PlayerMsg(index, "Target not in range.", (int)ColorType.BrightRed);
                 S_NetworkSend.SendClearSkillBuffer(index);
                 return;
             }
@@ -933,10 +933,10 @@ namespace Engine
             // Determine what kind of spell we're dealing with and process it.
             switch (Types.Skill[skillId].Type)
             {
-                case (int)Enums.SkillType.DamageHp:
-                case (int)Enums.SkillType.DamageMp:
-                case (int)Enums.SkillType.HealHp:
-                case (int)Enums.SkillType.HealMp:
+                case (int)SkillType.DamageHp:
+                case (int)SkillType.DamageMp:
+                case (int)SkillType.HealHp:
+                case (int)SkillType.HealMp:
                     {
                         HandleAoE(index, skillId, centerX, centerY);
                         break;
@@ -957,14 +957,14 @@ namespace Engine
             int centerY;
             switch (modTypes.TempPlayer[index].TargetType)
             {
-                case (int)Enums.TargetType.Npc:
+                case (int)TargetType.Npc:
                     {
                         centerX = modTypes.MapNpc[S_Players.GetPlayerMap(index)].Npc[modTypes.TempPlayer[index].Target].X;
                         centerY = modTypes.MapNpc[S_Players.GetPlayerMap(index)].Npc[modTypes.TempPlayer[index].Target].Y;
                         break;
                     }
 
-                case (int)Enums.TargetType.Player:
+                case (int)TargetType.Player:
                     {
                         centerX = S_Players.GetPlayerX(modTypes.TempPlayer[index].Target);
                         centerY = S_Players.GetPlayerY(modTypes.TempPlayer[index].Target);
@@ -980,10 +980,10 @@ namespace Engine
             // Determine what kind of spell we're dealing with and process it.
             switch (Types.Skill[skillId].Type)
             {
-                case (int)Enums.SkillType.HealMp:
-                case (int)Enums.SkillType.DamageHp:
-                case (int)Enums.SkillType.DamageMp:
-                case (int)Enums.SkillType.HealHp:
+                case (int)SkillType.HealMp:
+                case (int)SkillType.DamageHp:
+                case (int)SkillType.DamageMp:
+                case (int)SkillType.HealHp:
                     {
                         HandleAoE(index, skillId, centerX, centerY);
                         break;
@@ -1001,21 +1001,21 @@ namespace Engine
             // Determine what kind of spell we're dealing with and process it.
             switch (Types.Skill[skillId].Type)
             {
-                case (int)Enums.SkillType.HealHp:
+                case (int)SkillType.HealHp:
                     {
-                        SkillPlayer_Effect((byte)Enums.VitalType.HP, true, index, Types.Skill[skillId].Vital, skillId);
+                        SkillPlayer_Effect((byte)VitalType.HP, true, index, Types.Skill[skillId].Vital, skillId);
                         break;
                     }
 
-                case (int)Enums.SkillType.HealMp:
+                case (int)SkillType.HealMp:
                     {
-                        SkillPlayer_Effect((byte)Enums.VitalType.MP, true, index, Types.Skill[skillId].Vital, skillId);
+                        SkillPlayer_Effect((byte)VitalType.MP, true, index, Types.Skill[skillId].Vital, skillId);
                         break;
                     }
 
-                case (int)Enums.SkillType.Warp:
+                case (int)SkillType.Warp:
                     {
-                        S_Animations.SendAnimation(S_Players.GetPlayerMap(index), Types.Skill[skillId].SkillAnim, 0, 0, (int)Enums.TargetType.Player, index);
+                        S_Animations.SendAnimation(S_Players.GetPlayerMap(index), Types.Skill[skillId].SkillAnim, 0, 0, (int)TargetType.Player, index);
                         S_Players.PlayerWarp(index, Types.Skill[skillId].Map, Types.Skill[skillId].X, Types.Skill[skillId].Y);
                         break;
                     }
@@ -1027,13 +1027,13 @@ namespace Engine
             }
 
             // Play our animation.
-            S_Animations.SendAnimation(S_Players.GetPlayerMap(index), Types.Skill[skillId].SkillAnim, 0, 0, (int)Enums.TargetType.Player, index);
+            S_Animations.SendAnimation(S_Players.GetPlayerMap(index), Types.Skill[skillId].SkillAnim, 0, 0, (int)TargetType.Player, index);
         }
 
         private static void HandleTargetedSkill(int index, int skillId)
         {
             // Set up some variables we'll definitely be using.
-            Enums.VitalType vital;
+            VitalType vital;
             bool dealsDamage;
             var amount = Types.Skill[skillId].Vital;
             var target = modTypes.TempPlayer[index].Target;
@@ -1041,30 +1041,30 @@ namespace Engine
             // Determine what vital we need to adjust and how.
             switch (Types.Skill[skillId].Type)
             {
-                case (int)Enums.SkillType.DamageHp:
+                case (int)SkillType.DamageHp:
                     {
-                        vital = Enums.VitalType.HP;
+                        vital = VitalType.HP;
                         dealsDamage = true;
                         break;
                     }
 
-                case (int)Enums.SkillType.DamageMp:
+                case (int)SkillType.DamageMp:
                     {
-                        vital = Enums.VitalType.MP;
+                        vital = VitalType.MP;
                         dealsDamage = true;
                         break;
                     }
 
-                case (int)Enums.SkillType.HealHp:
+                case (int)SkillType.HealHp:
                     {
-                        vital = Enums.VitalType.HP;
+                        vital = VitalType.HP;
                         dealsDamage = false;
                         break;
                     }
 
-                case (int)Enums.SkillType.HealMp:
+                case (int)SkillType.HealMp:
                     {
-                        vital = Enums.VitalType.MP;
+                        vital = VitalType.MP;
                         dealsDamage = false;
                         break;
                     }
@@ -1077,7 +1077,7 @@ namespace Engine
 
             switch (modTypes.TempPlayer[index].TargetType)
             {
-                case (int)Enums.TargetType.Npc:
+                case (int)TargetType.Npc:
                     {
                         // Deal with damaging abilities.
                         if (dealsDamage && S_Players.CanPlayerAttackNpc(index, target, true))
@@ -1093,7 +1093,7 @@ namespace Engine
                         break;
                     }
 
-                case (int)Enums.TargetType.Player:
+                case (int)TargetType.Player:
                     {
 
                         // Deal with damaging abilities.
@@ -1113,7 +1113,7 @@ namespace Engine
                             S_Players.HandlePlayerKilledPK(index, target);
 
                             // Handle our quest system stuff.
-                            S_Quest.CheckTasks(index, (int)Enums.QuestType.Kill, 0);
+                            S_Quest.CheckTasks(index, (int)QuestType.Kill, 0);
                         }
 
                         break;
@@ -1135,36 +1135,36 @@ namespace Engine
             var map = S_Players.GetPlayerMap(index);
             var range = Types.Skill[skillId].Range;
             var amount = Types.Skill[skillId].Vital;
-            Enums.VitalType vital;
+            VitalType vital;
             bool dealsDamage;
 
             // Determine what vital we need to adjust and how.
             switch (Types.Skill[skillId].Type)
             {
-                case (int)Enums.SkillType.DamageHp:
+                case (int)SkillType.DamageHp:
                     {
-                        vital = Enums.VitalType.HP;
+                        vital = VitalType.HP;
                         dealsDamage = true;
                         break;
                     }
 
-                case (int)Enums.SkillType.DamageMp:
+                case (int)SkillType.DamageMp:
                     {
-                        vital = Enums.VitalType.MP;
+                        vital = VitalType.MP;
                         dealsDamage = true;
                         break;
                     }
 
-                case (int)Enums.SkillType.HealHp:
+                case (int)SkillType.HealHp:
                     {
-                        vital = Enums.VitalType.HP;
+                        vital = VitalType.HP;
                         dealsDamage = false;
                         break;
                     }
 
-                case (int)Enums.SkillType.HealMp:
+                case (int)SkillType.HealMp:
                     {
-                        vital = Enums.VitalType.MP;
+                        vital = VitalType.MP;
                         dealsDamage = false;
                         break;
                     }
@@ -1190,7 +1190,7 @@ namespace Engine
                         SkillPlayer_Effect((byte)vital, true, id, amount, skillId);
 
                     // Send our animation to the map.
-                    S_Animations.SendAnimation(map, Types.Skill[skillId].SkillAnim, 0, 0, (int)Enums.TargetType.Player, id);
+                    S_Animations.SendAnimation(map, Types.Skill[skillId].SkillAnim, 0, 0, (int)TargetType.Player, id);
 
                     if (S_Players.IsPlayerDead(id))
                     {
@@ -1201,13 +1201,13 @@ namespace Engine
                         S_Players.HandlePlayerKilledPK(index, id);
 
                         // Handle our quest system stuff.
-                        S_Quest.CheckTasks(index, (int)Enums.QuestType.Kill, 0);
+                        S_Quest.CheckTasks(index, (int)QuestType.Kill, 0);
                     }
                 }
             }
 
             // Loop through all the NPCs on this map
-            foreach (var id in modTypes.MapNpc[map].Npc.Where(n => n.Num > 0 && n.Vital[(int)Enums.VitalType.HP] > 0).Select((n, i) => i + 1).ToArray())
+            foreach (var id in modTypes.MapNpc[map].Npc.Where(n => n.Num > 0 && n.Vital[(int)VitalType.HP] > 0).Select((n, i) => i + 1).ToArray())
             {
                 if (S_Players.IsInRange(range, x, y, modTypes.MapNpc[map].Npc[id].X, modTypes.MapNpc[map].Npc[id].Y))
                 {
@@ -1221,7 +1221,7 @@ namespace Engine
                         SkillNpc_Effect((byte)vital, true, id, amount, skillId, map);
 
                     // Send our animation to the map.
-                    S_Animations.SendAnimation(map, Types.Skill[skillId].SkillAnim, 0, 0, (int)Enums.TargetType.Npc, id);
+                    S_Animations.SendAnimation(map, Types.Skill[skillId].SkillAnim, 0, 0, (int)TargetType.Npc, id);
 
                     // Handle our NPC death if it kills them
                     if (S_Npc.IsNpcDead(map, id))
@@ -1232,8 +1232,8 @@ namespace Engine
 
         private static void FinalizeCast(int index, int skillSlot, int skillCost)
         {
-            S_Players.SetPlayerVital(index, Enums.VitalType.MP, S_Players.GetPlayerVital(index, Enums.VitalType.MP) - skillCost);
-            S_NetworkSend.SendVital(index, Enums.VitalType.MP);
+            S_Players.SetPlayerVital(index, VitalType.MP, S_Players.GetPlayerVital(index, VitalType.MP) - skillCost);
+            S_NetworkSend.SendVital(index, VitalType.MP);
             modTypes.TempPlayer[index].SkillCd[skillSlot] = S_General.GetTimeMs() + (Types.Skill[skillSlot].CdTime * 1000);
             S_NetworkSend.SendCooldown(index, skillSlot);
         }
@@ -1241,14 +1241,14 @@ namespace Engine
         private static bool IsTargetOnMap(int index)
         {
             bool IsTargetOnMap = false;
-            if (modTypes.TempPlayer[index].TargetType == (int)Enums.TargetType.Player)
+            if (modTypes.TempPlayer[index].TargetType == (int)TargetType.Player)
             {
                 if (S_Players.GetPlayerMap(modTypes.TempPlayer[index].Target) == S_Players.GetPlayerMap(index))
                     IsTargetOnMap = true;
             }
-            else if (modTypes.TempPlayer[index].TargetType == (int)Enums.TargetType.Npc)
+            else if (modTypes.TempPlayer[index].TargetType == (int)TargetType.Npc)
             {
-                if (modTypes.TempPlayer[index].Target > 0 && modTypes.TempPlayer[index].Target <= Constants.MAX_MAP_NPCS && modTypes.MapNpc[S_Players.GetPlayerMap(index)].Npc[modTypes.TempPlayer[index].Target].Vital[(int)Enums.VitalType.HP] > 0)
+                if (modTypes.TempPlayer[index].Target > 0 && modTypes.TempPlayer[index].Target <= Constants.MAX_MAP_NPCS && modTypes.MapNpc[S_Players.GetPlayerMap(index)].Npc[modTypes.TempPlayer[index].Target].Vital[(int)VitalType.HP] > 0)
                     IsTargetOnMap = true;
             }
             return IsTargetOnMap;
@@ -1259,12 +1259,12 @@ namespace Engine
             int targetX = 0;
             int targetY = 0;
 
-            if (modTypes.TempPlayer[index].TargetType == (int)Enums.TargetType.Player)
+            if (modTypes.TempPlayer[index].TargetType == (int)TargetType.Player)
             {
                 targetX = S_Players.GetPlayerX(modTypes.TempPlayer[index].Target);
                 targetY = S_Players.GetPlayerY(modTypes.TempPlayer[index].Target);
             }
-            else if (modTypes.TempPlayer[index].TargetType == (int)Enums.TargetType.Npc)
+            else if (modTypes.TempPlayer[index].TargetType == (int)TargetType.Npc)
             {
                 targetX = modTypes.MapNpc[S_Players.GetPlayerMap(index)].Npc[modTypes.TempPlayer[index].Target].X;
                 targetY = modTypes.MapNpc[S_Players.GetPlayerMap(index)].Npc[modTypes.TempPlayer[index].Target].Y;
@@ -1302,7 +1302,7 @@ namespace Engine
             mpCost = Types.Skill[skillnum].MpCost;
 
             // Check if they have enough MP
-            if (modTypes.MapNpc[mapNum].Npc[npcNum].Vital[(int)Enums.VitalType.MP] < mpCost)
+            if (modTypes.MapNpc[mapNum].Npc[npcNum].Vital[(int)VitalType.MP] < mpCost)
                 return;
 
             // find out what kind of skill it is! self cast, target or AOE
@@ -1328,15 +1328,13 @@ namespace Engine
 
             switch (skillCastType)
             {
-                case 0 // self-cast target
-               :
-                    {
+                case 0: // self-cast target
+                    { 
                         break;
                     }
 
                 case 1:
-                case 3 // self-cast AOE & targetted AOE
-       :
+                case 3: // self-cast AOE & targetted AOE
                     {
                         if (skillCastType == 1)
                         {
@@ -1353,7 +1351,7 @@ namespace Engine
                             if (target == 0)
                                 return;
 
-                            if (targetType == (int)Enums.TargetType.Player)
+                            if (targetType == (int)TargetType.Player)
                             {
                                 x = S_Players.GetPlayerX(target);
                                 y = S_Players.GetPlayerY(target);
@@ -1369,7 +1367,7 @@ namespace Engine
                         }
                         switch (Types.Skill[skillnum].Type)
                         {
-                            case (int)Enums.SkillType.DamageHp:
+                            case (int)SkillType.DamageHp:
                                 {
                                     didCast = true;
                                     var loopTo = S_GameLogic.GetPlayersOnline();
@@ -1383,9 +1381,9 @@ namespace Engine
                                                 {
                                                     if (S_Npc.CanNpcAttackPlayer(npcNum, i))
                                                     {
-                                                        S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)Enums.TargetType.Player, i);
-                                                        S_NetworkSend.PlayerMsg(i, Microsoft.VisualBasic.Strings.Trim(Types.Npc[modTypes.MapNpc[mapNum].Npc[npcNum].Num].Name) + " uses " + Microsoft.VisualBasic.Strings.Trim(Types.Skill[skillnum].Name) + "!", (int)Enums.ColorType.Yellow);
-                                                        SkillPlayer_Effect((byte)Enums.VitalType.HP, false, i, vital, skillnum);
+                                                        S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)TargetType.Player, i);
+                                                        S_NetworkSend.PlayerMsg(i, Microsoft.VisualBasic.Strings.Trim(Types.Npc[modTypes.MapNpc[mapNum].Npc[npcNum].Num].Name) + " uses " + Microsoft.VisualBasic.Strings.Trim(Types.Skill[skillnum].Name) + "!", (int)ColorType.Yellow);
+                                                        SkillPlayer_Effect((byte)VitalType.HP, false, i, vital, skillnum);
                                                     }
                                                 }
                                             }
@@ -1395,14 +1393,14 @@ namespace Engine
                                     {
                                         if (modTypes.MapNpc[mapNum].Npc[i].Num > 0)
                                         {
-                                            if (modTypes.MapNpc[mapNum].Npc[i].Vital[(int)Enums.VitalType.HP] > 0)
+                                            if (modTypes.MapNpc[mapNum].Npc[i].Vital[(int)VitalType.HP] > 0)
                                             {
                                                 if (S_Players.IsInRange(aoe, x, y, modTypes.MapNpc[mapNum].Npc[i].X, modTypes.MapNpc[mapNum].Npc[i].Y))
                                                 {
                                                     if (S_Players.CanPlayerAttackNpc(npcNum, i, true))
                                                     {
-                                                        S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)Enums.TargetType.Npc, i);
-                                                        SkillNpc_Effect((byte)Enums.VitalType.HP, false, i, vital, skillnum, mapNum);
+                                                        S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)TargetType.Npc, i);
+                                                        SkillNpc_Effect((byte)VitalType.HP, false, i, vital, skillnum, mapNum);
                                                         if (Types.Skill[skillnum].KnockBack == 1)
                                                             S_Npc.KnockBackNpc(npcNum, target, skillnum);
                                                     }
@@ -1414,23 +1412,23 @@ namespace Engine
                                     break;
                                 }
 
-                            case (int)Enums.SkillType.HealHp:
-                            case (int)Enums.SkillType.HealMp:
-                            case (int)Enums.SkillType.DamageMp:
+                            case (int)SkillType.HealHp:
+                            case (int)SkillType.HealMp:
+                            case (int)SkillType.DamageMp:
                                 {
-                                    if (Types.Skill[skillnum].Type == (int)Enums.SkillType.HealHp)
+                                    if (Types.Skill[skillnum].Type == (int)SkillType.HealHp)
                                     {
-                                        vitalType = (int)Enums.VitalType.HP;
+                                        vitalType = (int)VitalType.HP;
                                         increment = true;
                                     }
-                                    else if (Types.Skill[skillnum].Type == (int)Enums.SkillType.HealMp)
+                                    else if (Types.Skill[skillnum].Type == (int)SkillType.HealMp)
                                     {
-                                        vitalType = (int)Enums.VitalType.MP;
+                                        vitalType = (int)VitalType.MP;
                                         increment = true;
                                     }
-                                    else if (Types.Skill[skillnum].Type == (int)Enums.SkillType.DamageMp)
+                                    else if (Types.Skill[skillnum].Type == (int)SkillType.DamageMp)
                                     {
-                                        vitalType = (int)Enums.VitalType.MP;
+                                        vitalType = (int)VitalType.MP;
                                         increment = false;
                                     }
 
@@ -1446,7 +1444,7 @@ namespace Engine
                                     }
                                     for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
                                     {
-                                        if (modTypes.MapNpc[mapNum].Npc[i].Num > 0 && modTypes.MapNpc[mapNum].Npc[i].Vital[(int)Enums.VitalType.HP] > 0)
+                                        if (modTypes.MapNpc[mapNum].Npc[i].Num > 0 && modTypes.MapNpc[mapNum].Npc[i].Vital[(int)VitalType.HP] > 0)
                                         {
                                             if (S_Players.IsInRange(aoe, x, y, modTypes.MapNpc[mapNum].Npc[i].X, modTypes.MapNpc[mapNum].Npc[i].Y))
                                                 SkillNpc_Effect(vitalType, increment, i, vital, skillnum, mapNum);
@@ -1460,8 +1458,7 @@ namespace Engine
                         break;
                     }
 
-                case 2 // targetted
-         :
+                case 2: // targetted
                     {
                         targetType = modTypes.MapNpc[mapNum].Npc[npcNum].TargetType;
                         target = modTypes.MapNpc[mapNum].Npc[npcNum].Target;
@@ -1469,7 +1466,7 @@ namespace Engine
                         if (targetType == 0 || target == 0)
                             return;
 
-                        if (modTypes.MapNpc[mapNum].Npc[npcNum].TargetType == (int)Enums.TargetType.Player)
+                        if (modTypes.MapNpc[mapNum].Npc[npcNum].TargetType == (int)TargetType.Player)
                         {
                             x = S_Players.GetPlayerX(target);
                             y = S_Players.GetPlayerY(target);
@@ -1485,22 +1482,22 @@ namespace Engine
 
                         switch (Types.Skill[skillnum].Type)
                         {
-                            case (int)Enums.SkillType.DamageHp:
+                            case (int)SkillType.DamageHp:
                                 {
-                                    if (modTypes.MapNpc[mapNum].Npc[npcNum].TargetType == (int)Enums.TargetType.Player)
+                                    if (modTypes.MapNpc[mapNum].Npc[npcNum].TargetType == (int)TargetType.Player)
                                     {
                                         if (S_Npc.CanNpcAttackPlayer(npcNum, target) && vital > 0)
                                         {
-                                            S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)Enums.TargetType.Player, target);
-                                            S_NetworkSend.PlayerMsg(target, Microsoft.VisualBasic.Strings.Trim(Types.Npc[modTypes.MapNpc[mapNum].Npc[npcNum].Num].Name) + " uses " + Microsoft.VisualBasic.Strings.Trim(Types.Skill[skillnum].Name) + "!", (int)Enums.ColorType.Yellow);
-                                            SkillPlayer_Effect((byte)Enums.VitalType.HP, false, target, vital, skillnum);
+                                            S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)TargetType.Player, target);
+                                            S_NetworkSend.PlayerMsg(target, Microsoft.VisualBasic.Strings.Trim(Types.Npc[modTypes.MapNpc[mapNum].Npc[npcNum].Num].Name) + " uses " + Microsoft.VisualBasic.Strings.Trim(Types.Skill[skillnum].Name) + "!", (int)ColorType.Yellow);
+                                            SkillPlayer_Effect((byte)VitalType.HP, false, target, vital, skillnum);
                                             didCast = true;
                                         }
                                     }
                                     else if (S_Players.CanPlayerAttackNpc(npcNum, target, true) && vital > 0)
                                     {
-                                        S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)Enums.TargetType.Npc, target);
-                                        SkillNpc_Effect((byte)Enums.VitalType.HP, false, i, vital, skillnum, mapNum);
+                                        S_Animations.SendAnimation(mapNum, Types.Skill[skillnum].SkillAnim, 0, 0, (int)TargetType.Npc, target);
+                                        SkillNpc_Effect((byte)VitalType.HP, false, i, vital, skillnum, mapNum);
 
                                         if (Types.Skill[skillnum].KnockBack == 1)
                                             S_Npc.KnockBackNpc(npcNum, target, skillnum);
@@ -1510,29 +1507,29 @@ namespace Engine
                                     break;
                                 }
 
-                            case (int)Enums.SkillType.DamageMp:
-                            case (int)Enums.SkillType.HealMp:
-                            case (int)Enums.SkillType.HealHp:
+                            case (int)SkillType.DamageMp:
+                            case (int)SkillType.HealMp:
+                            case (int)SkillType.HealHp:
                                 {
-                                    if (Types.Skill[skillnum].Type == (int)Enums.SkillType.DamageMp)
+                                    if (Types.Skill[skillnum].Type == (int)SkillType.DamageMp)
                                     {
-                                        vitalType = (int)Enums.VitalType.MP;
+                                        vitalType = (int)VitalType.MP;
                                         increment = false;
                                     }
-                                    else if (Types.Skill[skillnum].Type == (int)Enums.SkillType.HealMp)
+                                    else if (Types.Skill[skillnum].Type == (int)SkillType.HealMp)
                                     {
-                                        vitalType = (int)Enums.VitalType.MP;
+                                        vitalType = (int)VitalType.MP;
                                         increment = true;
                                     }
-                                    else if (Types.Skill[skillnum].Type == (int)Enums.SkillType.HealHp)
+                                    else if (Types.Skill[skillnum].Type == (int)SkillType.HealHp)
                                     {
-                                        vitalType = (int)Enums.VitalType.HP;
+                                        vitalType = (int)VitalType.HP;
                                         increment = true;
                                     }
 
-                                    if (modTypes.TempPlayer[npcNum].TargetType == (int)Enums.TargetType.Player)
+                                    if (modTypes.TempPlayer[npcNum].TargetType == (int)TargetType.Player)
                                     {
-                                        if (Types.Skill[skillnum].Type == (int)Enums.SkillType.DamageMp)
+                                        if (Types.Skill[skillnum].Type == (int)SkillType.DamageMp)
                                         {
                                             if (S_Players.CanPlayerAttackPlayer(npcNum, target, true))
                                                 SkillPlayer_Effect(vitalType, increment, target, vital, skillnum);
@@ -1540,7 +1537,7 @@ namespace Engine
                                         else
                                             SkillPlayer_Effect(vitalType, increment, target, vital, skillnum);
                                     }
-                                    else if (Types.Skill[skillnum].Type == (int)Enums.SkillType.DamageMp)
+                                    else if (Types.Skill[skillnum].Type == (int)SkillType.DamageMp)
                                     {
                                         if (S_Players.CanPlayerAttackNpc(npcNum, target, true))
                                             SkillNpc_Effect(vitalType, increment, target, vital, skillnum, mapNum);
@@ -1554,8 +1551,7 @@ namespace Engine
                         break;
                     }
 
-                case 4 // Projectile
-         :
+                case 4: // Projectile
                     {
                         S_Projectiles.PlayerFireProjectile(npcNum, skillnum);
 
@@ -1566,7 +1562,7 @@ namespace Engine
 
             if (didCast)
             {
-                modTypes.MapNpc[mapNum].Npc[npcNum].Vital[(int)Enums.VitalType.MP] = modTypes.MapNpc[mapNum].Npc[npcNum].Vital[(int)Enums.VitalType.MP] - mpCost;
+                modTypes.MapNpc[mapNum].Npc[npcNum].Vital[(int)VitalType.MP] = modTypes.MapNpc[mapNum].Npc[npcNum].Vital[(int)VitalType.MP] - mpCost;
                 S_Npc.SendMapNpcVitals(mapNum, (byte)npcNum);
                 modTypes.MapNpc[mapNum].Npc[npcNum].SkillCd[skillslot] = S_General.GetTimeMs() + (Types.Skill[skillnum].CdTime * 1000);
             }
@@ -1580,27 +1576,27 @@ namespace Engine
             if (damage > 0)
             {
                 // Calculate for Magic Resistance.
-                damage = damage - ((S_Players.GetPlayerStat(index, (StatType)(((int)Enums.StatType.Spirit) * 2)) + (S_Players.GetPlayerLevel(index) * 3)));
+                damage = damage - ((S_Players.GetPlayerStat(index, (StatType)(((int)StatType.Spirit) * 2)) + (S_Players.GetPlayerLevel(index) * 3)));
 
                 if (increment)
                 {
                     sSymbol = "+";
-                    if (vital == (int)Enums.VitalType.HP)
-                        colour = (int)Enums.ColorType.BrightGreen;
-                    if (vital == (int)Enums.VitalType.MP)
-                        colour = (int)Enums.ColorType.BrightBlue;
+                    if (vital == (int)VitalType.HP)
+                        colour = (int)ColorType.BrightGreen;
+                    if (vital == (int)VitalType.MP)
+                        colour = (int)ColorType.BrightBlue;
                 }
                 else
                 {
                     sSymbol = "-";
-                    colour = (int)Enums.ColorType.BrightRed;
+                    colour = (int)ColorType.BrightRed;
                 }
 
                 // Deal with stun effects.
                 if (Types.Skill[skillnum].StunDuration > 0)
                     S_Players.StunPlayer(index, skillnum);
 
-                S_NetworkSend.SendActionMsg(S_Players.GetPlayerMap(index), sSymbol + damage, colour, (int)Enums.ActionMsgType.Scroll, S_Players.GetPlayerX(index) * 32, S_Players.GetPlayerY(index) * 32);
+                S_NetworkSend.SendActionMsg(S_Players.GetPlayerMap(index), sSymbol + damage, colour, (int)ActionMsgType.Scroll, S_Players.GetPlayerX(index) * 32, S_Players.GetPlayerY(index) * 32);
                 if (increment)
                     S_Players.SetPlayerVital(index, (VitalType)vital, S_Players.GetPlayerVital(index, (VitalType)vital) + damage);
                 if (!increment)
@@ -1622,15 +1618,15 @@ namespace Engine
                 if (increment)
                 {
                     sSymbol = "+";
-                    if (vital == (int)Enums.VitalType.HP)
-                        color = (int)Enums.ColorType.BrightGreen;
-                    if (vital == (int)Enums.VitalType.MP)
-                        color = (int)Enums.ColorType.BrightBlue;
+                    if (vital == (int)VitalType.HP)
+                        color = (int)ColorType.BrightGreen;
+                    if (vital == (int)VitalType.MP)
+                        color = (int)ColorType.BrightBlue;
                 }
                 else
                 {
                     sSymbol = "-";
-                    color = (int)Enums.ColorType.BrightRed;
+                    color = (int)ColorType.BrightRed;
                 }
 
                 // Deal with Stun and Knockback effects.
@@ -1639,7 +1635,7 @@ namespace Engine
                 if (Types.Skill[skillnum].StunDuration > 0)
                     S_Players.StunNPC(index, mapNum, skillnum);
 
-                S_NetworkSend.SendActionMsg(mapNum, sSymbol + damage, color, (int)Enums.ActionMsgType.Scroll, modTypes.MapNpc[mapNum].Npc[index].X * 32, modTypes.MapNpc[mapNum].Npc[index].Y * 32);
+                S_NetworkSend.SendActionMsg(mapNum, sSymbol + damage, color, (int)ActionMsgType.Scroll, modTypes.MapNpc[mapNum].Npc[index].X * 32, modTypes.MapNpc[mapNum].Npc[index].Y * 32);
                 if (increment)
                     modTypes.MapNpc[mapNum].Npc[index].Vital[vital] = modTypes.MapNpc[mapNum].Npc[index].Vital[vital] + damage;
                 if (!increment)
