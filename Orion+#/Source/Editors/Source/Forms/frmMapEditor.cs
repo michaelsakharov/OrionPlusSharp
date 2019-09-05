@@ -124,11 +124,11 @@ namespace Engine
 		public void PicBackSelect_MouseDown(object sender, MouseEventArgs e)
 		{
 			E_Editors.MapEditorChooseTile((System.Int32) e.Button, e.X, e.Y);
-		}
+        }
 
         public void picBackSelect_MouseUp(object sender, MouseEventArgs e)
         {
-            picScreen.Focus();
+            
         }
 
         public void PicBackSelect_MouseMove(object sender, MouseEventArgs e)
@@ -180,8 +180,8 @@ namespace Engine
 			picBackSelect.Height = E_Graphics.TileSetTextureInfo[cmbTileSets.SelectedIndex + 1].height;
 			picBackSelect.Width = E_Graphics.TileSetTextureInfo[cmbTileSets.SelectedIndex + 1].width;
 			
-			scrlPictureY.Maximum = (int)((picBackSelect.Height / E_Globals.PIC_Y) + E_Globals.PIC_Y);
-			scrlPictureX.Maximum = (int)((picBackSelect.Width / E_Globals.PIC_X) + E_Globals.PIC_X);
+			scrlPictureY.Maximum = ((picBackSelect.Height / E_Globals.PIC_Y) + E_Globals.PIC_Y);
+			scrlPictureX.Maximum = ((picBackSelect.Width / E_Globals.PIC_X) + E_Globals.PIC_X);
 		}
 		
 		public void CmbAutoTile_SelectedIndexChanged(object sender, EventArgs e)
@@ -263,7 +263,7 @@ namespace Engine
             E_Sound.StopMusic();
             E_Sound.StopPreview();
             E_Globals.HideCursor = true;
-			E_Globals.ScreenShotTimer = (int)((int)(ClientDataBase.GetTickCount()) + 500);
+			E_Globals.ScreenShotTimer = (ClientDataBase.GetTickCount() + 500);
 			E_Globals.MakeCache = true;
 		}
 		
@@ -297,7 +297,7 @@ namespace Engine
 		public void TsbScreenShot_Click(object sender, EventArgs e)
 		{
 			E_Globals.HideCursor = true;
-			E_Globals.ScreenShotTimer = (int)((int)(ClientDataBase.GetTickCount()) + 1000);
+			E_Globals.ScreenShotTimer = (ClientDataBase.GetTickCount() + 1000);
 			E_Globals.TakeScreenShot = true;
 		}
 		
