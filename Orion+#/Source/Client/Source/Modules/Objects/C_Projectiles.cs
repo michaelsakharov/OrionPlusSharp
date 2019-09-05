@@ -336,7 +336,7 @@ namespace Engine
 			}
 			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
 			{
-				yOffset = - ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY;
+				yOffset = -((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY;
 			}
 			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
 			{

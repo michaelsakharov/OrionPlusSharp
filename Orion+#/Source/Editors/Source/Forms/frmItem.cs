@@ -492,15 +492,10 @@ namespace Engine
 		
 		public void NudSpeed_ValueChanged(object sender, EventArgs e)
 		{
-			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
-			{
-				return;
-			}
-			lblSpeed.Text = "Speed: " + System.Convert.ToString(nudSpeed.Value / 1000) + " sec";
-			Types.Item[E_Globals.Editorindex].Speed = (int) nudSpeed.Value;
-		}
-		
-		public void NudPaperdoll_ValueChanged(object sender, EventArgs e)
+
+        }
+
+        public void NudPaperdoll_ValueChanged(object sender, EventArgs e)
 		{
 			if (E_Globals.Editorindex == 0 || E_Globals.Editorindex > Constants.MAX_ITEMS)
 			{

@@ -1192,7 +1192,7 @@ namespace Engine
             0,
             0,
             0});
-            this.nudSpeed.Click += new System.EventHandler(this.NudSpeed_ValueChanged);
+            this.nudSpeed.ValueChanged += new System.EventHandler(this.NudSpeed_ValueChanged);
             // 
             // lblSpeed
             // 
