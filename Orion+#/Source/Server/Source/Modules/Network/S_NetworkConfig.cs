@@ -169,10 +169,8 @@ namespace Engine
         internal static void Socket_CrashReport(int index, string err)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            if (S_Globals.DebugTxt == true)
-                Console.WriteLine("There was a network error -> Index[" + index + "]");
+            Console.WriteLine("There was a network error -> Index[" + index + "]" + " - " + err);
             Console.ResetColor();
-            Console.WriteLine("Report: " + err);
             S_Players.LeftGame(index);
         }
 
