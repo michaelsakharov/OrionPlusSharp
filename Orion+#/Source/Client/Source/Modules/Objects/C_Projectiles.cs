@@ -332,19 +332,19 @@ namespace Engine
 			//Find the offset
 			if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
 			{
-				yOffset = System.Convert.ToInt32(((double) (MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY);
+				yOffset = ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY;
 			}
 			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
 			{
-				yOffset = System.Convert.ToInt32(- ((double) (MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY);
+				yOffset = - ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY;
 			}
 			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
 			{
-				xOffset = System.Convert.ToInt32(((double) (MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicX);
+				xOffset = ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicX;
 			}
 			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Right)
 			{
-				xOffset = System.Convert.ToInt32(- ((double) (MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicX);
+				xOffset = -((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicX;
 			}
 			
 			x = C_Graphics.ConvertMapX(x * C_Constants.PicX);
