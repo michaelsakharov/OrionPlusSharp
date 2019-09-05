@@ -68,7 +68,7 @@ namespace Engine
 
                             string Name = parts[1];
                             int Pindex = S_GameLogic.FindPlayer(Name);
-                            int Power; int.TryParse(parts[2], out Power);
+                            int.TryParse(parts[2], out int Power);
 
                             if (!(Pindex > 0))
                                 Console.WriteLine("Player name is empty or invalid. [Name not found]");
@@ -178,8 +178,7 @@ namespace Engine
                             }
 
 
-                            double speed;
-                            double.TryParse(parts[1], out speed);
+                            double.TryParse(parts[1], out double speed);
                             Time.Instance.GameSpeed = speed;
                             Console.WriteLine("Set GameSpeed to " + Time.Instance.GameSpeed + " secs per seconds");
                             break;
@@ -219,8 +218,7 @@ namespace Engine
                                 Console.WriteLine("Incorrect usage.");
                                 break;
                             }
-                            float xpMultiplayer;
-                            float.TryParse(parts[1], out xpMultiplayer);
+                            float.TryParse(parts[1], out float xpMultiplayer);
                             modTypes.Options.xpMultiplier = xpMultiplayer;
                             Console.WriteLine("Global XP Multiplayer set to: " + xpMultiplayer);
                             break;
@@ -271,7 +269,6 @@ namespace Engine
                     case "":
                         {
                             continue;
-                            break;
                         }
 
                     default:

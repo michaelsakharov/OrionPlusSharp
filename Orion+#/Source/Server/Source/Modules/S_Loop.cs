@@ -168,8 +168,6 @@ namespace Engine
                     UpdateSavePlayers();
                     lastUpdateSavePlayers = ms + 600000;
                 }
-                
-                //Application.DoEvents();
 
                 if (!modTypes.Options.unlockCPS)
                 {
@@ -274,6 +272,9 @@ namespace Engine
 
         private static void UpdateNpcAi()
         {
+            if (S_General.ServerDestroyed)
+                return;
+
             int i = 0;
             int x = 0;
             int n = 0;
@@ -294,8 +295,6 @@ namespace Engine
 
             for (mapNum = 1; mapNum <= S_Instances.MAX_CACHED_MAPS; mapNum++)
             {
-                if (S_General.ServerDestroyed)
-                    return;
 
                 // items appearing to everyone
                 for (i = 1; i <= Constants.MAX_MAP_ITEMS; i++)
@@ -372,9 +371,6 @@ namespace Engine
                         }
                     }
                 }
-
-                if (S_General.ServerDestroyed)
-                    return;
 
                 if (modTypes.PlayersOnMap[mapNum] == 1)
                 {
