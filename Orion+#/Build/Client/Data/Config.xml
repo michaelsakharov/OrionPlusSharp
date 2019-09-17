@@ -2,8 +2,8 @@
 <Options>
   <UserInfo>
     <Element Name="Username" Value="asd" />
-    <Element Name="Password" Value="" />
-    <Element Name="SavePass" Value="False" />
+    <Element Name="Password" Value="asd" />
+    <Element Name="SavePass" Value="True" />
   </UserInfo>
   <Connection>
     <Element Name="Ip" Value="localhost" />

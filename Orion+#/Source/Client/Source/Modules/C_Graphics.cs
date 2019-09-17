@@ -2073,6 +2073,7 @@ namespace Engine
 			{
                 if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
                 {
+
                     for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
                     {
                         for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
@@ -2083,8 +2084,20 @@ namespace Engine
                             }
                         }
                     }
+
+                    //C_Maps.CreateMapLayersImage();
+                    //if (C_Maps.mapLayers != null)
+                    //{
+                    //    int layerIndex = 0;
+                    //    foreach (Sprite layer in C_Maps.mapLayers)
+                    //    {
+                    //        RenderSprite(C_Maps.mapLayers[0], GameWindow, ConvertMapX(0), ConvertMapY(0), 0, 0, (C_Maps.Map.MaxX * 32), (C_Maps.Map.MaxY * 32));
+                    //        C_Maps.DrawMapLayerAutoTile(layerIndex);
+                    //        layerIndex++;
+                    //    }
+                    //}
                 }
-			}
+            }
 			
 			// Furniture
 			if (C_Housing.FurnitureHouse > 0)

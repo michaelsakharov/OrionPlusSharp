@@ -106,7 +106,7 @@ namespace Engine
 				//Update the UI
 				C_UpdateUI.UpdateUi();
 				
-				if (GameStarted() == true)
+				if (GameStarted())
 				{
 					tick = C_General.GetTickCount();
 					C_Variables.ElapsedTime = tick - frameTime; // Set the time difference for time-based movement
@@ -447,6 +447,9 @@ namespace Engine
 									break;
 							}
 							
+                            // Update the Maps to display the change
+                            //C_Maps.mapLayers = null;
+
 							tmr500 = tick + 500;
 						}
 						
