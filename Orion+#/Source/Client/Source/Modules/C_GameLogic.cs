@@ -38,14 +38,13 @@ namespace Engine
 
         public static void GameLoop()
 		{
-			int i = 0;
+			int i = 5;
             Point dest = new Point((Size)FrmGame.Default.PointToScreen(FrmGame.Default.picscreen.Location));
 
             Graphics g = FrmGame.Default.picscreen.CreateGraphics();
 			int starttime = 0;
 			int tick = 0;
 			int fogtmr = 0;
-			int tmpfps = 0;
 			int tmplps = 0;
 			int walkTimer = 0;
 			int frameTime = 0;
@@ -87,7 +86,7 @@ namespace Engine
 						else
 						{
 							i++;
-							if (i == 5)
+							if (i >= 5)
 							{
 								C_NetworkConfig.Connect();
 								FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serverreconnect");

@@ -15,15 +15,15 @@ namespace Engine
 {
     internal sealed class C_NetworkConfig
     {
-        internal static ASFW.Network.Client Socket;
+        internal static Client Socket;
 
         internal static void InitNetwork()
         {
-            if (!ReferenceEquals(Socket, null))
+            if (Socket != null)
             {
                 return;
             }
-            Socket = new ASFW.Network.Client((System.Int32)Packets.ServerPackets.COUNT);
+            Socket = new Client((System.Int32)Packets.ServerPackets.COUNT);
             C_NetworkReceive.PacketRouter();
         }
 
