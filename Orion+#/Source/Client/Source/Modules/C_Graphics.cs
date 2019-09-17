@@ -264,7 +264,7 @@ namespace Engine
 		internal static Sprite PetBarSprite;
 		internal static GraphicInfo PetbarGfxInfo;
 		
-		internal static RenderTexture MapTintGfx = new RenderTexture((uint) 1152, (uint) 864);
+		internal static RenderTexture MapTintGfx = new RenderTexture( 1152, 64);
 		internal static Sprite MapTintSprite;
 		
 		internal static Sprite MapFadeSprite;
@@ -285,10 +285,9 @@ namespace Engine
 		internal static int NumParallax;
 		
 		// #Day/Night
-		internal static RenderTexture NightGfx = new RenderTexture((uint) 1152, (uint) 864);
+		internal static RenderTexture NightGfx = new RenderTexture(1152, 864);
 		
 		internal static Sprite NightSprite;
-		internal static GraphicInfo NightGfxInfo;
 		
 		internal static Texture LightGfx;
 		internal static Sprite LightSprite;
@@ -308,11 +307,6 @@ namespace Engine
 			public int Height;
 			public bool IsLoaded;
 			public int TextureTimer;
-		}
-		
-		public struct GraphicsTiles
-		{
-			public Texture[,] Tile;
 		}
 		
 #endregion
@@ -807,11 +801,10 @@ namespace Engine
 				TileSetSprite[index] = new Sprite(TileSetTexture[index]);
 				
 				//Cache the width and height
-				ref var with_1 = ref TileSetTextureInfo[index];
-				with_1.Width = (int)TileSetTexture[index].Size.X;
-				with_1.Height = (int)TileSetTexture[index].Size.Y;
-				with_1.IsLoaded = true;
-				with_1.TextureTimer = C_General.GetTickCount() + 100000;
+				TileSetTextureInfo[index].Width = (int)TileSetTexture[index].Size.X;
+				TileSetTextureInfo[index].Height = (int)TileSetTexture[index].Size.Y;
+				TileSetTextureInfo[index].IsLoaded = true;
+                TileSetTextureInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 2) //characters
@@ -826,11 +819,10 @@ namespace Engine
 				CharacterSprite[index] = new Sprite(CharacterGfx[index]);
 				
 				//Cache the width and height
-				ref var with_2 = ref CharacterGfxInfo[index];
-				with_2.Width = (int)CharacterGfx[index].Size.X;
-				with_2.Height = (int)CharacterGfx[index].Size.Y;
-				with_2.IsLoaded = true;
-				with_2.TextureTimer = C_General.GetTickCount() + 100000;
+				CharacterGfxInfo[index].Width = (int)CharacterGfx[index].Size.X;
+				CharacterGfxInfo[index].Height = (int)CharacterGfx[index].Size.Y;
+				CharacterGfxInfo[index].IsLoaded = true;
+                CharacterGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 3) //paperdoll
@@ -845,11 +837,10 @@ namespace Engine
 				PaperDollSprite[index] = new Sprite(PaperDollGfx[index]);
 				
 				//Cache the width and height
-				ref var with_3 = ref PaperDollGfxInfo[index];
-				with_3.Width = (int)PaperDollGfx[index].Size.X;
-				with_3.Height = (int)PaperDollGfx[index].Size.Y;
-				with_3.IsLoaded = true;
-				with_3.TextureTimer = C_General.GetTickCount() + 100000;
+				PaperDollGfxInfo[index].Width = (int)PaperDollGfx[index].Size.X;
+				PaperDollGfxInfo[index].Height = (int)PaperDollGfx[index].Size.Y;
+				PaperDollGfxInfo[index].IsLoaded = true;
+                PaperDollGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 4) //items
@@ -864,11 +855,10 @@ namespace Engine
 				ItemsSprite[index] = new Sprite(ItemsGfx[index]);
 				
 				//Cache the width and height
-				ref var with_4 = ref ItemsGfxInfo[index];
-				with_4.Width = (int)ItemsGfx[index].Size.X;
-				with_4.Height = (int)ItemsGfx[index].Size.Y;
-				with_4.IsLoaded = true;
-				with_4.TextureTimer = C_General.GetTickCount() + 100000;
+				ItemsGfxInfo[index].Width = (int)ItemsGfx[index].Size.X;
+				ItemsGfxInfo[index].Height = (int)ItemsGfx[index].Size.Y;
+				ItemsGfxInfo[index].IsLoaded = true;
+                ItemsGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 5) //resources
@@ -881,13 +871,12 @@ namespace Engine
 				//Load texture first, dont care about memory streams (just use the filename)
 				ResourcesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "resources\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
 				ResourcesSprite[index] = new Sprite(ResourcesGfx[index]);
-				
-				//Cache the width and height
-				ref var with_5 = ref ResourcesGfxInfo[index];
-				with_5.Width = (int)ResourcesGfx[index].Size.X;
-				with_5.Height = (int)ResourcesGfx[index].Size.Y;
-				with_5.IsLoaded = true;
-				with_5.TextureTimer = C_General.GetTickCount() + 100000;
+
+                //Cache the width and height
+                ResourcesGfxInfo[index].Width = (int)ResourcesGfx[index].Size.X;
+                ResourcesGfxInfo[index].Height = (int)ResourcesGfx[index].Size.Y;
+                ResourcesGfxInfo[index].IsLoaded = true;
+                ResourcesGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 6) //animations
@@ -902,11 +891,10 @@ namespace Engine
 				AnimationsSprite[index] = new Sprite(AnimationsGfx[index]);
 				
 				//Cache the width and height
-				ref var with_6 = ref AnimationsGfxInfo[index];
-				with_6.Width = (int)AnimationsGfx[index].Size.X;
-				with_6.Height = (int)AnimationsGfx[index].Size.Y;
-				with_6.IsLoaded = true;
-				with_6.TextureTimer = C_General.GetTickCount() + 100000;
+				AnimationsGfxInfo[index].Width = (int)AnimationsGfx[index].Size.X;
+				AnimationsGfxInfo[index].Height = (int)AnimationsGfx[index].Size.Y;
+				AnimationsGfxInfo[index].IsLoaded = true;
+                AnimationsGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 7) //faces
@@ -921,11 +909,10 @@ namespace Engine
 				FacesSprite[index] = new Sprite(FacesGfx[index]);
 				
 				//Cache the width and height
-				ref var with_7 = ref FacesGfxInfo[index];
-				with_7.Width = (int)FacesGfx[index].Size.X;
-				with_7.Height = (int)FacesGfx[index].Size.Y;
-				with_7.IsLoaded = true;
-				with_7.TextureTimer = C_General.GetTickCount() + 100000;
+				FacesGfxInfo[index].Width = (int)FacesGfx[index].Size.X;
+				FacesGfxInfo[index].Height = (int)FacesGfx[index].Size.Y;
+				FacesGfxInfo[index].IsLoaded = true;
+                FacesGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 8) //fogs
@@ -940,11 +927,10 @@ namespace Engine
 				FogSprite[index] = new Sprite(FogGfx[index]);
 				
 				//Cache the width and height
-				ref var with_8 = ref FogGfxInfo[index];
-				with_8.Width = (int)FogGfx[index].Size.X;
-				with_8.Height = (int)FogGfx[index].Size.Y;
-				with_8.IsLoaded = true;
-				with_8.TextureTimer = C_General.GetTickCount() + 100000;
+				FogGfxInfo[index].Width = (int)FogGfx[index].Size.X;
+				FogGfxInfo[index].Height = (int)FogGfx[index].Size.Y;
+				FogGfxInfo[index].IsLoaded = true;
+                FogGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 9) //skill icons
@@ -959,11 +945,10 @@ namespace Engine
 				SkillIconsSprite[index] = new Sprite(SkillIconsGfx[index]);
 				
 				//Cache the width and height
-				ref var with_9 = ref SkillIconsGfxInfo[index];
-				with_9.Width = (int)SkillIconsGfx[index].Size.X;
-				with_9.Height = (int)SkillIconsGfx[index].Size.Y;
-				with_9.IsLoaded = true;
-				with_9.TextureTimer = C_General.GetTickCount() + 100000;
+				SkillIconsGfxInfo[index].Width = (int)SkillIconsGfx[index].Size.X;
+				SkillIconsGfxInfo[index].Height = (int)SkillIconsGfx[index].Size.Y;
+				SkillIconsGfxInfo[index].IsLoaded = true;
+                SkillIconsGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 10) //furniture
@@ -978,11 +963,10 @@ namespace Engine
 				FurnitureSprite[index] = new Sprite(FurnitureGfx[index]);
 				
 				//Cache the width and height
-				ref var with_10 = ref FurnitureGfxInfo[index];
-				with_10.Width = (int)FurnitureGfx[index].Size.X;
-				with_10.Height = (int)FurnitureGfx[index].Size.Y;
-				with_10.IsLoaded = true;
-				with_10.TextureTimer = C_General.GetTickCount() + 100000;
+				FurnitureGfxInfo[index].Width = (int)FurnitureGfx[index].Size.X;
+				FurnitureGfxInfo[index].Height = (int)FurnitureGfx[index].Size.Y;
+				FurnitureGfxInfo[index].IsLoaded = true;
+                FurnitureGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 11) //projectiles
@@ -997,11 +981,10 @@ namespace Engine
 				ProjectileSprite[index] = new Sprite(ProjectileGfx[index]);
 				
 				//Cache the width and height
-				ref var with_11 = ref ProjectileGfxInfo[index];
-				with_11.Width = (int)ProjectileGfx[index].Size.X;
-				with_11.Height = (int)ProjectileGfx[index].Size.Y;
-				with_11.IsLoaded = true;
-				with_11.TextureTimer = C_General.GetTickCount() + 100000;
+				ProjectileGfxInfo[index].Width = (int)ProjectileGfx[index].Size.X;
+				ProjectileGfxInfo[index].Height = (int)ProjectileGfx[index].Size.Y;
+				ProjectileGfxInfo[index].IsLoaded = true;
+                ProjectileGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 12) //emotes
@@ -1016,11 +999,10 @@ namespace Engine
 				EmotesSprite[index] = new Sprite(EmotesGfx[index]);
 				
 				//Cache the width and height
-				ref var with_12 = ref EmotesGfxInfo[index];
-				with_12.Width = (int)EmotesGfx[index].Size.X;
-				with_12.Height = (int)EmotesGfx[index].Size.Y;
-				with_12.IsLoaded = true;
-				with_12.TextureTimer = C_General.GetTickCount() + 100000;
+				EmotesGfxInfo[index].Width = (int)EmotesGfx[index].Size.X;
+				EmotesGfxInfo[index].Height = (int)EmotesGfx[index].Size.Y;
+				EmotesGfxInfo[index].IsLoaded = true;
+                EmotesGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 				
 			}
 			else if (texType == 13) //Panoramas
@@ -1035,11 +1017,10 @@ namespace Engine
 				PanoramasSprite[index] = new Sprite(PanoramasGfx[index]);
 				
 				//Cache the width and height
-				ref var with_13 = ref PanoramasGfxInfo[index];
-				with_13.Width = (int)PanoramasGfx[index].Size.X;
-				with_13.Height = (int)PanoramasGfx[index].Size.Y;
-				with_13.IsLoaded = true;
-				with_13.TextureTimer = C_General.GetTickCount() + 100000;
+				PanoramasGfxInfo[index].Width = (int)PanoramasGfx[index].Size.X;
+				PanoramasGfxInfo[index].Height = (int)PanoramasGfx[index].Size.Y;
+				PanoramasGfxInfo[index].IsLoaded = true;
+                PanoramasGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 			}
 			else if (texType == 14) //Parallax
 			{
@@ -1053,11 +1034,10 @@ namespace Engine
 				ParallaxSprite[index] = new Sprite(ParallaxGfx[index]);
 				
 				//Cache the width and height
-				ref var with_14 = ref ParallaxGfxInfo[index];
-				with_14.Width = (int)ParallaxGfx[index].Size.X;
-				with_14.Height = (int)ParallaxGfx[index].Size.Y;
-				with_14.IsLoaded = true;
-				with_14.TextureTimer = C_General.GetTickCount() + 100000;
+				ParallaxGfxInfo[index].Width = (int)ParallaxGfx[index].Size.X;
+				ParallaxGfxInfo[index].Height = (int)ParallaxGfx[index].Size.Y;
+				ParallaxGfxInfo[index].IsLoaded = true;
+                ParallaxGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 			}
 			
 		}
@@ -1079,12 +1059,11 @@ namespace Engine
 			
 			if (EmotesGfxInfo[sprite].IsLoaded == false)
 			{
-				LoadTexture(sprite, (byte) 12);
+				LoadTexture(sprite, 12);
 			}
 			
 			//seeying we still use it, lets update timer
-			ref var with_1 = ref EmotesGfxInfo[sprite];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+            EmotesGfxInfo[sprite].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			if (C_Variables.ShowAnimLayers == true)
 			{
@@ -1135,7 +1114,7 @@ namespace Engine
 			//only loop tru last entries
 			for (i = C_Text.FirstLineindex; i <= C_Text.LastLineindex; i++)
 			{
-				text = System.Convert.ToString(C_Types.Chat[i].Text);
+				text = Convert.ToString(C_Types.Chat[i].Text);
 				
 				if (!string.IsNullOrEmpty(text)) // or not
 				{
@@ -1180,7 +1159,7 @@ namespace Engine
 		internal static void RenderSprite(Sprite tmpSprite, RenderWindow target, int destX, int destY, int sourceX, int sourceY, int sourceWidth, int sourceHeight)
 		{
 			
-			if (ReferenceEquals(tmpSprite, null))
+			if (tmpSprite == null)
 			{
 				return;
 			}
@@ -1192,24 +1171,28 @@ namespace Engine
 		
 		internal static void RenderTextures(Texture txture, RenderWindow target, float dX, float dY, float sx, float sy, float dWidth, float dHeight, float sWidth, float sHeight)
 		{
-			Sprite tmpImage = new Sprite(txture);
-			tmpImage.TextureRect = new IntRect((int)(sx), (int)(sy), (int)(sWidth), (int)(sHeight));
-			tmpImage.Scale = new Vector2f(dWidth / sWidth, dHeight / sHeight);
-			tmpImage.Position = new Vector2f(dX, dY);
-			target.Draw(tmpImage);
+            Sprite tmpImage = new Sprite(txture)
+            {
+                TextureRect = new IntRect((int)(sx), (int)(sy), (int)(sWidth), (int)(sHeight)),
+                Scale = new Vector2f(dWidth / sWidth, dHeight / sHeight),
+                Position = new Vector2f(dX, dY)
+            };
+            target.Draw(tmpImage);
 		}
 		
 		internal static void DrawDirections(int x, int y)
 		{
-			Rectangle rec = new Rectangle();
-			
-			// render grid
-			rec.Y = 24;
-			rec.X = 0;
-			rec.Width = 32;
-			rec.Height = 32;
-			
-			RenderSprite(DirectionsSprite, GameWindow, ConvertMapX(x * C_Constants.PicX), ConvertMapY(y * C_Constants.PicY), rec.X, rec.Y, rec.Width, rec.Height);
+            Rectangle rec = new Rectangle
+            {
+
+                // render grid
+                Y = 24,
+                X = 0,
+                Width = 32,
+                Height = 32
+            };
+
+            RenderSprite(DirectionsSprite, GameWindow, ConvertMapX(x * C_Constants.PicX), ConvertMapY(y * C_Constants.PicY), rec.X, rec.Y, rec.Width, rec.Height);
 			
 			// render dir blobs
 			for (byte i = 1; i <= 4; i++)
@@ -1272,7 +1255,7 @@ namespace Engine
 			}
 			
 			// Reset frame
-			anim = (byte) 0;
+			anim = 0;
 			
 			// Check for attacking animation
 			if (C_Types.Player[index].AttackTimer + ((double) attackspeed / 2) > C_General.GetTickCount())
@@ -1281,11 +1264,11 @@ namespace Engine
 				{
 					if (attackSprite == 1)
 					{
-						anim = (byte) 4;
+						anim = 4;
 					}
 					else
 					{
-						anim = (byte) 3;
+						anim = 3;
 					}
 				}
 			}
@@ -1327,11 +1310,10 @@ namespace Engine
 			}
 			
 			// Check to see if we want to stop making him attack
-			ref var with_1 = ref C_Types.Player[index];
-			if (with_1.AttackTimer + attackspeed < C_General.GetTickCount())
+			if (C_Types.Player[index].AttackTimer + attackspeed < C_General.GetTickCount())
 			{
-				with_1.Attacking = (byte) 0;
-				with_1.AttackTimer = 0;
+                C_Types.Player[index].Attacking = 0;
+                C_Types.Player[index].AttackTimer = 0;
 			}
 			
 			
@@ -1399,11 +1381,10 @@ namespace Engine
 			}
 			
 			// Check to see if we want to stop showing emote
-			ref var with_2 = ref C_Types.Player[index];
-			if (with_2.EmoteTimer < C_General.GetTickCount())
+			if (C_Types.Player[index].EmoteTimer < C_General.GetTickCount())
 			{
-				with_2.Emote = 0;
-				with_2.EmoteTimer = 0;
+                C_Types.Player[index].Emote = 0;
+                C_Types.Player[index].EmoteTimer = 0;
 			}
 			
 			//check for emotes
@@ -1416,25 +1397,24 @@ namespace Engine
 		
 		internal static void DrawPaperdoll(int x2, int y2, int sprite, int anim, int spritetop)
 		{
-			Rectangle rec = new Rectangle();
-			int x = 0;
-			int y = 0;
-			int width;
-			int height;
-			
 			if (sprite < 1 || sprite > NumPaperdolls)
 			{
 				return;
 			}
-			
-			if (PaperDollGfxInfo[sprite].IsLoaded == false)
+            
+            Rectangle rec = new Rectangle();
+            int x = 0;
+            int y = 0;
+            int width;
+            int height;
+
+            if (PaperDollGfxInfo[sprite].IsLoaded == false)
 			{
-				LoadTexture(sprite, (byte) 3);
+				LoadTexture(sprite, 3);
 			}
-			
-			// we use it, lets update timer
-			ref var with_1 = ref PaperDollGfxInfo[sprite];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+
+            // we use it, lets update timer
+            PaperDollGfxInfo[sprite].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			rec.Y = (int)(spritetop * ((double) PaperDollGfxInfo[sprite].Height / 4));
 			rec.Height = (int)((double) PaperDollGfxInfo[sprite].Height / 4);
@@ -1452,15 +1432,6 @@ namespace Engine
 		
 		internal static void DrawNpc(int mapNpcNum)
 		{
-			byte anim = 0;
-			int x = 0;
-			int y = 0;
-			int sprite = 0;
-			int spriteleft = 0;
-			Rectangle destrec;
-			Rectangle srcrec = new Rectangle();
-			int attackspeed = 0;
-			
 			if (C_Maps.MapNpc[mapNpcNum].Num == 0)
 			{
 				return; // no npc set
@@ -1470,22 +1441,33 @@ namespace Engine
 			{
 				return;
 			}
+
 			if (C_Maps.MapNpc[mapNpcNum].Y < C_Variables.TileView.Top || C_Maps.MapNpc[mapNpcNum].Y > C_Variables.TileView.Bottom)
 			{
 				return;
 			}
-			
-			sprite = Types.Npc[C_Maps.MapNpc[mapNpcNum].Num].Sprite;
+            
+            int sprite = 0;
+
+            sprite = Types.Npc[C_Maps.MapNpc[mapNpcNum].Num].Sprite;
 			
 			if (sprite < 1 || sprite > NumCharacters)
 			{
 				return;
 			}
-			
-			attackspeed = 1000;
+
+            byte anim = 0;
+            int x = 0;
+            int y = 0;
+            int spriteleft = 0;
+            Rectangle destrec;
+            Rectangle srcrec = new Rectangle();
+            int attackspeed = 0;
+
+            attackspeed = 1000;
 			
 			// Reset frame
-			anim = (byte) 0;
+			anim = 0;
 			
 			// Check for attacking animation
 			if (C_Maps.MapNpc[mapNpcNum].AttackTimer + ((double) attackspeed / 2) > C_General.GetTickCount())
@@ -1529,11 +1511,10 @@ namespace Engine
 			}
 			
 			// Check to see if we want to stop making him attack
-			ref var with_1 = ref C_Maps.MapNpc[mapNpcNum];
-			if ((int)(with_1.AttackTimer + attackspeed) < C_General.GetTickCount())
+			if ((C_Maps.MapNpc[mapNpcNum].AttackTimer + attackspeed) < C_General.GetTickCount())
 			{
-				with_1.Attacking = 0;
-				with_1.AttackTimer = 0;
+                C_Maps.MapNpc[mapNpcNum].Attacking = 0;
+                C_Maps.MapNpc[mapNpcNum].AttackTimer = 0;
 			}
 			
 			// Set the left
@@ -1594,11 +1575,7 @@ namespace Engine
 		
 		internal static void DrawItem(int itemnum)
 		{
-			Rectangle srcrec = new Rectangle();
-			Rectangle destrec;
 			int picNum = 0;
-			int x = 0;
-			int y = 0;
 			
 			picNum = Types.Item[C_Maps.MapItem[itemnum].Num].Pic;
 			
@@ -1606,22 +1583,25 @@ namespace Engine
 			{
 				return;
 			}
-			
-			if (ItemsGfxInfo[picNum].IsLoaded == false)
+            
+            Rectangle srcrec = new Rectangle();
+            Rectangle destrec;
+            int x = 0;
+            int y = 0;
+
+            if (ItemsGfxInfo[picNum].IsLoaded == false)
 			{
 				LoadTexture(picNum, (byte) 4);
 			}
 			
 			//seeying we still use it, lets update timer
-			ref var with_1 = ref ItemsGfxInfo[picNum];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+            ItemsGfxInfo[picNum].TextureTimer = C_General.GetTickCount() + 100000;
 			
-			ref var with_2 = ref C_Maps.MapItem[itemnum];
-			if (with_2.X < C_Variables.TileView.Left || with_2.X > C_Variables.TileView.Right)
+			if (C_Maps.MapItem[itemnum].X < C_Variables.TileView.Left || C_Maps.MapItem[itemnum].X > C_Variables.TileView.Right)
 			{
 				return;
 			}
-			if (with_2.Y < C_Variables.TileView.Top || with_2.Y > C_Variables.TileView.Bottom)
+			if (C_Maps.MapItem[itemnum].Y < C_Variables.TileView.Top || C_Maps.MapItem[itemnum].Y > C_Variables.TileView.Bottom)
 			{
 				return;
 			}
@@ -1646,25 +1626,23 @@ namespace Engine
 		
 		internal static void DrawCharacter(int sprite, int x2, int y2, Rectangle rec)
 		{
-			int x = 0;
-			int y = 0;
-			int width;
-			int height;
-			//On Error Resume Next
-			
 			if (sprite < 1 || sprite > NumCharacters)
 			{
 				return;
 			}
-			
-			if (CharacterGfxInfo[sprite].IsLoaded == false)
+
+            int x = 0;
+            int y = 0;
+            int width;
+            int height;
+
+            if (CharacterGfxInfo[sprite].IsLoaded == false)
 			{
 				LoadTexture(sprite, (byte) 2);
 			}
-			
-			//seeying we still use it, lets update timer
-			ref var with_1 = ref CharacterGfxInfo[sprite];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+
+            //seeying we still use it, lets update timer
+            CharacterGfxInfo[sprite].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			x = ConvertMapX(x2);
 			y = ConvertMapY(y2);
@@ -1680,35 +1658,35 @@ namespace Engine
 		
 		internal static void DrawBlood(int index)
 		{
-            Point dest = new Point((Size)FrmGame.Default.PointToScreen(FrmGame.Default.picscreen.Location));
-
-            Rectangle srcrec = new Rectangle();
-			Rectangle destrec;
-			int x = 0;
-			int y = 0;
 			
-			ref var with_1 = ref C_Types.Blood[index];
-			if (with_1.X < C_Variables.TileView.Left || with_1.X > C_Variables.TileView.Right)
+			if (C_Types.Blood[index].X < C_Variables.TileView.Left || C_Types.Blood[index].X > C_Variables.TileView.Right)
 			{
 				return;
 			}
-			if (with_1.Y < C_Variables.TileView.Top || with_1.Y > C_Variables.TileView.Bottom)
+			if (C_Types.Blood[index].Y < C_Variables.TileView.Top || C_Types.Blood[index].Y > C_Variables.TileView.Bottom)
 			{
 				return;
 			}
 			
 			// check if we should be seeing it
-			if (with_1.Timer + 20000 < C_General.GetTickCount())
+			if (C_Types.Blood[index].Timer + 20000 < C_General.GetTickCount())
 			{
 				return;
 			}
-			
-			x = ConvertMapX(C_Types.Blood[index].X * C_Constants.PicX);
+
+            Point dest = new Point((Size)FrmGame.Default.PointToScreen(FrmGame.Default.picscreen.Location));
+
+            Rectangle srcrec = new Rectangle();
+            Rectangle destrec;
+            int x = 0;
+            int y = 0;
+
+            x = ConvertMapX(C_Types.Blood[index].X * C_Constants.PicX);
 			y = ConvertMapY(C_Types.Blood[index].Y * C_Constants.PicY);
 			
-			srcrec = new Rectangle((with_1.Sprite - 1) * C_Constants.PicX, 0, C_Constants.PicX, C_Constants.PicY);
+			srcrec = new Rectangle((C_Types.Blood[index].Sprite - 1) * C_Constants.PicX, 0, C_Constants.PicX, C_Constants.PicY);
 			
-			destrec = new Rectangle(ConvertMapX(with_1.X * C_Constants.PicX), ConvertMapY(with_1.Y * C_Constants.PicY), C_Constants.PicX, C_Constants.PicY);
+			destrec = new Rectangle(ConvertMapX(C_Types.Blood[index].X * C_Constants.PicX), ConvertMapY(C_Types.Blood[index].Y * C_Constants.PicY), C_Constants.PicX, C_Constants.PicY);
 			
 			RenderSprite(BloodSprite, GameWindow, x, y, srcrec.X, srcrec.Y, srcrec.Width, srcrec.Height);
 			
@@ -1717,24 +1695,21 @@ namespace Engine
 		
 		internal static bool IsValidMapPoint(int x, int y)
 		{
-			bool returnValue = false;
-			returnValue = false;
-			
 			if (x < 0)
 			{
-				return returnValue;
+				return false;
 			}
 			if (y < 0)
 			{
-				return returnValue;
+				return false;
 			}
 			if (x > C_Maps.Map.MaxX)
 			{
-				return returnValue;
+				return false;
 			}
 			if (y > C_Maps.Map.MaxY)
 			{
-				return returnValue;
+				return false;
 			}
 			return true;
 		}
@@ -1752,9 +1727,10 @@ namespace Engine
 			offsetY = C_Types.Player[C_Variables.Myindex].YOffset + C_Constants.PicY;
 
 
-			startX = (int)(C_Player.GetPlayerX(C_Variables.Myindex) - ((C_Constants.ScreenMapx + 1) / 2) - 1);
-			startY = (int)(C_Player.GetPlayerY(C_Variables.Myindex) - ((C_Constants.ScreenMapy + 1) / 2) - 1);
+			startX = (C_Player.GetPlayerX(C_Variables.Myindex) - ((C_Constants.ScreenMapx + 1) / 2) - 1);
+			startY = (C_Player.GetPlayerY(C_Variables.Myindex) - ((C_Constants.ScreenMapy + 1) / 2) - 1);
 
+            //Set tto false to allow the camera to move Outside the map borders
             bool lockCameraInsideBorders = true;
 
             if (lockCameraInsideBorders)
@@ -1828,7 +1804,7 @@ namespace Engine
                 }
             }
 
-                C_Variables.TileView.Top = startY;
+            C_Variables.TileView.Top = startY;
 			C_Variables.TileView.Bottom = endY;
 			C_Variables.TileView.Left = startX;
 			C_Variables.TileView.Right = endX;
@@ -1844,7 +1820,6 @@ namespace Engine
 		
 		public static void ClearGfx()
 		{
-			
 			//clear tilesets
 			for (var I = 1; I <= NumTileSets; I++)
 			{
@@ -2056,24 +2031,25 @@ namespace Engine
 		
 		internal static void Render_Graphics()
 		{
-			int x = 0;
-			int y = 0;
-			int I = 0;
-			
 			//Don't Render IF
 			if (FrmGame.Default.WindowState == FormWindowState.Minimized)
 			{
 				return;
 			}
+
 			if (C_Variables.GettingMap)
 			{
 				return;
-			}
-			
-			//lets get going
-			
-			//update view around player
-			UpdateCamera();
+            }
+
+            int x = 0;
+            int y = 0;
+            int I = 0;
+
+            //lets get going
+
+            //update view around player
+            UpdateCamera();
 			
 			//let program do other things - Theres already one in GameLogic being called every frame.. do we need this?
 			//Application.DoEvents();
@@ -2081,12 +2057,6 @@ namespace Engine
 			//Clear each of our render targets
 			GameWindow.DispatchEvents();
 			GameWindow.Clear(SFML.Graphics.Color.Black);
-			
-			//If CurMouseX > 0 AndAlso CurMouseX <= GameWindow.Size.X Then
-			//    If CurMouseY > 0 AndAlso CurMouseY <= GameWindow.Size.Y Then
-			//        GameWindow.SetMouseCursorVisible(False)
-			//    End If
-			//End If
 			
 			if (NumPanorama > 0 && C_Maps.Map.Panorama > 0)
 			{
@@ -2101,17 +2071,19 @@ namespace Engine
 			// blit lower tiles
 			if (NumTileSets > 0)
 			{
-				
-				for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
-				{
-					for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
-					{
-						if (IsValidMapPoint(x, y))
-						{
-							C_Maps.DrawMapTile(x, y);
-						}
-					}
-				}
+                if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
+                {
+                    for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
+                    {
+                        for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
+                        {
+                            if (IsValidMapPoint(x, y))
+                            {
+                                C_Maps.DrawMapTile(x, y);
+                            }
+                        }
+                    }
+                }
 			}
 			
 			// Furniture
@@ -2135,7 +2107,6 @@ namespace Engine
 			// events
 			if (C_Maps.Map.CurrentEvents > 0 && C_Maps.Map.CurrentEvents <= C_Maps.Map.EventCount)
 			{
-				
 				for (I = 1; I <= C_Maps.Map.CurrentEvents; I++)
 				{
 					if (C_Maps.Map.MapEvents[I].Position == 0)
@@ -2168,24 +2139,23 @@ namespace Engine
 			{
 				return;
 			}
-			
-			for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right; x++)
-			{
-				for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom; y++)
-				{
-					if (IsValidMapPoint(x, y))
-					{
-						if (ReferenceEquals(C_Maps.Map.Tile, null))
-						{
-							return;
-						}
-						if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Door)
-						{
-							DrawDoor(x, y);
-						}
-					}
-				}
-			}
+
+            if (C_Maps.Map.Tile != null)
+            {
+                for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right; x++)
+                {
+                    for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom; y++)
+                    {
+                        if (IsValidMapPoint(x, y))
+                        {
+                            if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Door)
+                            {
+                                DrawDoor(x, y);
+                            }
+                        }
+                    }
+                }
+            }
 			
 			// draw animations
 			if (NumAnimations > 0)
@@ -2529,8 +2499,7 @@ namespace Engine
 			}
 			
 			// we use it, lets update timer
-			ref var with_1 = ref PanoramasGfxInfo[index];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+            PanoramasGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			PanoramasSprite[index].TextureRect = new IntRect(0, 0, (int)GameWindow.Size.X, (int)GameWindow.Size.Y);
 			
@@ -2542,9 +2511,6 @@ namespace Engine
 		
 		internal static void DrawParallax(int index)
 		{
-			int horz = 0;
-			int vert = 0;
-			
 			if (C_Maps.Map.Moral == (byte)Enums.MapMoralType.Indoors)
 			{
 				return;
@@ -2553,16 +2519,18 @@ namespace Engine
 			if (index < 1 || index > NumParallax)
 			{
 				return;
-			}
-			
-			if (ParallaxGfxInfo[index].IsLoaded == false)
+            }
+
+            int horz = 0;
+            int vert = 0;
+
+            if (ParallaxGfxInfo[index].IsLoaded == false)
 			{
 				LoadTexture(index, (byte) 14);
 			}
 			
 			// we use it, lets update timer
-			ref var with_1 = ref ParallaxGfxInfo[index];
-			with_1.TextureTimer = C_General.GetTickCount() + 100000;
+            ParallaxGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
 			
 			horz = ConvertMapX(C_Player.GetPlayerX(C_Variables.Myindex));
 			vert = ConvertMapY(C_Player.GetPlayerY(C_Variables.Myindex));
@@ -2706,41 +2674,40 @@ namespace Engine
 			int y2;
 			
 			// sort out animation
-			ref var with_1 = ref C_Maps.TempTile[x, y];
-			if (with_1.DoorAnimate == 1) // opening
+			if (C_Maps.TempTile[x, y].DoorAnimate == 1) // opening
 			{
-				if (with_1.DoorTimer + 100 < C_General.GetTickCount())
+				if (C_Maps.TempTile[x, y].DoorTimer + 100 < C_General.GetTickCount())
 				{
-					if (with_1.DoorFrame < 4)
+					if (C_Maps.TempTile[x, y].DoorFrame < 4)
 					{
-						with_1.DoorFrame = (byte)(with_1.DoorFrame + 1);
+                        C_Maps.TempTile[x, y].DoorFrame = (byte)(C_Maps.TempTile[x, y].DoorFrame + 1);
 					}
 					else
 					{
-						with_1.DoorAnimate = 2; // set to closing
+                        C_Maps.TempTile[x, y].DoorAnimate = 2; // set to closing
 					}
-					with_1.DoorTimer = C_General.GetTickCount();
+                    C_Maps.TempTile[x, y].DoorTimer = C_General.GetTickCount();
 				}
 			}
-			else if (with_1.DoorAnimate == 2) // closing
+			else if (C_Maps.TempTile[x, y].DoorAnimate == 2) // closing
 			{
-				if (with_1.DoorTimer + 100 < C_General.GetTickCount())
+				if (C_Maps.TempTile[x, y].DoorTimer + 100 < C_General.GetTickCount())
 				{
-					if (with_1.DoorFrame > 1)
+					if (C_Maps.TempTile[x, y].DoorFrame > 1)
 					{
-						with_1.DoorFrame--;
+                        C_Maps.TempTile[x, y].DoorFrame--;
 					}
 					else
 					{
-						with_1.DoorAnimate = 0; // end animation
+                        C_Maps.TempTile[x, y].DoorAnimate = 0; // end animation
 					}
-					with_1.DoorTimer = C_General.GetTickCount();
+                    C_Maps.TempTile[x, y].DoorTimer = C_General.GetTickCount();
 				}
 			}
 			
-			if (with_1.DoorFrame == 0)
+			if (C_Maps.TempTile[x, y].DoorFrame == 0)
 			{
-				with_1.DoorFrame = 1;
+                C_Maps.TempTile[x, y].DoorFrame = 1;
 			}
 			
 			rec.Y = 0;
@@ -2756,31 +2723,32 @@ namespace Engine
 		}
 		
 		internal static void DrawAnimation(int index, int layer)
-		{
-			
-			int sprite = 0;
-			Rectangle sRect = new Rectangle();
-			int width = 0;
-			int height = 0;
-			int frameCount = 0;
-			int x = 0;
-			int y = 0;
-			int lockindex = 0;
-			
-			if (C_Types.AnimInstance[index].Animation == 0)
-			{
-				C_DataBase.ClearAnimInstance(index);
-				return;
-			}
+        {
+
+            if (C_Types.AnimInstance[index].Animation == 0)
+            {
+                C_DataBase.ClearAnimInstance(index);
+                return;
+            }
+
+            int sprite = 0;
 			
 			sprite = (int)(Types.Animation[C_Types.AnimInstance[index].Animation].Sprite[layer]);
 			
 			if (sprite < 1 || sprite > NumAnimations)
 			{
 				return;
-			}
-			
-			if (AnimationsGfxInfo[sprite].IsLoaded == false)
+            }
+
+            Rectangle sRect = new Rectangle();
+            int width = 0;
+            int height = 0;
+            int frameCount = 0;
+            int x = 0;
+            int y = 0;
+            int lockindex = 0;
+
+            if (AnimationsGfxInfo[sprite].IsLoaded == false)
 			{
 				LoadTexture(sprite, (byte) 6);
 			}
@@ -2906,14 +2874,15 @@ namespace Engine
 		
 		internal static void DrawFurnitureOutline()
 		{
-			Rectangle rec = new Rectangle();
-			
-			rec.Y = 0;
-			rec.Height = Types.Item[C_Player.GetPlayerInvItemNum(C_Variables.Myindex, C_Housing.FurnitureSelected)].FurnitureHeight * C_Constants.PicY;
-			rec.X = 0;
-			rec.Width = Types.Item[C_Player.GetPlayerInvItemNum(C_Variables.Myindex, C_Housing.FurnitureSelected)].FurnitureWidth * C_Constants.PicX;
-			
-			RectangleShape rec2 = new RectangleShape() {
+            Rectangle rec = new Rectangle
+            {
+                Y = 0,
+                Height = Types.Item[C_Player.GetPlayerInvItemNum(C_Variables.Myindex, C_Housing.FurnitureSelected)].FurnitureHeight * C_Constants.PicY,
+                X = 0,
+                Width = Types.Item[C_Player.GetPlayerInvItemNum(C_Variables.Myindex, C_Housing.FurnitureSelected)].FurnitureWidth * C_Constants.PicX
+            };
+
+            RectangleShape rec2 = new RectangleShape() {
 					OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.Blue),
 					OutlineThickness = 0.6F,
 					FillColor = new SFML.Graphics.Color(SFML.Graphics.Color.Transparent),
@@ -3228,15 +3197,17 @@ namespace Engine
 		
 		public static void DrawHud()
 		{
-			Rectangle rec = new Rectangle();
-			
-			//first render backpanel
-			rec.Y = 0;
-			rec.Height = HudPanelGfxInfo.Height;
-			rec.X = 0;
-			rec.Width = HudPanelGfxInfo.Width;
-			
-			RenderSprite(HudPanelSprite, GameWindow, C_UpdateUI.HudWindowX, C_UpdateUI.HudWindowY, rec.X, rec.Y, rec.Width, rec.Height);
+            Rectangle rec = new Rectangle
+            {
+
+                //first render backpanel
+                Y = 0,
+                Height = HudPanelGfxInfo.Height,
+                X = 0,
+                Width = HudPanelGfxInfo.Width
+            };
+
+            RenderSprite(HudPanelSprite, GameWindow, C_UpdateUI.HudWindowX, C_UpdateUI.HudWindowY, rec.X, rec.Y, rec.Width, rec.Height);
 			
 			if (C_Types.Player[C_Variables.Myindex].Sprite <= NumFaces)
 			{
@@ -3333,15 +3304,17 @@ namespace Engine
 		
 		public static void DrawActionPanel()
 		{
-			Rectangle rec = new Rectangle();
-			
-			//first render backpanel
-			rec.Y = 0;
-			rec.Height = ActionPanelGfxInfo.Height;
-			rec.X = 0;
-			rec.Width = ActionPanelGfxInfo.Width;
-			
-			RenderSprite(ActionPanelSprite, GameWindow, C_UpdateUI.ActionPanelX, C_UpdateUI.ActionPanelY, rec.X, rec.Y, rec.Width, rec.Height);
+            Rectangle rec = new Rectangle
+            {
+
+                //first render backpanel
+                Y = 0,
+                Height = ActionPanelGfxInfo.Height,
+                X = 0,
+                Width = ActionPanelGfxInfo.Width
+            };
+
+            RenderSprite(ActionPanelSprite, GameWindow, C_UpdateUI.ActionPanelX, C_UpdateUI.ActionPanelY, rec.X, rec.Y, rec.Width, rec.Height);
 			
 		}
 		
@@ -3532,8 +3505,7 @@ namespace Engine
 				}
 				
 				//seeying we still use it, lets update timer
-				ref var with_1 = ref ItemsGfxInfo[itempic];
-				with_1.TextureTimer = C_General.GetTickCount() + 100000;
+                ItemsGfxInfo[itempic].TextureTimer = C_General.GetTickCount() + 100000;
 				
 				rec.Y = 0;
 				rec.Height = C_Constants.PicY;
@@ -3582,8 +3554,7 @@ namespace Engine
 					}
 					
 					//seeying we still use it, lets update timer
-					ref var with_1 = ref ItemsGfxInfo[itempic];
-					with_1.TextureTimer = C_General.GetTickCount() + 100000;
+                    ItemsGfxInfo[itempic].TextureTimer = C_General.GetTickCount() + 100000;
 					
 					// exit out if we're offering item in a trade.
 					if (C_Trade.InTrade)
@@ -3643,7 +3614,7 @@ namespace Engine
 						}
 					}
 				}
-NextLoop:
+                NextLoop:
 				1.GetHashCode() ;
 			}
 			
@@ -3653,8 +3624,19 @@ NextLoop:
 		static int DrawAnimatedInvItems_tmr100 = 0;
 		
 		public static void DrawAnimatedInvItems()
-		{
-			int i = 0;
+        {
+
+            if (DrawAnimatedInvItems_tmr100 == 0)
+            {
+                DrawAnimatedInvItems_tmr100 = C_General.GetTickCount() + 100;
+            }
+
+            if (!C_Variables.InGame)
+            {
+                return;
+            }
+
+            int i = 0;
 			int itemnum = 0;
 			int itempic = 0;
 			
@@ -3665,15 +3647,6 @@ NextLoop:
 			Rectangle rec = new Rectangle();
 			Rectangle recPos = new Rectangle();
 			Rectangle[] clearregion = new Rectangle[2];
-			if (DrawAnimatedInvItems_tmr100 == 0)
-			{
-				DrawAnimatedInvItems_tmr100 = C_General.GetTickCount() + 100;
-			}
-			
-			if (!C_Variables.InGame)
-			{
-				return;
-			}
 			
 			if (C_General.GetTickCount() > DrawAnimatedInvItems_tmr100)
 			{
@@ -3787,10 +3760,9 @@ NextLoop:
 				{
 					LoadTexture(skillpic, (byte) 9);
 				}
-				
-				//seeying we still use it, lets update timer
-				ref var with_1 = ref SkillIconsGfxInfo[skillnum];
-				with_1.TextureTimer = C_General.GetTickCount() + 100000;
+
+                //seeying we still use it, lets update timer
+                SkillIconsGfxInfo[skillnum].TextureTimer = C_General.GetTickCount() + 100000;
 				
 				rec.Y = 0;
 				rec.Height = C_Constants.PicY;
@@ -3832,10 +3804,9 @@ NextLoop:
 						{
 							LoadTexture(skillicon, (byte) 9);
 						}
-						
-						//seeying we still use it, lets update timer
-						ref var with_1 = ref SkillIconsGfxInfo[skillicon];
-						with_1.TextureTimer = C_General.GetTickCount() + 100000;
+
+                        //seeying we still use it, lets update timer
+                        SkillIconsGfxInfo[skillicon].TextureTimer = C_General.GetTickCount() + 100000;
 						
 						rec.Y = 0;
 						rec.Height = 32;
@@ -3867,18 +3838,20 @@ NextLoop:
 		
 		internal static void DrawTarget(int x2, int y2)
 		{
-			Rectangle rec = new Rectangle();
-			int x = 0;
-			int y = 0;
-			int width;
-			int height;
-			
-			rec.Y = 0;
-			rec.Height = TargetGfxInfo.Height;
-			rec.X = 0;
-			rec.Width = (int)((double) TargetGfxInfo.Width / 2);
-			
-			x = ConvertMapX(x2);
+            Rectangle rec = new Rectangle
+            {
+                Y = 0,
+                Height = TargetGfxInfo.Height,
+                X = 0,
+                Width = (TargetGfxInfo.Width / 2)
+            };
+
+            int x = 0;
+            int y = 0;
+            int width;
+            int height;
+
+            x = ConvertMapX(x2);
 			y = ConvertMapY(y2);
 			width = rec.Right - rec.Left;
 			height = rec.Bottom - rec.Top;
@@ -3888,18 +3861,20 @@ NextLoop:
 		
 		internal static void DrawHover(int x2, int y2)
 		{
-			Rectangle rec = new Rectangle();
-			int x = 0;
-			int y = 0;
-			int width;
-			int height;
-			
-			rec.Y = 0;
-			rec.Height = TargetGfxInfo.Height;
-			rec.X = (int)((double) TargetGfxInfo.Width / 2);
-			rec.Width = (int)((double) TargetGfxInfo.Width / 2 + (double) TargetGfxInfo.Width / 2);
-			
-			x = ConvertMapX(x2);
+            Rectangle rec = new Rectangle
+            {
+                Y = 0,
+                Height = TargetGfxInfo.Height,
+                X = (TargetGfxInfo.Width / 2),
+                Width = (TargetGfxInfo.Width / 2 + TargetGfxInfo.Width / 2)
+            };
+
+            int x = 0;
+            int y = 0;
+            int width;
+            int height;
+
+            x = ConvertMapX(x2);
 			y = ConvertMapY(y2);
 			width = rec.Right - rec.Left;
 			height = rec.Bottom - rec.Top;
@@ -3915,27 +3890,27 @@ NextLoop:
 			
 			y = 0;
 			
-			if (C_UpdateUI.PnlCharacterVisible == true)
+			if (C_UpdateUI.PnlCharacterVisible)
 			{
 				xoffset = C_UpdateUI.CharWindowX;
 				yoffset = C_UpdateUI.CharWindowY;
 			}
-			if (C_UpdateUI.PnlInventoryVisible == true)
+			if (C_UpdateUI.PnlInventoryVisible)
 			{
 				xoffset = C_UpdateUI.InvWindowX;
 				yoffset = C_UpdateUI.InvWindowY;
 			}
-			if (C_UpdateUI.PnlBankVisible == true)
+			if (C_UpdateUI.PnlBankVisible)
 			{
 				xoffset = C_UpdateUI.BankWindowX;
 				yoffset = C_UpdateUI.BankWindowY;
 			}
-			if (C_UpdateUI.PnlShopVisible == true)
+			if (C_UpdateUI.PnlShopVisible)
 			{
 				xoffset = C_UpdateUI.ShopWindowX;
 				yoffset = C_UpdateUI.ShopWindowY;
 			}
-			if (C_UpdateUI.PnlTradeVisible == true)
+			if (C_UpdateUI.PnlTradeVisible)
 			{
 				xoffset = C_UpdateUI.TradeWindowX;
 				yoffset = C_UpdateUI.TradeWindowY;
