@@ -1184,15 +1184,19 @@ namespace Engine
 		}
 		
 		internal static void DrawAutoTile(int layerNum, int destX, int destY, int quarterNum, int x, int y, int forceFrame = 0, bool Strict = true)
-		{
-			int yOffset = 0;
+        {
+
+            if (C_Variables.GettingMap)
+            {
+                return;
+            }
+            if (ReferenceEquals(C_Maps.Map.Tile[x, y].Layer, null))
+            {
+                return;
+            }
+
+            int yOffset = 0;
 			int xOffset = 0;
-			//Dim tmpSprite As Sprite
-			
-			if (C_Variables.GettingMap)
-			{
-				return;
-			}
 			
 			// calculate the offset
 			if (forceFrame > 0)
@@ -1238,14 +1242,6 @@ namespace Engine
 			}
 			
 			// Draw the quarter
-			//TileSetSprite(Map.Tile(X, Y).Layer(layerNum).Tileset).TextureRect = New IntRect(Autotile(X, Y).Layer(layerNum).srcX(quarterNum) + XOffset, Autotile(X, Y).Layer(layerNum).srcY(quarterNum) + YOffset, 16, 16)
-			//TileSetSprite(Map.Tile(X, Y).Layer(layerNum).Tileset).Position = New SFML.Window.Vector2f(destX, destY)
-			
-			//GameWindow.Draw(TileSetSprite(Map.Tile(X, Y).Layer(layerNum).Tileset))
-			if (ReferenceEquals(C_Maps.Map.Tile[x, y].Layer, null))
-			{
-				return;
-			}
 			C_Graphics.RenderSprite(C_Graphics.TileSetSprite[C_Maps.Map.Tile[x, y].Layer[layerNum].Tileset], C_Graphics.GameWindow, destX, destY, System.Convert.ToInt32(Autotile[x, y].Layer[layerNum].SrcX[quarterNum] + xOffset), System.Convert.ToInt32(Autotile[x, y].Layer[layerNum].SrcY[quarterNum] + yOffset), 16, 16);
 		}
 		

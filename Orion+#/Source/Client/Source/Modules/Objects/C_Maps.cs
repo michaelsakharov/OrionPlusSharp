@@ -803,9 +803,7 @@ namespace Engine
 			{
 				return;
 			}
-
-
-
+            
             int i = 0;
             Rectangle srcrect = new Rectangle(0, 0, 0, 0);
 
