@@ -61,11 +61,9 @@ namespace Engine
 		
 		internal static int PicHpWidth;
 		internal static int PicManaWidth;
-		internal static int PicExpWidth;
 		
 		internal static string LblHpText;
 		internal static string LblManaText;
-		internal static string LblExpText;
 		
 		//Editors
 		internal static bool InitMapEditor;
@@ -111,7 +109,6 @@ namespace Engine
 		internal static int ItemDescItemNum;
 		internal static string ItemDescName;
 		internal static string ItemDescDescription;
-		internal static int ItemDescValue;
 		internal static string ItemDescInfo;
 		internal static string ItemDescType;
 		internal static string ItemDescCost;
@@ -204,8 +201,6 @@ namespace Engine
 		internal const byte SkillColumns = 5;
 		
 		internal static bool ShowSkillDesc;
-		internal static byte SkillDescSize;
-		internal static int SkillDescSkillNum;
 		internal static string SkillDescName;
 		internal static string SkillDescVital;
 		internal static string SkillDescInfo;
@@ -299,7 +294,6 @@ namespace Engine
 		
 		internal static int CraftPanelX = 25;
 		internal static int CraftPanelY = 25;
-		internal static bool LoadClassInfo;
 		
 #endregion
 		
