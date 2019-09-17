@@ -1097,8 +1097,8 @@ namespace Engine
 			
 			rec.Y = 0;
 			rec.Height = C_Constants.PicX;
-			rec.X = System.Convert.ToInt32(anim * ((double) EmotesGfxInfo[sprite].Width / 2));
-			rec.Width = System.Convert.ToInt32((double) EmotesGfxInfo[sprite].Width / 2);
+			rec.X = (int)(anim * ((double) EmotesGfxInfo[sprite].Width / 2));
+			rec.Width = (int)((double) EmotesGfxInfo[sprite].Width / 2);
 			
 			x = ConvertMapX(x2);
 			y = ConvertMapY(y2) - (C_Constants.PicY + 16);
@@ -1193,7 +1193,7 @@ namespace Engine
 		internal static void RenderTextures(Texture txture, RenderWindow target, float dX, float dY, float sx, float sy, float dWidth, float dHeight, float sWidth, float sHeight)
 		{
 			Sprite tmpImage = new Sprite(txture);
-			tmpImage.TextureRect = new IntRect(System.Convert.ToInt32(sx), System.Convert.ToInt32(sy), System.Convert.ToInt32(sWidth), System.Convert.ToInt32(sHeight));
+			tmpImage.TextureRect = new IntRect((int)(sx), (int)(sy), (int)(sWidth), (int)(sHeight));
 			tmpImage.Scale = new Vector2f(dWidth / sWidth, dHeight / sHeight);
 			tmpImage.Position = new Vector2f(dX, dY);
 			target.Draw(tmpImage);
@@ -1354,28 +1354,28 @@ namespace Engine
 			
 			if (attackSprite == 1)
 			{
-				srcrec = new Rectangle(System.Convert.ToInt32((anim) * ((double) CharacterGfxInfo[spritenum].Width / 5)), System.Convert.ToInt32(spriteleft * ((double) CharacterGfxInfo[spritenum].Height / 4)), System.Convert.ToInt32((double) CharacterGfxInfo[spritenum].Width / 5), System.Convert.ToInt32((double) CharacterGfxInfo[spritenum].Height / 4));
+				srcrec = new Rectangle((int)((anim) * ((double) CharacterGfxInfo[spritenum].Width / 5)), (int)(spriteleft * ((double) CharacterGfxInfo[spritenum].Height / 4)), (int)((double) CharacterGfxInfo[spritenum].Width / 5), (int)((double) CharacterGfxInfo[spritenum].Height / 4));
 			}
 			else
 			{
-				srcrec = new Rectangle(System.Convert.ToInt32((anim) * ((double) CharacterGfxInfo[spritenum].Width / 4)), System.Convert.ToInt32(spriteleft * ((double) CharacterGfxInfo[spritenum].Height / 4)), System.Convert.ToInt32((double) CharacterGfxInfo[spritenum].Width / 4), System.Convert.ToInt32((double) CharacterGfxInfo[spritenum].Height / 4));
+				srcrec = new Rectangle((int)((anim) * ((double) CharacterGfxInfo[spritenum].Width / 4)), (int)(spriteleft * ((double) CharacterGfxInfo[spritenum].Height / 4)), (int)((double) CharacterGfxInfo[spritenum].Width / 4), (int)((double) CharacterGfxInfo[spritenum].Height / 4));
 			}
 			
 			// Calculate the X
 			if (attackSprite == 1)
 			{
-				x = System.Convert.ToInt32(C_Player.GetPlayerX(index) * C_Constants.PicX + C_Types.Player[index].XOffset - (((double) CharacterGfxInfo[spritenum].Width / 5 - 32) / 2));
+				x = (int)(C_Player.GetPlayerX(index) * C_Constants.PicX + C_Types.Player[index].XOffset - (((double) CharacterGfxInfo[spritenum].Width / 5 - 32) / 2));
 			}
 			else
 			{
-				x = System.Convert.ToInt32(C_Player.GetPlayerX(index) * C_Constants.PicX + C_Types.Player[index].XOffset - (((double) CharacterGfxInfo[spritenum].Width / 4 - 32) / 2));
+				x = (int)(C_Player.GetPlayerX(index) * C_Constants.PicX + C_Types.Player[index].XOffset - (((double) CharacterGfxInfo[spritenum].Width / 4 - 32) / 2));
 			}
 			
 			// Is the player's height more than 32..
 			if ((CharacterGfxInfo[spritenum].Height) > 32)
 			{
 				// Create a 32 pixel offset for larger sprites
-				y = System.Convert.ToInt32(C_Player.GetPlayerY(index) * C_Constants.PicY + C_Types.Player[index].YOffset - (((double) CharacterGfxInfo[spritenum].Height / 4) - 32));
+				y = (int)(C_Player.GetPlayerY(index) * C_Constants.PicY + C_Types.Player[index].YOffset - (((double) CharacterGfxInfo[spritenum].Height / 4) - 32));
 			}
 			else
 			{
@@ -1436,10 +1436,10 @@ namespace Engine
 			ref var with_1 = ref PaperDollGfxInfo[sprite];
 			with_1.TextureTimer = C_General.GetTickCount() + 100000;
 			
-			rec.Y = System.Convert.ToInt32(spritetop * ((double) PaperDollGfxInfo[sprite].Height / 4));
-			rec.Height = System.Convert.ToInt32((double) PaperDollGfxInfo[sprite].Height / 4);
-			rec.X = System.Convert.ToInt32(anim * ((double) PaperDollGfxInfo[sprite].Width / 4));
-			rec.Width = System.Convert.ToInt32((double) PaperDollGfxInfo[sprite].Width / 4);
+			rec.Y = (int)(spritetop * ((double) PaperDollGfxInfo[sprite].Height / 4));
+			rec.Height = (int)((double) PaperDollGfxInfo[sprite].Height / 4);
+			rec.X = (int)(anim * ((double) PaperDollGfxInfo[sprite].Width / 4));
+			rec.Width = (int)((double) PaperDollGfxInfo[sprite].Width / 4);
 			
 			x = ConvertMapX(x2);
 			y = ConvertMapY(y2);
@@ -1530,7 +1530,7 @@ namespace Engine
 			
 			// Check to see if we want to stop making him attack
 			ref var with_1 = ref C_Maps.MapNpc[mapNpcNum];
-			if (System.Convert.ToInt32(with_1.AttackTimer + attackspeed) < C_General.GetTickCount())
+			if ((int)(with_1.AttackTimer + attackspeed) < C_General.GetTickCount())
 			{
 				with_1.Attacking = 0;
 				with_1.AttackTimer = 0;
@@ -1554,16 +1554,16 @@ namespace Engine
 				spriteleft = 1;
 			}
 			
-			srcrec = new Rectangle(System.Convert.ToInt32((anim) * ((double) CharacterGfxInfo[sprite].Width / 4)), System.Convert.ToInt32(spriteleft * ((double) CharacterGfxInfo[sprite].Height / 4)), System.Convert.ToInt32((double) CharacterGfxInfo[sprite].Width / 4), System.Convert.ToInt32((double) CharacterGfxInfo[sprite].Height / 4));
+			srcrec = new Rectangle((int)((anim) * ((double) CharacterGfxInfo[sprite].Width / 4)), (int)(spriteleft * ((double) CharacterGfxInfo[sprite].Height / 4)), (int)((double) CharacterGfxInfo[sprite].Width / 4), (int)((double) CharacterGfxInfo[sprite].Height / 4));
 			
 			// Calculate the X
-			x = System.Convert.ToInt32(C_Maps.MapNpc[mapNpcNum].X * C_Constants.PicX + C_Maps.MapNpc[mapNpcNum].XOffset - (((double) CharacterGfxInfo[sprite].Width / 4 - 32) / 2));
+			x = (int)(C_Maps.MapNpc[mapNpcNum].X * C_Constants.PicX + C_Maps.MapNpc[mapNpcNum].XOffset - (((double) CharacterGfxInfo[sprite].Width / 4 - 32) / 2));
 			
 			// Is the player's height more than 32..
 			if (((double) CharacterGfxInfo[sprite].Height / 4) > 32)
 			{
 				// Create a 32 pixel offset for larger sprites
-				y = System.Convert.ToInt32(C_Maps.MapNpc[mapNpcNum].Y * C_Constants.PicY + C_Maps.MapNpc[mapNpcNum].YOffset - (((double) CharacterGfxInfo[sprite].Height / 4) - 32));
+				y = (int)(C_Maps.MapNpc[mapNpcNum].Y * C_Constants.PicY + C_Maps.MapNpc[mapNpcNum].YOffset - (((double) CharacterGfxInfo[sprite].Height / 4) - 32));
 			}
 			else
 			{
@@ -1571,7 +1571,7 @@ namespace Engine
 				y = C_Maps.MapNpc[mapNpcNum].Y * C_Constants.PicY + C_Maps.MapNpc[mapNpcNum].YOffset;
 			}
 			
-			destrec = new Rectangle(x, y, System.Convert.ToInt32((double) CharacterGfxInfo[sprite].Width / 4), System.Convert.ToInt32((double) CharacterGfxInfo[sprite].Height / 4));
+			destrec = new Rectangle(x, y, (int)((double) CharacterGfxInfo[sprite].Width / 4), (int)((double) CharacterGfxInfo[sprite].Height / 4));
 			
 			DrawCharacter(sprite, x, y, srcrec);
 			
@@ -1752,8 +1752,8 @@ namespace Engine
 			offsetY = C_Types.Player[C_Variables.Myindex].YOffset + C_Constants.PicY;
 
 
-			startX = System.Convert.ToInt32(C_Player.GetPlayerX(C_Variables.Myindex) - ((C_Constants.ScreenMapx + 1) / 2) - 1);
-			startY = System.Convert.ToInt32(C_Player.GetPlayerY(C_Variables.Myindex) - ((C_Constants.ScreenMapy + 1) / 2) - 1);
+			startX = (int)(C_Player.GetPlayerX(C_Variables.Myindex) - ((C_Constants.ScreenMapx + 1) / 2) - 1);
+			startY = (int)(C_Player.GetPlayerY(C_Variables.Myindex) - ((C_Constants.ScreenMapy + 1) / 2) - 1);
 
             bool lockCameraInsideBorders = true;
 
@@ -2595,7 +2595,7 @@ namespace Engine
 					Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime = 1;
 				}
 				// calculate the width to fill
-				barWidth = System.Convert.ToInt32((double) (C_General.GetTickCount() - C_Variables.SkillBufferTimer) / ((C_General.GetTickCount() - C_Variables.SkillBufferTimer) + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 1000)) * 64);
+				barWidth = (int)((double) (C_General.GetTickCount() - C_Variables.SkillBufferTimer) / ((C_General.GetTickCount() - C_Variables.SkillBufferTimer) + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 1000)) * 64);
 				// draw bars
 				rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 				RectangleShape rectShape = new RectangleShape(new Vector2f(barWidth, 4)) {
@@ -2620,11 +2620,11 @@ namespace Engine
 						{
 							// lock to npc
 							tmpX = C_Maps.MapNpc[(int) i].X * C_Constants.PicX + C_Maps.MapNpc[(int) i].XOffset;
-							tmpY = System.Convert.ToInt32(C_Maps.MapNpc[(int) i].Y * C_Constants.PicY + C_Maps.MapNpc[(int) i].YOffset + 35);
+							tmpY = (int)(C_Maps.MapNpc[(int) i].Y * C_Constants.PicY + C_Maps.MapNpc[(int) i].YOffset + 35);
 							if (C_Maps.MapNpc[(int) i].Vital[(byte)Enums.VitalType.HP] > 0)
 							{
 								// calculate the width to fill
-								barWidth = System.Convert.ToInt32(C_Maps.MapNpc[(int) i].Vital[(byte)Enums.VitalType.HP] / (Types.Npc[C_Maps.MapNpc[(int) i].Num].Hp) * 32);
+								barWidth = (int)(C_Maps.MapNpc[(int) i].Vital[(byte)Enums.VitalType.HP] / (Types.Npc[C_Maps.MapNpc[(int) i].Num].Hp) * 32);
 								// draw bars
 								rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 								RectangleShape rectShape = new RectangleShape(new Vector2f(barWidth, 4)) {
@@ -2636,7 +2636,7 @@ namespace Engine
 								if (C_Maps.MapNpc[(int) i].Vital[(byte)Enums.VitalType.MP] > 0)
 								{
 									// calculate the width to fill
-									barWidth = System.Convert.ToInt32(C_Maps.MapNpc[(int) i].Vital[(byte)Enums.VitalType.MP] / (Types.Npc[C_Maps.MapNpc[(int) i].Num].Stat[(byte)Enums.StatType.Intelligence] * 2) * 32);
+									barWidth = (int)(C_Maps.MapNpc[(int) i].Vital[(byte)Enums.VitalType.MP] / (Types.Npc[C_Maps.MapNpc[(int) i].Num].Stat[(byte)Enums.StatType.Intelligence] * 2) * 32);
 									// draw bars
 									rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 									RectangleShape rectShape2 = new RectangleShape(new Vector2f(barWidth, 4)) {
@@ -2661,7 +2661,7 @@ namespace Engine
 					tmpX = C_Types.Player[C_Variables.Myindex].Pet.X * C_Constants.PicX + C_Types.Player[C_Variables.Myindex].Pet.XOffset;
 					tmpY = C_Types.Player[C_Variables.Myindex].Pet.Y * C_Constants.PicX + C_Types.Player[C_Variables.Myindex].Pet.YOffset + 35;
 					// calculate the width to fill
-					barWidth = System.Convert.ToInt32(((double) (C_Types.Player[C_Variables.Myindex].Pet.Health) / (C_Types.Player[C_Variables.Myindex].Pet.MaxHp)) * 32);
+					barWidth = (int)(((double) (C_Types.Player[C_Variables.Myindex].Pet.Health) / (C_Types.Player[C_Variables.Myindex].Pet.MaxHp)) * 32);
 					// draw bars
 					rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 					RectangleShape rectShape = new RectangleShape(new Vector2f(barWidth, 4)) {
@@ -2681,7 +2681,7 @@ namespace Engine
 					tmpY = C_Types.Player[C_Variables.Myindex].Pet.Y * C_Constants.PicY + C_Types.Player[C_Variables.Myindex].Pet.YOffset + 35;
 					
 					// calculate the width to fill
-					barWidth = System.Convert.ToInt32((double) (C_General.GetTickCount() - C_Pets.PetSkillBufferTimer) / (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 1000) * 64);
+					barWidth = (int)((double) (C_General.GetTickCount() - C_Pets.PetSkillBufferTimer) / (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 1000) * 64);
 					// draw bar background
 					rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 					RectangleShape rectShape = new RectangleShape(new Vector2f(barWidth, 4)) {
@@ -2695,7 +2695,7 @@ namespace Engine
 		
 		public static void DrawMapName()
 		{
-			C_Text.DrawText(System.Convert.ToInt32(C_Variables.DrawMapNameX), System.Convert.ToInt32(C_Variables.DrawMapNameY), Strings.Get("gamegui", "mapname") + C_Maps.Map.Name, C_Variables.DrawMapNameColor, SFML.Graphics.Color.Black, GameWindow);
+			C_Text.DrawText((int)(C_Variables.DrawMapNameX), (int)(C_Variables.DrawMapNameY), Strings.Get("gamegui", "mapname") + C_Maps.Map.Name, C_Variables.DrawMapNameColor, SFML.Graphics.Color.Black, GameWindow);
 		}
 		
 		internal static void DrawDoor(int x, int y)
@@ -2745,11 +2745,11 @@ namespace Engine
 			
 			rec.Y = 0;
 			rec.Height = DoorGfxInfo.Height;
-			rec.X = System.Convert.ToInt32((C_Maps.TempTile[x, y].DoorFrame - 1) * DoorGfxInfo.Width / 4);
-			rec.Width = System.Convert.ToInt32((double) DoorGfxInfo.Width / 4);
+			rec.X = (int)((C_Maps.TempTile[x, y].DoorFrame - 1) * DoorGfxInfo.Width / 4);
+			rec.Width = (int)((double) DoorGfxInfo.Width / 4);
 			
 			x2 = x * C_Constants.PicX;
-			y2 = System.Convert.ToInt32((y * C_Constants.PicY) - ((double) DoorGfxInfo.Height / 2) + 4);
+			y2 = (int)((y * C_Constants.PicY) - ((double) DoorGfxInfo.Height / 2) + 4);
 			
 			RenderSprite(DoorSprite, GameWindow, ConvertMapX(x * C_Constants.PicX), ConvertMapY((y * C_Constants.PicY) - C_Constants.PicY), rec.X, rec.Y, rec.Width, rec.Height);
 			
@@ -2773,7 +2773,7 @@ namespace Engine
 				return;
 			}
 			
-			sprite = System.Convert.ToInt32(Types.Animation[C_Types.AnimInstance[index].Animation].Sprite[layer]);
+			sprite = (int)(Types.Animation[C_Types.AnimInstance[index].Animation].Sprite[layer]);
 			
 			if (sprite < 1 || sprite > NumAnimations)
 			{
@@ -2785,7 +2785,7 @@ namespace Engine
 				LoadTexture(sprite, (byte) 6);
 			}
 			
-			frameCount = System.Convert.ToInt32(Types.Animation[C_Types.AnimInstance[index].Animation].Frames[layer]);
+			frameCount = (int)(Types.Animation[C_Types.AnimInstance[index].Animation].Frames[layer]);
 			
 			if (frameCount <= 0)
 			{
@@ -2793,7 +2793,7 @@ namespace Engine
 			}
 			
 			// total width divided by frame count
-			width = System.Convert.ToInt32((double) AnimationsGfxInfo[sprite].Width / frameCount);
+			width = (int)((double) AnimationsGfxInfo[sprite].Width / frameCount);
 			height = AnimationsGfxInfo[sprite].Height;
 			
 			sRect.Y = 0;
@@ -2816,8 +2816,8 @@ namespace Engine
 						if (C_Player.GetPlayerMap(lockindex) == C_Player.GetPlayerMap(C_Variables.Myindex))
 						{
 							// is on map, is playing, set x & y
-							x = System.Convert.ToInt32((C_Player.GetPlayerX(lockindex) * C_Constants.PicX) + 16 - ((double) width / 2) + C_Types.Player[lockindex].XOffset);
-							y = System.Convert.ToInt32((C_Player.GetPlayerY(lockindex) * C_Constants.PicY) + 16 - ((double) height / 2) + C_Types.Player[lockindex].YOffset);
+							x = (int)((C_Player.GetPlayerX(lockindex) * C_Constants.PicX) + 16 - ((double) width / 2) + C_Types.Player[lockindex].XOffset);
+							y = (int)((C_Player.GetPlayerY(lockindex) * C_Constants.PicY) + 16 - ((double) height / 2) + C_Types.Player[lockindex].YOffset);
 						}
 					}
 				}
@@ -2832,8 +2832,8 @@ namespace Engine
 						if (C_Maps.MapNpc[lockindex].Vital[(byte)Enums.VitalType.HP] > 0)
 						{
 							// exists, is alive, set x & y
-							x = System.Convert.ToInt32((C_Maps.MapNpc[lockindex].X * C_Constants.PicX) + 16 - ((double) width / 2) + C_Maps.MapNpc[lockindex].XOffset);
-							y = System.Convert.ToInt32((C_Maps.MapNpc[lockindex].Y * C_Constants.PicY) + 16 - ((double) height / 2) + C_Maps.MapNpc[lockindex].YOffset);
+							x = (int)((C_Maps.MapNpc[lockindex].X * C_Constants.PicX) + 16 - ((double) width / 2) + C_Maps.MapNpc[lockindex].XOffset);
+							y = (int)((C_Maps.MapNpc[lockindex].Y * C_Constants.PicY) + 16 - ((double) height / 2) + C_Maps.MapNpc[lockindex].YOffset);
 						}
 						else
 						{
@@ -2860,8 +2860,8 @@ namespace Engine
 						if (C_Player.GetPlayerMap(lockindex) == C_Player.GetPlayerMap(C_Variables.Myindex))
 						{
 							// is on map, is playing, set x & y
-							x = System.Convert.ToInt32((C_Types.Player[lockindex].Pet.X * C_Constants.PicX) + 16 - ((double) width / 2) + C_Types.Player[lockindex].Pet.XOffset);
-							y = System.Convert.ToInt32((C_Types.Player[lockindex].Pet.Y * C_Constants.PicY) + 16 - ((double) height / 2) + C_Types.Player[lockindex].Pet.YOffset);
+							x = (int)((C_Types.Player[lockindex].Pet.X * C_Constants.PicX) + 16 - ((double) width / 2) + C_Types.Player[lockindex].Pet.XOffset);
+							y = (int)((C_Types.Player[lockindex].Pet.Y * C_Constants.PicY) + 16 - ((double) height / 2) + C_Types.Player[lockindex].Pet.YOffset);
 						}
 					}
 				}
@@ -2869,8 +2869,8 @@ namespace Engine
 			else
 			{
 				// no lock, default x + y
-				x = System.Convert.ToInt32((C_Types.AnimInstance[index].X * 32) + 16 - ((double) width / 2));
-				y = System.Convert.ToInt32((C_Types.AnimInstance[index].Y * 32) + 16 - ((double) height / 2));
+				x = (int)((C_Types.AnimInstance[index].X * 32) + 16 - ((double) width / 2));
+				y = (int)((C_Types.AnimInstance[index].Y * 32) + 16 - ((double) height / 2));
 			}
 			
 			x = ConvertMapX(x);
@@ -2932,13 +2932,13 @@ namespace Engine
 			{
 				for (var y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom; y++) // - 1
 				{
-					if (IsValidMapPoint(System.Convert.ToInt32(x), System.Convert.ToInt32(y)))
+					if (IsValidMapPoint((int)(x), (int)(y)))
 					{
 						rec.OutlineColor = new SFML.Graphics.Color(SFML.Graphics.Color.White);
 						rec.OutlineThickness = (float) (0.6F);
 						rec.FillColor = new SFML.Graphics.Color(SFML.Graphics.Color.Transparent);
 						rec.Size = new Vector2f(System.Convert.ToSingle(x * C_Constants.PicX), System.Convert.ToSingle(y * C_Constants.PicX));
-						rec.Position = new Vector2f(ConvertMapX(System.Convert.ToInt32((x - 1) * C_Constants.PicX)), ConvertMapY(System.Convert.ToInt32((y - 1) * C_Constants.PicY)));
+						rec.Position = new Vector2f(ConvertMapX((int)((x - 1) * C_Constants.PicX)), ConvertMapY((int)((y - 1) * C_Constants.PicY)));
 						
 						GameWindow.Draw(rec);
 					}
@@ -3286,12 +3286,12 @@ namespace Engine
 			int curExp = 0;
 			
 			//HP Bar
-			curHp = System.Convert.ToInt32(((double) C_Player.GetPlayerVital(C_Variables.Myindex, (Enums.VitalType)1) / C_Player.GetPlayerMaxVital(C_Variables.Myindex, (Enums.VitalType)1)) * 100);
+			curHp = (int)(((double) C_Player.GetPlayerVital(C_Variables.Myindex, (Enums.VitalType)1) / C_Player.GetPlayerMaxVital(C_Variables.Myindex, (Enums.VitalType)1)) * 100);
 			
 			rec.Y = 0;
 			rec.Height = HpBarGfxInfo.Height;
 			rec.X = 0;
-			rec.Width = System.Convert.ToInt32((double) curHp * HpBarGfxInfo.Width / 100);
+			rec.Width = (int)((double) curHp * HpBarGfxInfo.Width / 100);
 			
 			//then render full ontop of it
 			RenderSprite(HpBarSprite, GameWindow, C_UpdateUI.HudWindowX + C_UpdateUI.HudhpBarX, C_UpdateUI.HudWindowY + C_UpdateUI.HudhpBarY + 4, rec.X, rec.Y, rec.Width, rec.Height);
@@ -3302,13 +3302,13 @@ namespace Engine
 			//==============================
 			
 			//MP Bar
-			curMp = System.Convert.ToInt32(((double) C_Player.GetPlayerVital(C_Variables.Myindex, (Enums.VitalType)2) / C_Player.GetPlayerMaxVital(C_Variables.Myindex, (Enums.VitalType)2)) * 100);
+			curMp = (int)(((double) C_Player.GetPlayerVital(C_Variables.Myindex, (Enums.VitalType)2) / C_Player.GetPlayerMaxVital(C_Variables.Myindex, (Enums.VitalType)2)) * 100);
 			
 			//then render full ontop of it
 			rec.Y = 0;
 			rec.Height = MpBarGfxInfo.Height;
 			rec.X = 0;
-			rec.Width = System.Convert.ToInt32((double) curMp * MpBarGfxInfo.Width / 100);
+			rec.Width = (int)((double) curMp * MpBarGfxInfo.Width / 100);
 			
 			RenderSprite(MpBarSprite, GameWindow, C_UpdateUI.HudWindowX + C_UpdateUI.HudmpBarX, C_UpdateUI.HudWindowY + C_UpdateUI.HudmpBarY + 4, rec.X, rec.Y, rec.Width, rec.Height);
 			
@@ -3317,13 +3317,13 @@ namespace Engine
 			
 			//====================================================
 			//EXP Bar
-			curExp = System.Convert.ToInt32(((double) C_Player.GetPlayerExp(C_Variables.Myindex) / C_Variables.NextlevelExp) * 100);
+			curExp = (int)(((double) C_Player.GetPlayerExp(C_Variables.Myindex) / C_Variables.NextlevelExp) * 100);
 			
 			//then render full ontop of it
 			rec.Y = 0;
 			rec.Height = ExpBarGfxInfo.Height;
 			rec.X = 0;
-			rec.Width = System.Convert.ToInt32((double) curExp * ExpBarGfxInfo.Width / 100);
+			rec.Width = (int)((double) curExp * ExpBarGfxInfo.Width / 100);
 			
 			RenderSprite(ExpBarSprite, GameWindow, C_UpdateUI.HudWindowX + C_UpdateUI.HudexpBarX, C_UpdateUI.HudWindowY + C_UpdateUI.HudexpBarY + 4, rec.X, rec.Y, rec.Width, rec.Height);
 			
@@ -3369,11 +3369,11 @@ namespace Engine
 			playersprite = C_Player.GetPlayerSprite(C_Variables.Myindex);
 			
 			rec.Y = 0;
-			rec.Height = System.Convert.ToInt32((double) CharacterGfxInfo[playersprite].Height / 4);
+			rec.Height = (int)((double) CharacterGfxInfo[playersprite].Height / 4);
 			rec.X = 0;
-			rec.Width = System.Convert.ToInt32((double) CharacterGfxInfo[playersprite].Width / 4);
+			rec.Width = (int)((double) CharacterGfxInfo[playersprite].Width / 4);
 			
-			RenderSprite(CharacterSprite[playersprite], GameWindow, System.Convert.ToInt32(C_UpdateUI.CharWindowX + (double) CharPanelGfxInfo.Width / 4 - (double) rec.Width / 2), System.Convert.ToInt32(C_UpdateUI.CharWindowY + (double) CharPanelGfxInfo.Height / 2 - (double) rec.Height / 2), rec.X, rec.Y, rec.Width, rec.Height);
+			RenderSprite(CharacterSprite[playersprite], GameWindow, (int)(C_UpdateUI.CharWindowX + (double) CharPanelGfxInfo.Width / 4 - (double) rec.Width / 2), (int)(C_UpdateUI.CharWindowY + (double) CharPanelGfxInfo.Height / 2 - (double) rec.Height / 2), rec.X, rec.Y, rec.Width, rec.Height);
 			
 			for (i = 1; i <= (int) Enums.EquipmentType.Count - 1; i++)
 			{
@@ -3637,7 +3637,7 @@ namespace Engine
 									colour = SFML.Graphics.Color.Green;
 								}
 								
-								C_Text.DrawText(x, y, C_GameLogic.ConvertCurrency(System.Convert.ToInt32(amount)), colour, SFML.Graphics.Color.Black, GameWindow);
+								C_Text.DrawText(x, y, C_GameLogic.ConvertCurrency(int.Parse(amount)), colour, SFML.Graphics.Color.Black, GameWindow);
 								
 							}
 						}
@@ -3732,7 +3732,7 @@ NextLoop:
 							
 							rec.Y = 0;
 							rec.Height = 32;
-							rec.X = System.Convert.ToInt32(((double) ItemsGfxInfo[itempic].Width / 2) + (C_Items.InvItemFrame[i] * 32)); // middle to get the start of inv gfx, then +32 for each frame
+							rec.X = (int)(((double) ItemsGfxInfo[itempic].Width / 2) + (C_Items.InvItemFrame[i] * 32)); // middle to get the start of inv gfx, then +32 for each frame
 							rec.Width = 32;
 							
 							recPos.Y = C_UpdateUI.InvTop + ((C_UpdateUI.InvOffsetY + 32) * ((i - 1) / C_UpdateUI.InvColumns));
@@ -3754,7 +3754,7 @@ NextLoop:
 							{
 								y = recPos.Top + 22;
 								x = recPos.Left - 4;
-								amount = System.Convert.ToInt32(Convert.ToString(C_Player.GetPlayerInvItemValue(C_Variables.Myindex, i)));
+								amount = int.Parse(Convert.ToString(C_Player.GetPlayerInvItemValue(C_Variables.Myindex, i)));
 								// Draw currency but with k, m, b etc. using a convertion function
 								C_Text.DrawText(x, y, C_GameLogic.ConvertCurrency(amount), SFML.Graphics.Color.Yellow, SFML.Graphics.Color.Black, GameWindow);
 								
@@ -3876,7 +3876,7 @@ NextLoop:
 			rec.Y = 0;
 			rec.Height = TargetGfxInfo.Height;
 			rec.X = 0;
-			rec.Width = System.Convert.ToInt32((double) TargetGfxInfo.Width / 2);
+			rec.Width = (int)((double) TargetGfxInfo.Width / 2);
 			
 			x = ConvertMapX(x2);
 			y = ConvertMapY(y2);
@@ -3896,8 +3896,8 @@ NextLoop:
 			
 			rec.Y = 0;
 			rec.Height = TargetGfxInfo.Height;
-			rec.X = System.Convert.ToInt32((double) TargetGfxInfo.Width / 2);
-			rec.Width = System.Convert.ToInt32((double) TargetGfxInfo.Width / 2 + (double) TargetGfxInfo.Width / 2);
+			rec.X = (int)((double) TargetGfxInfo.Width / 2);
+			rec.Width = (int)((double) TargetGfxInfo.Width / 2 + (double) TargetGfxInfo.Width / 2);
 			
 			x = ConvertMapX(x2);
 			y = ConvertMapY(y2);
