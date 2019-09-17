@@ -447,9 +447,6 @@ namespace Engine
 									break;
 							}
 							
-                            // Update the Maps to display the change
-                            //C_Maps.mapLayers = null;
-
 							tmr500 = tick + 500;
 						}
 						

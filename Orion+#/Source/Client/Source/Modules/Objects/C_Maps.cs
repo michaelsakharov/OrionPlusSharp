@@ -903,6 +903,7 @@ namespace Engine
             }
         }
 
+        
         internal static void DrawMapTile(int x, int y)
 		{
 			if (C_Variables.GettingMap)
@@ -948,12 +949,12 @@ namespace Engine
 					}
 					else if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateAutotile)
 					{
-						// Draw autotiles
-						C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY), 1, x, y, 0, false);
-						C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY), 2, x, y, 0, false);
-						C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 3, x, y, 0, false);
-						C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 4, x, y, 0, false);
-					}
+                        // Draw autotiles
+                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY), 1, x, y, 0, false);
+                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY), 2, x, y, 0, false);
+                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 3, x, y, 0, false);
+                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 4, x, y, 0, false);
+                    }
 				}
 			}
 			

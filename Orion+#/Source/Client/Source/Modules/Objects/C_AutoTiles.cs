@@ -7,7 +7,6 @@ using Microsoft.VisualBasic;
 
 
 using Engine;
-using SFML.Graphics;
 
 namespace Engine
 {
@@ -1243,8 +1242,8 @@ namespace Engine
 			}
 			
 			// Draw the quarter
-			C_Graphics.RenderSprite(C_Graphics.TileSetSprite[C_Maps.Map.Tile[x, y].Layer[layerNum].Tileset], C_Graphics.GameWindow, destX, destY, (Autotile[x, y].Layer[layerNum].SrcX[quarterNum] + xOffset), (Autotile[x, y].Layer[layerNum].SrcY[quarterNum] + yOffset), 16, 16);
+			C_Graphics.RenderSprite(C_Graphics.TileSetSprite[C_Maps.Map.Tile[x, y].Layer[layerNum].Tileset], C_Graphics.GameWindow, destX, destY, (int)(Autotile[x, y].Layer[layerNum].SrcX[quarterNum] + xOffset), (int)(Autotile[x, y].Layer[layerNum].SrcY[quarterNum] + yOffset), 16, 16);
 		}
-
-    }
+		
+	}
 }
