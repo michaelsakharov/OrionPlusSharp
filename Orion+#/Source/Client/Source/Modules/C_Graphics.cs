@@ -36,6 +36,7 @@ namespace Engine
 
 		
 		internal static Sprite[] TileSetSprite;
+		internal static SFML.Graphics.Image[] TileSetImage; // Can be used to get Pixel information
 		internal static GraphicInfo[] TileSetTextureInfo;
 
 		internal static Bitmap MapEditorBackBuffer;
@@ -326,6 +327,7 @@ namespace Engine
             TileSetImgsGFX = new Bitmap[NumTileSets + 1];
 			TileSetTexture = new Texture[NumTileSets + 1];
 			TileSetSprite = new Sprite[NumTileSets + 1];
+			TileSetImage = new SFML.Graphics.Image[NumTileSets + 1];
 			TileSetTextureInfo = new C_Graphics.GraphicInfo[NumTileSets + 1];
 			
 			CharacterGfx = new Texture[NumCharacters + 1];
@@ -799,6 +801,7 @@ namespace Engine
 				//Load texture first, dont care about memory streams (just use the filename)
 				TileSetTexture[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
 				TileSetSprite[index] = new Sprite(TileSetTexture[index]);
+				TileSetImage[index] = new SFML.Graphics.Image(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
 				
 				//Cache the width and height
 				TileSetTextureInfo[index].Width = (int)TileSetTexture[index].Size.X;
@@ -1168,8 +1171,14 @@ namespace Engine
 			tmpSprite.Position = new Vector2f(destX, destY);
 			target.Draw(tmpSprite);
 		}
-		
-		internal static void RenderTextures(Texture txture, RenderWindow target, float dX, float dY, float sx, float sy, float dWidth, float dHeight, float sWidth, float sHeight)
+
+        internal static void RenderSpriteSimple(Sprite tmpSprite, RenderWindow target, int destX, int destY)
+        {
+            tmpSprite.Position = new Vector2f(destX, destY);
+            target.Draw(tmpSprite);
+        }
+
+        internal static void RenderTextures(Texture txture, RenderWindow target, float dX, float dY, float sx, float sy, float dWidth, float dHeight, float sWidth, float sHeight)
 		{
             Sprite tmpImage = new Sprite(txture)
             {
@@ -1821,209 +1830,210 @@ namespace Engine
 		public static void ClearGfx()
 		{
 			//clear tilesets
-			for (var I = 1; I <= NumTileSets; I++)
+			for (var i = 1; i <= NumTileSets; i++)
 			{
-				if (TileSetTextureInfo[(int) I].IsLoaded)
+				if (TileSetTextureInfo[i].IsLoaded)
 				{
-					if (TileSetTextureInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (TileSetTextureInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						TileSetTexture[(int) I].Dispose();
-						TileSetSprite[(int) I].Dispose();
-						TileSetTextureInfo[(int) I].IsLoaded = false;
-						TileSetTextureInfo[(int) I].TextureTimer = 0;
+						TileSetTexture[i].Dispose();
+						TileSetSprite[i].Dispose();
+						TileSetImage[i].Dispose();
+						TileSetTextureInfo[i].IsLoaded = false;
+						TileSetTextureInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear characters
-			for (var I = 1; I <= NumCharacters; I++)
+			for (var i = 1; i<= NumCharacters; i++)
 			{
-				if (CharacterGfxInfo[(int) I].IsLoaded)
+				if (CharacterGfxInfo[i].IsLoaded)
 				{
-					if (CharacterGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (CharacterGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						CharacterGfx[(int) I].Dispose();
-						CharacterSprite[(int) I].Dispose();
-						CharacterGfxInfo[(int) I].IsLoaded = false;
-						CharacterGfxInfo[(int) I].TextureTimer = 0;
+						CharacterGfx[i].Dispose();
+						CharacterSprite[i].Dispose();
+						CharacterGfxInfo[i].IsLoaded = false;
+						CharacterGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear paperdoll
-			for (var I = 1; I <= NumPaperdolls; I++)
+			for (var i = 1; i<= NumPaperdolls; i++)
 			{
-				if (PaperDollGfxInfo[(int) I].IsLoaded)
+				if (PaperDollGfxInfo[i].IsLoaded)
 				{
-					if (PaperDollGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (PaperDollGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						PaperDollGfx[(int) I].Dispose();
-						PaperDollSprite[(int) I].Dispose();
-						PaperDollGfxInfo[(int) I].IsLoaded = false;
-						PaperDollGfxInfo[(int) I].TextureTimer = 0;
+						PaperDollGfx[i].Dispose();
+						PaperDollSprite[i].Dispose();
+						PaperDollGfxInfo[i].IsLoaded = false;
+						PaperDollGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear items
-			for (var I = 1; I <= NumItems; I++)
+			for (var i = 1; i<= NumItems; i++)
 			{
-				if (ItemsGfxInfo[(int) I].IsLoaded)
+				if (ItemsGfxInfo[i].IsLoaded)
 				{
-					if (ItemsGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (ItemsGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						ItemsGfx[(int) I].Dispose();
-						ItemsSprite[(int) I].Dispose();
-						ItemsGfxInfo[(int) I].IsLoaded = false;
-						ItemsGfxInfo[(int) I].TextureTimer = 0;
+						ItemsGfx[i].Dispose();
+						ItemsSprite[i].Dispose();
+						ItemsGfxInfo[i].IsLoaded = false;
+						ItemsGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear resources
-			for (var I = 1; I <= NumResources; I++)
+			for (var i = 1; i<= NumResources; i++)
 			{
-				if (ResourcesGfxInfo[(int) I].IsLoaded)
+				if (ResourcesGfxInfo[i].IsLoaded)
 				{
-					if (ResourcesGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (ResourcesGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						ResourcesGfx[(int) I].Dispose();
-						ResourcesSprite[(int) I].Dispose();
-						ResourcesGfxInfo[(int) I].IsLoaded = false;
-						ResourcesGfxInfo[(int) I].TextureTimer = 0;
+						ResourcesGfx[i].Dispose();
+						ResourcesSprite[i].Dispose();
+						ResourcesGfxInfo[i].IsLoaded = false;
+						ResourcesGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//animations
-			for (var I = 1; I <= NumAnimations; I++)
+			for (var i = 1; i<= NumAnimations; i++)
 			{
-				if (AnimationsGfxInfo[(int) I].IsLoaded)
+				if (AnimationsGfxInfo[i].IsLoaded)
 				{
-					if (AnimationsGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (AnimationsGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						AnimationsGfx[(int) I].Dispose();
-						AnimationsGfxInfo[(int) I].IsLoaded = false;
-						AnimationsGfxInfo[(int) I].TextureTimer = 0;
+						AnimationsGfx[i].Dispose();
+						AnimationsGfxInfo[i].IsLoaded = false;
+						AnimationsGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear faces
-			for (var I = 1; I <= NumFaces; I++)
+			for (var i = 1; i<= NumFaces; i++)
 			{
-				if (FacesGfxInfo[(int) I].IsLoaded)
+				if (FacesGfxInfo[i].IsLoaded)
 				{
-					if (FacesGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (FacesGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						FacesGfx[(int) I].Dispose();
-						FacesSprite[(int) I].Dispose();
-						FacesGfxInfo[(int) I].IsLoaded = false;
-						FacesGfxInfo[(int) I].TextureTimer = 0;
+						FacesGfx[i].Dispose();
+						FacesSprite[i].Dispose();
+						FacesGfxInfo[i].IsLoaded = false;
+						FacesGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear fogs
-			for (var I = 1; I <= NumFogs; I++)
+			for (var i = 1; i<= NumFogs; i++)
 			{
-				if (FogGfxInfo[(int) I].IsLoaded)
+				if (FogGfxInfo[i].IsLoaded)
 				{
-					if (FogGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (FogGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						FogGfx[(int) I].Dispose();
-						FogGfxInfo[(int) I].IsLoaded = false;
-						FogGfxInfo[(int) I].TextureTimer = 0;
+						FogGfx[i].Dispose();
+						FogGfxInfo[i].IsLoaded = false;
+						FogGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear SkillIcons
-			for (var I = 1; I <= NumSkillIcons; I++)
+			for (var i = 1; i<= NumSkillIcons; i++)
 			{
-				if (SkillIconsGfxInfo[(int) I].IsLoaded)
+				if (SkillIconsGfxInfo[i].IsLoaded)
 				{
-					if (SkillIconsGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (SkillIconsGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						SkillIconsGfx[(int) I].Dispose();
-						SkillIconsSprite[(int) I].Dispose();
-						SkillIconsGfxInfo[(int) I].IsLoaded = false;
-						SkillIconsGfxInfo[(int) I].TextureTimer = 0;
+						SkillIconsGfx[i].Dispose();
+						SkillIconsSprite[i].Dispose();
+						SkillIconsGfxInfo[i].IsLoaded = false;
+						SkillIconsGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear Furniture
-			for (var I = 1; I <= C_Housing.NumFurniture; I++)
+			for (var i = 1; i<= C_Housing.NumFurniture; i++)
 			{
-				if (FurnitureGfxInfo[(int) I].IsLoaded)
+				if (FurnitureGfxInfo[i].IsLoaded)
 				{
-					if (FurnitureGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (FurnitureGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						FurnitureGfx[(int) I].Dispose();
-						FurnitureSprite[(int) I].Dispose();
-						FurnitureGfxInfo[(int) I].IsLoaded = false;
-						FurnitureGfxInfo[(int) I].TextureTimer = 0;
+						FurnitureGfx[i].Dispose();
+						FurnitureSprite[i].Dispose();
+						FurnitureGfxInfo[i].IsLoaded = false;
+						FurnitureGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear Projectiles
-			for (var I = 1; I <= C_Projectiles.NumProjectiles; I++)
+			for (var i = 1; i<= C_Projectiles.NumProjectiles; i++)
 			{
-				if (ProjectileGfxInfo[(int) I].IsLoaded)
+				if (ProjectileGfxInfo[i].IsLoaded)
 				{
-					if (ProjectileGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (ProjectileGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						ProjectileGfx[(int) I].Dispose();
-						ProjectileSprite[(int) I].Dispose();
-						ProjectileGfxInfo[(int) I].IsLoaded = false;
-						ProjectileGfxInfo[(int) I].TextureTimer = 0;
+						ProjectileGfx[i].Dispose();
+						ProjectileSprite[i].Dispose();
+						ProjectileGfxInfo[i].IsLoaded = false;
+						ProjectileGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear Emotes
-			for (var I = 1; I <= NumEmotes; I++)
+			for (var i = 1; i<= NumEmotes; i++)
 			{
-				if (EmotesGfxInfo[(int) I].IsLoaded)
+				if (EmotesGfxInfo[i].IsLoaded)
 				{
-					if (EmotesGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (EmotesGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						EmotesGfx[(int) I].Dispose();
-						EmotesSprite[(int) I].Dispose();
-						EmotesGfxInfo[(int) I].IsLoaded = false;
-						EmotesGfxInfo[(int) I].TextureTimer = 0;
+						EmotesGfx[i].Dispose();
+						EmotesSprite[i].Dispose();
+						EmotesGfxInfo[i].IsLoaded = false;
+						EmotesGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear Panoramas
-			for (var I = 1; I <= NumPanorama; I++)
+			for (var i = 1; i<= NumPanorama; i++)
 			{
-				if (PanoramasGfxInfo[(int) I].IsLoaded)
+				if (PanoramasGfxInfo[i].IsLoaded)
 				{
-					if (PanoramasGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (PanoramasGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						PanoramasGfx[(int) I].Dispose();
-						PanoramasSprite[(int) I].Dispose();
-						PanoramasGfxInfo[(int) I].IsLoaded = false;
-						PanoramasGfxInfo[(int) I].TextureTimer = 0;
+						PanoramasGfx[i].Dispose();
+						PanoramasSprite[i].Dispose();
+						PanoramasGfxInfo[i].IsLoaded = false;
+						PanoramasGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
 			
 			//clear Parallax
-			for (var I = 1; I <= NumParallax; I++)
+			for (var i = 1; i<= NumParallax; i++)
 			{
-				if (ParallaxGfxInfo[(int) I].IsLoaded)
+				if (ParallaxGfxInfo[i].IsLoaded)
 				{
-					if (ParallaxGfxInfo[(int) I].TextureTimer < C_General.GetTickCount())
+					if (ParallaxGfxInfo[i].TextureTimer < C_General.GetTickCount())
 					{
-						ParallaxGfx[(int) I].Dispose();
-						ParallaxSprite[(int) I].Dispose();
-						ParallaxGfxInfo[(int) I].IsLoaded = false;
-						ParallaxGfxInfo[(int) I].TextureTimer = 0;
+						ParallaxGfx[i].Dispose();
+						ParallaxSprite[i].Dispose();
+						ParallaxGfxInfo[i].IsLoaded = false;
+						ParallaxGfxInfo[i].TextureTimer = 0;
 					}
 				}
 			}
@@ -2073,7 +2083,6 @@ namespace Engine
 			{
                 if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
                 {
-
                     for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
                     {
                         for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
@@ -2084,18 +2093,10 @@ namespace Engine
                             }
                         }
                     }
-
-                    //C_Maps.CreateMapLayersImage();
-                    //if (C_Maps.mapLayers != null)
-                    //{
-                    //    int layerIndex = 0;
-                    //    foreach (Sprite layer in C_Maps.mapLayers)
-                    //    {
-                    //        RenderSprite(C_Maps.mapLayers[0], GameWindow, ConvertMapX(0), ConvertMapY(0), 0, 0, (C_Maps.Map.MaxX * 32), (C_Maps.Map.MaxY * 32));
-                    //        C_Maps.DrawMapLayerAutoTile(layerIndex);
-                    //        layerIndex++;
-                    //    }
-                    //}
+                }
+                else
+                {
+                    C_Maps.autoTileCache.Clear();
                 }
             }
 			

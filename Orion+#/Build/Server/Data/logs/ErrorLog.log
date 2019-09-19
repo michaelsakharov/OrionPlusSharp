@@ -326,3 +326,93 @@ Object name: 'System.Net.Sockets.Socket'.
    at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
    at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
 
+20/09/2019 7:54:21 AM
+System.ObjectDisposedException(0x80131622): Cannot access a disposed object.
+Object name: 'System.Net.Sockets.Socket'.
+   at System.Net.Sockets.Socket.DoBeginDisconnect(Boolean reuseSocket, DisconnectOverlappedAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+
+20/09/2019 8:02:50 AM
+System.ObjectDisposedException(0x80131622): Cannot access a disposed object.
+Object name: 'System.Net.Sockets.Socket'.
+   at System.Net.Sockets.Socket.DoBeginDisconnect(Boolean reuseSocket, DisconnectOverlappedAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+
+20/09/2019 8:17:57 AM
+System.ObjectDisposedException(0x80131622): Cannot access a disposed object.
+Object name: 'System.Net.Sockets.Socket'.
+   at System.Net.Sockets.Socket.DoBeginDisconnect(Boolean reuseSocket, DisconnectOverlappedAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+
+20/09/2019 8:27:20 AM
+System.ObjectDisposedException(0x80131622): Cannot access a disposed object.
+Object name: 'System.Net.Sockets.Socket'.
+   at System.Net.Sockets.Socket.DoBeginDisconnect(Boolean reuseSocket, DisconnectOverlappedAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+
+20/09/2019 8:27:38 AM
+System.Net.Sockets.SocketException(0x80004005): Only one usage of each socket address (protocol/network address/port) is normally permitted
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at ASFW.Network.Server.StartListening(Int32 port, Int32 backlog, Int32 startIndex)
+   at Engine.S_General.InitServer() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_General.cs:line 274
+   at Engine.S_Console.Main() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Console.cs:line 17
+Line:274 Filename: S_General.cs
+Line:17 Filename: S_Console.cs
+
+20/09/2019 8:28:27 AM
+System.ObjectDisposedException(0x80131622): Cannot access a disposed object.
+Object name: 'System.Net.Sockets.Socket'.
+   at System.Net.Sockets.Socket.DoBeginDisconnect(Boolean reuseSocket, DisconnectOverlappedAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+
