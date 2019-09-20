@@ -241,70 +241,69 @@ namespace Engine
 					{
 						if (C_Graphics.IsValidMapPoint(X, y))
 						{
-							ref var with_1 = ref C_Maps.Map.Tile[X, y];
 							tX = System.Convert.ToInt32(((C_Graphics.ConvertMapX(X * C_Constants.PicX)) - 4) + (C_Constants.PicX * 0.5));
 							tY = System.Convert.ToInt32(((C_Graphics.ConvertMapY(y * C_Constants.PicY)) - 7) + (C_Constants.PicY * 0.5));
-							if (with_1.Type == (byte)Enums.TileType.Blocked)
+							if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Blocked)
 							{
 								DrawText(tX, tY, "B", Color.Red, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Warp)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Warp)
 							{
 								DrawText(tX, tY, "W", Color.Blue, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Item)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Item)
 							{
 								DrawText(tX, tY, "I", Color.White, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.NpcAvoid)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.NpcAvoid)
 							{
 								DrawText(tX, tY, "N", Color.White, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Key)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Key)
 							{
 								DrawText(tX, tY, "K", Color.White, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.KeyOpen)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.KeyOpen)
 							{
 								DrawText(tX, tY, "KO", Color.White, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Resource)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Resource)
 							{
 								DrawText(tX, tY, "R", Color.Green, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Door)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Door)
 							{
 								DrawText(tX, tY, "D", Color.Black, Color.Red, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.NpcSpawn)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.NpcSpawn)
 							{
 								DrawText(tX, tY, "S", Color.Yellow, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Shop)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Shop)
 							{
 								DrawText(tX, tY, "SH", Color.Blue, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Bank)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Bank)
 							{
 								DrawText(tX, tY, "BA", Color.Blue, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Heal)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Heal)
 							{
 								DrawText(tX, tY, "H", Color.Green, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Trap)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Trap)
 							{
 								DrawText(tX, tY, "T", Color.Red, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.House)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.House)
 							{
 								DrawText(tX, tY, "H", Color.Green, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Craft)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Craft)
 							{
 								DrawText(tX, tY, "C", Color.Green, Color.Black, C_Graphics.GameWindow);
 							}
-							else if (with_1.Type == (byte)Enums.TileType.Light)
+							else if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Light)
 							{
 								DrawText(tX, tY, "L", Color.Yellow, Color.Black, C_Graphics.GameWindow);
 							}
@@ -674,30 +673,29 @@ endOfWhileLoop:
 			int x2 = 0;
 			int y2 = 0;
 			
-			ref var with_1 = ref C_Variables.ChatBubble[index];
-			if (with_1.TargetType == (byte)Enums.TargetType.Player)
+			if (C_Variables.ChatBubble[index].TargetType == (byte)Enums.TargetType.Player)
 			{
 				// it's a player
-				if (C_Player.GetPlayerMap(System.Convert.ToInt32(with_1.Target)) == C_Player.GetPlayerMap(C_Variables.Myindex))
+				if (C_Player.GetPlayerMap(System.Convert.ToInt32(C_Variables.ChatBubble[index].Target)) == C_Player.GetPlayerMap(C_Variables.Myindex))
 				{
 					// it's on our map - get co-ords
-					x = C_Graphics.ConvertMapX((C_Types.Player[with_1.Target].X * 32) + C_Types.Player[with_1.Target].XOffset) + 16;
-					y = C_Graphics.ConvertMapY((C_Types.Player[with_1.Target].Y * 32) + C_Types.Player[with_1.Target].YOffset) - 40;
+					x = C_Graphics.ConvertMapX((C_Types.Player[C_Variables.ChatBubble[index].Target].X * 32) + C_Types.Player[C_Variables.ChatBubble[index].Target].XOffset) + 16;
+					y = C_Graphics.ConvertMapY((C_Types.Player[C_Variables.ChatBubble[index].Target].Y * 32) + C_Types.Player[C_Variables.ChatBubble[index].Target].YOffset) - 40;
 				}
 			}
-			else if (with_1.TargetType == (byte)Enums.TargetType.Npc)
+			else if (C_Variables.ChatBubble[index].TargetType == (byte)Enums.TargetType.Npc)
 			{
 				// it's on our map - get co-ords
-				x = C_Graphics.ConvertMapX((C_Maps.MapNpc[with_1.Target].X * 32) + C_Maps.MapNpc[with_1.Target].XOffset) + 16;
-				y = C_Graphics.ConvertMapY((C_Maps.MapNpc[with_1.Target].Y * 32) + C_Maps.MapNpc[with_1.Target].YOffset) - 40;
+				x = C_Graphics.ConvertMapX((C_Maps.MapNpc[C_Variables.ChatBubble[index].Target].X * 32) + C_Maps.MapNpc[C_Variables.ChatBubble[index].Target].XOffset) + 16;
+				y = C_Graphics.ConvertMapY((C_Maps.MapNpc[C_Variables.ChatBubble[index].Target].Y * 32) + C_Maps.MapNpc[C_Variables.ChatBubble[index].Target].YOffset) - 40;
 			}
-			else if (with_1.TargetType == (byte)Enums.TargetType.Event)
+			else if (C_Variables.ChatBubble[index].TargetType == (byte)Enums.TargetType.Event)
 			{
-				x = C_Graphics.ConvertMapX((C_Maps.Map.MapEvents[with_1.Target].X * 32) + C_Maps.Map.MapEvents[with_1.Target].XOffset) + 16;
-				y = C_Graphics.ConvertMapY((C_Maps.Map.MapEvents[with_1.Target].Y * 32) + C_Maps.Map.MapEvents[with_1.Target].YOffset) - 40;
+				x = C_Graphics.ConvertMapX((C_Maps.Map.MapEvents[C_Variables.ChatBubble[index].Target].X * 32) + C_Maps.Map.MapEvents[C_Variables.ChatBubble[index].Target].XOffset) + 16;
+				y = C_Graphics.ConvertMapY((C_Maps.Map.MapEvents[C_Variables.ChatBubble[index].Target].Y * 32) + C_Maps.Map.MapEvents[C_Variables.ChatBubble[index].Target].YOffset) - 40;
 			}
 			// word wrap the text
-			theArray = WordWrap(System.Convert.ToString(with_1.Msg), C_Constants.ChatBubbleWidth, WrapMode.Font, WrapType.Smart, 13);
+			theArray = WordWrap(System.Convert.ToString(C_Variables.ChatBubble[index].Msg), C_Constants.ChatBubbleWidth, WrapMode.Font, WrapType.Smart, 13);
 			// find max width
 			for (i = 0; i <= theArray.Count - 1; i++)
 			{
@@ -736,13 +734,13 @@ endOfWhileLoop:
 			// render each line centralised
 			for (i = 0; i <= theArray.Count - 1; i++)
 			{
-				DrawText(System.Convert.ToInt32(x - ((double) GetTextWidth(theArray[i]) / 2)), y2, theArray[i], C_Graphics.ToSfmlColor(System.Drawing.ColorTranslator.FromOle(Information.QBColor(System.Convert.ToInt32(with_1.Colour)))), Color.Black, C_Graphics.GameWindow);
+				DrawText(System.Convert.ToInt32(x - ((double) GetTextWidth(theArray[i]) / 2)), y2, theArray[i], C_Graphics.ToSfmlColor(System.Drawing.ColorTranslator.FromOle(Information.QBColor(System.Convert.ToInt32(C_Variables.ChatBubble[index].Colour)))), Color.Black, C_Graphics.GameWindow);
 				y2 = y2 + 12;
 			}
 			// check if it's timed out - close it if so
-			if (with_1.Timer + 5000 < C_General.GetTickCount())
+			if (C_Variables.ChatBubble[index].Timer + 5000 < C_General.GetTickCount())
 			{
-				with_1.Active = false;
+				C_Variables.ChatBubble[index].Active = false;
 			}
 			
 		}
