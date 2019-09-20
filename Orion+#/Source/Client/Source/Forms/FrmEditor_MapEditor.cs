@@ -1125,6 +1125,7 @@ namespace Engine
 
             //We are about to edit the ground so lets Preper to re-render it
             C_Maps.mapLayers = null;
+            C_Maps.fringeMapLayers = null;
 
             if (Button == (int)MouseButtons.Left)
             {
@@ -1382,6 +1383,7 @@ namespace Engine
 
             //We are about to edit the ground so lets Preper to re-render it
             C_Maps.mapLayers = null;
+            C_Maps.fringeMapLayers = null;
 
             if (theAutotile > 0)
             {
@@ -1478,6 +1480,7 @@ namespace Engine
 
                 //We are about to edit the ground so lets Preper to re-render it
                 C_Maps.mapLayers = null;
+                C_Maps.fringeMapLayers = null;
 
                 if (theAutotile > 0)
                 {

@@ -2322,17 +2322,16 @@ namespace Engine
 			// blit out upper tiles
 			if (NumTileSets > 0)
 			{
-				for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
-				{
-					for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
-					{
-						if (IsValidMapPoint(x, y))
-						{
-							C_Maps.DrawMapFringeTile(x, y);
-						}
-					}
-				}
-			}
+                if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
+                {
+                    C_Maps.CreateMapFringeLayersImage();
+                    C_Maps.DrawMapFringeTiles();
+                }
+                else
+                {
+                    C_Maps.fringeMapLayers = null;
+                }
+            }
 			
 			// Furniture
 			if (C_Housing.FurnitureHouse > 0)
