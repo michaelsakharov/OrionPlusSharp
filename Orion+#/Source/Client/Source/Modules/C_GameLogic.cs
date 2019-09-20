@@ -505,10 +505,7 @@ namespace Engine
 					{
 						if (C_Variables.FadeType == 1)
 						{
-							if (C_Variables.FadeAmount == 255)
-							{
-							}
-							else
+							if (C_Variables.FadeAmount != 255)
 							{
 								C_Variables.FadeAmount = C_Variables.FadeAmount + 5;
 							}
@@ -547,7 +544,7 @@ namespace Engine
 				}
 				else
 				{
-					Thread.Sleep(1);
+					Thread.Sleep(2);
 				}
 				
 			} while (true);

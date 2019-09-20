@@ -3643,9 +3643,9 @@ newlist:
 							
 							g = Graphics.FromImage(targetBitmap);
 							//This is the section we are pulling from the source graphic
-							Rectangle sourceRect = new Rectangle(0, 0, System.Convert.ToInt32((double) sourceBitmap.Width / 4), System.Convert.ToInt32((double) sourceBitmap.Height / 4));
+							Rectangle sourceRect = new Rectangle(0, 0, (int)((double) sourceBitmap.Width / 4), (int)((double) sourceBitmap.Height / 4));
 							//This is the rectangle in the target graphic we want to render to
-							Rectangle destRect = new Rectangle(0, 0, System.Convert.ToInt32((double) targetBitmap.Width / 4), System.Convert.ToInt32((double) targetBitmap.Height / 4));
+							Rectangle destRect = new Rectangle(0, 0, (int)((double) targetBitmap.Width / 4), (int)((double) targetBitmap.Height / 4));
 							
 							g.DrawImage(sourceBitmap, destRect, sourceRect, GraphicsUnit.Pixel);
 							
@@ -3679,9 +3679,9 @@ newlist:
 								sRect.Bottom = sRect.Top + 32;
 								sRect.Right = sRect.Left + 32;
 								
-								dRect.Top = System.Convert.ToInt32(((double) 193 / 2) - ((double) (sRect.Bottom - sRect.Top) / 2));
+								dRect.Top = (int)(((double) 193 / 2) - ((double) (sRect.Bottom - sRect.Top) / 2));
 								dRect.Bottom = dRect.Top + (sRect.Bottom - sRect.Top);
-								dRect.Left = System.Convert.ToInt32(((double) 120 / 2) - ((double) (sRect.Right - sRect.Left) / 2));
+								dRect.Left = (int)(((double) 120 / 2) - ((double) (sRect.Right - sRect.Left) / 2));
 								dRect.Right = dRect.Left + (sRect.Right - sRect.Left);
 							}
 							else
@@ -3691,9 +3691,9 @@ newlist:
 								sRect.Bottom = sRect.Top + ((TmpEvent.Pages[CurPageNum].GraphicY2 - TmpEvent.Pages[CurPageNum].GraphicY) * 32);
 								sRect.Right = sRect.Left + ((TmpEvent.Pages[CurPageNum].GraphicX2 - TmpEvent.Pages[CurPageNum].GraphicX) * 32);
 								
-								dRect.Top = System.Convert.ToInt32(((double) 193 / 2) - ((double) (sRect.Bottom - sRect.Top) / 2));
+								dRect.Top = (int)(((double) 193 / 2) - ((double) (sRect.Bottom - sRect.Top) / 2));
 								dRect.Bottom = dRect.Top + (sRect.Bottom - sRect.Top);
-								dRect.Left = System.Convert.ToInt32(((double) 120 / 2) - ((double) (sRect.Right - sRect.Left) / 2));
+								dRect.Left = (int)(((double) 120 / 2) - ((double) (sRect.Right - sRect.Left) / 2));
 								dRect.Right = dRect.Left + (sRect.Right - sRect.Left);
 								
 							}
@@ -3742,8 +3742,8 @@ newlist:
 							
 							g = Graphics.FromImage(targetBitmap);
 							
-							Rectangle sourceRect = new Rectangle(0, 0, System.Convert.ToInt32((double) sourceBitmap.Width / 4), System.Convert.ToInt32((double) sourceBitmap.Height / 4)); //This is the section we are pulling from the source graphic
-							Rectangle destRect = new Rectangle(0, 0, System.Convert.ToInt32((double) targetBitmap.Width / 4), System.Convert.ToInt32((double) targetBitmap.Height / 4)); //This is the rectangle in the target graphic we want to render to
+							Rectangle sourceRect = new Rectangle(0, 0, (int)((double) sourceBitmap.Width / 4), (int)((double) sourceBitmap.Height / 4)); //This is the section we are pulling from the source graphic
+							Rectangle destRect = new Rectangle(0, 0, (int)((double) targetBitmap.Width / 4), (int)((double) targetBitmap.Height / 4)); //This is the rectangle in the target graphic we want to render to
 							
 							g.DrawImage(sourceBitmap, destRect, sourceRect, GraphicsUnit.Pixel);
 							
@@ -3862,8 +3862,8 @@ newlist:
 				}
 				if (C_Maps.Map.Events[i].Pages[1].GraphicType == ((byte) 0))
 				{
-					tX = System.Convert.ToInt32(((x) - 4) + (C_Constants.PicX * 0.5));
-					tY = System.Convert.ToInt32(((y) - 7) + (C_Constants.PicY * 0.5));
+					tX = (int)(((x) - 4) + (C_Constants.PicX * 0.5));
+					tY = (int)(((y) - 7) + (C_Constants.PicY * 0.5));
 					C_Text.DrawText(tX, tY, "EV", SFML.Graphics.Color.Green, SFML.Graphics.Color.Black, C_Graphics.GameWindow);
 				}
 				else if (C_Maps.Map.Events[i].Pages[1].GraphicType == ((byte) 1))
@@ -3878,9 +3878,9 @@ newlist:
 						//seeying we still use it, lets update timer
 						ref var with_2 = ref C_Graphics.CharacterGfxInfo[C_Maps.Map.Events[i].Pages[1].Graphic];
 						with_2.TextureTimer = C_General.GetTickCount() + 100000;
-						rec.Y = System.Convert.ToInt32(C_Maps.Map.Events[i].Pages[1].GraphicY * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.Events[i].Pages[1].Graphic].Height / 4));
+						rec.Y = (int)(C_Maps.Map.Events[i].Pages[1].GraphicY * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.Events[i].Pages[1].Graphic].Height / 4));
 						rec.Height = rec.Y + C_Constants.PicY;
-						rec.X = System.Convert.ToInt32(C_Maps.Map.Events[i].Pages[1].GraphicX * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.Events[i].Pages[1].Graphic].Width / 4));
+						rec.X = (int)(C_Maps.Map.Events[i].Pages[1].GraphicX * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.Events[i].Pages[1].Graphic].Width / 4));
 						rec.Width = rec.X + C_Constants.PicX;
 						
 						Sprite tmpSprite = new Sprite(C_Graphics.CharacterGfx[C_Maps.Map.Events[i].Pages[1].Graphic]) {
@@ -3956,19 +3956,20 @@ nextevent:
 		}
 		
 		internal static void DrawEvent(int id) // draw on map, outside the editor
-		{
-			int x = 0;
+        {
+
+            if (C_Maps.Map.MapEvents[id].Visible == 0)
+            {
+                return;
+            }
+
+            int x = 0;
 			int y = 0;
 			int width;
 			int height;
 			Rectangle sRect = new Rectangle();
 			int anim = 0;
 			int spritetop = 0;
-			
-			if (C_Maps.Map.MapEvents[id].Visible == 0)
-			{
-				return;
-			}
 			
 			switch (C_Maps.Map.MapEvents[id].GraphicType)
 			{
@@ -4044,18 +4045,18 @@ nextevent:
 						anim = C_Maps.Map.MapEvents[id].GraphicX;
 					}
 					
-					width = System.Convert.ToInt32((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4);
-					height = System.Convert.ToInt32((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4);
+					width = (int)((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4);
+					height = (int)((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4);
 					
-					sRect = new Rectangle(System.Convert.ToInt32((anim) * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4)), System.Convert.ToInt32(spritetop * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4)), System.Convert.ToInt32((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4), System.Convert.ToInt32((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4));
+					sRect = new Rectangle((int)((anim) * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4)), (int)(spritetop * ((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4)), (int)((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4), (int)((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4));
 					// Calculate the X
-					x = System.Convert.ToInt32(C_Maps.Map.MapEvents[id].X * C_Constants.PicX + C_Maps.Map.MapEvents[id].XOffset - (((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4 - 32) / 2));
+					x = (int)(C_Maps.Map.MapEvents[id].X * C_Constants.PicX + C_Maps.Map.MapEvents[id].XOffset - (((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Width / 4 - 32) / 2));
 					
 					// Is the player's height more than 32..
 					if ((C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height * 4) > 32)
 					{
 						// Create a 32 pixel offset for larger sprites
-						y = System.Convert.ToInt32(C_Maps.Map.MapEvents[id].Y * C_Constants.PicY + C_Maps.Map.MapEvents[id].YOffset - (((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4) - 32));
+						y = (int)(C_Maps.Map.MapEvents[id].Y * C_Constants.PicY + C_Maps.Map.MapEvents[id].YOffset - (((double) C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[id].GraphicNum].Height / 4) - 32));
 					}
 					else
 					{
@@ -4110,7 +4111,7 @@ nextevent:
 					
 					x = C_Maps.Map.MapEvents[id].X * 32;
 					y = C_Maps.Map.MapEvents[id].Y * 32;
-					x = System.Convert.ToInt32(x - ((double) (sRect.Right - sRect.Left) / 2));
+					x = (int)(x - ((double) (sRect.Right - sRect.Left) / 2));
 					y = y - (sRect.Bottom - sRect.Top) + 32;
 					
 					if (C_Maps.Map.MapEvents[id].GraphicY2 > 1)
@@ -4244,28 +4245,28 @@ nextevent:
 				switch (C_Maps.Map.MapEvents[id].Dir)
 				{
 					case (int) Enums.DirectionType.Up:
-						C_Maps.Map.MapEvents[id].YOffset = System.Convert.ToInt32(C_Maps.Map.MapEvents[id].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
+						C_Maps.Map.MapEvents[id].YOffset = (int)(C_Maps.Map.MapEvents[id].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
 						if (C_Maps.Map.MapEvents[id].YOffset < 0)
 						{
 							C_Maps.Map.MapEvents[id].YOffset = 0;
 						}
 						break;
 					case (int) Enums.DirectionType.Down:
-						C_Maps.Map.MapEvents[id].YOffset = System.Convert.ToInt32(C_Maps.Map.MapEvents[id].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
+						C_Maps.Map.MapEvents[id].YOffset = (int)(C_Maps.Map.MapEvents[id].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
 						if (C_Maps.Map.MapEvents[id].YOffset > 0)
 						{
 							C_Maps.Map.MapEvents[id].YOffset = 0;
 						}
 						break;
 					case (int) Enums.DirectionType.Left:
-						C_Maps.Map.MapEvents[id].XOffset = System.Convert.ToInt32(C_Maps.Map.MapEvents[id].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
+						C_Maps.Map.MapEvents[id].XOffset = (int)(C_Maps.Map.MapEvents[id].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
 						if (C_Maps.Map.MapEvents[id].XOffset < 0)
 						{
 							C_Maps.Map.MapEvents[id].XOffset = 0;
 						}
 						break;
 					case (int) Enums.DirectionType.Right:
-						C_Maps.Map.MapEvents[id].XOffset = System.Convert.ToInt32(C_Maps.Map.MapEvents[id].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
+						C_Maps.Map.MapEvents[id].XOffset = (int)(C_Maps.Map.MapEvents[id].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Maps.Map.MapEvents[id].MovementSpeed * C_Constants.SizeX)));
 						if (C_Maps.Map.MapEvents[id].XOffset > 0)
 						{
 							C_Maps.Map.MapEvents[id].XOffset = 0;

@@ -17,7 +17,7 @@
   </Sfx>
   <Misc>
     <Element Name="ScreenSize" Value="1" />
-    <Element Name="HighEnd" Value="1" />
+    <Element Name="HighEnd" Value="0" />
     <Element Name="ShowNpcBar" Value="1" />
     <Element Name="UnlockFPS" Value="0" />
   </Misc>

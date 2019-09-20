@@ -1757,10 +1757,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                     }
                 }
             }
-            else
-
-                // Look to target
-                if (GetPetX(index) > modTypes.TempPlayer[index].GoToX)
+            else if (GetPetX(index) > modTypes.TempPlayer[index].GoToX) // Look to target
             {
                 if (CanPetMove(x, mapNum, (int)Enums.DirectionType.Left))
                 {
