@@ -1159,6 +1159,11 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
         public static void AdoptPet(int index, int petNum)
         {
+            if(Pet[petNum].Name == null)
+            {
+                S_NetworkSend.PlayerMsg(index, "Pet: " + petNum + " Doesnt appear to exist!", (int)Enums.ColorType.BrightRed);
+                return;
+            }
             if (GetPetNum(index) == 0)
                 S_NetworkSend.PlayerMsg(index, "You have adopted a " + Pet[petNum].Name.Trim(), (int)Enums.ColorType.BrightGreen);
             else
