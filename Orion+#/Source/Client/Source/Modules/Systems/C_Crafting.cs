@@ -501,9 +501,9 @@ namespace Engine
 			
 			for (var i = 1; i <= Constants.MAX_INGREDIENT; i++)
 			{
-				PicMaterialIndex[(int) i] = 0;
-				LblMaterialName[(int) i] = "";
-				LblMaterialAmount[(int) i] = "";
+				PicMaterialIndex[i] = 0;
+				LblMaterialName[i] = "";
+				LblMaterialAmount[i] = "";
 			}
 			
 			CraftTimerEnabled = false;

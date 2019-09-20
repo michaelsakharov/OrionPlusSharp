@@ -534,7 +534,7 @@ namespace Engine
                     C_Variables.Fps = CalculateFrameRate();
                     C_Graphics.Render_Graphics();
 					tmplps++;
-					rendercount = tick + 16;
+					rendercount = tick + 8;
 				}
                 
                 Application.DoEvents();
