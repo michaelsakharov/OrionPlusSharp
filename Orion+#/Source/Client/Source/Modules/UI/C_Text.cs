@@ -94,8 +94,8 @@ namespace Engine
 			
 			name = C_Types.Player[index].Name.Trim();
 			// calc pos
-			textX = System.Convert.ToInt32(C_Graphics.ConvertMapX(C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset + (C_Constants.PicX / 2));
-			textX = System.Convert.ToInt32(textX - ((double) GetTextWidth(name.Trim()) / 2));
+			textX = (C_Graphics.ConvertMapX(C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset + (C_Constants.PicX / 2));
+			textX = (int)(textX - ((double) GetTextWidth(name.Trim()) / 2));
 			if (C_Player.GetPlayerSprite(index) < 1 || C_Player.GetPlayerSprite(index) > C_Graphics.NumCharacters)
 			{
 				textY = C_Graphics.ConvertMapY(C_Player.GetPlayerY(index) * C_Constants.PicY) + C_Types.Player[index].YOffset - 16;
@@ -103,7 +103,7 @@ namespace Engine
 			else
 			{
 				// Determine location for text
-				textY = System.Convert.ToInt32(C_Graphics.ConvertMapY(C_Player.GetPlayerY(index) * C_Constants.PicY) + C_Types.Player[index].YOffset - ((double) C_Graphics.CharacterGfxInfo[C_Player.GetPlayerSprite(index)].Height / 4) + 16);
+				textY = (int)(C_Graphics.ConvertMapY(C_Player.GetPlayerY(index) * C_Constants.PicY) + C_Types.Player[index].YOffset - ((double) C_Graphics.CharacterGfxInfo[C_Player.GetPlayerSprite(index)].Height / 4) + 16);
 			}
 			
 			// Draw name
@@ -136,7 +136,7 @@ namespace Engine
 				backcolor = SFML.Graphics.Color.Black;
 			}
 			
-			textX = System.Convert.ToInt32(C_Graphics.ConvertMapX(C_Maps.MapNpc[mapNpcNum].X * C_Constants.PicX) + C_Maps.MapNpc[mapNpcNum].XOffset + (C_Constants.PicX / 2) - (double) GetTextWidth(Types.Npc[npcNum].Name.Trim()) / 2);
+			textX = (int)((C_Graphics.ConvertMapX(C_Maps.MapNpc[mapNpcNum].X * C_Constants.PicX) + C_Maps.MapNpc[mapNpcNum].XOffset + (C_Constants.PicX / 2)) - (GetTextWidth(Types.Npc[npcNum].Name.Trim()) / 2));
 			if (Types.Npc[npcNum].Sprite < 1 || Types.Npc[npcNum].Sprite > C_Graphics.NumCharacters)
 			{
 				textY = C_Graphics.ConvertMapY(C_Maps.MapNpc[mapNpcNum].Y * C_Constants.PicY) + C_Maps.MapNpc[mapNpcNum].YOffset - 16;

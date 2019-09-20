@@ -1246,7 +1246,7 @@ namespace Engine
 			
 			spritenum = C_Player.GetPlayerSprite(index);
 			
-			attackSprite = (byte) 0;
+			attackSprite = 0;
 			
 			if (spritenum < 1 || spritenum > NumCharacters)
 			{
@@ -1290,7 +1290,7 @@ namespace Engine
 						
 						if (C_Types.Player[index].YOffset > 8)
 						{
-							anim = C_Types.Player[index].Steps;
+                            anim = C_Types.Player[index].Steps;
 						}
 						break;
 					case (int) Enums.DirectionType.Down:
