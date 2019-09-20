@@ -42,7 +42,7 @@ namespace Engine
             int i = 0;
             i = 1;
 
-            while (File.Exists(Application.StartupPath + C_Constants.GfxPath + "\\tilesets\\" + System.Convert.ToString(i) + C_Constants.GfxExt))
+            while (File.Exists(Application.StartupPath + C_Constants.GfxPath + "\\tilesets\\" + Convert.ToString(i) + C_Constants.GfxExt))
             {
                 C_Graphics.NumTileSets++;
                 i++;
@@ -57,22 +57,22 @@ namespace Engine
         public static void ClearMap()
         {
 
-            // We are clearing the map, so lets also clear the Cache
-            mapLayers = null;
-            fringeMapLayers = null;
-
             lock (MapLock)
             {
+                // We are clearing the map, so lets also clear the Cache
+                mapLayers = null;
+                fringeMapLayers = null;
+
                 Map.Name = "";
                 Map.Tileset = 1;
                 Map.MaxX = C_Constants.ScreenMapx;
                 Map.MaxY = C_Constants.ScreenMapy;
                 Map.BootMap = 0;
-                Map.BootX = (byte)0;
-                Map.BootY = (byte)0;
+                Map.BootX = 0;
+                Map.BootY = 0;
                 Map.Down = 0;
                 Map.Left = 0;
-                Map.Moral = (byte)0;
+                Map.Moral = 0;
                 Map.Music = "";
                 Map.Revision = 0;
                 Map.Right = 0;
@@ -85,13 +85,13 @@ namespace Engine
                 {
                     for (var y = 0; y <= C_Constants.ScreenMapy; y++)
                     {
-                        Map.Tile[(int)x, (int)y].Layer = new Types.TileDataRec[(int)Enums.LayerType.Count];
+                        Map.Tile[x, y].Layer = new Types.TileDataRec[(int)Enums.LayerType.Count];
                         for (var l = 0; l <= (int)Enums.LayerType.Count - 1; l++)
                         {
-                            Map.Tile[(int)x, (int)y].Layer[(int)l].Tileset = (byte)0;
-                            Map.Tile[(int)x, (int)y].Layer[(int)l].X = (byte)0;
-                            Map.Tile[(int)x, (int)y].Layer[(int)l].Y = (byte)0;
-                            Map.Tile[(int)x, (int)y].Layer[(int)l].AutoTile = (byte)0;
+                            Map.Tile[x, y].Layer[l].Tileset = 0;
+                            Map.Tile[x, y].Layer[l].X = 0;
+                            Map.Tile[x, y].Layer[l].Y = 0;
+                            Map.Tile[x, y].Layer[l].AutoTile = 0;
                         }
 
                     }
@@ -114,30 +114,30 @@ namespace Engine
 
         public static void ClearMapItem(int index)
         {
-            MapItem[index].Frame = (byte)0;
+            MapItem[index].Frame = 0;
             MapItem[index].Num = 0;
             MapItem[index].Value = 0;
-            MapItem[index].X = (byte)0;
-            MapItem[index].Y = (byte)0;
+            MapItem[index].X = 0;
+            MapItem[index].Y = 0;
         }
 
         public static void ClearMapNpc(int index)
         {
-            MapNpc[index].Attacking = (byte)0;
+            MapNpc[index].Attacking = 0;
             MapNpc[index].AttackTimer = 0;
-            MapNpc[index].Dir = (byte)0;
+            MapNpc[index].Dir = 0;
             MapNpc[index].Map = 0;
-            MapNpc[index].Moving = (byte)0;
+            MapNpc[index].Moving = 0;
             MapNpc[index].Num = 0;
             MapNpc[index].Steps = 0;
             MapNpc[index].Target = 0;
-            MapNpc[index].TargetType = (byte)0;
+            MapNpc[index].TargetType = 0;
             MapNpc[index].Vital[(byte)Enums.VitalType.HP] = 0;
             MapNpc[index].Vital[(byte)Enums.VitalType.MP] = 0;
             MapNpc[index].Vital[(byte)Enums.VitalType.SP] = 0;
-            MapNpc[index].X = (byte)0;
+            MapNpc[index].X = 0;
             MapNpc[index].XOffset = 0;
-            MapNpc[index].Y = (byte)0;
+            MapNpc[index].Y = 0;
             MapNpc[index].YOffset = 0;
         }
 
@@ -194,11 +194,11 @@ namespace Engine
             // Get revision
             y = buffer.ReadInt32();
 
-            needMap = (byte)1;
+            needMap = 1;
 
             // Either the revisions didn't match or we dont have the map, so we need it
             buffer = new ByteStream(4);
-            buffer.WriteInt32((System.Int32)Packets.ClientPackets.CNeedMap);
+            buffer.WriteInt32((Int32)Packets.ClientPackets.CNeedMap);
             buffer.WriteInt32(needMap);
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 
@@ -291,77 +291,75 @@ namespace Engine
                         Map.Events = new C_EventSystem.EventRec[Map.EventCount + 1];
                         for (i = 1; i <= Map.EventCount; i++)
                         {
-                            ref var with_1 = ref Map.Events[i];
-                            with_1.Name = buffer.ReadString().Trim();
-                            with_1.Globals = buffer.ReadInt32();
-                            with_1.X = buffer.ReadInt32();
-                            with_1.Y = buffer.ReadInt32();
-                            with_1.PageCount = buffer.ReadInt32();
+                            Map.Events[i].Name = buffer.ReadString().Trim();
+                            Map.Events[i].Globals = buffer.ReadInt32();
+                            Map.Events[i].X = buffer.ReadInt32();
+                            Map.Events[i].Y = buffer.ReadInt32();
+                            Map.Events[i].PageCount = buffer.ReadInt32();
                             if (Map.Events[i].PageCount > 0)
                             {
                                 Map.Events[i].Pages = new C_EventSystem.EventPageRec[Map.Events[i].PageCount + 1];
                                 for (x = 1; x <= Map.Events[i].PageCount; x++)
                                 {
-                                    ref var with_2 = ref Map.Events[i].Pages[x];
-                                    with_2.ChkVariable = buffer.ReadInt32();
-                                    with_2.Variableindex = buffer.ReadInt32();
-                                    with_2.VariableCondition = buffer.ReadInt32();
-                                    with_2.VariableCompare = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].ChkVariable = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].Variableindex = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].VariableCondition = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].VariableCompare = buffer.ReadInt32();
 
-                                    with_2.ChkSwitch = buffer.ReadInt32();
-                                    with_2.Switchindex = buffer.ReadInt32();
-                                    with_2.SwitchCompare = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].ChkSwitch = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].Switchindex = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].SwitchCompare = buffer.ReadInt32();
 
-                                    with_2.ChkHasItem = buffer.ReadInt32();
-                                    with_2.HasItemindex = buffer.ReadInt32();
-                                    with_2.HasItemAmount = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].ChkHasItem = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].HasItemindex = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].HasItemAmount = buffer.ReadInt32();
 
-                                    with_2.ChkSelfSwitch = buffer.ReadInt32();
-                                    with_2.SelfSwitchindex = buffer.ReadInt32();
-                                    with_2.SelfSwitchCompare = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].ChkSelfSwitch = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].SelfSwitchindex = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].SelfSwitchCompare = buffer.ReadInt32();
 
-                                    with_2.GraphicType = (byte)(buffer.ReadInt32());
-                                    with_2.Graphic = buffer.ReadInt32();
-                                    with_2.GraphicX = buffer.ReadInt32();
-                                    with_2.GraphicY = buffer.ReadInt32();
-                                    with_2.GraphicX2 = buffer.ReadInt32();
-                                    with_2.GraphicY2 = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].GraphicType = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].Graphic = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].GraphicX = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].GraphicY = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].GraphicX2 = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].GraphicY2 = buffer.ReadInt32();
 
-                                    with_2.MoveType = (byte)(buffer.ReadInt32());
-                                    with_2.MoveSpeed = (byte)(buffer.ReadInt32());
-                                    with_2.MoveFreq = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].MoveType = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].MoveSpeed = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].MoveFreq = (byte)(buffer.ReadInt32());
 
-                                    with_2.MoveRouteCount = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].MoveRouteCount = buffer.ReadInt32();
 
-                                    with_2.IgnoreMoveRoute = buffer.ReadInt32();
-                                    with_2.RepeatMoveRoute = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].IgnoreMoveRoute = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].RepeatMoveRoute = buffer.ReadInt32();
 
-                                    if (with_2.MoveRouteCount > 0)
+                                    if (Map.Events[i].Pages[x].MoveRouteCount > 0)
                                     {
-                                        Map.Events[i].Pages[x].MoveRoute = new C_EventSystem.MoveRouteRec[with_2.MoveRouteCount + 1];
-                                        for (y = 1; y <= with_2.MoveRouteCount; y++)
+                                        Map.Events[i].Pages[x].MoveRoute = new C_EventSystem.MoveRouteRec[Map.Events[i].Pages[x].MoveRouteCount + 1];
+                                        for (y = 1; y <= Map.Events[i].Pages[x].MoveRouteCount; y++)
                                         {
-                                            with_2.MoveRoute[y].Index = buffer.ReadInt32();
-                                            with_2.MoveRoute[y].Data1 = buffer.ReadInt32();
-                                            with_2.MoveRoute[y].Data2 = buffer.ReadInt32();
-                                            with_2.MoveRoute[y].Data3 = buffer.ReadInt32();
-                                            with_2.MoveRoute[y].Data4 = buffer.ReadInt32();
-                                            with_2.MoveRoute[y].Data5 = buffer.ReadInt32();
-                                            with_2.MoveRoute[y].Data6 = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Index = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Data1 = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Data2 = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Data3 = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Data4 = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Data5 = buffer.ReadInt32();
+                                            Map.Events[i].Pages[x].MoveRoute[y].Data6 = buffer.ReadInt32();
                                         }
                                     }
 
-                                    with_2.WalkAnim = (byte)(buffer.ReadInt32());
-                                    with_2.DirFix = (byte)(buffer.ReadInt32());
-                                    with_2.WalkThrough = (byte)(buffer.ReadInt32());
-                                    with_2.ShowName = (byte)(buffer.ReadInt32());
-                                    with_2.Trigger = (byte)(buffer.ReadInt32());
-                                    with_2.CommandListCount = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].WalkAnim = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].DirFix = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].WalkThrough = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].ShowName = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].Trigger = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].CommandListCount = buffer.ReadInt32();
 
-                                    with_2.Position = (byte)(buffer.ReadInt32());
-                                    with_2.Questnum = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].Position = (byte)(buffer.ReadInt32());
+                                    Map.Events[i].Pages[x].Questnum = buffer.ReadInt32();
 
-                                    with_2.ChkPlayerGender = buffer.ReadInt32();
+                                    Map.Events[i].Pages[x].ChkPlayerGender = buffer.ReadInt32();
 
                                     if (Map.Events[i].Pages[x].CommandListCount > 0)
                                     {
@@ -375,38 +373,37 @@ namespace Engine
                                                 Map.Events[i].Pages[x].CommandList[y].Commands = new C_EventSystem.EventCommandRec[Map.Events[i].Pages[x].CommandList[y].CommandCount + 1];
                                                 for (var z = 1; z <= Map.Events[i].Pages[x].CommandList[y].CommandCount; z++)
                                                 {
-                                                    ref var with_3 = ref Map.Events[i].Pages[x].CommandList[y].Commands[(int)z];
-                                                    with_3.Index = buffer.ReadInt32();
-                                                    with_3.Text1 = buffer.ReadString().Trim();
-                                                    with_3.Text2 = buffer.ReadString().Trim();
-                                                    with_3.Text3 = buffer.ReadString().Trim();
-                                                    with_3.Text4 = buffer.ReadString().Trim();
-                                                    with_3.Text5 = buffer.ReadString().Trim();
-                                                    with_3.Data1 = buffer.ReadInt32();
-                                                    with_3.Data2 = buffer.ReadInt32();
-                                                    with_3.Data3 = buffer.ReadInt32();
-                                                    with_3.Data4 = buffer.ReadInt32();
-                                                    with_3.Data5 = buffer.ReadInt32();
-                                                    with_3.Data6 = buffer.ReadInt32();
-                                                    with_3.ConditionalBranch.CommandList = buffer.ReadInt32();
-                                                    with_3.ConditionalBranch.Condition = buffer.ReadInt32();
-                                                    with_3.ConditionalBranch.Data1 = buffer.ReadInt32();
-                                                    with_3.ConditionalBranch.Data2 = buffer.ReadInt32();
-                                                    with_3.ConditionalBranch.Data3 = buffer.ReadInt32();
-                                                    with_3.ConditionalBranch.ElseCommandList = buffer.ReadInt32();
-                                                    with_3.MoveRouteCount = buffer.ReadInt32();
-                                                    if (with_3.MoveRouteCount > 0)
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Index = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Text1 = buffer.ReadString().Trim();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Text2 = buffer.ReadString().Trim();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Text3 = buffer.ReadString().Trim();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Text4 = buffer.ReadString().Trim();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Text5 = buffer.ReadString().Trim();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Data1 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Data2 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Data3 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Data4 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Data5 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].Data6 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.CommandList = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Condition = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data1 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data2 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data3 = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.ElseCommandList = buffer.ReadInt32();
+                                                    Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount = buffer.ReadInt32();
+                                                    if (Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount > 0)
                                                     {
-                                                        Array.Resize(ref with_3.MoveRoute, with_3.MoveRouteCount + 1);
-                                                        for (var w = 1; w <= with_3.MoveRouteCount; w++)
+                                                        Array.Resize(ref Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute, Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount + 1);
+                                                        for (var w = 1; w <= Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount; w++)
                                                         {
-                                                            with_3.MoveRoute[(int)w].Index = buffer.ReadInt32();
-                                                            with_3.MoveRoute[(int)w].Data1 = buffer.ReadInt32();
-                                                            with_3.MoveRoute[(int)w].Data2 = buffer.ReadInt32();
-                                                            with_3.MoveRoute[(int)w].Data3 = buffer.ReadInt32();
-                                                            with_3.MoveRoute[(int)w].Data4 = buffer.ReadInt32();
-                                                            with_3.MoveRoute[(int)w].Data5 = buffer.ReadInt32();
-                                                            with_3.MoveRoute[(int)w].Data6 = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Index = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data1 = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data2 = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data3 = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data4 = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data5 = buffer.ReadInt32();
+                                                            Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data6 = buffer.ReadInt32();
                                                         }
                                                     }
                                                 }
@@ -502,14 +499,13 @@ namespace Engine
             ByteStream buffer = new ByteStream(data);
             for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
             {
-
-                ref var with_1 = ref MapNpc[i];
-                with_1.Num = buffer.ReadInt32();
-                with_1.X = (byte)buffer.ReadInt32();
-                with_1.Y = (byte)buffer.ReadInt32();
-                with_1.Dir = (byte)buffer.ReadInt32();
-                with_1.Vital[(byte)Enums.VitalType.HP] = buffer.ReadInt32();
-                with_1.Vital[(byte)Enums.VitalType.MP] = buffer.ReadInt32();
+                
+                MapNpc[i].Num = buffer.ReadInt32();
+                MapNpc[i].X = (byte)buffer.ReadInt32();
+                MapNpc[i].Y = (byte)buffer.ReadInt32();
+                MapNpc[i].Dir = (byte)buffer.ReadInt32();
+                MapNpc[i].Vital[(byte)Enums.VitalType.HP] = buffer.ReadInt32();
+                MapNpc[i].Vital[(byte)Enums.VitalType.MP] = buffer.ReadInt32();
 
             }
 
@@ -521,14 +517,13 @@ namespace Engine
             int npcNum = 0;
             ByteStream buffer = new ByteStream(data);
             npcNum = buffer.ReadInt32();
-
-            ref var with_1 = ref MapNpc[npcNum];
-            with_1.Num = buffer.ReadInt32();
-            with_1.X = (byte)buffer.ReadInt32();
-            with_1.Y = (byte)buffer.ReadInt32();
-            with_1.Dir = (byte)buffer.ReadInt32();
-            with_1.Vital[(byte)Enums.VitalType.HP] = buffer.ReadInt32();
-            with_1.Vital[(byte)Enums.VitalType.MP] = buffer.ReadInt32();
+            
+            MapNpc[npcNum].Num = buffer.ReadInt32();
+            MapNpc[npcNum].X = (byte)buffer.ReadInt32();
+            MapNpc[npcNum].Y = (byte)buffer.ReadInt32();
+            MapNpc[npcNum].Dir = (byte)buffer.ReadInt32();
+            MapNpc[npcNum].Vital[(byte)Enums.VitalType.HP] = buffer.ReadInt32();
+            MapNpc[npcNum].Vital[(byte)Enums.VitalType.MP] = buffer.ReadInt32();
 
             buffer.Dispose();
         }
@@ -576,7 +571,7 @@ namespace Engine
 
             ByteStream buffer = new ByteStream(4);
 
-            buffer.WriteInt32((System.Int32)Packets.ClientPackets.CRequestNewMap);
+            buffer.WriteInt32((Int32)Packets.ClientPackets.CRequestNewMap);
             buffer.WriteInt32(C_Player.GetPlayerDir(C_Variables.Myindex));
 
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
@@ -588,7 +583,7 @@ namespace Engine
         {
             ByteStream buffer = new ByteStream(4);
 
-            buffer.WriteInt32((System.Int32)Packets.ClientPackets.CRequestEditMap);
+            buffer.WriteInt32((Int32)Packets.ClientPackets.CRequestEditMap);
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 
             buffer.Dispose();
@@ -661,65 +656,63 @@ namespace Engine
             {
                 for (i = 1; i <= Map.EventCount; i++)
                 {
-                    ref var with_1 = ref Map.Events[i];
-                    buffer.WriteString(System.Convert.ToString(with_1.Name.Trim()));
-                    buffer.WriteInt32(System.Convert.ToInt32(with_1.Globals));
-                    buffer.WriteInt32(System.Convert.ToInt32(with_1.X));
-                    buffer.WriteInt32(System.Convert.ToInt32(with_1.Y));
-                    buffer.WriteInt32(System.Convert.ToInt32(with_1.PageCount));
+                    buffer.WriteString(Map.Events[i].Name.Trim());
+                    buffer.WriteInt32(Map.Events[i].Globals);
+                    buffer.WriteInt32(Map.Events[i].X);
+                    buffer.WriteInt32(Map.Events[i].Y);
+                    buffer.WriteInt32(Map.Events[i].PageCount);
                     if (Map.Events[i].PageCount > 0)
                     {
                         for (x = 1; x <= Map.Events[i].PageCount; x++)
                         {
-                            ref var with_2 = ref Map.Events[i].Pages[x];
-                            buffer.WriteInt32(with_2.ChkVariable);
-                            buffer.WriteInt32(with_2.Variableindex);
-                            buffer.WriteInt32(with_2.VariableCondition);
-                            buffer.WriteInt32(with_2.VariableCompare);
-                            buffer.WriteInt32(with_2.ChkSwitch);
-                            buffer.WriteInt32(with_2.Switchindex);
-                            buffer.WriteInt32(with_2.SwitchCompare);
-                            buffer.WriteInt32(with_2.ChkHasItem);
-                            buffer.WriteInt32(with_2.HasItemindex);
-                            buffer.WriteInt32(with_2.HasItemAmount);
-                            buffer.WriteInt32(with_2.ChkSelfSwitch);
-                            buffer.WriteInt32(with_2.SelfSwitchindex);
-                            buffer.WriteInt32(with_2.SelfSwitchCompare);
-                            buffer.WriteInt32(with_2.GraphicType);
-                            buffer.WriteInt32(with_2.Graphic);
-                            buffer.WriteInt32(with_2.GraphicX);
-                            buffer.WriteInt32(with_2.GraphicY);
-                            buffer.WriteInt32(with_2.GraphicX2);
-                            buffer.WriteInt32(with_2.GraphicY2);
-                            buffer.WriteInt32(with_2.MoveType);
-                            buffer.WriteInt32(with_2.MoveSpeed);
-                            buffer.WriteInt32(with_2.MoveFreq);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].ChkVariable);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].Variableindex);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].VariableCondition);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].VariableCompare);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].ChkSwitch);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].Switchindex);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].SwitchCompare);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].ChkHasItem);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].HasItemindex);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].HasItemAmount);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].ChkSelfSwitch);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].SelfSwitchindex);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].SelfSwitchCompare);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].GraphicType);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].Graphic);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].GraphicX);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].GraphicY);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].GraphicX2);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].GraphicY2);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].MoveType);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].MoveSpeed);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].MoveFreq);
                             buffer.WriteInt32(Map.Events[i].Pages[x].MoveRouteCount);
-                            buffer.WriteInt32(with_2.IgnoreMoveRoute);
-                            buffer.WriteInt32(with_2.RepeatMoveRoute);
-                            if (with_2.MoveRouteCount > 0)
+                            buffer.WriteInt32(Map.Events[i].Pages[x].IgnoreMoveRoute);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].RepeatMoveRoute);
+                            if (Map.Events[i].Pages[x].MoveRouteCount > 0)
                             {
-                                for (y = 1; y <= with_2.MoveRouteCount; y++)
+                                for (y = 1; y <= Map.Events[i].Pages[x].MoveRouteCount; y++)
                                 {
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Index);
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Data1);
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Data2);
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Data3);
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Data4);
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Data5);
-                                    buffer.WriteInt32(with_2.MoveRoute[y].Data6);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Index);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Data1);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Data2);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Data3);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Data4);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Data5);
+                                    buffer.WriteInt32(Map.Events[i].Pages[x].MoveRoute[y].Data6);
                                 }
                             }
-                            buffer.WriteInt32(with_2.WalkAnim);
-                            buffer.WriteInt32(with_2.DirFix);
-                            buffer.WriteInt32(with_2.WalkThrough);
-                            buffer.WriteInt32(with_2.ShowName);
-                            buffer.WriteInt32(with_2.Trigger);
-                            buffer.WriteInt32(with_2.CommandListCount);
-                            buffer.WriteInt32(with_2.Position);
-                            buffer.WriteInt32(with_2.Questnum);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].WalkAnim);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].DirFix);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].WalkThrough);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].ShowName);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].Trigger);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandListCount);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].Position);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].Questnum);
 
-                            buffer.WriteInt32(with_2.ChkPlayerGender);
+                            buffer.WriteInt32(Map.Events[i].Pages[x].ChkPlayerGender);
                             if (Map.Events[i].Pages[x].CommandListCount > 0)
                             {
                                 for (y = 1; y <= Map.Events[i].Pages[x].CommandListCount; y++)
@@ -730,37 +723,36 @@ namespace Engine
                                     {
                                         for (var z = 1; z <= Map.Events[i].Pages[x].CommandList[y].CommandCount; z++)
                                         {
-                                            ref var with_3 = ref Map.Events[i].Pages[x].CommandList[y].Commands[(int)z];
-                                            buffer.WriteInt32(with_3.Index);
-                                            buffer.WriteString(with_3.Text1);
-                                            buffer.WriteString(with_3.Text2);
-                                            buffer.WriteString(with_3.Text3);
-                                            buffer.WriteString(with_3.Text4);
-                                            buffer.WriteString(with_3.Text5);
-                                            buffer.WriteInt32(with_3.Data1);
-                                            buffer.WriteInt32(with_3.Data2);
-                                            buffer.WriteInt32(with_3.Data3);
-                                            buffer.WriteInt32(with_3.Data4);
-                                            buffer.WriteInt32(with_3.Data5);
-                                            buffer.WriteInt32(with_3.Data6);
-                                            buffer.WriteInt32(with_3.ConditionalBranch.CommandList);
-                                            buffer.WriteInt32(with_3.ConditionalBranch.Condition);
-                                            buffer.WriteInt32(with_3.ConditionalBranch.Data1);
-                                            buffer.WriteInt32(with_3.ConditionalBranch.Data2);
-                                            buffer.WriteInt32(with_3.ConditionalBranch.Data3);
-                                            buffer.WriteInt32(with_3.ConditionalBranch.ElseCommandList);
-                                            buffer.WriteInt32(with_3.MoveRouteCount);
-                                            if (with_3.MoveRouteCount > 0)
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Index);
+                                            buffer.WriteString(Map.Events[i].Pages[x].CommandList[y].Commands[z].Text1);
+                                            buffer.WriteString(Map.Events[i].Pages[x].CommandList[y].Commands[z].Text2);
+                                            buffer.WriteString(Map.Events[i].Pages[x].CommandList[y].Commands[z].Text3);
+                                            buffer.WriteString(Map.Events[i].Pages[x].CommandList[y].Commands[z].Text4);
+                                            buffer.WriteString(Map.Events[i].Pages[x].CommandList[y].Commands[z].Text5);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Data1);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Data2);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Data3);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Data4);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Data5);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].Data6);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.CommandList);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Condition);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data1);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data2);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data3);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.ElseCommandList);
+                                            buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount);
+                                            if (Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount > 0)
                                             {
-                                                for (var w = 1; w <= with_3.MoveRouteCount; w++)
+                                                for (var w = 1; w <= Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount; w++)
                                                 {
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Index);
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Data1);
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Data2);
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Data3);
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Data4);
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Data5);
-                                                    buffer.WriteInt32(with_3.MoveRoute[(int)w].Data6);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Index);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data1);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data2);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data3);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data4);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data5);
+                                                    buffer.WriteInt32(Map.Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data6);
                                                 }
                                             }
                                         }
@@ -776,7 +768,7 @@ namespace Engine
             data = buffer.ToArray();
 
             buffer = new ByteStream(4);
-            buffer.WriteInt32((System.Int32)Packets.ClientPackets.CSaveMap);
+            buffer.WriteInt32((Int32)Packets.ClientPackets.CSaveMap);
             buffer.WriteBlock(Compression.CompressBytes(data));
 
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
@@ -787,7 +779,7 @@ namespace Engine
         {
             ByteStream buffer = new ByteStream(4);
 
-            buffer.WriteInt32((System.Int32)Packets.ClientPackets.CMapRespawn);
+            buffer.WriteInt32((Int32)Packets.ClientPackets.CMapRespawn);
 
             C_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
             buffer.Dispose();
