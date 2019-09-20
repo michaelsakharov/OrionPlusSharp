@@ -416,3 +416,96 @@ Object name: 'System.Net.Sockets.Socket'.
    at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
    at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
 
+20/09/2019 8:43:55 AM
+System.ObjectDisposedException(0x80131622): Cannot access a disposed object.
+Object name: 'System.Net.Sockets.Socket'.
+   at System.Net.Sockets.Socket.DoBeginDisconnect(Boolean reuseSocket, DisconnectOverlappedAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+
+20/09/2019 9:01:35 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.modDatabase.SaveCharacter(Int32 index, Int32 CharNum) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1803
+   at Engine.modDatabase.SavePlayer(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1303
+   at Engine.S_Players.LeftGame(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 3389
+   at Engine.S_NetworkConfig.Socket_CrashReport(Int32 index, String err) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkConfig.cs:line 174
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1803 Filename: S_Database.cs
+Line:1303 Filename: S_Database.cs
+Line:3389 Filename: S_Players.cs
+Line:174 Filename: S_NetworkConfig.cs
+
+20/09/2019 9:09:59 AM
+System.Net.Sockets.SocketException(0x80004005): An existing connection was forcibly closed by the remote host
+   at System.Net.Sockets.Socket.BeginSend(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.SendDataTo(Int32 index, Byte[] data, Int32 head)
+   at Engine.S_NetworkConfig.SendDataToMap(Int32 mapNum, Byte[]& data, Int32 head) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkConfig.cs:line 146
+   at Engine.S_Npc.NpcMove(Int32 mapNum, Int32 MapNpcNum, Int32 Dir, Int32 Movement) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Npc.cs:line 453
+   at Engine.ModLoop.UpdateNpcAi() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Loop.cs:line 611
+   at Engine.ModLoop.ServerLoop() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Loop.cs:line 142
+   at Engine.S_General.InitServer() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_General.cs:line 277
+   at Engine.S_Console.Main() in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Console.cs:line 17
+Line:146 Filename: S_NetworkConfig.cs
+Line:453 Filename: S_Npc.cs
+Line:611 Filename: S_Loop.cs
+Line:142 Filename: S_Loop.cs
+Line:277 Filename: S_General.cs
+Line:17 Filename: S_Console.cs
+
+20/09/2019 10:32:40 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.modDatabase.ClearCharacter(Int32 index, Int32 CharNum) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1519
+   at Engine.modDatabase.ClearPlayer(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1332
+   at Engine.S_Players.LeftGame(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 3404
+   at Engine.S_NetworkConfig.Socket_CrashReport(Int32 index, String err) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkConfig.cs:line 174
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1519 Filename: S_Database.cs
+Line:1332 Filename: S_Database.cs
+Line:3404 Filename: S_Players.cs
+Line:174 Filename: S_NetworkConfig.cs
+
+20/09/2019 10:57:26 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.modDatabase.SaveCharacter(Int32 index, Int32 CharNum) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1803
+   at Engine.modDatabase.SavePlayer(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1303
+   at Engine.S_Players.LeftGame(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 3389
+   at Engine.S_NetworkConfig.Socket_CrashReport(Int32 index, String err) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkConfig.cs:line 174
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1803 Filename: S_Database.cs
+Line:1303 Filename: S_Database.cs
+Line:3389 Filename: S_Players.cs
+Line:174 Filename: S_NetworkConfig.cs
+

@@ -29,12 +29,14 @@ namespace Engine
 		internal static C_Types.MapItemRec[] MapItem = new C_Types.MapItemRec[Constants.MAX_MAP_ITEMS + 1];
 		internal static C_Types.MapNpcRec[] MapNpc = new C_Types.MapNpcRec[Constants.MAX_MAP_NPCS + 1];
 		internal static C_Types.TempTileRec[,] TempTile;
-		
-#endregion
-		
-#region DataBase
-		
-		internal static void CheckTilesets()
+
+        public static SFML.Graphics.Sprite[] mapLayers;
+
+        #endregion
+
+        #region DataBase
+
+        internal static void CheckTilesets()
 		{
 			int i = 0;
 			i = 1;
@@ -53,7 +55,10 @@ namespace Engine
 		
 		public static void ClearMap()
 		{
-			
+
+            // We are clearing the map, so lets also clear the Cache
+            mapLayers = null;
+
 			lock(MapLock)
 			{
 				Map.Name = "";
@@ -790,69 +795,127 @@ namespace Engine
 
         #region Drawing
 
+        internal static void CreateMapLayersImage()
+        {
+            if (mapLayers == null)
+            {
+                Dictionary<int, SFML.Graphics.Image> tilesets = new Dictionary<int, SFML.Graphics.Image>();
+                if (C_Graphics.NumTileSets > 0)
+                {
+                    mapLayers = new Sprite[(byte)Enums.LayerType.Mask2];
+                    for (int i = (byte)Enums.LayerType.Ground; i <= (byte)Enums.LayerType.Mask2; i++)
+                    {
+                        SFML.Graphics.Image layerImage = new SFML.Graphics.Image((uint)(Map.MaxX * 32), (uint)(Map.MaxY * 32), new SFML.Graphics.Color(0, 0, 0, 0));
+                        for (int x = 0; x < Map.MaxX; x++)
+                        {
+                            for (int y = 0; y < Map.MaxY; y++)
+                            {
+                                // skip tile if tileset isn't set
+                                if (Map.Tile[x, y].Layer[i].Tileset > 0 && Map.Tile[x, y].Layer[i].Tileset <= C_Graphics.NumTileSets)
+                                {
+                                    if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateNormal)
+                                    {
+                                        if (!tilesets.ContainsKey(Map.Tile[x, y].Layer[i].Tileset))
+                                        {
+                                            tilesets.Add(Map.Tile[x, y].Layer[i].Tileset, new SFML.Graphics.Image(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + Map.Tile[x, y].Layer[i].Tileset + C_Constants.GfxExt));
+                                        }
 
-        // I could have used Tuples but im lazy, The first int is LayerNum second is X third is Y and the Image is the actual Autotile Tile
-        public static Dictionary<Tuple<int, int, int>, SFML.Graphics.Sprite> autoTileCache = new Dictionary<Tuple<int, int, int>, SFML.Graphics.Sprite>();
-
-        internal static void DrawMapTile(int x, int y)
+                                        //Add Tile to LayerImage
+                                        for (int xx = 0; xx < 32; xx++)
+                                        {
+                                            for (int yy = 0; yy < 32; yy++)
+                                            {
+                                                SFML.Graphics.Color color = new SFML.Graphics.Color(tilesets[Map.Tile[x, y].Layer[i].Tileset].GetPixel((uint)((Map.Tile[x, y].Layer[i].X * 32) + xx), (uint)((Map.Tile[x, y].Layer[i].Y * 32) + yy)));
+                                                layerImage.SetPixel((uint)(x * 32 + xx), (uint)(y * 32 + yy), color);
+                                            }
+                                        }
+                                    }
+                                    else if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateAutotile)
+                                    {
+                                        if (Map.Tile[x, y].Layer[i].AutoTile == 1 || Map.Tile[x, y].Layer[i].AutoTile == 4)
+                                        {
+                                            if (C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].IsLoaded == false)
+                                            {
+                                                C_Graphics.LoadTexture(Map.Tile[x, y].Layer[i].Tileset, 1);
+                                            }
+                                            SFML.Graphics.Image autotile = C_AutoTiles.CreateAndReturnAutoTileImage(i, x, y); // This isnt an animated tile, So we can cache it
+                                            //Add Tile to LayerImage
+                                            for (int xx = 0; xx < 32; xx++)
+                                            {
+                                                for (int yy = 0; yy < 32; yy++)
+                                                {
+                                                    SFML.Graphics.Color color = new SFML.Graphics.Color(autotile.GetPixel((uint)(xx), (uint)(yy)));
+                                                    layerImage.SetPixel((uint)(x * 32 + xx), (uint)(y * 32 + yy), color);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        mapLayers[i - 1] = new Sprite(new Texture(layerImage));
+                    }
+                }
+            }
+        }
+        
+        internal static void DrawMapTiles()
 		{
-			if (C_Variables.GettingMap)
+            if (C_Variables.GettingMap)
 			{
-                autoTileCache.Clear();
+                mapLayers = null;
                 return;
             }
             if (C_Variables.MapData == false)
             {
-                autoTileCache.Clear();
+                mapLayers = null;
                 return;
             }
             if (ReferenceEquals(Map.Tile, null))
             {
-                autoTileCache.Clear();
-                return;
-            }
-            if (ReferenceEquals(Map.Tile[x, y].Layer, null))
-            {
-                autoTileCache.Clear();
+                mapLayers = null;
                 return;
             }
 
-            int i = 0;
-            Rectangle srcrect = new Rectangle(0, 0, 0, 0);
-
-            for (i = (byte)Enums.LayerType.Ground; i <= (byte)Enums.LayerType.Mask2; i++)
+            for (int i = (byte)Enums.LayerType.Ground; i <= (byte)Enums.LayerType.Mask2; i++)
 			{
-				// skip tile if tileset isn't set
-				if (Map.Tile[x, y].Layer[i].Tileset > 0 && Map.Tile[x, y].Layer[i].Tileset <= C_Graphics.NumTileSets)
-				{
-					if (C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].IsLoaded == false)
-					{
-						C_Graphics.LoadTexture(Map.Tile[x, y].Layer[i].Tileset, (byte) 1);
-					}
-                    // we use it, lets update timer
-                    C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].TextureTimer = C_General.GetTickCount() + 100000;
-                    if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateNormal)
-                    {
-                        srcrect.X = (Map.Tile[x, y].Layer[i].X * 32);
-                        srcrect.Y = (Map.Tile[x, y].Layer[i].Y * 32);
-                        srcrect.Width = 32;
-                        srcrect.Height = 32;
+                
+                // Render the normal Ground first
+                C_Graphics.RenderSprite(mapLayers[i - 1], C_Graphics.GameWindow, C_Graphics.ConvertMapX(0), C_Graphics.ConvertMapY(0), 0, 0, (C_Maps.Map.MaxX * 32), (C_Maps.Map.MaxY * 32));
 
-                        C_Graphics.RenderSprite(C_Graphics.TileSetSprite[Map.Tile[x, y].Layer[i].Tileset], C_Graphics.GameWindow, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY), srcrect.X, srcrect.Y, srcrect.Width, srcrect.Height);
-
-                    }
-                    else if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateAutotile)
+                for (int x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
+                {
+                    for (int y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
                     {
-                        if (Map.Tile[x, y].Layer[i].AutoTile == 1 || Map.Tile[x, y].Layer[i].AutoTile == 4)
+                        if (C_Graphics.IsValidMapPoint(x, y))
                         {
-                            C_AutoTiles.CreateAndRenderAutoTileImage(i, x, y); // This isnt an animated tile, So we can cache it
-                            return;
+                            if (Map.Tile[x, y].Layer == null)
+                            {
+                                return;
+                            }
+                            // skip tile if tileset isn't set
+                            if (Map.Tile[x, y].Layer[i].Tileset > 0 && Map.Tile[x, y].Layer[i].Tileset <= C_Graphics.NumTileSets)
+                            {
+                                if (Map.Tile[x, y].Layer[i].AutoTile == 1 || Map.Tile[x, y].Layer[i].AutoTile == 4)
+                                {
+                                    return;
+                                }
+                                if (C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].IsLoaded == false)
+                                {
+                                    C_Graphics.LoadTexture(Map.Tile[x, y].Layer[i].Tileset, 1);
+                                }
+                                // we use it, lets update timer
+                                C_Graphics.TileSetTextureInfo[Map.Tile[x, y].Layer[i].Tileset].TextureTimer = C_General.GetTickCount() + 100000;
+                                if (C_AutoTiles.Autotile[x, y].Layer[i].RenderState == C_AutoTiles.RenderStateAutotile)
+                                {
+                                    // Draw autotiles
+                                    C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY), 1, x, y, 0, false);
+                                    C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY), 2, x, y, 0, false);
+                                    C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 3, x, y, 0, false);
+                                    C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 4, x, y, 0, false);
+                                }
+                            }
                         }
-                        // Draw autotiles
-                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY), 1, x, y, 0, false);
-                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY), 2, x, y, 0, false);
-                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 3, x, y, 0, false);
-                        C_AutoTiles.DrawAutoTile(i, C_Graphics.ConvertMapX(x * C_Constants.PicX) + 16, C_Graphics.ConvertMapY(y * C_Constants.PicY) + 16, 4, x, y, 0, false);
                     }
 				}
 			}

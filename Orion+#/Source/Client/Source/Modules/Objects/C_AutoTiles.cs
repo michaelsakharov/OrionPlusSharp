@@ -295,8 +295,6 @@ namespace Engine
             // For simplicity's sake we cache all subtile SOURCE positions in to an array.
             // We also give letters to each subtile for easy rendering tweaks. ;]
             // First, we need to re-size the array
-            
-            C_Maps.autoTileCache.Clear();
 
             Autotile = new C_AutoTiles.AutotileRec[C_Maps.Map.MaxX + 1, C_Maps.Map.MaxY + 1];
 			for (x = 0; x <= C_Maps.Map.MaxX; x++)
@@ -1250,24 +1248,85 @@ namespace Engine
 
         internal static void CreateAndRenderAutoTileImage(int layerNum, int x, int y)
         {
-            Tuple<int, int, int> key = new Tuple<int, int, int>(layerNum, x, y);
-            if (!(C_Maps.autoTileCache.ContainsKey(key)))
-            {
+            //Tuple<int, int, int> key = new Tuple<int, int, int>(layerNum, x, y);
+            //if (!(C_Maps.autoTileCache.ContainsKey(key)))
+            //{
+            //    int yOffset = 0;
+            //    
+            //    if (C_Maps.Map.Tile[x, y].Layer[layerNum].AutoTile == AutotileCliff)
+            //    {
+            //        yOffset = -32;
+            //    }
+            //    
+            //    // Create the Image
+            //    Image topLeft = ImageFromTilesetSection(x, y, layerNum, 1, yOffset);
+            //    Image topRight = ImageFromTilesetSection(x, y, layerNum, 2, yOffset);
+            //    Image bottomLeft = ImageFromTilesetSection(x, y, layerNum, 3, yOffset);
+            //    Image bottomRight = ImageFromTilesetSection(x, y, layerNum, 4, yOffset);
+            //    
+            //    Color[,] tile = new Color[32, 32];
+            //    
+            //    // Um honestly idk why Tile wants to be y, x rather then x, y
+            //    // And in general something is very off about the order of things.. it works though
+            //    for (uint px = 0; px < 32; px++)
+            //    {
+            //        for (uint py = 0; py < 32; py++)
+            //        {
+            //            if (py < 16)
+            //            {
+            //                if (px < 16)
+            //                {
+            //                    tile[py, px] = topLeft.GetPixel(px, py);
+            //                }
+            //                else
+            //                {
+            //                    tile[py, px] = topRight.GetPixel(px - 16, py);
+            //                }
+            //            }
+            //            else 
+            //            {
+            //    
+            //                if (px < 16)
+            //                {
+            //                    tile[py, px] = bottomLeft.GetPixel(px, py - 16);
+            //                }
+            //                else
+            //                {
+            //                    tile[py, px] = bottomRight.GetPixel(px - 16, py - 16);
+            //                }
+            //            }
+            //        }
+            //    }
+            //    
+            //    C_Maps.autoTileCache.Add(key, new Sprite(new Texture(new Image(tile))));
+            //    
+            //    // We have the tile now se Render it
+            //    C_Graphics.RenderSpriteSimple(C_Maps.autoTileCache[key], C_Graphics.GameWindow, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY));
+            //}
+            //else
+            //{
+            //    // We already have the Tile so just Render it
+            //    C_Graphics.RenderSpriteSimple(C_Maps.autoTileCache[key], C_Graphics.GameWindow, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY));
+            //}
+        }
+
+        internal static Image CreateAndReturnAutoTileImage(int layerNum, int x, int y)
+        {
                 int yOffset = 0;
-                
+
                 if (C_Maps.Map.Tile[x, y].Layer[layerNum].AutoTile == AutotileCliff)
                 {
                     yOffset = -32;
                 }
-                
+
                 // Create the Image
                 Image topLeft = ImageFromTilesetSection(x, y, layerNum, 1, yOffset);
                 Image topRight = ImageFromTilesetSection(x, y, layerNum, 2, yOffset);
                 Image bottomLeft = ImageFromTilesetSection(x, y, layerNum, 3, yOffset);
                 Image bottomRight = ImageFromTilesetSection(x, y, layerNum, 4, yOffset);
-                
+
                 Color[,] tile = new Color[32, 32];
-                
+
                 // Um honestly idk why Tile wants to be y, x rather then x, y
                 // And in general something is very off about the order of things.. it works though
                 for (uint px = 0; px < 32; px++)
@@ -1285,9 +1344,9 @@ namespace Engine
                                 tile[py, px] = topRight.GetPixel(px - 16, py);
                             }
                         }
-                        else 
+                        else
                         {
-                
+
                             if (px < 16)
                             {
                                 tile[py, px] = bottomLeft.GetPixel(px, py - 16);
@@ -1299,17 +1358,7 @@ namespace Engine
                         }
                     }
                 }
-                
-                C_Maps.autoTileCache.Add(key, new Sprite(new Texture(new Image(tile))));
-                
-                // We have the tile now se Render it
-                C_Graphics.RenderSpriteSimple(C_Maps.autoTileCache[key], C_Graphics.GameWindow, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY));
-            }
-            else
-            {
-                // We already have the Tile so just Render it
-                C_Graphics.RenderSpriteSimple(C_Maps.autoTileCache[key], C_Graphics.GameWindow, C_Graphics.ConvertMapX(x * C_Constants.PicX), C_Graphics.ConvertMapY(y * C_Constants.PicY));
-            }
+                return new Image(tile);
         }
 
         internal static Image ImageFromTilesetSection(int x, int y, int layerNum, int quarterNum, int yOffset)
@@ -1319,6 +1368,7 @@ namespace Engine
             {
                 for (int py = 0; py < 16; py++)
                 {
+                    //pixels[py, px] = Color.Cyan;
                     pixels[py, px] = C_Graphics.TileSetImage[C_Maps.Map.Tile[x, y].Layer[layerNum].Tileset].GetPixel((uint)(Autotile[x, y].Layer[layerNum].SrcX[quarterNum] + px), (uint)((Autotile[x, y].Layer[layerNum].SrcY[quarterNum] + yOffset) + py));
                 }
             }

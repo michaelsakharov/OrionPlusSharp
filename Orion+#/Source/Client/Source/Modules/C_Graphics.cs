@@ -2083,20 +2083,12 @@ namespace Engine
 			{
                 if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
                 {
-                    for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right + 1; x++)
-                    {
-                        for (y = C_Variables.TileView.Top; y <= C_Variables.TileView.Bottom + 1; y++)
-                        {
-                            if (IsValidMapPoint(x, y))
-                            {
-                                C_Maps.DrawMapTile(x, y);
-                            }
-                        }
-                    }
+                    C_Maps.CreateMapLayersImage();
+                    C_Maps.DrawMapTiles();
                 }
                 else
                 {
-                    C_Maps.autoTileCache.Clear();
+                    C_Maps.mapLayers = null;
                 }
             }
 			

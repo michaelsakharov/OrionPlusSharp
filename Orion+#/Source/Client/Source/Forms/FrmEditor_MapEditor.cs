@@ -1122,6 +1122,10 @@ namespace Engine
             {
                 return;
             }
+
+            //We are about to edit the ground so lets Preper to re-render it
+            C_Maps.mapLayers = null;
+
             if (Button == (int)MouseButtons.Left)
             {
                 if (ReferenceEquals(tabpages.SelectedTab, tpTiles))
@@ -1376,6 +1380,9 @@ namespace Engine
             int x2 = 0;
             int y2 = 0;
 
+            //We are about to edit the ground so lets Preper to re-render it
+            C_Maps.mapLayers = null;
+
             if (theAutotile > 0)
             {
                 ref var with_1 = ref C_Maps.Map.Tile[X, Y];
@@ -1464,10 +1471,14 @@ namespace Engine
             int Y = 0;
             int CurLayer = 0;
 
-            CurLayer = (int)(cmbLayers.SelectedIndex + 1);
+            CurLayer = (cmbLayers.SelectedIndex + 1);
 
             if (Interaction.MsgBox("Are you sure you wish to fill this layer?", Microsoft.VisualBasic.Constants.vbYesNo, "Map Editor") == Microsoft.VisualBasic.Constants.vbYes)
             {
+
+                //We are about to edit the ground so lets Preper to re-render it
+                C_Maps.mapLayers = null;
+
                 if (theAutotile > 0)
                 {
                     for (X = 0; X <= C_Maps.Map.MaxX; X++)
