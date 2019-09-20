@@ -368,6 +368,11 @@ namespace Engine
 			int returnValue = 0;
 			int i = 0;
 			
+            if(recipeName == null)
+            {
+                return 0;
+            }
+
 			for (i = 1; i <= Constants.MAX_RECIPE; i++)
 			{
 				if (Recipe[i].Name != null && Recipe[i].Name.Trim() == recipeName.Trim())
@@ -386,9 +391,17 @@ namespace Engine
 			int y = 0;
 			Rectangle rec = new Rectangle();
 			int pgbvalue = 0;
-			
-			//first render panel
-			C_Graphics.RenderSprite(C_Graphics.CraftSprite, C_Graphics.GameWindow, C_UpdateUI.CraftPanelX, C_UpdateUI.CraftPanelY, 0, 0, C_Graphics.CraftGfxInfo.Width, C_Graphics.CraftGfxInfo.Height);
+
+            for (i = 1; i <= Constants.MAX_RECIPE; i++)
+            {
+                if (RecipeNames[i] == null)
+                {
+                    RecipeNames[i] = "";
+                }
+            }
+
+            //first render panel
+            C_Graphics.RenderSprite(C_Graphics.CraftSprite, C_Graphics.GameWindow, C_UpdateUI.CraftPanelX, C_UpdateUI.CraftPanelY, 0, 0, C_Graphics.CraftGfxInfo.Width, C_Graphics.CraftGfxInfo.Height);
 			
 			y = 10;
 			
@@ -397,18 +410,18 @@ namespace Engine
 			{
 				if (RecipeNames[i].Trim().Length > 0)
 				{
-					C_Text.DrawText(C_UpdateUI.CraftPanelX + 12, C_UpdateUI.CraftPanelY + y, RecipeNames[i].Trim(), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, C_Graphics.GameWindow);
-					y = y + 20;
+                    C_Text.DrawText(C_UpdateUI.CraftPanelX + 12, C_UpdateUI.CraftPanelY + y, RecipeNames[i].Trim(), SFML.Graphics.Color.White, SFML.Graphics.Color.Black, C_Graphics.GameWindow);
+                    y = y + 20;
 				}
 			}
 			
 			//progress bar
-			pgbvalue = System.Convert.ToInt32(((double) CraftProgressValue / 100) * 100);
+			pgbvalue = (int)(((double) CraftProgressValue / 100) * 100);
 			
 			rec.Y = 0;
 			rec.Height = C_Graphics.ProgBarGfxInfo.Height;
 			rec.X = 0;
-			rec.Width = System.Convert.ToInt32((double) pgbvalue * C_Graphics.ProgBarGfxInfo.Width / 100);
+			rec.Width = (int)((double) pgbvalue * C_Graphics.ProgBarGfxInfo.Width / 100);
 			
 			C_Graphics.RenderSprite(C_Graphics.ProgBarSprite, C_Graphics.GameWindow, C_UpdateUI.CraftPanelX + 410, C_UpdateUI.CraftPanelY + 417, rec.X, rec.Y, rec.Width, rec.Height);
 			
@@ -430,10 +443,9 @@ namespace Engine
 				{
 					C_Graphics.LoadTexture(PicProductindex, (byte) 4);
 				}
-				
-				//seeying we still use it, lets update timer
-				ref var with_2 = ref C_Graphics.ItemsGfxInfo[PicProductindex];
-				with_2.TextureTimer = C_General.GetTickCount() + 100000;
+
+                //seeying we still use it, lets update timer
+                C_Graphics.ItemsGfxInfo[PicProductindex].TextureTimer = C_General.GetTickCount() + 100000;
 				
 				C_Graphics.RenderSprite(C_Graphics.ItemsSprite[PicProductindex], C_Graphics.GameWindow, C_UpdateUI.CraftPanelX + 267, C_UpdateUI.CraftPanelY + 20, 0, 0, C_Graphics.ItemsGfxInfo[PicProductindex].Width, C_Graphics.ItemsGfxInfo[PicProductindex].Height);
 				
@@ -476,12 +488,12 @@ namespace Engine
 			
 			for (var i = 1; i <= Constants.MAX_RECIPE; i++)
 			{
-				RecipeNames[(int) i] = "";
+				RecipeNames[i] = "";
 			}
 			
 			CraftProgressValue = 0;
 			
-			CraftAmountValue = (byte) 1;
+			CraftAmountValue = 1;
 			
 			PicProductindex = 0;
 			LblProductNameText = Strings.Get("crafting", "noneselected");
