@@ -551,58 +551,61 @@ namespace Engine
 			if (C_EventSystem.InitEventEditorForm == true)
 			{
 				FrmEditor_Events.Default.InitEventEditorForm();
-				
-				// populate form
-				// set the tabs
-				FrmEditor_Events.Default.tabPages.TabPages.Clear();
-				
-				for (var i = 1; i <= C_EventSystem.TmpEvent.PageCount; i++)
-				{
-					FrmEditor_Events.Default.tabPages.TabPages.Add(Conversion.Str(i));
-				}
-				// items
-				FrmEditor_Events.Default.cmbHasItem.Items.Clear();
-				FrmEditor_Events.Default.cmbHasItem.Items.Add("None");
-				for (var i = 1; i <= Constants.MAX_ITEMS; i++)
-				{
-					FrmEditor_Events.Default.cmbHasItem.Items.Add(i + ": " + Microsoft.VisualBasic.Strings.Trim(Types.Item[(int) i].Name));
-				}
-				// variables
-				FrmEditor_Events.Default.cmbPlayerVar.Items.Clear();
-				FrmEditor_Events.Default.cmbPlayerVar.Items.Add("None");
-				for (var i = 1; i <= C_EventSystem.MaxVariables; i++)
-				{
-					FrmEditor_Events.Default.cmbPlayerVar.Items.Add(i +". " + C_EventSystem.Variables[(int) i]);
-				}
-				// variables
-				FrmEditor_Events.Default.cmbPlayerSwitch.Items.Clear();
-				FrmEditor_Events.Default.cmbPlayerSwitch.Items.Add("None");
-				for (var i = 1; i <= C_EventSystem.MaxSwitches; i++)
-				{
-					FrmEditor_Events.Default.cmbPlayerSwitch.Items.Add(i +". " + C_EventSystem.Switches[(int) i]);
-				}
-				// name
-				FrmEditor_Events.Default.txtName.Text = C_EventSystem.TmpEvent.Name;
-				// enable delete button
-				if (C_EventSystem.TmpEvent.PageCount > 1)
-				{
-					FrmEditor_Events.Default.btnDeletePage.Enabled = true;
-				}
-				else
-				{
-					FrmEditor_Events.Default.btnDeletePage.Enabled = false;
-				}
-				FrmEditor_Events.Default.btnPastePage.Enabled = false;
-				// Load page 1 to start off with
-				C_EventSystem.CurPageNum = 1;
-				C_EventSystem.EventEditorLoadPage(C_EventSystem.CurPageNum);
-				
-				FrmEditor_Events.Default.nudShowTextFace.Maximum = C_Graphics.NumFaces;
-				FrmEditor_Events.Default.nudShowChoicesFace.Maximum = C_Graphics.NumFaces;
-				// show the editor
-				FrmEditor_Events.Default.Show();
-				
-				C_EventSystem.InitEventEditorForm = false;
+
+                // populate form
+                // set the tabs
+                if (FrmEditor_Events.Default.tabPages != null && FrmEditor_Events.Default.tabPages.TabPages != null)
+                {
+                    FrmEditor_Events.Default.tabPages.TabPages.Clear();
+
+                    for (var i = 1; i <= C_EventSystem.TmpEvent.PageCount; i++)
+                    {
+                        FrmEditor_Events.Default.tabPages.TabPages.Add(Conversion.Str(i));
+                    }
+                    // items
+                    FrmEditor_Events.Default.cmbHasItem.Items.Clear();
+                    FrmEditor_Events.Default.cmbHasItem.Items.Add("None");
+                    for (var i = 1; i <= Constants.MAX_ITEMS; i++)
+                    {
+                        FrmEditor_Events.Default.cmbHasItem.Items.Add(i + ": " + Microsoft.VisualBasic.Strings.Trim(Types.Item[(int)i].Name));
+                    }
+                    // variables
+                    FrmEditor_Events.Default.cmbPlayerVar.Items.Clear();
+                    FrmEditor_Events.Default.cmbPlayerVar.Items.Add("None");
+                    for (var i = 1; i <= C_EventSystem.MaxVariables; i++)
+                    {
+                        FrmEditor_Events.Default.cmbPlayerVar.Items.Add(i + ". " + C_EventSystem.Variables[(int)i]);
+                    }
+                    // variables
+                    FrmEditor_Events.Default.cmbPlayerSwitch.Items.Clear();
+                    FrmEditor_Events.Default.cmbPlayerSwitch.Items.Add("None");
+                    for (var i = 1; i <= C_EventSystem.MaxSwitches; i++)
+                    {
+                        FrmEditor_Events.Default.cmbPlayerSwitch.Items.Add(i + ". " + C_EventSystem.Switches[(int)i]);
+                    }
+                    // name
+                    FrmEditor_Events.Default.txtName.Text = C_EventSystem.TmpEvent.Name;
+                    // enable delete button
+                    if (C_EventSystem.TmpEvent.PageCount > 1)
+                    {
+                        FrmEditor_Events.Default.btnDeletePage.Enabled = true;
+                    }
+                    else
+                    {
+                        FrmEditor_Events.Default.btnDeletePage.Enabled = false;
+                    }
+                    FrmEditor_Events.Default.btnPastePage.Enabled = false;
+                    // Load page 1 to start off with
+                    C_EventSystem.CurPageNum = 1;
+                    C_EventSystem.EventEditorLoadPage(C_EventSystem.CurPageNum);
+
+                    FrmEditor_Events.Default.nudShowTextFace.Maximum = C_Graphics.NumFaces;
+                    FrmEditor_Events.Default.nudShowChoicesFace.Maximum = C_Graphics.NumFaces;
+                    // show the editor
+                    FrmEditor_Events.Default.Show();
+
+                    C_EventSystem.InitEventEditorForm = false;
+                }
 			}
 			
 			if (OptionsVisible == true)

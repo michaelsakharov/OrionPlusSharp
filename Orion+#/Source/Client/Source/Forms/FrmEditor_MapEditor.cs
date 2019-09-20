@@ -1143,24 +1143,27 @@ namespace Engine
                 return;
             }
 
-            switch (CurLayer)
+            if (C_Maps.mapLayers != null && C_Maps.fringeMapLayers != null)
             {
-                //We are about to edit the ground so lets Preper to re-render it
-                case (byte)Enums.LayerType.Ground:
-                    C_Maps.mapLayers[0] = null;
-                    break;
-                case (byte)Enums.LayerType.Mask:
-                    C_Maps.mapLayers[1] = null;
-                    break;
-                case (byte)Enums.LayerType.Mask2:
-                    C_Maps.mapLayers[2] = null;
-                    break;
-                case (byte)Enums.LayerType.Fringe:
-                    C_Maps.fringeMapLayers[0] = null;
-                    break;
-                case (byte)Enums.LayerType.Fringe2:
-                    C_Maps.fringeMapLayers[1] = null;
-                    break;
+                switch (CurLayer)
+                {
+                    //We are about to edit the ground so lets Preper to re-render it
+                    case (byte)Enums.LayerType.Ground:
+                        C_Maps.mapLayers[0] = null;
+                        break;
+                    case (byte)Enums.LayerType.Mask:
+                        C_Maps.mapLayers[1] = null;
+                        break;
+                    case (byte)Enums.LayerType.Mask2:
+                        C_Maps.mapLayers[2] = null;
+                        break;
+                    case (byte)Enums.LayerType.Fringe:
+                        C_Maps.fringeMapLayers[0] = null;
+                        break;
+                    case (byte)Enums.LayerType.Fringe2:
+                        C_Maps.fringeMapLayers[1] = null;
+                        break;
+                }
             }
 
             if (Button == (int)MouseButtons.Left)
@@ -1418,24 +1421,27 @@ namespace Engine
             int y2 = 0;
 
             //We are about to edit the ground so lets Preper to re-render it
-            switch (CurLayer)
+            if (C_Maps.mapLayers != null && C_Maps.fringeMapLayers != null)
             {
-                //We are about to edit the ground so lets Preper to re-render it
-                case (byte)Enums.LayerType.Ground:
-                    C_Maps.mapLayers[0] = null;
-                    break;
-                case (byte)Enums.LayerType.Mask:
-                    C_Maps.mapLayers[1] = null;
-                    break;
-                case (byte)Enums.LayerType.Mask2:
-                    C_Maps.mapLayers[2] = null;
-                    break;
-                case (byte)Enums.LayerType.Fringe:
-                    C_Maps.fringeMapLayers[0] = null;
-                    break;
-                case (byte)Enums.LayerType.Fringe2:
-                    C_Maps.fringeMapLayers[1] = null;
-                    break;
+                switch (CurLayer)
+                {
+                    //We are about to edit the ground so lets Preper to re-render it
+                    case (byte)Enums.LayerType.Ground:
+                        C_Maps.mapLayers[0] = null;
+                        break;
+                    case (byte)Enums.LayerType.Mask:
+                        C_Maps.mapLayers[1] = null;
+                        break;
+                    case (byte)Enums.LayerType.Mask2:
+                        C_Maps.mapLayers[2] = null;
+                        break;
+                    case (byte)Enums.LayerType.Fringe:
+                        C_Maps.fringeMapLayers[0] = null;
+                        break;
+                    case (byte)Enums.LayerType.Fringe2:
+                        C_Maps.fringeMapLayers[1] = null;
+                        break;
+                }
             }
 
             if (theAutotile > 0)
@@ -1532,24 +1538,27 @@ namespace Engine
             {
 
                 //We are about to edit the ground so lets Preper to re-render it
-                switch (CurLayer)
+                if (C_Maps.mapLayers != null && C_Maps.fringeMapLayers != null)
                 {
-                    //We are about to edit the ground so lets Preper to re-render it
-                    case (byte)Enums.LayerType.Ground:
-                        C_Maps.mapLayers[0] = null;
-                        break;
-                    case (byte)Enums.LayerType.Mask:
-                        C_Maps.mapLayers[1] = null;
-                        break;
-                    case (byte)Enums.LayerType.Mask2:
-                        C_Maps.mapLayers[2] = null;
-                        break;
-                    case (byte)Enums.LayerType.Fringe:
-                        C_Maps.fringeMapLayers[0] = null;
-                        break;
-                    case (byte)Enums.LayerType.Fringe2:
-                        C_Maps.fringeMapLayers[1] = null;
-                        break;
+                    switch (CurLayer)
+                    {
+                        //We are about to edit the ground so lets Preper to re-render it
+                        case (byte)Enums.LayerType.Ground:
+                            C_Maps.mapLayers[0] = null;
+                            break;
+                        case (byte)Enums.LayerType.Mask:
+                            C_Maps.mapLayers[1] = null;
+                            break;
+                        case (byte)Enums.LayerType.Mask2:
+                            C_Maps.mapLayers[2] = null;
+                            break;
+                        case (byte)Enums.LayerType.Fringe:
+                            C_Maps.fringeMapLayers[0] = null;
+                            break;
+                        case (byte)Enums.LayerType.Fringe2:
+                            C_Maps.fringeMapLayers[1] = null;
+                            break;
+                    }
                 }
 
                 if (theAutotile > 0)

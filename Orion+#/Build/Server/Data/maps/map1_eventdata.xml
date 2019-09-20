@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Data>
   <Events>
-    <Element Name="EventCount" Value="1" />
+    <Element Name="EventCount" Value="2" />
   </Events>
   <Event1>
     <Element Name="Name" Value="Bob" />
@@ -95,28 +95,28 @@
     <Element Name="CommandList5ParentList" Value="1" />
   </Event1Page1>
   <Event2>
-    <Element Name="Name" Value="THis Event Should happen everywhere for Everyone" />
-    <Element Name="Global" Value="1" />
-    <Element Name="x" Value="0" />
-    <Element Name="y" Value="0" />
+    <Element Name="Name" Value="bob 2.0" />
+    <Element Name="Global" Value="0" />
+    <Element Name="x" Value="11" />
+    <Element Name="y" Value="6" />
     <Element Name="PageCount" Value="1" />
   </Event2>
   <Event2Page1>
-    <Element Name="chkVariable" Value="1" />
+    <Element Name="chkVariable" Value="0" />
     <Element Name="VariableIndex" Value="0" />
     <Element Name="VariableCondition" Value="0" />
     <Element Name="VariableCompare" Value="0" />
-    <Element Name="chkSwitch" Value="1" />
-    <Element Name="SwitchIndex" Value="1" />
-    <Element Name="SwitchCompare" Value="1" />
+    <Element Name="chkSwitch" Value="0" />
+    <Element Name="SwitchIndex" Value="0" />
+    <Element Name="SwitchCompare" Value="0" />
     <Element Name="chkHasItem" Value="0" />
     <Element Name="HasItemIndex" Value="0" />
     <Element Name="HasItemAmount" Value="0" />
     <Element Name="chkSelfSwitch" Value="0" />
     <Element Name="SelfSwitchIndex" Value="0" />
     <Element Name="SelfSwitchCompare" Value="0" />
-    <Element Name="GraphicType" Value="0" />
-    <Element Name="Graphic" Value="0" />
+    <Element Name="GraphicType" Value="1" />
+    <Element Name="Graphic" Value="1" />
     <Element Name="GraphicX" Value="0" />
     <Element Name="GraphicY" Value="0" />
     <Element Name="GraphicX2" Value="0" />
@@ -131,8 +131,8 @@
     <Element Name="DirFix" Value="0" />
     <Element Name="WalkThrough" Value="0" />
     <Element Name="ShowName" Value="1" />
-    <Element Name="Trigger" Value="2" />
-    <Element Name="CommandListCount" Value="1" />
+    <Element Name="Trigger" Value="0" />
+    <Element Name="CommandListCount" Value="0" />
     <Element Name="Position" Value="0" />
     <Element Name="QuestNum" Value="0" />
     <Element Name="PlayerGender" Value="0" />

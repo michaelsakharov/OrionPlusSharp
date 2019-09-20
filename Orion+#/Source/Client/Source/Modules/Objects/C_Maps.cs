@@ -791,15 +791,27 @@ namespace Engine
 
         internal static void CreateMapLayersImage()
         {
-            if (mapLayers == null || mapLayers[0] == null || mapLayers[1] == null || mapLayers[2] == null)
+            bool update = false;
+            if(mapLayers != null)
+            {
+                foreach(Sprite s in mapLayers)
+                {
+                    if(s == null)
+                    {
+                        update = true;
+                    }
+                }
+            }
+            else
+            {
+                mapLayers = new Sprite[(byte)Enums.LayerType.Mask2];
+                update = true;
+            }
+            if (update)
             {
                 Dictionary<int, SFML.Graphics.Image> tilesets = new Dictionary<int, SFML.Graphics.Image>();
                 if (C_Graphics.NumTileSets > 0)
                 {
-                    if (mapLayers == null)
-                    {
-                        mapLayers = new Sprite[(byte)Enums.LayerType.Mask2];
-                    }
                     for (int i = (byte)Enums.LayerType.Ground; i <= (byte)Enums.LayerType.Mask2; i++)
                     {
                         if (mapLayers[i - 1] == null)
@@ -818,7 +830,7 @@ namespace Engine
                                             {
                                                 tilesets.Add(Map.Tile[x, y].Layer[i].Tileset, new SFML.Graphics.Image(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + Map.Tile[x, y].Layer[i].Tileset + C_Constants.GfxExt));
                                             }
-
+                                            
                                             //Add Tile to LayerImage
                                             for (int xx = 0; xx < 32; xx++)
                                             {
@@ -852,12 +864,11 @@ namespace Engine
                                     }
                                 }
                             }
+                            if(mapLayers == null) { mapLayers = new Sprite[(byte)Enums.LayerType.Mask2]; }
                             mapLayers[i - 1] = new Sprite(new Texture(layerImage));
-                            layerImage.Dispose();
                         }
                     }
                 }
-                tilesets.Clear();
             }
         }
 
@@ -876,6 +887,10 @@ namespace Engine
             if (ReferenceEquals(Map.Tile, null))
             {
                 mapLayers = null;
+                return;
+            }
+            if(mapLayers == null)
+            {
                 return;
             }
 
@@ -925,15 +940,27 @@ namespace Engine
 
         internal static void CreateMapFringeLayersImage()
         {
-            if (fringeMapLayers == null || fringeMapLayers[0] == null || fringeMapLayers[1] == null)
+            bool update = false;
+            if (fringeMapLayers != null)
+            {
+                foreach (Sprite s in fringeMapLayers)
+                {
+                    if (s == null)
+                    {
+                        update = true;
+                    }
+                }
+            }
+            else
+            {
+                fringeMapLayers = new Sprite[2];
+                update = true;
+            }
+            if (update)
             {
                 Dictionary<int, SFML.Graphics.Image> tilesets = new Dictionary<int, SFML.Graphics.Image>();
                 if (C_Graphics.NumTileSets > 0)
                 {
-                    if (fringeMapLayers == null)
-                    {
-                        fringeMapLayers = new Sprite[2];
-                    }
                     for (int i = (byte)Enums.LayerType.Fringe; i <= (byte)Enums.LayerType.Fringe2; i++)
                     {
                         if (fringeMapLayers[i - 4] == null)
@@ -986,12 +1013,11 @@ namespace Engine
                                     }
                                 }
                             }
+                            if (fringeMapLayers == null) { fringeMapLayers = new Sprite[2]; }
                             fringeMapLayers[i - 4] = new Sprite(new Texture(layerImage));
-                            layerImage.Dispose();
                         }
                     }
                 }
-                tilesets.Clear();
             }
         }
 
@@ -1006,6 +1032,10 @@ namespace Engine
                 return;
             }
             if (Map.Tile == null)
+            {
+                return;
+            }
+            if (fringeMapLayers == null)
             {
                 return;
             }
