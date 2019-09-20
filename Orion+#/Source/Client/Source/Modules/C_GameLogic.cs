@@ -24,13 +24,26 @@ namespace Engine
         private static int lastFrameRate;
         private static int frameRate;
 
+        public static float deltaTime;
+        public static double lastTime;
+
+        private static Stopwatch clock;
+
+        public static void DeltaTime()
+        {
+            double delta = (clock.Elapsed.TotalSeconds - lastTime);
+            lastTime = clock.Elapsed.TotalSeconds;
+
+            deltaTime = (float)delta;
+        }
+
         public static int CalculateFrameRate()
         {
-            if (System.Environment.TickCount - lastTick >= 1000)
+            if (Environment.TickCount - lastTick >= 1000)
             {
                 lastFrameRate = frameRate;
                 frameRate = 0;
-                lastTick = System.Environment.TickCount;
+                lastTick = Environment.TickCount;
             }
             frameRate++;
             return lastFrameRate;
@@ -61,8 +74,11 @@ namespace Engine
 			
 			starttime = C_General.GetTickCount();
 			FrmMenu.Default.lblNextChar.Left = C_UpdateUI.Lblnextcharleft;
-			
-			do
+            
+            clock = new Stopwatch();
+            clock.Start();
+
+            do
 			{
 				if (C_UpdateUI.GameDestroyed)
 				{
@@ -114,7 +130,7 @@ namespace Engine
 					frameTime = tick;
 					C_UpdateUI.Frmmaingamevisible = true;
 
-                    //Calculate FPS
+                    //Calculate lps
                     if (starttime < tick)
 					{
 						C_Variables.Lps = tmplps;
@@ -522,6 +538,8 @@ namespace Engine
 				}
                 
                 Application.DoEvents();
+
+                DeltaTime();
 
                 if (C_Types.Options.HighEnd == 1)
 				{
