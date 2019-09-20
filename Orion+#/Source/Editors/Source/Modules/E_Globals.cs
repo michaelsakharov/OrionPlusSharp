@@ -134,9 +134,12 @@ namespace Engine
 		internal static int EditorShop;
 		internal static Point EditorTileSelStart;
 		internal static Point EditorTileSelEnd;
-		
-		// Used for map item editor
-		internal static int ItemEditorNum;
+
+        internal static int LightRadius;
+        internal static bool LightFlicker;
+
+        // Used for map item editor
+        internal static int ItemEditorNum;
 		
 		internal static int ItemEditorValue;
 		

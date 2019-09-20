@@ -2081,7 +2081,7 @@ namespace Engine
 			// blit lower tiles
 			if (NumTileSets > 0)
 			{
-                if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
+                if (C_Maps.Map.Tile != null && C_Variables.MapData != false)
                 {
                     C_Maps.CreateMapLayersImage();
                     C_Maps.DrawMapTiles();
@@ -2141,11 +2141,6 @@ namespace Engine
 			}
 			
 			//Draw sum d00rs.
-			if (C_Variables.GettingMap)
-			{
-				return;
-			}
-
             if (C_Maps.Map.Tile != null)
             {
                 for (x = C_Variables.TileView.Left; x <= C_Variables.TileView.Right; x++)
@@ -2322,7 +2317,7 @@ namespace Engine
 			// blit out upper tiles
 			if (NumTileSets > 0)
 			{
-                if (!C_Variables.GettingMap && C_Maps.Map.Tile != null && C_Variables.MapData != false)
+                if (C_Maps.Map.Tile != null && C_Variables.MapData != false)
                 {
                     C_Maps.CreateMapFringeLayersImage();
                     C_Maps.DrawMapFringeTiles();
@@ -2466,11 +2461,6 @@ namespace Engine
 				C_EventSystem.EditorEvent_DrawGraphic();
 			}
 			
-			if (C_Variables.GettingMap)
-			{
-				return;
-			}
-			
 			//draw hp and casting bars
 			DrawBars();
 			
@@ -2551,11 +2541,6 @@ namespace Engine
 			int tmpX = 0;
 			int barWidth = 0;
 			Rectangle[] rec = new Rectangle[2];
-			
-			if (C_Variables.GettingMap)
-			{
-				return;
-			}
 			
 			// check for casting time bar
 			if (C_Variables.SkillBuffer > 0)
@@ -4165,7 +4150,10 @@ namespace Engine
 			//draw cursor
 			//DrawCursor()
 		}
-		
+
+        public static int lastLightFlicker;
+        public static Vector2f lastLightFlickerScale;
+
 		public static void DrawNight()
 		{
 			int x = 0;
@@ -4198,21 +4186,39 @@ namespace Engine
 				return;
 			}
 			
-			for (x = C_Variables.TileView.Left - 4; x <= C_Variables.TileView.Right + 5; x++)
+			for (x = C_Variables.TileView.Left - 5; x <= C_Variables.TileView.Right + 5; x++)
 			{
-				for (y = C_Variables.TileView.Top - 4; y <= C_Variables.TileView.Bottom + 5; y++)
+				for (y = C_Variables.TileView.Top - 5; y <= C_Variables.TileView.Bottom + 5; y++)
 				{
 					if (IsValidMapPoint(x, y))
 					{
                         if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
                         {
-							var x1 = ConvertMapX(x * 32) + 16 - (double) LightGfxInfo.Width / 2;
-							var y1 = ConvertMapY(y * 32) + 16 - (double) LightGfxInfo.Height / 2;
 							
 							//Create the light texture to multiply over the dark texture.
-							LightSprite.Position = new Vector2f((float) x1, (float) y1);
 							LightSprite.Color = SFML.Graphics.Color.Red;
-                            LightSprite.Scale = new Vector2f(1, 1);
+                            Vector2f scale = new Vector2f();
+                            if (C_Maps.Map.Tile[x, y].Data2 == 1)
+                            {
+                                scale = lastLightFlickerScale;
+                                if (System.Environment.TickCount - lastLightFlicker > 65)
+                                {
+                                    lastLightFlicker = System.Environment.TickCount;
+                                    // Flicker
+                                    float r = (float)RandomNumberBetween(-0.02f, 0.02f);
+                                    scale = new Vector2f(0.3f * C_Maps.Map.Tile[x, y].Data1 + r, 0.3f * C_Maps.Map.Tile[x, y].Data1 + r);
+                                    lastLightFlickerScale = scale;
+                                }
+                            }
+                            else
+                            {
+                                scale = new Vector2f(0.3f * C_Maps.Map.Tile[x, y].Data1, 0.3f * C_Maps.Map.Tile[x, y].Data1);
+                            }
+                            LightSprite.Scale = scale;
+
+                            var x1 = (ConvertMapX(x * 32) + 16 - (double)(LightGfxInfo.Width * scale.X) / 2);
+                            var y1 = (ConvertMapY(y * 32) + 16 - (double)(LightGfxInfo.Height * scale.Y) / 2);
+                            LightSprite.Position = new Vector2f((float)x1, (float)y1);
 
                             NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
 						}
@@ -4241,7 +4247,15 @@ namespace Engine
 			GameWindow.Draw(NightSprite);
 		}
 
-		public static void DrawCursor()
+        static Random flickerRandom = new Random();
+        private static double RandomNumberBetween(double minValue, double maxValue)
+        {
+            var next = flickerRandom.NextDouble();
+
+            return minValue + (next * (maxValue - minValue));
+        }
+
+        public static void DrawCursor()
 		{
 			RenderSprite(CursorSprite, GameWindow, C_Variables.CurMouseX, C_Variables.CurMouseY, 0, 0, CursorInfo.Width, CursorInfo.Height);
 		}

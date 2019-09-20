@@ -62,6 +62,11 @@ namespace Engine
             this.picBackSelect = new System.Windows.Forms.PictureBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.pnlAttributes = new System.Windows.Forms.Panel();
+            this.fraLight = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.FlickercheckBox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.fraMapWarp = new System.Windows.Forms.GroupBox();
             this.btnMapWarp = new System.Windows.Forms.Button();
             this.scrlMapWarpY = new System.Windows.Forms.HScrollBar();
@@ -212,6 +217,8 @@ namespace Engine
             this.pnlBack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBackSelect)).BeginInit();
             this.pnlAttributes.SuspendLayout();
+            this.fraLight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.fraMapWarp.SuspendLayout();
             this.fraBuyHouse.SuspendLayout();
             this.fraKeyOpen.SuspendLayout();
@@ -471,6 +478,7 @@ namespace Engine
             // 
             // pnlAttributes
             // 
+            this.pnlAttributes.Controls.Add(this.fraLight);
             this.pnlAttributes.Controls.Add(this.fraMapWarp);
             this.pnlAttributes.Controls.Add(this.fraBuyHouse);
             this.pnlAttributes.Controls.Add(this.fraKeyOpen);
@@ -486,6 +494,67 @@ namespace Engine
             this.pnlAttributes.Size = new System.Drawing.Size(502, 491);
             this.pnlAttributes.TabIndex = 12;
             this.pnlAttributes.Visible = false;
+            // 
+            // fraLight
+            // 
+            this.fraLight.Controls.Add(this.label22);
+            this.fraLight.Controls.Add(this.numericUpDown1);
+            this.fraLight.Controls.Add(this.FlickercheckBox);
+            this.fraLight.Controls.Add(this.button1);
+            this.fraLight.Location = new System.Drawing.Point(355, 251);
+            this.fraLight.Name = "fraLight";
+            this.fraLight.Size = new System.Drawing.Size(132, 113);
+            this.fraLight.TabIndex = 18;
+            this.fraLight.TabStop = false;
+            this.fraLight.Text = "Light";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(3, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(66, 13);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Light Radius";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(6, 32);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 9;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // FlickercheckBox
+            // 
+            this.FlickercheckBox.AutoSize = true;
+            this.FlickercheckBox.Checked = true;
+            this.FlickercheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FlickercheckBox.Location = new System.Drawing.Point(6, 58);
+            this.FlickercheckBox.Name = "FlickercheckBox";
+            this.FlickercheckBox.Size = new System.Drawing.Size(63, 17);
+            this.FlickercheckBox.TabIndex = 8;
+            this.FlickercheckBox.Text = "Flicker?";
+            this.FlickercheckBox.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(20, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 28);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Accept";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // fraMapWarp
             // 
@@ -1206,6 +1275,7 @@ namespace Engine
             this.optLight.TabStop = true;
             this.optLight.Text = "Light";
             this.optLight.UseVisualStyleBackColor = true;
+            this.optLight.CheckedChanged += new System.EventHandler(this.optLight_CheckedChanged);
             // 
             // optCraft
             // 
@@ -2024,6 +2094,9 @@ namespace Engine
             this.pnlBack.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBackSelect)).EndInit();
             this.pnlAttributes.ResumeLayout(false);
+            this.fraLight.ResumeLayout(false);
+            this.fraLight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.fraMapWarp.ResumeLayout(false);
             this.fraMapWarp.PerformLayout();
             this.fraBuyHouse.ResumeLayout(false);
@@ -2251,6 +2324,11 @@ namespace Engine
         internal System.Windows.Forms.HScrollBar scrlBrightness;
         internal System.Windows.Forms.Label lblBrightness;
         internal System.Windows.Forms.Label label21;
+        internal System.Windows.Forms.GroupBox fraLight;
+        internal System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        internal System.Windows.Forms.CheckBox FlickercheckBox;
+        internal System.Windows.Forms.Button button1;
     }
 	
 }

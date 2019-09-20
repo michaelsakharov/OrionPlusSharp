@@ -389,8 +389,16 @@ namespace Engine
 			}
 			
 		}
-		
-		public void ScrlMapItem_Scroll(object sender, ScrollEventArgs e)
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            E_Globals.LightRadius = (int)lightRadiusInput.Value;
+            E_Globals.LightFlicker = flickerCheckBox.Checked;
+            pnlAttributes.Visible = false;
+            fraLight.Visible = false;
+        }
+
+        public void ScrlMapItem_Scroll(object sender, ScrollEventArgs e)
 		{
 			if (Types.Item[scrlMapItem.Value].Type == (byte)Enums.ItemType.Currency || Types.Item[scrlMapItem.Value].Stackable == 1)
 			{
@@ -640,9 +648,19 @@ namespace Engine
 			fraBuyHouse.Visible = true;
 			scrlBuyHouse.Maximum = E_Housing.MAX_HOUSES;
 			scrlBuyHouse.Value = 1;
-		}
-		
-		public void ScrlBuyHouse_Scroll(object sender, ScrollEventArgs e)
+        }
+
+        private void optLight_Click(object sender, EventArgs e)
+        {
+            E_Editors.ClearAttributeDialogue();
+            pnlAttributes.Visible = true;
+            fraLight.Visible = true;
+            lightRadiusInput.Value = 1;
+            flickerCheckBox.Checked = true;
+
+        }
+
+        public void ScrlBuyHouse_Scroll(object sender, ScrollEventArgs e)
 		{
 			lblHouseName.Text = scrlBuyHouse.Value + ". " + E_Housing.HouseConfig[scrlBuyHouse.Value].ConfigName;
 		}

@@ -169,6 +169,11 @@ namespace Engine
             this.tsbScreenShot = new System.Windows.Forms.ToolStripButton();
             this.pnlBack2 = new DarkUI.Controls.DarkSectionPanel();
             this.pnlAttributes = new System.Windows.Forms.Panel();
+            this.fraLight = new System.Windows.Forms.GroupBox();
+            this.lightRadiusInput = new System.Windows.Forms.NumericUpDown();
+            this.flickerCheckBox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.fraMapWarp = new System.Windows.Forms.GroupBox();
             this.lblVisualWarp = new System.Windows.Forms.Label();
             this.btnMapWarp = new System.Windows.Forms.Button();
@@ -264,6 +269,8 @@ namespace Engine
             this.ToolStrip.SuspendLayout();
             this.pnlBack2.SuspendLayout();
             this.pnlAttributes.SuspendLayout();
+            this.fraLight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lightRadiusInput)).BeginInit();
             this.fraMapWarp.SuspendLayout();
             this.fraBuyHouse.SuspendLayout();
             this.fraKeyOpen.SuspendLayout();
@@ -769,6 +776,7 @@ namespace Engine
             this.optLight.TabIndex = 16;
             this.optLight.TabStop = true;
             this.optLight.Text = "Light";
+            this.optLight.Click += new System.EventHandler(this.optLight_Click);
             // 
             // btnClearAttribute
             // 
@@ -1837,6 +1845,7 @@ namespace Engine
             // pnlAttributes
             // 
             this.pnlAttributes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.pnlAttributes.Controls.Add(this.fraLight);
             this.pnlAttributes.Controls.Add(this.fraMapWarp);
             this.pnlAttributes.Controls.Add(this.fraBuyHouse);
             this.pnlAttributes.Controls.Add(this.fraKeyOpen);
@@ -1853,6 +1862,69 @@ namespace Engine
             this.pnlAttributes.Size = new System.Drawing.Size(709, 516);
             this.pnlAttributes.TabIndex = 11;
             this.pnlAttributes.Visible = false;
+            // 
+            // fraLight
+            // 
+            this.fraLight.Controls.Add(this.lightRadiusInput);
+            this.fraLight.Controls.Add(this.flickerCheckBox);
+            this.fraLight.Controls.Add(this.button1);
+            this.fraLight.Controls.Add(this.label1);
+            this.fraLight.ForeColor = System.Drawing.Color.LightGray;
+            this.fraLight.Location = new System.Drawing.Point(428, 299);
+            this.fraLight.Name = "fraLight";
+            this.fraLight.Size = new System.Drawing.Size(206, 125);
+            this.fraLight.TabIndex = 21;
+            this.fraLight.TabStop = false;
+            this.fraLight.Text = "Light";
+            // 
+            // lightRadiusInput
+            // 
+            this.lightRadiusInput.Location = new System.Drawing.Point(10, 38);
+            this.lightRadiusInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.lightRadiusInput.Name = "lightRadiusInput";
+            this.lightRadiusInput.Size = new System.Drawing.Size(120, 20);
+            this.lightRadiusInput.TabIndex = 9;
+            this.lightRadiusInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // flickerCheckBox
+            // 
+            this.flickerCheckBox.AutoSize = true;
+            this.flickerCheckBox.Checked = true;
+            this.flickerCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.flickerCheckBox.Location = new System.Drawing.Point(9, 64);
+            this.flickerCheckBox.Name = "flickerCheckBox";
+            this.flickerCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.flickerCheckBox.TabIndex = 8;
+            this.flickerCheckBox.Text = "Flicker?";
+            this.flickerCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(58, 91);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 28);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Accept";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Radius";
             // 
             // fraMapWarp
             // 
@@ -2502,6 +2574,9 @@ namespace Engine
             this.ToolStrip.PerformLayout();
             this.pnlBack2.ResumeLayout(false);
             this.pnlAttributes.ResumeLayout(false);
+            this.fraLight.ResumeLayout(false);
+            this.fraLight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lightRadiusInput)).EndInit();
             this.fraMapWarp.ResumeLayout(false);
             this.fraMapWarp.PerformLayout();
             this.fraBuyHouse.ResumeLayout(false);
@@ -2707,6 +2782,11 @@ namespace Engine
         internal DarkUI.Controls.DarkNumericUpDown nudBrightness;
         internal DarkUI.Controls.DarkLabel lblBrightness;
         internal DarkUI.Controls.DarkLabel darkLabel17;
+        internal GroupBox fraLight;
+        private NumericUpDown lightRadiusInput;
+        internal CheckBox flickerCheckBox;
+        internal Button button1;
+        internal Label label1;
     }
 	
 }

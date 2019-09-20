@@ -482,6 +482,26 @@ namespace Engine
             MapEditorClearAttribs();
         }
 
+        private void optLight_CheckedChanged(object sender, EventArgs e)
+        {
+            if (optLight.Checked == false)
+            {
+                return;
+            }
+
+            ClearAttributeDialogue();
+            pnlAttributes.Visible = true;
+            fraLight.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            C_Variables.MapEditorLightRadius = (int)numericUpDown1.Value;
+            C_Variables.MapEditorLightFlicker = FlickercheckBox.Checked;
+            pnlAttributes.Visible = false;
+            fraLight.Visible = false;
+        }
+
         public void ScrlNpcDir_Scroll(object sender, EventArgs e)
         {
             switch (scrlNpcDir.Value)
@@ -1150,131 +1170,131 @@ namespace Engine
                 }
                 else if (ReferenceEquals(tabpages.SelectedTab, tpAttributes))
                 {
-                    ref var with_1 = ref C_Maps.Map.Tile[C_Variables.CurX, C_Variables.CurY];
+                    ref var tileData = ref C_Maps.Map.Tile[C_Variables.CurX, C_Variables.CurY];
                     // blocked tile
                     if (optBlocked.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Blocked;
+                        tileData.Type = (byte)Enums.TileType.Blocked;
                     }
                     // warp tile
                     if (optWarp.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Warp;
-                        with_1.Data1 = C_Constants.EditorWarpMap;
-                        with_1.Data2 = C_Constants.EditorWarpX;
-                        with_1.Data3 = C_Constants.EditorWarpY;
+                        tileData.Type = (byte)Enums.TileType.Warp;
+                        tileData.Data1 = C_Constants.EditorWarpMap;
+                        tileData.Data2 = C_Constants.EditorWarpX;
+                        tileData.Data3 = C_Constants.EditorWarpY;
                     }
                     // item spawn
                     if (optItem.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Item;
-                        with_1.Data1 = C_Variables.ItemEditorNum;
-                        with_1.Data2 = C_Variables.ItemEditorValue;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Item;
+                        tileData.Data1 = C_Variables.ItemEditorNum;
+                        tileData.Data2 = C_Variables.ItemEditorValue;
+                        tileData.Data3 = 0;
                     }
                     // npc avoid
                     if (optNPCAvoid.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.NpcAvoid;
-                        with_1.Data1 = 0;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.NpcAvoid;
+                        tileData.Data1 = 0;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     // key
                     if (optKey.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Key;
-                        with_1.Data1 = C_Variables.KeyEditorNum;
-                        with_1.Data2 = C_Variables.KeyEditorTake;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Key;
+                        tileData.Data1 = C_Variables.KeyEditorNum;
+                        tileData.Data2 = C_Variables.KeyEditorTake;
+                        tileData.Data3 = 0;
                     }
                     // key open
                     if (optKeyOpen.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.KeyOpen;
-                        with_1.Data1 = C_Variables.KeyOpenEditorX;
-                        with_1.Data2 = C_Variables.KeyOpenEditorY;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.KeyOpen;
+                        tileData.Data1 = C_Variables.KeyOpenEditorX;
+                        tileData.Data2 = C_Variables.KeyOpenEditorY;
+                        tileData.Data3 = 0;
                     }
                     // resource
                     if (optResource.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Resource;
-                        with_1.Data1 = C_Variables.ResourceEditorNum;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Resource;
+                        tileData.Data1 = C_Variables.ResourceEditorNum;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     // door
                     if (optDoor.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Door;
-                        with_1.Data1 = C_Constants.EditorWarpMap;
-                        with_1.Data2 = C_Constants.EditorWarpX;
-                        with_1.Data3 = C_Constants.EditorWarpY;
+                        tileData.Type = (byte)Enums.TileType.Door;
+                        tileData.Data1 = C_Constants.EditorWarpMap;
+                        tileData.Data2 = C_Constants.EditorWarpX;
+                        tileData.Data3 = C_Constants.EditorWarpY;
                     }
                     // npc spawn
                     if (optNPCSpawn.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.NpcSpawn;
-                        with_1.Data1 = C_Variables.SpawnNpcNum;
-                        with_1.Data2 = C_Variables.SpawnNpcDir;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.NpcSpawn;
+                        tileData.Data1 = C_Variables.SpawnNpcNum;
+                        tileData.Data2 = C_Variables.SpawnNpcDir;
+                        tileData.Data3 = 0;
                     }
                     // shop
                     if (optShop.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Shop;
-                        with_1.Data1 = C_Constants.EditorShop;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Shop;
+                        tileData.Data1 = C_Constants.EditorShop;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     // bank
                     if (optBank.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Bank;
-                        with_1.Data1 = 0;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Bank;
+                        tileData.Data1 = 0;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     // heal
                     if (optHeal.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Heal;
-                        with_1.Data1 = C_Variables.MapEditorHealType;
-                        with_1.Data2 = C_Variables.MapEditorHealAmount;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Heal;
+                        tileData.Data1 = C_Variables.MapEditorHealType;
+                        tileData.Data2 = C_Variables.MapEditorHealAmount;
+                        tileData.Data3 = 0;
                     }
                     // trap
                     if (optTrap.Checked == true)
                     {
-                        with_1.Type = (byte)Enums.TileType.Trap;
-                        with_1.Data1 = C_Variables.MapEditorHealAmount;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Trap;
+                        tileData.Data1 = C_Variables.MapEditorHealAmount;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     //Housing
                     if (optHouse.Checked)
                     {
-                        with_1.Type = (byte)Enums.TileType.House;
-                        with_1.Data1 = C_Housing.HouseTileindex;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.House;
+                        tileData.Data1 = C_Housing.HouseTileindex;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     //craft tile
                     if (optCraft.Checked)
                     {
-                        with_1.Type = (byte)Enums.TileType.Craft;
-                        with_1.Data1 = 0;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Craft;
+                        tileData.Data1 = 0;
+                        tileData.Data2 = 0;
+                        tileData.Data3 = 0;
                     }
                     //light
                     if (optLight.Checked)
                     {
-                        with_1.Type = (byte)Enums.TileType.Light;
-                        with_1.Data1 = 0;
-                        with_1.Data2 = 0;
-                        with_1.Data3 = 0;
+                        tileData.Type = (byte)Enums.TileType.Light;
+                        tileData.Data1 = C_Variables.MapEditorLightRadius;
+                        tileData.Data2 = Convert.ToInt32(C_Variables.MapEditorLightFlicker);
+                        tileData.Data3 = 0;
                     }
                 }
                 else if (ReferenceEquals(tabpages.SelectedTab, tpDirBlock))
@@ -1528,6 +1548,7 @@ namespace Engine
             fraHeal.Visible = false;
             fraTrap.Visible = false;
             fraBuyHouse.Visible = false;
+            fraLight.Visible = false;
 
         }
 
@@ -1843,5 +1864,6 @@ namespace Engine
 		}
 
         #endregion
+        
     }
 }

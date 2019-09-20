@@ -1789,6 +1789,10 @@ namespace Engine
             }
         }
 
+
+        public static int lastLightFlicker;
+        public static Vector2f lastLightFlickerScale;
+
         public static void DrawNight()
         {
             int x = 0;
@@ -1821,29 +1825,41 @@ namespace Engine
                 return;
             }
 
-            for (x = E_Globals.TileView.Left; x <= E_Globals.TileView.Right + 1; x++)
+            for (x = E_Globals.TileView.Left; x <= E_Globals.TileView.Right + 4; x++)
             {
-                for (y = E_Globals.TileView.Top; y <= E_Globals.TileView.Bottom + 1; y++)
+                for (y = E_Globals.TileView.Top; y <= E_Globals.TileView.Bottom + 4; y++)
                 {
                     if (IsValidMapPoint(x, y))
                     {
                         if (E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
                         {
-                            var x1 = ConvertMapX(x * 32) + 16 - (double)LightGfxInfo.width / 2;
-                            var y1 = ConvertMapY(y * 32) + 16 - (double)LightGfxInfo.height / 2;
 
                             //Create the light texture to multiply over the dark texture.
-                            LightSprite.Position = new Vector2f((float)x1, (float)y1);
                             LightSprite.Color = SFML.Graphics.Color.Red;
-                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+                            Vector2f scale = new Vector2f();
+                            if (E_Types.Map.Tile[x, y].Data2 == 1)
+                            {
+                                scale = lastLightFlickerScale;
+                                if (System.Environment.TickCount - lastLightFlicker > 65)
+                                {
+                                    lastLightFlicker = System.Environment.TickCount;
+                                    // Flicker
+                                    float r = (float)RandomNumberBetween(-0.02f, 0.02f);
+                                    scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1 + r, 0.3f * E_Types.Map.Tile[x, y].Data1 + r);
+                                    lastLightFlickerScale = scale;
+                                }
+                            }
+                            else
+                            {
+                                scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1, 0.3f * E_Types.Map.Tile[x, y].Data1);
+                            }
+                            LightSprite.Scale = scale;
 
-                            //'Create the light texture to multiply over the dark texture.
-                            //LightSprite.Position = New Vector2f(X1, Y1)
-                            //LightAreaSprite.Position = New Vector2f(X1, Y1)
-                            //'LightSprite.Color = New SFML.Graphics.Color(SFML.Graphics.Color.Red)
-                            //'LightAreaSprite.Color = New SFML.Graphics.Color(SFML.Graphics.Color.Red)
-                            //NightGfx.Draw(LightSprite, New RenderStates(BlendMode.Multiply))
-                            //NightGfx.Draw(LightAreaSprite, New RenderStates(BlendMode.Multiply))
+                            var x1 = (ConvertMapX(x * 32) + 16 - (double)(LightGfxInfo.width * scale.X) / 2);
+                            var y1 = (ConvertMapY(y * 32) + 16 - (double)(LightGfxInfo.height * scale.Y) / 2);
+                            LightSprite.Position = new Vector2f((float)x1, (float)y1);
+
+                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
                         }
                     }
                 }
@@ -1853,6 +1869,14 @@ namespace Engine
 
             NightGfx.Display();
             GameWindow.Draw(NightSprite);
+        }
+
+        static Random flickerRandom = new Random();
+        private static double RandomNumberBetween(double minValue, double maxValue)
+        {
+            var next = flickerRandom.NextDouble();
+
+            return minValue + (next * (maxValue - minValue));
         }
 
         internal static void EditorMap_DrawMapItem()

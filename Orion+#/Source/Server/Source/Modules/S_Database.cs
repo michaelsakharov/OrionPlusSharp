@@ -1708,6 +1708,7 @@ namespace Engine
 
         public static void SaveCharacter(int index, int CharNum)
         {
+
             string filename = Application.StartupPath + @"\Data\Accounts\" + modTypes.Player[index].Login.Trim() + @"\" + CharNum + ".bin";
 
             ByteStream writer = new ByteStream(100);

@@ -168,6 +168,10 @@ namespace Engine
 		
 		internal static int MapEditorHealAmount;
 		internal static int MapEditorSlideDir;
+
+        // Used for map editor light tiles
+		internal static int MapEditorLightRadius;
+		internal static bool MapEditorLightFlicker;
 		
 		// Maximum classes
 		internal static byte MaxClasses;
