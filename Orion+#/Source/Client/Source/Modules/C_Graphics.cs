@@ -4152,7 +4152,6 @@ namespace Engine
 		}
 
         public static int lastLightFlicker;
-        public static Vector2f lastLightFlickerScale;
 
 		public static void DrawNight()
 		{
@@ -4200,15 +4199,11 @@ namespace Engine
                             Vector2f scale = new Vector2f();
                             if (C_Maps.Map.Tile[x, y].Data2 == 1)
                             {
-                                scale = lastLightFlickerScale;
-                                if (System.Environment.TickCount - lastLightFlicker > 65)
-                                {
-                                    lastLightFlicker = System.Environment.TickCount;
+                                    lastLightFlicker = Environment.TickCount;
                                     // Flicker
-                                    float r = (float)RandomNumberBetween(-0.02f, 0.02f);
+                                    float r = (float)RandomNumberBetween(-0.01f, 0.01f);
                                     scale = new Vector2f(0.3f * C_Maps.Map.Tile[x, y].Data1 + r, 0.3f * C_Maps.Map.Tile[x, y].Data1 + r);
-                                    lastLightFlickerScale = scale;
-                                }
+
                             }
                             else
                             {
