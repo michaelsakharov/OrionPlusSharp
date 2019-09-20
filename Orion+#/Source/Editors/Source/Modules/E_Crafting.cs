@@ -162,6 +162,8 @@ namespace Engine
 			}
 			E_Globals.Editorindex = FrmRecipe.Default.lstIndex.SelectedIndex + 1;
 			
+            if(Recipe[E_Globals.Editorindex].Name == null) { return; }
+
 			FrmRecipe.Default.txtName.Text = Recipe[E_Globals.Editorindex].Name.Trim();
 			
 			FrmRecipe.Default.lstIngredients.Items.Clear();

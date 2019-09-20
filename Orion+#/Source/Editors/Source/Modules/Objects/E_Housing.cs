@@ -190,27 +190,28 @@ namespace Engine
 			}
 			
 			E_Globals.Editorindex = FrmHouse.Default.lstIndex.SelectedIndex + 1;
-			
-			FrmHouse.Default.txtName.Text = House[E_Globals.Editorindex].ConfigName.Trim();
-			if (House[E_Globals.Editorindex].BaseMap == 0)
-			{
-				House[E_Globals.Editorindex].BaseMap = 1;
-			}
-			FrmHouse.Default.nudBaseMap.Value = House[E_Globals.Editorindex].BaseMap;
-			if (House[E_Globals.Editorindex].X == 0)
-			{
-				House[E_Globals.Editorindex].X = 1;
-			}
-			FrmHouse.Default.nudX.Value = House[E_Globals.Editorindex].X;
-			if (House[E_Globals.Editorindex].Y == 0)
-			{
-				House[E_Globals.Editorindex].Y = 1;
-			}
-			FrmHouse.Default.nudY.Value = House[E_Globals.Editorindex].Y;
-			FrmHouse.Default.nudPrice.Value = House[E_Globals.Editorindex].Price;
-			FrmHouse.Default.nudFurniture.Value = House[E_Globals.Editorindex].MaxFurniture;
-			
-			House_Changed[E_Globals.Editorindex] = true;
+            if (House[E_Globals.Editorindex].ConfigName != null)
+            {
+                FrmHouse.Default.txtName.Text = House[E_Globals.Editorindex].ConfigName.Trim();
+                if (House[E_Globals.Editorindex].BaseMap == 0)
+                {
+                    House[E_Globals.Editorindex].BaseMap = 1;
+                }
+                FrmHouse.Default.nudBaseMap.Value = House[E_Globals.Editorindex].BaseMap;
+                if (House[E_Globals.Editorindex].X == 0)
+                {
+                    House[E_Globals.Editorindex].X = 1;
+                }
+                FrmHouse.Default.nudX.Value = House[E_Globals.Editorindex].X;
+                if (House[E_Globals.Editorindex].Y == 0)
+                {
+                    House[E_Globals.Editorindex].Y = 1;
+                }
+                FrmHouse.Default.nudY.Value = House[E_Globals.Editorindex].Y;
+                FrmHouse.Default.nudPrice.Value = House[E_Globals.Editorindex].Price;
+                FrmHouse.Default.nudFurniture.Value = House[E_Globals.Editorindex].MaxFurniture;
+                House_Changed[E_Globals.Editorindex] = true;
+            }
 			
 		}
 		

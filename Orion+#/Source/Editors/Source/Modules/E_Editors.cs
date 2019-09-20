@@ -1018,7 +1018,9 @@ namespace Engine
 				return;
 			}
 			E_Globals.Editorindex = FrmResource.Default.lstIndex.SelectedIndex + 1;
-			
+
+            if (Types.Resource[E_Globals.Editorindex].Name == null) { return; }
+
 			//populate combo boxes
 			FrmResource.Default.cmbRewardItem.Items.Clear();
 			FrmResource.Default.cmbRewardItem.Items.Add("None");

@@ -141,6 +141,8 @@ namespace Engine
 			}
 			E_Globals.Editorindex = FrmQuest.Default.lstIndex.SelectedIndex + 1;
 			
+            if(Quest[E_Globals.Editorindex].Name == null) { return; }
+
 			FrmQuest.Default.txtName.Text = Quest[E_Globals.Editorindex].Name.Trim();
 			
 			if (Quest[E_Globals.Editorindex].Repeat == 1)

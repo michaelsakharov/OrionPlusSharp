@@ -252,9 +252,11 @@ namespace Engine
 				return;
 			}
 			E_Globals.Editorindex = frmPet.Default.lstIndex.SelectedIndex + 1;
-			
-			//populate skill combo's
-			frmPet.Default.cmbSkill1.Items.Clear();
+
+            if(Pet[E_Globals.Editorindex].Name == null) { return; } // nothing selected
+
+            //populate skill combo's
+            frmPet.Default.cmbSkill1.Items.Clear();
 			frmPet.Default.cmbSkill2.Items.Clear();
 			frmPet.Default.cmbSkill3.Items.Clear();
 			frmPet.Default.cmbSkill4.Items.Clear();
