@@ -343,7 +343,7 @@ namespace Engine
 			
 			for (i = 1; i <= Constants.MAX_RECIPE; i++)
 			{
-				if (Recipe[i].Name.Trim() == RecipeName.Trim())
+				if (Recipe[i].Name != null && Recipe[i].Name.Trim() == RecipeName.Trim())
 				{
 					returnValue = i;
 					break;

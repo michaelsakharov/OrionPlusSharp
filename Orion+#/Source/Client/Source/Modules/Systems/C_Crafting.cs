@@ -368,11 +368,9 @@ namespace Engine
 			int returnValue = 0;
 			int i = 0;
 			
-			returnValue = 0;
-			
 			for (i = 1; i <= Constants.MAX_RECIPE; i++)
 			{
-				if (Microsoft.VisualBasic.Strings.Trim(Recipe[i].Name) == recipeName.Trim())
+				if (Recipe[i].Name != null && Recipe[i].Name.Trim() == recipeName.Trim())
 				{
 					returnValue = i;
 					break;
