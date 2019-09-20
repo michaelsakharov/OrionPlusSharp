@@ -142,10 +142,9 @@ namespace Engine
 				
 				if (C_Maps.Map.Tile[GetPlayerX(C_Variables.Myindex), GetPlayerY(C_Variables.Myindex)].Type == (byte)Enums.TileType.Door)
 				{
-					ref var with_1 = ref C_Maps.TempTile[GetPlayerX(C_Variables.Myindex), GetPlayerY(C_Variables.Myindex)];
-					with_1.DoorFrame = 1;
-					with_1.DoorAnimate = 1; // 0 = nothing| 1 = opening | 2 = closing
-					with_1.DoorTimer = C_General.GetTickCount();
+					C_Maps.TempTile[GetPlayerX(C_Variables.Myindex), GetPlayerY(C_Variables.Myindex)].DoorFrame = 1;
+					C_Maps.TempTile[GetPlayerX(C_Variables.Myindex), GetPlayerY(C_Variables.Myindex)].DoorAnimate = 1; // 0 = nothing| 1 = opening | 2 = closing
+                    C_Maps.TempTile[GetPlayerX(C_Variables.Myindex), GetPlayerY(C_Variables.Myindex)].DoorTimer = C_General.GetTickCount();
 				}
 				
 				switch (GetPlayerDir(C_Variables.Myindex))

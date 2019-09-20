@@ -708,14 +708,14 @@ namespace Engine
                 return;
             }
 
-            // Desynced
-            if (S_Players.GetPlayerX(index) != tmpX)
+            // The player is 3 blocks away from where he should be, Probably desynced
+            if (Math.Abs(S_Players.GetPlayerX(index) - tmpX) > 3)
             {
                 S_NetworkSend.SendPlayerXY(index);
                 return;
             }
 
-            if (S_Players.GetPlayerY(index) != tmpY)
+            if (Math.Abs(S_Players.GetPlayerY(index) - tmpY) > 3)
             {
                 S_NetworkSend.SendPlayerXY(index);
                 return;
