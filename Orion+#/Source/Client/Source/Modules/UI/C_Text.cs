@@ -125,12 +125,12 @@ namespace Engine
 				color = SFML.Graphics.Color.Red;
 				backcolor = SFML.Graphics.Color.Black;
 			} // attack when attacked + guard
-			else if ((Types.Npc[npcNum].Behaviour == ((byte) 1)) || (Types.Npc[npcNum].Behaviour == ((byte) 4)))
+			else if ((Types.Npc[npcNum].Behaviour == ((byte) 1)) || (Types.Npc[npcNum].Behaviour == (4)))
 			{
 				color = SFML.Graphics.Color.Green;
 				backcolor = SFML.Graphics.Color.Black;
 			} // friendly + shopkeeper + quest
-			else if (((Types.Npc[npcNum].Behaviour == ((byte) 2)) || (Types.Npc[npcNum].Behaviour == ((byte) 3))) || (Types.Npc[npcNum].Behaviour == ((byte) 5)))
+			else if (((Types.Npc[npcNum].Behaviour == ((byte) 2)) || (Types.Npc[npcNum].Behaviour == (3))) || (Types.Npc[npcNum].Behaviour == (5)))
 			{
 				color = SFML.Graphics.Color.Yellow;
 				backcolor = SFML.Graphics.Color.Black;
@@ -164,7 +164,7 @@ namespace Engine
 			name = C_Maps.Map.MapEvents[index].Name.Trim();
 			
 			// calc pos
-			textX = System.Convert.ToInt32(C_Graphics.ConvertMapX(C_Maps.Map.MapEvents[index].X * C_Constants.PicX) + C_Maps.Map.MapEvents[index].XOffset + (C_Constants.PicX / 2) - GetTextWidth(name.Trim()) / 2);
+			textX = ((C_Graphics.ConvertMapX(C_Maps.Map.MapEvents[index].X * C_Constants.PicX) + C_Maps.Map.MapEvents[index].XOffset + (C_Constants.PicX / 2)) - (GetTextWidth(name.Trim()) / 2));
 			if (C_Maps.Map.MapEvents[index].GraphicType == 0)
 			{
 				textY = C_Graphics.ConvertMapY(C_Maps.Map.MapEvents[index].Y * C_Constants.PicY) + C_Maps.Map.MapEvents[index].YOffset - 16;
