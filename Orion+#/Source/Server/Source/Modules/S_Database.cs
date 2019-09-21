@@ -1287,6 +1287,11 @@ namespace Engine
 
         public static void SavePlayer(int index)
         {
+            if(modTypes.Player[index].Login == null)
+            {
+                Console.WriteLine("It appears a player data is missing.. Did they quit while we were saving them?");
+                return;
+            }
             string playername = Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Login);
             string filename = Application.StartupPath + @"\Data\Accounts\" + playername;
             S_General.CheckDir(filename); filename += @"\Data.bin";
@@ -1367,6 +1372,7 @@ namespace Engine
 
         public static void SaveBank(int index)
         {
+            if(modTypes.Player[index].Login == null) { return; }
             var filename = Application.StartupPath + @"\Data\Accounts\" + modTypes.Player[index].Login.Trim() + @"\Bank.bin";
 
             ByteStream writer = new ByteStream(100);
