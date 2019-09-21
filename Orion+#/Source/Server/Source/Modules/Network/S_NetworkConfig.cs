@@ -49,9 +49,10 @@ namespace Engine
             if (!(Socket == null))
                 return;
             // Establish some Rulez
-            Socket = new Server((int)Packets.EditorPackets.Count, Constants.MAX_PLAYERS)
+            Socket = new Server((int)Packets.EditorPackets.Count, 4096, Constants.MAX_PLAYERS)
             {
                 BufferLimit = 2048000,
+                MinimumIndex = 1,
                 PacketAcceptLimit = 100,
                 PacketDisconnectCount = 150 // If the other thing was even remotely reasonable, this is DEFINITELY spam count!
             };

@@ -271,7 +271,7 @@ namespace Engine
             S_Globals.isShuttingDown = false;
 
             // Start listener now that everything is loaded
-            S_NetworkConfig.Socket.StartListening(modTypes.Options.Port, 5, 1);
+            S_NetworkConfig.Socket.StartListening(modTypes.Options.Port, 5);
 
             // Starts the server loop
             ModLoop.ServerLoop();

@@ -49,7 +49,7 @@ namespace Engine
         {
             if (!(Socket == null))
                 return;
-            Socket = new Client((int)Packets.ServerPackets.COUNT);
+            Socket = new Client((int)Packets.ServerPackets.COUNT, 4096);
             E_NetworkReceive.PacketRouter();
         }
 

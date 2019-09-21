@@ -23,7 +23,7 @@ namespace Engine
             {
                 return;
             }
-            Socket = new Client((System.Int32)Packets.ServerPackets.COUNT);
+            Socket = new Client((int)Packets.ServerPackets.COUNT, 4096);
             C_NetworkReceive.PacketRouter();
         }
 
