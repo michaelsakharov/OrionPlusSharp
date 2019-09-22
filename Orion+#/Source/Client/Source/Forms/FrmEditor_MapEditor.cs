@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
-
+using System.Runtime.InteropServices;
 
 using System.Drawing;
 using System.IO;
@@ -89,10 +89,7 @@ namespace Engine
             lblFogSpeed.Text = "Fog Speed: " + C_Maps.Map.FogSpeed;
             scrlFogAlpha.Value = C_Maps.Map.FogAlpha;
             lblFogAlpha.Text = "Fog Alpha: " + C_Maps.Map.FogAlpha;
-
-
-
-            TopMost = true;
+            
         }
 
         #endregion
@@ -131,12 +128,16 @@ namespace Engine
 
         public void PicBackSelect_MouseDown(object sender, MouseEventArgs e)
         {
-            MapEditorChooseTile((System.Int32)e.Button, e.X, e.Y);
+            MapEditorChooseTile((int)e.Button, e.X, e.Y);
         }
 
         public void PicBackSelect_MouseMove(object sender, MouseEventArgs e)
         {
-            MapEditorDrag((System.Int32)e.Button, e.X, e.Y);
+            MapEditorDrag((int)e.Button, e.X, e.Y);
+        }
+        
+        private void picBackSelect_MouseUp(object sender, MouseEventArgs e)
+        {
         }
 
         public void PicBackSelect_Paint(object sender, PaintEventArgs e)
@@ -1924,6 +1925,5 @@ namespace Engine
 		}
 
         #endregion
-        
     }
 }
