@@ -132,14 +132,14 @@
     <Element Name="WalkThrough" Value="0" />
     <Element Name="ShowName" Value="1" />
     <Element Name="Trigger" Value="0" />
-    <Element Name="CommandListCount" Value="0" />
+    <Element Name="CommandListCount" Value="1" />
     <Element Name="Position" Value="0" />
     <Element Name="QuestNum" Value="0" />
     <Element Name="PlayerGender" Value="0" />
     <Element Name="CommandList1CommandCount" Value="1" />
     <Element Name="CommandList1ParentList" Value="0" />
-    <Element Name="CommandList1Command1Index" Value="31" />
-    <Element Name="CommandList1Command1Text1" Value="IM AMAZING" />
+    <Element Name="CommandList1Command1Index" Value="2" />
+    <Element Name="CommandList1Command1Text1" Value="Hello $playername$ your only $playerlevel$? Lame" />
     <Element Name="CommandList1Command1Text2" Value="" />
     <Element Name="CommandList1Command1Text3" Value="" />
     <Element Name="CommandList1Command1Text4" Value="" />

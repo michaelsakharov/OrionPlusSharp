@@ -494,7 +494,6 @@ namespace Engine
             int z = 0;
             bool sendupdate = false;
             bool donotprocessmoveroute = false;
-            int pageNum = 0;
 
             // Process Movement if needed for each player/each map/each event....
 
@@ -513,7 +512,6 @@ namespace Engine
                         {
                             if (S_Events.TempEventMap[i].Events[x].Active > 0)
                             {
-                                pageNum = 1;
                                 if (S_Events.TempEventMap[i].Events[x].MoveTimer <= S_General.GetTimeMs())
                                 {
                                     // Real event! Lets process it!
@@ -3427,11 +3425,26 @@ namespace Engine
             string newtxt;
             string parsestring;
             int z;
-
-            txt = Microsoft.VisualBasic.Strings.Replace(txt, "/name", Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Name));
-            txt = Microsoft.VisualBasic.Strings.Replace(txt, "/p", Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Name));
-            txt = Microsoft.VisualBasic.Strings.Replace(txt, "$playername$", Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Name));
-            txt = Microsoft.VisualBasic.Strings.Replace(txt, "$playerclass$", Microsoft.VisualBasic.Strings.Trim(Types.Classes[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Classes].Name));
+            
+            txt = txt.Replace("$playername$",              modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Name.Trim());
+            txt = txt.Replace("$playerclass$",             Types.Classes[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Classes].Name.Trim());
+            txt = txt.Replace("$playerstrength$",          modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Enums.StatType.Strength].ToString());
+            txt = txt.Replace("$playerendurance$",         modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Enums.StatType.Endurance].ToString());
+            txt = txt.Replace("$playervitality$",          modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Enums.StatType.Vitality].ToString());
+            txt = txt.Replace("$playerluck$",              modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Enums.StatType.Luck].ToString());
+            txt = txt.Replace("$playerintelligence$",      modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Enums.StatType.Intelligence].ToString());
+            txt = txt.Replace("$playerspirit$",            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Stat[(int)Enums.StatType.Spirit].ToString());
+            txt = txt.Replace("$playerlevel$",             modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Level.ToString());
+            txt = txt.Replace("$playerexp$",               modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Exp.ToString());
+            txt = txt.Replace("$playerpetlevel$",          modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Level.ToString());
+            txt = txt.Replace("$playerpetexp$",            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Exp.ToString());
+            txt = txt.Replace("$playerpetstrength$",       modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)Enums.StatType.Strength].ToString());
+            txt = txt.Replace("$playerpetendurance$",      modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)Enums.StatType.Endurance].ToString());
+            txt = txt.Replace("$playerpetvitality$",       modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)Enums.StatType.Vitality].ToString());
+            txt = txt.Replace("$playerpetluck$",           modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)Enums.StatType.Luck].ToString());
+            txt = txt.Replace("$playerpetintelligence$",   modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)Enums.StatType.Intelligence].ToString());
+            txt = txt.Replace("$playerpetspirit$",         modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Stat[(int)Enums.StatType.Spirit].ToString());
+            txt = txt.Replace("$playeraccesslevel$",       modTypes.Player[index].Access.ToString());
             while (Microsoft.VisualBasic.Strings.InStr(1, txt, "/v") > 0)
             {
                 x = Microsoft.VisualBasic.Strings.InStr(1, txt, "/v");
