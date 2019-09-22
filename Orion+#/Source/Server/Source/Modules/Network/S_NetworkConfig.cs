@@ -169,7 +169,7 @@ namespace Engine
 
         internal static void Socket_CrashReport(int index, string err)
         {
-            if (!err.Contains("ForciblyClosed"))
+            if (!err.Contains("ForciblyClosed") && !err.Contains("BufferUnderflowException"))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There was a network error -> Index[" + index + "]" + " - " + err);
