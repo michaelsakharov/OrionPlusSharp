@@ -25,160 +25,171 @@ namespace Engine
             do
             {
 
-
-                //Because everything in here is called every single cycle we wanna make sure its all as fast as possible!
-                //So we need to pull out as much work from everything
-
-                // Update our current tick value.
-                tick = S_General.GetTimeMs();
-
-                // Get all our online players.
-                var onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new { Index = index + 1, player }).ToArray();
-                if (tick > tmr25)
+                try
                 {
-                    // true = use old Update System
-                    if (false)
-                    {
+                    //Because everything in here is called every single cycle we wanna make sure its all as fast as possible!
+                    //So we need to pull out as much work from everything
 
-                        // Check if any of our players has completed casting and get their skill going if they have.
-                        var playerskills = (from p in onlinePlayers
+                    // Update our current tick value.
+                    tick = S_General.GetTimeMs();
+
+                    // Get all our online players.
+                    var onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new { Index = index + 1, player }).ToArray();
+                    if (tick > tmr25)
+                    {
+                        // true = use old Update System
+                        if (false)
+                        {
+
+                            // Check if any of our players has completed casting and get their skill going if they have.
+                            var playerskills = (from p in onlinePlayers
                                                 where p.player.SkillBuffer > 0 && S_General.GetTimeMs() > (p.player.SkillBufferTimer + Types.Skill[p.player.SkillBuffer].CastTime * 1000)
                                                 select new { p.Index, Success = HandleCastSkill(p.Index) }).ToArray();
-                        
 
-                        // Check if we need to clear any of our players from being stunned.
-                        var playerstuns = (from p in onlinePlayers
-                                           where p.player.StunDuration > 0 && p.player.StunTimer > (p.player.StunDuration * 1000)
-                                           select new { p.Index, Success = HandleClearStun(p.Index) }).ToArray();
 
-                        // Check if any of our pets has completed casting and get their skill going if they have.
-                        var petskills = (from p in onlinePlayers
-                                         where modTypes.Player[p.Index].Character[p.player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.player.CurChar].Pet.Skill[p.player.PetskillBuffer.Skill]].CastTime * 1000)
-                                         select new { p.Index, Success = HandlePetSkill(p.Index) }).ToArray();
+                            // Check if we need to clear any of our players from being stunned.
+                            var playerstuns = (from p in onlinePlayers
+                                               where p.player.StunDuration > 0 && p.player.StunTimer > (p.player.StunDuration * 1000)
+                                               select new { p.Index, Success = HandleClearStun(p.Index) }).ToArray();
 
-                        // Check if we need to clear any of our pets from being stunned.
-                        var petstuns = (from p in onlinePlayers
-                                        where p.player.PetStunDuration > 0 && p.player.PetStunTimer > (p.player.PetStunDuration * 1000)
-                                        select new { p.Index, Success = HandleClearPetStun(p.Index) }).ToArray();
+                            // Check if any of our pets has completed casting and get their skill going if they have.
+                            var petskills = (from p in onlinePlayers
+                                             where modTypes.Player[p.Index].Character[p.player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.player.CurChar].Pet.Skill[p.player.PetskillBuffer.Skill]].CastTime * 1000)
+                                             select new { p.Index, Success = HandlePetSkill(p.Index) }).ToArray();
 
-                        // check pet regen timer
-                        var petregen = (from p in onlinePlayers
-                                        where p.player.PetstopRegen == true && p.player.PetstopRegenTimer + 5000 < S_General.GetTimeMs()
-                                        select new { p.Index, Success = HandleStopPetRegen(p.Index) }).ToArray();
+                            // Check if we need to clear any of our pets from being stunned.
+                            var petstuns = (from p in onlinePlayers
+                                            where p.player.PetStunDuration > 0 && p.player.PetStunTimer > (p.player.PetStunDuration * 1000)
+                                            select new { p.Index, Success = HandleClearPetStun(p.Index) }).ToArray();
+
+                            // check pet regen timer
+                            var petregen = (from p in onlinePlayers
+                                            where p.player.PetstopRegen == true && p.player.PetstopRegenTimer + 5000 < S_General.GetTimeMs()
+                                            select new { p.Index, Success = HandleStopPetRegen(p.Index) }).ToArray();
+                        }
+                        else
+                        {
+                            int onlinePlayerCount = onlinePlayers.Count();
+                            for (int a = 0; a < onlinePlayerCount; a++)
+                            {
+                                if (onlinePlayers[a].player.SkillBuffer > 0 && S_General.GetTimeMs() > (onlinePlayers[a].player.SkillBufferTimer + Types.Skill[onlinePlayers[a].player.SkillBuffer].CastTime * 1000))
+                                {
+                                    HandleCastSkill(onlinePlayers[a].Index);
+                                }
+
+                                if (onlinePlayers[a].player.StunDuration > 0 && onlinePlayers[a].player.StunTimer > (onlinePlayers[a].player.StunDuration * 1000))
+                                {
+                                    HandleClearStun(onlinePlayers[a].Index);
+                                }
+
+                                if (modTypes.Player[onlinePlayers[a].Index].Character[onlinePlayers[a].player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[onlinePlayers[a].Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > onlinePlayers[a].player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[onlinePlayers[a].Index].Character[onlinePlayers[a].player.CurChar].Pet.Skill[onlinePlayers[a].player.PetskillBuffer.Skill]].CastTime * 1000))
+                                {
+                                    HandlePetSkill(onlinePlayers[a].Index);
+                                }
+
+                                if (onlinePlayers[a].player.PetStunDuration > 0 && onlinePlayers[a].player.PetStunTimer > (onlinePlayers[a].player.PetStunDuration * 1000))
+                                {
+                                    HandleClearPetStun(onlinePlayers[a].Index);
+                                }
+
+                                if (onlinePlayers[a].player.PetstopRegen == true && onlinePlayers[a].player.PetstopRegenTimer + 5000 < S_General.GetTimeMs())
+                                {
+                                    HandleStopPetRegen(onlinePlayers[a].Index);
+                                }
+                            }
+
+                        }
+                        // HoT and DoT logic
+                        // For x = 1 To MAX_DOTS
+                        // HandleDoT_Pet i, x
+                        // HandleHoT_Pet i, x
+                        // Next
+
+                        // Update all our available events.
+                        S_EventLogic.UpdateEventLogic();
+
+                        // Move the timer up 25ms.
+                        tmr25 = S_General.GetTimeMs() + 25;
+                    }
+
+                    int ms = S_General.GetTimeMs();
+
+                    if (tick > tmr1000)
+                    {
+                        // Handle our player crafting
+                        var playercrafts = (from p in onlinePlayers
+                                            where ms > p.player.CraftTimer + (p.player.CraftTimeNeeded * 1000) && p.player.CraftIt == 1
+                                            select new { p.Index, Success = HandlePlayerCraft(p.Index) }).ToArray();
+                        Time.Instance.Tick();
+
+                        // Move the timer up 1000ms.
+                        tmr1000 = ms + 1000;
+                    }
+
+                    if (tick > tmr500)
+                    {
+
+                        // Handle player housing timers.
+                        var playerhousing = (from p in onlinePlayers
+                                             where modTypes.Player[p.Index].Character[p.player.CurChar].InHouse > 0 && S_NetworkConfig.IsPlaying(modTypes.Player[p.Index].Character[p.player.CurChar].InHouse) && modTypes.Player[modTypes.Player[p.Index].Character[p.player.CurChar].InHouse].Character[p.player.CurChar].InHouse != modTypes.Player[p.Index].Character[p.player.CurChar].InHouse
+                                             select new { p.Index, Success = HandlePlayerHouse(p.Index) }).ToArray();
+
+                        // Move the timer up 500ms.
+                        tmr500 = ms + 500;
+                    }
+
+                    if (ms > tmr300)
+                    {
+                        UpdateNpcAi();
+                        S_Pets.UpdatePetAi();
+                        tmr300 = ms + 300;
+                    }
+
+                    // Checks to update player vitals every 1 seconds - Can be tweaked
+                    if (tick > lastUpdatePlayerVitals)
+                    {
+                        UpdatePlayerVitals();
+                        lastUpdatePlayerVitals = ms + 1000;
+                    }
+
+                    // Checks to spawn map items every 5 minutes - Can be tweaked
+                    if (tick > lastUpdateMapSpawnItems)
+                    {
+                        UpdateMapSpawnItems();
+                        lastUpdateMapSpawnItems = ms + 300000;
+                    }
+
+                    // Checks to save players every 10 minutes - Can be tweaked
+                    if (tick > lastUpdateSavePlayers)
+                    {
+                        UpdateSavePlayers();
+                        lastUpdateSavePlayers = ms + 600000;
+                    }
+
+                    if (!modTypes.Options.unlockCPS)
+                    {
+                        Thread.Sleep(1);
+                    }
+                    // Calculator CPS
+                    if (tickCPS < tick)
+                    {
+                        S_General.gameCPS = cps;
+                        tickCPS = tick + 1000;
+                        cps = 0;
                     }
                     else
                     {
-                        int onlinePlayerCount = onlinePlayers.Count();
-                        for (int a = 0; a < onlinePlayerCount; a++)
-                        {
-                            if (onlinePlayers[a].player.SkillBuffer > 0 && S_General.GetTimeMs() > (onlinePlayers[a].player.SkillBufferTimer + Types.Skill[onlinePlayers[a].player.SkillBuffer].CastTime * 1000))
-                            {
-                                HandleCastSkill(onlinePlayers[a].Index);
-                            }
-
-                            if (onlinePlayers[a].player.StunDuration > 0 && onlinePlayers[a].player.StunTimer > (onlinePlayers[a].player.StunDuration * 1000))
-                            {
-                                HandleClearStun(onlinePlayers[a].Index);
-                            }
-
-                            if (modTypes.Player[onlinePlayers[a].Index].Character[onlinePlayers[a].player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[onlinePlayers[a].Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > onlinePlayers[a].player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[onlinePlayers[a].Index].Character[onlinePlayers[a].player.CurChar].Pet.Skill[onlinePlayers[a].player.PetskillBuffer.Skill]].CastTime * 1000))
-                            {
-                                HandlePetSkill(onlinePlayers[a].Index);
-                            }
-
-                            if (onlinePlayers[a].player.PetStunDuration > 0 && onlinePlayers[a].player.PetStunTimer > (onlinePlayers[a].player.PetStunDuration * 1000))
-                            {
-                                HandleClearPetStun(onlinePlayers[a].Index);
-                            }
-
-                            if (onlinePlayers[a].player.PetstopRegen == true && onlinePlayers[a].player.PetstopRegenTimer + 5000 < S_General.GetTimeMs())
-                            {
-                                HandleStopPetRegen(onlinePlayers[a].Index);
-                            }
-                        }
-
+                        cps++;
                     }
-                    // HoT and DoT logic
-                    // For x = 1 To MAX_DOTS
-                    // HandleDoT_Pet i, x
-                    // HandleHoT_Pet i, x
-                    // Next
-
-                    // Update all our available events.
-                    S_EventLogic.UpdateEventLogic();
-
-                    // Move the timer up 25ms.
-                    tmr25 = S_General.GetTimeMs() + 25;
                 }
-
-                int ms = S_General.GetTimeMs();
-
-                if (tick > tmr1000)
+                catch(Exception error)
                 {
-                    // Handle our player crafting
-                    var playercrafts = (from p in onlinePlayers
-                                        where ms > p.player.CraftTimer + (p.player.CraftTimeNeeded * 1000) && p.player.CraftIt == 1
-                                        select new { p.Index, Success = HandlePlayerCraft(p.Index) }).ToArray();
-                    Time.Instance.Tick();
-                
-                    // Move the timer up 1000ms.
-                    tmr1000 = ms + 1000;
-                }
-                
-                if (tick > tmr500)
-                {
-                
-                    // Handle player housing timers.
-                    var playerhousing = (from p in onlinePlayers
-                                         where modTypes.Player[p.Index].Character[p.player.CurChar].InHouse > 0 && S_NetworkConfig.IsPlaying(modTypes.Player[p.Index].Character[p.player.CurChar].InHouse) && modTypes.Player[modTypes.Player[p.Index].Character[p.player.CurChar].InHouse].Character[p.player.CurChar].InHouse != modTypes.Player[p.Index].Character[p.player.CurChar].InHouse
-                                         select new { p.Index, Success = HandlePlayerHouse(p.Index) }).ToArray();
-                
-                    // Move the timer up 500ms.
-                    tmr500 = ms + 500;
-                }
-                
-                if (ms > tmr300)
-                {
-                    UpdateNpcAi();
-                    S_Pets.UpdatePetAi();
-                    tmr300 = ms + 300;
-                }
-                
-                // Checks to update player vitals every 1 seconds - Can be tweaked
-                if (tick > lastUpdatePlayerVitals)
-                {
-                    UpdatePlayerVitals();
-                    lastUpdatePlayerVitals = ms + 1000;
-                }
-                
-                // Checks to spawn map items every 5 minutes - Can be tweaked
-                if (tick > lastUpdateMapSpawnItems)
-                {
-                    UpdateMapSpawnItems();
-                    lastUpdateMapSpawnItems = ms + 300000;
-                }
-                
-                // Checks to save players every 10 minutes - Can be tweaked
-                if (tick > lastUpdateSavePlayers)
-                {
-                    UpdateSavePlayers();
-                    lastUpdateSavePlayers = ms + 600000;
-                }
-
-                if (!modTypes.Options.unlockCPS)
-                {
-                    Thread.Sleep(1);
-                }
-                // Calculator CPS
-                if(tickCPS < tick)
-                {
-                    S_General.gameCPS = cps;
-                    tickCPS = tick + 1000;
-                    cps = 0;
-                }
-                else
-                {
-                    cps++;
+                    Console.WriteLine("AN WILD ERROR HAS APPEARED!");
+                    Console.WriteLine(error.StackTrace.ToString());
+                    S_Globals.ErrorCount++;
+                    Console.WriteLine("THE SERVER IS NOW UNSTABLE!! PLEASE RESTART!!");
+                    Console.WriteLine("THE SERVER IS NOW UNSTABLE!! PLEASE RESTART!!");
+                    Console.WriteLine("THE SERVER IS NOW UNSTABLE!! PLEASE RESTART!!");
                 }
             }
             while (true);

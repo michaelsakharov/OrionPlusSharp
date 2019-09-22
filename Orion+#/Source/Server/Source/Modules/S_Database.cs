@@ -45,9 +45,9 @@ namespace Engine
             myXml.WriteString("CLASS1", "Spir", "5");
             myXml.WriteString("CLASS1", "BaseExp", "25");
 
-            myXml.WriteString("CLASS1", "StartMap", modTypes.Options.StartMap.ToString());
-            myXml.WriteString("CLASS1", "StartX", modTypes.Options.StartX.ToString());
-            myXml.WriteString("CLASS1", "StartY", modTypes.Options.StartY.ToString());
+            myXml.WriteString("CLASS1", "StartMap", Options.StartMap.ToString());
+            myXml.WriteString("CLASS1", "StartX", Options.StartX.ToString());
+            myXml.WriteString("CLASS1", "StartY", Options.StartY.ToString());
 
             myXml.CloseXml(true);
         }
@@ -262,30 +262,30 @@ namespace Engine
         {
             int x;
             int y;
-            modTypes.Map[mapNum] = default(MapRec);
-            modTypes.Map[mapNum].Tileset = 1;
-            modTypes.Map[mapNum].Name = "";
-            modTypes.Map[mapNum].MaxX = S_Constants.MAX_MAPX;
-            modTypes.Map[mapNum].MaxY = S_Constants.MAX_MAPY;
-            modTypes.Map[mapNum].Npc = new int[Constants.MAX_MAP_NPCS + 1];
-            modTypes.Map[mapNum].Tile = new TileRec[modTypes.Map[mapNum].MaxX + 1, modTypes.Map[mapNum].MaxY + 1];
+            Map[mapNum] = default(MapRec);
+            Map[mapNum].Tileset = 1;
+            Map[mapNum].Name = "";
+            Map[mapNum].MaxX = S_Constants.MAX_MAPX;
+            Map[mapNum].MaxY = S_Constants.MAX_MAPY;
+            Map[mapNum].Npc = new int[Constants.MAX_MAP_NPCS + 1];
+            Map[mapNum].Tile = new TileRec[Map[mapNum].MaxX + 1, Map[mapNum].MaxY + 1];
 
             for (x = 0; x <= S_Constants.MAX_MAPX; x++)
             {
                 for (y = 0; y <= S_Constants.MAX_MAPY; y++)
-                    modTypes.Map[mapNum].Tile[x, y].Layer = new TileDataRec[6];
+                    Map[mapNum].Tile[x, y].Layer = new TileDataRec[6];
             }
 
-            modTypes.Map[mapNum].EventCount = 0;
-            modTypes.Map[mapNum].Events = new EventStruct[1];
+            Map[mapNum].EventCount = 0;
+            Map[mapNum].Events = new EventStruct[1];
 
             // Reset the values for if a player is on the map or not
-            modTypes.PlayersOnMap[mapNum] = 0;
-            modTypes.Map[mapNum].Tileset = 1;
-            modTypes.Map[mapNum].Name = "";
-            modTypes.Map[mapNum].Music = "";
-            modTypes.Map[mapNum].MaxX = S_Constants.MAX_MAPX;
-            modTypes.Map[mapNum].MaxY = S_Constants.MAX_MAPY;
+            PlayersOnMap[mapNum] = 0;
+            Map[mapNum].Tileset = 1;
+            Map[mapNum].Name = "";
+            Map[mapNum].Music = "";
+            Map[mapNum].MaxX = S_Constants.MAX_MAPX;
+            Map[mapNum].MaxY = S_Constants.MAX_MAPY;
 
             ClearTempTile(mapNum);
         }
@@ -310,58 +310,58 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "maps", string.Format("map{0}.dat", mapNum));
             ByteStream writer = new ByteStream(100);
-            writer.WriteString(modTypes.Map[mapNum].Name);
-            writer.WriteString(modTypes.Map[mapNum].Music);
-            writer.WriteInt32(modTypes.Map[mapNum].Revision);
-            writer.WriteByte(modTypes.Map[mapNum].Moral);
-            writer.WriteInt32(modTypes.Map[mapNum].Tileset);
-            writer.WriteInt32(modTypes.Map[mapNum].Up);
-            writer.WriteInt32(modTypes.Map[mapNum].Down);
-            writer.WriteInt32(modTypes.Map[mapNum].Left);
-            writer.WriteInt32(modTypes.Map[mapNum].Right);
-            writer.WriteInt32(modTypes.Map[mapNum].BootMap);
-            writer.WriteByte(modTypes.Map[mapNum].BootX);
-            writer.WriteByte(modTypes.Map[mapNum].BootY);
-            writer.WriteByte(modTypes.Map[mapNum].MaxX);
-            writer.WriteByte(modTypes.Map[mapNum].MaxY);
-            writer.WriteByte(modTypes.Map[mapNum].WeatherType);
-            writer.WriteInt32(modTypes.Map[mapNum].Fogindex);
-            writer.WriteInt32(modTypes.Map[mapNum].WeatherIntensity);
-            writer.WriteByte(modTypes.Map[mapNum].FogAlpha);
-            writer.WriteByte(modTypes.Map[mapNum].FogSpeed);
-            writer.WriteByte(modTypes.Map[mapNum].HasMapTint);
-            writer.WriteByte(modTypes.Map[mapNum].MapTintR);
-            writer.WriteByte(modTypes.Map[mapNum].MapTintG);
-            writer.WriteByte(modTypes.Map[mapNum].MapTintB);
-            writer.WriteByte(modTypes.Map[mapNum].MapTintA);
+            writer.WriteString(Map[mapNum].Name);
+            writer.WriteString(Map[mapNum].Music);
+            writer.WriteInt32(Map[mapNum].Revision);
+            writer.WriteByte(Map[mapNum].Moral);
+            writer.WriteInt32(Map[mapNum].Tileset);
+            writer.WriteInt32(Map[mapNum].Up);
+            writer.WriteInt32(Map[mapNum].Down);
+            writer.WriteInt32(Map[mapNum].Left);
+            writer.WriteInt32(Map[mapNum].Right);
+            writer.WriteInt32(Map[mapNum].BootMap);
+            writer.WriteByte(Map[mapNum].BootX);
+            writer.WriteByte(Map[mapNum].BootY);
+            writer.WriteByte(Map[mapNum].MaxX);
+            writer.WriteByte(Map[mapNum].MaxY);
+            writer.WriteByte(Map[mapNum].WeatherType);
+            writer.WriteInt32(Map[mapNum].Fogindex);
+            writer.WriteInt32(Map[mapNum].WeatherIntensity);
+            writer.WriteByte(Map[mapNum].FogAlpha);
+            writer.WriteByte(Map[mapNum].FogSpeed);
+            writer.WriteByte(Map[mapNum].HasMapTint);
+            writer.WriteByte(Map[mapNum].MapTintR);
+            writer.WriteByte(Map[mapNum].MapTintG);
+            writer.WriteByte(Map[mapNum].MapTintB);
+            writer.WriteByte(Map[mapNum].MapTintA);
 
-            writer.WriteByte(modTypes.Map[mapNum].Instanced);
-            writer.WriteByte(modTypes.Map[mapNum].Panorama);
-            writer.WriteByte(modTypes.Map[mapNum].Parallax);
-            writer.WriteByte(modTypes.Map[mapNum].Brightness);
-            var loopTo = modTypes.Map[mapNum].MaxX;
+            writer.WriteByte(Map[mapNum].Instanced);
+            writer.WriteByte(Map[mapNum].Panorama);
+            writer.WriteByte(Map[mapNum].Parallax);
+            writer.WriteByte(Map[mapNum].Brightness);
+            var loopTo = Map[mapNum].MaxX;
             for (x = 0; x <= loopTo; x++)
             {
-                var loopTo1 = modTypes.Map[mapNum].MaxY;
+                var loopTo1 = Map[mapNum].MaxY;
                 for (y = 0; y <= loopTo1; y++)
                 {
-                    writer.WriteInt32(modTypes.Map[mapNum].Tile[x, y].Data1);
-                    writer.WriteInt32(modTypes.Map[mapNum].Tile[x, y].Data2);
-                    writer.WriteInt32(modTypes.Map[mapNum].Tile[x, y].Data3);
-                    writer.WriteByte(modTypes.Map[mapNum].Tile[x, y].DirBlock);
+                    writer.WriteInt32(Map[mapNum].Tile[x, y].Data1);
+                    writer.WriteInt32(Map[mapNum].Tile[x, y].Data2);
+                    writer.WriteInt32(Map[mapNum].Tile[x, y].Data3);
+                    writer.WriteByte(Map[mapNum].Tile[x, y].DirBlock);
                     for (l = 0; l <= (byte)Enums.LayerType.Count - 1; l++)
                     {
-                        writer.WriteByte(modTypes.Map[mapNum].Tile[x, y].Layer[l].Tileset);
-                        writer.WriteByte(modTypes.Map[mapNum].Tile[x, y].Layer[l].X);
-                        writer.WriteByte(modTypes.Map[mapNum].Tile[x, y].Layer[l].Y);
-                        writer.WriteByte(modTypes.Map[mapNum].Tile[x, y].Layer[l].AutoTile);
+                        writer.WriteByte(Map[mapNum].Tile[x, y].Layer[l].Tileset);
+                        writer.WriteByte(Map[mapNum].Tile[x, y].Layer[l].X);
+                        writer.WriteByte(Map[mapNum].Tile[x, y].Layer[l].Y);
+                        writer.WriteByte(Map[mapNum].Tile[x, y].Layer[l].AutoTile);
                     }
-                    writer.WriteByte(modTypes.Map[mapNum].Tile[x, y].Type);
+                    writer.WriteByte(Map[mapNum].Tile[x, y].Type);
                 }
             }
 
             for (x = 1; x <= Constants.MAX_MAP_NPCS; x++)
-                writer.WriteInt32(modTypes.Map[mapNum].Npc[x]);
+                writer.WriteInt32(Map[mapNum].Npc[x]);
 
             BinaryFile.Save(filename, ref writer);
         }
@@ -380,134 +380,134 @@ namespace Engine
             myXml.LoadXml();
 
             // This is for event saving, it is in .xml files because there are non-limited values (strings) that cannot easily be loaded/saved in the normal manner.
-            myXml.WriteString("Events", "EventCount", modTypes.Map[mapNum].EventCount.ToString());
+            myXml.WriteString("Events", "EventCount", Map[mapNum].EventCount.ToString());
 
-            if (modTypes.Map[mapNum].EventCount > 0)
+            if (Map[mapNum].EventCount > 0)
             {
-                var loopTo = modTypes.Map[mapNum].EventCount;
+                var loopTo = Map[mapNum].EventCount;
                 for (var i = 1; i <= loopTo; i++)
                 {
                     {
-                        myXml.WriteString("Event" + i, "Name", modTypes.Map[mapNum].Events[i].Name);
-                        myXml.WriteString("Event" + i, "Global", modTypes.Map[mapNum].Events[i].Globals.ToString());
-                        myXml.WriteString("Event" + i, "x", modTypes.Map[mapNum].Events[i].X.ToString());
-                        myXml.WriteString("Event" + i, "y", modTypes.Map[mapNum].Events[i].Y.ToString());
-                        myXml.WriteString("Event" + i, "PageCount", modTypes.Map[mapNum].Events[i].PageCount.ToString());
-                        Console.WriteLine(modTypes.Map[mapNum].Events[i].PageCount);
+                        myXml.WriteString("Event" + i, "Name", Map[mapNum].Events[i].Name);
+                        myXml.WriteString("Event" + i, "Global", Map[mapNum].Events[i].Globals.ToString());
+                        myXml.WriteString("Event" + i, "x", Map[mapNum].Events[i].X.ToString());
+                        myXml.WriteString("Event" + i, "y", Map[mapNum].Events[i].Y.ToString());
+                        myXml.WriteString("Event" + i, "PageCount", Map[mapNum].Events[i].PageCount.ToString());
+                        Console.WriteLine(Map[mapNum].Events[i].PageCount);
                     }
-                    if (modTypes.Map[mapNum].Events[i].PageCount + 1 > 0)
+                    if (Map[mapNum].Events[i].PageCount + 1 > 0)
                     {
-                        var loopTo1 = modTypes.Map[mapNum].Events[i].PageCount;
+                        var loopTo1 = Map[mapNum].Events[i].PageCount;
                         for (var x = 1; x <= loopTo1; x++)
                         {
                             {
-                                myXml.WriteString("Event" + i + "Page" + x, "chkVariable", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkVariable).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "VariableIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Variableindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "VariableCondition", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].VariableCondition).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "VariableCompare", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].VariableCompare).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkVariable", Conversion.Val(Map[mapNum].Events[i].Pages[x].ChkVariable).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "VariableIndex", Conversion.Val(Map[mapNum].Events[i].Pages[x].Variableindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "VariableCondition", Conversion.Val(Map[mapNum].Events[i].Pages[x].VariableCondition).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "VariableCompare", Conversion.Val(Map[mapNum].Events[i].Pages[x].VariableCompare).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "chkSwitch", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkSwitch).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SwitchIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Switchindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SwitchCompare", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].SwitchCompare).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkSwitch", Conversion.Val(Map[mapNum].Events[i].Pages[x].ChkSwitch).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SwitchIndex", Conversion.Val(Map[mapNum].Events[i].Pages[x].Switchindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SwitchCompare", Conversion.Val(Map[mapNum].Events[i].Pages[x].SwitchCompare).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "chkHasItem", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkHasItem).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "HasItemIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].HasItemindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "HasItemAmount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].HasItemAmount).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkHasItem", Conversion.Val(Map[mapNum].Events[i].Pages[x].ChkHasItem).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "HasItemIndex", Conversion.Val(Map[mapNum].Events[i].Pages[x].HasItemindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "HasItemAmount", Conversion.Val(Map[mapNum].Events[i].Pages[x].HasItemAmount).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "chkSelfSwitch", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkSelfSwitch).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchIndex", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchindex).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchCompare", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchCompare).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "chkSelfSwitch", Conversion.Val(Map[mapNum].Events[i].Pages[x].ChkSelfSwitch).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchIndex", Conversion.Val(Map[mapNum].Events[i].Pages[x].SelfSwitchindex).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "SelfSwitchCompare", Conversion.Val(Map[mapNum].Events[i].Pages[x].SelfSwitchCompare).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicType", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicType).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "Graphic", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Graphic).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicX).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicY).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicX2).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].GraphicY2).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicType", Conversion.Val(Map[mapNum].Events[i].Pages[x].GraphicType).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "Graphic", Conversion.Val(Map[mapNum].Events[i].Pages[x].Graphic).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX", Conversion.Val(Map[mapNum].Events[i].Pages[x].GraphicX).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY", Conversion.Val(Map[mapNum].Events[i].Pages[x].GraphicY).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicX2", Conversion.Val(Map[mapNum].Events[i].Pages[x].GraphicX2).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "GraphicY2", Conversion.Val(Map[mapNum].Events[i].Pages[x].GraphicY2).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveType", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveType).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveSpeed", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveSpeed).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveFreq", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveFreq).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveType", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveType).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveSpeed", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveSpeed).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveFreq", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveFreq).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "IgnoreMoveRoute", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].IgnoreMoveRoute).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "RepeatMoveRoute", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].RepeatMoveRoute).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "IgnoreMoveRoute", Conversion.Val(Map[mapNum].Events[i].Pages[x].IgnoreMoveRoute).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "RepeatMoveRoute", Conversion.Val(Map[mapNum].Events[i].Pages[x].RepeatMoveRoute).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "MoveRouteCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "MoveRouteCount", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRouteCount).ToString());
 
-                                if (modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount > 0)
+                                if (Map[mapNum].Events[i].Pages[x].MoveRouteCount > 0)
                                 {
-                                    var loopTo2 = modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount;
+                                    var loopTo2 = Map[mapNum].Events[i].Pages[x].MoveRouteCount;
                                     for (var y = 1; y <= loopTo2; y++)
                                     {
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Index", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Index).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data1).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data2).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data3).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data4).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data5).ToString());
-                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data6).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Index", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Index).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data1).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data2).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data3).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data4).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data5).ToString());
+                                        myXml.WriteString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6", Conversion.Val(Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data6).ToString());
                                     }
                                 }
 
-                                myXml.WriteString("Event" + i + "Page" + x, "WalkAnim", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].WalkAnim).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "DirFix", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].DirFix).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "WalkThrough", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].WalkThrough).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "ShowName", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ShowName).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "Trigger", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Trigger).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "CommandListCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "WalkAnim", Conversion.Val(Map[mapNum].Events[i].Pages[x].WalkAnim).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "DirFix", Conversion.Val(Map[mapNum].Events[i].Pages[x].DirFix).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "WalkThrough", Conversion.Val(Map[mapNum].Events[i].Pages[x].WalkThrough).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "ShowName", Conversion.Val(Map[mapNum].Events[i].Pages[x].ShowName).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "Trigger", Conversion.Val(Map[mapNum].Events[i].Pages[x].Trigger).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "CommandListCount", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandListCount).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "Position", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].Position).ToString());
-                                myXml.WriteString("Event" + i + "Page" + x, "QuestNum", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].QuestNum).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "Position", Conversion.Val(Map[mapNum].Events[i].Pages[x].Position).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "QuestNum", Conversion.Val(Map[mapNum].Events[i].Pages[x].QuestNum).ToString());
 
-                                myXml.WriteString("Event" + i + "Page" + x, "PlayerGender", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].ChkPlayerGender).ToString());
+                                myXml.WriteString("Event" + i + "Page" + x, "PlayerGender", Conversion.Val(Map[mapNum].Events[i].Pages[x].ChkPlayerGender).ToString());
                             }
 
-                            if (modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount > 0)
+                            if (Map[mapNum].Events[i].Pages[x].CommandListCount > 0)
                             {
-                                var loopTo3 = modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount;
+                                var loopTo3 = Map[mapNum].Events[i].Pages[x].CommandListCount;
                                 for (var y = 1; y <= loopTo3; y++)
                                 {
-                                    myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "CommandCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount).ToString());
-                                    myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "ParentList", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].ParentList).ToString());
+                                    myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "CommandCount", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount).ToString());
+                                    myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "ParentList", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].ParentList).ToString());
 
-                                    if (modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount > 0)
+                                    if (Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount > 0)
                                     {
-                                        var loopTo4 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount;
+                                        var loopTo4 = Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount;
                                         for (var z = 1; z <= loopTo4; z++)
                                         {
                                             {
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Index", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Index).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text1", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text1);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text2", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text2);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text3", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text3);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text4", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text4);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text5", modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text5);
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data1).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data2).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data3).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data4", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data4).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data5", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data5).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data6", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data6).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCommandList", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.CommandList).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCondition", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Condition).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data1).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data2).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data3).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchElseCommandList", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.ElseCommandList).ToString());
-                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRouteCount", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Index", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Index).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text1", Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text1);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text2", Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text2);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text3", Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text3);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text4", Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text4);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Text5", Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Text5);
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data1", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data1).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data2", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data2).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data3", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data3).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data4", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data4).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data5", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data5).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "Data6", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].Data6).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCommandList", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.CommandList).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchCondition", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Condition).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData1", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data1).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData2", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data2).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchData3", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.Data3).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "ConditionalBranchElseCommandList", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].ConditionalBranch.ElseCommandList).ToString());
+                                                myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRouteCount", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount).ToString());
 
-                                                if (modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount > 0)
+                                                if (Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount > 0)
                                                 {
-                                                    var loopTo5 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount;
+                                                    var loopTo5 = Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRouteCount;
                                                     for (var w = 1; w <= loopTo5; w++)
                                                     {
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Index", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Index).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data1", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data1).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data2", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data2).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data3", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data3).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data4", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data4).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data5", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data5).ToString());
-                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data6", Conversion.Val(modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data6).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Index", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Index).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data1", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data1).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data2", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data2).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data3", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data3).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data4", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data4).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data5", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data5).ToString());
+                                                        myXml.WriteString("Event" + i + "Page" + x, "CommandList" + y + "Command" + z + "MoveRoute" + w + "Data6", Conversion.Val(Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[z].MoveRoute[w].Data6).ToString());
                                                     }
                                                 }
                                             }
@@ -532,9 +532,9 @@ namespace Engine
             };
 
             myXml.LoadXml();
-            modTypes.Map[mapNum].EventCount = (int)Conversion.Val(myXml.ReadString("Events", "EventCount"));
+            Map[mapNum].EventCount = (int)Conversion.Val(myXml.ReadString("Events", "EventCount"));
 
-            if (!(modTypes.Map[mapNum].EventCount > 0))
+            if (!(Map[mapNum].EventCount > 0))
             {
                 myXml.CloseXml(false);
                 return;
@@ -545,136 +545,136 @@ namespace Engine
             int y;
             int p;
 
-            modTypes.Map[mapNum].Events = new EventStruct[modTypes.Map[mapNum].EventCount + 1];
-            var loopTo = modTypes.Map[mapNum].EventCount;
+            Map[mapNum].Events = new EventStruct[Map[mapNum].EventCount + 1];
+            var loopTo = Map[mapNum].EventCount;
             for (i = 1; i <= loopTo; i++)
             {
                 if (Conversion.Val(myXml.ReadString("Event" + i, "PageCount")) > 0)
                 {
                     {
-                        modTypes.Map[mapNum].Events[i].Name = myXml.ReadString("Event" + i, "Name");
-                        modTypes.Map[mapNum].Events[i].Globals = (byte)Conversion.Val(myXml.ReadString("Event" + i, "Global"));
-                        modTypes.Map[mapNum].Events[i].X = (byte)Conversion.Val(myXml.ReadString("Event" + i, "x"));
-                        modTypes.Map[mapNum].Events[i].Y = (byte)Conversion.Val(myXml.ReadString("Event" + i, "y"));
-                        modTypes.Map[mapNum].Events[i].PageCount = (byte)Conversion.Val(myXml.ReadString("Event" + i, "PageCount"));
+                        Map[mapNum].Events[i].Name = myXml.ReadString("Event" + i, "Name");
+                        Map[mapNum].Events[i].Globals = (byte)Conversion.Val(myXml.ReadString("Event" + i, "Global"));
+                        Map[mapNum].Events[i].X = (byte)Conversion.Val(myXml.ReadString("Event" + i, "x"));
+                        Map[mapNum].Events[i].Y = (byte)Conversion.Val(myXml.ReadString("Event" + i, "y"));
+                        Map[mapNum].Events[i].PageCount = (byte)Conversion.Val(myXml.ReadString("Event" + i, "PageCount"));
                     }
-                    if (modTypes.Map[mapNum].Events[i].PageCount > 0)
+                    if (Map[mapNum].Events[i].PageCount > 0)
                     {
-                        modTypes.Map[mapNum].Events[i].Pages = new EventPageStruct[modTypes.Map[mapNum].Events[i].PageCount + 1];
-                        var loopTo1 = modTypes.Map[mapNum].Events[i].PageCount;
+                        Map[mapNum].Events[i].Pages = new EventPageStruct[Map[mapNum].Events[i].PageCount + 1];
+                        var loopTo1 = Map[mapNum].Events[i].PageCount;
                         for (x = 1; x <= loopTo1; x++)
                         {
                             {
-                                //var modTypes.Map[mapNum].Events[i].Pages[x] = modTypes.Map[mapNum].Events[i].Pages[x];
-                                modTypes.Map[mapNum].Events[i].Pages[x].ChkVariable = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkVariable"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].Variableindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableIndex"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].VariableCondition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCondition"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].VariableCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCompare"));
+                                //var Map[mapNum].Events[i].Pages[x] = Map[mapNum].Events[i].Pages[x];
+                                Map[mapNum].Events[i].Pages[x].ChkVariable = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkVariable"));
+                                Map[mapNum].Events[i].Pages[x].Variableindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableIndex"));
+                                Map[mapNum].Events[i].Pages[x].VariableCondition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCondition"));
+                                Map[mapNum].Events[i].Pages[x].VariableCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "VariableCompare"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].ChkSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSwitch"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].Switchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchIndex"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].SwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchCompare"));
+                                Map[mapNum].Events[i].Pages[x].ChkSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSwitch"));
+                                Map[mapNum].Events[i].Pages[x].Switchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchIndex"));
+                                Map[mapNum].Events[i].Pages[x].SwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SwitchCompare"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].ChkHasItem = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkHasItem"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].HasItemindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemIndex"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].HasItemAmount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemAmount"));
+                                Map[mapNum].Events[i].Pages[x].ChkHasItem = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkHasItem"));
+                                Map[mapNum].Events[i].Pages[x].HasItemindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemIndex"));
+                                Map[mapNum].Events[i].Pages[x].HasItemAmount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "HasItemAmount"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].ChkSelfSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSelfSwitch"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchIndex"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].SelfSwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchCompare"));
+                                Map[mapNum].Events[i].Pages[x].ChkSelfSwitch = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "chkSelfSwitch"));
+                                Map[mapNum].Events[i].Pages[x].SelfSwitchindex = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchIndex"));
+                                Map[mapNum].Events[i].Pages[x].SelfSwitchCompare = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "SelfSwitchCompare"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicType"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].Graphic = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Graphic"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicX = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicY = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicX2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX2"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].GraphicY2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY2"));
+                                Map[mapNum].Events[i].Pages[x].GraphicType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicType"));
+                                Map[mapNum].Events[i].Pages[x].Graphic = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Graphic"));
+                                Map[mapNum].Events[i].Pages[x].GraphicX = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX"));
+                                Map[mapNum].Events[i].Pages[x].GraphicY = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY"));
+                                Map[mapNum].Events[i].Pages[x].GraphicX2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicX2"));
+                                Map[mapNum].Events[i].Pages[x].GraphicY2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "GraphicY2"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].MoveType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveType"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].MoveSpeed = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveSpeed"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].MoveFreq = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveFreq"));
+                                Map[mapNum].Events[i].Pages[x].MoveType = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveType"));
+                                Map[mapNum].Events[i].Pages[x].MoveSpeed = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveSpeed"));
+                                Map[mapNum].Events[i].Pages[x].MoveFreq = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveFreq"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].IgnoreMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "IgnoreMoveRoute"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].RepeatMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "RepeatMoveRoute"));
+                                Map[mapNum].Events[i].Pages[x].IgnoreMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "IgnoreMoveRoute"));
+                                Map[mapNum].Events[i].Pages[x].RepeatMoveRoute = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "RepeatMoveRoute"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRouteCount"));
+                                Map[mapNum].Events[i].Pages[x].MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRouteCount"));
 
-                                if (modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount > 0)
+                                if (Map[mapNum].Events[i].Pages[x].MoveRouteCount > 0)
                                 {
-                                    modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute = new MoveRouteStruct[modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount + 1];
-                                    var loopTo2 = modTypes.Map[mapNum].Events[i].Pages[x].MoveRouteCount;
+                                    Map[mapNum].Events[i].Pages[x].MoveRoute = new MoveRouteStruct[Map[mapNum].Events[i].Pages[x].MoveRouteCount + 1];
+                                    var loopTo2 = Map[mapNum].Events[i].Pages[x].MoveRouteCount;
                                     for (y = 1; y <= loopTo2; y++)
                                     {
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Index"));
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1"));
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2"));
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3"));
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4"));
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5"));
-                                        modTypes.Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Index"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data1"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data2"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data3"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data4"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data5"));
+                                        Map[mapNum].Events[i].Pages[x].MoveRoute[y].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "MoveRoute" + y + "Data6"));
                                     }
                                 }
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].WalkAnim = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkAnim"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].DirFix = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "DirFix"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].WalkThrough = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkThrough"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].ShowName = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "ShowName"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].Trigger = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Trigger"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandListCount"));
+                                Map[mapNum].Events[i].Pages[x].WalkAnim = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkAnim"));
+                                Map[mapNum].Events[i].Pages[x].DirFix = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "DirFix"));
+                                Map[mapNum].Events[i].Pages[x].WalkThrough = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "WalkThrough"));
+                                Map[mapNum].Events[i].Pages[x].ShowName = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "ShowName"));
+                                Map[mapNum].Events[i].Pages[x].Trigger = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Trigger"));
+                                Map[mapNum].Events[i].Pages[x].CommandListCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandListCount"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].Position = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Position"));
-                                modTypes.Map[mapNum].Events[i].Pages[x].QuestNum = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "QuestNum"));
+                                Map[mapNum].Events[i].Pages[x].Position = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "Position"));
+                                Map[mapNum].Events[i].Pages[x].QuestNum = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "QuestNum"));
 
-                                modTypes.Map[mapNum].Events[i].Pages[x].ChkPlayerGender = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "PlayerGender"));
+                                Map[mapNum].Events[i].Pages[x].ChkPlayerGender = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "PlayerGender"));
                             }
 
-                            if (modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount > 0)
+                            if (Map[mapNum].Events[i].Pages[x].CommandListCount > 0)
                             {
-                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList = new CommandListStruct[modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount + 1];
-                                var loopTo3 = modTypes.Map[mapNum].Events[i].Pages[x].CommandListCount;
+                                Map[mapNum].Events[i].Pages[x].CommandList = new CommandListStruct[Map[mapNum].Events[i].Pages[x].CommandListCount + 1];
+                                var loopTo3 = Map[mapNum].Events[i].Pages[x].CommandListCount;
                                 for (y = 1; y <= loopTo3; y++)
                                 {
-                                    modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "CommandCount"));
-                                    modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].ParentList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "ParentList"));
-                                    if (modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount > 0)
+                                    Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "CommandCount"));
+                                    Map[mapNum].Events[i].Pages[x].CommandList[y].ParentList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "ParentList"));
+                                    if (Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount > 0)
                                     {
-                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands = new EventCommandStruct[modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount + 1];
-                                        var loopTo4 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount;
+                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands = new EventCommandStruct[Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount + 1];
+                                        var loopTo4 = Map[mapNum].Events[i].Pages[x].CommandList[y].CommandCount;
                                         for (p = 1; p <= loopTo4; p++)
                                         {
                                             {
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Index"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text1 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text1");
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text2 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text2");
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text3 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text3");
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text4 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text4");
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text5 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text5");
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data1"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data2"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data3"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data4"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data5"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data6"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.CommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCommandList"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Condition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCondition"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData1"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData2"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData3"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.ElseCommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchElseCommandList"));
-                                                modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRouteCount"));
-                                                if (modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount > 0)
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Index"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text1 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text1");
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text2 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text2");
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text3 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text3");
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text4 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text4");
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Text5 = myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Text5");
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data1"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data2"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data3"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data4"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data5"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "Data6"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.CommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCommandList"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Condition = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchCondition"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData1"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData2"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchData3"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].ConditionalBranch.ElseCommandList = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "ConditionalBranchElseCommandList"));
+                                                Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRouteCount"));
+                                                if (Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount > 0)
                                                 {
-                                                    modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute = new MoveRouteStruct[modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount + 1];
-                                                    var loopTo5 = modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount;
+                                                    Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute = new MoveRouteStruct[Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount + 1];
+                                                    var loopTo5 = Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRouteCount;
                                                     for (var w = 1; w <= loopTo5; w++)
                                                     {
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Index"));
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data1"));
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data2"));
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data3"));
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data4"));
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data5"));
-                                                        modTypes.Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data6"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Index = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Index"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data1 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data1"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data2 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data2"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data3 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data3"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data4 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data4"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data5 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data5"));
+                                                        Map[mapNum].Events[i].Pages[x].CommandList[y].Commands[p].MoveRoute[w].Data6 = (byte)Conversion.Val(myXml.ReadString("Event" + i + "Page" + x, "CommandList" + y + "Command" + p + "MoveRoute" + w + "Data6"));
                                                     }
                                                 }
                                             }
@@ -711,72 +711,72 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
-            modTypes.Map[mapNum].Name = reader.ReadString();
-            modTypes.Map[mapNum].Music = reader.ReadString();
-            modTypes.Map[mapNum].Revision = reader.ReadInt32();
-            modTypes.Map[mapNum].Moral = reader.ReadByte();
-            modTypes.Map[mapNum].Tileset = reader.ReadInt32();
-            modTypes.Map[mapNum].Up = reader.ReadInt32();
-            modTypes.Map[mapNum].Down = reader.ReadInt32();
-            modTypes.Map[mapNum].Left = reader.ReadInt32();
-            modTypes.Map[mapNum].Right = reader.ReadInt32();
-            modTypes.Map[mapNum].BootMap = reader.ReadInt32();
-            modTypes.Map[mapNum].BootX = reader.ReadByte();
-            modTypes.Map[mapNum].BootY = reader.ReadByte();
-            modTypes.Map[mapNum].MaxX = reader.ReadByte();
-            modTypes.Map[mapNum].MaxY = reader.ReadByte();
-            modTypes.Map[mapNum].WeatherType = reader.ReadByte();
-            modTypes.Map[mapNum].Fogindex = reader.ReadInt32();
-            modTypes.Map[mapNum].WeatherIntensity = reader.ReadInt32();
-            modTypes.Map[mapNum].FogAlpha = reader.ReadByte();
-            modTypes.Map[mapNum].FogSpeed = reader.ReadByte();
-            modTypes.Map[mapNum].HasMapTint = reader.ReadByte();
-            modTypes.Map[mapNum].MapTintR = reader.ReadByte();
-            modTypes.Map[mapNum].MapTintG = reader.ReadByte();
-            modTypes.Map[mapNum].MapTintB = reader.ReadByte();
-            modTypes.Map[mapNum].MapTintA = reader.ReadByte();
-            modTypes.Map[mapNum].Instanced = reader.ReadByte();
-            modTypes.Map[mapNum].Panorama = reader.ReadByte();
-            modTypes.Map[mapNum].Parallax = reader.ReadByte();
-            modTypes.Map[mapNum].Brightness = reader.ReadByte();
+            Map[mapNum].Name = reader.ReadString();
+            Map[mapNum].Music = reader.ReadString();
+            Map[mapNum].Revision = reader.ReadInt32();
+            Map[mapNum].Moral = reader.ReadByte();
+            Map[mapNum].Tileset = reader.ReadInt32();
+            Map[mapNum].Up = reader.ReadInt32();
+            Map[mapNum].Down = reader.ReadInt32();
+            Map[mapNum].Left = reader.ReadInt32();
+            Map[mapNum].Right = reader.ReadInt32();
+            Map[mapNum].BootMap = reader.ReadInt32();
+            Map[mapNum].BootX = reader.ReadByte();
+            Map[mapNum].BootY = reader.ReadByte();
+            Map[mapNum].MaxX = reader.ReadByte();
+            Map[mapNum].MaxY = reader.ReadByte();
+            Map[mapNum].WeatherType = reader.ReadByte();
+            Map[mapNum].Fogindex = reader.ReadInt32();
+            Map[mapNum].WeatherIntensity = reader.ReadInt32();
+            Map[mapNum].FogAlpha = reader.ReadByte();
+            Map[mapNum].FogSpeed = reader.ReadByte();
+            Map[mapNum].HasMapTint = reader.ReadByte();
+            Map[mapNum].MapTintR = reader.ReadByte();
+            Map[mapNum].MapTintG = reader.ReadByte();
+            Map[mapNum].MapTintB = reader.ReadByte();
+            Map[mapNum].MapTintA = reader.ReadByte();
+            Map[mapNum].Instanced = reader.ReadByte();
+            Map[mapNum].Panorama = reader.ReadByte();
+            Map[mapNum].Parallax = reader.ReadByte();
+            Map[mapNum].Brightness = reader.ReadByte();
 
             // have to set the tile()
-            modTypes.Map[mapNum].Tile = new TileRec[modTypes.Map[mapNum].MaxX + 1, modTypes.Map[mapNum].MaxY + 1];
-            var loopTo = modTypes.Map[mapNum].MaxX;
-            for (x = 0; x <= loopTo; x++)
+            Map[mapNum].Tile = new TileRec[Map[mapNum].MaxX + 1, Map[mapNum].MaxY + 1];
+            
+            for (x = 0; x <= Map[mapNum].MaxX; x++)
             {
-                var loopTo1 = modTypes.Map[mapNum].MaxY;
-                for (y = 0; y <= loopTo1; y++)
+                
+                for (y = 0; y <= Map[mapNum].MaxY; y++)
                 {
-                    modTypes.Map[mapNum].Tile[x, y].Data1 = reader.ReadInt32();
-                    modTypes.Map[mapNum].Tile[x, y].Data2 = reader.ReadInt32();
-                    modTypes.Map[mapNum].Tile[x, y].Data3 = reader.ReadInt32();
-                    modTypes.Map[mapNum].Tile[x, y].DirBlock = reader.ReadByte();
-                    modTypes.Map[mapNum].Tile[x, y].Layer = new TileDataRec[6];
+                    Map[mapNum].Tile[x, y].Data1 = reader.ReadInt32();
+                    Map[mapNum].Tile[x, y].Data2 = reader.ReadInt32();
+                    Map[mapNum].Tile[x, y].Data3 = reader.ReadInt32();
+                    Map[mapNum].Tile[x, y].DirBlock = reader.ReadByte();
+                    Map[mapNum].Tile[x, y].Layer = new TileDataRec[6];
                     for (l = 0; l <= (byte)Enums.LayerType.Count - 1; l++)
                     {
-                        modTypes.Map[mapNum].Tile[x, y].Layer[l].Tileset = reader.ReadByte();
-                        modTypes.Map[mapNum].Tile[x, y].Layer[l].X = reader.ReadByte();
-                        modTypes.Map[mapNum].Tile[x, y].Layer[l].Y = reader.ReadByte();
-                        modTypes.Map[mapNum].Tile[x, y].Layer[l].AutoTile = reader.ReadByte();
+                        Map[mapNum].Tile[x, y].Layer[l].Tileset = reader.ReadByte();
+                        Map[mapNum].Tile[x, y].Layer[l].X = reader.ReadByte();
+                        Map[mapNum].Tile[x, y].Layer[l].Y = reader.ReadByte();
+                        Map[mapNum].Tile[x, y].Layer[l].AutoTile = reader.ReadByte();
                     }
-                    modTypes.Map[mapNum].Tile[x, y].Type = reader.ReadByte();
+                    Map[mapNum].Tile[x, y].Type = reader.ReadByte();
                 }
             }
 
             for (x = 1; x <= Constants.MAX_MAP_NPCS; x++)
             {
-                modTypes.Map[mapNum].Npc[x] = reader.ReadInt32();
-                modTypes.MapNpc[mapNum].Npc[x].Num = modTypes.Map[mapNum].Npc[x];
+                Map[mapNum].Npc[x] = reader.ReadInt32();
+                MapNpc[mapNum].Npc[x].Num = Map[mapNum].Npc[x];
             }
 
             ClearTempTile(mapNum);
             S_Resources.CacheResources(mapNum);
 
-            if (modTypes.Map[mapNum].Name == null)
-                modTypes.Map[mapNum].Name = "";
-            if (modTypes.Map[mapNum].Music == null)
-                modTypes.Map[mapNum].Music = "";
+            if (Map[mapNum].Name == null)
+                Map[mapNum].Name = "";
+            if (Map[mapNum].Music == null)
+                Map[mapNum].Music = "";
 
             if (File.Exists(Application.StartupPath + @"\data\maps\map" + mapNum + "_eventdata.xml"))
                 LoadMapEvent(mapNum);
@@ -784,7 +784,7 @@ namespace Engine
 
         public static void ClearTempTiles()
         {
-            modTypes.TempTile = new TempTileRec[601];
+            TempTile = new TempTileRec[601];
 
             for (var i = 1; i <= S_Instances.MAX_CACHED_MAPS; i++)
                 ClearTempTile(i);
@@ -794,22 +794,22 @@ namespace Engine
         {
             int y;
             int x;
-            modTypes.TempTile[mapNum].DoorTimer = 0;
-            modTypes.TempTile[mapNum].DoorOpen = new byte[modTypes.Map[mapNum].MaxX + 1, modTypes.Map[mapNum].MaxY + 1];
-            var loopTo = modTypes.Map[mapNum].MaxX;
+            TempTile[mapNum].DoorTimer = 0;
+            TempTile[mapNum].DoorOpen = new byte[Map[mapNum].MaxX + 1, Map[mapNum].MaxY + 1];
+            var loopTo = Map[mapNum].MaxX;
             for (x = 0; x <= loopTo; x++)
             {
-                var loopTo1 = modTypes.Map[mapNum].MaxY;
+                var loopTo1 = Map[mapNum].MaxY;
                 for (y = 0; y <= loopTo1; y++)
-                    modTypes.TempTile[mapNum].DoorOpen[x, y] = 0;
+                    TempTile[mapNum].DoorOpen[x, y] = 0;
             }
         }
 
         public static void ClearMapItem(int index, int mapNum)
         {
-            modTypes.MapItem[mapNum, index] = default(MapItemRec);
-            modTypes.MapItem[mapNum, index].RandData.Prefix = "";
-            modTypes.MapItem[mapNum, index].RandData.Suffix = "";
+            MapItem[mapNum, index] = default(MapItemRec);
+            MapItem[mapNum, index].RandData.Prefix = "";
+            MapItem[mapNum, index].RandData.Suffix = "";
         }
 
         public static void ClearMapItems()
@@ -953,10 +953,10 @@ namespace Engine
 
         public static void ClearMapNpc(int index, int mapNum)
         {
-            modTypes.MapNpc[mapNum].Npc[index] = default(MapNpcRec);
+            MapNpc[mapNum].Npc[index] = default(MapNpcRec);
 
-            modTypes.MapNpc[mapNum].Npc[index].Vital = new int[(byte)Enums.VitalType.Count + 1];
-            modTypes.MapNpc[mapNum].Npc[index].SkillCd = new int[Constants.MAX_NPC_SKILLS + 1];
+            MapNpc[mapNum].Npc[index].Vital = new int[(byte)Enums.VitalType.Count + 1];
+            MapNpc[mapNum].Npc[index].SkillCd = new int[Constants.MAX_NPC_SKILLS + 1];
         }
 
         public static void ClearAllMapNpcs()
@@ -1260,8 +1260,8 @@ namespace Engine
         {
             ClearPlayer(index);
 
-            modTypes.Player[index].Login = Name;
-            modTypes.Player[index].Password = Password;
+            Player[index].Login = Name;
+            Player[index].Password = Password;
 
             SavePlayer(index);
         }
@@ -1287,20 +1287,20 @@ namespace Engine
 
         public static void SavePlayer(int index)
         {
-            if(modTypes.Player[index].Login == null)
+            if(Player[index].Login == null)
             {
                 Console.WriteLine("It appears a player data is missing.. Did they quit while we were saving them?");
                 return;
             }
-            string playername = Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Login);
+            string playername = Microsoft.VisualBasic.Strings.Trim(Player[index].Login);
             string filename = Application.StartupPath + @"\Data\Accounts\" + playername;
             S_General.CheckDir(filename); filename += @"\Data.bin";
 
-            ByteStream writer = new ByteStream(9 + modTypes.Player[index].Login.Length + modTypes.Player[index].Password.Length);
+            ByteStream writer = new ByteStream(9 + Player[index].Login.Length + Player[index].Password.Length);
 
-            writer.WriteString(modTypes.Player[index].Login);
-            writer.WriteString(modTypes.Player[index].Password);
-            writer.WriteByte(modTypes.Player[index].Access);
+            writer.WriteString(Player[index].Login);
+            writer.WriteString(Player[index].Password);
+            writer.WriteByte(Player[index].Access);
 
             BinaryFile.Save(filename, ref writer);
 
@@ -1315,9 +1315,9 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
-            modTypes.Player[index].Login = reader.ReadString();
-            modTypes.Player[index].Password = reader.ReadString();
-            modTypes.Player[index].Access = reader.ReadByte();
+            Player[index].Login = reader.ReadString();
+            Player[index].Password = reader.ReadString();
+            Player[index].Access = reader.ReadByte();
 
             for (int i = 1; i <= S_Constants.MAX_CHARS; i++)
                 LoadCharacter(index, i);
@@ -1325,13 +1325,13 @@ namespace Engine
 
         public static void ClearPlayer(int index)
         {
-            modTypes.TempPlayer[index].SkillCd = new int[Constants.MAX_PLAYER_SKILLS + 1];
-            modTypes.TempPlayer[index].PetSkillCd = new int[5];
+            TempPlayer[index].SkillCd = new int[Constants.MAX_PLAYER_SKILLS + 1];
+            TempPlayer[index].PetSkillCd = new int[5];
 
-            modTypes.Player[index].Login = "";
-            modTypes.Player[index].Password = "";
+            Player[index].Login = "";
+            Player[index].Password = "";
 
-            modTypes.Player[index].Access = 0;
+            Player[index].Access = 0;
 
             for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
                 ClearCharacter(index, i);
@@ -1356,45 +1356,45 @@ namespace Engine
 
             for (var i = 1; i <= Constants.MAX_BANK; i++)
             {
-                modTypes.Bank[index].Item[i].Num = reader.ReadByte();
-                modTypes.Bank[index].Item[i].Value = reader.ReadInt32();
+                Bank[index].Item[i].Num = reader.ReadByte();
+                Bank[index].Item[i].Value = reader.ReadInt32();
 
-                modTypes.Bank[index].ItemRand[i].Prefix = reader.ReadString();
-                modTypes.Bank[index].ItemRand[i].Suffix = reader.ReadString();
-                modTypes.Bank[index].ItemRand[i].Rarity = reader.ReadInt32();
-                modTypes.Bank[index].ItemRand[i].Damage = reader.ReadInt32();
-                modTypes.Bank[index].ItemRand[i].Speed = reader.ReadInt32();
+                Bank[index].ItemRand[i].Prefix = reader.ReadString();
+                Bank[index].ItemRand[i].Suffix = reader.ReadString();
+                Bank[index].ItemRand[i].Rarity = reader.ReadInt32();
+                Bank[index].ItemRand[i].Damage = reader.ReadInt32();
+                Bank[index].ItemRand[i].Speed = reader.ReadInt32();
 
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    modTypes.Bank[index].ItemRand[i].Stat[x] = reader.ReadInt32();
+                    Bank[index].ItemRand[i].Stat[x] = reader.ReadInt32();
             }
         }
 
         public static void SaveBank(int index)
         {
-            if(modTypes.Player[index].Login == null) { return; }
-            var filename = Application.StartupPath + @"\Data\Accounts\" + modTypes.Player[index].Login.Trim() + @"\Bank.bin";
+            if(Player[index].Login == null) { return; }
+            var filename = Application.StartupPath + @"\Data\Accounts\" + Player[index].Login.Trim() + @"\Bank.bin";
 
             ByteStream writer = new ByteStream(100);
 
             for (var i = 1; i <= Constants.MAX_BANK; i++)
             {
-                writer.WriteByte((byte)modTypes.Bank[index].Item[i].Num);
-                writer.WriteInt32(modTypes.Bank[index].Item[i].Value);
+                writer.WriteByte((byte)Bank[index].Item[i].Num);
+                writer.WriteInt32(Bank[index].Item[i].Value);
 
-                if (modTypes.Bank[index].ItemRand[i].Prefix == null)
-                    modTypes.Bank[index].ItemRand[i].Prefix = "";
-                if (modTypes.Bank[index].ItemRand[i].Suffix == null)
-                    modTypes.Bank[index].ItemRand[i].Suffix = "";
+                if (Bank[index].ItemRand[i].Prefix == null)
+                    Bank[index].ItemRand[i].Prefix = "";
+                if (Bank[index].ItemRand[i].Suffix == null)
+                    Bank[index].ItemRand[i].Suffix = "";
 
-                writer.WriteString(modTypes.Bank[index].ItemRand[i].Prefix);
-                writer.WriteString(modTypes.Bank[index].ItemRand[i].Suffix);
-                writer.WriteInt32(modTypes.Bank[index].ItemRand[i].Rarity);
-                writer.WriteInt32(modTypes.Bank[index].ItemRand[i].Damage);
-                writer.WriteInt32(modTypes.Bank[index].ItemRand[i].Speed);
+                writer.WriteString(Bank[index].ItemRand[i].Prefix);
+                writer.WriteString(Bank[index].ItemRand[i].Suffix);
+                writer.WriteInt32(Bank[index].ItemRand[i].Rarity);
+                writer.WriteInt32(Bank[index].ItemRand[i].Damage);
+                writer.WriteInt32(Bank[index].ItemRand[i].Speed);
 
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    writer.WriteInt32(modTypes.Bank[index].ItemRand[i].Stat[x]);
+                    writer.WriteInt32(Bank[index].ItemRand[i].Stat[x]);
             }
 
             BinaryFile.Save(filename, ref writer);
@@ -1402,22 +1402,22 @@ namespace Engine
 
         public static void ClearBank(int index)
         {
-            modTypes.Bank[index].Item = new PlayerInvRec[Constants.MAX_BANK + 1];
-            modTypes.Bank[index].ItemRand = new RandInvRec[Constants.MAX_BANK + 1];
+            Bank[index].Item = new PlayerInvRec[Constants.MAX_BANK + 1];
+            Bank[index].ItemRand = new RandInvRec[Constants.MAX_BANK + 1];
 
             for (var i = 1; i <= Constants.MAX_BANK; i++)
             {
-                modTypes.Bank[index].Item[i].Num = 0;
-                modTypes.Bank[index].Item[i].Value = 0;
-                modTypes.Bank[index].ItemRand[i].Prefix = "";
-                modTypes.Bank[index].ItemRand[i].Suffix = "";
-                modTypes.Bank[index].ItemRand[i].Rarity = 0;
-                modTypes.Bank[index].ItemRand[i].Damage = 0;
-                modTypes.Bank[index].ItemRand[i].Speed = 0;
+                Bank[index].Item[i].Num = 0;
+                Bank[index].Item[i].Value = 0;
+                Bank[index].ItemRand[i].Prefix = "";
+                Bank[index].ItemRand[i].Suffix = "";
+                Bank[index].ItemRand[i].Rarity = 0;
+                Bank[index].ItemRand[i].Damage = 0;
+                Bank[index].ItemRand[i].Speed = 0;
 
-                modTypes.Bank[index].ItemRand[i].Stat = new int[7];
+                Bank[index].ItemRand[i].Stat = new int[7];
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    modTypes.Bank[index].ItemRand[i].Stat[x] = 0;
+                    Bank[index].ItemRand[i].Stat[x] = 0;
             }
         }
 
@@ -1425,429 +1425,429 @@ namespace Engine
 
         public static void ClearCharacter(int index, int CharNum)
         {
-            modTypes.Player[index].Character[CharNum].Classes = 0;
-            modTypes.Player[index].Character[CharNum].Dir = 0;
+            Player[index].Character[CharNum].Classes = 0;
+            Player[index].Character[CharNum].Dir = 0;
 
             for (var i = 0; i <= (int)Enums.EquipmentType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Equipment[i] = 0;
+                Player[index].Character[CharNum].Equipment[i] = 0;
 
             for (int i = 0; i <= Constants.MAX_INV; i++)
             {
-                modTypes.Player[index].Character[CharNum].Inv[i].Num = 0;
-                modTypes.Player[index].Character[CharNum].Inv[i].Value = 0;
+                Player[index].Character[CharNum].Inv[i].Num = 0;
+                Player[index].Character[CharNum].Inv[i].Value = 0;
             }
 
-            modTypes.Player[index].Character[CharNum].Exp = 0;
-            modTypes.Player[index].Character[CharNum].Level = 0;
-            modTypes.Player[index].Character[CharNum].Map = 0;
-            modTypes.Player[index].Character[CharNum].Name = "";
-            modTypes.Player[index].Character[CharNum].Pk = 0;
-            modTypes.Player[index].Character[CharNum].Points = 0;
-            modTypes.Player[index].Character[CharNum].Sex = 0;
+            Player[index].Character[CharNum].Exp = 0;
+            Player[index].Character[CharNum].Level = 0;
+            Player[index].Character[CharNum].Map = 0;
+            Player[index].Character[CharNum].Name = "";
+            Player[index].Character[CharNum].Pk = 0;
+            Player[index].Character[CharNum].Points = 0;
+            Player[index].Character[CharNum].Sex = 0;
 
             for (var i = 0; i <= Constants.MAX_PLAYER_SKILLS; i++)
-                modTypes.Player[index].Character[CharNum].Skill[i] = 0;
+                Player[index].Character[CharNum].Skill[i] = 0;
 
-            modTypes.Player[index].Character[CharNum].Sprite = 0;
+            Player[index].Character[CharNum].Sprite = 0;
 
             for (var i = 0; i <= (int)Enums.StatType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Stat[i] = 0;
+                Player[index].Character[CharNum].Stat[i] = 0;
 
             for (int i = 0; i <= (int)Enums.VitalType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Vital[i] = 0;
+                Player[index].Character[CharNum].Vital[i] = 0;
 
-            modTypes.Player[index].Character[CharNum].X = 0;
-            modTypes.Player[index].Character[CharNum].Y = 0;
+            Player[index].Character[CharNum].X = 0;
+            Player[index].Character[CharNum].Y = 0;
 
-            modTypes.Player[index].Character[CharNum].PlayerQuest = new PlayerQuestRec[251];
+            Player[index].Character[CharNum].PlayerQuest = new PlayerQuestRec[251];
             for (var i = 1; i <= S_Quest.MAX_QUESTS; i++)
             {
-                modTypes.Player[index].Character[CharNum].PlayerQuest[i].Status = 0;
-                modTypes.Player[index].Character[CharNum].PlayerQuest[i].ActualTask = 0;
-                modTypes.Player[index].Character[CharNum].PlayerQuest[i].CurrentCount = 0;
+                Player[index].Character[CharNum].PlayerQuest[i].Status = 0;
+                Player[index].Character[CharNum].PlayerQuest[i].ActualTask = 0;
+                Player[index].Character[CharNum].PlayerQuest[i].CurrentCount = 0;
             }
 
             // Housing
-            modTypes.Player[index].Character[CharNum].House.Houseindex = 0;
-            modTypes.Player[index].Character[CharNum].House.FurnitureCount = 0;
-            modTypes.Player[index].Character[CharNum].House.Furniture = new FurnitureRec[modTypes.Player[index].Character[CharNum].House.FurnitureCount + 1];
-            var loopTo = modTypes.Player[index].Character[CharNum].House.FurnitureCount;
+            Player[index].Character[CharNum].House.Houseindex = 0;
+            Player[index].Character[CharNum].House.FurnitureCount = 0;
+            Player[index].Character[CharNum].House.Furniture = new FurnitureRec[Player[index].Character[CharNum].House.FurnitureCount + 1];
+            var loopTo = Player[index].Character[CharNum].House.FurnitureCount;
             for (var i = 0; i <= loopTo; i++)
             {
-                modTypes.Player[index].Character[CharNum].House.Furniture[i].ItemNum = 0;
-                modTypes.Player[index].Character[CharNum].House.Furniture[i].X = 0;
-                modTypes.Player[index].Character[CharNum].House.Furniture[i].Y = 0;
+                Player[index].Character[CharNum].House.Furniture[i].ItemNum = 0;
+                Player[index].Character[CharNum].House.Furniture[i].X = 0;
+                Player[index].Character[CharNum].House.Furniture[i].Y = 0;
             }
 
-            modTypes.Player[index].Character[CharNum].InHouse = 0;
-            modTypes.Player[index].Character[CharNum].LastMap = 0;
-            modTypes.Player[index].Character[CharNum].LastX = 0;
-            modTypes.Player[index].Character[CharNum].LastY = 0;
+            Player[index].Character[CharNum].InHouse = 0;
+            Player[index].Character[CharNum].LastMap = 0;
+            Player[index].Character[CharNum].LastX = 0;
+            Player[index].Character[CharNum].LastY = 0;
 
-            modTypes.Player[index].Character[CharNum].Hotbar = new HotbarRec[S_Constants.MAX_HOTBAR + 1];
+            Player[index].Character[CharNum].Hotbar = new HotbarRec[S_Constants.MAX_HOTBAR + 1];
             for (var i = 1; i <= S_Constants.MAX_HOTBAR; i++)
             {
-                modTypes.Player[index].Character[CharNum].Hotbar[i].Slot = 0;
-                modTypes.Player[index].Character[CharNum].Hotbar[i].SlotType = 0;
+                Player[index].Character[CharNum].Hotbar[i].Slot = 0;
+                Player[index].Character[CharNum].Hotbar[i].SlotType = 0;
             }
 
-            modTypes.Player[index].Character[CharNum].Switches = new byte[501];
+            Player[index].Character[CharNum].Switches = new byte[501];
             for (var i = 1; i <= S_Events.MaxSwitches; i++)
-                modTypes.Player[index].Character[CharNum].Switches[i] = 0;
-            modTypes.Player[index].Character[CharNum].Variables = new int[501];
+                Player[index].Character[CharNum].Switches[i] = 0;
+            Player[index].Character[CharNum].Variables = new int[501];
             for (var i = 1; i <= S_Events.MaxVariables; i++)
-                modTypes.Player[index].Character[CharNum].Variables[i] = 0;
+                Player[index].Character[CharNum].Variables[i] = 0;
 
-            modTypes.Player[index].Character[CharNum].GatherSkills = new ResourceSkillsRec[5];
+            Player[index].Character[CharNum].GatherSkills = new ResourceSkillsRec[5];
             for (var i = 0; i <= (int)Enums.ResourceSkills.Count - 1; i++)
             {
-                modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillLevel = 1;
-                modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillCurExp = 0;
-                modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = 100;
+                Player[index].Character[CharNum].GatherSkills[i].SkillLevel = 1;
+                Player[index].Character[CharNum].GatherSkills[i].SkillCurExp = 0;
+                Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = 100;
             }
 
-            modTypes.Player[index].Character[CharNum].RecipeLearned = new byte[101];
+            Player[index].Character[CharNum].RecipeLearned = new byte[101];
             for (var i = 1; i <= Constants.MAX_RECIPE; i++)
-                modTypes.Player[index].Character[CharNum].RecipeLearned[i] = 0;
+                Player[index].Character[CharNum].RecipeLearned[i] = 0;
 
             // random items
-            modTypes.Player[index].Character[CharNum].RandInv = new RandInvRec[Constants.MAX_INV + 1];
+            Player[index].Character[CharNum].RandInv = new RandInvRec[Constants.MAX_INV + 1];
             for (var i = 1; i <= Constants.MAX_INV; i++)
             {
-                modTypes.Player[index].Character[CharNum].RandInv[i].Prefix = "";
-                modTypes.Player[index].Character[CharNum].RandInv[i].Suffix = "";
-                modTypes.Player[index].Character[CharNum].RandInv[i].Rarity = 0;
-                modTypes.Player[index].Character[CharNum].RandInv[i].Damage = 0;
-                modTypes.Player[index].Character[CharNum].RandInv[i].Speed = 0;
+                Player[index].Character[CharNum].RandInv[i].Prefix = "";
+                Player[index].Character[CharNum].RandInv[i].Suffix = "";
+                Player[index].Character[CharNum].RandInv[i].Rarity = 0;
+                Player[index].Character[CharNum].RandInv[i].Damage = 0;
+                Player[index].Character[CharNum].RandInv[i].Speed = 0;
 
-                modTypes.Player[index].Character[CharNum].RandInv[i].Stat = new int[7];
+                Player[index].Character[CharNum].RandInv[i].Stat = new int[7];
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    modTypes.Player[index].Character[CharNum].RandInv[i].Stat[x] = 0;
+                    Player[index].Character[CharNum].RandInv[i].Stat[x] = 0;
             }
 
-            modTypes.Player[index].Character[CharNum].RandEquip = new RandInvRec[7];
+            Player[index].Character[CharNum].RandEquip = new RandInvRec[7];
             for (var i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
             {
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Prefix = "";
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Suffix = "";
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Rarity = 0;
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Damage = 0;
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Speed = 0;
+                Player[index].Character[CharNum].RandEquip[i].Prefix = "";
+                Player[index].Character[CharNum].RandEquip[i].Suffix = "";
+                Player[index].Character[CharNum].RandEquip[i].Rarity = 0;
+                Player[index].Character[CharNum].RandEquip[i].Damage = 0;
+                Player[index].Character[CharNum].RandEquip[i].Speed = 0;
 
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Stat = new int[7];
+                Player[index].Character[CharNum].RandEquip[i].Stat = new int[7];
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    modTypes.Player[index].Character[CharNum].RandEquip[i].Stat[x] = 0;
+                    Player[index].Character[CharNum].RandEquip[i].Stat[x] = 0;
             }
 
             // pets
-            modTypes.Player[index].Character[CharNum].Pet.Num = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Health = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Mana = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Level = 0;
+            Player[index].Character[CharNum].Pet.Num = 0;
+            Player[index].Character[CharNum].Pet.Health = 0;
+            Player[index].Character[CharNum].Pet.Mana = 0;
+            Player[index].Character[CharNum].Pet.Level = 0;
 
-            modTypes.Player[index].Character[CharNum].Pet.Stat = new int[7];
+            Player[index].Character[CharNum].Pet.Stat = new int[7];
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Pet.Stat[i] = 0;
+                Player[index].Character[CharNum].Pet.Stat[i] = 0;
 
-            modTypes.Player[index].Character[CharNum].Pet.Skill = new int[5];
+            Player[index].Character[CharNum].Pet.Skill = new int[5];
             for (var i = 1; i <= 4; i++)
-                modTypes.Player[index].Character[CharNum].Pet.Skill[i] = 0;
+                Player[index].Character[CharNum].Pet.Skill[i] = 0;
 
-            modTypes.Player[index].Character[CharNum].Pet.X = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Y = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Dir = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Alive = 0;
-            modTypes.Player[index].Character[CharNum].Pet.AttackBehaviour = 0;
-            modTypes.Player[index].Character[CharNum].Pet.AdoptiveStats = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Points = 0;
-            modTypes.Player[index].Character[CharNum].Pet.Exp = 0;
+            Player[index].Character[CharNum].Pet.X = 0;
+            Player[index].Character[CharNum].Pet.Y = 0;
+            Player[index].Character[CharNum].Pet.Dir = 0;
+            Player[index].Character[CharNum].Pet.Alive = 0;
+            Player[index].Character[CharNum].Pet.AttackBehaviour = 0;
+            Player[index].Character[CharNum].Pet.AdoptiveStats = 0;
+            Player[index].Character[CharNum].Pet.Points = 0;
+            Player[index].Character[CharNum].Pet.Exp = 0;
         }
 
         public static void LoadCharacter(int index, int CharNum)
         {
-            string filename = Application.StartupPath + @"\Data\Accounts\" + modTypes.Player[index].Login.Trim() + @"\" + CharNum + ".bin";
+            string filename = Application.StartupPath + @"\Data\Accounts\" + Player[index].Login.Trim() + @"\" + CharNum + ".bin";
 
             ClearCharacter(index, CharNum);
 
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
-            modTypes.Player[index].Character[CharNum].Classes = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Dir = reader.ReadByte();
+            Player[index].Character[CharNum].Classes = reader.ReadByte();
+            Player[index].Character[CharNum].Dir = reader.ReadByte();
 
             for (var i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Equipment[i] = reader.ReadByte();
+                Player[index].Character[CharNum].Equipment[i] = reader.ReadByte();
 
-            modTypes.Player[index].Character[CharNum].Exp = reader.ReadInt32();
+            Player[index].Character[CharNum].Exp = reader.ReadInt32();
 
             for (var i = 0; i <= Constants.MAX_INV; i++)
             {
-                modTypes.Player[index].Character[CharNum].Inv[i].Num = reader.ReadByte();
-                modTypes.Player[index].Character[CharNum].Inv[i].Value = reader.ReadInt32();
+                Player[index].Character[CharNum].Inv[i].Num = reader.ReadByte();
+                Player[index].Character[CharNum].Inv[i].Value = reader.ReadInt32();
             }
 
-            modTypes.Player[index].Character[CharNum].Level = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Map = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Name = reader.ReadString();
-            modTypes.Player[index].Character[CharNum].Pk = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Points = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Sex = reader.ReadByte();
+            Player[index].Character[CharNum].Level = reader.ReadInt32();
+            Player[index].Character[CharNum].Map = reader.ReadInt32();
+            Player[index].Character[CharNum].Name = reader.ReadString();
+            Player[index].Character[CharNum].Pk = reader.ReadByte();
+            Player[index].Character[CharNum].Points = reader.ReadInt32();
+            Player[index].Character[CharNum].Sex = reader.ReadByte();
 
             for (var i = 0; i <= Constants.MAX_PLAYER_SKILLS; i++)
-                modTypes.Player[index].Character[CharNum].Skill[i] = reader.ReadByte();
+                Player[index].Character[CharNum].Skill[i] = reader.ReadByte();
 
-            modTypes.Player[index].Character[CharNum].Sprite = reader.ReadInt32();
+            Player[index].Character[CharNum].Sprite = reader.ReadInt32();
 
             for (var i = 0; i <= (int)Enums.StatType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Stat[i] = reader.ReadInt32();
+                Player[index].Character[CharNum].Stat[i] = reader.ReadInt32();
 
             for (int i = 0; i <= (int)Enums.VitalType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Vital[i] = reader.ReadInt32();
+                Player[index].Character[CharNum].Vital[i] = reader.ReadInt32();
 
-            modTypes.Player[index].Character[CharNum].X = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Y = reader.ReadByte();
+            Player[index].Character[CharNum].X = reader.ReadByte();
+            Player[index].Character[CharNum].Y = reader.ReadByte();
 
             for (var i = 1; i <= S_Quest.MAX_QUESTS; i++)
             {
-                modTypes.Player[index].Character[CharNum].PlayerQuest[i].Status = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].PlayerQuest[i].ActualTask = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].PlayerQuest[i].CurrentCount = reader.ReadInt32();
+                Player[index].Character[CharNum].PlayerQuest[i].Status = reader.ReadInt32();
+                Player[index].Character[CharNum].PlayerQuest[i].ActualTask = reader.ReadInt32();
+                Player[index].Character[CharNum].PlayerQuest[i].CurrentCount = reader.ReadInt32();
             }
 
             // Housing
-            modTypes.Player[index].Character[CharNum].House.Houseindex = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].House.FurnitureCount = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].House.Furniture = new FurnitureRec[modTypes.Player[index].Character[CharNum].House.FurnitureCount + 1];
-            var loopTo = modTypes.Player[index].Character[CharNum].House.FurnitureCount;
+            Player[index].Character[CharNum].House.Houseindex = reader.ReadInt32();
+            Player[index].Character[CharNum].House.FurnitureCount = reader.ReadInt32();
+            Player[index].Character[CharNum].House.Furniture = new FurnitureRec[Player[index].Character[CharNum].House.FurnitureCount + 1];
+            var loopTo = Player[index].Character[CharNum].House.FurnitureCount;
             for (var i = 0; i <= loopTo; i++)
             {
-                modTypes.Player[index].Character[CharNum].House.Furniture[i].ItemNum = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].House.Furniture[i].X = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].House.Furniture[i].Y = reader.ReadInt32();
+                Player[index].Character[CharNum].House.Furniture[i].ItemNum = reader.ReadInt32();
+                Player[index].Character[CharNum].House.Furniture[i].X = reader.ReadInt32();
+                Player[index].Character[CharNum].House.Furniture[i].Y = reader.ReadInt32();
             }
-            modTypes.Player[index].Character[CharNum].InHouse = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].LastMap = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].LastX = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].LastY = reader.ReadInt32();
+            Player[index].Character[CharNum].InHouse = reader.ReadInt32();
+            Player[index].Character[CharNum].LastMap = reader.ReadInt32();
+            Player[index].Character[CharNum].LastX = reader.ReadInt32();
+            Player[index].Character[CharNum].LastY = reader.ReadInt32();
 
             for (var i = 1; i <= S_Constants.MAX_HOTBAR; i++)
             {
-                modTypes.Player[index].Character[CharNum].Hotbar[i].Slot = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].Hotbar[i].SlotType = reader.ReadByte();
+                Player[index].Character[CharNum].Hotbar[i].Slot = reader.ReadInt32();
+                Player[index].Character[CharNum].Hotbar[i].SlotType = reader.ReadByte();
             }
 
-            modTypes.Player[index].Character[CharNum].Switches = new byte[501];
+            Player[index].Character[CharNum].Switches = new byte[501];
             for (var i = 1; i <= S_Events.MaxSwitches; i++)
-                modTypes.Player[index].Character[CharNum].Switches[i] = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Variables = new int[501];
+                Player[index].Character[CharNum].Switches[i] = reader.ReadByte();
+            Player[index].Character[CharNum].Variables = new int[501];
             for (var i = 1; i <= S_Events.MaxVariables; i++)
-                modTypes.Player[index].Character[CharNum].Variables[i] = reader.ReadInt32();
+                Player[index].Character[CharNum].Variables[i] = reader.ReadInt32();
 
-            modTypes.Player[index].Character[CharNum].GatherSkills = new ResourceSkillsRec[5];
+            Player[index].Character[CharNum].GatherSkills = new ResourceSkillsRec[5];
             for (var i = 0; i <= (int)Enums.ResourceSkills.Count - 1; i++)
             {
-                modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillLevel = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillCurExp = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = reader.ReadInt32();
-                if (modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillLevel == 0)
-                    modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillLevel = 1;
-                if (modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp == 0)
-                    modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = 100;
+                Player[index].Character[CharNum].GatherSkills[i].SkillLevel = reader.ReadInt32();
+                Player[index].Character[CharNum].GatherSkills[i].SkillCurExp = reader.ReadInt32();
+                Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = reader.ReadInt32();
+                if (Player[index].Character[CharNum].GatherSkills[i].SkillLevel == 0)
+                    Player[index].Character[CharNum].GatherSkills[i].SkillLevel = 1;
+                if (Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp == 0)
+                    Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = 100;
             }
 
-            modTypes.Player[index].Character[CharNum].RecipeLearned = new byte[101];
+            Player[index].Character[CharNum].RecipeLearned = new byte[101];
             for (var i = 1; i <= Constants.MAX_RECIPE; i++)
-                modTypes.Player[index].Character[CharNum].RecipeLearned[i] = reader.ReadByte();
+                Player[index].Character[CharNum].RecipeLearned[i] = reader.ReadByte();
 
             // random items
-            modTypes.Player[index].Character[CharNum].RandInv = new RandInvRec[Constants.MAX_INV + 1];
+            Player[index].Character[CharNum].RandInv = new RandInvRec[Constants.MAX_INV + 1];
             for (var i = 1; i <= Constants.MAX_INV; i++)
             {
-                modTypes.Player[index].Character[CharNum].RandInv[i].Prefix = reader.ReadString();
-                modTypes.Player[index].Character[CharNum].RandInv[i].Suffix = reader.ReadString();
-                modTypes.Player[index].Character[CharNum].RandInv[i].Rarity = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].RandInv[i].Damage = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].RandInv[i].Speed = reader.ReadInt32();
+                Player[index].Character[CharNum].RandInv[i].Prefix = reader.ReadString();
+                Player[index].Character[CharNum].RandInv[i].Suffix = reader.ReadString();
+                Player[index].Character[CharNum].RandInv[i].Rarity = reader.ReadInt32();
+                Player[index].Character[CharNum].RandInv[i].Damage = reader.ReadInt32();
+                Player[index].Character[CharNum].RandInv[i].Speed = reader.ReadInt32();
 
-                modTypes.Player[index].Character[CharNum].RandInv[i].Stat = new int[7];
+                Player[index].Character[CharNum].RandInv[i].Stat = new int[7];
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    modTypes.Player[index].Character[CharNum].RandInv[i].Stat[x] = reader.ReadInt32();
+                    Player[index].Character[CharNum].RandInv[i].Stat[x] = reader.ReadInt32();
             }
 
-            modTypes.Player[index].Character[CharNum].RandEquip = new RandInvRec[7];
+            Player[index].Character[CharNum].RandEquip = new RandInvRec[7];
             for (var i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
             {
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Prefix = reader.ReadString();
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Suffix = reader.ReadString();
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Rarity = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Damage = reader.ReadInt32();
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Speed = reader.ReadInt32();
+                Player[index].Character[CharNum].RandEquip[i].Prefix = reader.ReadString();
+                Player[index].Character[CharNum].RandEquip[i].Suffix = reader.ReadString();
+                Player[index].Character[CharNum].RandEquip[i].Rarity = reader.ReadInt32();
+                Player[index].Character[CharNum].RandEquip[i].Damage = reader.ReadInt32();
+                Player[index].Character[CharNum].RandEquip[i].Speed = reader.ReadInt32();
 
-                modTypes.Player[index].Character[CharNum].RandEquip[i].Stat = new int[7];
+                Player[index].Character[CharNum].RandEquip[i].Stat = new int[7];
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    modTypes.Player[index].Character[CharNum].RandEquip[i].Stat[x] = reader.ReadInt32();
+                    Player[index].Character[CharNum].RandEquip[i].Stat[x] = reader.ReadInt32();
             }
 
             // pets
-            modTypes.Player[index].Character[CharNum].Pet.Num = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Health = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Mana = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Level = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Num = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Health = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Mana = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Level = reader.ReadInt32();
 
-            modTypes.Player[index].Character[CharNum].Pet.Stat = new int[7];
+            Player[index].Character[CharNum].Pet.Stat = new int[7];
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                modTypes.Player[index].Character[CharNum].Pet.Stat[i] = reader.ReadInt32();
+                Player[index].Character[CharNum].Pet.Stat[i] = reader.ReadInt32();
 
-            modTypes.Player[index].Character[CharNum].Pet.Skill = new int[5];
+            Player[index].Character[CharNum].Pet.Skill = new int[5];
             for (var i = 1; i <= 4; i++)
-                modTypes.Player[index].Character[CharNum].Pet.Skill[i] = reader.ReadInt32();
+                Player[index].Character[CharNum].Pet.Skill[i] = reader.ReadInt32();
 
-            modTypes.Player[index].Character[CharNum].Pet.X = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Y = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Dir = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Alive = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Pet.AttackBehaviour = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.AdoptiveStats = reader.ReadByte();
-            modTypes.Player[index].Character[CharNum].Pet.Points = reader.ReadInt32();
-            modTypes.Player[index].Character[CharNum].Pet.Exp = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.X = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Y = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Dir = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Alive = reader.ReadByte();
+            Player[index].Character[CharNum].Pet.AttackBehaviour = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.AdoptiveStats = reader.ReadByte();
+            Player[index].Character[CharNum].Pet.Points = reader.ReadInt32();
+            Player[index].Character[CharNum].Pet.Exp = reader.ReadInt32();
         }
 
         public static void SaveCharacter(int index, int CharNum)
         {
 
-            string filename = Application.StartupPath + @"\Data\Accounts\" + modTypes.Player[index].Login.Trim() + @"\" + CharNum + ".bin";
+            string filename = Application.StartupPath + @"\Data\Accounts\" + Player[index].Login.Trim() + @"\" + CharNum + ".bin";
 
             ByteStream writer = new ByteStream(100);
 
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Classes);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Dir);
+            writer.WriteByte(Player[index].Character[CharNum].Classes);
+            writer.WriteByte(Player[index].Character[CharNum].Dir);
 
             for (var i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
-                writer.WriteByte((byte)modTypes.Player[index].Character[CharNum].Equipment[i]);
+                writer.WriteByte((byte)Player[index].Character[CharNum].Equipment[i]);
 
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Exp);
+            writer.WriteInt32(Player[index].Character[CharNum].Exp);
 
             for (var i = 0; i <= Constants.MAX_INV; i++)
             {
-                writer.WriteByte((byte)modTypes.Player[index].Character[CharNum].Inv[i].Num);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Inv[i].Value);
+                writer.WriteByte((byte)Player[index].Character[CharNum].Inv[i].Num);
+                writer.WriteInt32(Player[index].Character[CharNum].Inv[i].Value);
             }
 
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Level);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Map);
-            writer.WriteString(modTypes.Player[index].Character[CharNum].Name);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Pk);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Points);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Sex);
+            writer.WriteInt32(Player[index].Character[CharNum].Level);
+            writer.WriteInt32(Player[index].Character[CharNum].Map);
+            writer.WriteString(Player[index].Character[CharNum].Name);
+            writer.WriteByte(Player[index].Character[CharNum].Pk);
+            writer.WriteInt32(Player[index].Character[CharNum].Points);
+            writer.WriteByte(Player[index].Character[CharNum].Sex);
 
             for (var i = 0; i <= Constants.MAX_PLAYER_SKILLS; i++)
-                writer.WriteByte((byte)modTypes.Player[index].Character[CharNum].Skill[i]);
+                writer.WriteByte((byte)Player[index].Character[CharNum].Skill[i]);
 
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Sprite);
+            writer.WriteInt32(Player[index].Character[CharNum].Sprite);
 
             for (var i = 0; i <= (int)Enums.StatType.Count - 1; i++)
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Stat[i]);
+                writer.WriteInt32(Player[index].Character[CharNum].Stat[i]);
 
             for (int i = 0; i <= (int)Enums.VitalType.Count - 1; i++)
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Vital[i]);
+                writer.WriteInt32(Player[index].Character[CharNum].Vital[i]);
 
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].X);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Y);
+            writer.WriteByte(Player[index].Character[CharNum].X);
+            writer.WriteByte(Player[index].Character[CharNum].Y);
 
             for (var i = 1; i <= S_Quest.MAX_QUESTS; i++)
             {
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].PlayerQuest[i].Status);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].PlayerQuest[i].ActualTask);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].PlayerQuest[i].CurrentCount);
+                writer.WriteInt32(Player[index].Character[CharNum].PlayerQuest[i].Status);
+                writer.WriteInt32(Player[index].Character[CharNum].PlayerQuest[i].ActualTask);
+                writer.WriteInt32(Player[index].Character[CharNum].PlayerQuest[i].CurrentCount);
             }
 
             // Housing
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].House.Houseindex);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].House.FurnitureCount);
-            var loopTo = modTypes.Player[index].Character[CharNum].House.FurnitureCount;
+            writer.WriteInt32(Player[index].Character[CharNum].House.Houseindex);
+            writer.WriteInt32(Player[index].Character[CharNum].House.FurnitureCount);
+            var loopTo = Player[index].Character[CharNum].House.FurnitureCount;
             for (var i = 0; i <= loopTo; i++)
             {
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].House.Furniture[i].ItemNum);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].House.Furniture[i].X);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].House.Furniture[i].Y);
+                writer.WriteInt32(Player[index].Character[CharNum].House.Furniture[i].ItemNum);
+                writer.WriteInt32(Player[index].Character[CharNum].House.Furniture[i].X);
+                writer.WriteInt32(Player[index].Character[CharNum].House.Furniture[i].Y);
             }
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].InHouse);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].LastMap);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].LastX);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].LastY);
+            writer.WriteInt32(Player[index].Character[CharNum].InHouse);
+            writer.WriteInt32(Player[index].Character[CharNum].LastMap);
+            writer.WriteInt32(Player[index].Character[CharNum].LastX);
+            writer.WriteInt32(Player[index].Character[CharNum].LastY);
 
             for (var i = 1; i <= S_Constants.MAX_HOTBAR; i++)
             {
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Hotbar[i].Slot);
-                writer.WriteByte(modTypes.Player[index].Character[CharNum].Hotbar[i].SlotType);
+                writer.WriteInt32(Player[index].Character[CharNum].Hotbar[i].Slot);
+                writer.WriteByte(Player[index].Character[CharNum].Hotbar[i].SlotType);
             }
 
             for (int i = 1; i <= S_Events.MaxSwitches; i++)
-                writer.WriteByte(modTypes.Player[index].Character[CharNum].Switches[i]);
+                writer.WriteByte(Player[index].Character[CharNum].Switches[i]);
 
             for (int i = 1; i <= S_Events.MaxVariables; i++)
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Variables[i]);
+                writer.WriteInt32(Player[index].Character[CharNum].Variables[i]);
 
             for (int i = 0; i <= (int)Enums.ResourceSkills.Count - 1; i++)
             {
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillLevel);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillCurExp);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp);
+                writer.WriteInt32(Player[index].Character[CharNum].GatherSkills[i].SkillLevel);
+                writer.WriteInt32(Player[index].Character[CharNum].GatherSkills[i].SkillCurExp);
+                writer.WriteInt32(Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp);
             }
 
             for (int i = 1; i <= Constants.MAX_RECIPE; i++)
-                writer.WriteByte(modTypes.Player[index].Character[CharNum].RecipeLearned[i]);
+                writer.WriteByte(Player[index].Character[CharNum].RecipeLearned[i]);
 
             // random items
             for (int i = 1; i <= Constants.MAX_INV; i++)
             {
-                writer.WriteString(modTypes.Player[index].Character[CharNum].RandInv[i].Prefix);
-                writer.WriteString(modTypes.Player[index].Character[CharNum].RandInv[i].Suffix);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandInv[i].Rarity);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandInv[i].Damage);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandInv[i].Speed);
+                writer.WriteString(Player[index].Character[CharNum].RandInv[i].Prefix);
+                writer.WriteString(Player[index].Character[CharNum].RandInv[i].Suffix);
+                writer.WriteInt32(Player[index].Character[CharNum].RandInv[i].Rarity);
+                writer.WriteInt32(Player[index].Character[CharNum].RandInv[i].Damage);
+                writer.WriteInt32(Player[index].Character[CharNum].RandInv[i].Speed);
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandInv[i].Stat[x]);
+                    writer.WriteInt32(Player[index].Character[CharNum].RandInv[i].Stat[x]);
             }
 
             for (int i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
             {
-                writer.WriteString(modTypes.Player[index].Character[CharNum].RandEquip[i].Prefix);
-                writer.WriteString(modTypes.Player[index].Character[CharNum].RandEquip[i].Suffix);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandEquip[i].Rarity);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandEquip[i].Damage);
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandEquip[i].Speed);
+                writer.WriteString(Player[index].Character[CharNum].RandEquip[i].Prefix);
+                writer.WriteString(Player[index].Character[CharNum].RandEquip[i].Suffix);
+                writer.WriteInt32(Player[index].Character[CharNum].RandEquip[i].Rarity);
+                writer.WriteInt32(Player[index].Character[CharNum].RandEquip[i].Damage);
+                writer.WriteInt32(Player[index].Character[CharNum].RandEquip[i].Speed);
                 for (var x = 1; x <= (int)Enums.StatType.Count - 1; x++)
-                    writer.WriteInt32(modTypes.Player[index].Character[CharNum].RandEquip[i].Stat[x]);
+                    writer.WriteInt32(Player[index].Character[CharNum].RandEquip[i].Stat[x]);
             }
 
             // pets
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Num);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Health);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Mana);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Level);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Num);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Health);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Mana);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Level);
 
             for (var i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Stat[i]);
+                writer.WriteInt32(Player[index].Character[CharNum].Pet.Stat[i]);
 
             for (int i = 1; i <= 4; i++)
-                writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Skill[i]);
+                writer.WriteInt32(Player[index].Character[CharNum].Pet.Skill[i]);
 
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.X);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Y);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Dir);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Pet.Alive);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.AttackBehaviour);
-            writer.WriteByte(modTypes.Player[index].Character[CharNum].Pet.AdoptiveStats);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Points);
-            writer.WriteInt32(modTypes.Player[index].Character[CharNum].Pet.Exp);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.X);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Y);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Dir);
+            writer.WriteByte(Player[index].Character[CharNum].Pet.Alive);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.AttackBehaviour);
+            writer.WriteByte(Player[index].Character[CharNum].Pet.AdoptiveStats);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Points);
+            writer.WriteInt32(Player[index].Character[CharNum].Pet.Exp);
 
             BinaryFile.Save(filename, ref writer);
         }
 
         public static bool CharExist(int index, int CharNum)
         {
-            return modTypes.Player[index].Character[CharNum].Name.Trim().Length > 0;
+            return Player[index].Character[CharNum].Name.Trim().Length > 0;
         }
 
         public static void AddChar(int index, int CharNum, string Name, byte Sex, byte ClassNum, int Sprite)
@@ -1855,59 +1855,59 @@ namespace Engine
             int n;
             int i;
 
-            if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Character[CharNum].Name)) == 0)
+            if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Player[index].Character[CharNum].Name)) == 0)
             {
-                modTypes.Player[index].Character[CharNum].Name = Name;
-                modTypes.Player[index].Character[CharNum].Sex = Sex;
-                modTypes.Player[index].Character[CharNum].Classes = ClassNum;
+                Player[index].Character[CharNum].Name = Name;
+                Player[index].Character[CharNum].Sex = Sex;
+                Player[index].Character[CharNum].Classes = ClassNum;
 
-                if (modTypes.Player[index].Character[CharNum].Sex == (int)Enums.SexType.Male)
-                    modTypes.Player[index].Character[CharNum].Sprite = Types.Classes[ClassNum].MaleSprite[Sprite - 1];
+                if (Player[index].Character[CharNum].Sex == (int)Enums.SexType.Male)
+                    Player[index].Character[CharNum].Sprite = Types.Classes[ClassNum].MaleSprite[Sprite - 1];
                 else
-                    modTypes.Player[index].Character[CharNum].Sprite = Types.Classes[ClassNum].FemaleSprite[Sprite - 1];
+                    Player[index].Character[CharNum].Sprite = Types.Classes[ClassNum].FemaleSprite[Sprite - 1];
 
-                modTypes.Player[index].Character[CharNum].Level = 1;
+                Player[index].Character[CharNum].Level = 1;
 
                 for (n = 1; n <= (int)Enums.StatType.Count - 1; n++)
-                    modTypes.Player[index].Character[CharNum].Stat[n] = Types.Classes[ClassNum].Stat[n];
+                    Player[index].Character[CharNum].Stat[n] = Types.Classes[ClassNum].Stat[n];
 
-                modTypes.Player[index].Character[CharNum].Dir = (int)Enums.DirectionType.Down;
-                modTypes.Player[index].Character[CharNum].Map = Types.Classes[ClassNum].StartMap;
-                modTypes.Player[index].Character[CharNum].X = Types.Classes[ClassNum].StartX;
-                modTypes.Player[index].Character[CharNum].Y = Types.Classes[ClassNum].StartY;
-                modTypes.Player[index].Character[CharNum].Dir = (int)Enums.DirectionType.Down;
-                modTypes.Player[index].Character[CharNum].Vital[(int)Enums.VitalType.HP] = S_Players.GetPlayerMaxVital(index, Enums.VitalType.HP);
-                modTypes.Player[index].Character[CharNum].Vital[(int)Enums.VitalType.MP] = S_Players.GetPlayerMaxVital(index, Enums.VitalType.MP);
-                modTypes.Player[index].Character[CharNum].Vital[(int)Enums.VitalType.SP] = S_Players.GetPlayerMaxVital(index, Enums.VitalType.SP);
+                Player[index].Character[CharNum].Dir = (int)Enums.DirectionType.Down;
+                Player[index].Character[CharNum].Map = Types.Classes[ClassNum].StartMap;
+                Player[index].Character[CharNum].X = Types.Classes[ClassNum].StartX;
+                Player[index].Character[CharNum].Y = Types.Classes[ClassNum].StartY;
+                Player[index].Character[CharNum].Dir = (int)Enums.DirectionType.Down;
+                Player[index].Character[CharNum].Vital[(int)Enums.VitalType.HP] = S_Players.GetPlayerMaxVital(index, Enums.VitalType.HP);
+                Player[index].Character[CharNum].Vital[(int)Enums.VitalType.MP] = S_Players.GetPlayerMaxVital(index, Enums.VitalType.MP);
+                Player[index].Character[CharNum].Vital[(int)Enums.VitalType.SP] = S_Players.GetPlayerMaxVital(index, Enums.VitalType.SP);
 
                 // set starter equipment
                 for (n = 1; n <= 5; n++)
                 {
                     if (Types.Classes[ClassNum].StartItem[n] > 0)
                     {
-                        modTypes.Player[index].Character[CharNum].Inv[n].Num = Types.Classes[ClassNum].StartItem[n];
-                        modTypes.Player[index].Character[CharNum].Inv[n].Value = Types.Classes[ClassNum].StartValue[n];
+                        Player[index].Character[CharNum].Inv[n].Num = Types.Classes[ClassNum].StartItem[n];
+                        Player[index].Character[CharNum].Inv[n].Value = Types.Classes[ClassNum].StartValue[n];
 
                         if (Convert.ToBoolean(Types.Item[Types.Classes[ClassNum].StartItem[n]].Randomize))
                         {
-                            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[n].Prefix = "";
-                            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[n].Suffix = "";
-                            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[n].Rarity = (int)Enums.RarityType.RARITY_COMMON;
-                            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[n].Damage = Types.Item[Types.Classes[ClassNum].StartItem[n]].Data2;
-                            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[n].Speed = Types.Item[Types.Classes[ClassNum].StartItem[n]].Speed;
+                            Player[index].Character[TempPlayer[index].CurChar].RandInv[n].Prefix = "";
+                            Player[index].Character[TempPlayer[index].CurChar].RandInv[n].Suffix = "";
+                            Player[index].Character[TempPlayer[index].CurChar].RandInv[n].Rarity = (int)Enums.RarityType.RARITY_COMMON;
+                            Player[index].Character[TempPlayer[index].CurChar].RandInv[n].Damage = Types.Item[Types.Classes[ClassNum].StartItem[n]].Data2;
+                            Player[index].Character[TempPlayer[index].CurChar].RandInv[n].Speed = Types.Item[Types.Classes[ClassNum].StartItem[n]].Speed;
                             for (i = 1; i <= (int)Enums.StatType.Count - 1; i++)
-                                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].RandInv[n].Stat[i] = Types.Item[Types.Classes[ClassNum].StartItem[n]].Add_Stat[i];
+                                Player[index].Character[TempPlayer[index].CurChar].RandInv[n].Stat[i] = Types.Item[Types.Classes[ClassNum].StartItem[n]].Add_Stat[i];
                         }
                     }
                 }
 
                 // set skills
-                modTypes.Player[index].Character[CharNum].GatherSkills = new ResourceSkillsRec[5];
+                Player[index].Character[CharNum].GatherSkills = new ResourceSkillsRec[5];
                 for (i = 0; i <= (int)Enums.ResourceSkills.Count - 1; i++)
                 {
-                    modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillLevel = 1;
-                    modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillCurExp = 0;
-                    modTypes.Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = 100;
+                    Player[index].Character[CharNum].GatherSkills[i].SkillLevel = 1;
+                    Player[index].Character[CharNum].GatherSkills[i].SkillCurExp = 0;
+                    Player[index].Character[CharNum].GatherSkills[i].SkillNextLvlExp = 100;
                 }
 
                 // Append name to file
@@ -1955,16 +1955,16 @@ namespace Engine
                 myXml.NewXmlDocument();
 
             myXml.LoadXml();
-            myXml.WriteString("Settings", "Game_Name", modTypes.Options.GameName);
-            myXml.WriteString("Settings", "Port", Conversion.Str(modTypes.Options.Port));
-            myXml.WriteString("Settings", "MoTd", modTypes.Options.Motd);
+            myXml.WriteString("Settings", "Game_Name", Options.GameName);
+            myXml.WriteString("Settings", "Port", Conversion.Str(Options.Port));
+            myXml.WriteString("Settings", "MoTd", Options.Motd);
 
-            myXml.WriteString("Settings", "Website", Microsoft.VisualBasic.Strings.Trim(modTypes.Options.Website));
+            myXml.WriteString("Settings", "Website", Microsoft.VisualBasic.Strings.Trim(Options.Website));
 
-            myXml.WriteString("Settings", "StartMap", modTypes.Options.StartMap.ToString());
-            myXml.WriteString("Settings", "StartX", modTypes.Options.StartX.ToString());
-            myXml.WriteString("Settings", "StartY", modTypes.Options.StartY.ToString());
-            myXml.WriteString("Game", "xpMultiplier", modTypes.Options.xpMultiplier.ToString());
+            myXml.WriteString("Settings", "StartMap", Options.StartMap.ToString());
+            myXml.WriteString("Settings", "StartX", Options.StartX.ToString());
+            myXml.WriteString("Settings", "StartY", Options.StartY.ToString());
+            myXml.WriteString("Game", "xpMultiplier", Options.xpMultiplier.ToString());
             myXml.CloseXml(true);
         }
 
@@ -1976,14 +1976,14 @@ namespace Engine
                 Root = "Options"
             };
             myXml.LoadXml();
-            modTypes.Options.GameName = myXml.ReadString("Settings", "Game_Name", "Orion+#");
-            modTypes.Options.Port = Convert.ToInt32(myXml.ReadString("Settings", "Port", "7001"));
-            modTypes.Options.Motd = myXml.ReadString("Settings", "MoTd", "Welcome to the Orion+# Engine");
-            modTypes.Options.Website = myXml.ReadString("Settings", "Website", "http://ascensiongamedev.com/index.php");
-            modTypes.Options.StartMap = Convert.ToInt32(myXml.ReadString("Settings", "StartMap", "1"));
-            modTypes.Options.StartX = Convert.ToInt32(myXml.ReadString("Settings", "StartX", "13+"));
-            modTypes.Options.StartY = Convert.ToInt32(myXml.ReadString("Settings", "StartY", "7"));
-            modTypes.Options.xpMultiplier = Convert.ToSingle(myXml.ReadString("Game", "xpMultiplier", "1"));
+            Options.GameName = myXml.ReadString("Settings", "Game_Name", "Orion+#");
+            Options.Port = Convert.ToInt32(myXml.ReadString("Settings", "Port", "7001"));
+            Options.Motd = myXml.ReadString("Settings", "MoTd", "Welcome to the Orion+# Engine");
+            Options.Website = myXml.ReadString("Settings", "Website", "http://ascensiongamedev.com/index.php");
+            Options.StartMap = Convert.ToInt32(myXml.ReadString("Settings", "StartMap", "1"));
+            Options.StartX = Convert.ToInt32(myXml.ReadString("Settings", "StartX", "13+"));
+            Options.StartY = Convert.ToInt32(myXml.ReadString("Settings", "StartY", "7"));
+            Options.xpMultiplier = Convert.ToSingle(myXml.ReadString("Game", "xpMultiplier", "1"));
             myXml.CloseXml(false);
         }
 
@@ -2076,7 +2076,7 @@ namespace Engine
 
             IP = Microsoft.VisualBasic.Strings.Mid(IP, 1, i);
             AddTextToFile(IP, "banlist.txt");
-            S_NetworkSend.GlobalMsg(S_Players.GetPlayerName(BanPlayerindex) + " has been banned from " + modTypes.Options.GameName + " by " + "the Server" + "!");
+            S_NetworkSend.GlobalMsg(S_Players.GetPlayerName(BanPlayerindex) + " has been banned from " + Options.GameName + " by " + "the Server" + "!");
             Addlog("The Server" + " has banned " + S_Players.GetPlayerName(BanPlayerindex) + ".", S_Constants.ADMIN_LOG);
             S_NetworkSend.AlertMsg(BanPlayerindex, "You have been banned by " + "The Server" + "!");
         }
@@ -2127,7 +2127,7 @@ namespace Engine
 
             IP = Microsoft.VisualBasic.Strings.Mid(IP, 1, i);
             AddTextToFile(IP, "banlist.txt");
-            S_NetworkSend.GlobalMsg(S_Players.GetPlayerName(BanPlayerindex) + " has been banned from " + modTypes.Options.GameName + " by " + S_Players.GetPlayerName(BannedByindex) + "!");
+            S_NetworkSend.GlobalMsg(S_Players.GetPlayerName(BanPlayerindex) + " has been banned from " + Options.GameName + " by " + S_Players.GetPlayerName(BannedByindex) + "!");
             Addlog(S_Players.GetPlayerName(BannedByindex) + " has banned " + S_Players.GetPlayerName(BanPlayerindex) + ".", S_Constants.ADMIN_LOG);
             S_NetworkSend.AlertMsg(BanPlayerindex, "You have been banned by " + S_Players.GetPlayerName(BannedByindex) + "!");
         }

@@ -169,9 +169,12 @@ namespace Engine
 
         internal static void Socket_CrashReport(int index, string err)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("There was a network error -> Index[" + index + "]" + " - " + err);
-            Console.ResetColor();
+            if (!err.Contains("ForciblyClosed"))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There was a network error -> Index[" + index + "]" + " - " + err);
+                Console.ResetColor();
+            }
             S_Players.LeftGame(index);
         }
 
