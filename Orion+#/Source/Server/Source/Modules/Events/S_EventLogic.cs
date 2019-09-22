@@ -38,6 +38,17 @@ namespace Engine
                     var loopTo1 = modTypes.TempPlayer[i].EventMap.CurrentEvents;
                     for (x = 1; x <= loopTo1; x++)
                     {
+                        // These checks are to fix a Crash, Though will they cause a bug themselves?
+                        if (i >= 0 && i < modTypes.TempPlayer.Length)
+                        {
+                            return;
+                        }
+
+                        if (x >= 0 && x < modTypes.TempPlayer[i].EventMap.EventPages.Length)
+                        {
+                            return;
+                        }
+
                         id = modTypes.TempPlayer[i].EventMap.EventPages[x].EventId;
                         page = modTypes.TempPlayer[i].EventMap.EventPages[x].PageId;
 
