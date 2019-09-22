@@ -139,6 +139,7 @@ namespace Engine
 		
 		internal static Texture LightGfx;
 		internal static Sprite LightSprite;
+		internal static Sprite LightDynamicSprite;
 		internal static GraphicInfo LightGfxInfo;
 
         internal static Texture ShadowGfx;
@@ -263,6 +264,7 @@ namespace Engine
 			{
 				LightGfx = new Texture(Application.StartupPath + E_Globals.GFX_PATH + "Misc\\Light" + E_Globals.GFX_EXT);
 				LightSprite = new Sprite(LightGfx);
+				LightDynamicSprite = new Sprite(new Texture(Application.StartupPath + E_Globals.GFX_PATH + "Misc\\LightDynamic" + E_Globals.GFX_EXT));
 				
 				//Cache the width and height
 				LightGfxInfo.width = (int)LightGfx.Size.X;
@@ -1832,28 +1834,78 @@ namespace Engine
                     {
                         if (E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
                         {
-
-                            //Create the light texture to multiply over the dark texture.
-                            LightSprite.Color = SFML.Graphics.Color.Red;
-                            Vector2f scale = new Vector2f();
-                            if (E_Types.Map.Tile[x, y].Data2 == 1)
+                            if (E_Types.Map.Tile[x, y].Data3 == 0)
                             {
-                                    lastLightFlicker = System.Environment.TickCount;
-                                    // Flicker
-                                    float r = (float)RandomNumberBetween(-0.01f, 0.01f);
-                                    scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1 + r, 0.3f * E_Types.Map.Tile[x, y].Data1 + r);
+                                List<Vector2i> tiles = AppendFov(x, y, E_Types.Map.Tile[x, y].Data1, true);
+                                tiles.Add(new Vector2i(x, y)); // Add the center tile, Fov doesnt calculate this
+                                if (Constants.USE_SMOOTH_DYNAMIC_LIGHTING) // If Smooth Lighting
+                                {
+                                    Vector2f scale = new Vector2f();
+                                    if (E_Types.Map.Tile[x, y].Data2 == 1)
+                                    {
+                                        lastLightFlicker = Environment.TickCount;
+                                        // Flicker
+                                        float r = (float)RandomNumberBetween(-0.01f, 0.01f);
+                                        scale = new Vector2f(0.35f + r, 0.35f + r);
+
+                                    }
+                                    else
+                                    {
+                                        scale = new Vector2f(0.35f, 0.35f);
+                                    }
+                                    foreach (Vector2i tile in tiles)
+                                    {
+                                        LightSprite.Scale = scale;
+                                        LightSprite.Position = new Vector2f((ConvertMapX(tile.X * 32) - (LightGfx.Size.X / 2 * LightSprite.Scale.X) + 16), (ConvertMapY(tile.Y * 32) - (LightGfx.Size.Y / 2 * LightSprite.Scale.Y) + 16));
+                                        byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
+                                        LightSprite.Color = new SFML.Graphics.Color(0, 0, 0, 255);
+                                        NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+                                    }
+                                }
+                                else
+                                {
+                                    byte alphaBump; // How much the Lights alpha should drop each tile from the source
+                                    if (E_Types.Map.Tile[x, y].Data1 == 0)
+                                    {
+                                        alphaBump = 255;
+                                    }
+                                    else
+                                    {
+                                        alphaBump = (byte)(255 / (E_Types.Map.Tile[x, y].Data1));
+                                    }
+                                    foreach (Vector2i tile in tiles)
+                                    {
+                                        LightDynamicSprite.Scale = new Vector2f(0.35f, 0.35f);
+                                        LightDynamicSprite.Position = new Vector2f((ConvertMapX(tile.X * 32)), (ConvertMapY(tile.Y * 32)));
+                                        byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
+                                        LightDynamicSprite.Color = new SFML.Graphics.Color(0, 0, 0, (byte)Clamp((alphaBump * dist), 0, 255));
+                                        NightGfx.Draw(LightDynamicSprite, new RenderStates(BlendMode.Multiply));
+                                    }
+                                }
                             }
                             else
                             {
-                                scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1, 0.3f * E_Types.Map.Tile[x, y].Data1);
+                                //Create the light texture to multiply over the dark texture.
+                                LightSprite.Color = SFML.Graphics.Color.Red;
+                                Vector2f scale = new Vector2f();
+                                if (E_Types.Map.Tile[x, y].Data2 == 1)
+                                {
+                                    lastLightFlicker = Environment.TickCount;
+                                    // Flicker
+                                    float r = (float)RandomNumberBetween(-0.01f, 0.01f);
+                                    scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1 + r, 0.3f * E_Types.Map.Tile[x, y].Data1 + r);
+
+                                }
+                                else
+                                {
+                                    scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1, 0.3f * E_Types.Map.Tile[x, y].Data1);
+                                }
+                                LightSprite.Scale = scale;
+                                var x1 = (ConvertMapX(x * 32) + 16 - (double)(LightGfxInfo.width * scale.X) / 2);
+                                var y1 = (ConvertMapY(y * 32) + 16 - (double)(LightGfxInfo.height * scale.Y) / 2);
+                                LightSprite.Position = new Vector2f((float)x1, (float)y1);
+                                NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
                             }
-                            LightSprite.Scale = scale;
-
-                            var x1 = (ConvertMapX(x * 32) + 16 - (double)(LightGfxInfo.width * scale.X) / 2);
-                            var y1 = (ConvertMapY(y * 32) + 16 - (double)(LightGfxInfo.height * scale.Y) / 2);
-                            LightSprite.Position = new Vector2f((float)x1, (float)y1);
-
-                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
                         }
                     }
                 }
@@ -1872,6 +1924,216 @@ namespace Engine
 
             return minValue + (next * (maxValue - minValue));
         }
+
+
+        static int Clamp(int value, int min, int max)
+        {
+            return (value < min) ? min : (value > max) ? max : value;
+        }
+
+        static List<Vector2i> GetBorderCellsInSquare(int xCenter, int yCenter, int distance)
+        {
+            int xMin = Math.Max(0, xCenter - distance);
+            int xMax = Math.Min(E_Types.Map.MaxX, xCenter + distance); // May require a - 1 after maxX
+            int yMin = Math.Max(0, yCenter - distance);
+            int yMax = Math.Min(E_Types.Map.MaxY, yCenter + distance);
+            List<Vector2i> borderCells = new List<Vector2i>();
+
+            for (int x = xMin; x <= xMax; x++)
+            {
+                borderCells.Add(new Vector2i(x, yMin));
+                borderCells.Add(new Vector2i(x, yMax));
+            }
+            for (int y = yMin + 1; y <= yMax - 1; y++)
+            {
+                borderCells.Add(new Vector2i(xMin, y));
+                borderCells.Add(new Vector2i(xMax, y));
+            }
+
+            Vector2i centerCell = new Vector2i(xCenter, yCenter);
+            borderCells.Remove(centerCell); // We want to remove the Center tile for when we calculate the FOV
+
+            return borderCells;
+        }
+
+        static List<Vector2i> line(int x, int y, int xDestination, int yDestination)
+        {
+            var discovered = new HashSet<Vector2i>();
+            List<Vector2i> litTiles = new List<Vector2i>();
+            int dx = Math.Abs(xDestination - x);
+            int dy = Math.Abs(yDestination - y);
+
+            int sx = x < xDestination ? 1 : -1;
+            int sy = y < yDestination ? 1 : -1;
+            int err = dx - dy;
+
+            while (true)
+            {
+                Vector2i pos = new Vector2i(x, y);
+                if (discovered.Add(pos)) { litTiles.Add(pos); }
+                if (x == xDestination && y == yDestination)
+                {
+                    break;
+                }
+                int e2 = 2 * err;
+                if (e2 > -dy)
+                {
+                    err = err - dy;
+                    x = x + sx;
+                }
+                else if (e2 < dx)
+                {
+                    err = err + dx;
+                    y = y + sy;
+                }
+            }
+            return litTiles;
+        }
+
+        static List<Vector2i> GetCellsInSquare(int xCenter, int yCenter, int distance)
+        {
+            int xMin = Math.Max(0, xCenter - distance);
+            int xMax = Math.Min(E_Types.Map.MaxX, xCenter + distance);
+            int yMin = Math.Max(0, yCenter - distance);
+            int yMax = Math.Min(E_Types.Map.MaxY, yCenter + distance);
+            List<Vector2i> cells = new List<Vector2i>();
+
+            for (int y = yMin; y <= yMax; y++)
+            {
+                for (int x = xMin; x <= xMax; x++)
+                {
+                    cells.Add(new Vector2i(x, y));
+                }
+            }
+            return cells;
+        }
+
+        static List<Vector2i> AppendFov(int xOrigin, int yOrigin, int radius, bool lightWalls)
+        {
+            List<Vector2i> _inFov = new List<Vector2i>();
+            foreach (Vector2i borderCell in GetBorderCellsInSquare(xOrigin, yOrigin, radius))
+            {
+                foreach (Vector2i cell in line(xOrigin, yOrigin, borderCell.X, borderCell.Y))
+                {
+                    if ((Math.Abs(cell.X - xOrigin) + Math.Abs(cell.Y - yOrigin)) > radius)
+                    {
+                        break;
+                    }
+                    if (IsTransparent(cell.X, cell.Y))
+                    {
+                        _inFov.Add(cell);
+                    }
+                    else
+                    {
+                        if (lightWalls)
+                        {
+                            _inFov.Add(cell);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (lightWalls)
+            {
+                foreach (Vector2i cell in GetCellsInSquare(xOrigin, yOrigin, radius))
+                {
+                    if (cell.X > xOrigin)
+                    {
+                        if (cell.Y > yOrigin)
+                        {
+                            PostProcessFovQuadrant(ref _inFov, cell.X, cell.Y, Quadrant.SE);
+                        }
+                        else if (cell.Y < yOrigin)
+                        {
+                            PostProcessFovQuadrant(ref _inFov, cell.X, cell.Y, Quadrant.NE);
+                        }
+                    }
+                    else if (cell.X < xOrigin)
+                    {
+                        if (cell.Y > yOrigin)
+                        {
+                            PostProcessFovQuadrant(ref _inFov, cell.X, cell.Y, Quadrant.SW);
+                        }
+                        else if (cell.Y < yOrigin)
+                        {
+                            PostProcessFovQuadrant(ref _inFov, cell.X, cell.Y, Quadrant.NW);
+                        }
+                    }
+                }
+            }
+            return _inFov;
+        }
+
+        static void PostProcessFovQuadrant(ref List<Vector2i> _inFov, int x, int y, Quadrant quadrant)
+        {
+            int x1 = x;
+            int y1 = y;
+            int x2 = x;
+            int y2 = y;
+            Vector2i pos = new Vector2i(x, y);
+            switch (quadrant)
+            {
+                case Quadrant.NE:
+                    {
+                        y1 = y + 1;
+                        x2 = x - 1;
+                        break;
+                    }
+                case Quadrant.SE:
+                    {
+                        y1 = y - 1;
+                        x2 = x - 1;
+                        break;
+                    }
+                case Quadrant.SW:
+                    {
+                        y1 = y - 1;
+                        x2 = x + 1;
+                        break;
+                    }
+                case Quadrant.NW:
+                    {
+                        y1 = y + 1;
+                        x2 = x + 1;
+                        break;
+                    }
+            }
+            if (!_inFov.Contains(pos) && !IsTransparent(x, y))
+            {
+                if ((IsTransparent(x1, y1) && _inFov.Contains(new Vector2i(x1, y1))) || (IsTransparent(x2, y2) && _inFov.Contains(new Vector2i(x2, y2))) || (IsTransparent(x2, y1) && _inFov.Contains(new Vector2i(x2, y1))))
+                {
+                    _inFov.Add(pos);
+                }
+            }
+        }
+
+        static bool IsTransparent(int x, int y)
+        {
+            if (E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Blocked) { return false; }
+            return true;
+        }
+
+        enum Quadrant
+        {
+            NE = 1,
+            SE = 2,
+            SW = 3,
+            NW = 4
+        }
+
+        static bool AddToHashSet(HashSet<Vector2i> hashSet, int x, int y, Vector2i centerCell, out Vector2i cell)
+        {
+            cell = new Vector2i(x, y);
+            if (!IsValidMapPoint(x, y) || E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Blocked) { return false; }
+            if (cell.Equals(centerCell))
+            {
+                return false;
+            }
+
+            return hashSet.Add(cell);
+        }
+
 
         internal static void EditorMap_DrawMapItem()
 		{

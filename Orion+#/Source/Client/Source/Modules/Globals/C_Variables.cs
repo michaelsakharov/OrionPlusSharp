@@ -172,6 +172,7 @@ namespace Engine
         // Used for map editor light tiles
 		internal static int MapEditorLightRadius;
 		internal static bool MapEditorLightFlicker;
+		internal static bool MapEditorLightShadows;
 		
 		// Maximum classes
 		internal static byte MaxClasses;

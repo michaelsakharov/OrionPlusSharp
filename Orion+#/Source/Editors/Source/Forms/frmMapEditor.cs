@@ -394,6 +394,7 @@ namespace Engine
         {
             E_Globals.LightRadius = (int)lightRadiusInput.Value;
             E_Globals.LightFlicker = flickerCheckBox.Checked;
+            E_Globals.LightShadows = checkBox1.Checked;
             pnlAttributes.Visible = false;
             fraLight.Visible = false;
         }

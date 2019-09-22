@@ -137,6 +137,7 @@ namespace Engine
 
         internal static int LightRadius;
         internal static bool LightFlicker;
+        internal static bool LightShadows;
 
         // Used for map item editor
         internal static int ItemEditorNum;

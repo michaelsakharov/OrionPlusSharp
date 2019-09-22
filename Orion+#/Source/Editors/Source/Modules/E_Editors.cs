@@ -582,7 +582,7 @@ namespace Engine
 						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Type = (byte)Enums.TileType.Light;
 						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Data1 = E_Globals.LightRadius;
 						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Data2 = Convert.ToInt32(E_Globals.LightFlicker);
-						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Data3 = 0;
+						E_Types.Map.Tile[E_Globals.CurX, E_Globals.CurY].Data3 = Convert.ToInt32(E_Globals.LightShadows);
 					}
 				}
 				else if (E_Globals.SelectedTab == 4)

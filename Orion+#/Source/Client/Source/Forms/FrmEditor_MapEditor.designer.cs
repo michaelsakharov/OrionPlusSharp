@@ -63,6 +63,7 @@ namespace Engine
             this.Label1 = new System.Windows.Forms.Label();
             this.pnlAttributes = new System.Windows.Forms.Panel();
             this.fraLight = new System.Windows.Forms.GroupBox();
+            this.shadowsCheckBox = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.FlickercheckBox = new System.Windows.Forms.CheckBox();
@@ -497,16 +498,27 @@ namespace Engine
             // 
             // fraLight
             // 
+            this.fraLight.Controls.Add(this.shadowsCheckBox);
             this.fraLight.Controls.Add(this.label22);
             this.fraLight.Controls.Add(this.numericUpDown1);
             this.fraLight.Controls.Add(this.FlickercheckBox);
             this.fraLight.Controls.Add(this.button1);
-            this.fraLight.Location = new System.Drawing.Point(355, 251);
+            this.fraLight.Location = new System.Drawing.Point(355, 210);
             this.fraLight.Name = "fraLight";
-            this.fraLight.Size = new System.Drawing.Size(132, 113);
+            this.fraLight.Size = new System.Drawing.Size(132, 154);
             this.fraLight.TabIndex = 18;
             this.fraLight.TabStop = false;
             this.fraLight.Text = "Light";
+            // 
+            // shadowsCheckBox
+            // 
+            this.shadowsCheckBox.AutoSize = true;
+            this.shadowsCheckBox.Location = new System.Drawing.Point(6, 84);
+            this.shadowsCheckBox.Name = "shadowsCheckBox";
+            this.shadowsCheckBox.Size = new System.Drawing.Size(76, 17);
+            this.shadowsCheckBox.TabIndex = 11;
+            this.shadowsCheckBox.Text = "Shadows?";
+            this.shadowsCheckBox.UseVisualStyleBackColor = true;
             // 
             // label22
             // 
@@ -539,7 +551,7 @@ namespace Engine
             this.FlickercheckBox.AutoSize = true;
             this.FlickercheckBox.Checked = true;
             this.FlickercheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FlickercheckBox.Location = new System.Drawing.Point(6, 58);
+            this.FlickercheckBox.Location = new System.Drawing.Point(6, 61);
             this.FlickercheckBox.Name = "FlickercheckBox";
             this.FlickercheckBox.Size = new System.Drawing.Size(63, 17);
             this.FlickercheckBox.TabIndex = 8;
@@ -548,7 +560,7 @@ namespace Engine
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(20, 80);
+            this.button1.Location = new System.Drawing.Point(20, 117);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 28);
             this.button1.TabIndex = 6;
@@ -902,7 +914,7 @@ namespace Engine
             this.fraShop.Controls.Add(this.btnShop);
             this.fraShop.Location = new System.Drawing.Point(336, 125);
             this.fraShop.Name = "fraShop";
-            this.fraShop.Size = new System.Drawing.Size(147, 120);
+            this.fraShop.Size = new System.Drawing.Size(147, 78);
             this.fraShop.TabIndex = 12;
             this.fraShop.TabStop = false;
             this.fraShop.Text = "Shop";
@@ -918,7 +930,7 @@ namespace Engine
             // 
             // btnShop
             // 
-            this.btnShop.Location = new System.Drawing.Point(29, 85);
+            this.btnShop.Location = new System.Drawing.Point(25, 46);
             this.btnShop.Name = "btnShop";
             this.btnShop.Size = new System.Drawing.Size(90, 28);
             this.btnShop.TabIndex = 6;
@@ -2329,6 +2341,7 @@ namespace Engine
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         internal System.Windows.Forms.CheckBox FlickercheckBox;
         internal System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.CheckBox shadowsCheckBox;
     }
 	
 }

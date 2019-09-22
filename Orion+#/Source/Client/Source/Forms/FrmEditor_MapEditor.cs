@@ -498,6 +498,7 @@ namespace Engine
         {
             C_Variables.MapEditorLightRadius = (int)numericUpDown1.Value;
             C_Variables.MapEditorLightFlicker = FlickercheckBox.Checked;
+            C_Variables.MapEditorLightShadows = shadowsCheckBox.Checked;
             pnlAttributes.Visible = false;
             fraLight.Visible = false;
         }
@@ -1313,7 +1314,7 @@ namespace Engine
                         tileData.Type = (byte)Enums.TileType.Light;
                         tileData.Data1 = C_Variables.MapEditorLightRadius;
                         tileData.Data2 = Convert.ToInt32(C_Variables.MapEditorLightFlicker);
-                        tileData.Data3 = 0;
+                        tileData.Data3 = Convert.ToInt32(C_Variables.MapEditorLightShadows);
                     }
                 }
                 else if (ReferenceEquals(tabpages.SelectedTab, tpDirBlock))

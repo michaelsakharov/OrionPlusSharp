@@ -619,14 +619,14 @@ namespace Engine
 				{
 					if ((C_Types.Player[index].XOffset >= 0) && (C_Types.Player[index].YOffset >= 0))
 					{
-						C_Types.Player[index].Moving = (byte) 0;
+						C_Types.Player[index].Moving = 0;
 						if (C_Types.Player[index].Steps == 1)
 						{
-							C_Types.Player[index].Steps = (byte) 3;
+							C_Types.Player[index].Steps = 3;
 						}
 						else
 						{
-							C_Types.Player[index].Steps = (byte) 1;
+							C_Types.Player[index].Steps = 1;
 						}
 					}
 				}
@@ -634,14 +634,14 @@ namespace Engine
 				{
 					if ((C_Types.Player[index].XOffset <= 0) && (C_Types.Player[index].YOffset <= 0))
 					{
-						C_Types.Player[index].Moving = (byte) 0;
+						C_Types.Player[index].Moving = 0;
 						if (C_Types.Player[index].Steps == 1)
 						{
-							C_Types.Player[index].Steps = (byte) 3;
+							C_Types.Player[index].Steps = 3;
 						}
 						else
 						{
-							C_Types.Player[index].Steps = (byte) 1;
+							C_Types.Player[index].Steps = 1;
 						}
 					}
 				}
@@ -905,13 +905,10 @@ namespace Engine
 			{
 				case Enums.VitalType.HP:
 					return C_Types.Player[index].MaxHp;
-					break;
 				case Enums.VitalType.MP:
 					return C_Types.Player[index].MaxMp;
-					break;
 				case Enums.VitalType.SP:
 					return C_Types.Player[index].MaxSp;
-					break;
 			}
 			
 			return returnValue;

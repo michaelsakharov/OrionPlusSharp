@@ -37,5 +37,8 @@ namespace Engine
 		internal const byte MAX_RANDOM_TYPES = 16;
 		internal const int MAX_PETS = 100;
 		internal const int MAX_DOTS = 30;
+
+
+		internal const bool USE_SMOOTH_DYNAMIC_LIGHTING = true;
 	}
 }

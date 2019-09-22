@@ -170,6 +170,7 @@ namespace Engine
             this.pnlBack2 = new DarkUI.Controls.DarkSectionPanel();
             this.pnlAttributes = new System.Windows.Forms.Panel();
             this.fraLight = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.lightRadiusInput = new System.Windows.Forms.NumericUpDown();
             this.flickerCheckBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -1865,6 +1866,7 @@ namespace Engine
             // 
             // fraLight
             // 
+            this.fraLight.Controls.Add(this.checkBox1);
             this.fraLight.Controls.Add(this.lightRadiusInput);
             this.fraLight.Controls.Add(this.flickerCheckBox);
             this.fraLight.Controls.Add(this.button1);
@@ -1872,10 +1874,20 @@ namespace Engine
             this.fraLight.ForeColor = System.Drawing.Color.LightGray;
             this.fraLight.Location = new System.Drawing.Point(428, 299);
             this.fraLight.Name = "fraLight";
-            this.fraLight.Size = new System.Drawing.Size(206, 125);
+            this.fraLight.Size = new System.Drawing.Size(206, 164);
             this.fraLight.TabIndex = 21;
             this.fraLight.TabStop = false;
             this.fraLight.Text = "Light";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 87);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(76, 17);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "Shadows?";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // lightRadiusInput
             // 
@@ -1909,7 +1921,7 @@ namespace Engine
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(58, 91);
+            this.button1.Location = new System.Drawing.Point(58, 128);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 28);
             this.button1.TabIndex = 6;
@@ -2787,6 +2799,7 @@ namespace Engine
         internal CheckBox flickerCheckBox;
         internal Button button1;
         internal Label label1;
+        internal CheckBox checkBox1;
     }
 	
 }
