@@ -73,7 +73,7 @@ namespace Engine
 		// ********************************************************
 		
 		// General constants
-		internal static string GameName = "Orion+#";
+		internal static string GameName = "Lupus";
 		
 		// Website
 		internal const string GameWebsite = "http://ascensiongamedev.com/index.php";

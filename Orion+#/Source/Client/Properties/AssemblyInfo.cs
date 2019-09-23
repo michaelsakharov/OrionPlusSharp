@@ -17,12 +17,12 @@ using Engine;
 
 // Review the values of the assembly attributes
 
-[assembly:AssemblyTitle("Orion+# Client")]
+[assembly:AssemblyTitle("Lupus Client")]
 [assembly:AssemblyDescription("")]
 [assembly:AssemblyCompany("")]
-[assembly:AssemblyProduct("Orion+# Client")]
+[assembly:AssemblyProduct("Lupus Client")]
 [assembly:AssemblyCopyright("Copyright ©  2015 - 2016")]
-[assembly:AssemblyTrademark("Damian666 & Wolf")]
+[assembly:AssemblyTrademark("Wolf")]
 
 [assembly:ComVisible(false)]
 

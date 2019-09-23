@@ -1976,9 +1976,9 @@ namespace Engine
                 Root = "Options"
             };
             myXml.LoadXml();
-            Options.GameName = myXml.ReadString("Settings", "Game_Name", "Orion+#");
+            Options.GameName = myXml.ReadString("Settings", "Game_Name", "Lupus");
             Options.Port = Convert.ToInt32(myXml.ReadString("Settings", "Port", "7001"));
-            Options.Motd = myXml.ReadString("Settings", "MoTd", "Welcome to the Orion+# Engine");
+            Options.Motd = myXml.ReadString("Settings", "MoTd", "Welcome to the Lupus Engine");
             Options.Website = myXml.ReadString("Settings", "Website", "http://ascensiongamedev.com/index.php");
             Options.StartMap = Convert.ToInt32(myXml.ReadString("Settings", "StartMap", "1"));
             Options.StartX = Convert.ToInt32(myXml.ReadString("Settings", "StartX", "13+"));

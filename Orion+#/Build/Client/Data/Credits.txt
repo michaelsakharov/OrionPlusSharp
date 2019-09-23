@@ -1,18 +1,12 @@
 Creators:
+Wolf
 JC Snider - Based off his code
 Damian666 - Based off his code
-Wolf
 
 Base:
 Eclipse Origins v1.1.0 by Robin Perris*
 
 Graphics/Media Engine:
 SFML*
-
-Temporary Graphics:
-Rpgmaker MV
-
-Testing:
-Wolf
 
 DarkUI: Robin Perris

@@ -51,7 +51,7 @@ namespace Engine
                 currentDomain.UnhandledException += ErrorHandler;
             }
 
-            Console.Title = "Orion+# Server";
+            Console.Title = "Lupus Engine Server";
             Console.SetWindowSize(120, 20);
 
             time1 = GetTimeMs();
@@ -200,9 +200,9 @@ namespace Engine
             // load options, set if they dont exist
             if (!File.Exists(Path.Combine(Application.StartupPath, "Data", "Config.xml")))
             {
-                modTypes.Options.GameName = "Orion+#";
+                modTypes.Options.GameName = "Lupus Engine";
                 modTypes.Options.Port = 7001;
-                modTypes.Options.Motd = "Welcome to the Orion+# Engine";
+                modTypes.Options.Motd = "Welcome to the Lupus Engine";
                 modTypes.Options.Website = "http://ascensiongamedev.com/index.php";
                 modTypes.Options.StartMap = 1;
                 modTypes.Options.StartX = 13;
@@ -245,13 +245,14 @@ namespace Engine
             
             Console.ForegroundColor = ConsoleColor.Cyan;
 
-            Console.Clear();
-            Console.WriteLine("   ____       _                   _  _   ");
-            Console.WriteLine(@"  / __ \     (_)             _  _| || |_ ");
-            Console.WriteLine(" | |  | |_ __ _  ___  _ __ _| ||_  __  _|");
-            Console.WriteLine(@" | |  | | '__| |/ _ \| '_ \_   _|| || |_ ");
-            Console.WriteLine(@" | |__| | |  | | (_) | | | ||_||_  __  _|");
-            Console.WriteLine(@"  \____/|_|  |_|\___/|_| |_|     |_||_|  ");
+                    Console.Clear();
+            Console.WriteLine(@"ooooo        ooooo     ooo ooooooooo.   ooooo     ooo  .oooooo..o ");
+            Console.WriteLine(@"`888'        `888'     `8' `888   `Y88. `888'     `8' d8P'    `Y8 ");
+            Console.WriteLine(@" 888          888       8   888   .d88'  888       8  Y88bo.      ");
+            Console.WriteLine(@" 888          888       8   888ooo88P'   888       8   `""Y8888o.  ");
+            Console.WriteLine(@" 888          888       8   888          888       8       `""Y88b ");
+            Console.WriteLine(@" 888       o  `88.    .8'   888          `88.    .8'  oo     .d8P ");
+            Console.WriteLine(@"o888ooooood8    `YbodP'    o888o           `YbodP'    8""""88888P'  ");
             
             Console.WriteLine("");
             

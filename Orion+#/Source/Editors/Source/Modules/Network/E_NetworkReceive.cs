@@ -109,7 +109,7 @@ namespace Engine
 
             buffer.Dispose();
 
-            Interaction.MsgBox(Msg, Microsoft.VisualBasic.Constants.vbOKOnly, "OrionClient+ Editors");
+            Interaction.MsgBox(Msg, Microsoft.VisualBasic.Constants.vbOKOnly, "Lupus Engine Editors");
 
             E_Loop.CloseEditor();
         }

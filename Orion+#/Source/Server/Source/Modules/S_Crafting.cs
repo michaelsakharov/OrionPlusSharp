@@ -376,7 +376,7 @@ namespace Engine
 
         internal static void StartCraft(int index, int RecipeNum, int Amount)
         {
-            //Todo Orion+#
+            //Todo Lupus
         }
 
         internal static void UpdateCraft(int index)
@@ -390,7 +390,7 @@ namespace Engine
                     S_Players.TakeInvItem(index, Recipe[modTypes.TempPlayer[index].CraftRecipe].Ingredients[i].ItemNum, Recipe[modTypes.TempPlayer[index].CraftRecipe].Ingredients[i].Value);
                 S_NetworkSend.PlayerMsg(index, "You created " + Microsoft.VisualBasic.Strings.Trim(Types.Item[Recipe[modTypes.TempPlayer[index].CraftRecipe].MakeItemNum].Name) + " X " + Recipe[modTypes.TempPlayer[index].CraftRecipe].MakeItemAmount, (int)Enums.ColorType.BrightGreen);
             };
-            //Todo Orion+#
+            //Todo Lupus
         }
     }
 }

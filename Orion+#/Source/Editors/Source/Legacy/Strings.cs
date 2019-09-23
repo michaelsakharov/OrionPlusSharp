@@ -9,7 +9,7 @@ namespace Engine
         {
         }
 
-        internal enum OrionComponent
+        internal enum LupusComponent
         {
             Client = 0,
             Editor,
@@ -19,7 +19,7 @@ namespace Engine
         private static Language _defaultLanguage;
         private static Language _selectedLanguage;
 
-        internal static void Init(OrionComponent component, string language)
+        internal static void Init(LupusComponent component, string language)
         {
             string path = Application.StartupPath + @"\Data\";
             if (!Directory.Exists(path))

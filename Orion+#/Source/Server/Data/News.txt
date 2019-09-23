@@ -1,4 +1,4 @@
-Welcome to the Orion + Client. This is a free open source VB.Net game engine! 
+Welcome to the Lupus Engine. This is a free open source c# game engine! 
 
 For help or support please visit our site at http://ascensionforums.com. 
 

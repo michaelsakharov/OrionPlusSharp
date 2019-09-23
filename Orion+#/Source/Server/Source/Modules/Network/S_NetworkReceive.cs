@@ -1447,7 +1447,7 @@ namespace Engine
             if (S_Players.GetPlayerAccess(index) < (byte)Enums.AdminType.Mapper)
                 return;
 
-            S_NetworkSend.PlayerMsg(index, "Command /banlist is not available in Orion+... yet ;)", (int)Enums.ColorType.Yellow);
+            S_NetworkSend.PlayerMsg(index, "Command /banlist is not available in Lupus... yet ;)", (int)Enums.ColorType.Yellow);
         }
 
         public static void Packet_DestroyBans(int index, ref byte[] data)
