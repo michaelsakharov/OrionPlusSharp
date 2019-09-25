@@ -1723,6 +1723,12 @@ namespace Engine
 
             string filename = Application.StartupPath + @"\Data\Accounts\" + Player[index].Login.Trim() + @"\" + CharNum + ".bin";
 
+            if (Player[index].Character == null)
+            {
+                Console.WriteLine("ERROR SAVING PLAYER, DID HE DISCONNECT?");
+                return;
+            }
+            
             ByteStream writer = new ByteStream(100);
 
             writer.WriteByte(Player[index].Character[CharNum].Classes);
