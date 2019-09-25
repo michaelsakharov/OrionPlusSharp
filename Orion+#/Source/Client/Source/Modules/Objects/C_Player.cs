@@ -520,14 +520,14 @@ namespace Engine
 							{
 								if (C_Types.Player[i].Pet.Y == y)
 								{
-									return true;
+									//return true;
 									
 								}
 							}
 						}
 						else if (C_Types.Player[i].Pet.X == x && C_Types.Player[i].Pet.Y == y && C_Types.Player[i].Pet.Alive == 1)
 						{
-							return true;
+							//return true;
 							
 						}
 					}
