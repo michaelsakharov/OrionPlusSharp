@@ -3275,6 +3275,7 @@ namespace Engine
 
             // Set the flag so we know the person is in the game
             modTypes.TempPlayer[index].InGame = true;
+            ModLoop.UpdateOnlinePlayers();
 
             // Notify everyone that a player has joined the game.
             S_NetworkSend.GlobalMsg(string.Format("{0} has joined {1}!", GetPlayerName(index), modTypes.Options.GameName));
@@ -3341,6 +3342,7 @@ namespace Engine
             {
                 S_NetworkSend.SendLeftMap(index);
                 modTypes.TempPlayer[index].InGame = false;
+                ModLoop.UpdateOnlinePlayers();
 
                 // Check if player was the only player on the map and stop npc processing if so
                 if (GetPlayerMap(index) > 0)

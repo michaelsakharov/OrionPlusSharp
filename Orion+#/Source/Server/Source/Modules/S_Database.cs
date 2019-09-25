@@ -1426,7 +1426,7 @@ namespace Engine
         public static void ClearCharacter(int index, int CharNum)
         {
 
-            if(Player[index].Character == null || Player[index].Character[CharNum].Name == null)
+            if(Player[index].Character == null)
             {
                 return; // dafuq
             }

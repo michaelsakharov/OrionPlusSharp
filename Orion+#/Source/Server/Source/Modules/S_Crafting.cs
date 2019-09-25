@@ -385,7 +385,7 @@ namespace Engine
                 modTypes.TempPlayer[index].CraftTimer = S_General.GetTimeMs();
                 modTypes.TempPlayer[index].CraftTimeNeeded = Recipe[RecipeNum].CreateTime;
 
-                modTypes.TempPlayer[index].CraftIt  1;
+                modTypes.TempPlayer[index].CraftIt = 1;
             }
         }
 
