@@ -92,7 +92,7 @@ namespace Engine
 				color = SFML.Graphics.Color.Red;
 			}
 			
-			name = C_Types.Player[index].Name.Trim();
+			name = C_Types.Player[index].Name.Trim() + " [Lv: " + C_Types.Player[index].Level + "]";
 			// calc pos
 			textX = (C_Graphics.ConvertMapX(C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset + (C_Constants.PicX / 2));
 			textX = (int)(textX - ((double) GetTextWidth(name.Trim()) / 2));
@@ -107,7 +107,7 @@ namespace Engine
 			}
 			
 			// Draw name
-			DrawText(textX, textY, name.Trim(), color, backcolor, C_Graphics.GameWindow);
+			DrawText(textX, textY, name, color, backcolor, C_Graphics.GameWindow);
 		}
 		
 		internal static void DrawNpcName(int mapNpcNum)
