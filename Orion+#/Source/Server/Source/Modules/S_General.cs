@@ -271,8 +271,17 @@ namespace Engine
             // reset shutdown value
             S_Globals.isShuttingDown = false;
 
-            // Start listener now that everything is loaded
-            S_NetworkConfig.Socket.StartListening(modTypes.Options.Port, 5);
+            try
+            {
+                // Start listener now that everything is loaded
+                S_NetworkConfig.Socket.StartListening(modTypes.Options.Port, 5);
+            }
+            catch(Exception err)
+            {
+                Console.WriteLine("FAILED TO START SERVER");
+                Console.WriteLine(err.StackTrace.ToString());
+                return;
+            }
 
             // Starts the server loop
             ModLoop.ServerLoop();
