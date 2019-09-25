@@ -31,19 +31,21 @@ namespace Engine
 
         public static void DeltaTime()
         {
-            double delta = (clock.Elapsed.TotalSeconds - lastTime);
-            lastTime = clock.Elapsed.TotalSeconds;
+            double time = clock.Elapsed.TotalSeconds;
+            double delta = (time - lastTime);
+            lastTime = time;
 
             deltaTime = (float)delta;
         }
 
         public static int CalculateFrameRate()
         {
-            if (Environment.TickCount - lastTick >= 1000)
+            int tickCount = Environment.TickCount;
+            if (tickCount - lastTick >= 1000)
             {
                 lastFrameRate = frameRate;
                 frameRate = 0;
-                lastTick = Environment.TickCount;
+                lastTick = tickCount;
             }
             frameRate++;
             return lastFrameRate;
@@ -544,7 +546,7 @@ namespace Engine
 				}
 				else
 				{
-					Thread.Sleep(2);
+					Thread.Sleep(1);
 				}
 				
 			} while (true);

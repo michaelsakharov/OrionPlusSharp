@@ -54,9 +54,9 @@ namespace Engine
 		internal static bool MapGrid;
 		
 		// Speed moving vars
-		internal const byte WalkSpeed = 6;
+		internal const byte WalkSpeed = 3;
 		
-		internal const byte RunSpeed = 10;
+		internal const byte RunSpeed = 5;
 		
 		// Tile size constants
 		internal const int PicX = 32;

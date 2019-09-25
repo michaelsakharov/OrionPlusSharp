@@ -120,7 +120,7 @@ namespace Engine
 		internal static bool BLoc;
 		
 		// FPS and Time-based movement vars
-		internal static int ElapsedTime;
+		internal static double ElapsedTime;
 		
 		internal static int GameFps;
 		internal static int GameLps;
