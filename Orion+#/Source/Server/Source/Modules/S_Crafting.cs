@@ -376,7 +376,17 @@ namespace Engine
 
         internal static void StartCraft(int index, int RecipeNum, int Amount)
         {
-            //Todo Lupus
+
+            if (modTypes.TempPlayer[index].IsCrafting)
+            {
+                modTypes.TempPlayer[index].CraftRecipe = RecipeNum;
+                modTypes.TempPlayer[index].CraftAmount = Amount;
+
+                modTypes.TempPlayer[index].CraftTimer = S_General.GetTimeMs();
+                modTypes.TempPlayer[index].CraftTimeNeeded = Recipe[RecipeNum].CreateTime;
+
+                modTypes.TempPlayer[index].CraftIt  1;
+            }
         }
 
         internal static void UpdateCraft(int index)
@@ -390,7 +400,20 @@ namespace Engine
                     S_Players.TakeInvItem(index, Recipe[modTypes.TempPlayer[index].CraftRecipe].Ingredients[i].ItemNum, Recipe[modTypes.TempPlayer[index].CraftRecipe].Ingredients[i].Value);
                 S_NetworkSend.PlayerMsg(index, "You created " + Microsoft.VisualBasic.Strings.Trim(Types.Item[Recipe[modTypes.TempPlayer[index].CraftRecipe].MakeItemNum].Name) + " X " + Recipe[modTypes.TempPlayer[index].CraftRecipe].MakeItemAmount, (int)Enums.ColorType.BrightGreen);
             };
-            //Todo Lupus
+
+            if (modTypes.TempPlayer[index].IsCrafting)
+            {
+                modTypes.TempPlayer[index].CraftAmount = modTypes.TempPlayer[index].CraftAmount - 1;
+
+                if(modTypes.TempPlayer[index].CraftAmount > 0) {
+
+                    modTypes.TempPlayer[index].CraftTimer = S_General.GetTimeMs();
+                    modTypes.TempPlayer[index].CraftTimeNeeded = Recipe[modTypes.TempPlayer[index].CraftRecipe].CreateTime;
+                    modTypes.TempPlayer[index].CraftIt = 1;
+                    SendCraftUpdate(index, 0);
+                }
+                SendCraftUpdate(index, 1);
+            }
         }
     }
 }
