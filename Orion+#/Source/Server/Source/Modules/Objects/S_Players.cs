@@ -3344,6 +3344,11 @@ namespace Engine
                 modTypes.TempPlayer[index].InGame = false;
                 ModLoop.UpdateOnlinePlayers();
 
+                // Send a global message that he/she left
+                S_NetworkSend.GlobalMsg(string.Format("{0} has left {1}!", GetPlayerName(index), modTypes.Options.GameName));
+
+                Console.WriteLine(string.Format("{0} has left {1}!", GetPlayerName(index), modTypes.Options.GameName));
+
                 // Check if player was the only player on the map and stop npc processing if so
                 if (GetPlayerMap(index) > 0)
                 {
@@ -3390,11 +3395,6 @@ namespace Engine
 
                 modDatabase.SavePlayer(index);
                 modDatabase.SaveBank(index);
-
-                // Send a global message that he/she left
-                S_NetworkSend.GlobalMsg(string.Format("{0} has left {1}!", GetPlayerName(index), modTypes.Options.GameName));
-
-                Console.WriteLine(string.Format("{0} has left {1}!", GetPlayerName(index), modTypes.Options.GameName));
 
                 modTypes.TempPlayer[index] = default(TempPlayerRec);
                 modTypes.TempPlayer[i].SkillCd = new int[Constants.MAX_PLAYER_SKILLS + 1];
