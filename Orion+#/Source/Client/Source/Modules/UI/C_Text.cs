@@ -30,8 +30,8 @@ namespace Engine
 		{
 			Text backString = new Text(text, C_Graphics.SfmlGameFont);
 			Text frontString = new Text(text, C_Graphics.SfmlGameFont);
-			backString.CharacterSize = System.Convert.ToUInt32(textSize);
-			frontString.CharacterSize = System.Convert.ToUInt32(textSize);
+			backString.CharacterSize = textSize;
+			frontString.CharacterSize = textSize;
 			
 			backString.Color = backColor;
 			backString.Position = new Vector2f(x - 1, y - 1);
@@ -66,30 +66,30 @@ namespace Engine
 				switch (C_Player.GetPlayerAccess(index))
 				{
 					case (int) Enums.AdminType.Player:
-						color = SFML.Graphics.Color.Red;
-						backcolor = SFML.Graphics.Color.Black;
+						color = Color.Red;
+						backcolor = Color.Black;
 						break;
 					case (int) Enums.AdminType.Monitor:
-						color = SFML.Graphics.Color.Black;
-						backcolor = SFML.Graphics.Color.White;
+						color = Color.Black;
+						backcolor = Color.White;
 						break;
 					case (int) Enums.AdminType.Mapper:
-						color = SFML.Graphics.Color.Cyan;
-						backcolor = SFML.Graphics.Color.Black;
+						color = Color.Cyan;
+						backcolor = Color.Black;
 						break;
 					case (int) Enums.AdminType.Developer:
-						color = SFML.Graphics.Color.Green;
-						backcolor = SFML.Graphics.Color.Black;
+						color = Color.Green;
+						backcolor = Color.Black;
 						break;
 					case (int) Enums.AdminType.Creator:
-						color = SFML.Graphics.Color.Yellow;
-						backcolor = SFML.Graphics.Color.Black;
+						color = Color.Yellow;
+						backcolor = Color.Black;
 						break;
 				}
 			}
 			else
 			{
-				color = SFML.Graphics.Color.Red;
+				color = Color.Red;
 			}
 			
 			name = C_Types.Player[index].Name.Trim() + " [Lv: " + C_Types.Player[index].Level + "]";
@@ -122,18 +122,18 @@ namespace Engine
 			
 			if (Types.Npc[npcNum].Behaviour == ((byte) 0)) // attack on sight
 			{
-				color = SFML.Graphics.Color.Red;
-				backcolor = SFML.Graphics.Color.Black;
+				color = Color.Red;
+				backcolor = Color.Black;
 			} // attack when attacked + guard
 			else if ((Types.Npc[npcNum].Behaviour == ((byte) 1)) || (Types.Npc[npcNum].Behaviour == (4)))
 			{
-				color = SFML.Graphics.Color.Green;
-				backcolor = SFML.Graphics.Color.Black;
+				color = Color.Green;
+				backcolor = Color.Black;
 			} // friendly + shopkeeper + quest
 			else if (((Types.Npc[npcNum].Behaviour == ((byte) 2)) || (Types.Npc[npcNum].Behaviour == (3))) || (Types.Npc[npcNum].Behaviour == (5)))
 			{
-				color = SFML.Graphics.Color.Yellow;
-				backcolor = SFML.Graphics.Color.Black;
+				color = Color.Yellow;
+				backcolor = Color.Black;
 			}
 			
 			textX = (int)((C_Graphics.ConvertMapX(C_Maps.MapNpc[mapNpcNum].X * C_Constants.PicX) + C_Maps.MapNpc[mapNpcNum].XOffset + (C_Constants.PicX / 2)) - (GetTextWidth(Types.Npc[npcNum].Name.Trim()) / 2));
@@ -143,7 +143,7 @@ namespace Engine
 			}
 			else
 			{
-				textY = System.Convert.ToInt32(C_Graphics.ConvertMapY(C_Maps.MapNpc[mapNpcNum].Y * C_Constants.PicY) + C_Maps.MapNpc[mapNpcNum].YOffset - ((double) C_Graphics.CharacterGfxInfo[Types.Npc[npcNum].Sprite].Height / 4) + 16);
+				textY = (int)(C_Graphics.ConvertMapY(C_Maps.MapNpc[mapNpcNum].Y * C_Constants.PicY) + C_Maps.MapNpc[mapNpcNum].YOffset - ((double) C_Graphics.CharacterGfxInfo[Types.Npc[npcNum].Sprite].Height / 4) + 16);
 			}
 			
 			// Draw name
@@ -158,8 +158,8 @@ namespace Engine
 			Color backcolor = new Color();
 			string name = "";
 			
-			color = SFML.Graphics.Color.Yellow;
-			backcolor = SFML.Graphics.Color.Black;
+			color = Color.Yellow;
+			backcolor = Color.Black;
 			
 			name = C_Maps.Map.MapEvents[index].Name.Trim();
 			
@@ -178,7 +178,7 @@ namespace Engine
 				else
 				{
 					// Determine location for text
-					textY = System.Convert.ToInt32(C_Graphics.ConvertMapY(C_Maps.Map.MapEvents[index].Y * C_Constants.PicY) + C_Maps.Map.MapEvents[index].YOffset - (C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[index].GraphicNum].Height / 4) + 16);
+					textY = (int)(C_Graphics.ConvertMapY(C_Maps.Map.MapEvents[index].Y * C_Constants.PicY) + C_Maps.Map.MapEvents[index].YOffset - (C_Graphics.CharacterGfxInfo[C_Maps.Map.MapEvents[index].GraphicNum].Height / 4) + 16);
 				}
 			}
 			else if (C_Maps.Map.MapEvents[index].GraphicType == 2)
@@ -241,8 +241,8 @@ namespace Engine
 					{
 						if (C_Graphics.IsValidMapPoint(X, y))
 						{
-							tX = System.Convert.ToInt32(((C_Graphics.ConvertMapX(X * C_Constants.PicX)) - 4) + (C_Constants.PicX * 0.5));
-							tY = System.Convert.ToInt32(((C_Graphics.ConvertMapY(y * C_Constants.PicY)) - 7) + (C_Constants.PicY * 0.5));
+							tX = (int)(((C_Graphics.ConvertMapX(X * C_Constants.PicX)) - 4) + (C_Constants.PicX * 0.5));
+							tY = (int)(((C_Graphics.ConvertMapY(y * C_Constants.PicY)) - 7) + (C_Constants.PicY * 0.5));
 							if (C_Maps.Map.Tile[X, y].Type == (byte)Enums.TileType.Blocked)
 							{
 								DrawText(tX, tY, "B", Color.Red, Color.Black, C_Graphics.GameWindow);
@@ -329,12 +329,12 @@ namespace Engine
 					
 					if (C_Types.ActionMsg[index].Y > 0)
 					{
-						x = System.Convert.ToInt32(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
+						x = (int)(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
 						y = C_Types.ActionMsg[index].Y - Conversion.Int(C_Constants.PicY / 2) - 2;
 					}
 					else
 					{
-						x = System.Convert.ToInt32(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
+						x = (int)(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
 						y = C_Types.ActionMsg[index].Y - Conversion.Int(C_Constants.PicY / 2) + 18;
 					}
 					break;
@@ -344,14 +344,14 @@ namespace Engine
 					
 					if (C_Types.ActionMsg[index].Y > 0)
 					{
-						x = System.Convert.ToInt32(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
-						y = System.Convert.ToInt32(C_Types.ActionMsg[index].Y - Conversion.Int(C_Constants.PicY / 2) - 2 - (C_Types.ActionMsg[index].Scroll * 0.6));
+						x = (int)(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
+						y = (int)(C_Types.ActionMsg[index].Y - Conversion.Int(C_Constants.PicY / 2) - 2 - (C_Types.ActionMsg[index].Scroll * 0.6));
 						C_Types.ActionMsg[index].Scroll = C_Types.ActionMsg[index].Scroll + 1;
 					}
 					else
 					{
-						x = System.Convert.ToInt32(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
-						y = System.Convert.ToInt32(C_Types.ActionMsg[index].Y - Conversion.Int(C_Constants.PicY / 2) + 18 + (C_Types.ActionMsg[index].Scroll * 0.6));
+						x = (int)(C_Types.ActionMsg[index].X + Conversion.Int(C_Constants.PicX / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
+						y = (int)(C_Types.ActionMsg[index].Y - Conversion.Int(C_Constants.PicY / 2) + 18 + (C_Types.ActionMsg[index].Scroll * 0.6));
 						C_Types.ActionMsg[index].Scroll = C_Types.ActionMsg[index].Scroll + 1;
 					}
 					break;
@@ -371,7 +371,7 @@ namespace Engine
 							}
 						}
 					}
-					x = System.Convert.ToInt32((FrmGame.Default.picscreen.Width / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
+					x = (int)((FrmGame.Default.picscreen.Width / 2) - ((Microsoft.VisualBasic.Strings.Trim(C_Types.ActionMsg[index].Message).Length / 2) * 8));
 					y = 425;
 					break;
 					
@@ -396,8 +396,8 @@ namespace Engine
 		internal static int GetTextWidth(string text, byte textSize = 13)
 		{
 			WidthTester.DisplayedString = text;
-			WidthTester.CharacterSize = System.Convert.ToUInt32(textSize);
-			return System.Convert.ToInt32(WidthTester.GetLocalBounds().Width);
+			WidthTester.CharacterSize = textSize;
+			return (int)(WidthTester.GetLocalBounds().Width);
 		}
 		
 		internal static void AddText(string msg, int color)
@@ -420,17 +420,19 @@ namespace Engine
 		
 		internal static void AddChatRec(string msg, int color)
 		{
-			C_Types.ChatRec @struct = new C_Types.ChatRec();
-			@struct.Text = msg;
-			@struct.Color = color;
-			C_Types.Chat.Add(@struct);
+            C_Types.ChatRec @struct = new C_Types.ChatRec
+            {
+                Text = msg,
+                Color = color
+            };
+            C_Types.Chat.Add(@struct);
 		}
 		
 		internal static Color GetSfmlColor(byte color)
 		{
 			if (color == (byte)Enums.ColorType.Black)
 			{
-				return SFML.Graphics.Color.Black;
+				return Color.Black;
 			}
 			else if (color == (byte)Enums.ColorType.Blue)
 			{
@@ -450,7 +452,7 @@ namespace Engine
 			}
 			else if (color == (byte)Enums.ColorType.Magenta)
 			{
-				return SFML.Graphics.Color.Magenta;
+				return Color.Magenta;
 			}
 			else if (color == (byte)Enums.ColorType.Brown)
 			{
@@ -486,15 +488,15 @@ namespace Engine
 			}
 			else if (color == (byte)Enums.ColorType.Yellow)
 			{
-				return SFML.Graphics.Color.Yellow;
+				return Color.Yellow;
 			}
 			else if (color == (byte)Enums.ColorType.White)
 			{
-				return SFML.Graphics.Color.White;
+				return Color.White;
 			}
 			else
 			{
-				return SFML.Graphics.Color.White;
+				return Color.White;
 			}
 		}
 		
@@ -645,7 +647,7 @@ endOfWhileLoop:
 				}
 				
 				string word = str.Substring(startindex, index - startindex);
-				char nextChar = System.Convert.ToChar(str.Substring(index, 1)[0]);
+				char nextChar = str.Substring(index, 1)[0];
 				// Dashes and the likes should stick to the word occuring before it. Whitespace doesn't have to.
 				if (char.IsWhiteSpace(nextChar))
 				{
@@ -659,8 +661,6 @@ endOfWhileLoop:
 				
 				startindex = index + 1;
 			}
-			
-			return returnValue;
 		}
 		
 		internal static void DrawChatBubble(int index)
@@ -676,7 +676,7 @@ endOfWhileLoop:
 			if (C_Variables.ChatBubble[index].TargetType == (byte)Enums.TargetType.Player)
 			{
 				// it's a player
-				if (C_Player.GetPlayerMap(System.Convert.ToInt32(C_Variables.ChatBubble[index].Target)) == C_Player.GetPlayerMap(C_Variables.Myindex))
+				if (C_Player.GetPlayerMap((C_Variables.ChatBubble[index].Target)) == C_Player.GetPlayerMap(C_Variables.Myindex))
 				{
 					// it's on our map - get co-ords
 					x = C_Graphics.ConvertMapX((C_Types.Player[C_Variables.ChatBubble[index].Target].X * 32) + C_Types.Player[C_Variables.ChatBubble[index].Target].XOffset) + 16;
@@ -734,7 +734,7 @@ endOfWhileLoop:
 			// render each line centralised
 			for (i = 0; i <= theArray.Count - 1; i++)
 			{
-				DrawText(System.Convert.ToInt32(x - ((double) GetTextWidth(theArray[i]) / 2)), y2, theArray[i], C_Graphics.ToSfmlColor(System.Drawing.ColorTranslator.FromOle(Information.QBColor(System.Convert.ToInt32(C_Variables.ChatBubble[index].Colour)))), Color.Black, C_Graphics.GameWindow);
+				DrawText((int)(x - ((double) GetTextWidth(theArray[i]) / 2)), y2, theArray[i], C_Graphics.ToSfmlColor(System.Drawing.ColorTranslator.FromOle(Information.QBColor((int)(C_Variables.ChatBubble[index].Colour)))), Color.Black, C_Graphics.GameWindow);
 				y2 = y2 + 12;
 			}
 			// check if it's timed out - close it if so
