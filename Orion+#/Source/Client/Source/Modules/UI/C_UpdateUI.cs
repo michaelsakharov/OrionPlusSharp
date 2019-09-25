@@ -642,9 +642,18 @@ namespace Engine
 				else
 				{
 					FrmOptions.Default.chkVSync.Checked = false;
-				}
-				
-				if (C_Types.Options.ShowNpcBar == 1)
+                }
+
+                if (C_Types.Options.UnlockFPS == 1)
+                {
+                    FrmOptions.Default.checkBox1.Checked = true;
+                }
+                else
+                {
+                    FrmOptions.Default.checkBox1.Checked = false;
+                }
+
+                if (C_Types.Options.ShowNpcBar == 1)
 				{
 					FrmOptions.Default.chkNpcBars.Checked = true;
 				}

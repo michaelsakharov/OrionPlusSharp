@@ -19,6 +19,6 @@
     <Element Name="ScreenSize" Value="0" />
     <Element Name="VSync" Value="1" />
     <Element Name="ShowNpcBar" Value="1" />
-    <Element Name="UnlockFPS" Value="1" />
+    <Element Name="UnlockFPS" Value="0" />
   </Misc>
 </Options>

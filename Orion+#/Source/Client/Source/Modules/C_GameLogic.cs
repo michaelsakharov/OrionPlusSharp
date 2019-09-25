@@ -539,6 +539,7 @@ namespace Engine
                 DeltaTime();
                 
 				Thread.Sleep(1); // Yield also works
+				//Thread.Yield();
 				
 			} while (true);
 		}
