@@ -1325,16 +1325,24 @@ namespace Engine
 
         public static void ClearPlayer(int index)
         {
-            TempPlayer[index].SkillCd = new int[Constants.MAX_PLAYER_SKILLS + 1];
-            TempPlayer[index].PetSkillCd = new int[5];
+            try
+            {
+                TempPlayer[index].SkillCd = new int[Constants.MAX_PLAYER_SKILLS + 1];
+                TempPlayer[index].PetSkillCd = new int[5];
 
-            Player[index].Login = "";
-            Player[index].Password = "";
+                Player[index].Login = "";
+                Player[index].Password = "";
 
-            Player[index].Access = 0;
+                Player[index].Access = 0;
 
-            for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
-                ClearCharacter(index, i);
+                for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
+                    ClearCharacter(index, i);
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine("There was a Error when trying to Clear a player");
+                Console.WriteLine(err.StackTrace.ToString());
+            }
         }
 
 
