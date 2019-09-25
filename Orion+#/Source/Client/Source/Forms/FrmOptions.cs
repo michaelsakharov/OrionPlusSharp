@@ -101,13 +101,13 @@ namespace Engine
 			//screensize
 			C_Types.Options.ScreenSize = System.Convert.ToByte(cmbScreenSize.SelectedIndex);
 			
-			if (chkHighEnd.Checked)
+			if (chkVSync.Checked)
 			{
-				C_Types.Options.HighEnd = (byte) 1;
+				C_Types.Options.VSync = (byte) 1;
 			}
 			else
 			{
-				C_Types.Options.HighEnd = (byte) 0;
+				C_Types.Options.VSync = (byte) 0;
 			}
 
             if (checkBox1.Checked)

@@ -50,7 +50,7 @@ namespace Engine
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.optMOff = new System.Windows.Forms.RadioButton();
             this.optMOn = new System.Windows.Forms.RadioButton();
-            this.chkHighEnd = new System.Windows.Forms.CheckBox();
+            this.chkVSync = new System.Windows.Forms.CheckBox();
             this.chkNpcBars = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.GroupBox2.SuspendLayout();
@@ -178,15 +178,15 @@ namespace Engine
             this.optMOn.Text = "On";
             this.optMOn.UseVisualStyleBackColor = true;
             // 
-            // chkHighEnd
+            // chkVSync
             // 
-            this.chkHighEnd.AutoSize = true;
-            this.chkHighEnd.Location = new System.Drawing.Point(12, 143);
-            this.chkHighEnd.Name = "chkHighEnd";
-            this.chkHighEnd.Size = new System.Drawing.Size(108, 17);
-            this.chkHighEnd.TabIndex = 15;
-            this.chkHighEnd.Text = "Yield Main Loop?";
-            this.chkHighEnd.UseVisualStyleBackColor = true;
+            this.chkVSync.AutoSize = true;
+            this.chkVSync.Location = new System.Drawing.Point(12, 143);
+            this.chkVSync.Name = "chkVSync";
+            this.chkVSync.Size = new System.Drawing.Size(66, 17);
+            this.chkVSync.TabIndex = 15;
+            this.chkVSync.Text = "V-Sync?";
+            this.chkVSync.UseVisualStyleBackColor = true;
             // 
             // chkNpcBars
             // 
@@ -216,7 +216,7 @@ namespace Engine
             this.ControlBox = false;
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.chkNpcBars);
-            this.Controls.Add(this.chkHighEnd);
+            this.Controls.Add(this.chkVSync);
             this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.GroupBox1);
@@ -248,7 +248,7 @@ namespace Engine
 		internal System.Windows.Forms.GroupBox GroupBox1;
 		internal System.Windows.Forms.RadioButton optMOff;
 		internal System.Windows.Forms.RadioButton optMOn;
-		internal System.Windows.Forms.CheckBox chkHighEnd;
+		internal System.Windows.Forms.CheckBox chkVSync;
 		internal System.Windows.Forms.CheckBox chkNpcBars;
         internal System.Windows.Forms.CheckBox checkBox1;
     }

@@ -126,6 +126,7 @@ namespace Engine
 				
 				if (GameStarted())
 				{
+                    
 					tick = C_General.GetTickCount();
 					C_Variables.ElapsedTime = tick - frameTime; // Set the time difference for time-based movement
 					
@@ -189,11 +190,8 @@ namespace Engine
 					
 					if (tmr10000 < tick)
 					{
-						if (C_Types.Options.HighEnd == 0)
-						{
-							//clear any unused gfx
-							C_Graphics.ClearGfx();
-						}
+						//clear any unused gfx
+						//C_Graphics.ClearGfx();
 						
 						C_NetworkSend.GetPing();
 						DrawPing();
@@ -539,15 +537,8 @@ namespace Engine
                 Application.DoEvents();
 
                 DeltaTime();
-
-                if (C_Types.Options.HighEnd == 1)
-				{
-					Thread.Yield();
-				}
-				else
-				{
-					Thread.Sleep(1);
-				}
+                
+				Thread.Sleep(1); // Yield also works
 				
 			} while (true);
 		}

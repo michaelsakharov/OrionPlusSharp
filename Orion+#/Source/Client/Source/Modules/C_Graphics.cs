@@ -2055,6 +2055,16 @@ namespace Engine
 			{
 				return;
             }
+            
+            //Lets update our vSync - This is by far the best way to handle this but it works for now
+            if (C_Types.Options.VSync == 1)
+            {
+                GameWindow.SetVerticalSyncEnabled(true);
+            }
+            else
+            {
+                GameWindow.SetVerticalSyncEnabled(false);
+            }
 
             int x = 0;
             int y = 0;

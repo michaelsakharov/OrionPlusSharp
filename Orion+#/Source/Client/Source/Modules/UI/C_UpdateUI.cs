@@ -635,13 +635,13 @@ namespace Engine
 				
 				FrmOptions.Default.cmbScreenSize.SelectedIndex = C_Types.Options.ScreenSize;
 				
-				if (C_Types.Options.HighEnd == 1)
+				if (C_Types.Options.VSync == 1)
 				{
-					FrmOptions.Default.chkHighEnd.Checked = true;
+					FrmOptions.Default.chkVSync.Checked = true;
 				}
 				else
 				{
-					FrmOptions.Default.chkHighEnd.Checked = false;
+					FrmOptions.Default.chkVSync.Checked = false;
 				}
 				
 				if (C_Types.Options.ShowNpcBar == 1)
