@@ -68,7 +68,7 @@ namespace Engine
             public int[] Requirement; // 1=item, 2=quest, 3=class
             public int[] RequirementIndex;
 
-            public int QuestGiveItem; // Todo: make this dynamic
+            public int QuestGiveItem;
             public int QuestGiveItemValue;
             public int QuestRemoveItem;
             public int QuestRemoveItemValue;
