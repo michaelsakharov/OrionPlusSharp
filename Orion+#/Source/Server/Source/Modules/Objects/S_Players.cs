@@ -3602,12 +3602,15 @@ namespace Engine
             S_NetworkSend.SendLoadCharOk(index);
 
             // Set some data related to housing instances.
-            if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse == 1 || modTypes.Map[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map].Instanced == 1 || modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map == 501)
+            if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse == 1 || modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map == 501)
             {
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse = 0;
-                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].X = (byte)modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastX;
-                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Y = (byte)modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastY;
-                modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastMap;
+                if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastMap > 0)
+                {
+                    modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].X = (byte)modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastX;
+                    modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Y = (byte)modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastY;
+                    modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastMap;
+                }
             }
 
             // Send all the required game data to the user.
