@@ -4216,7 +4216,7 @@ namespace Engine
 					{
                         if (C_Maps.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
                         {
-                            if (C_Maps.Map.Tile[x, y].Data3 == 0)
+                            if (C_Maps.Map.Tile[x, y].Data3 == 1)
                             {
                                 List<Vector2i> tiles = AppendFov(x, y, C_Maps.Map.Tile[x, y].Data1, true);
                                 tiles.Add(new Vector2i(x, y)); // Add the center tile, Fov doesnt calculate this
