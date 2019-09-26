@@ -137,7 +137,7 @@ namespace Engine
                     {
                         UpdateNpcAi();
                         S_Pets.UpdatePetAi();
-                        tmr300 = S_General.GetTimeMs() + 300;
+                        tmr300 = S_General.GetTimeMs() + 200;
                     }
                     
                     // Checks to update player vitals every 1 seconds - Can be tweaked
