@@ -116,6 +116,8 @@ namespace Engine
 		internal const byte DialogueTypeParty = 3;
 		internal const byte DialogueTypeQuest = 4;
 		internal const byte DialogueTypeTrade = 5;
-		
-	}
+
+        // Should Players be able to move in 8 directions or 4? True = 8
+        internal const bool EightDirectionalMovement = true;
+    }
 }

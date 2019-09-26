@@ -93,10 +93,20 @@ namespace Engine
 				C_Variables.DirRight = C_UpdateUI.VbKeyRight;
 
                 // 8 Directional Movement
-                C_Variables.DirUpLeft = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyLeft);
-                C_Variables.DirUpRight = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyRight);
-                C_Variables.DirDownLeft = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyLeft);
-                C_Variables.DirDownRight = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyRight);
+                if (C_Constants.EightDirectionalMovement)
+                {
+                    C_Variables.DirUpLeft = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyLeft);
+                    C_Variables.DirUpRight = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyRight);
+                    C_Variables.DirDownLeft = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyLeft);
+                    C_Variables.DirDownRight = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyRight);
+                }
+                else
+                {
+                    C_Variables.DirUpLeft = false;
+                    C_Variables.DirUpRight = false;
+                    C_Variables.DirDownLeft = false;
+                    C_Variables.DirDownRight = false;
+                }
 
                 if (C_UpdateUI.Frmmenuvisible == true)
 				{
