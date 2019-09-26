@@ -201,6 +201,7 @@ namespace Engine
 			int Layer = 0;
 			Prefab = cmbPrefab.SelectedIndex + 1;
 			Layer = cmbLayer.SelectedIndex + 1;
+            if(Prefab == 0) { Prefab = 1; }
 			txtTileset.Text = E_AutoMap.Tile[Prefab].Layer[Layer].Tileset.ToString();
 			txtTileX.Text = E_AutoMap.Tile[Prefab].Layer[Layer].X.ToString();
 			txtTileY.Text = E_AutoMap.Tile[Prefab].Layer[Layer].Y.ToString();

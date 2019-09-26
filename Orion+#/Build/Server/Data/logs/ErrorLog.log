@@ -43,3 +43,24 @@ Line:167 Filename: S_NetworkConfig.cs
 Line:3727 Filename: S_Players.cs
 Line:1926 Filename: S_NetworkReceive.cs
 
+27/09/2019 3:44:19 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.S_AutoMap.MakeMapPaths(Int32 mapNum) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_AutoMap.cs:line 1780
+   at Engine.S_AutoMap.MakePaths(Int32 mapStart, Int32 size) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_AutoMap.cs:line 1850
+   at Engine.S_AutoMap.StartAutomapper(Int32 mapStart, Int32 size, Int32 mapX, Int32 mapY) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_AutoMap.cs:line 1937
+   at Engine.S_AutoMap.Packet_SaveAutoMap(Int32 index, Byte[]& data) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_AutoMap.cs:line 283
+   at ASFW.Network.Server.PacketHandler(ReceiveState& so)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1780 Filename: S_AutoMap.cs
+Line:1850 Filename: S_AutoMap.cs
+Line:1937 Filename: S_AutoMap.cs
+Line:283 Filename: S_AutoMap.cs
+
