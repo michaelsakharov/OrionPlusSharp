@@ -20,5 +20,9 @@
     <Element Name="VSync" Value="1" />
     <Element Name="ShowNpcBar" Value="1" />
     <Element Name="UnlockFPS" Value="0" />
+    <Element Name="ApplicationID" Value="AppID" />
+    <Element Name="LargeImageKey" Value="LargeImageKey" />
+    <Element Name="LargeImageText" Value="LargeImageText" />
+    <Element Name="SmallImageKey" Value="SmallImageKey" />
   </Misc>
 </Options>

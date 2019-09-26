@@ -200,6 +200,8 @@ namespace Engine
 		{
 			C_UpdateUI.Pnlloadvisible = false;
 
+            C_Discord.SetPresence(C_Constants.GameName, "In-Game"); // We can safely call this anywhere in the code, Even if it gets called every frame
+
             // Set the focus
             //This is sometimes called on a differant thread than picscreen was created on, so gotta do some more complicated stuffsss
             FrmGame.Default.picscreen.Invoke(new Action(() => FrmGame.Default.picscreen.Focus()));

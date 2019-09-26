@@ -253,6 +253,10 @@ namespace Engine
 			C_Types.Options.VSync = (byte) 0;
 			C_Types.Options.UnlockFPS = (byte) 0;
 			C_Types.Options.ShowNpcBar = (byte) 0;
+			C_Types.Options.ApplicationID = "";
+			C_Types.Options.LargeImageKey = "";
+			C_Types.Options.LargeImageText = "";
+			C_Types.Options.SmallImageKey = "";
 			
 			myXml.LoadXml();
 			
@@ -272,6 +276,11 @@ namespace Engine
 			myXml.WriteString("Misc", "VSync", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.VSync.ToString()));
 			myXml.WriteString("Misc", "UnlockFPS", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.UnlockFPS.ToString()));
 			myXml.WriteString("Misc", "ShowNpcBar", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ShowNpcBar.ToString()));
+
+			myXml.WriteString("Misc", "ApplicationID", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ApplicationID));
+			myXml.WriteString("Misc", "LargeImageKey", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.LargeImageKey));
+			myXml.WriteString("Misc", "LargeImageText", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.LargeImageText));
+			myXml.WriteString("Misc", "SmallImageKey", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.SmallImageKey));
 			
 			myXml.CloseXml(true);
 		}
@@ -285,22 +294,27 @@ namespace Engine
 			
 			myXml.LoadXml();
 			
-			myXml.WriteString("UserInfo", "Username", C_Types.Options.Username.Trim());
-			myXml.WriteString("UserInfo", "Password", C_Types.Options.Password.Trim());
-			myXml.WriteString("UserInfo", "SavePass", Microsoft.VisualBasic.Strings.Trim(System.Convert.ToString(C_Types.Options.SavePass)));
+			myXml.WriteString("UserInfo", "Username", C_Types.Options.Username);
+			myXml.WriteString("UserInfo", "Password", C_Types.Options.Password);
+			myXml.WriteString("UserInfo", "SavePass", System.Convert.ToString(C_Types.Options.SavePass));
 			
 			myXml.WriteString("Connection", "Ip", C_Types.Options.Ip.Trim());
-			myXml.WriteString("Connection", "Port", Microsoft.VisualBasic.Strings.Trim(System.Convert.ToString(C_Types.Options.Port)));
+			myXml.WriteString("Connection", "Port", System.Convert.ToString(C_Types.Options.Port));
 			
-			myXml.WriteString("Sfx", "MenuMusic", C_Types.Options.MenuMusic.Trim());
-			myXml.WriteString("Sfx", "Music", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.Music.ToString()));
-			myXml.WriteString("Sfx", "Sound", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.Sound.ToString()));
-			myXml.WriteString("Sfx", "Volume", Microsoft.VisualBasic.Strings.Trim(System.Convert.ToString(C_Types.Options.Volume)));
+			myXml.WriteString("Sfx", "MenuMusic", C_Types.Options.MenuMusic);
+			myXml.WriteString("Sfx", "Music", C_Types.Options.Music.ToString());
+			myXml.WriteString("Sfx", "Sound", C_Types.Options.Sound.ToString());
+			myXml.WriteString("Sfx", "Volume", System.Convert.ToString(C_Types.Options.Volume));
 			
-			myXml.WriteString("Misc", "ScreenSize", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ScreenSize.ToString()));
-			myXml.WriteString("Misc", "VSync", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.VSync.ToString()));
-			myXml.WriteString("Misc", "UnlockFPS", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.UnlockFPS.ToString()));
-			myXml.WriteString("Misc", "ShowNpcBar", Microsoft.VisualBasic.Strings.Trim(C_Types.Options.ShowNpcBar.ToString()));
+			myXml.WriteString("Misc", "ScreenSize", C_Types.Options.ScreenSize.ToString());
+			myXml.WriteString("Misc", "VSync", C_Types.Options.VSync.ToString());
+			myXml.WriteString("Misc", "UnlockFPS", C_Types.Options.UnlockFPS.ToString());
+			myXml.WriteString("Misc", "ShowNpcBar", C_Types.Options.ShowNpcBar.ToString());
+
+			myXml.WriteString("Misc", "ApplicationID", C_Types.Options.ApplicationID);
+			myXml.WriteString("Misc", "LargeImageKey", C_Types.Options.LargeImageKey);
+			myXml.WriteString("Misc", "LargeImageText", C_Types.Options.LargeImageText);
+			myXml.WriteString("Misc", "SmallImageKey", C_Types.Options.SmallImageKey);
 			
 			myXml.CloseXml(true);
 		}
@@ -329,6 +343,12 @@ namespace Engine
 			C_Types.Options.VSync = (byte) (Conversion.Val(myXml.ReadString("Misc", "VSync", "0")));
 			C_Types.Options.UnlockFPS = (byte) (Conversion.Val(myXml.ReadString("Misc", "UnlockFPS", "0")));
 			C_Types.Options.ShowNpcBar = (byte) (Conversion.Val(myXml.ReadString("Misc", "ShowNpcBar", "1")));
+
+			C_Types.Options.ApplicationID = myXml.ReadString("Misc", "ApplicationID", "AppID");
+			C_Types.Options.LargeImageKey = myXml.ReadString("Misc", "LargeImageKey", "LargeImageKey");
+			C_Types.Options.LargeImageText = myXml.ReadString("Misc", "LargeImageText", "LargeImageText");
+			C_Types.Options.SmallImageKey = myXml.ReadString("Misc", "SmallImageKey", "SmallImageKey");
+
 			myXml.CloseXml(true);
 			
 			// show in GUI

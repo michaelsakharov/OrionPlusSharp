@@ -569,7 +569,7 @@ namespace Engine
 			// Check if player is walking, and if so process moving them over
 			if (C_Types.Player[index].Moving == (byte)Enums.MovementType.Walking)
 			{
-                movementSpeed = C_Constants.WalkSpeed;
+				movementSpeed = C_Constants.WalkSpeed;
 			}
 			else if (C_Types.Player[index].Moving == (byte)Enums.MovementType.Running)
 			{

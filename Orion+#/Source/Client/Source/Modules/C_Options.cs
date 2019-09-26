@@ -27,5 +27,11 @@ namespace Engine
 		public byte VSync;
 		public byte UnlockFPS;
 		public byte ShowNpcBar;
+
+        //Discord
+		public string ApplicationID;
+		public string LargeImageKey;
+		public string LargeImageText;
+		public string SmallImageKey;
 	}
 }

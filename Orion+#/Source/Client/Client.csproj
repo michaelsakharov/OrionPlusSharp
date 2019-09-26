@@ -79,9 +79,15 @@
     <Reference Include="DarkUI">
       <HintPath>.\DarkUI.dll</HintPath>
     </Reference>
+    <Reference Include="DiscordRPC, Version=1.0.121.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DiscordRichPresence.1.0.121\lib\net35\DiscordRPC.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="mscorlib" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SFML.Portable">
       <HintPath>packages\SFML-Portable-2.1.1.5.0\lib\SFML.Portable.dll</HintPath>
     </Reference>
@@ -122,6 +128,7 @@
     <Compile Include="Source\Legacy\Types.cs" />
     <Compile Include="Source\Legacy\Xml.cs" />
     <Compile Include="Source\Modules\C_Options.cs" />
+    <Compile Include="Source\Modules\Discord\C_Discord.cs" />
     <Compile Include="Source\Modules\Objects\C_Items.cs" />
     <Compile Include="Source\Modules\Objects\C_Maps.cs" />
     <Compile Include="Source\Modules\Objects\C_Resources.cs" />

@@ -94,6 +94,12 @@ namespace Engine
 				
 				if (C_UpdateUI.Frmmenuvisible == true)
 				{
+                    // Were not connected and were in the main menu so lets connect
+                    if(C_Discord.client == null)
+                    {
+                        C_Discord.SetPresence(C_Constants.GameName, "Main Menu");
+                    }
+
 					if (tmrconnect < C_General.GetTickCount())
 					{
 						if (C_NetworkConfig.Socket.IsConnected == true)
@@ -126,8 +132,8 @@ namespace Engine
 				
 				if (GameStarted())
 				{
-                    
-					tick = C_General.GetTickCount();
+
+                    tick = C_General.GetTickCount();
 					C_Variables.ElapsedTime = tick - frameTime; // Set the time difference for time-based movement
 					
 					frameTime = tick;
