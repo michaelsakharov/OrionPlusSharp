@@ -2030,6 +2030,7 @@ namespace Engine
             // 
             // scrlIntensity
             // 
+            this.scrlIntensity.Enabled = false;
             this.scrlIntensity.LargeChange = 1;
             this.scrlIntensity.Location = new System.Drawing.Point(90, 51);
             this.scrlIntensity.Name = "scrlIntensity";

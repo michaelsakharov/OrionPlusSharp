@@ -1102,6 +1102,7 @@ namespace Engine
             // nudIntensity
             // 
             this.nudIntensity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudIntensity.Enabled = false;
             this.nudIntensity.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudIntensity.Location = new System.Drawing.Point(61, 44);
             this.nudIntensity.Name = "nudIntensity";
