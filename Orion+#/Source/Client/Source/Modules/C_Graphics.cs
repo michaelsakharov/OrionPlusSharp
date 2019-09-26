@@ -1291,6 +1291,8 @@ namespace Engine
 				switch (C_Player.GetPlayerDir(index))
 				{
 					case (int) Enums.DirectionType.Up:
+					case (int) Enums.DirectionType.UpLeft:
+					case (int) Enums.DirectionType.UpRight:
 						
 						if (C_Types.Player[index].YOffset > 8)
 						{
@@ -1298,6 +1300,8 @@ namespace Engine
 						}
 						break;
 					case (int) Enums.DirectionType.Down:
+					case (int) Enums.DirectionType.DownLeft:
+					case (int) Enums.DirectionType.DownRight:
 						
 						if (C_Types.Player[index].YOffset < -8)
 						{
@@ -1334,12 +1338,16 @@ namespace Engine
 			switch (C_Player.GetPlayerDir(index))
 			{
 				case (int) Enums.DirectionType.Up:
+				case (int) Enums.DirectionType.UpLeft:
+				case (int) Enums.DirectionType.UpRight:
 					spriteleft = 3;
 					break;
 				case (int) Enums.DirectionType.Right:
 					spriteleft = 2;
 					break;
 				case (int) Enums.DirectionType.Down:
+				case (int) Enums.DirectionType.DownLeft:
+				case (int) Enums.DirectionType.DownRight:
 					spriteleft = 0;
 					break;
 				case (int) Enums.DirectionType.Left:
