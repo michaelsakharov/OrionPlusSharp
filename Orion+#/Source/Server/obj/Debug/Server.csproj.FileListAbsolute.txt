@@ -14,13 +14,14 @@ C:\Users\Michael\Desktop\orion plus c#\Orion-Plus-Game-Engine-master\Source\Serv
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Data\AutoMapper.xml
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Data\SkillExp.xml
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Data\News.txt
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Orion+ Server.exe.config
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Orion+ Server.exe
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Orion+ Server.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Engine.My_Project.Resources.resources
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csproj.GenerateResource.cache
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csproj.CopyComplete
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Orion+ Server.exe
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Orion+ Server.pdb
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Lupus Server.exe.config
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Lupus Server.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Lupus Server.pdb
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Lupus Server.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Lupus Server.pdb

@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <StartupObject>Engine.S_Console</StartupObject>
     <RootNamespace>Engine</RootNamespace>
-    <AssemblyName>Orion+ Server</AssemblyName>
+    <AssemblyName>Lupus Server</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

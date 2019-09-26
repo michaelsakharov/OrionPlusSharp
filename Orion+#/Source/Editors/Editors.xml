@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Editors</name>
+        <name>Lupus Editor</name>
     </assembly>
     <members>
         <member name="T:Engine.Enums.ColorType">

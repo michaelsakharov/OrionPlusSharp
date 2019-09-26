@@ -259,8 +259,6 @@ C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Engine.FrmOptions.resources
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Client.csproj.GenerateResource.cache
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Orion+ Client.exe
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Orion+ Client.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Data\Credits.txt
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Data\Graphics\Animations\1.png
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Data\Graphics\Animations\2.png
@@ -496,7 +494,9 @@ C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Resources\
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Resources\Preview.png
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Resources\Save.png
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Resources\ScreenShot.png
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Orion+ Client.exe.config
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Orion+ Client.exe
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Orion+ Client.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Lupus Client.exe.config
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Lupus Client.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Client\Lupus Client.pdb
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Lupus Client.exe
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Client\obj\Debug\Lupus Client.pdb

@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>Engine.E_Loop</StartupObject>
     <RootNamespace>Engine</RootNamespace>
-    <AssemblyName>Editors</AssemblyName>
+    <AssemblyName>Lupus Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
