@@ -53,37 +53,36 @@ namespace Engine
                     {
                         if (onlinePlayers.Count() > 0)
                         {
-                            // Check if any of our players has completed casting and get their skill going if they have.
-                            var playerskills = (from p in onlinePlayers
-                                                where p.Player.SkillBuffer > 0 && S_General.GetTimeMs() > (p.Player.SkillBufferTimer + Types.Skill[p.Player.SkillBuffer].CastTime * 100)
-                                                select new { p.Index, Success = HandleCastSkill(p.Index) });
 
-
-                            // Check if we need to clear any of our players from being stunned.
-                            var playerstuns = (from p in onlinePlayers
-                                               where p.Player.StunDuration > 0 && p.Player.StunTimer > (p.Player.StunDuration * 1000)
-                                               select new { p.Index, Success = HandleClearStun(p.Index) });
-
-                            // Check if any of our pets has completed casting and get their skill going if they have.
-                            var petskills = (from p in onlinePlayers
-                                             where modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.Player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Skill[p.Player.PetskillBuffer.Skill]].CastTime * 100)
-                                             select new { p.Index, Success = HandlePetSkill(p.Index) });
-
-                            // Check if we need to clear any of our pets from being stunned.
-                            var petstuns = (from p in onlinePlayers
-                                            where p.Player.PetStunDuration > 0 && p.Player.PetStunTimer > (p.Player.PetStunDuration * 1000)
-                                            select new { p.Index, Success = HandleClearPetStun(p.Index) });
-
-                            // check pet regen timer
-                            var petregen = (from p in onlinePlayers
-                                            where p.Player.PetstopRegen == true && p.Player.PetstopRegenTimer + 5000 < S_General.GetTimeMs()
-                                            select new { p.Index, Success = HandleStopPetRegen(p.Index) });
+                            foreach (TempOnlinePlayerData p in onlinePlayers)
+                            {
+                                // Check if any of our players has completed casting and get their skill going if they have.
+                                if (p.Player.SkillBuffer > 0 && S_General.GetTimeMs() > (p.Player.SkillBufferTimer + Types.Skill[p.Player.SkillBuffer].CastTime * 100))
+                                {
+                                    HandleCastSkill(p.Index);
+                                }
+                                // Check if we need to clear any of our players from being stunned.
+                                if (p.Player.StunDuration > 0 && p.Player.StunTimer > (p.Player.StunDuration * 1000))
+                                {
+                                    HandleClearStun(p.Index);
+                                }
+                                // Check if any of our pets has completed casting and get their skill going if they have.
+                                if (modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.Player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Skill[p.Player.PetskillBuffer.Skill]].CastTime * 100))
+                                {
+                                    HandlePetSkill(p.Index);
+                                }
+                                // Check if we need to clear any of our pets from being stunned.
+                                if (p.Player.PetStunDuration > 0 && p.Player.PetStunTimer > (p.Player.PetStunDuration * 1000))
+                                {
+                                    HandleClearPetStun(p.Index);
+                                }
+                                // check pet regen timer
+                                if (p.Player.PetstopRegen == true && p.Player.PetstopRegenTimer + 5000 < S_General.GetTimeMs())
+                                {
+                                    HandleStopPetRegen(p.Index);
+                                }
+                            }
                         }
-                        // HoT and DoT logic
-                        // For x = 1 To MAX_DOTS
-                        // HandleDoT_Pet i, x
-                        // HandleHoT_Pet i, x
-                        // Next
 
                         // Update all our available events.
                         S_EventLogic.UpdateEventLogic();
@@ -97,9 +96,13 @@ namespace Engine
                         if (onlinePlayers.Count() > 0)
                         {
                             // Handle our player crafting
-                            var playercrafts = (from p in onlinePlayers
-                                                where S_General.GetTimeMs() > p.Player.CraftTimer + (p.Player.CraftTimeNeeded * 1000) && p.Player.CraftIt == 1
-                                                select new { p.Index, Success = HandlePlayerCraft(p.Index) });
+                            foreach (TempOnlinePlayerData p in onlinePlayers)
+                            {
+                                if (S_General.GetTimeMs() > p.Player.CraftTimer + (p.Player.CraftTimeNeeded * 1000) && p.Player.CraftIt == 1)
+                                {
+                                    HandlePlayerCraft(p.Index);
+                                }
+                            }
                         }
                         Time.Instance.Tick();
                     
