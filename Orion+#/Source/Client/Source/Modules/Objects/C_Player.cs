@@ -150,52 +150,55 @@ namespace Engine
 				switch (GetPlayerDir(C_Variables.Myindex))
 				{
 					case (int) Enums.DirectionType.Up:
-						C_NetworkSend.SendPlayerMove();
 						C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY;
 						SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) - 1);
-						break;
+                        C_NetworkSend.SendPlayerMove();
+                        break;
 					case (int) Enums.DirectionType.Down:
-						C_NetworkSend.SendPlayerMove();
 						C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY * -1;
 						SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) + 1);
-						break;
+                        C_NetworkSend.SendPlayerMove();
+                        break;
 					case (int) Enums.DirectionType.Left:
-						C_NetworkSend.SendPlayerMove();
 						C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX;
 						SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) - 1);
-						break;
+                        C_NetworkSend.SendPlayerMove();
+                        break;
 					case (int) Enums.DirectionType.Right:
-						C_NetworkSend.SendPlayerMove();
 						C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX * -1;
 						SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) + 1);
-						break;
+                        C_NetworkSend.SendPlayerMove();
+                        break;
 
                     //8 Directional Movement
 
 					case (int) Enums.DirectionType.UpLeft:
-						C_NetworkSend.SendPlayerMove();
 						C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY;
 						C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX;
 						SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) - 1);
 						SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) - 1);
-						break;
+                        C_NetworkSend.SendPlayerMove();
+                        break;
 					case (int) Enums.DirectionType.UpRight:
                         C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY;
                         C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX * -1;
                         SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) - 1);
                         SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) + 1);
+                        C_NetworkSend.SendPlayerMove();
                         break;
 					case (int) Enums.DirectionType.DownLeft:
                         C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY * -1;
                         C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX;
                         SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) + 1);
                         SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) - 1);
+                        C_NetworkSend.SendPlayerMove();
                         break;
 					case (int) Enums.DirectionType.DownRight:
                         C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY * -1;
                         C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX * -1;
                         SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) + 1);
                         SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) + 1);
+                        C_NetworkSend.SendPlayerMove();
                         break;
 				}
 				
