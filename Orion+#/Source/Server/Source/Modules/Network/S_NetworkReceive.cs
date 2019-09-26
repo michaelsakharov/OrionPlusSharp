@@ -693,8 +693,10 @@ namespace Engine
             buffer.Dispose();
 
             // Prevent hacking
-            if (Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
-                return;
+            //if (Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
+            // 8 Directional Movement
+            if (Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.DownRight)
+                    return;
 
             if (movement < 1 || movement > 2)
                 return;
@@ -761,8 +763,10 @@ namespace Engine
             buffer.Dispose();
 
             // Prevent hacking
-            if (dir < (byte)Enums.DirectionType.Up || dir > (byte)Enums.DirectionType.Right)
-                return;
+            //if (dir < (byte)Enums.DirectionType.Up || dir > (byte)Enums.DirectionType.Right)
+            // 8 Directional Movement
+            if (dir < (byte)Enums.DirectionType.Up || dir > (byte)Enums.DirectionType.DownRight)
+                    return;
 
             S_Players.SetPlayerDir(index, dir);
 
@@ -1083,7 +1087,9 @@ namespace Engine
             buffer.Dispose();
 
             // Prevent hacking
-            if (dir < (byte)Enums.DirectionType.Up || dir > (byte)Enums.DirectionType.Right)
+            //if (dir < (byte)Enums.DirectionType.Up || dir > (byte)Enums.DirectionType.Right)
+            // 8 Directional Movement
+            if (dir < (byte)Enums.DirectionType.Up || dir > (byte)Enums.DirectionType.DownRight)
                 return;
 
             S_Players.PlayerMove(index, dir, 1, true);

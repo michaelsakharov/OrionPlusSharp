@@ -120,7 +120,12 @@ namespace Engine
 			Up,
 			Down,
 			Left,
-			Right
+			Right,
+            // 8 Directional Movement
+            UpLeft,
+            UpRight,
+            DownLeft,
+            DownRight
 		}
 		
 		/// <Summary> Movement Constant </Summary>

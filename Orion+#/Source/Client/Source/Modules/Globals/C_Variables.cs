@@ -102,7 +102,15 @@ namespace Engine
 		internal static bool DirDown;
 		internal static bool DirLeft;
 		internal static bool DirRight;
-		internal static bool ShiftDown;
+
+        // 8 Directional Movement
+        internal static bool DirUpLeft;
+        internal static bool DirUpRight;
+        internal static bool DirDownLeft;
+        internal static bool DirDownRight;
+
+
+        internal static bool ShiftDown;
 		internal static bool ControlDown;
 		
 		// Used for dragging Picture Boxes

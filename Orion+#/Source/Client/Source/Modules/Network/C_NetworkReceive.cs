@@ -661,6 +661,12 @@ namespace Engine
 				C_Variables.DirDown = false;
 				C_Variables.DirLeft = false;
 				C_Variables.DirRight = false;
+
+                // 8 Directional Movement
+				C_Variables.DirUpLeft = false;
+				C_Variables.DirUpRight = false;
+				C_Variables.DirDownLeft = false;
+				C_Variables.DirDownRight = false;
 				
 				C_UpdateUI.UpdateCharacterPanel = true;
 			}

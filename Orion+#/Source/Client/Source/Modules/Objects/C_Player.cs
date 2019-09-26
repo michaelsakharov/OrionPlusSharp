@@ -169,6 +169,34 @@ namespace Engine
 						C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX * -1;
 						SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) + 1);
 						break;
+
+                    //8 Directional Movement
+
+					case (int) Enums.DirectionType.UpLeft:
+						C_NetworkSend.SendPlayerMove();
+						C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY;
+						C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX;
+						SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) - 1);
+						SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) - 1);
+						break;
+					case (int) Enums.DirectionType.UpRight:
+                        C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY;
+                        C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX * -1;
+                        SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) - 1);
+                        SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) + 1);
+                        break;
+					case (int) Enums.DirectionType.DownLeft:
+                        C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY * -1;
+                        C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX;
+                        SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) + 1);
+                        SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) - 1);
+                        break;
+					case (int) Enums.DirectionType.DownRight:
+                        C_Types.Player[C_Variables.Myindex].YOffset = C_Constants.PicY * -1;
+                        C_Types.Player[C_Variables.Myindex].XOffset = C_Constants.PicX * -1;
+                        SetPlayerY(C_Variables.Myindex, GetPlayerY(C_Variables.Myindex) + 1);
+                        SetPlayerX(C_Variables.Myindex, GetPlayerX(C_Variables.Myindex) + 1);
+                        break;
 				}
 				
 				if (C_Types.Player[C_Variables.Myindex].XOffset == 0 && C_Types.Player[C_Variables.Myindex].YOffset == 0)
@@ -184,8 +212,12 @@ namespace Engine
 		
 		public static bool IsTryingToMove()
 		{
-			
-			if (C_Variables.DirUp || C_Variables.DirDown || C_Variables.DirLeft || C_Variables.DirRight)
+            // 8 Directional Movement
+            if (C_Variables.DirUpLeft || C_Variables.DirUpRight || C_Variables.DirDownLeft || C_Variables.DirDownRight)
+            {
+                return true;
+            }
+            if (C_Variables.DirUp || C_Variables.DirDown || C_Variables.DirLeft || C_Variables.DirRight)
 			{
 				return true;
 			}
@@ -410,8 +442,156 @@ namespace Engine
 					
 				}
 			}
-			
-			return returnValue;
+
+
+
+
+            // 8 Directional Movement
+            if (C_Variables.DirUpLeft)
+            {
+                SetPlayerDir(C_Variables.Myindex, (System.Int32)Enums.DirectionType.UpLeft);
+
+                // Check to see if they are trying to go out of bounds
+                if (GetPlayerY(C_Variables.Myindex) > 0 && GetPlayerX(C_Variables.Myindex) > 0)
+                {
+                    if (CheckDirection((byte)Enums.DirectionType.Up))
+                    {
+                        returnValue = false;
+
+                        // Set the new direction if they weren't facing that direction
+                        if (d != (int)Enums.DirectionType.UpLeft)
+                        {
+                            C_NetworkSend.SendPlayerDir();
+                        }
+
+                        return returnValue;
+                    }
+                }
+                else
+                {
+
+                    // Check if they can warp to a new map
+                    if (C_Maps.Map.Up > 0 && C_Maps.Map.Left > 0)
+                    {
+                        C_Maps.SendPlayerRequestNewMap();
+                        C_Variables.GettingMap = true;
+                        C_Variables.CanMoveNow = false;
+                    }
+
+                    return false;
+
+                }
+            }
+
+            if (C_Variables.DirUpRight)
+            {
+                SetPlayerDir(C_Variables.Myindex, (System.Int32)Enums.DirectionType.UpRight);
+
+                // Check to see if they are trying to go out of bounds
+                if (GetPlayerY(C_Variables.Myindex) > 0 && GetPlayerX(C_Variables.Myindex) < C_Maps.Map.MaxX)
+                {
+                    if (CheckDirection((byte)Enums.DirectionType.Up))
+                    {
+                        returnValue = false;
+
+                        // Set the new direction if they weren't facing that direction
+                        if (d != (int)Enums.DirectionType.UpRight)
+                        {
+                            C_NetworkSend.SendPlayerDir();
+                        }
+
+                        return returnValue;
+                    }
+                }
+                else
+                {
+
+                    // Check if they can warp to a new map
+                    if (C_Maps.Map.Up > 0 && C_Maps.Map.Right > 0)
+                    {
+                        C_Maps.SendPlayerRequestNewMap();
+                        C_Variables.GettingMap = true;
+                        C_Variables.CanMoveNow = false;
+                    }
+
+                    return false;
+
+                }
+            }
+
+            if (C_Variables.DirDownLeft)
+            {
+                SetPlayerDir(C_Variables.Myindex, (System.Int32)Enums.DirectionType.DownLeft);
+
+                // Check to see if they are trying to go out of bounds
+                if (GetPlayerY(C_Variables.Myindex) < C_Maps.Map.MaxY && GetPlayerX(C_Variables.Myindex) > 0)
+                {
+                    if (CheckDirection((byte)Enums.DirectionType.Down))
+                    {
+                        returnValue = false;
+
+                        // Set the new direction if they weren't facing that direction
+                        if (d != (int)Enums.DirectionType.DownLeft)
+                        {
+                            C_NetworkSend.SendPlayerDir();
+                        }
+
+                        return returnValue;
+                    }
+                }
+                else
+                {
+
+                    // Check if they can warp to a new map
+                    if (C_Maps.Map.Down > 0 && C_Maps.Map.Left > 0)
+                    {
+                        C_Maps.SendPlayerRequestNewMap();
+                        C_Variables.GettingMap = true;
+                        C_Variables.CanMoveNow = false;
+                    }
+
+                    return false;
+
+                }
+            }
+
+            if (C_Variables.DirDownRight)
+            {
+                SetPlayerDir(C_Variables.Myindex, (System.Int32)Enums.DirectionType.DownRight);
+
+                // Check to see if they are trying to go out of bounds
+                if (GetPlayerY(C_Variables.Myindex) < C_Maps.Map.MaxY && GetPlayerX(C_Variables.Myindex) < C_Maps.Map.MaxX)
+                {
+                    if (CheckDirection((byte)Enums.DirectionType.Down))
+                    {
+                        returnValue = false;
+
+                        // Set the new direction if they weren't facing that direction
+                        if (d != (int)Enums.DirectionType.DownRight)
+                        {
+                            C_NetworkSend.SendPlayerDir();
+                        }
+
+                        return returnValue;
+                    }
+                }
+                else
+                {
+
+                    // Check if they can warp to a new map
+                    if (C_Maps.Map.Down > 0 && C_Maps.Map.Right > 0)
+                    {
+                        C_Maps.SendPlayerRequestNewMap();
+                        C_Variables.GettingMap = true;
+                        C_Variables.CanMoveNow = false;
+                    }
+
+                    return false;
+
+                }
+            }
+
+            return returnValue;
 		}
 		
 		public static bool CheckDirection(byte direction)
@@ -450,6 +630,29 @@ namespace Engine
 			{
 				x = GetPlayerX(C_Variables.Myindex) + 1;
 				y = GetPlayerY(C_Variables.Myindex);
+			} 
+            
+            // 8 Direction Movement
+
+			else if (direction == (byte)Enums.DirectionType.UpLeft)
+			{
+				x = GetPlayerX(C_Variables.Myindex) - 1;
+				y = GetPlayerY(C_Variables.Myindex) - 1;
+			}
+			else if (direction == (byte)Enums.DirectionType.UpRight)
+			{
+				x = GetPlayerX(C_Variables.Myindex) + 1;
+				y = GetPlayerY(C_Variables.Myindex) - 1;
+			}
+			else if (direction == (byte)Enums.DirectionType.DownLeft)
+			{
+				x = GetPlayerX(C_Variables.Myindex) - 1;
+				y = GetPlayerY(C_Variables.Myindex) + 1;
+			}
+			else if (direction == (byte)Enums.DirectionType.DownRight)
+			{
+				x = GetPlayerX(C_Variables.Myindex) + 1;
+				y = GetPlayerY(C_Variables.Myindex) + 1;
 			}
 			
 			// Check to see if the map tile is blocked or not
@@ -610,13 +813,42 @@ namespace Engine
 						C_Types.Player[index].XOffset = 0;
 					}
 					break;
+
+                // 8 directional movement
+				case (int) Enums.DirectionType.UpLeft:
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset - movementSpeed;
+					if (C_Types.Player[index].YOffset < 0) { C_Types.Player[index].YOffset = 0; }
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset - movementSpeed;
+					if (C_Types.Player[index].XOffset < 0) { C_Types.Player[index].XOffset = 0; }
+					break;
+				case (int) Enums.DirectionType.UpRight:
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset - movementSpeed;
+					if (C_Types.Player[index].YOffset < 0) { C_Types.Player[index].YOffset = 0; }
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset + movementSpeed;
+					if (C_Types.Player[index].XOffset > 0) { C_Types.Player[index].XOffset = 0; }
+					break;
+				case (int) Enums.DirectionType.DownLeft:
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset - movementSpeed;
+					if (C_Types.Player[index].XOffset < 0) { C_Types.Player[index].XOffset = 0; }
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset + movementSpeed;
+					if (C_Types.Player[index].YOffset > 0) { C_Types.Player[index].YOffset = 0; }
+					break;
+				case (int) Enums.DirectionType.DownRight:
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset + movementSpeed;
+					if (C_Types.Player[index].XOffset > 0) { C_Types.Player[index].XOffset = 0; }
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset + movementSpeed;
+					if (C_Types.Player[index].YOffset > 0) { C_Types.Player[index].YOffset = 0; }
+					break;
 			}
 			
 			// Check if completed walking over to the next tile
 			if (C_Types.Player[index].Moving > 0)
 			{
-				if (GetPlayerDir(index) == (int) Enums.DirectionType.Right || GetPlayerDir(index) == (int) Enums.DirectionType.Down)
-				{
+                // 8 Directional Movement
+                //if (GetPlayerDir(index) == (int) Enums.DirectionType.Right || GetPlayerDir(index) == (int) Enums.DirectionType.Down)
+                if(GetPlayerDir(index) == (int)Enums.DirectionType.Right || GetPlayerDir(index) == (int)Enums.DirectionType.Down || GetPlayerDir(index) == (int)Enums.DirectionType.DownLeft || GetPlayerDir(index) == (int)Enums.DirectionType.DownRight)
+
+                {
 					if ((C_Types.Player[index].XOffset >= 0) && (C_Types.Player[index].YOffset >= 0))
 					{
 						C_Types.Player[index].Moving = 0;

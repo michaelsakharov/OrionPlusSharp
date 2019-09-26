@@ -186,7 +186,9 @@ namespace Engine
             bool CanNpcMove = false;
 
             // Check for subscript out of range
-            if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
+            //if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
+            // 8 Directional Movement
+            if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.DownRight)
                 return false;
 
             x = modTypes.MapNpc[mapNum].Npc[MapNpcNum].X;
@@ -362,6 +364,176 @@ namespace Engine
                             CanNpcMove = false;
                         break;
                     }
+
+                    // 8 Directional Movement
+
+                case (int)Enums.DirectionType.UpLeft:
+                    {
+
+                        // Check to make sure not outside of boundries
+                        if (y > 0 && x > 0)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x - 1, y - 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo3 = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo3; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        else
+                            CanNpcMove = false;
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.UpRight:
+                    {
+
+                        // Check to make sure not outside of boundries
+                        if (y > 0 && x < modTypes.Map[mapNum].MaxX)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x + 1, y - 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo3 = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo3; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        else
+                            CanNpcMove = false;
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.DownLeft:
+                    {
+
+                        // Check to make sure not outside of boundries
+                        if (y < modTypes.Map[mapNum].MaxY && x > 0)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x - 1, y + 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo3 = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo3; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        else
+                            CanNpcMove = false;
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.DownRight:
+                    {
+
+                        // Check to make sure not outside of boundries
+                        if (y < modTypes.Map[mapNum].MaxY && x < modTypes.Map[mapNum].MaxX)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x + 1, y + 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo3 = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo3; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                        else
+                            CanNpcMove = false;
+                        break;
+                    }
             }
 
             if (modTypes.MapNpc[mapNum].Npc[MapNpcNum].SkillBuffer > 0)
@@ -375,7 +547,9 @@ namespace Engine
             ByteStream buffer = new ByteStream(4);
 
             // Check for subscript out of range
-            if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (int)Enums.DirectionType.Right || Movement < 1 || Movement > 2)
+            //if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (int)Enums.DirectionType.Right || Movement < 1 || Movement > 2)
+            // 8 Directional Movement
+            if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (int)Enums.DirectionType.DownRight || Movement < 1 || Movement > 2)
                 return;
 
             modTypes.MapNpc[mapNum].Npc[MapNpcNum].Dir = Dir;
@@ -453,6 +627,82 @@ namespace Engine
                         S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
                         break;
                     }
+
+                case (int)Enums.DirectionType.UpLeft:
+                    {
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].X = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1);
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1);
+
+                        buffer.WriteInt32((int)Packets.ServerPackets.SNpcMove);
+                        buffer.WriteInt32(MapNpcNum);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Dir);
+                        buffer.WriteInt32(Movement);
+
+                        modDatabase.Addlog("Sent SMSG: SNpcMove UpLeft", S_Constants.PACKET_LOG);
+                        S_General.AddDebug("Sent SMSG: SNpcMove UpLeft");
+
+                        S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.UpRight:
+                    {
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].X = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1);
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1);
+
+                        buffer.WriteInt32((int)Packets.ServerPackets.SNpcMove);
+                        buffer.WriteInt32(MapNpcNum);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Dir);
+                        buffer.WriteInt32(Movement);
+
+                        modDatabase.Addlog("Sent SMSG: SNpcMove UpRight", S_Constants.PACKET_LOG);
+                        S_General.AddDebug("Sent SMSG: SNpcMove UpRight");
+
+                        S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.DownLeft:
+                    {
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].X = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1);
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1);
+
+                        buffer.WriteInt32((int)Packets.ServerPackets.SNpcMove);
+                        buffer.WriteInt32(MapNpcNum);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Dir);
+                        buffer.WriteInt32(Movement);
+
+                        modDatabase.Addlog("Sent SMSG: SNpcMove DownLeft", S_Constants.PACKET_LOG);
+                        S_General.AddDebug("Sent SMSG: SNpcMove DownLeft");
+
+                        S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.DownRight:
+                    {
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].X = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1);
+                        modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1);
+
+                        buffer.WriteInt32((int)Packets.ServerPackets.SNpcMove);
+                        buffer.WriteInt32(MapNpcNum);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y);
+                        buffer.WriteInt32(modTypes.MapNpc[mapNum].Npc[MapNpcNum].Dir);
+                        buffer.WriteInt32(Movement);
+
+                        modDatabase.Addlog("Sent SMSG: SNpcMove DownRight", S_Constants.PACKET_LOG);
+                        S_General.AddDebug("Sent SMSG: SNpcMove DownRight");
+
+                        S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
+                        break;
+                    }
             }
 
             buffer.Dispose();
@@ -463,6 +713,8 @@ namespace Engine
             ByteStream buffer = new ByteStream(4);
 
             // Check for subscript out of range
+            //if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
+            // 8 directional movement
             if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
                 return;
 

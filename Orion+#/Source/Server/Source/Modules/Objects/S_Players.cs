@@ -47,6 +47,8 @@ namespace Engine
                 switch (GetPlayerDir(Attacker))
                 {
                     case (byte)Enums.DirectionType.Up:
+                    case (byte)Enums.DirectionType.UpLeft:
+                    case (byte)Enums.DirectionType.UpRight:
                         {
                             if (!((GetPlayerY(Victim) + 1 == GetPlayerY(Attacker)) && (GetPlayerX(Victim) == GetPlayerX(Attacker))))
                                 return false;
@@ -54,6 +56,8 @@ namespace Engine
                         }
 
                     case (byte)Enums.DirectionType.Down:
+                    case (byte)Enums.DirectionType.DownLeft:
+                    case (byte)Enums.DirectionType.DownRight:
                         {
                             if (!((GetPlayerY(Victim) - 1 == GetPlayerY(Attacker)) && (GetPlayerX(Victim) == GetPlayerX(Attacker))))
                                 return false;
@@ -442,6 +446,8 @@ namespace Engine
                     switch (GetPlayerDir(Attacker))
                     {
                         case (byte)Enums.DirectionType.Up:
+                        case (byte)Enums.DirectionType.UpLeft:
+                        case (byte)Enums.DirectionType.UpRight:
                             {
                                 atkX = GetPlayerX(Attacker);
                                 atkY = GetPlayerY(Attacker) - 1;
@@ -449,6 +455,8 @@ namespace Engine
                             }
 
                         case (byte)Enums.DirectionType.Down:
+                        case (byte)Enums.DirectionType.DownLeft:
+                        case (byte)Enums.DirectionType.DownRight:
                             {
                                 atkX = GetPlayerX(Attacker);
                                 atkY = GetPlayerY(Attacker) + 1;
@@ -1446,7 +1454,9 @@ namespace Engine
             int amount = 0;
 
             // Check for subscript out of range
-            if (S_NetworkConfig.IsPlaying(index) == false || Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right || Movement < 1 || Movement > 2)
+            //if (S_NetworkConfig.IsPlaying(index) == false || Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right || Movement < 1 || Movement > 2)
+            // 8 Directional Movement
+            if (S_NetworkConfig.IsPlaying(index) == false || Dir < (byte)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.DownRight || Movement < 1 || Movement > 2)
                 return;
 
             SetPlayerDir(index, Dir);
@@ -1712,6 +1722,264 @@ namespace Engine
                             if (modTypes.Map[GetPlayerMap(index)].Right > 0)
                         {
                             PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].Right, 0, GetPlayerY(index));
+                            DidWarp = true;
+                            Moved = true;
+                        }
+
+                        break;
+                    }
+
+
+                // 8 Directional Movement
+                case (byte)Enums.DirectionType.UpLeft:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (GetPlayerY(index) > 0 && GetPlayerX(index) > 0)
+                        {
+                            // Check to make sure that the tile is walkable
+                            byte directionRef = (int)(Enums.DirectionType.UpLeft + 1);
+                            if (!IsDirBlocked(ref modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].DirBlock, ref directionRef))
+                            {
+                                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Blocked)
+                                {
+                                    if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Resource)
+                                    {
+
+                                        // Check to see if the tile is a key and if it is check if its opened
+                                        if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Key || (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) - 1].Type == (byte)Enums.TileType.Key && modTypes.TempTile[GetPlayerMap(index)].DoorOpen[GetPlayerX(index) - 1, GetPlayerY(index) - 1] == 1))
+                                        {
+                                            SetPlayerX(index, GetPlayerX(index) - 1);
+                                            SetPlayerY(index, GetPlayerY(index) - 1);
+                                            S_NetworkSend.SendPlayerMove(index, Movement);
+                                            Moved = true;
+                                        }
+
+                                        var loopTo3 = modTypes.TempPlayer[index].EventMap.CurrentEvents;
+
+                                        // check for event
+                                        for (var i = 1; i <= loopTo3; i++)
+                                        {
+                                            if (modTypes.TempPlayer[index].EventMap.EventPages[i].X == GetPlayerX(index) - 1 && modTypes.TempPlayer[index].EventMap.EventPages[i].Y == GetPlayerY(index) - 1)
+                                            {
+                                                if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].Trigger == 1)
+                                                {
+                                                    // PlayerMsg(Index, "OnTouch event", ColorType.Red)
+                                                    // Process this event, it is on-touch and everything checks out.
+                                                    if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount > 0)
+                                                    {
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurList = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurSlot = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].EventId = modTypes.TempPlayer[index].EventMap.EventPages[i].EventId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].PageId = modTypes.TempPlayer[index].EventMap.EventPages[i].PageId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].WaitingForResponse = 0;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ListLeftOff = new int[modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount + 1];
+
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Active = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ActionTimer = S_General.GetTimeMs();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else // Check to see if we can move them to the another map
+                        if (modTypes.Map[GetPlayerMap(index)].Up > 0 && modTypes.Map[GetPlayerMap(index)].Left > 0)
+                        {
+                            PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].Up, GetPlayerX(index), Map[Map[GetPlayerMap(index)].Up].MaxY);
+                            DidWarp = true;
+                            Moved = true;
+                        }
+
+                        break;
+                    }
+
+                case (byte)Enums.DirectionType.UpRight:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (GetPlayerY(index) > 0 && GetPlayerX(index) < modTypes.Map[mapNum].MaxX)
+                        {
+                            // Check to make sure that the tile is walkable
+                            byte directionRef = (int)(Enums.DirectionType.UpRight + 1);
+                            if (!IsDirBlocked(ref modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].DirBlock, ref directionRef))
+                            {
+                                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Blocked)
+                                {
+                                    if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Resource)
+                                    {
+
+                                        // Check to see if the tile is a key and if it is check if its opened
+                                        if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) - 1].Type != (byte)Enums.TileType.Key || (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) - 1].Type == (byte)Enums.TileType.Key && modTypes.TempTile[GetPlayerMap(index)].DoorOpen[GetPlayerX(index) + 1, GetPlayerY(index) - 1] == 1))
+                                        {
+                                            SetPlayerX(index, GetPlayerX(index) + 1);
+                                            SetPlayerY(index, GetPlayerY(index) - 1);
+                                            S_NetworkSend.SendPlayerMove(index, Movement);
+                                            Moved = true;
+                                        }
+
+                                        var loopTo3 = modTypes.TempPlayer[index].EventMap.CurrentEvents;
+
+                                        // check for event
+                                        for (var i = 1; i <= loopTo3; i++)
+                                        {
+                                            if (modTypes.TempPlayer[index].EventMap.EventPages[i].X == GetPlayerX(index) + 1 && modTypes.TempPlayer[index].EventMap.EventPages[i].Y == GetPlayerY(index) - 1)
+                                            {
+                                                if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].Trigger == 1)
+                                                {
+                                                    // PlayerMsg(Index, "OnTouch event", ColorType.Red)
+                                                    // Process this event, it is on-touch and everything checks out.
+                                                    if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount > 0)
+                                                    {
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurList = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurSlot = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].EventId = modTypes.TempPlayer[index].EventMap.EventPages[i].EventId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].PageId = modTypes.TempPlayer[index].EventMap.EventPages[i].PageId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].WaitingForResponse = 0;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ListLeftOff = new int[modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount + 1];
+
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Active = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ActionTimer = S_General.GetTimeMs();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else // Check to see if we can move them to the another map
+                        if (modTypes.Map[GetPlayerMap(index)].Up > 0 && modTypes.Map[GetPlayerMap(index)].Right > 0)
+                        {
+                            PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].Up, GetPlayerX(index), Map[Map[GetPlayerMap(index)].Up].MaxY);
+                            DidWarp = true;
+                            Moved = true;
+                        }
+
+                        break;
+                    }
+
+                case (byte)Enums.DirectionType.DownLeft:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (GetPlayerY(index) < modTypes.Map[GetPlayerMap(index)].MaxY && GetPlayerX(index) > 0)
+                        {
+                            // Check to make sure that the tile is walkable
+                            byte directionRef = (int)(Enums.DirectionType.DownLeft + 1);
+                            if (!IsDirBlocked(ref modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].DirBlock, ref directionRef))
+                            {
+                                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) + 1].Type != (byte)Enums.TileType.Blocked)
+                                {
+                                    if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) + 1].Type != (byte)Enums.TileType.Resource)
+                                    {
+
+                                        // Check to see if the tile is a key and if it is check if its opened
+                                        if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) + 1].Type != (byte)Enums.TileType.Key || (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) - 1, GetPlayerY(index) + 1].Type == (byte)Enums.TileType.Key && modTypes.TempTile[GetPlayerMap(index)].DoorOpen[GetPlayerX(index) - 1, GetPlayerY(index) + 1] == 1))
+                                        {
+                                            SetPlayerX(index, GetPlayerX(index) - 1);
+                                            SetPlayerY(index, GetPlayerY(index) + 1);
+                                            S_NetworkSend.SendPlayerMove(index, Movement);
+                                            Moved = true;
+                                        }
+
+                                        var loopTo3 = modTypes.TempPlayer[index].EventMap.CurrentEvents;
+
+                                        // check for event
+                                        for (var i = 1; i <= loopTo3; i++)
+                                        {
+                                            if (modTypes.TempPlayer[index].EventMap.EventPages[i].X == GetPlayerX(index) - 1 && modTypes.TempPlayer[index].EventMap.EventPages[i].Y == GetPlayerY(index) + 1)
+                                            {
+                                                if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].Trigger == 1)
+                                                {
+                                                    // PlayerMsg(Index, "OnTouch event", ColorType.Red)
+                                                    // Process this event, it is on-touch and everything checks out.
+                                                    if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount > 0)
+                                                    {
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurList = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurSlot = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].EventId = modTypes.TempPlayer[index].EventMap.EventPages[i].EventId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].PageId = modTypes.TempPlayer[index].EventMap.EventPages[i].PageId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].WaitingForResponse = 0;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ListLeftOff = new int[modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount + 1];
+
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Active = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ActionTimer = S_General.GetTimeMs();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else // Check to see if we can move them to the another map
+                        if (modTypes.Map[GetPlayerMap(index)].Down > 0 && modTypes.Map[GetPlayerMap(index)].Left > 0)
+                        {
+                            PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].Down, GetPlayerX(index), 0);
+                            DidWarp = true;
+                            Moved = true;
+                        }
+
+                        break;
+                    }
+
+                case (byte)Enums.DirectionType.DownRight:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (GetPlayerY(index) < modTypes.Map[GetPlayerMap(index)].MaxY && GetPlayerX(index) < modTypes.Map[GetPlayerMap(index)].MaxX)
+                        {
+                            // Check to make sure that the tile is walkable
+                            byte directionRef = (int)(Enums.DirectionType.DownRight + 1);
+                            if (!IsDirBlocked(ref modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index), GetPlayerY(index)].DirBlock, ref directionRef))
+                            {
+                                if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) + 1].Type != (byte)Enums.TileType.Blocked)
+                                {
+                                    if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) + 1].Type != (byte)Enums.TileType.Resource)
+                                    {
+
+                                        // Check to see if the tile is a key and if it is check if its opened
+                                        if (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) + 1].Type != (byte)Enums.TileType.Key || (modTypes.Map[GetPlayerMap(index)].Tile[GetPlayerX(index) + 1, GetPlayerY(index) + 1].Type == (byte)Enums.TileType.Key && modTypes.TempTile[GetPlayerMap(index)].DoorOpen[GetPlayerX(index) + 1, GetPlayerY(index) + 1] == 1))
+                                        {
+                                            SetPlayerX(index, GetPlayerX(index) + 1);
+                                            SetPlayerY(index, GetPlayerY(index) + 1);
+                                            S_NetworkSend.SendPlayerMove(index, Movement);
+                                            Moved = true;
+                                        }
+
+                                        var loopTo3 = modTypes.TempPlayer[index].EventMap.CurrentEvents;
+
+                                        // check for event
+                                        for (var i = 1; i <= loopTo3; i++)
+                                        {
+                                            if (modTypes.TempPlayer[index].EventMap.EventPages[i].X == GetPlayerX(index) + 1 && modTypes.TempPlayer[index].EventMap.EventPages[i].Y == GetPlayerY(index) + 1)
+                                            {
+                                                if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].Trigger == 1)
+                                                {
+                                                    // PlayerMsg(Index, "OnTouch event", ColorType.Red)
+                                                    // Process this event, it is on-touch and everything checks out.
+                                                    if (modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount > 0)
+                                                    {
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurList = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].CurSlot = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].EventId = modTypes.TempPlayer[index].EventMap.EventPages[i].EventId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].PageId = modTypes.TempPlayer[index].EventMap.EventPages[i].PageId;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].WaitingForResponse = 0;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ListLeftOff = new int[modTypes.Map[GetPlayerMap(index)].Events[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Pages[modTypes.TempPlayer[index].EventMap.EventPages[i].PageId].CommandListCount + 1];
+
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].Active = 1;
+                                                        modTypes.TempPlayer[index].EventProcessing[modTypes.TempPlayer[index].EventMap.EventPages[i].EventId].ActionTimer = S_General.GetTimeMs();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else // Check to see if we can move them to the another map
+                        if (modTypes.Map[GetPlayerMap(index)].Down > 0 && modTypes.Map[GetPlayerMap(index)].Right > 0)
+                        {
+                            PlayerWarp(index, modTypes.Map[GetPlayerMap(index)].Down, GetPlayerX(index), 0);
                             DidWarp = true;
                             Moved = true;
                         }
@@ -2944,6 +3212,56 @@ namespace Engine
                                         {
                                             x = GetPlayerX(index) + 1;
                                             y = GetPlayerY(index);
+                                        }
+                                        else
+                                            return;
+                                        break;
+                                    }
+
+                                    // 8 Directional Movement
+
+                                case (byte)Enums.DirectionType.UpLeft:
+                                    {
+                                        if (GetPlayerY(index) > 0 && GetPlayerX(index) > 0)
+                                        {
+                                            x = GetPlayerX(index) - 1;
+                                            y = GetPlayerY(index) - 1;
+                                        }
+                                        else
+                                            return;
+                                        break;
+                                    }
+
+                                case (byte)Enums.DirectionType.UpRight:
+                                    {
+                                        if (GetPlayerY(index) > 0 && GetPlayerX(index) < modTypes.Map[GetPlayerMap(index)].MaxX)
+                                        {
+                                            x = GetPlayerX(index) + 1;
+                                            y = GetPlayerY(index) - 1;
+                                        }
+                                        else
+                                            return;
+                                        break;
+                                    }
+
+                                case (byte)Enums.DirectionType.DownLeft:
+                                    {
+                                        if (GetPlayerX(index) > 0 && GetPlayerY(index) < modTypes.Map[GetPlayerMap(index)].MaxY)
+                                        {
+                                            x = GetPlayerX(index) - 1;
+                                            y = GetPlayerY(index) + 1;
+                                        }
+                                        else
+                                            return;
+                                        break;
+                                    }
+
+                                case (byte)Enums.DirectionType.DownRight:
+                                    {
+                                        if (GetPlayerX(index) < modTypes.Map[GetPlayerMap(index)].MaxX && GetPlayerY(index) < modTypes.Map[GetPlayerMap(index)].MaxY)
+                                        {
+                                            x = GetPlayerX(index) + 1;
+                                            y = GetPlayerY(index) + 1;
                                         }
                                         else
                                             return;

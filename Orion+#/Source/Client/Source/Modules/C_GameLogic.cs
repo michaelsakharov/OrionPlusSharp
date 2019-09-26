@@ -91,8 +91,14 @@ namespace Engine
 				C_Variables.DirUp = C_UpdateUI.VbKeyUp;
 				C_Variables.DirLeft = C_UpdateUI.VbKeyLeft;
 				C_Variables.DirRight = C_UpdateUI.VbKeyRight;
-				
-				if (C_UpdateUI.Frmmenuvisible == true)
+
+                // 8 Directional Movement
+                C_Variables.DirUpLeft = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyLeft);
+                C_Variables.DirUpRight = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyRight);
+                C_Variables.DirDownLeft = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyLeft);
+                C_Variables.DirDownRight = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyRight);
+
+                if (C_UpdateUI.Frmmenuvisible == true)
 				{
                     // Were not connected and were in the main menu so lets connect
                     if(C_Discord.client == null)
@@ -605,13 +611,45 @@ namespace Engine
 						C_Maps.MapNpc[mapNpcNum].XOffset = 0;
 					}
 				}
+
+                // 8 Directional Movement
+
+				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpLeft)
+				{
+					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					if (C_Maps.MapNpc[mapNpcNum].XOffset < 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
+				}
+				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpRight)
+				{
+					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					if (C_Maps.MapNpc[mapNpcNum].YOffset > 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					if (C_Maps.MapNpc[mapNpcNum].XOffset > 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
+				}
+				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownLeft)
+				{
+					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					if (C_Maps.MapNpc[mapNpcNum].XOffset < 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
+					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+				}
+				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownRight)
+                {
+                    C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset + (((double)C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+                    if (C_Maps.MapNpc[mapNpcNum].XOffset < 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
+                    C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset + (((double)C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+                    if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+                }
 				
 				// Check if completed walking over to the next tile
 				if (C_Maps.MapNpc[mapNpcNum].Moving > 0)
 				{
-					if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Right || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down)
-					{
-						if ((C_Maps.MapNpc[mapNpcNum].XOffset >= 0) && (C_Maps.MapNpc[mapNpcNum].YOffset >= 0))
+					//if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Right || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down)
+                    if (C_Maps.MapNpc[mapNpcNum].Dir == (int)Enums.DirectionType.Right || C_Maps.MapNpc[mapNpcNum].Dir == (int)Enums.DirectionType.Down || C_Maps.MapNpc[mapNpcNum].Dir == (int)Enums.DirectionType.DownLeft || C_Maps.MapNpc[mapNpcNum].Dir == (int)Enums.DirectionType.DownRight)
+                    {
+                            if ((C_Maps.MapNpc[mapNpcNum].XOffset >= 0) && (C_Maps.MapNpc[mapNpcNum].YOffset >= 0))
 						{
 							C_Maps.MapNpc[mapNpcNum].Moving = (byte) 0;
 							if (C_Maps.MapNpc[mapNpcNum].Steps == 1)
