@@ -1826,9 +1826,9 @@ namespace Engine
                 return;
             }
 
-            for (x = E_Globals.TileView.Left; x <= E_Globals.TileView.Right + 4; x++)
+            for (x = E_Globals.TileView.Left + 5; x <= E_Globals.TileView.Right + 5; x++)
             {
-                for (y = E_Globals.TileView.Top; y <= E_Globals.TileView.Bottom + 4; y++)
+                for (y = E_Globals.TileView.Top + 5; y <= E_Globals.TileView.Bottom + 5; y++)
                 {
                     if (IsValidMapPoint(x, y))
                     {
