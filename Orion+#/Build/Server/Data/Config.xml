@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Options>
   <Settings>
-    <Element Name="Game_Name" Value="Lupus" />
+    <Element Name="Game_Name" Value="Lupus Engine" />
     <Element Name="Port" Value=" 7001" />
     <Element Name="MoTd" Value="Welcome to the Lupus Engine" />
     <Element Name="Website" Value="http://ascensiongamedev.com/index.php" />

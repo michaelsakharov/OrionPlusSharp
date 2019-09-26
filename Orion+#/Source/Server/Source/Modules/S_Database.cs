@@ -32,6 +32,7 @@ namespace Engine
 
             myXml.LoadXml();
 
+            myXml.WriteString("INIT", "FormatVersion", "0");
             myXml.WriteString("INIT", "MaxClasses", S_Globals.Max_Classes.ToString());
             myXml.WriteString("CLASS1", "Name", "Warrior");
             myXml.WriteString("CLASS1", "Desc", "Warrior Description");
@@ -93,6 +94,7 @@ namespace Engine
 
             myXml.LoadXml();
 
+            int formatVersion = (int)Conversion.Val(myXml.ReadString("INIT", "FormatVersion", "0"));
             S_Globals.Max_Classes = (byte)Conversion.Val(myXml.ReadString("INIT", "MaxClasses", "1"));
 
             ClearClasses();
@@ -163,6 +165,7 @@ namespace Engine
 
             myXml.LoadXml();
 
+            myXml.WriteString("INIT", "FormatVersion", "0");
             myXml.WriteString("INIT", "MaxClasses", Conversion.Str(S_Globals.Max_Classes));
             var loopTo = S_Globals.Max_Classes;
             for (i = 1; i <= loopTo; i++)
@@ -310,6 +313,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "maps", string.Format("map{0}.dat", mapNum));
             ByteStream writer = new ByteStream(100);
+            writer.WriteString("0");
             writer.WriteString(Map[mapNum].Name);
             writer.WriteString(Map[mapNum].Music);
             writer.WriteInt32(Map[mapNum].Revision);
@@ -380,6 +384,7 @@ namespace Engine
             myXml.LoadXml();
 
             // This is for event saving, it is in .xml files because there are non-limited values (strings) that cannot easily be loaded/saved in the normal manner.
+            myXml.WriteString("INIT", "FormatVersion", "0");
             myXml.WriteString("Events", "EventCount", Map[mapNum].EventCount.ToString());
 
             if (Map[mapNum].EventCount > 0)
@@ -532,6 +537,7 @@ namespace Engine
             };
 
             myXml.LoadXml();
+            string formatVersion = myXml.ReadString("INIT", "FormatVersion", "0");
             Map[mapNum].EventCount = (int)Conversion.Val(myXml.ReadString("Events", "EventCount"));
 
             if (!(Map[mapNum].EventCount > 0))
@@ -711,6 +717,7 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
             Map[mapNum].Name = reader.ReadString();
             Map[mapNum].Music = reader.ReadString();
             Map[mapNum].Revision = reader.ReadInt32();
@@ -844,6 +851,7 @@ namespace Engine
             filename = Path.Combine(Application.StartupPath, "data", "npcs", string.Format("npc{0}.dat", NpcNum));
 
             ByteStream writer = new ByteStream(100);
+            writer.WriteString("0");
             writer.WriteString(Types.Npc[NpcNum].Name);
             writer.WriteString(Types.Npc[NpcNum].AttackSay);
             writer.WriteInt32(Types.Npc[NpcNum].Sprite);
@@ -900,6 +908,7 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
             Types.Npc[NpcNum].Name = reader.ReadString();
             Types.Npc[NpcNum].AttackSay = reader.ReadString();
             Types.Npc[NpcNum].Sprite = reader.ReadInt32();
@@ -1025,6 +1034,7 @@ namespace Engine
 
             ByteStream writer = new ByteStream(100);
 
+            writer.WriteString("0");
             writer.WriteString(Types.Shop[shopNum].Name);
             writer.WriteByte(Types.Shop[shopNum].Face);
             writer.WriteInt32(Types.Shop[shopNum].BuyRate);
@@ -1062,6 +1072,7 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
             Types.Shop[ShopNum].Name = reader.ReadString();
             Types.Shop[ShopNum].Face = reader.ReadByte();
             Types.Shop[ShopNum].BuyRate = reader.ReadInt32();
@@ -1128,6 +1139,7 @@ namespace Engine
 
             ByteStream writer = new ByteStream(100);
 
+            writer.WriteString("0");
             writer.WriteString(Types.Skill[skillnum].Name);
             writer.WriteByte(Types.Skill[skillnum].Type);
             writer.WriteInt32(Types.Skill[skillnum].MpCost);
@@ -1181,6 +1193,7 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
             Types.Skill[SkillNum].Name = reader.ReadString();
             Types.Skill[SkillNum].Type = reader.ReadByte();
             Types.Skill[SkillNum].MpCost = reader.ReadInt32();
@@ -1251,6 +1264,7 @@ namespace Engine
                 return false;
             ByteStream reader = new ByteStream();
             BinaryFile.Load(Application.StartupPath + @"\Data\Accounts\" + Microsoft.VisualBasic.Strings.Trim(Name) + @"\Data.bin", ref reader);
+            string formatVersion = reader.ReadString();
             if (reader.ReadString().Trim() != Name.Trim())
                 return false;
             return reader.ReadString().Trim().ToUpper() == Password.Trim().ToUpper();
@@ -1298,6 +1312,7 @@ namespace Engine
 
             ByteStream writer = new ByteStream(9 + Player[index].Login.Length + Player[index].Password.Length);
 
+            writer.WriteString("0");
             writer.WriteString(Player[index].Login);
             writer.WriteString(Player[index].Password);
             writer.WriteByte(Player[index].Access);
@@ -1315,6 +1330,7 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
             Player[index].Login = reader.ReadString();
             Player[index].Password = reader.ReadString();
             Player[index].Access = reader.ReadByte();
@@ -1362,6 +1378,8 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
+
             for (var i = 1; i <= Constants.MAX_BANK; i++)
             {
                 Bank[index].Item[i].Num = reader.ReadByte();
@@ -1384,6 +1402,8 @@ namespace Engine
             var filename = Application.StartupPath + @"\Data\Accounts\" + Player[index].Login.Trim() + @"\Bank.bin";
 
             ByteStream writer = new ByteStream(100);
+
+            writer.WriteString("0");
 
             for (var i = 1; i <= Constants.MAX_BANK; i++)
             {
@@ -1586,6 +1606,7 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(filename, ref reader);
 
+            string formatVersion = reader.ReadString();
             Player[index].Character[CharNum].Classes = reader.ReadByte();
             Player[index].Character[CharNum].Dir = reader.ReadByte();
 
@@ -1739,6 +1760,7 @@ namespace Engine
             
             ByteStream writer = new ByteStream(100);
 
+            writer.WriteString("0");
             writer.WriteByte(Player[index].Character[CharNum].Classes);
             writer.WriteByte(Player[index].Character[CharNum].Dir);
 
