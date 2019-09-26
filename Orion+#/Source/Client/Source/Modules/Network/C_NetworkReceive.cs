@@ -762,6 +762,27 @@ namespace Engine
 			{
 				with_1.XOffset = C_Constants.PicX * -1;
 			}
+            // 8 Directional Movement
+			else if (with_1.Dir == (byte)Enums.DirectionType.UpLeft)
+			{
+				with_1.YOffset = C_Constants.PicY;
+				with_1.XOffset = C_Constants.PicX;
+			}
+			else if (with_1.Dir == (byte)Enums.DirectionType.UpRight)
+			{
+				with_1.YOffset = C_Constants.PicY;
+				with_1.XOffset = C_Constants.PicX * -1;
+			}
+			else if (with_1.Dir == (byte)Enums.DirectionType.DownLeft)
+			{
+				with_1.YOffset = C_Constants.PicY * -1;
+				with_1.XOffset = C_Constants.PicX;
+			}
+			else if (with_1.Dir == (byte)Enums.DirectionType.DownRight)
+			{
+				with_1.YOffset = C_Constants.PicY * -1;
+				with_1.XOffset = C_Constants.PicX * -1;
+			}
 			
 			buffer.Dispose();
 		}

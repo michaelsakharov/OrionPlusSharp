@@ -1217,6 +1217,8 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
         {
             ByteStream buffer = new ByteStream(4);
 
+            // if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right || movement < 1 || movement > 2)
+            // 8 Directional Movement
             if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right || movement < 1 || movement > 2)
                 return;
 
@@ -1245,6 +1247,34 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                 case (int)Enums.DirectionType.Right:
                     {
                         SetPetX(index, GetPetX(index) + 1);
+                        break;
+                    }
+                    // 8 Directional Movement
+                case (int)Enums.DirectionType.UpLeft:
+                    {
+                        SetPetY(index, GetPetY(index) - 1);
+                        SetPetX(index, GetPetY(index) - 1);
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.UpRight:
+                    {
+                        SetPetY(index, GetPetY(index) - 1);
+                        SetPetX(index, GetPetY(index) + 1);
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.DownLeft:
+                    {
+                        SetPetY(index, GetPetY(index) + 1);
+                        SetPetX(index, GetPetY(index) - 1);
+                        break;
+                    }
+
+                case (int)Enums.DirectionType.DownRight:
+                    {
+                        SetPetY(index, GetPetY(index) + 1);
+                        SetPetX(index, GetPetY(index) + 1);
                         break;
                     }
             }
@@ -1493,6 +1523,211 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             CanPetMove = false;
                         break;
                     }
+                    // 8 Directional Movement
+                case (int)Enums.DirectionType.UpLeft:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (y > 0 && x > 0)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x - 1, y - 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == GetPetX(index) - 1) && (S_Players.GetPlayerY(i) == GetPetY(index) - 1))
+                                    {
+                                        return false;
+                                    }
+                                    else if (PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (GetPetX(i) == GetPetX(index) - 1) && (GetPetY(i) == GetPetY(index) - 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == GetPetX(index) - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == GetPetY(index) - 1))
+                                {
+                                    return false;
+                                }
+                            }
+
+                            // Directional blocking
+                            byte directionRef = (byte)(Enums.DirectionType.UpLeft + 1);
+                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                            CanPetMove = false;
+                        break;
+                    }
+                case (int)Enums.DirectionType.UpRight:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (y > 0 && x < modTypes.Map[mapNum].MaxX)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x + 1, y - 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == GetPetX(index) + 1) && (S_Players.GetPlayerY(i) == GetPetY(index) - 1))
+                                    {
+                                        return false;
+                                    }
+                                    else if (PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (GetPetX(i) == GetPetX(index) + 1) && (GetPetY(i) == GetPetY(index) - 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == GetPetX(index) + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == GetPetY(index) - 1))
+                                {
+                                    return false;
+                                }
+                            }
+
+                            // Directional blocking
+                            byte directionRef = (byte)(Enums.DirectionType.UpRight + 1);
+                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                            CanPetMove = false;
+                        break;
+                    }
+                case (int)Enums.DirectionType.DownLeft:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (y < modTypes.Map[mapNum].MaxY && x > 0)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x - 1, y + 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == GetPetX(index) - 1) && (S_Players.GetPlayerY(i) == GetPetY(index) + 1))
+                                    {
+                                        return false;
+                                    }
+                                    else if (PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (GetPetX(i) == GetPetX(index) - 1) && (GetPetY(i) == GetPetY(index) + 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == GetPetX(index) - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == GetPetY(index) + 1))
+                                {
+                                    return false;
+                                }
+                            }
+
+                            // Directional blocking
+                            byte directionRef = (byte)(Enums.DirectionType.UpRight + 1);
+                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                            CanPetMove = false;
+                        break;
+                    }
+                case (int)Enums.DirectionType.DownRight:
+                    {
+                        // Check to make sure not outside of boundries
+                        if (y < modTypes.Map[mapNum].MaxY && x < modTypes.Map[mapNum].MaxX)
+                        {
+                            n = modTypes.Map[mapNum].Tile[x + 1, y + 1].Type;
+
+                            // Check to make sure that the tile is walkable
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            {
+                                return false;
+                            }
+
+                            var loopTo = S_GameLogic.GetPlayersOnline();
+
+                            // Check to make sure that there is not a player in the way
+                            for (i = 1; i <= loopTo; i++)
+                            {
+                                if (S_NetworkConfig.IsPlaying(i))
+                                {
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == GetPetX(index) + 1) && (S_Players.GetPlayerY(i) == GetPetY(index) + 1))
+                                    {
+                                        return false;
+                                    }
+                                    else if (PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (GetPetX(i) == GetPetX(index) + 1) && (GetPetY(i) == GetPetY(index) + 1))
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+
+                            // Check to make sure that there is not another npc in the way
+                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                            {
+                                if ((modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == GetPetX(index) + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == GetPetY(index) + 1))
+                                {
+                                    return false;
+                                }
+                            }
+
+                            // Directional blocking
+                            byte directionRef = (byte)(Enums.DirectionType.UpRight + 1);
+                            if (S_Players.IsDirBlocked(ref modTypes.Map[mapNum].Tile[GetPetX(index), GetPetY(index)].DirBlock, ref directionRef))
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                            CanPetMove = false;
+                        break;
+                    }
             }
             return CanPetMove;
         }
@@ -1501,7 +1736,9 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
         {
             ByteStream buffer = new ByteStream(4);
 
-            if (index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right)
+            //if (index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right)
+            // 8 Directional Movement
+            if (index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight)
                 return;
 
             if (modTypes.TempPlayer[index].PetskillBuffer.Skill > 0)

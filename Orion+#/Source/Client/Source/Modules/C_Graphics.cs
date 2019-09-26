@@ -16,1165 +16,1165 @@ using System.Linq;
 
 namespace Engine
 {
-	sealed class C_Graphics
-	{
-		
-#region Declarations
-		
-		internal static RenderWindow GameWindow;
-		internal static RenderWindow TilesetWindow;
-		
-		internal static SFML.Graphics.Font SfmlGameFont;
-		
-		internal static Texture CursorGfx;
-		internal static Sprite CursorSprite;
-		internal static GraphicInfo CursorInfo;
-		
-		//TileSets
-		internal static Texture[] TileSetTexture;
-		internal static Bitmap[] TileSetImgsGFX;
+    sealed class C_Graphics
+    {
 
-		
-		internal static Sprite[] TileSetSprite;
-		internal static SFML.Graphics.Image[] TileSetImage; // Can be used to get Pixel information
-		internal static GraphicInfo[] TileSetTextureInfo;
+        #region Declarations
 
-		internal static Bitmap MapEditorBackBuffer;
-		
-		//Characters
-		internal static Texture[] CharacterGfx;
-		
-		internal static Sprite[] CharacterSprite;
-		internal static GraphicInfo[] CharacterGfxInfo;
-		
-		//Paperdolls
-		internal static Texture[] PaperDollGfx;
-		
-		internal static Sprite[] PaperDollSprite;
-		internal static GraphicInfo[] PaperDollGfxInfo;
-		
-		//Items
-		internal static Texture[] ItemsGfx;
-		
-		internal static Sprite[] ItemsSprite;
-		internal static GraphicInfo[] ItemsGfxInfo;
-		
-		//Resources
-		internal static Texture[] ResourcesGfx;
-		
-		internal static Sprite[] ResourcesSprite;
-		internal static GraphicInfo[] ResourcesGfxInfo;
-		
-		//Animations
-		internal static Texture[] AnimationsGfx;
-		
-		internal static Sprite[] AnimationsSprite;
-		internal static GraphicInfo[] AnimationsGfxInfo;
-		
-		//Skills
-		internal static Texture[] SkillIconsGfx;
-		
-		internal static Sprite[] SkillIconsSprite;
-		internal static GraphicInfo[] SkillIconsGfxInfo;
-		
-		//Housing
-		internal static Texture[] FurnitureGfx;
-		
-		internal static Sprite[] FurnitureSprite;
-		internal static GraphicInfo[] FurnitureGfxInfo;
-		
-		//Faces
-		internal static Texture[] FacesGfx;
-		
-		internal static Sprite[] FacesSprite;
-		internal static GraphicInfo[] FacesGfxInfo;
-		
-		//Projectiles
-		internal static Texture[] ProjectileGfx;
-		
-		internal static Sprite[] ProjectileSprite;
-		internal static GraphicInfo[] ProjectileGfxInfo;
-		
-		//Fogs
-		internal static Texture[] FogGfx;
-		
-		internal static Sprite[] FogSprite;
-		internal static GraphicInfo[] FogGfxInfo;
-		
-		//Emotes
-		internal static Texture[] EmotesGfx;
-		
-		internal static Sprite[] EmotesSprite;
-		internal static GraphicInfo[] EmotesGfxInfo;
-		
-		//Panoramas
-		internal static Texture[] PanoramasGfx;
-		
-		internal static Sprite[] PanoramasSprite;
-		internal static GraphicInfo[] PanoramasGfxInfo;
-		
-		//Parallax
-		internal static Texture[] ParallaxGfx;
-		
-		internal static Sprite[] ParallaxSprite;
-		internal static GraphicInfo[] ParallaxGfxInfo;
-		
-		//Door
-		internal static Texture DoorGfx;
-		
-		internal static Sprite DoorSprite;
-		internal static GraphicInfo DoorGfxInfo;
-		
-		//Blood
-		internal static Texture BloodGfx;
-		
-		internal static Sprite BloodSprite;
-		internal static GraphicInfo BloodGfxInfo;
-		
-		//Directions
-		internal static Texture DirectionsGfx;
-		
-		internal static Sprite DirectionsSprite;
-		internal static GraphicInfo DirectionsGfxInfo;
-		
-		//Weather
-		internal static Texture WeatherGfx;
-		
-		internal static Sprite WeatherSprite;
-		internal static GraphicInfo WeatherGfxInfo;
-		
-		//Hotbar
-		internal static Texture HotBarGfx;
-		
-		internal static Sprite HotBarSprite;
-		internal static GraphicInfo HotBarGfxInfo;
-		
-		//Chat
-		internal static Texture ChatWindowGfx;
-		
-		internal static Sprite ChatWindowSprite;
-		internal static GraphicInfo ChatWindowGfxInfo;
-		
-		//MyChat
-		internal static Texture MyChatWindowGfx;
-		
-		internal static Sprite MyChatWindowSprite;
-		internal static GraphicInfo MyChatWindowGfxInfo;
-		
-		//Buttons
-		internal static Texture ButtonGfx;
-		
-		internal static Sprite ButtonSprite;
-		internal static GraphicInfo ButtonGfxInfo;
-		internal static Texture ButtonHoverGfx;
-		internal static Sprite ButtonHoverSprite;
-		internal static GraphicInfo ButtonHoverGfxInfo;
-		
-		//Hud
-		internal static Texture HudPanelGfx;
-		
-		internal static Sprite HudPanelSprite;
-		internal static GraphicInfo HudPanelGfxInfo;
-		
-		//Bars
-		internal static Texture HpBarGfx;
-		
-		internal static Sprite HpBarSprite;
-		internal static GraphicInfo HpBarGfxInfo;
-		internal static Texture MpBarGfx;
-		internal static Sprite MpBarSprite;
-		internal static GraphicInfo MpBarGfxInfo;
-		internal static Texture ExpBarGfx;
-		internal static Sprite ExpBarSprite;
-		internal static GraphicInfo ExpBarGfxInfo;
-		
-		internal static Texture ActionPanelGfx;
-		internal static Sprite ActionPanelSprite;
-		internal static GraphicInfo ActionPanelGfxInfo;
-		internal static Texture[] ActionPanelButtonsGfx = new Texture[9];
-		internal static Sprite[] ActionPanelButtonsSprite = new Sprite[9];
-		internal static GraphicInfo[] ActionPanelButtonGfxInfo = new GraphicInfo[9];
-		
-		internal static Texture InvPanelGfx;
-		internal static Sprite InvPanelSprite;
-		internal static GraphicInfo InvPanelGfxInfo;
-		
-		internal static Texture SkillPanelGfx;
-		internal static Sprite SkillPanelSprite;
-		internal static GraphicInfo SkillPanelGfxInfo;
-		
-		internal static Texture CharPanelGfx;
-		internal static Sprite CharPanelSprite;
-		internal static GraphicInfo CharPanelGfxInfo;
-		internal static Texture CharPanelPlusGfx;
-		internal static Sprite CharPanelPlusSprite;
-		internal static GraphicInfo CharPanelPlusGfxInfo;
-		internal static Texture CharPanelMinGfx;
-		internal static Sprite CharPanelMinSprite;
-		internal static GraphicInfo CharPanelMinGfxInfo;
-		
-		internal static Texture BankPanelGfx;
-		internal static Sprite BankPanelSprite;
-		internal static GraphicInfo BankPanelGfxInfo;
-		
-		internal static Texture TradePanelGfx;
-		internal static Sprite TradePanelSprite;
-		internal static GraphicInfo TradePanelGfxInfo;
-		
-		internal static Texture ShopPanelGfx;
-		internal static Sprite ShopPanelSprite;
-		internal static GraphicInfo ShopPanelGfxInfo;
-		
-		internal static Texture EventChatGfx;
-		internal static Sprite EventChatSprite;
-		internal static GraphicInfo EventChatGfxInfo;
-		
-		internal static Texture TargetGfx;
-		internal static Sprite TargetSprite;
-		internal static GraphicInfo TargetGfxInfo;
-		
-		internal static Texture DescriptionGfx;
-		internal static Sprite DescriptionSprite;
-		internal static GraphicInfo DescriptionGfxInfo;
-		
-		internal static Texture QuestGfx;
-		internal static Sprite QuestSprite;
-		internal static GraphicInfo QuestGfxInfo;
-		
-		internal static Texture CraftGfx;
-		internal static Sprite CraftSprite;
-		internal static GraphicInfo CraftGfxInfo;
-		
-		internal static Texture ProgBarGfx;
-		internal static Sprite ProgBarSprite;
-		internal static GraphicInfo ProgBarGfxInfo;
-		
-		internal static Texture RClickGfx;
-		internal static Sprite RClickSprite;
-		internal static GraphicInfo RClickGfxInfo;
-		
-		internal static Texture ChatBubbleGfx;
-		internal static Sprite ChatBubbleSprite;
-		internal static GraphicInfo ChatBubbleGfxInfo;
-		
-		internal static Texture PetStatsGfx;
-		internal static Sprite PetStatsSprite;
-		internal static GraphicInfo PetStatsGfxInfo;
-		
-		internal static Texture PetBarGfx;
-		internal static Sprite PetBarSprite;
-		internal static GraphicInfo PetbarGfxInfo;
-		
-		internal static RenderTexture MapTintGfx = new RenderTexture( 1152, 64);
-		internal static Sprite MapTintSprite;
-		
-		internal static Sprite MapFadeSprite;
-		
-		// Number of graphic files
-		internal static int NumTileSets;
-		
-		internal static int NumCharacters;
-		internal static int NumPaperdolls;
-		internal static int NumItems;
-		internal static int NumResources;
-		internal static int NumAnimations;
-		internal static int NumSkillIcons;
-		internal static int NumFaces;
-		internal static int NumFogs;
-		internal static int NumEmotes;
-		internal static int NumPanorama;
-		internal static int NumParallax;
-		
-		// #Day/Night
-		internal static RenderTexture NightGfx = new RenderTexture(1152, 864);
-		
-		internal static Sprite NightSprite;
-		
-		internal static Texture LightGfx;
-		internal static Texture LightDynamicGfx;
-		internal static Sprite LightSprite;
-		internal static Sprite LightDynamicSprite;
-		internal static GraphicInfo LightGfxInfo;
-		
-		internal static Texture ShadowGfx;
-		internal static Sprite ShadowSprite;
-		internal static GraphicInfo ShadowGfxInfo;
-		
-#endregion
-		
-#region Types
-		
-		public struct GraphicInfo
-		{
-			public int Width;
-			public int Height;
-			public bool IsLoaded;
-			public int TextureTimer;
-		}
-		
-#endregion
-		
-#region initialisation
-		
-		public static void InitGraphics()
-		{
-			
-			GameWindow = new RenderWindow(FrmGame.Default.picscreen.Handle);
-			TilesetWindow = new RenderWindow(FrmEditor_MapEditor.Default.picBackSelect.Handle);
-			
-			SfmlGameFont = new SFML.Graphics.Font(Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + C_Constants.FontName);
+        internal static RenderWindow GameWindow;
+        internal static RenderWindow TilesetWindow;
+
+        internal static SFML.Graphics.Font SfmlGameFont;
+
+        internal static Texture CursorGfx;
+        internal static Sprite CursorSprite;
+        internal static GraphicInfo CursorInfo;
+
+        //TileSets
+        internal static Texture[] TileSetTexture;
+        internal static Bitmap[] TileSetImgsGFX;
+
+
+        internal static Sprite[] TileSetSprite;
+        internal static SFML.Graphics.Image[] TileSetImage; // Can be used to get Pixel information
+        internal static GraphicInfo[] TileSetTextureInfo;
+
+        internal static Bitmap MapEditorBackBuffer;
+
+        //Characters
+        internal static Texture[] CharacterGfx;
+
+        internal static Sprite[] CharacterSprite;
+        internal static GraphicInfo[] CharacterGfxInfo;
+
+        //Paperdolls
+        internal static Texture[] PaperDollGfx;
+
+        internal static Sprite[] PaperDollSprite;
+        internal static GraphicInfo[] PaperDollGfxInfo;
+
+        //Items
+        internal static Texture[] ItemsGfx;
+
+        internal static Sprite[] ItemsSprite;
+        internal static GraphicInfo[] ItemsGfxInfo;
+
+        //Resources
+        internal static Texture[] ResourcesGfx;
+
+        internal static Sprite[] ResourcesSprite;
+        internal static GraphicInfo[] ResourcesGfxInfo;
+
+        //Animations
+        internal static Texture[] AnimationsGfx;
+
+        internal static Sprite[] AnimationsSprite;
+        internal static GraphicInfo[] AnimationsGfxInfo;
+
+        //Skills
+        internal static Texture[] SkillIconsGfx;
+
+        internal static Sprite[] SkillIconsSprite;
+        internal static GraphicInfo[] SkillIconsGfxInfo;
+
+        //Housing
+        internal static Texture[] FurnitureGfx;
+
+        internal static Sprite[] FurnitureSprite;
+        internal static GraphicInfo[] FurnitureGfxInfo;
+
+        //Faces
+        internal static Texture[] FacesGfx;
+
+        internal static Sprite[] FacesSprite;
+        internal static GraphicInfo[] FacesGfxInfo;
+
+        //Projectiles
+        internal static Texture[] ProjectileGfx;
+
+        internal static Sprite[] ProjectileSprite;
+        internal static GraphicInfo[] ProjectileGfxInfo;
+
+        //Fogs
+        internal static Texture[] FogGfx;
+
+        internal static Sprite[] FogSprite;
+        internal static GraphicInfo[] FogGfxInfo;
+
+        //Emotes
+        internal static Texture[] EmotesGfx;
+
+        internal static Sprite[] EmotesSprite;
+        internal static GraphicInfo[] EmotesGfxInfo;
+
+        //Panoramas
+        internal static Texture[] PanoramasGfx;
+
+        internal static Sprite[] PanoramasSprite;
+        internal static GraphicInfo[] PanoramasGfxInfo;
+
+        //Parallax
+        internal static Texture[] ParallaxGfx;
+
+        internal static Sprite[] ParallaxSprite;
+        internal static GraphicInfo[] ParallaxGfxInfo;
+
+        //Door
+        internal static Texture DoorGfx;
+
+        internal static Sprite DoorSprite;
+        internal static GraphicInfo DoorGfxInfo;
+
+        //Blood
+        internal static Texture BloodGfx;
+
+        internal static Sprite BloodSprite;
+        internal static GraphicInfo BloodGfxInfo;
+
+        //Directions
+        internal static Texture DirectionsGfx;
+
+        internal static Sprite DirectionsSprite;
+        internal static GraphicInfo DirectionsGfxInfo;
+
+        //Weather
+        internal static Texture WeatherGfx;
+
+        internal static Sprite WeatherSprite;
+        internal static GraphicInfo WeatherGfxInfo;
+
+        //Hotbar
+        internal static Texture HotBarGfx;
+
+        internal static Sprite HotBarSprite;
+        internal static GraphicInfo HotBarGfxInfo;
+
+        //Chat
+        internal static Texture ChatWindowGfx;
+
+        internal static Sprite ChatWindowSprite;
+        internal static GraphicInfo ChatWindowGfxInfo;
+
+        //MyChat
+        internal static Texture MyChatWindowGfx;
+
+        internal static Sprite MyChatWindowSprite;
+        internal static GraphicInfo MyChatWindowGfxInfo;
+
+        //Buttons
+        internal static Texture ButtonGfx;
+
+        internal static Sprite ButtonSprite;
+        internal static GraphicInfo ButtonGfxInfo;
+        internal static Texture ButtonHoverGfx;
+        internal static Sprite ButtonHoverSprite;
+        internal static GraphicInfo ButtonHoverGfxInfo;
+
+        //Hud
+        internal static Texture HudPanelGfx;
+
+        internal static Sprite HudPanelSprite;
+        internal static GraphicInfo HudPanelGfxInfo;
+
+        //Bars
+        internal static Texture HpBarGfx;
+
+        internal static Sprite HpBarSprite;
+        internal static GraphicInfo HpBarGfxInfo;
+        internal static Texture MpBarGfx;
+        internal static Sprite MpBarSprite;
+        internal static GraphicInfo MpBarGfxInfo;
+        internal static Texture ExpBarGfx;
+        internal static Sprite ExpBarSprite;
+        internal static GraphicInfo ExpBarGfxInfo;
+
+        internal static Texture ActionPanelGfx;
+        internal static Sprite ActionPanelSprite;
+        internal static GraphicInfo ActionPanelGfxInfo;
+        internal static Texture[] ActionPanelButtonsGfx = new Texture[9];
+        internal static Sprite[] ActionPanelButtonsSprite = new Sprite[9];
+        internal static GraphicInfo[] ActionPanelButtonGfxInfo = new GraphicInfo[9];
+
+        internal static Texture InvPanelGfx;
+        internal static Sprite InvPanelSprite;
+        internal static GraphicInfo InvPanelGfxInfo;
+
+        internal static Texture SkillPanelGfx;
+        internal static Sprite SkillPanelSprite;
+        internal static GraphicInfo SkillPanelGfxInfo;
+
+        internal static Texture CharPanelGfx;
+        internal static Sprite CharPanelSprite;
+        internal static GraphicInfo CharPanelGfxInfo;
+        internal static Texture CharPanelPlusGfx;
+        internal static Sprite CharPanelPlusSprite;
+        internal static GraphicInfo CharPanelPlusGfxInfo;
+        internal static Texture CharPanelMinGfx;
+        internal static Sprite CharPanelMinSprite;
+        internal static GraphicInfo CharPanelMinGfxInfo;
+
+        internal static Texture BankPanelGfx;
+        internal static Sprite BankPanelSprite;
+        internal static GraphicInfo BankPanelGfxInfo;
+
+        internal static Texture TradePanelGfx;
+        internal static Sprite TradePanelSprite;
+        internal static GraphicInfo TradePanelGfxInfo;
+
+        internal static Texture ShopPanelGfx;
+        internal static Sprite ShopPanelSprite;
+        internal static GraphicInfo ShopPanelGfxInfo;
+
+        internal static Texture EventChatGfx;
+        internal static Sprite EventChatSprite;
+        internal static GraphicInfo EventChatGfxInfo;
+
+        internal static Texture TargetGfx;
+        internal static Sprite TargetSprite;
+        internal static GraphicInfo TargetGfxInfo;
+
+        internal static Texture DescriptionGfx;
+        internal static Sprite DescriptionSprite;
+        internal static GraphicInfo DescriptionGfxInfo;
+
+        internal static Texture QuestGfx;
+        internal static Sprite QuestSprite;
+        internal static GraphicInfo QuestGfxInfo;
+
+        internal static Texture CraftGfx;
+        internal static Sprite CraftSprite;
+        internal static GraphicInfo CraftGfxInfo;
+
+        internal static Texture ProgBarGfx;
+        internal static Sprite ProgBarSprite;
+        internal static GraphicInfo ProgBarGfxInfo;
+
+        internal static Texture RClickGfx;
+        internal static Sprite RClickSprite;
+        internal static GraphicInfo RClickGfxInfo;
+
+        internal static Texture ChatBubbleGfx;
+        internal static Sprite ChatBubbleSprite;
+        internal static GraphicInfo ChatBubbleGfxInfo;
+
+        internal static Texture PetStatsGfx;
+        internal static Sprite PetStatsSprite;
+        internal static GraphicInfo PetStatsGfxInfo;
+
+        internal static Texture PetBarGfx;
+        internal static Sprite PetBarSprite;
+        internal static GraphicInfo PetbarGfxInfo;
+
+        internal static RenderTexture MapTintGfx = new RenderTexture(1152, 64);
+        internal static Sprite MapTintSprite;
+
+        internal static Sprite MapFadeSprite;
+
+        // Number of graphic files
+        internal static int NumTileSets;
+
+        internal static int NumCharacters;
+        internal static int NumPaperdolls;
+        internal static int NumItems;
+        internal static int NumResources;
+        internal static int NumAnimations;
+        internal static int NumSkillIcons;
+        internal static int NumFaces;
+        internal static int NumFogs;
+        internal static int NumEmotes;
+        internal static int NumPanorama;
+        internal static int NumParallax;
+
+        // #Day/Night
+        internal static RenderTexture NightGfx = new RenderTexture(1152, 864);
+
+        internal static Sprite NightSprite;
+
+        internal static Texture LightGfx;
+        internal static Texture LightDynamicGfx;
+        internal static Sprite LightSprite;
+        internal static Sprite LightDynamicSprite;
+        internal static GraphicInfo LightGfxInfo;
+
+        internal static Texture ShadowGfx;
+        internal static Sprite ShadowSprite;
+        internal static GraphicInfo ShadowGfxInfo;
+
+        #endregion
+
+        #region Types
+
+        public struct GraphicInfo
+        {
+            public int Width;
+            public int Height;
+            public bool IsLoaded;
+            public int TextureTimer;
+        }
+
+        #endregion
+
+        #region initialisation
+
+        public static void InitGraphics()
+        {
+
+            GameWindow = new RenderWindow(FrmGame.Default.picscreen.Handle);
+            TilesetWindow = new RenderWindow(FrmEditor_MapEditor.Default.picBackSelect.Handle);
+
+            SfmlGameFont = new SFML.Graphics.Font(Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + C_Constants.FontName);
 
             //this stuff only loads when needed :)
 
             TileSetImgsGFX = new Bitmap[NumTileSets + 1];
-			TileSetTexture = new Texture[NumTileSets + 1];
-			TileSetSprite = new Sprite[NumTileSets + 1];
-			TileSetImage = new SFML.Graphics.Image[NumTileSets + 1];
-			TileSetTextureInfo = new C_Graphics.GraphicInfo[NumTileSets + 1];
-			
-			CharacterGfx = new Texture[NumCharacters + 1];
-			CharacterSprite = new Sprite[NumCharacters + 1];
-			CharacterGfxInfo = new C_Graphics.GraphicInfo[NumCharacters + 1];
-			
-			PaperDollGfx = new Texture[NumPaperdolls + 1];
-			PaperDollSprite = new Sprite[NumPaperdolls + 1];
-			PaperDollGfxInfo = new C_Graphics.GraphicInfo[NumPaperdolls + 1];
-			
-			ItemsGfx = new Texture[NumItems + 1];
-			ItemsSprite = new Sprite[NumItems + 1];
-			ItemsGfxInfo = new C_Graphics.GraphicInfo[NumItems + 1];
-			
-			ResourcesGfx = new Texture[NumResources + 1];
-			ResourcesSprite = new Sprite[NumResources + 1];
-			ResourcesGfxInfo = new C_Graphics.GraphicInfo[NumResources + 1];
-			
-			AnimationsGfx = new Texture[NumAnimations + 1];
-			AnimationsSprite = new Sprite[NumAnimations + 1];
-			AnimationsGfxInfo = new C_Graphics.GraphicInfo[NumAnimations + 1];
-			
-			SkillIconsGfx = new Texture[NumSkillIcons + 1];
-			SkillIconsSprite = new Sprite[NumSkillIcons + 1];
-			SkillIconsGfxInfo = new C_Graphics.GraphicInfo[NumSkillIcons + 1];
-			
-			FacesGfx = new Texture[NumFaces + 1];
-			FacesSprite = new Sprite[NumFaces + 1];
-			FacesGfxInfo = new C_Graphics.GraphicInfo[NumFaces + 1];
-			
-			FurnitureGfx = new Texture[C_Housing.NumFurniture + 1];
-			FurnitureSprite = new Sprite[C_Housing.NumFurniture + 1];
-			FurnitureGfxInfo = new C_Graphics.GraphicInfo[C_Housing.NumFurniture + 1];
-			
-			ProjectileGfx = new Texture[C_Projectiles.NumProjectiles + 1];
-			ProjectileSprite = new Sprite[C_Projectiles.NumProjectiles + 1];
-			ProjectileGfxInfo = new C_Graphics.GraphicInfo[C_Projectiles.NumProjectiles + 1];
-			
-			FogGfx = new Texture[NumFogs + 1];
-			FogSprite = new Sprite[NumFogs + 1];
-			FogGfxInfo = new C_Graphics.GraphicInfo[NumFogs + 1];
-			
-			EmotesGfx = new Texture[NumEmotes + 1];
-			EmotesSprite = new Sprite[NumEmotes + 1];
-			EmotesGfxInfo = new C_Graphics.GraphicInfo[NumEmotes + 1];
-			
-			PanoramasGfx = new Texture[NumPanorama + 1];
-			PanoramasSprite = new Sprite[NumPanorama + 1];
-			PanoramasGfxInfo = new C_Graphics.GraphicInfo[NumPanorama + 1];
-			
-			ParallaxGfx = new Texture[NumParallax + 1];
-			ParallaxSprite = new Sprite[NumParallax + 1];
-			ParallaxGfxInfo = new C_Graphics.GraphicInfo[NumParallax + 1];
-			
-			//sadly, gui shit is always needed, so we preload it :/
-			CursorInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Cursor" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				CursorGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Cursor" + C_Constants.GfxExt);
-				CursorSprite = new Sprite(CursorGfx);
-				
-				//Cache the width and height
-				CursorInfo.Width = (int)CursorGfx.Size.X;
-				CursorInfo.Height = (int)CursorGfx.Size.Y;
-			}
-			
-			DoorGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Door" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				DoorGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Door" + C_Constants.GfxExt);
-				DoorSprite = new Sprite(DoorGfx);
-				
-				//Cache the width and height
-				DoorGfxInfo.Width = (int)DoorGfx.Size.X;
-				DoorGfxInfo.Height = (int)DoorGfx.Size.Y;
-			}
-			
-			BloodGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Blood" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				BloodGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Blood" + C_Constants.GfxExt);
-				BloodSprite = new Sprite(BloodGfx);
-				
-				//Cache the width and height
-				BloodGfxInfo.Width = (int)BloodGfx.Size.X;
-				BloodGfxInfo.Height = (int)BloodGfx.Size.Y;
-			}
-			
-			DirectionsGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Direction" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				DirectionsGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Direction" + C_Constants.GfxExt);
-				DirectionsSprite = new Sprite(DirectionsGfx);
-				
-				//Cache the width and height
-				DirectionsGfxInfo.Width = (int)DirectionsGfx.Size.X;
-				DirectionsGfxInfo.Height = (int)DirectionsGfx.Size.Y;
-			}
-			
-			WeatherGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Weather" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				WeatherGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Weather" + C_Constants.GfxExt);
-				WeatherSprite = new Sprite(WeatherGfx);
-				
-				//Cache the width and height
-				WeatherGfxInfo.Width = (int)WeatherGfx.Size.X;
-				WeatherGfxInfo.Height = (int)WeatherGfx.Size.Y;
-			}
-			
-			HotBarGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HotBar" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				HotBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HotBar" + C_Constants.GfxExt);
-				HotBarSprite = new Sprite(HotBarGfx);
-				
-				//Cache the width and height
-				HotBarGfxInfo.Width = (int)HotBarGfx.Size.X;
-				HotBarGfxInfo.Height = (int)HotBarGfx.Size.Y;
-			}
-			
-			ChatWindowGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Chat" + C_Constants.GfxExt))
-			{
-				ChatWindowGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Chat" + C_Constants.GfxExt);
-				ChatWindowSprite = new Sprite(ChatWindowGfx);
-				
-				//Cache the width and height
-				ChatWindowGfxInfo.Width = (int)ChatWindowGfx.Size.X;
-				ChatWindowGfxInfo.Height = (int)ChatWindowGfx.Size.Y;
-			}
-			
-			MyChatWindowGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "MyChat" + C_Constants.GfxExt))
-			{
-				MyChatWindowGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "MyChat" + C_Constants.GfxExt);
-				MyChatWindowSprite = new Sprite(MyChatWindowGfx);
-				
-				//Cache the width and height
-				MyChatWindowGfxInfo.Width = (int)MyChatWindowGfx.Size.X;
-				MyChatWindowGfxInfo.Height = (int)MyChatWindowGfx.Size.Y;
-			}
-			
-			ButtonGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Button" + C_Constants.GfxExt))
-			{
-				ButtonGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Button" + C_Constants.GfxExt);
-				ButtonSprite = new Sprite(ButtonGfx);
-				
-				//Cache the width and height
-				ButtonGfxInfo.Width = (int)ButtonGfx.Size.X;
-				ButtonGfxInfo.Height = (int)ButtonGfx.Size.Y;
-			}
-			
-			ButtonHoverGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Button_Hover" + C_Constants.GfxExt))
-			{
-				ButtonHoverGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Button_Hover" + C_Constants.GfxExt);
-				ButtonHoverSprite = new Sprite(ButtonHoverGfx);
-				
-				//Cache the width and height
-				ButtonHoverGfxInfo.Width = (int)ButtonHoverGfx.Size.X;
-				ButtonHoverGfxInfo.Height = (int)ButtonHoverGfx.Size.Y;
-			}
-			
-			HudPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HUD" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				HudPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HUD" + C_Constants.GfxExt);
-				HudPanelSprite = new Sprite(HudPanelGfx);
-				
-				//Cache the width and height
-				HudPanelGfxInfo.Width = (int)HudPanelGfx.Size.X;
-				HudPanelGfxInfo.Height = (int)HudPanelGfx.Size.Y;
-			}
-			
-			HpBarGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "HPBar" + C_Constants.GfxExt))
-			{
-				HpBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "HPBar" + C_Constants.GfxExt);
-				HpBarSprite = new Sprite(HpBarGfx);
-				
-				//Cache the width and height
-				HpBarGfxInfo.Width = (int)HpBarGfx.Size.X;
-				HpBarGfxInfo.Height = (int)HpBarGfx.Size.Y;
-			}
-			
-			MpBarGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "MPBar" + C_Constants.GfxExt))
-			{
-				MpBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "MPBar" + C_Constants.GfxExt);
-				MpBarSprite = new Sprite(MpBarGfx);
-				
-				//Cache the width and height
-				MpBarGfxInfo.Width = (int)MpBarGfx.Size.X;
-				MpBarGfxInfo.Height = (int)MpBarGfx.Size.Y;
-			}
-			
-			ExpBarGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "EXPBar" + C_Constants.GfxExt))
-			{
-				ExpBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "EXPBar" + C_Constants.GfxExt);
-				ExpBarSprite = new Sprite(ExpBarGfx);
-				
-				//Cache the width and height
-				ExpBarGfxInfo.Width = (int)ExpBarGfx.Size.X;
-				ExpBarGfxInfo.Height = (int)ExpBarGfx.Size.Y;
-			}
-			
-			ActionPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "ActionBar\\ActionBar" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				ActionPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "ActionBar\\ActionBar" + C_Constants.GfxExt);
-				ActionPanelSprite = new Sprite(ActionPanelGfx);
-				
-				//Cache the width and height
-				ActionPanelGfxInfo.Width = (int)ActionPanelGfx.Size.X;
-				ActionPanelGfxInfo.Height = (int)ActionPanelGfx.Size.Y;
-			}
-			
-			InvPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\inventory" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				InvPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\inventory" + C_Constants.GfxExt);
-				InvPanelSprite = new Sprite(InvPanelGfx);
-				
-				//Cache the width and height
-				InvPanelGfxInfo.Width = (int)InvPanelGfx.Size.X;
-				InvPanelGfxInfo.Height = (int)InvPanelGfx.Size.Y;
-			}
-			
-			SkillPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\skills" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				SkillPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\skills" + C_Constants.GfxExt);
-				SkillPanelSprite = new Sprite(SkillPanelGfx);
-				
-				//Cache the width and height
-				SkillPanelGfxInfo.Width = (int)SkillPanelGfx.Size.X;
-				SkillPanelGfxInfo.Height = (int)SkillPanelGfx.Size.Y;
-			}
-			
-			CharPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\char" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				CharPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\char" + C_Constants.GfxExt);
-				CharPanelSprite = new Sprite(CharPanelGfx);
-				
-				//Cache the width and height
-				CharPanelGfxInfo.Width = (int)CharPanelGfx.Size.X;
-				CharPanelGfxInfo.Height = (int)CharPanelGfx.Size.Y;
-			}
-			
-			CharPanelPlusGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\plus" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				CharPanelPlusGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\plus" + C_Constants.GfxExt);
-				CharPanelPlusSprite = new Sprite(CharPanelPlusGfx);
-				
-				//Cache the width and height
-				CharPanelPlusGfxInfo.Width = (int)CharPanelPlusGfx.Size.X;
-				CharPanelPlusGfxInfo.Height = (int)CharPanelPlusGfx.Size.Y;
-			}
-			
-			CharPanelMinGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\min" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				CharPanelMinGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\min" + C_Constants.GfxExt);
-				CharPanelMinSprite = new Sprite(CharPanelMinGfx);
-				
-				//Cache the width and height
-				CharPanelMinGfxInfo.Width = (int)CharPanelMinGfx.Size.X;
-				CharPanelMinGfxInfo.Height = (int)CharPanelMinGfx.Size.Y;
-			}
-			
-			BankPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Bank" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				BankPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Bank" + C_Constants.GfxExt);
-				BankPanelSprite = new Sprite(BankPanelGfx);
-				
-				//Cache the width and height
-				BankPanelGfxInfo.Width = (int)BankPanelGfx.Size.X;
-				BankPanelGfxInfo.Height = (int)BankPanelGfx.Size.Y;
-			}
-			
-			ShopPanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Shop" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				ShopPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Shop" + C_Constants.GfxExt);
-				ShopPanelSprite = new Sprite(ShopPanelGfx);
-				
-				//Cache the width and height
-				ShopPanelGfxInfo.Width = (int)ShopPanelGfx.Size.X;
-				ShopPanelGfxInfo.Height = (int)ShopPanelGfx.Size.Y;
-			}
-			
-			TradePanelGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Trade" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				TradePanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Trade" + C_Constants.GfxExt);
-				TradePanelSprite = new Sprite(TradePanelGfx);
-				
-				//Cache the width and height
-				TradePanelGfxInfo.Width = (int)TradePanelGfx.Size.X;
-				TradePanelGfxInfo.Height = (int)TradePanelGfx.Size.Y;
-			}
-			
-			EventChatGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\EventChat" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				EventChatGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\EventChat" + C_Constants.GfxExt);
-				EventChatSprite = new Sprite(EventChatGfx);
-				
-				//Cache the width and height
-				EventChatGfxInfo.Width = (int)EventChatGfx.Size.X;
-				EventChatGfxInfo.Height = (int)EventChatGfx.Size.Y;
-			}
-			
-			TargetGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Target" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				TargetGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Target" + C_Constants.GfxExt);
-				TargetSprite = new Sprite(TargetGfx);
-				
-				//Cache the width and height
-				TargetGfxInfo.Width = (int)TargetGfx.Size.X;
-				TargetGfxInfo.Height = (int)TargetGfx.Size.Y;
-			}
-			
-			DescriptionGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Description" + C_Constants.GfxExt))
-			{
-				DescriptionGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Description" + C_Constants.GfxExt);
-				DescriptionSprite = new Sprite(DescriptionGfx);
-				
-				//Cache the width and height
-				DescriptionGfxInfo.Width = (int)DescriptionGfx.Size.X;
-				DescriptionGfxInfo.Height = (int)DescriptionGfx.Size.Y;
-			}
-			
-			RClickGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "RightClick" + C_Constants.GfxExt))
-			{
-				RClickGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "RightClick" + C_Constants.GfxExt);
-				RClickSprite = new Sprite(RClickGfx);
-				
-				//Cache the width and height
-				RClickGfxInfo.Width = (int)RClickGfx.Size.X;
-				RClickGfxInfo.Height = (int)RClickGfx.Size.Y;
-			}
-			
-			QuestGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "QuestLog" + C_Constants.GfxExt))
-			{
-				QuestGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "QuestLog" + C_Constants.GfxExt);
-				QuestSprite = new Sprite(QuestGfx);
-				
-				//Cache the width and height
-				QuestGfxInfo.Width = (int)QuestGfx.Size.X;
-				QuestGfxInfo.Height = (int)QuestGfx.Size.Y;
-			}
-			
-			CraftGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Craft" + C_Constants.GfxExt))
-			{
-				CraftGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Craft" + C_Constants.GfxExt);
-				CraftSprite = new Sprite(CraftGfx);
-				
-				//Cache the width and height
-				CraftGfxInfo.Width = (int)CraftGfx.Size.X;
-				CraftGfxInfo.Height = (int)CraftGfx.Size.Y;
-			}
-			
-			ProgBarGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "ProgBar" + C_Constants.GfxExt))
-			{
-				ProgBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "ProgBar" + C_Constants.GfxExt);
-				ProgBarSprite = new Sprite(ProgBarGfx);
-				
-				//Cache the width and height
-				ProgBarGfxInfo.Width = (int)ProgBarGfx.Size.X;
-				ProgBarGfxInfo.Height = (int)ProgBarGfx.Size.Y;
-			}
-			
-			ChatBubbleGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\ChatBubble" + C_Constants.GfxExt))
-			{
-				ChatBubbleGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\ChatBubble" + C_Constants.GfxExt);
-				ChatBubbleSprite = new Sprite(ChatBubbleGfx);
-				//Cache the width and height
-				ChatBubbleGfxInfo.Width = (int)ChatBubbleGfx.Size.X;
-				ChatBubbleGfxInfo.Height = (int)ChatBubbleGfx.Size.Y;
-			}
-			
-			PetStatsGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Pet" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				PetStatsGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Pet" + C_Constants.GfxExt);
-				PetStatsSprite = new Sprite(PetStatsGfx);
-				
-				//Cache the width and height
-				PetStatsGfxInfo.Width = (int)PetStatsGfx.Size.X;
-				PetStatsGfxInfo.Height = (int)PetStatsGfx.Size.Y;
-			}
-			
-			PetbarGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Petbar" + C_Constants.GfxExt))
-			{
-				//Load texture first, dont care about memory streams (just use the filename)
-				PetBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Petbar" + C_Constants.GfxExt);
-				PetBarSprite = new Sprite(PetBarGfx);
-				
-				//Cache the width and height
-				PetbarGfxInfo.Width = (int)PetBarGfx.Size.X;
-				PetbarGfxInfo.Height = (int)PetBarGfx.Size.Y;
-			}
-			
-			LightGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Light" + C_Constants.GfxExt))
-			{
-				LightGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Light" + C_Constants.GfxExt);
-				LightDynamicGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\LightDynamic" + C_Constants.GfxExt);
-				LightSprite = new Sprite(LightGfx);
-				LightDynamicSprite = new Sprite(LightDynamicGfx);
+            TileSetTexture = new Texture[NumTileSets + 1];
+            TileSetSprite = new Sprite[NumTileSets + 1];
+            TileSetImage = new SFML.Graphics.Image[NumTileSets + 1];
+            TileSetTextureInfo = new C_Graphics.GraphicInfo[NumTileSets + 1];
+
+            CharacterGfx = new Texture[NumCharacters + 1];
+            CharacterSprite = new Sprite[NumCharacters + 1];
+            CharacterGfxInfo = new C_Graphics.GraphicInfo[NumCharacters + 1];
+
+            PaperDollGfx = new Texture[NumPaperdolls + 1];
+            PaperDollSprite = new Sprite[NumPaperdolls + 1];
+            PaperDollGfxInfo = new C_Graphics.GraphicInfo[NumPaperdolls + 1];
+
+            ItemsGfx = new Texture[NumItems + 1];
+            ItemsSprite = new Sprite[NumItems + 1];
+            ItemsGfxInfo = new C_Graphics.GraphicInfo[NumItems + 1];
+
+            ResourcesGfx = new Texture[NumResources + 1];
+            ResourcesSprite = new Sprite[NumResources + 1];
+            ResourcesGfxInfo = new C_Graphics.GraphicInfo[NumResources + 1];
+
+            AnimationsGfx = new Texture[NumAnimations + 1];
+            AnimationsSprite = new Sprite[NumAnimations + 1];
+            AnimationsGfxInfo = new C_Graphics.GraphicInfo[NumAnimations + 1];
+
+            SkillIconsGfx = new Texture[NumSkillIcons + 1];
+            SkillIconsSprite = new Sprite[NumSkillIcons + 1];
+            SkillIconsGfxInfo = new C_Graphics.GraphicInfo[NumSkillIcons + 1];
+
+            FacesGfx = new Texture[NumFaces + 1];
+            FacesSprite = new Sprite[NumFaces + 1];
+            FacesGfxInfo = new C_Graphics.GraphicInfo[NumFaces + 1];
+
+            FurnitureGfx = new Texture[C_Housing.NumFurniture + 1];
+            FurnitureSprite = new Sprite[C_Housing.NumFurniture + 1];
+            FurnitureGfxInfo = new C_Graphics.GraphicInfo[C_Housing.NumFurniture + 1];
+
+            ProjectileGfx = new Texture[C_Projectiles.NumProjectiles + 1];
+            ProjectileSprite = new Sprite[C_Projectiles.NumProjectiles + 1];
+            ProjectileGfxInfo = new C_Graphics.GraphicInfo[C_Projectiles.NumProjectiles + 1];
+
+            FogGfx = new Texture[NumFogs + 1];
+            FogSprite = new Sprite[NumFogs + 1];
+            FogGfxInfo = new C_Graphics.GraphicInfo[NumFogs + 1];
+
+            EmotesGfx = new Texture[NumEmotes + 1];
+            EmotesSprite = new Sprite[NumEmotes + 1];
+            EmotesGfxInfo = new C_Graphics.GraphicInfo[NumEmotes + 1];
+
+            PanoramasGfx = new Texture[NumPanorama + 1];
+            PanoramasSprite = new Sprite[NumPanorama + 1];
+            PanoramasGfxInfo = new C_Graphics.GraphicInfo[NumPanorama + 1];
+
+            ParallaxGfx = new Texture[NumParallax + 1];
+            ParallaxSprite = new Sprite[NumParallax + 1];
+            ParallaxGfxInfo = new C_Graphics.GraphicInfo[NumParallax + 1];
+
+            //sadly, gui shit is always needed, so we preload it :/
+            CursorInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Cursor" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                CursorGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Cursor" + C_Constants.GfxExt);
+                CursorSprite = new Sprite(CursorGfx);
+
+                //Cache the width and height
+                CursorInfo.Width = (int)CursorGfx.Size.X;
+                CursorInfo.Height = (int)CursorGfx.Size.Y;
+            }
+
+            DoorGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Door" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                DoorGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Door" + C_Constants.GfxExt);
+                DoorSprite = new Sprite(DoorGfx);
+
+                //Cache the width and height
+                DoorGfxInfo.Width = (int)DoorGfx.Size.X;
+                DoorGfxInfo.Height = (int)DoorGfx.Size.Y;
+            }
+
+            BloodGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Blood" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                BloodGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Blood" + C_Constants.GfxExt);
+                BloodSprite = new Sprite(BloodGfx);
+
+                //Cache the width and height
+                BloodGfxInfo.Width = (int)BloodGfx.Size.X;
+                BloodGfxInfo.Height = (int)BloodGfx.Size.Y;
+            }
+
+            DirectionsGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Direction" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                DirectionsGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Direction" + C_Constants.GfxExt);
+                DirectionsSprite = new Sprite(DirectionsGfx);
+
+                //Cache the width and height
+                DirectionsGfxInfo.Width = (int)DirectionsGfx.Size.X;
+                DirectionsGfxInfo.Height = (int)DirectionsGfx.Size.Y;
+            }
+
+            WeatherGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Weather" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                WeatherGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Weather" + C_Constants.GfxExt);
+                WeatherSprite = new Sprite(WeatherGfx);
+
+                //Cache the width and height
+                WeatherGfxInfo.Width = (int)WeatherGfx.Size.X;
+                WeatherGfxInfo.Height = (int)WeatherGfx.Size.Y;
+            }
+
+            HotBarGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HotBar" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                HotBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HotBar" + C_Constants.GfxExt);
+                HotBarSprite = new Sprite(HotBarGfx);
+
+                //Cache the width and height
+                HotBarGfxInfo.Width = (int)HotBarGfx.Size.X;
+                HotBarGfxInfo.Height = (int)HotBarGfx.Size.Y;
+            }
+
+            ChatWindowGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Chat" + C_Constants.GfxExt))
+            {
+                ChatWindowGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Chat" + C_Constants.GfxExt);
+                ChatWindowSprite = new Sprite(ChatWindowGfx);
+
+                //Cache the width and height
+                ChatWindowGfxInfo.Width = (int)ChatWindowGfx.Size.X;
+                ChatWindowGfxInfo.Height = (int)ChatWindowGfx.Size.Y;
+            }
+
+            MyChatWindowGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "MyChat" + C_Constants.GfxExt))
+            {
+                MyChatWindowGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "MyChat" + C_Constants.GfxExt);
+                MyChatWindowSprite = new Sprite(MyChatWindowGfx);
+
+                //Cache the width and height
+                MyChatWindowGfxInfo.Width = (int)MyChatWindowGfx.Size.X;
+                MyChatWindowGfxInfo.Height = (int)MyChatWindowGfx.Size.Y;
+            }
+
+            ButtonGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Button" + C_Constants.GfxExt))
+            {
+                ButtonGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Button" + C_Constants.GfxExt);
+                ButtonSprite = new Sprite(ButtonGfx);
+
+                //Cache the width and height
+                ButtonGfxInfo.Width = (int)ButtonGfx.Size.X;
+                ButtonGfxInfo.Height = (int)ButtonGfx.Size.Y;
+            }
+
+            ButtonHoverGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Button_Hover" + C_Constants.GfxExt))
+            {
+                ButtonHoverGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Button_Hover" + C_Constants.GfxExt);
+                ButtonHoverSprite = new Sprite(ButtonHoverGfx);
+
+                //Cache the width and height
+                ButtonHoverGfxInfo.Width = (int)ButtonHoverGfx.Size.X;
+                ButtonHoverGfxInfo.Height = (int)ButtonHoverGfx.Size.Y;
+            }
+
+            HudPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HUD" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                HudPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\HUD" + C_Constants.GfxExt);
+                HudPanelSprite = new Sprite(HudPanelGfx);
+
+                //Cache the width and height
+                HudPanelGfxInfo.Width = (int)HudPanelGfx.Size.X;
+                HudPanelGfxInfo.Height = (int)HudPanelGfx.Size.Y;
+            }
+
+            HpBarGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "HPBar" + C_Constants.GfxExt))
+            {
+                HpBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "HPBar" + C_Constants.GfxExt);
+                HpBarSprite = new Sprite(HpBarGfx);
+
+                //Cache the width and height
+                HpBarGfxInfo.Width = (int)HpBarGfx.Size.X;
+                HpBarGfxInfo.Height = (int)HpBarGfx.Size.Y;
+            }
+
+            MpBarGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "MPBar" + C_Constants.GfxExt))
+            {
+                MpBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "MPBar" + C_Constants.GfxExt);
+                MpBarSprite = new Sprite(MpBarGfx);
+
+                //Cache the width and height
+                MpBarGfxInfo.Width = (int)MpBarGfx.Size.X;
+                MpBarGfxInfo.Height = (int)MpBarGfx.Size.Y;
+            }
+
+            ExpBarGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "EXPBar" + C_Constants.GfxExt))
+            {
+                ExpBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "EXPBar" + C_Constants.GfxExt);
+                ExpBarSprite = new Sprite(ExpBarGfx);
+
+                //Cache the width and height
+                ExpBarGfxInfo.Width = (int)ExpBarGfx.Size.X;
+                ExpBarGfxInfo.Height = (int)ExpBarGfx.Size.Y;
+            }
+
+            ActionPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "ActionBar\\ActionBar" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                ActionPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "ActionBar\\ActionBar" + C_Constants.GfxExt);
+                ActionPanelSprite = new Sprite(ActionPanelGfx);
+
+                //Cache the width and height
+                ActionPanelGfxInfo.Width = (int)ActionPanelGfx.Size.X;
+                ActionPanelGfxInfo.Height = (int)ActionPanelGfx.Size.Y;
+            }
+
+            InvPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\inventory" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                InvPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\inventory" + C_Constants.GfxExt);
+                InvPanelSprite = new Sprite(InvPanelGfx);
+
+                //Cache the width and height
+                InvPanelGfxInfo.Width = (int)InvPanelGfx.Size.X;
+                InvPanelGfxInfo.Height = (int)InvPanelGfx.Size.Y;
+            }
+
+            SkillPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\skills" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                SkillPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\skills" + C_Constants.GfxExt);
+                SkillPanelSprite = new Sprite(SkillPanelGfx);
+
+                //Cache the width and height
+                SkillPanelGfxInfo.Width = (int)SkillPanelGfx.Size.X;
+                SkillPanelGfxInfo.Height = (int)SkillPanelGfx.Size.Y;
+            }
+
+            CharPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\char" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                CharPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\char" + C_Constants.GfxExt);
+                CharPanelSprite = new Sprite(CharPanelGfx);
+
+                //Cache the width and height
+                CharPanelGfxInfo.Width = (int)CharPanelGfx.Size.X;
+                CharPanelGfxInfo.Height = (int)CharPanelGfx.Size.Y;
+            }
+
+            CharPanelPlusGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\plus" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                CharPanelPlusGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\plus" + C_Constants.GfxExt);
+                CharPanelPlusSprite = new Sprite(CharPanelPlusGfx);
+
+                //Cache the width and height
+                CharPanelPlusGfxInfo.Width = (int)CharPanelPlusGfx.Size.X;
+                CharPanelPlusGfxInfo.Height = (int)CharPanelPlusGfx.Size.Y;
+            }
+
+            CharPanelMinGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\min" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                CharPanelMinGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\min" + C_Constants.GfxExt);
+                CharPanelMinSprite = new Sprite(CharPanelMinGfx);
+
+                //Cache the width and height
+                CharPanelMinGfxInfo.Width = (int)CharPanelMinGfx.Size.X;
+                CharPanelMinGfxInfo.Height = (int)CharPanelMinGfx.Size.Y;
+            }
+
+            BankPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Bank" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                BankPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Bank" + C_Constants.GfxExt);
+                BankPanelSprite = new Sprite(BankPanelGfx);
+
+                //Cache the width and height
+                BankPanelGfxInfo.Width = (int)BankPanelGfx.Size.X;
+                BankPanelGfxInfo.Height = (int)BankPanelGfx.Size.Y;
+            }
+
+            ShopPanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Shop" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                ShopPanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Shop" + C_Constants.GfxExt);
+                ShopPanelSprite = new Sprite(ShopPanelGfx);
+
+                //Cache the width and height
+                ShopPanelGfxInfo.Width = (int)ShopPanelGfx.Size.X;
+                ShopPanelGfxInfo.Height = (int)ShopPanelGfx.Size.Y;
+            }
+
+            TradePanelGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Trade" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                TradePanelGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Trade" + C_Constants.GfxExt);
+                TradePanelSprite = new Sprite(TradePanelGfx);
+
+                //Cache the width and height
+                TradePanelGfxInfo.Width = (int)TradePanelGfx.Size.X;
+                TradePanelGfxInfo.Height = (int)TradePanelGfx.Size.Y;
+            }
+
+            EventChatGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\EventChat" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                EventChatGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\EventChat" + C_Constants.GfxExt);
+                EventChatSprite = new Sprite(EventChatGfx);
+
+                //Cache the width and height
+                EventChatGfxInfo.Width = (int)EventChatGfx.Size.X;
+                EventChatGfxInfo.Height = (int)EventChatGfx.Size.Y;
+            }
+
+            TargetGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Target" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                TargetGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Target" + C_Constants.GfxExt);
+                TargetSprite = new Sprite(TargetGfx);
+
+                //Cache the width and height
+                TargetGfxInfo.Width = (int)TargetGfx.Size.X;
+                TargetGfxInfo.Height = (int)TargetGfx.Size.Y;
+            }
+
+            DescriptionGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Description" + C_Constants.GfxExt))
+            {
+                DescriptionGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Description" + C_Constants.GfxExt);
+                DescriptionSprite = new Sprite(DescriptionGfx);
+
+                //Cache the width and height
+                DescriptionGfxInfo.Width = (int)DescriptionGfx.Size.X;
+                DescriptionGfxInfo.Height = (int)DescriptionGfx.Size.Y;
+            }
+
+            RClickGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "RightClick" + C_Constants.GfxExt))
+            {
+                RClickGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "RightClick" + C_Constants.GfxExt);
+                RClickSprite = new Sprite(RClickGfx);
+
+                //Cache the width and height
+                RClickGfxInfo.Width = (int)RClickGfx.Size.X;
+                RClickGfxInfo.Height = (int)RClickGfx.Size.Y;
+            }
+
+            QuestGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "QuestLog" + C_Constants.GfxExt))
+            {
+                QuestGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "QuestLog" + C_Constants.GfxExt);
+                QuestSprite = new Sprite(QuestGfx);
+
+                //Cache the width and height
+                QuestGfxInfo.Width = (int)QuestGfx.Size.X;
+                QuestGfxInfo.Height = (int)QuestGfx.Size.Y;
+            }
+
+            CraftGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Craft" + C_Constants.GfxExt))
+            {
+                CraftGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "Craft" + C_Constants.GfxExt);
+                CraftSprite = new Sprite(CraftGfx);
+
+                //Cache the width and height
+                CraftGfxInfo.Width = (int)CraftGfx.Size.X;
+                CraftGfxInfo.Height = (int)CraftGfx.Size.Y;
+            }
+
+            ProgBarGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "ProgBar" + C_Constants.GfxExt))
+            {
+                ProgBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\" + "ProgBar" + C_Constants.GfxExt);
+                ProgBarSprite = new Sprite(ProgBarGfx);
+
+                //Cache the width and height
+                ProgBarGfxInfo.Width = (int)ProgBarGfx.Size.X;
+                ProgBarGfxInfo.Height = (int)ProgBarGfx.Size.Y;
+            }
+
+            ChatBubbleGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\ChatBubble" + C_Constants.GfxExt))
+            {
+                ChatBubbleGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\ChatBubble" + C_Constants.GfxExt);
+                ChatBubbleSprite = new Sprite(ChatBubbleGfx);
+                //Cache the width and height
+                ChatBubbleGfxInfo.Width = (int)ChatBubbleGfx.Size.X;
+                ChatBubbleGfxInfo.Height = (int)ChatBubbleGfx.Size.Y;
+            }
+
+            PetStatsGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Pet" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                PetStatsGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Pet" + C_Constants.GfxExt);
+                PetStatsSprite = new Sprite(PetStatsGfx);
+
+                //Cache the width and height
+                PetStatsGfxInfo.Width = (int)PetStatsGfx.Size.X;
+                PetStatsGfxInfo.Height = (int)PetStatsGfx.Size.Y;
+            }
+
+            PetbarGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Petbar" + C_Constants.GfxExt))
+            {
+                //Load texture first, dont care about memory streams (just use the filename)
+                PetBarGfx = new Texture(Application.StartupPath + C_Constants.GfxGuiPath + "Main\\Petbar" + C_Constants.GfxExt);
+                PetBarSprite = new Sprite(PetBarGfx);
+
+                //Cache the width and height
+                PetbarGfxInfo.Width = (int)PetBarGfx.Size.X;
+                PetbarGfxInfo.Height = (int)PetBarGfx.Size.Y;
+            }
+
+            LightGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Light" + C_Constants.GfxExt))
+            {
+                LightGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Light" + C_Constants.GfxExt);
+                LightDynamicGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\LightDynamic" + C_Constants.GfxExt);
+                LightSprite = new Sprite(LightGfx);
+                LightDynamicSprite = new Sprite(LightDynamicGfx);
 
                 //Cache the width and height
                 LightGfxInfo.Width = (int)LightGfx.Size.X;
-				LightGfxInfo.Height = (int)LightGfx.Size.Y;
-			}
-			
-			ShadowGfxInfo = new GraphicInfo();
-			if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Shadow" + C_Constants.GfxExt))
-			{
-				ShadowGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Shadow" + C_Constants.GfxExt);
-				ShadowSprite = new Sprite(ShadowGfx);
-				
-				//Cache the width and height
-				ShadowGfxInfo.Width = (int)ShadowGfx.Size.X;
-				ShadowGfxInfo.Height = (int)ShadowGfx.Size.Y;
-			}
-		}
-		
-		internal static void LoadTexture(int index, byte texType)
-		{
-			
-			if (texType == 1) //tilesets
-			{
-				if (index < 0 || index > NumTileSets)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				TileSetTexture[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				TileSetSprite[index] = new Sprite(TileSetTexture[index]);
-				TileSetImage[index] = new SFML.Graphics.Image(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				
-				//Cache the width and height
-				TileSetTextureInfo[index].Width = (int)TileSetTexture[index].Size.X;
-				TileSetTextureInfo[index].Height = (int)TileSetTexture[index].Size.Y;
-				TileSetTextureInfo[index].IsLoaded = true;
+                LightGfxInfo.Height = (int)LightGfx.Size.Y;
+            }
+
+            ShadowGfxInfo = new GraphicInfo();
+            if (File.Exists(Application.StartupPath + C_Constants.GfxPath + "Misc\\Shadow" + C_Constants.GfxExt))
+            {
+                ShadowGfx = new Texture(Application.StartupPath + C_Constants.GfxPath + "Misc\\Shadow" + C_Constants.GfxExt);
+                ShadowSprite = new Sprite(ShadowGfx);
+
+                //Cache the width and height
+                ShadowGfxInfo.Width = (int)ShadowGfx.Size.X;
+                ShadowGfxInfo.Height = (int)ShadowGfx.Size.Y;
+            }
+        }
+
+        internal static void LoadTexture(int index, byte texType)
+        {
+
+            if (texType == 1) //tilesets
+            {
+                if (index < 0 || index > NumTileSets)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                TileSetTexture[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                TileSetSprite[index] = new Sprite(TileSetTexture[index]);
+                TileSetImage[index] = new SFML.Graphics.Image(Application.StartupPath + C_Constants.GfxPath + "tilesets\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+
+                //Cache the width and height
+                TileSetTextureInfo[index].Width = (int)TileSetTexture[index].Size.X;
+                TileSetTextureInfo[index].Height = (int)TileSetTexture[index].Size.Y;
+                TileSetTextureInfo[index].IsLoaded = true;
                 TileSetTextureInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 2) //characters
-			{
-				if (index < 0 || index > NumCharacters)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				CharacterGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "characters\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				CharacterSprite[index] = new Sprite(CharacterGfx[index]);
-				
-				//Cache the width and height
-				CharacterGfxInfo[index].Width = (int)CharacterGfx[index].Size.X;
-				CharacterGfxInfo[index].Height = (int)CharacterGfx[index].Size.Y;
-				CharacterGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 2) //characters
+            {
+                if (index < 0 || index > NumCharacters)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                CharacterGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "characters\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                CharacterSprite[index] = new Sprite(CharacterGfx[index]);
+
+                //Cache the width and height
+                CharacterGfxInfo[index].Width = (int)CharacterGfx[index].Size.X;
+                CharacterGfxInfo[index].Height = (int)CharacterGfx[index].Size.Y;
+                CharacterGfxInfo[index].IsLoaded = true;
                 CharacterGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 3) //paperdoll
-			{
-				if (index < 0 || index > NumPaperdolls)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				PaperDollGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Paperdolls\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				PaperDollSprite[index] = new Sprite(PaperDollGfx[index]);
-				
-				//Cache the width and height
-				PaperDollGfxInfo[index].Width = (int)PaperDollGfx[index].Size.X;
-				PaperDollGfxInfo[index].Height = (int)PaperDollGfx[index].Size.Y;
-				PaperDollGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 3) //paperdoll
+            {
+                if (index < 0 || index > NumPaperdolls)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                PaperDollGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Paperdolls\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                PaperDollSprite[index] = new Sprite(PaperDollGfx[index]);
+
+                //Cache the width and height
+                PaperDollGfxInfo[index].Width = (int)PaperDollGfx[index].Size.X;
+                PaperDollGfxInfo[index].Height = (int)PaperDollGfx[index].Size.Y;
+                PaperDollGfxInfo[index].IsLoaded = true;
                 PaperDollGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 4) //items
-			{
-				if (index <= 0 || index > NumItems)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				ItemsGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "items\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				ItemsSprite[index] = new Sprite(ItemsGfx[index]);
-				
-				//Cache the width and height
-				ItemsGfxInfo[index].Width = (int)ItemsGfx[index].Size.X;
-				ItemsGfxInfo[index].Height = (int)ItemsGfx[index].Size.Y;
-				ItemsGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 4) //items
+            {
+                if (index <= 0 || index > NumItems)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                ItemsGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "items\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                ItemsSprite[index] = new Sprite(ItemsGfx[index]);
+
+                //Cache the width and height
+                ItemsGfxInfo[index].Width = (int)ItemsGfx[index].Size.X;
+                ItemsGfxInfo[index].Height = (int)ItemsGfx[index].Size.Y;
+                ItemsGfxInfo[index].IsLoaded = true;
                 ItemsGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 5) //resources
-			{
-				if (index < 0 || index > NumResources)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				ResourcesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "resources\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				ResourcesSprite[index] = new Sprite(ResourcesGfx[index]);
+
+            }
+            else if (texType == 5) //resources
+            {
+                if (index < 0 || index > NumResources)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                ResourcesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "resources\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                ResourcesSprite[index] = new Sprite(ResourcesGfx[index]);
 
                 //Cache the width and height
                 ResourcesGfxInfo[index].Width = (int)ResourcesGfx[index].Size.X;
                 ResourcesGfxInfo[index].Height = (int)ResourcesGfx[index].Size.Y;
                 ResourcesGfxInfo[index].IsLoaded = true;
                 ResourcesGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 6) //animations
-			{
-				if (index <= 0 || index > NumAnimations)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				AnimationsGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Animations\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				AnimationsSprite[index] = new Sprite(AnimationsGfx[index]);
-				
-				//Cache the width and height
-				AnimationsGfxInfo[index].Width = (int)AnimationsGfx[index].Size.X;
-				AnimationsGfxInfo[index].Height = (int)AnimationsGfx[index].Size.Y;
-				AnimationsGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 6) //animations
+            {
+                if (index <= 0 || index > NumAnimations)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                AnimationsGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Animations\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                AnimationsSprite[index] = new Sprite(AnimationsGfx[index]);
+
+                //Cache the width and height
+                AnimationsGfxInfo[index].Width = (int)AnimationsGfx[index].Size.X;
+                AnimationsGfxInfo[index].Height = (int)AnimationsGfx[index].Size.Y;
+                AnimationsGfxInfo[index].IsLoaded = true;
                 AnimationsGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 7) //faces
-			{
-				if (index < 0 || index > NumFaces)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				FacesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Faces\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				FacesSprite[index] = new Sprite(FacesGfx[index]);
-				
-				//Cache the width and height
-				FacesGfxInfo[index].Width = (int)FacesGfx[index].Size.X;
-				FacesGfxInfo[index].Height = (int)FacesGfx[index].Size.Y;
-				FacesGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 7) //faces
+            {
+                if (index < 0 || index > NumFaces)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                FacesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Faces\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                FacesSprite[index] = new Sprite(FacesGfx[index]);
+
+                //Cache the width and height
+                FacesGfxInfo[index].Width = (int)FacesGfx[index].Size.X;
+                FacesGfxInfo[index].Height = (int)FacesGfx[index].Size.Y;
+                FacesGfxInfo[index].IsLoaded = true;
                 FacesGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 8) //fogs
-			{
-				if (index < 0 || index > NumFogs)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				FogGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Fogs\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				FogSprite[index] = new Sprite(FogGfx[index]);
-				
-				//Cache the width and height
-				FogGfxInfo[index].Width = (int)FogGfx[index].Size.X;
-				FogGfxInfo[index].Height = (int)FogGfx[index].Size.Y;
-				FogGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 8) //fogs
+            {
+                if (index < 0 || index > NumFogs)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                FogGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Fogs\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                FogSprite[index] = new Sprite(FogGfx[index]);
+
+                //Cache the width and height
+                FogGfxInfo[index].Width = (int)FogGfx[index].Size.X;
+                FogGfxInfo[index].Height = (int)FogGfx[index].Size.Y;
+                FogGfxInfo[index].IsLoaded = true;
                 FogGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 9) //skill icons
-			{
-				if (index <= 0 || index > NumSkillIcons)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				SkillIconsGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "SkillIcons\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				SkillIconsSprite[index] = new Sprite(SkillIconsGfx[index]);
-				
-				//Cache the width and height
-				SkillIconsGfxInfo[index].Width = (int)SkillIconsGfx[index].Size.X;
-				SkillIconsGfxInfo[index].Height = (int)SkillIconsGfx[index].Size.Y;
-				SkillIconsGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 9) //skill icons
+            {
+                if (index <= 0 || index > NumSkillIcons)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                SkillIconsGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "SkillIcons\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                SkillIconsSprite[index] = new Sprite(SkillIconsGfx[index]);
+
+                //Cache the width and height
+                SkillIconsGfxInfo[index].Width = (int)SkillIconsGfx[index].Size.X;
+                SkillIconsGfxInfo[index].Height = (int)SkillIconsGfx[index].Size.Y;
+                SkillIconsGfxInfo[index].IsLoaded = true;
                 SkillIconsGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 10) //furniture
-			{
-				if (index < 0 || index > C_Housing.NumFurniture)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				FurnitureGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Furniture\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				FurnitureSprite[index] = new Sprite(FurnitureGfx[index]);
-				
-				//Cache the width and height
-				FurnitureGfxInfo[index].Width = (int)FurnitureGfx[index].Size.X;
-				FurnitureGfxInfo[index].Height = (int)FurnitureGfx[index].Size.Y;
-				FurnitureGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 10) //furniture
+            {
+                if (index < 0 || index > C_Housing.NumFurniture)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                FurnitureGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Furniture\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                FurnitureSprite[index] = new Sprite(FurnitureGfx[index]);
+
+                //Cache the width and height
+                FurnitureGfxInfo[index].Width = (int)FurnitureGfx[index].Size.X;
+                FurnitureGfxInfo[index].Height = (int)FurnitureGfx[index].Size.Y;
+                FurnitureGfxInfo[index].IsLoaded = true;
                 FurnitureGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 11) //projectiles
-			{
-				if (index < 0 || index > C_Projectiles.NumProjectiles)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				ProjectileGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Projectiles\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				ProjectileSprite[index] = new Sprite(ProjectileGfx[index]);
-				
-				//Cache the width and height
-				ProjectileGfxInfo[index].Width = (int)ProjectileGfx[index].Size.X;
-				ProjectileGfxInfo[index].Height = (int)ProjectileGfx[index].Size.Y;
-				ProjectileGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 11) //projectiles
+            {
+                if (index < 0 || index > C_Projectiles.NumProjectiles)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                ProjectileGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Projectiles\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                ProjectileSprite[index] = new Sprite(ProjectileGfx[index]);
+
+                //Cache the width and height
+                ProjectileGfxInfo[index].Width = (int)ProjectileGfx[index].Size.X;
+                ProjectileGfxInfo[index].Height = (int)ProjectileGfx[index].Size.Y;
+                ProjectileGfxInfo[index].IsLoaded = true;
                 ProjectileGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 12) //emotes
-			{
-				if (index < 0 || index > NumEmotes)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				EmotesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Emotes\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				EmotesSprite[index] = new Sprite(EmotesGfx[index]);
-				
-				//Cache the width and height
-				EmotesGfxInfo[index].Width = (int)EmotesGfx[index].Size.X;
-				EmotesGfxInfo[index].Height = (int)EmotesGfx[index].Size.Y;
-				EmotesGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 12) //emotes
+            {
+                if (index < 0 || index > NumEmotes)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                EmotesGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Emotes\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                EmotesSprite[index] = new Sprite(EmotesGfx[index]);
+
+                //Cache the width and height
+                EmotesGfxInfo[index].Width = (int)EmotesGfx[index].Size.X;
+                EmotesGfxInfo[index].Height = (int)EmotesGfx[index].Size.Y;
+                EmotesGfxInfo[index].IsLoaded = true;
                 EmotesGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-				
-			}
-			else if (texType == 13) //Panoramas
-			{
-				if (index < 0 || index > NumPanorama)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				PanoramasGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Panoramas\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				PanoramasSprite[index] = new Sprite(PanoramasGfx[index]);
-				
-				//Cache the width and height
-				PanoramasGfxInfo[index].Width = (int)PanoramasGfx[index].Size.X;
-				PanoramasGfxInfo[index].Height = (int)PanoramasGfx[index].Size.Y;
-				PanoramasGfxInfo[index].IsLoaded = true;
+
+            }
+            else if (texType == 13) //Panoramas
+            {
+                if (index < 0 || index > NumPanorama)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                PanoramasGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Panoramas\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                PanoramasSprite[index] = new Sprite(PanoramasGfx[index]);
+
+                //Cache the width and height
+                PanoramasGfxInfo[index].Width = (int)PanoramasGfx[index].Size.X;
+                PanoramasGfxInfo[index].Height = (int)PanoramasGfx[index].Size.Y;
+                PanoramasGfxInfo[index].IsLoaded = true;
                 PanoramasGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-			}
-			else if (texType == 14) //Parallax
-			{
-				if (index < 0 || index > NumParallax)
-				{
-					return;
-				}
-				
-				//Load texture first, dont care about memory streams (just use the filename)
-				ParallaxGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Parallax\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
-				ParallaxSprite[index] = new Sprite(ParallaxGfx[index]);
-				
-				//Cache the width and height
-				ParallaxGfxInfo[index].Width = (int)ParallaxGfx[index].Size.X;
-				ParallaxGfxInfo[index].Height = (int)ParallaxGfx[index].Size.Y;
-				ParallaxGfxInfo[index].IsLoaded = true;
+            }
+            else if (texType == 14) //Parallax
+            {
+                if (index < 0 || index > NumParallax)
+                {
+                    return;
+                }
+
+                //Load texture first, dont care about memory streams (just use the filename)
+                ParallaxGfx[index] = new Texture(Application.StartupPath + C_Constants.GfxPath + "Parallax\\" + System.Convert.ToString(index) + C_Constants.GfxExt);
+                ParallaxSprite[index] = new Sprite(ParallaxGfx[index]);
+
+                //Cache the width and height
+                ParallaxGfxInfo[index].Width = (int)ParallaxGfx[index].Size.X;
+                ParallaxGfxInfo[index].Height = (int)ParallaxGfx[index].Size.Y;
+                ParallaxGfxInfo[index].IsLoaded = true;
                 ParallaxGfxInfo[index].TextureTimer = C_General.GetTickCount() + 100000;
-			}
-			
-		}
-		
-#endregion
-		
-		internal static void DrawEmotes(int x2, int y2, int sprite)
-		{
-			Rectangle rec = new Rectangle();
-			int x = 0;
-			int y = 0;
-			int anim = 0;
-			//Dim width As Integer, height As Integer
-			
-			if (sprite < 1 || sprite > NumEmotes)
-			{
-				return;
-			}
-			
-			if (EmotesGfxInfo[sprite].IsLoaded == false)
-			{
-				LoadTexture(sprite, 12);
-			}
-			
-			//seeying we still use it, lets update timer
+            }
+
+        }
+
+        #endregion
+
+        internal static void DrawEmotes(int x2, int y2, int sprite)
+        {
+            Rectangle rec = new Rectangle();
+            int x = 0;
+            int y = 0;
+            int anim = 0;
+            //Dim width As Integer, height As Integer
+
+            if (sprite < 1 || sprite > NumEmotes)
+            {
+                return;
+            }
+
+            if (EmotesGfxInfo[sprite].IsLoaded == false)
+            {
+                LoadTexture(sprite, 12);
+            }
+
+            //seeying we still use it, lets update timer
             EmotesGfxInfo[sprite].TextureTimer = C_General.GetTickCount() + 100000;
-			
-			if (C_Variables.ShowAnimLayers == true)
-			{
-				anim = 1;
-			}
-			else
-			{
-				anim = 0;
-			}
-			
-			rec.Y = 0;
-			rec.Height = C_Constants.PicX;
-			rec.X = (int)(anim * ((double) EmotesGfxInfo[sprite].Width / 2));
-			rec.Width = (int)((double) EmotesGfxInfo[sprite].Width / 2);
-			
-			x = ConvertMapX(x2);
-			y = ConvertMapY(y2) - (C_Constants.PicY + 16);
-			
-			RenderSprite(EmotesSprite[sprite], GameWindow, x, y, rec.X, rec.Y, rec.Width, rec.Height);
-			
-		}
-		
-		public static void DrawChat()
-		{
-			int i = 0;
-			int x = 0;
-			int y = 0;
-			string text = "";
-			
-			//first draw back image
-			RenderSprite(ChatWindowSprite, GameWindow, C_UpdateUI.ChatWindowX, C_UpdateUI.ChatWindowY - 2, 0, 0, ChatWindowGfxInfo.Width, ChatWindowGfxInfo.Height);
-			
-			y = 5;
-			x = 5;
-			
-			C_Text.FirstLineindex = (C_Types.Chat.Count - C_Text.MaxChatDisplayLines) - C_Text.ScrollMod; //First element is the 5th from the last in the list
-			if (C_Text.FirstLineindex < 0)
-			{
-				C_Text.FirstLineindex = 0; //if the list has less than 5 elements, the first is the 0th index or first element
-			}
-			
-			C_Text.LastLineindex = C_Text.FirstLineindex + C_Text.MaxChatDisplayLines; // - ScrollMod
-			if (C_Text.LastLineindex >= C_Types.Chat.Count)
-			{
-				C_Text.LastLineindex = C_Types.Chat.Count - 1; //Based off of index 0, so the last element should be Chat.Count -1
-			}
-			
-			//only loop tru last entries
-			for (i = C_Text.FirstLineindex; i <= C_Text.LastLineindex; i++)
-			{
-				text = Convert.ToString(C_Types.Chat[i].Text);
-				
-				if (!string.IsNullOrEmpty(text)) // or not
-				{
-					C_Text.DrawText(C_UpdateUI.ChatWindowX + x, C_UpdateUI.ChatWindowY + y, text, C_Text.GetSfmlColor(System.Convert.ToByte(C_Types.Chat[i].Color)), SFML.Graphics.Color.Black, GameWindow);
-					y = y + C_Text.ChatLineSpacing + 1;
-				}
-				
-			}
-			
-			//My Text
-			//first draw back image
-			RenderSprite(MyChatWindowSprite, GameWindow, C_UpdateUI.MyChatX, C_UpdateUI.MyChatY - 5, 0, 0, MyChatWindowGfxInfo.Width, MyChatWindowGfxInfo.Height);
+
+            if (C_Variables.ShowAnimLayers == true)
+            {
+                anim = 1;
+            }
+            else
+            {
+                anim = 0;
+            }
+
+            rec.Y = 0;
+            rec.Height = C_Constants.PicX;
+            rec.X = (int)(anim * ((double)EmotesGfxInfo[sprite].Width / 2));
+            rec.Width = (int)((double)EmotesGfxInfo[sprite].Width / 2);
+
+            x = ConvertMapX(x2);
+            y = ConvertMapY(y2) - (C_Constants.PicY + 16);
+
+            RenderSprite(EmotesSprite[sprite], GameWindow, x, y, rec.X, rec.Y, rec.Width, rec.Height);
+
+        }
+
+        public static void DrawChat()
+        {
+            int i = 0;
+            int x = 0;
+            int y = 0;
+            string text = "";
+
+            //first draw back image
+            RenderSprite(ChatWindowSprite, GameWindow, C_UpdateUI.ChatWindowX, C_UpdateUI.ChatWindowY - 2, 0, 0, ChatWindowGfxInfo.Width, ChatWindowGfxInfo.Height);
+
+            y = 5;
+            x = 5;
+
+            C_Text.FirstLineindex = (C_Types.Chat.Count - C_Text.MaxChatDisplayLines) - C_Text.ScrollMod; //First element is the 5th from the last in the list
+            if (C_Text.FirstLineindex < 0)
+            {
+                C_Text.FirstLineindex = 0; //if the list has less than 5 elements, the first is the 0th index or first element
+            }
+
+            C_Text.LastLineindex = C_Text.FirstLineindex + C_Text.MaxChatDisplayLines; // - ScrollMod
+            if (C_Text.LastLineindex >= C_Types.Chat.Count)
+            {
+                C_Text.LastLineindex = C_Types.Chat.Count - 1; //Based off of index 0, so the last element should be Chat.Count -1
+            }
+
+            //only loop tru last entries
+            for (i = C_Text.FirstLineindex; i <= C_Text.LastLineindex; i++)
+            {
+                text = Convert.ToString(C_Types.Chat[i].Text);
+
+                if (!string.IsNullOrEmpty(text)) // or not
+                {
+                    C_Text.DrawText(C_UpdateUI.ChatWindowX + x, C_UpdateUI.ChatWindowY + y, text, C_Text.GetSfmlColor(System.Convert.ToByte(C_Types.Chat[i].Color)), SFML.Graphics.Color.Black, GameWindow);
+                    y = y + C_Text.ChatLineSpacing + 1;
+                }
+
+            }
+
+            //My Text
+            //first draw back image
+            RenderSprite(MyChatWindowSprite, GameWindow, C_UpdateUI.MyChatX, C_UpdateUI.MyChatY - 5, 0, 0, MyChatWindowGfxInfo.Width, MyChatWindowGfxInfo.Height);
 
             if (ChatModule.ChatInput.CurrentMessage != null && ChatModule.ChatInput.CurrentMessage.Length > 0)
-			{
-				string subText = ChatModule.ChatInput.CurrentMessage;
-				while (C_Text.GetTextWidth(subText) > MyChatWindowGfxInfo.Width - C_Text.ChatEntryPadding)
-				{
-					subText = subText.Substring(1);
-				}
-				C_Text.DrawText(C_UpdateUI.MyChatX + 5, C_UpdateUI.MyChatY - 3, subText, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
-			}
-		}
-		
-		internal static void DrawButton(string text, int destX, int destY, byte hover)
-		{
-			if (hover == 0)
-			{
-				RenderSprite(ButtonSprite, GameWindow, destX, destY, 0, 0, ButtonGfxInfo.Width, ButtonGfxInfo.Height);
-				
-				C_Text.DrawText(destX + (ButtonGfxInfo.Width / 2) - (C_Text.GetTextWidth(text) / 2), destY + (ButtonGfxInfo.Height / 2) - (C_Constants.FontSize / 2), text, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
-			}
-			else
-			{
-				RenderSprite(ButtonHoverSprite, GameWindow, destX, destY, 0, 0, ButtonHoverGfxInfo.Width, ButtonHoverGfxInfo.Height);
-				
-				C_Text.DrawText(destX + (ButtonHoverGfxInfo.Width / 2) - (C_Text.GetTextWidth(text) / 2), destY + (ButtonHoverGfxInfo.Height / 2) - (C_Constants.FontSize / 2), text, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
-			}
-			
-		}
-		
-		internal static void RenderSprite(Sprite tmpSprite, RenderWindow target, int destX, int destY, int sourceX, int sourceY, int sourceWidth, int sourceHeight)
-		{
-			
-			if (tmpSprite == null)
-			{
-				return;
-			}
-			
-			tmpSprite.TextureRect = new IntRect(sourceX, sourceY, sourceWidth, sourceHeight);
-			tmpSprite.Position = new Vector2f(destX, destY);
-			target.Draw(tmpSprite);
-		}
+            {
+                string subText = ChatModule.ChatInput.CurrentMessage;
+                while (C_Text.GetTextWidth(subText) > MyChatWindowGfxInfo.Width - C_Text.ChatEntryPadding)
+                {
+                    subText = subText.Substring(1);
+                }
+                C_Text.DrawText(C_UpdateUI.MyChatX + 5, C_UpdateUI.MyChatY - 3, subText, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
+            }
+        }
+
+        internal static void DrawButton(string text, int destX, int destY, byte hover)
+        {
+            if (hover == 0)
+            {
+                RenderSprite(ButtonSprite, GameWindow, destX, destY, 0, 0, ButtonGfxInfo.Width, ButtonGfxInfo.Height);
+
+                C_Text.DrawText(destX + (ButtonGfxInfo.Width / 2) - (C_Text.GetTextWidth(text) / 2), destY + (ButtonGfxInfo.Height / 2) - (C_Constants.FontSize / 2), text, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
+            }
+            else
+            {
+                RenderSprite(ButtonHoverSprite, GameWindow, destX, destY, 0, 0, ButtonHoverGfxInfo.Width, ButtonHoverGfxInfo.Height);
+
+                C_Text.DrawText(destX + (ButtonHoverGfxInfo.Width / 2) - (C_Text.GetTextWidth(text) / 2), destY + (ButtonHoverGfxInfo.Height / 2) - (C_Constants.FontSize / 2), text, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
+            }
+
+        }
+
+        internal static void RenderSprite(Sprite tmpSprite, RenderWindow target, int destX, int destY, int sourceX, int sourceY, int sourceWidth, int sourceHeight)
+        {
+
+            if (tmpSprite == null)
+            {
+                return;
+            }
+
+            tmpSprite.TextureRect = new IntRect(sourceX, sourceY, sourceWidth, sourceHeight);
+            tmpSprite.Position = new Vector2f(destX, destY);
+            target.Draw(tmpSprite);
+        }
 
         internal static void RenderSpriteSimple(Sprite tmpSprite, RenderWindow target, int destX, int destY)
         {
@@ -1183,7 +1183,7 @@ namespace Engine
         }
 
         internal static void RenderTextures(Texture txture, RenderWindow target, float dX, float dY, float sx, float sy, float dWidth, float dHeight, float sWidth, float sHeight)
-		{
+        {
             Sprite tmpImage = new Sprite(txture)
             {
                 TextureRect = new IntRect((int)(sx), (int)(sy), (int)(sWidth), (int)(sHeight)),
@@ -1191,10 +1191,10 @@ namespace Engine
                 Position = new Vector2f(dX, dY)
             };
             target.Draw(tmpImage);
-		}
-		
-		internal static void DrawDirections(int x, int y)
-		{
+        }
+
+        internal static void DrawDirections(int x, int y)
+        {
             Rectangle rec = new Rectangle
             {
 
@@ -1206,223 +1206,223 @@ namespace Engine
             };
 
             RenderSprite(DirectionsSprite, GameWindow, ConvertMapX(x * C_Constants.PicX), ConvertMapY(y * C_Constants.PicY), rec.X, rec.Y, rec.Width, rec.Height);
-			
-			// render dir blobs
-			for (byte i = 1; i <= 4; i++)
-			{
-				rec.X = (i - 1) * 8;
-				rec.Width = 8;
-				// find out whether render blocked or not
-				if (!C_GameLogic.IsDirBlocked(C_Maps.Map.Tile[x, y].DirBlock, i))
-				{
-					rec.Y = 8;
-				}
-				else
-				{
-					rec.Y = 16;
-				}
-				rec.Height = 8;
-				
-				RenderSprite(DirectionsSprite, GameWindow, ConvertMapX(x * C_Constants.PicX) + C_Variables.DirArrowX[i], ConvertMapY(y * C_Constants.PicY) + C_Variables.DirArrowY[i], rec.X, rec.Y, rec.Width, rec.Height);
-			}
-		}
-		
-		internal static int ConvertMapX(int x)
-		{
-			return x - (C_Variables.TileView.Left * C_Constants.PicX) - C_Variables.Camera.Left;
-		}
-		
-		internal static int ConvertMapY(int y)
-		{
-			return y - (C_Variables.TileView.Top * C_Constants.PicY) - C_Variables.Camera.Top;
-		}
-		
-		internal static void DrawPlayer(int index)
-		{
-			byte anim = 0;
-			int x = 0;
-			int y = 0;
-			int spritenum = 0;
-			int spriteleft = 0;
-			int attackspeed = 0;
-			byte attackSprite;
-			Rectangle srcrec = new Rectangle();
-			
-			spritenum = C_Player.GetPlayerSprite(index);
-			
-			attackSprite = 0;
-			
-			if (spritenum < 1 || spritenum > NumCharacters)
-			{
-				return;
-			}
-			
-			// speed from weapon
-			if (C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon) > 0)
-			{
-				attackspeed = Types.Item[C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon)].Speed;
-			}
-			else
-			{
-				attackspeed = 1000;
-			}
-			
-			// Reset frame
-			anim = 0;
-			
-			// Check for attacking animation
-			if (C_Types.Player[index].AttackTimer + ((double) attackspeed / 2) > C_General.GetTickCount())
-			{
-				if (C_Types.Player[index].Attacking == 1)
-				{
-					if (attackSprite == 1)
-					{
-						anim = 4;
-					}
-					else
-					{
-						anim = 3;
-					}
-				}
-			}
-			else
-			{
-				// If not attacking, walk normally
-				switch (C_Player.GetPlayerDir(index))
-				{
-					case (int) Enums.DirectionType.Up:
-					case (int) Enums.DirectionType.UpLeft:
-					case (int) Enums.DirectionType.UpRight:
-						
-						if (C_Types.Player[index].YOffset > 8)
-						{
+
+            // render dir blobs
+            for (byte i = 1; i <= 4; i++)
+            {
+                rec.X = (i - 1) * 8;
+                rec.Width = 8;
+                // find out whether render blocked or not
+                if (!C_GameLogic.IsDirBlocked(C_Maps.Map.Tile[x, y].DirBlock, i))
+                {
+                    rec.Y = 8;
+                }
+                else
+                {
+                    rec.Y = 16;
+                }
+                rec.Height = 8;
+
+                RenderSprite(DirectionsSprite, GameWindow, ConvertMapX(x * C_Constants.PicX) + C_Variables.DirArrowX[i], ConvertMapY(y * C_Constants.PicY) + C_Variables.DirArrowY[i], rec.X, rec.Y, rec.Width, rec.Height);
+            }
+        }
+
+        internal static int ConvertMapX(int x)
+        {
+            return x - (C_Variables.TileView.Left * C_Constants.PicX) - C_Variables.Camera.Left;
+        }
+
+        internal static int ConvertMapY(int y)
+        {
+            return y - (C_Variables.TileView.Top * C_Constants.PicY) - C_Variables.Camera.Top;
+        }
+
+        internal static void DrawPlayer(int index)
+        {
+            byte anim = 0;
+            int x = 0;
+            int y = 0;
+            int spritenum = 0;
+            int spriteleft = 0;
+            int attackspeed = 0;
+            byte attackSprite;
+            Rectangle srcrec = new Rectangle();
+
+            spritenum = C_Player.GetPlayerSprite(index);
+
+            attackSprite = 0;
+
+            if (spritenum < 1 || spritenum > NumCharacters)
+            {
+                return;
+            }
+
+            // speed from weapon
+            if (C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon) > 0)
+            {
+                attackspeed = Types.Item[C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon)].Speed;
+            }
+            else
+            {
+                attackspeed = 1000;
+            }
+
+            // Reset frame
+            anim = 0;
+
+            // Check for attacking animation
+            if (C_Types.Player[index].AttackTimer + ((double)attackspeed / 2) > C_General.GetTickCount())
+            {
+                if (C_Types.Player[index].Attacking == 1)
+                {
+                    if (attackSprite == 1)
+                    {
+                        anim = 4;
+                    }
+                    else
+                    {
+                        anim = 3;
+                    }
+                }
+            }
+            else
+            {
+                // If not attacking, walk normally
+                switch (C_Player.GetPlayerDir(index))
+                {
+                    case (int)Enums.DirectionType.Up:
+                    case (int)Enums.DirectionType.UpLeft:
+                    case (int)Enums.DirectionType.UpRight:
+
+                        if (C_Types.Player[index].YOffset > 8)
+                        {
                             anim = C_Types.Player[index].Steps;
-						}
-						break;
-					case (int) Enums.DirectionType.Down:
-					case (int) Enums.DirectionType.DownLeft:
-					case (int) Enums.DirectionType.DownRight:
-						
-						if (C_Types.Player[index].YOffset < -8)
-						{
-							anim = C_Types.Player[index].Steps;
-						}
-						break;
-					case (int) Enums.DirectionType.Left:
-						
-						if (C_Types.Player[index].XOffset > 8)
-						{
-							anim = C_Types.Player[index].Steps;
-						}
-						break;
-					case (int) Enums.DirectionType.Right:
-						
-						if (C_Types.Player[index].XOffset < -8)
-						{
-							anim = C_Types.Player[index].Steps;
-						}
-						break;
-				}
-				
-			}
-			
-			// Check to see if we want to stop making him attack
-			if (C_Types.Player[index].AttackTimer + attackspeed < C_General.GetTickCount())
-			{
+                        }
+                        break;
+                    case (int)Enums.DirectionType.Down:
+                    case (int)Enums.DirectionType.DownLeft:
+                    case (int)Enums.DirectionType.DownRight:
+
+                        if (C_Types.Player[index].YOffset < -8)
+                        {
+                            anim = C_Types.Player[index].Steps;
+                        }
+                        break;
+                    case (int)Enums.DirectionType.Left:
+
+                        if (C_Types.Player[index].XOffset > 8)
+                        {
+                            anim = C_Types.Player[index].Steps;
+                        }
+                        break;
+                    case (int)Enums.DirectionType.Right:
+
+                        if (C_Types.Player[index].XOffset < -8)
+                        {
+                            anim = C_Types.Player[index].Steps;
+                        }
+                        break;
+                }
+
+            }
+
+            // Check to see if we want to stop making him attack
+            if (C_Types.Player[index].AttackTimer + attackspeed < C_General.GetTickCount())
+            {
                 C_Types.Player[index].Attacking = 0;
                 C_Types.Player[index].AttackTimer = 0;
-			}
-			
-			
-			// Set the left
-			switch (C_Player.GetPlayerDir(index))
-			{
-				case (int) Enums.DirectionType.Up:
-				case (int) Enums.DirectionType.UpLeft:
-				case (int) Enums.DirectionType.UpRight:
-					spriteleft = 3;
-					break;
-				case (int) Enums.DirectionType.Right:
-					spriteleft = 2;
-					break;
-				case (int) Enums.DirectionType.Down:
-				case (int) Enums.DirectionType.DownLeft:
-				case (int) Enums.DirectionType.DownRight:
-					spriteleft = 0;
-					break;
-				case (int) Enums.DirectionType.Left:
-					spriteleft = 1;
-					break;
-			}
-			
-			if (attackSprite == 1)
-			{
-				srcrec = new Rectangle((int)((anim) * ((double) CharacterGfxInfo[spritenum].Width / 5)), (int)(spriteleft * ((double) CharacterGfxInfo[spritenum].Height / 4)), (int)((double) CharacterGfxInfo[spritenum].Width / 5), (int)((double) CharacterGfxInfo[spritenum].Height / 4));
-			}
-			else
-			{
-				srcrec = new Rectangle((int)((anim) * ((double) CharacterGfxInfo[spritenum].Width / 4)), (int)(spriteleft * ((double) CharacterGfxInfo[spritenum].Height / 4)), (int)((double) CharacterGfxInfo[spritenum].Width / 4), (int)((double) CharacterGfxInfo[spritenum].Height / 4));
-			}
-			
-			// Calculate the X
-			if (attackSprite == 1)
-			{
-				x = ((C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset) - ((CharacterGfxInfo[spritenum].Width / 5 - 32) / 2);
-			}
-			else
-			{
-				x = ((C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset) - ((CharacterGfxInfo[spritenum].Width / 4 - 32) / 2);
-			}
-			
-			// Is the player's height more than 32..
-			if ((CharacterGfxInfo[spritenum].Height) > 32)
-			{
-				// Create a 32 pixel offset for larger sprites
-				y = (C_Player.GetPlayerY(index) * C_Constants.PicY + C_Types.Player[index].YOffset) - ((CharacterGfxInfo[spritenum].Height / 4) - 32);
-			}
-			else
-			{
-				// Proceed as normal
-				y = C_Player.GetPlayerY(index) * C_Constants.PicY + C_Types.Player[index].YOffset;
-			}
-			
-			// render the actual sprite
-			DrawCharacter(spritenum, x, y, srcrec);
-			
-			//check for paperdolling
-			for (var i = 1; i <= (int) Enums.EquipmentType.Count - 1; i++)
-			{
-				if (C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i) > 0)
-				{
-					if (Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll > 0)
-					{
-						DrawPaperdoll(x, y, Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll, anim, spriteleft);
-					}
-				}
-			}
-			
-			// Check to see if we want to stop showing emote
-			if (C_Types.Player[index].EmoteTimer < C_General.GetTickCount())
-			{
+            }
+
+
+            // Set the left
+            switch (C_Player.GetPlayerDir(index))
+            {
+                case (int)Enums.DirectionType.Up:
+                case (int)Enums.DirectionType.UpLeft:
+                case (int)Enums.DirectionType.UpRight:
+                    spriteleft = 3;
+                    break;
+                case (int)Enums.DirectionType.Right:
+                    spriteleft = 2;
+                    break;
+                case (int)Enums.DirectionType.Down:
+                case (int)Enums.DirectionType.DownLeft:
+                case (int)Enums.DirectionType.DownRight:
+                    spriteleft = 0;
+                    break;
+                case (int)Enums.DirectionType.Left:
+                    spriteleft = 1;
+                    break;
+            }
+
+            if (attackSprite == 1)
+            {
+                srcrec = new Rectangle((int)((anim) * ((double)CharacterGfxInfo[spritenum].Width / 5)), (int)(spriteleft * ((double)CharacterGfxInfo[spritenum].Height / 4)), (int)((double)CharacterGfxInfo[spritenum].Width / 5), (int)((double)CharacterGfxInfo[spritenum].Height / 4));
+            }
+            else
+            {
+                srcrec = new Rectangle((int)((anim) * ((double)CharacterGfxInfo[spritenum].Width / 4)), (int)(spriteleft * ((double)CharacterGfxInfo[spritenum].Height / 4)), (int)((double)CharacterGfxInfo[spritenum].Width / 4), (int)((double)CharacterGfxInfo[spritenum].Height / 4));
+            }
+
+            // Calculate the X
+            if (attackSprite == 1)
+            {
+                x = ((C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset) - ((CharacterGfxInfo[spritenum].Width / 5 - 32) / 2);
+            }
+            else
+            {
+                x = ((C_Player.GetPlayerX(index) * C_Constants.PicX) + C_Types.Player[index].XOffset) - ((CharacterGfxInfo[spritenum].Width / 4 - 32) / 2);
+            }
+
+            // Is the player's height more than 32..
+            if ((CharacterGfxInfo[spritenum].Height) > 32)
+            {
+                // Create a 32 pixel offset for larger sprites
+                y = (C_Player.GetPlayerY(index) * C_Constants.PicY + C_Types.Player[index].YOffset) - ((CharacterGfxInfo[spritenum].Height / 4) - 32);
+            }
+            else
+            {
+                // Proceed as normal
+                y = C_Player.GetPlayerY(index) * C_Constants.PicY + C_Types.Player[index].YOffset;
+            }
+
+            // render the actual sprite
+            DrawCharacter(spritenum, x, y, srcrec);
+
+            //check for paperdolling
+            for (var i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
+            {
+                if (C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i) > 0)
+                {
+                    if (Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll > 0)
+                    {
+                        DrawPaperdoll(x, y, Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll, anim, spriteleft);
+                    }
+                }
+            }
+
+            // Check to see if we want to stop showing emote
+            if (C_Types.Player[index].EmoteTimer < C_General.GetTickCount())
+            {
                 C_Types.Player[index].Emote = 0;
                 C_Types.Player[index].EmoteTimer = 0;
-			}
-			
-			//check for emotes
-			//Player(Index).Emote = 4
-			if (C_Types.Player[index].Emote > 0)
-			{
-				DrawEmotes(x, y, C_Types.Player[index].Emote);
-			}
-		}
-		
-		internal static void DrawPaperdoll(int x2, int y2, int sprite, int anim, int spritetop)
-		{
-			if (sprite < 1 || sprite > NumPaperdolls)
-			{
-				return;
-			}
-            
+            }
+
+            //check for emotes
+            //Player(Index).Emote = 4
+            if (C_Types.Player[index].Emote > 0)
+            {
+                DrawEmotes(x, y, C_Types.Player[index].Emote);
+            }
+        }
+
+        internal static void DrawPaperdoll(int x2, int y2, int sprite, int anim, int spritetop)
+        {
+            if (sprite < 1 || sprite > NumPaperdolls)
+            {
+                return;
+            }
+
             Rectangle rec = new Rectangle();
             int x = 0;
             int y = 0;
@@ -1430,52 +1430,52 @@ namespace Engine
             int height;
 
             if (PaperDollGfxInfo[sprite].IsLoaded == false)
-			{
-				LoadTexture(sprite, 3);
-			}
+            {
+                LoadTexture(sprite, 3);
+            }
 
             // we use it, lets update timer
             PaperDollGfxInfo[sprite].TextureTimer = C_General.GetTickCount() + 100000;
-			
-			rec.Y = (int)(spritetop * ((double) PaperDollGfxInfo[sprite].Height / 4));
-			rec.Height = (int)((double) PaperDollGfxInfo[sprite].Height / 4);
-			rec.X = (int)(anim * ((double) PaperDollGfxInfo[sprite].Width / 4));
-			rec.Width = (int)((double) PaperDollGfxInfo[sprite].Width / 4);
-			
-			x = ConvertMapX(x2);
-			y = ConvertMapY(y2);
-			width = rec.Right - rec.Left;
-			height = rec.Bottom - rec.Top;
-			
-			RenderSprite(PaperDollSprite[sprite], GameWindow, x, y, rec.X, rec.Y, rec.Width, rec.Height);
-			
-		}
-		
-		internal static void DrawNpc(int mapNpcNum)
-		{
-			if (C_Maps.MapNpc[mapNpcNum].Num == 0)
-			{
-				return; // no npc set
-			}
-			
-			if (C_Maps.MapNpc[mapNpcNum].X < C_Variables.TileView.Left || C_Maps.MapNpc[mapNpcNum].X > C_Variables.TileView.Right)
-			{
-				return;
-			}
 
-			if (C_Maps.MapNpc[mapNpcNum].Y < C_Variables.TileView.Top || C_Maps.MapNpc[mapNpcNum].Y > C_Variables.TileView.Bottom)
-			{
-				return;
-			}
-            
+            rec.Y = (int)(spritetop * ((double)PaperDollGfxInfo[sprite].Height / 4));
+            rec.Height = (int)((double)PaperDollGfxInfo[sprite].Height / 4);
+            rec.X = (int)(anim * ((double)PaperDollGfxInfo[sprite].Width / 4));
+            rec.Width = (int)((double)PaperDollGfxInfo[sprite].Width / 4);
+
+            x = ConvertMapX(x2);
+            y = ConvertMapY(y2);
+            width = rec.Right - rec.Left;
+            height = rec.Bottom - rec.Top;
+
+            RenderSprite(PaperDollSprite[sprite], GameWindow, x, y, rec.X, rec.Y, rec.Width, rec.Height);
+
+        }
+
+        internal static void DrawNpc(int mapNpcNum)
+        {
+            if (C_Maps.MapNpc[mapNpcNum].Num == 0)
+            {
+                return; // no npc set
+            }
+
+            if (C_Maps.MapNpc[mapNpcNum].X < C_Variables.TileView.Left || C_Maps.MapNpc[mapNpcNum].X > C_Variables.TileView.Right)
+            {
+                return;
+            }
+
+            if (C_Maps.MapNpc[mapNpcNum].Y < C_Variables.TileView.Top || C_Maps.MapNpc[mapNpcNum].Y > C_Variables.TileView.Bottom)
+            {
+                return;
+            }
+
             int sprite = 0;
 
             sprite = Types.Npc[C_Maps.MapNpc[mapNpcNum].Num].Sprite;
-			
-			if (sprite < 1 || sprite > NumCharacters)
-			{
-				return;
-			}
+
+            if (sprite < 1 || sprite > NumCharacters)
+            {
+                return;
+            }
 
             byte anim = 0;
             int x = 0;
@@ -1486,60 +1486,61 @@ namespace Engine
             int attackspeed = 0;
 
             attackspeed = 1000;
-			
-			// Reset frame
-			anim = 0;
-			
-			// Check for attacking animation
-			if (C_Maps.MapNpc[mapNpcNum].AttackTimer + ((double) attackspeed / 2) > C_General.GetTickCount())
-			{
-				if (C_Maps.MapNpc[mapNpcNum].Attacking == 1)
-				{
-					anim = (byte) 3;
-				}
-			}
-			else
-			{
-				// If not attacking, walk normally
-				if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Up)
-				{
-					if (C_Maps.MapNpc[mapNpcNum].YOffset > 8)
-					{
-						anim = (byte) (C_Maps.MapNpc[mapNpcNum].Steps);
-					}
-				}
-				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down)
-				{
-					if (C_Maps.MapNpc[mapNpcNum].YOffset < -8)
-					{
-						anim = (byte) (C_Maps.MapNpc[mapNpcNum].Steps);
-					}
-				}
-				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Left)
-				{
-					if (C_Maps.MapNpc[mapNpcNum].XOffset > 8)
-					{
-						anim = (byte) (C_Maps.MapNpc[mapNpcNum].Steps);
-					}
-				}
-				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Right)
-				{
-					if (C_Maps.MapNpc[mapNpcNum].XOffset < -8)
-					{
-						anim = (byte) (C_Maps.MapNpc[mapNpcNum].Steps);
-					}
-				}
-			}
-			
-			// Check to see if we want to stop making him attack
-			if ((C_Maps.MapNpc[mapNpcNum].AttackTimer + attackspeed) < C_General.GetTickCount())
-			{
+
+            // Reset frame
+            anim = 0;
+
+            // Check for attacking animation
+            if (C_Maps.MapNpc[mapNpcNum].AttackTimer + ((double)attackspeed / 2) > C_General.GetTickCount())
+            {
+                if (C_Maps.MapNpc[mapNpcNum].Attacking == 1)
+                {
+                    anim = (byte)3;
+                }
+            }
+            else
+            {
+                // If not attacking, walk normally
+                if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Up || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpLeft || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpRight)
+                {
+                    if (C_Maps.MapNpc[mapNpcNum].YOffset > 8)
+                    {
+                        anim = (byte)(C_Maps.MapNpc[mapNpcNum].Steps);
+                    }
+                }
+                else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownLeft || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownRight)
+                {
+                    if (C_Maps.MapNpc[mapNpcNum].YOffset < -8)
+                    {
+                        anim = (byte)(C_Maps.MapNpc[mapNpcNum].Steps);
+                    }
+                }
+                else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Left)
+                {
+                    if (C_Maps.MapNpc[mapNpcNum].XOffset > 8)
+                    {
+                        anim = (byte)(C_Maps.MapNpc[mapNpcNum].Steps);
+                    }
+                }
+                else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Right)
+                {
+                    if (C_Maps.MapNpc[mapNpcNum].XOffset < -8)
+                    {
+                        anim = (byte)(C_Maps.MapNpc[mapNpcNum].Steps);
+                    }
+                }
+            }
+
+            // Check to see if we want to stop making him attack
+            if ((C_Maps.MapNpc[mapNpcNum].AttackTimer + attackspeed) < C_General.GetTickCount())
+            {
                 C_Maps.MapNpc[mapNpcNum].Attacking = 0;
                 C_Maps.MapNpc[mapNpcNum].AttackTimer = 0;
-			}
-			
-			// Set the left
-			if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Up)
+            }
+
+            // Set the left
+            // 8 Directional Movement
+            if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Up || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpLeft || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpRight)
 			{
 				spriteleft = 3;
 			}
@@ -1547,7 +1548,7 @@ namespace Engine
 			{
 				spriteleft = 2;
 			}
-			else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down)
+			else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownLeft || C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownRight)
 			{
 				spriteleft = 0;
 			}

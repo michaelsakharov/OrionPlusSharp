@@ -581,7 +581,7 @@ namespace Engine
 				
 				if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Up)
 				{
-					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].YOffset = (C_Maps.MapNpc[mapNpcNum].YOffset - C_Constants.WalkSpeed);
 					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].YOffset = 0;
@@ -589,7 +589,7 @@ namespace Engine
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Down)
 				{
-					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].YOffset = (C_Maps.MapNpc[mapNpcNum].YOffset + C_Constants.WalkSpeed);
 					if (C_Maps.MapNpc[mapNpcNum].YOffset > 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].YOffset = 0;
@@ -597,7 +597,7 @@ namespace Engine
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Left)
 				{
-					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].XOffset = (C_Maps.MapNpc[mapNpcNum].XOffset - C_Constants.WalkSpeed);
 					if (C_Maps.MapNpc[mapNpcNum].XOffset < 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].XOffset = 0;
@@ -605,7 +605,7 @@ namespace Engine
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.Right)
 				{
-					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].XOffset = (C_Maps.MapNpc[mapNpcNum].XOffset + C_Constants.WalkSpeed);
 					if (C_Maps.MapNpc[mapNpcNum].XOffset > 0)
 					{
 						C_Maps.MapNpc[mapNpcNum].XOffset = 0;
@@ -616,31 +616,31 @@ namespace Engine
 
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpLeft)
 				{
-					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].YOffset = (C_Maps.MapNpc[mapNpcNum].YOffset - (int)(C_Constants.WalkSpeed / 1.2f));
 					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
-					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].XOffset = (C_Maps.MapNpc[mapNpcNum].XOffset - (int)(C_Constants.WalkSpeed / 1.2f));
 					if (C_Maps.MapNpc[mapNpcNum].XOffset < 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.UpRight)
 				{
-					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
-					if (C_Maps.MapNpc[mapNpcNum].YOffset > 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
-					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].YOffset = (C_Maps.MapNpc[mapNpcNum].YOffset - (int)(C_Constants.WalkSpeed / 1.2f));
+					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+					C_Maps.MapNpc[mapNpcNum].XOffset = (C_Maps.MapNpc[mapNpcNum].XOffset + (int)(C_Constants.WalkSpeed / 1.2f));
 					if (C_Maps.MapNpc[mapNpcNum].XOffset > 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownLeft)
 				{
-					C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+					C_Maps.MapNpc[mapNpcNum].XOffset = (C_Maps.MapNpc[mapNpcNum].XOffset - (int)(C_Constants.WalkSpeed / 1.2f));
 					if (C_Maps.MapNpc[mapNpcNum].XOffset < 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
-					C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
-					if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+					C_Maps.MapNpc[mapNpcNum].YOffset = (C_Maps.MapNpc[mapNpcNum].YOffset + (int)(C_Constants.WalkSpeed / 1.2f));
+					if (C_Maps.MapNpc[mapNpcNum].YOffset > 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
 				}
 				else if (C_Maps.MapNpc[mapNpcNum].Dir == (byte)Enums.DirectionType.DownRight)
                 {
-                    C_Maps.MapNpc[mapNpcNum].XOffset = (int)(C_Maps.MapNpc[mapNpcNum].XOffset + (((double)C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
-                    if (C_Maps.MapNpc[mapNpcNum].XOffset < 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
-                    C_Maps.MapNpc[mapNpcNum].YOffset = (int)(C_Maps.MapNpc[mapNpcNum].YOffset + (((double)C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
-                    if (C_Maps.MapNpc[mapNpcNum].YOffset < 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
+                    C_Maps.MapNpc[mapNpcNum].XOffset = (C_Maps.MapNpc[mapNpcNum].XOffset + (int)(C_Constants.WalkSpeed / 1.2f));
+                    if (C_Maps.MapNpc[mapNpcNum].XOffset > 0) { C_Maps.MapNpc[mapNpcNum].XOffset = 0; }
+                    C_Maps.MapNpc[mapNpcNum].YOffset = (C_Maps.MapNpc[mapNpcNum].YOffset + (int)(C_Constants.WalkSpeed / 1.2f));
+                    if (C_Maps.MapNpc[mapNpcNum].YOffset > 0) { C_Maps.MapNpc[mapNpcNum].YOffset = 0; }
                 }
 				
 				// Check if completed walking over to the next tile

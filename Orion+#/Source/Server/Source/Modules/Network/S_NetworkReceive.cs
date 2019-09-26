@@ -745,7 +745,6 @@ namespace Engine
             S_Players.PlayerMove(index, Dir, movement, false);
 
             S_General.AddDebug(" Player: " + S_Players.GetPlayerName(index) + " : " + " X: " + tmpX + " Y: " + tmpY + " Dir: " + Dir + " Movement: " + movement);
-           Console.WriteLine(" Player: " + S_Players.GetPlayerName(index) + " : " + " X: " + tmpX + " Y: " + tmpY + " Dir: " + Dir + " Movement: " + movement);
 
             buffer.Dispose();
         }

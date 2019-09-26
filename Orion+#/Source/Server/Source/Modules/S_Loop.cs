@@ -584,7 +584,7 @@ namespace Engine
                                                     i = (int)(VBMath.Rnd() * 4);
                                                     if (i == 1)
                                                     {
-                                                        i = (int)(VBMath.Rnd() * 4);
+                                                        i = (int)(VBMath.Rnd() * 8);
 
                                                         if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
                                                             S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);
@@ -600,7 +600,7 @@ namespace Engine
 
                                             if (i == 1)
                                             {
-                                                i = (int)(VBMath.Rnd() * 4);
+                                                i = (int)(VBMath.Rnd() * 8);
 
                                                 if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
                                                     S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);

@@ -627,7 +627,7 @@ namespace Engine
                         S_NetworkConfig.SendDataToMap(mapNum, ref buffer.Data, buffer.Head);
                         break;
                     }
-
+                    // 8 Directional Movement
                 case (int)Enums.DirectionType.UpLeft:
                     {
                         modTypes.MapNpc[mapNum].Npc[MapNpcNum].X = (byte)(modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1);
