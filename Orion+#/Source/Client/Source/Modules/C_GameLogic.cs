@@ -291,7 +291,7 @@ namespace Engine
 					// check if we need to unlock the player's skill casting restriction
 					if (C_Variables.SkillBuffer > 0)
 					{
-						if (C_Variables.SkillBufferTimer + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 1000) < tick)
+						if (C_Variables.SkillBufferTimer + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 100) < tick)
 						{
 							C_Variables.SkillBuffer = 0;
 							C_Variables.SkillBufferTimer = 0;
@@ -300,7 +300,7 @@ namespace Engine
 					// check if we need to unlock the pets's spell casting restriction
 					if (C_Pets.PetSkillBuffer > 0)
 					{
-						if (C_Pets.PetSkillBufferTimer + (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 1000) < tick)
+						if (C_Pets.PetSkillBufferTimer + (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 100) < tick)
 						{
 							C_Pets.PetSkillBuffer = 0;
 							C_Pets.PetSkillBufferTimer = 0;

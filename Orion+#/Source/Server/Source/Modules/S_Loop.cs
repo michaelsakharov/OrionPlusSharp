@@ -55,7 +55,7 @@ namespace Engine
                         {
                             // Check if any of our players has completed casting and get their skill going if they have.
                             var playerskills = (from p in onlinePlayers
-                                                where p.Player.SkillBuffer > 0 && S_General.GetTimeMs() > (p.Player.SkillBufferTimer + Types.Skill[p.Player.SkillBuffer].CastTime * 1000)
+                                                where p.Player.SkillBuffer > 0 && S_General.GetTimeMs() > (p.Player.SkillBufferTimer + Types.Skill[p.Player.SkillBuffer].CastTime * 100)
                                                 select new { p.Index, Success = HandleCastSkill(p.Index) }).ToArray();
 
 
@@ -66,7 +66,7 @@ namespace Engine
 
                             // Check if any of our pets has completed casting and get their skill going if they have.
                             var petskills = (from p in onlinePlayers
-                                             where modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.Player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Skill[p.Player.PetskillBuffer.Skill]].CastTime * 1000)
+                                             where modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.Player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Skill[p.Player.PetskillBuffer.Skill]].CastTime * 100)
                                              select new { p.Index, Success = HandlePetSkill(p.Index) }).ToArray();
 
                             // Check if we need to clear any of our pets from being stunned.
@@ -371,7 +371,7 @@ namespace Engine
                         // check if they've completed casting, and if so set the actual skill going
                         if (modTypes.MapNpc[mapNum].Npc[x].SkillBuffer > 0 && modTypes.Map[mapNum].Npc[x] > 0 && modTypes.MapNpc[mapNum].Npc[x].Num > 0)
                         {
-                            if (S_General.GetTimeMs() > modTypes.MapNpc[mapNum].Npc[x].SkillBufferTimer + (Types.Skill[Types.Npc[npcNum].Skill[modTypes.MapNpc[mapNum].Npc[x].SkillBuffer]].CastTime * 1000))
+                            if (S_General.GetTimeMs() > modTypes.MapNpc[mapNum].Npc[x].SkillBufferTimer + (Types.Skill[Types.Npc[npcNum].Skill[modTypes.MapNpc[mapNum].Npc[x].SkillBuffer]].CastTime * 100))
                             {
                                 CastNpcSkill(x, mapNum, modTypes.MapNpc[mapNum].Npc[x].SkillBuffer);
                                 modTypes.MapNpc[mapNum].Npc[x].SkillBuffer = 0;

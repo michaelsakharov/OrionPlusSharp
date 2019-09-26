@@ -2567,7 +2567,7 @@ namespace Engine
 					Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime = 1;
 				}
 				// calculate the width to fill
-				barWidth = (int)((double) (C_General.GetTickCount() - C_Variables.SkillBufferTimer) / ((C_General.GetTickCount() - C_Variables.SkillBufferTimer) + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 1000)) * 64);
+				barWidth = (int)((double) (C_General.GetTickCount() - C_Variables.SkillBufferTimer) / ((C_General.GetTickCount() - C_Variables.SkillBufferTimer) + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 100)) * 64);
 				// draw bars
 				rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 				RectangleShape rectShape = new RectangleShape(new Vector2f(barWidth, 4)) {
@@ -2653,7 +2653,7 @@ namespace Engine
 					tmpY = C_Types.Player[C_Variables.Myindex].Pet.Y * C_Constants.PicY + C_Types.Player[C_Variables.Myindex].Pet.YOffset + 35;
 					
 					// calculate the width to fill
-					barWidth = (int)((double) (C_General.GetTickCount() - C_Pets.PetSkillBufferTimer) / (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 1000) * 64);
+					barWidth = (int)((double) (C_General.GetTickCount() - C_Pets.PetSkillBufferTimer) / (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 100) * 64);
 					// draw bar background
 					rec[1] = new Rectangle(ConvertMapX(tmpX), ConvertMapY(tmpY), barWidth, 4);
 					RectangleShape rectShape = new RectangleShape(new Vector2f(barWidth, 4)) {
