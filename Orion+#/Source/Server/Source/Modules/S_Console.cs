@@ -44,6 +44,7 @@ namespace Engine
                             Console.WriteLine("/setadmin, Sets player access level, usage '/setadmin playername powerlvl' powerlevel goes from 0 for player, to 4 to creator.");
                             Console.WriteLine("/kick, Kicks user from server, usage '/kick playername'");
                             Console.WriteLine("/ban, Bans user from server, usage '/ban playername'");
+                            Console.WriteLine("/maintenance, Toggles maintenance mode");
                             Console.WriteLine("/timespeed, Set Game Speed, usage  '/timespeed speed'");
                             Console.WriteLine("/ip, View the ip of the server");
                             Console.WriteLine("/say, Send a global message for everyone to see, usage '/say message'");
@@ -201,6 +202,15 @@ namespace Engine
                             else
                                 modDatabase.ServerBanIndex(Pindex);
                             
+                            Console.ResetColor();
+                            break;
+                        }
+
+                    case "maintenance":
+                        {
+                            S_General.isInMaintenance = !S_General.isInMaintenance;
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Maintenance is now " + S_General.isInMaintenance);
                             Console.ResetColor();
                             break;
                         }

@@ -230,6 +230,15 @@ namespace Engine
                     }
                 }
 
+                if (S_General.isInMaintenance)
+                {
+                    if (S_Players.GetPlayerAccess(index) < 1)
+                    {
+                        S_NetworkSend.AlertMsg(index, "Server is under Maintenance!");
+                        return;
+                    }
+                }
+
                 // banned ip?
 
                 // Cut off last portion of ip
@@ -374,6 +383,16 @@ namespace Engine
 
                     // Load the player
                     modDatabase.LoadPlayer(index, Name);
+
+                    if (S_General.isInMaintenance)
+                    {
+                        if (S_Players.GetPlayerAccess(index) < 1)
+                        {
+                            S_NetworkSend.AlertMsg(index, "Server is under Maintenance!");
+                            return;
+                        }
+                    }
+
                     modDatabase.ClearBank(index);
                     modDatabase.LoadBank(index, Name);
 

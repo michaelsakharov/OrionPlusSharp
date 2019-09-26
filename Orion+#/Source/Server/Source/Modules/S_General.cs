@@ -28,6 +28,8 @@ namespace Engine
         internal static Stopwatch shutDownTimer;
         internal static int shutDownLastTimer;
 
+        public static bool isInMaintenance = false;
+
         internal static int GetTimeMs()
         {
             return (int)myStopWatch.ElapsedMilliseconds;
