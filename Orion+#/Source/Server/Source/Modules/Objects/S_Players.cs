@@ -3602,7 +3602,7 @@ namespace Engine
             S_NetworkSend.SendLoadCharOk(index);
 
             // Set some data related to housing instances.
-            if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse == 1)
+            if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse == 1 || modTypes.Map[modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map].Instanced == 1 || modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Map == 501)
             {
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].InHouse = 0;
                 modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].X = (byte)modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].LastX;

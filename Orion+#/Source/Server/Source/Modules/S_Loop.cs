@@ -56,28 +56,28 @@ namespace Engine
                             // Check if any of our players has completed casting and get their skill going if they have.
                             var playerskills = (from p in onlinePlayers
                                                 where p.Player.SkillBuffer > 0 && S_General.GetTimeMs() > (p.Player.SkillBufferTimer + Types.Skill[p.Player.SkillBuffer].CastTime * 100)
-                                                select new { p.Index, Success = HandleCastSkill(p.Index) }).ToArray();
+                                                select new { p.Index, Success = HandleCastSkill(p.Index) });
 
 
                             // Check if we need to clear any of our players from being stunned.
                             var playerstuns = (from p in onlinePlayers
                                                where p.Player.StunDuration > 0 && p.Player.StunTimer > (p.Player.StunDuration * 1000)
-                                               select new { p.Index, Success = HandleClearStun(p.Index) }).ToArray();
+                                               select new { p.Index, Success = HandleClearStun(p.Index) });
 
                             // Check if any of our pets has completed casting and get their skill going if they have.
                             var petskills = (from p in onlinePlayers
                                              where modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Alive == 1 && modTypes.TempPlayer[p.Index].PetskillBuffer.Skill > 0 && S_General.GetTimeMs() > p.Player.PetskillBuffer.Timer + (Types.Skill[modTypes.Player[p.Index].Character[p.Player.CurChar].Pet.Skill[p.Player.PetskillBuffer.Skill]].CastTime * 100)
-                                             select new { p.Index, Success = HandlePetSkill(p.Index) }).ToArray();
+                                             select new { p.Index, Success = HandlePetSkill(p.Index) });
 
                             // Check if we need to clear any of our pets from being stunned.
                             var petstuns = (from p in onlinePlayers
                                             where p.Player.PetStunDuration > 0 && p.Player.PetStunTimer > (p.Player.PetStunDuration * 1000)
-                                            select new { p.Index, Success = HandleClearPetStun(p.Index) }).ToArray();
+                                            select new { p.Index, Success = HandleClearPetStun(p.Index) });
 
                             // check pet regen timer
                             var petregen = (from p in onlinePlayers
                                             where p.Player.PetstopRegen == true && p.Player.PetstopRegenTimer + 5000 < S_General.GetTimeMs()
-                                            select new { p.Index, Success = HandleStopPetRegen(p.Index) }).ToArray();
+                                            select new { p.Index, Success = HandleStopPetRegen(p.Index) });
                         }
                         // HoT and DoT logic
                         // For x = 1 To MAX_DOTS
@@ -99,7 +99,7 @@ namespace Engine
                             // Handle our player crafting
                             var playercrafts = (from p in onlinePlayers
                                                 where S_General.GetTimeMs() > p.Player.CraftTimer + (p.Player.CraftTimeNeeded * 1000) && p.Player.CraftIt == 1
-                                                select new { p.Index, Success = HandlePlayerCraft(p.Index) }).ToArray();
+                                                select new { p.Index, Success = HandlePlayerCraft(p.Index) });
                         }
                         Time.Instance.Tick();
                     
@@ -114,7 +114,7 @@ namespace Engine
                             // Handle player housing timers.
                             var playerhousing = (from p in onlinePlayers
                                                  where modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse > 0 && S_NetworkConfig.IsPlaying(modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse) && modTypes.Player[modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse].Character[p.Player.CurChar].InHouse != modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse
-                                                 select new { p.Index, Success = HandlePlayerHouse(p.Index) }).ToArray();
+                                                 select new { p.Index, Success = HandlePlayerHouse(p.Index) });
                         }
                         // Move the timer up 500ms.
                         tmr500 = S_General.GetTimeMs() + 500;
