@@ -212,9 +212,9 @@ namespace Engine
             this.DarkLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DarkLabel15.Location = new System.Drawing.Point(226, 16);
             this.DarkLabel15.Name = "DarkLabel15";
-            this.DarkLabel15.Size = new System.Drawing.Size(35, 13);
+            this.DarkLabel15.Size = new System.Drawing.Size(42, 13);
             this.DarkLabel15.TabIndex = 4;
-            this.DarkLabel15.Text = "Start :";
+            this.DarkLabel15.Text = "Start Y:";
             // 
             // nudStartX
             // 
