@@ -457,7 +457,7 @@ namespace Engine
                 // Check to see if they are trying to go out of bounds
                 if (GetPlayerY(C_Variables.Myindex) > 0 && GetPlayerX(C_Variables.Myindex) > 0)
                 {
-                    if (CheckDirection((byte)Enums.DirectionType.Up))
+                    if (CheckDirection((byte)Enums.DirectionType.UpLeft))
                     {
                         returnValue = false;
 
@@ -493,7 +493,7 @@ namespace Engine
                 // Check to see if they are trying to go out of bounds
                 if (GetPlayerY(C_Variables.Myindex) > 0 && GetPlayerX(C_Variables.Myindex) < C_Maps.Map.MaxX)
                 {
-                    if (CheckDirection((byte)Enums.DirectionType.Up))
+                    if (CheckDirection((byte)Enums.DirectionType.UpRight))
                     {
                         returnValue = false;
 
@@ -529,7 +529,7 @@ namespace Engine
                 // Check to see if they are trying to go out of bounds
                 if (GetPlayerY(C_Variables.Myindex) < C_Maps.Map.MaxY && GetPlayerX(C_Variables.Myindex) > 0)
                 {
-                    if (CheckDirection((byte)Enums.DirectionType.Down))
+                    if (CheckDirection((byte)Enums.DirectionType.DownLeft))
                     {
                         returnValue = false;
 
@@ -565,7 +565,7 @@ namespace Engine
                 // Check to see if they are trying to go out of bounds
                 if (GetPlayerY(C_Variables.Myindex) < C_Maps.Map.MaxY && GetPlayerX(C_Variables.Myindex) < C_Maps.Map.MaxX)
                 {
-                    if (CheckDirection((byte)Enums.DirectionType.Down))
+                    if (CheckDirection((byte)Enums.DirectionType.DownRight))
                     {
                         returnValue = false;
 
@@ -819,27 +819,27 @@ namespace Engine
 
                 // 8 directional movement
 				case (int) Enums.DirectionType.UpLeft:
-					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset - movementSpeed;
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset - (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].YOffset < 0) { C_Types.Player[index].YOffset = 0; }
-					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset - movementSpeed;
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset - (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].XOffset < 0) { C_Types.Player[index].XOffset = 0; }
 					break;
 				case (int) Enums.DirectionType.UpRight:
-					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset - movementSpeed;
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset - (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].YOffset < 0) { C_Types.Player[index].YOffset = 0; }
-					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset + movementSpeed;
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset + (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].XOffset > 0) { C_Types.Player[index].XOffset = 0; }
 					break;
 				case (int) Enums.DirectionType.DownLeft:
-					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset - movementSpeed;
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset - (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].XOffset < 0) { C_Types.Player[index].XOffset = 0; }
-					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset + movementSpeed;
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset + (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].YOffset > 0) { C_Types.Player[index].YOffset = 0; }
 					break;
 				case (int) Enums.DirectionType.DownRight:
-					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset + movementSpeed;
+					C_Types.Player[index].XOffset = C_Types.Player[index].XOffset + (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].XOffset > 0) { C_Types.Player[index].XOffset = 0; }
-					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset + movementSpeed;
+					C_Types.Player[index].YOffset = C_Types.Player[index].YOffset + (int)(movementSpeed / 1.2f);
 					if (C_Types.Player[index].YOffset > 0) { C_Types.Player[index].YOffset = 0; }
 					break;
 			}

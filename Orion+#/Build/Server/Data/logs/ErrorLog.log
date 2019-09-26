@@ -15,3 +15,31 @@ System.ObjectDisposedException(0x80131622): Safe handle has been closed
    at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
    at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
 
+27/09/2019 12:58:10 AM
+System.NullReferenceException(0x80004003): Object reference not set to an instance of an object.
+   at Engine.modDatabase.ClearBank(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\S_Database.cs:line 1448
+   at Engine.S_Players.LeftGame(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 3725
+   at Engine.S_NetworkConfig.Socket_ConnectionLost(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkConfig.cs:line 167
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Net.ContextAwareResult.CaptureOrComplete(ExecutionContext& cachedContext, Boolean returnContext)
+   at System.Net.ContextAwareResult.FinishPostingAsyncOp()
+   at System.Net.Sockets.Socket.BeginDisconnect(Boolean reuseSocket, AsyncCallback callback, Object state)
+   at ASFW.Network.Server.Disconnect(Int32 index)
+   at Engine.S_Players.LeftGame(Int32 index) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Objects\S_Players.cs:line 3727
+   at Engine.S_NetworkReceive.Packet_QuitGame(Int32 index, Byte[]& data) in C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\Source\Modules\Network\S_NetworkReceive.cs:line 1926
+   at ASFW.Network.Server.PacketHandler(ReceiveState& so)
+   at ASFW.Network.Server.DoReceive(IAsyncResult ar)
+   at System.Net.LazyAsyncResult.Complete(IntPtr userToken)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Net.ContextAwareResult.Complete(IntPtr userToken)
+   at System.Net.LazyAsyncResult.ProtectedInvokeCallback(Object result, IntPtr userToken)
+   at System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* pOVERLAP)
+Line:1448 Filename: S_Database.cs
+Line:3725 Filename: S_Players.cs
+Line:167 Filename: S_NetworkConfig.cs
+Line:3727 Filename: S_Players.cs
+Line:1926 Filename: S_NetworkReceive.cs
+
