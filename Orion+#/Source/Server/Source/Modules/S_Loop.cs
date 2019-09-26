@@ -109,12 +109,22 @@ namespace Engine
                     
                     if (tick > tmr500)
                     {
+                        // Handle player housing timers.
                         if (onlinePlayers.Count() > 0)
                         {
-                            // Handle player housing timers.
-                            var playerhousing = (from p in onlinePlayers
-                                                 where modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse > 0 && S_NetworkConfig.IsPlaying(modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse) && modTypes.Player[modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse].Character[p.Player.CurChar].InHouse != modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse
-                                                 select new { p.Index, Success = HandlePlayerHouse(p.Index) });
+                            foreach (TempOnlinePlayerData p in onlinePlayers)
+                            {
+                                if (modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse > 0)
+                                {
+                                    if (!S_NetworkConfig.IsPlaying(modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse))
+                                    {
+                                        if (modTypes.Player[modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse].Character[p.Player.CurChar].InHouse != modTypes.Player[p.Index].Character[p.Player.CurChar].InHouse)
+                                        {
+                                            HandlePlayerHouse(p.Index);
+                                        }
+                                    }
+                                }
+                            }
                         }
                         // Move the timer up 500ms.
                         tmr500 = S_General.GetTimeMs() + 500;
