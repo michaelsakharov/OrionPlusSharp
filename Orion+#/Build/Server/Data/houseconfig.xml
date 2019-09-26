@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Config>
   <House1>
-    <Element Name="BaseMap" Value="0" />
-    <Element Name="Name" Value="" />
+    <Element Name="BaseMap" Value="2" />
+    <Element Name="Name" Value="Test House" />
     <Element Name="MaxFurniture" Value="0" />
     <Element Name="Price" Value="0" />
-    <Element Name="X" Value="0" />
-    <Element Name="Y" Value="0" />
+    <Element Name="X" Value="15" />
+    <Element Name="Y" Value="6" />
   </House1>
 </Config>
