@@ -1134,8 +1134,8 @@ namespace Engine
 			//My Text
 			//first draw back image
 			RenderSprite(MyChatWindowSprite, GameWindow, C_UpdateUI.MyChatX, C_UpdateUI.MyChatY - 5, 0, 0, MyChatWindowGfxInfo.Width, MyChatWindowGfxInfo.Height);
-			
-			if (ChatModule.ChatInput.CurrentMessage.Length > 0)
+
+            if (ChatModule.ChatInput.CurrentMessage != null && ChatModule.ChatInput.CurrentMessage.Length > 0)
 			{
 				string subText = ChatModule.ChatInput.CurrentMessage;
 				while (C_Text.GetTextWidth(subText) > MyChatWindowGfxInfo.Width - C_Text.ChatEntryPadding)

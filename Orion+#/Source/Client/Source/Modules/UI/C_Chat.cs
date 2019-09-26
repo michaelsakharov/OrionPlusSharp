@@ -121,9 +121,11 @@ namespace Engine
 					{
 						CachedMessage = CurrentMessage;
 					}
-					
-					Cursor.Y = Math.Max(0, Cursor.Y - 1);
-					CurrentMessage = History[Cursor.Y];
+                    Cursor.Y = Math.Max(0, Cursor.Y - 1);
+                    if (!(History.Count == 0 && Cursor.Y == 0))
+                    {
+                        CurrentMessage = History[Cursor.Y];
+                    }
 					break;
 					
 				default:
