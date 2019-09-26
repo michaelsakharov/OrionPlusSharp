@@ -25,6 +25,9 @@ namespace Engine
 
         public static int gameCPS;
 
+        internal static Stopwatch shutDownTimer;
+        internal static int shutDownLastTimer;
+
         internal static int GetTimeMs()
         {
             return (int)myStopWatch.ElapsedMilliseconds;

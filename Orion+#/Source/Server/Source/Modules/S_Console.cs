@@ -40,6 +40,7 @@ namespace Engine
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("/help, Shows this message.");
                             Console.WriteLine("/exit, Closes down the server.");
+                            Console.WriteLine("/shutdown, Closes down the server with a 30 second countdown.");
                             Console.WriteLine("/setadmin, Sets player access level, usage '/setadmin playername powerlvl' powerlevel goes from 0 for player, to 4 to creator.");
                             Console.WriteLine("/kick, Kicks user from server, usage '/kick playername'");
                             Console.WriteLine("/ban, Bans user from server, usage '/ban playername'");
@@ -57,6 +58,23 @@ namespace Engine
                     case "exit":
                         {
                             S_General.DestroyServer();
+                            break;
+                        }
+
+                    case "shutdown":
+                        {
+                            if (S_General.shutDownTimer == null)
+                            {
+                                S_General.shutDownTimer = new System.Diagnostics.Stopwatch();
+                                S_General.shutDownTimer.Start();
+                                Console.WriteLine("Server Shutdown in 30 Seconds!");
+                            }
+                            else
+                            {
+                                S_General.shutDownTimer = null;
+                                Console.WriteLine("Server Shutdown has been cancelled!");
+
+                            }
                             break;
                         }
 

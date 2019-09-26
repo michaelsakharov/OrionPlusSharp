@@ -19,14 +19,7 @@ namespace Engine
     {
 
         public static List<TempOnlinePlayerData> onlinePlayers = new List<TempOnlinePlayerData>();
-
-
-        public static void UpdateOnlinePlayers()
-        {
-            onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new TempOnlinePlayerData { Index = index + 1, Player = player }).ToList();
-        }
-
-
+        
         public static void ServerLoop()
         {
             int tick = 0;
@@ -50,6 +43,8 @@ namespace Engine
 
                     // Update our current tick value.
                     tick = S_General.GetTimeMs();
+
+                    CheckShutDownCountDown();
 
                     // Get all our online players.
                     //var onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new { Index = index + 1, player }).ToArray();
@@ -187,10 +182,6 @@ namespace Engine
             }
             while (true);
         }
-
-        // Function GetTotalPlayersOnline() As Integer
-        // GetTotalPlayersOnline = TempPlayer.Where(Function(x) x.InGame).ToArray().Length
-        // End Function
 
         public static void UpdateSavePlayers()
         {
@@ -914,6 +905,35 @@ namespace Engine
 
             // Do everything we need to do at the end of the cast.
             FinalizeCast(index, S_Players.GetPlayerSkillSlot(index, skillId), Types.Skill[skillId].MpCost);
+        }
+
+        public static void UpdateOnlinePlayers()
+        {
+            onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new TempOnlinePlayerData { Index = index + 1, Player = player }).ToList();
+        }
+
+        public static void CheckShutDownCountDown()
+        {
+            if (S_General.shutDownTimer != null)
+            {
+                int time = S_General.shutDownTimer.Elapsed.Seconds;
+                if (time >= 10)
+                {
+                    if (S_General.shutDownLastTimer != time)
+                    {
+                        if ((30 - time) == -1)
+                        {
+                            S_General.DestroyServer();
+                        }
+                        else
+                        {
+                            S_NetworkSend.GlobalMsg("Server Shutdown in " + (30 - time) + " Seconds!");
+                            Console.WriteLine("Server Shutdown in " + (30 - time) + " Seconds!");
+                        }
+                    }
+                    S_General.shutDownLastTimer = time;
+                }
+            }
         }
 
         private static void HandleSelfCastAoESkill(int index, int skillId)
