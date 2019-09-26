@@ -791,25 +791,29 @@ namespace Engine
 		{
 			E_Types.Map.MapTintR = (byte) nudMapRed.Value;
 			E_Globals.CurrentTintR = (int) nudMapRed.Value;
-		}
+            E_Graphics.MapTintSprite = null;
+        }
 		
 		public void ScrlMapGreen_Scroll(object sender, EventArgs e)
 		{
 			E_Types.Map.MapTintG = (byte) nudMapGreen.Value;
 			E_Globals.CurrentTintG = (int) nudMapGreen.Value;
-		}
+            E_Graphics.MapTintSprite = null;
+        }
 		
 		public void ScrlMapBlue_Scroll(object sender, EventArgs e)
 		{
 			E_Types.Map.MapTintB = (byte) nudMapBlue.Value;
 			E_Globals.CurrentTintB = (int) nudMapBlue.Value;
-		}
+            E_Graphics.MapTintSprite = null;
+        }
 		
 		public void ScrlMapAlpha_Scroll(object sender, EventArgs e)
 		{
 			E_Types.Map.MapTintA = (byte) nudMapAlpha.Value;
 			E_Globals.CurrentTintA = (int) nudMapAlpha.Value;
-		}
+            E_Graphics.MapTintSprite = null;
+        }
 		
 		public void BtnSetSize_Click(object sender, EventArgs e)
 		{

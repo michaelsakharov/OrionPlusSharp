@@ -476,6 +476,7 @@ namespace Engine
             E_Globals.CurrentTintG = Map.MapTintG;
             E_Globals.CurrentTintB = Map.MapTintB;
             E_Globals.CurrentTintA = Map.MapTintA;
+            E_Graphics.MapTintSprite = null;
 
             E_Globals.InMapEditor = true;
 

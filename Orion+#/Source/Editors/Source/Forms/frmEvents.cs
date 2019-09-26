@@ -435,7 +435,7 @@ namespace Engine
 
         public void BtnCancel_Click(object sender, EventArgs e)
         {
-            Dispose();
+            frmEvents.Default.Close();
         }
 
         public void TvCommands_AfterSelect(object sender, TreeViewEventArgs e)

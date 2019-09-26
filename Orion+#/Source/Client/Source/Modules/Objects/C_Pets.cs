@@ -411,7 +411,7 @@ namespace Engine
 				switch (C_Types.Player[index].Pet.Dir)
 				{
 					case (int) Enums.DirectionType.Up:
-						C_Types.Player[index].Pet.YOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.YOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+						C_Types.Player[index].Pet.YOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.YOffset - C_Constants.WalkSpeed);
 						if (C_Types.Player[index].Pet.YOffset < 0)
 						{
 							C_Types.Player[index].Pet.YOffset = 0;
@@ -419,7 +419,7 @@ namespace Engine
 						break;
 						
 					case (int) Enums.DirectionType.Down:
-						C_Types.Player[index].Pet.YOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.YOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+						C_Types.Player[index].Pet.YOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.YOffset + C_Constants.WalkSpeed);
 						if (C_Types.Player[index].Pet.YOffset > 0)
 						{
 							C_Types.Player[index].Pet.YOffset = 0;
@@ -427,7 +427,7 @@ namespace Engine
 						break;
 						
 					case (int) Enums.DirectionType.Left:
-						C_Types.Player[index].Pet.XOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.XOffset - (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+						C_Types.Player[index].Pet.XOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.XOffset - C_Constants.WalkSpeed);
 						if (C_Types.Player[index].Pet.XOffset < 0)
 						{
 							C_Types.Player[index].Pet.XOffset = 0;
@@ -435,7 +435,7 @@ namespace Engine
 						break;
 						
 					case (int) Enums.DirectionType.Right:
-						C_Types.Player[index].Pet.XOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.XOffset + (((double) C_Variables.ElapsedTime / 1000) * (C_Constants.WalkSpeed * C_Constants.SizeX)));
+						C_Types.Player[index].Pet.XOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.XOffset + C_Constants.WalkSpeed);
 						if (C_Types.Player[index].Pet.XOffset > 0)
 						{
 							C_Types.Player[index].Pet.XOffset = 0;
@@ -522,15 +522,15 @@ namespace Engine
 			// Reset frame
 			if (C_Types.Player[index].Pet.Steps == 3)
 			{
-				anim = (byte) 0;
+				anim = 0;
 			}
 			else if (C_Types.Player[index].Pet.Steps == 1)
 			{
-				anim = (byte) 2;
+				anim = 2;
 			}
 			else if (C_Types.Player[index].Pet.Steps == 2)
 			{
-				anim = (byte) 3;
+				anim = 3;
 			}
 			
 			// Check for attacking animation
@@ -538,7 +538,7 @@ namespace Engine
 			{
 				if (C_Types.Player[index].Pet.Attacking == 1)
 				{
-					anim = (byte) 3;
+					anim = 3;
 				}
 			}
 			else
@@ -547,12 +547,16 @@ namespace Engine
 				switch (C_Types.Player[index].Pet.Dir)
 				{
 					case (int) Enums.DirectionType.Up:
+					case (int) Enums.DirectionType.UpLeft:
+					case (int) Enums.DirectionType.UpRight:
 						if (C_Types.Player[index].Pet.YOffset > 8)
 						{
 							anim = C_Types.Player[index].Pet.Steps;
 						}
 						break;
 					case (int) Enums.DirectionType.Down:
+					case (int) Enums.DirectionType.DownLeft:
+					case (int) Enums.DirectionType.DownRight:
 						if (C_Types.Player[index].Pet.YOffset < -8)
 						{
 							anim = C_Types.Player[index].Pet.Steps;
@@ -585,12 +589,16 @@ namespace Engine
 			switch (C_Types.Player[index].Pet.Dir)
 			{
 				case (int) Enums.DirectionType.Up:
+				case (int) Enums.DirectionType.UpLeft:
+				case (int) Enums.DirectionType.UpRight:
 					spriteleft = 3;
 					break;
 				case (int) Enums.DirectionType.Right:
 					spriteleft = 2;
 					break;
 				case (int) Enums.DirectionType.Down:
+				case (int) Enums.DirectionType.DownLeft:
+				case (int) Enums.DirectionType.DownRight:
 					spriteleft = 0;
 					break;
 				case (int) Enums.DirectionType.Left:

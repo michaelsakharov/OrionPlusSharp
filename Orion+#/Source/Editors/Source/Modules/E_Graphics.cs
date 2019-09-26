@@ -1234,7 +1234,7 @@ namespace Engine
 					
 					for (I = 1; I <= E_Types.Map.CurrentEvents; I++)
 					{
-						if (E_Types.Map.MapEvents[I].Position == 0)
+						if (I < E_Types.Map.MapEvents.Count() && E_Types.Map.MapEvents[I].Position == 0)
 						{
 							E_EventSystem.DrawEvent(I);
 						}
@@ -1294,7 +1294,7 @@ namespace Engine
 							
 							for (I = 1; I <= E_Types.Map.CurrentEvents; I++)
 							{
-								if (E_Types.Map.MapEvents[I].Position == 1)
+								if (I < E_Types.Map.MapEvents.Count() && E_Types.Map.MapEvents[I].Position == 1)
 								{
 									if (Y == E_Types.Map.MapEvents[I].Y)
 									{
@@ -1331,7 +1331,7 @@ namespace Engine
 					
 					for (I = 1; I <= E_Types.Map.CurrentEvents; I++)
 					{
-						if (E_Types.Map.MapEvents[I].Position == 2)
+						if (I < E_Types.Map.MapEvents.Count() && E_Types.Map.MapEvents[I].Position == 2)
 						{
 							E_EventSystem.DrawEvent(I);
 						}
@@ -1358,7 +1358,7 @@ namespace Engine
                 E_Weather.DrawWeather();
 				E_Weather.DrawThunderEffect();
                 //Lupus TODO: MapTint is Extremely heavy on Performance find out why and fix it.
-				//DrawMapTint();
+				DrawMapTint();
 				
 				// Draw out a square at mouse cursor
 				if (E_Globals.MapGrid == true)
@@ -1588,12 +1588,10 @@ namespace Engine
         {
             if (E_Types.Map.HasMapTint == 1)
             {
-                E_Graphics.MapTintSprite = checked(new Sprite(new Texture(new SFML.Graphics.Image((uint)(E_Types.Map.MaxX * 32), (uint)(E_Types.Map.MaxY * 32), SFML.Graphics.Color.White)))
+                if (E_Graphics.MapTintSprite == null)
                 {
-                    Color = new SFML.Graphics.Color((byte)E_Globals.CurrentTintR, (byte)E_Globals.CurrentTintG, (byte)E_Globals.CurrentTintB, (byte)E_Globals.CurrentTintA),
-                    TextureRect = new IntRect(0, 0, (int)(E_Types.Map.MaxX * 32 + 32), (int)(E_Types.Map.MaxY * 32 + 32)),
-                    Position = new Vector2f(0f, 0f)
-                });
+                    E_Graphics.MapTintSprite = new Sprite(new Texture(new SFML.Graphics.Image((uint)(E_Types.Map.MaxX * 32), (uint)(E_Types.Map.MaxY * 32), new SFML.Graphics.Color((byte)E_Globals.CurrentTintR, (byte)E_Globals.CurrentTintG, (byte)E_Globals.CurrentTintB, (byte)E_Globals.CurrentTintA))));
+                }
                 E_Graphics.GameWindow.Draw(E_Graphics.MapTintSprite);
             }
         }
@@ -1826,9 +1824,9 @@ namespace Engine
                 return;
             }
 
-            for (x = E_Globals.TileView.Left + 5; x <= E_Globals.TileView.Right + 5; x++)
+            for (x = E_Globals.TileView.Left - 5; x <= E_Globals.TileView.Right + 5; x++)
             {
-                for (y = E_Globals.TileView.Top + 5; y <= E_Globals.TileView.Bottom + 5; y++)
+                for (y = E_Globals.TileView.Top - 5; y <= E_Globals.TileView.Bottom + 5; y++)
                 {
                     if (IsValidMapPoint(x, y))
                     {
