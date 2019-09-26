@@ -1296,10 +1296,8 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             int x;
             int y;
             bool CanPetMove;
-            if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right)
-                return false;
-
-            if (index <= 0 || index > Constants.MAX_PLAYERS)
+            // 8 Directional Movement
+            if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight)
                 return false;
 
             x = GetPetX(index);

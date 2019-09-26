@@ -122,6 +122,7 @@
     <Compile Include="Source\Modules\Objects\S_Quest.cs" />
     <Compile Include="Source\Modules\Objects\S_RandomItems.cs" />
     <Compile Include="Source\Modules\Objects\S_Resources.cs" />
+    <Compile Include="Source\Modules\S_Pathfinding.cs" />
     <Compile Include="Source\Modules\S_Time.cs" />
     <Compile Include="Source\Modules\S_Types.cs" />
     <Compile Include="My Project\AssemblyInfo.cs" />
