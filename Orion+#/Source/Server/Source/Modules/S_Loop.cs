@@ -583,36 +583,24 @@ namespace Engine
 
                                         if (targetVerify)
                                         {
-                                            // Gonna make the npcs smarter.. Implementing a pathfinding algorithm.. we shall see what happens.
-                                            if (S_Events.IsOneBlockAway(targetX, targetY, (int)modTypes.MapNpc[mapNum].Npc[x].X, (int)modTypes.MapNpc[mapNum].Npc[x].Y) == false)
+                                            // Gonna make npc's properly smart, implementing real path finding
+                                            if (modPathfinding.mapMatrix[mapNum].created)
                                             {
-                                                i = S_EventLogic.FindNpcPath(mapNum, x, targetX, targetY);
-                                                if (i < 4)
+                                                if(targetX != modTypes.MapNpc[mapNum].Npc[x].targetX || targetY != modTypes.MapNpc[mapNum].Npc[x].targetY)
                                                 {
-                                                    if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
-                                                        S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);
-                                                }
-                                                else
-                                                {
-                                                    i = (int)(VBMath.Rnd() * 4);
-                                                    if (i == 1)
+                                                    // Target has moved
+                                                    modTypes.MapNpc[mapNum].Npc[x].hasPath = modPathfinding.APlus(mapNum, modTypes.MapNpc[mapNum].Npc[x].X, modTypes.MapNpc[mapNum].Npc[x].Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.MapNpc[mapNum].Npc[x].arPath);
+                                                    if (modTypes.MapNpc[mapNum].Npc[x].hasPath)
                                                     {
-                                                        if (S_Constants.EightDirectionalMovement)
-                                                        {
-                                                            i = (int)(VBMath.Rnd() * 8);
-                                                        }
-                                                        else
-                                                        {
-                                                            i = (int)(VBMath.Rnd() * 4);
-                                                        }
-
-                                                        if (S_Npc.CanNpcMove(mapNum, x, (byte)i))
-                                                            S_Npc.NpcMove(mapNum, x, i, (int)MovementType.Walking);
+                                                        modTypes.MapNpc[mapNum].Npc[x].pathLoc = modTypes.MapNpc[mapNum].Npc[x].arPath.Length - 1; // Should we remove the - 1?
                                                     }
                                                 }
+                                                if (modTypes.MapNpc[mapNum].Npc[x].hasPath)
+                                                {
+                                                    // Follow Path
+                                                    modPathfinding.NpcMoveAlongPath(mapNum, x);
+                                                }
                                             }
-                                            else
-                                                S_Npc.NpcDir(mapNum, x, S_Events.GetNpcDir(targetX, targetY, (int)(modTypes.MapNpc[mapNum].Npc[x].X), (int)(modTypes.MapNpc[mapNum].Npc[x].Y)));
                                         }
                                         else
                                         {

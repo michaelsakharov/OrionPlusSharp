@@ -63,7 +63,14 @@ namespace Engine
             public byte AdoptiveStats;
             public int Points;
             public int Exp;
-        }
+
+            // Pet Pathfinding
+            public modPathfinding.tPoint[] arPath;
+            public bool hasPath;
+            public int targetX;
+            public int targetY;
+            public int pathLoc;
+        } 
 
 
 

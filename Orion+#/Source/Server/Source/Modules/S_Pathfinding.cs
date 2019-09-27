@@ -230,7 +230,7 @@ namespace Engine
 				lCheapIndex = grList[lCheapIndex].Parent;
 			} while (lCheapIndex!=-1);
         
-			Debug.WriteLine("Npc path found");
+			Console.WriteLine("Path found");
         
 			APlus = true; 
         return APlus;
@@ -243,7 +243,7 @@ namespace Engine
 			mapMatrix[MapNum].gaeGrid = new eCell[modTypes.Map[MapNum].MaxX + 1, modTypes.Map[MapNum].MaxY + 1];
 			for(x=0; x<= modTypes.Map[MapNum].MaxX; x++) {
 				for(y=0; y<= modTypes.Map[MapNum].MaxY; y++) {
-					if (modTypes.Map[MapNum].Tile[x, y].Type == (int)Enums.TileType.Blocked) {
+					if (modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.None && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.Item && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.NpcSpawn) {
 						mapMatrix[MapNum].gaeGrid[x, y] = eCell.Obstacle;
 					} else {
 						mapMatrix[MapNum].gaeGrid[x, y] = eCell.Void;
@@ -300,7 +300,59 @@ namespace Engine
             
 		}
 
+        public static void PetMoveAlongPath(int MapNum, int playerNum)
+        {
 
+            int x, y;
+
+            // make sure we're not at end of path
+            if (modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc >= 1)
+            {
+                x = modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.arPath[modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc - 1].x;
+                y = modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.arPath[modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc - 1].y;
+                // up
+                if (y < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Up))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Up, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+                // down
+                if (y > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Down))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Down, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+                // left
+                if (x < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Left))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Left, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+                // right
+                if (x > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Right))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Right, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+            }
+
+        }
 
     }
 }
