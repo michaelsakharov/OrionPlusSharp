@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<MainMenuConfig>
+  <Window>
+    <Element Name="Width" Value="730" />
+    <Element Name="Height" Value="579" />
+  </Window>
+  <ServerStatusHeader>
+    <Element Name="X" Value="482" />
+    <Element Name="Y" Value="9" />
+  </ServerStatusHeader>
+  <ServerStatus>
+    <Element Name="X" Value="589" />
+    <Element Name="Y" Value="9" />
+  </ServerStatus>
+  <Logo>
+    <Element Name="X" Value="77" />
+    <Element Name="Y" Value="30" />
+    <Element Name="Width" Value="560" />
+    <Element Name="Height" Value="144" />
+  </Logo>
+  <ButtonPlay>
+    <Element Name="X" Value="142" />
+    <Element Name="Y" Value="490" />
+    <Element Name="Width" Value="106" />
+    <Element Name="Height" Value="37" />
+  </ButtonPlay>
+  <ButtonRegister>
+    <Element Name="X" Value="254" />
+    <Element Name="Y" Value="490" />
+    <Element Name="Width" Value="106" />
+    <Element Name="Height" Value="37" />
+  </ButtonRegister>
+  <ButtonCredits>
+    <Element Name="X" Value="366" />
+    <Element Name="Y" Value="490" />
+    <Element Name="Width" Value="106" />
+    <Element Name="Height" Value="37" />
+  </ButtonCredits>
+  <ButtonExit>
+    <Element Name="X" Value="478" />
+    <Element Name="Y" Value="490" />
+    <Element Name="Width" Value="106" />
+    <Element Name="Height" Value="37" />
+  </ButtonExit>
+  <PanelMain>
+    <Element Name="X" Value="160" />
+    <Element Name="Y" Value="180" />
+    <Element Name="Width" Value="400" />
+    <Element Name="Height" Value="192" />
+  </PanelMain>
+</MainMenuConfig>

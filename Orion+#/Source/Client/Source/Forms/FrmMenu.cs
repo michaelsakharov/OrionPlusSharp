@@ -74,8 +74,8 @@ namespace Engine
 		public void Frmmenu_Load(object sender, EventArgs e)
 		{
 			Strings.Init(0, "English");
-			
-			LoadMenuGraphics();
+
+            LoadMenuGraphics();
 			
 			pnlLoad.Width = 730;
 			pnlLoad.Height = 550;
@@ -98,8 +98,10 @@ namespace Engine
 			
 			pnlCharSelect.Top = pnlMainMenu.Top;
 			pnlCharSelect.Left = pnlMainMenu.Left;
-			
-			if (C_General.Started == false)
+            
+            UI_MainMenu.Initialize();
+
+            if (C_General.Started == false)
 			{
 				C_General.Startup();
 			}

@@ -135,6 +135,7 @@
     <Compile Include="Source\Modules\Systems\C_Banks.cs" />
     <Compile Include="Source\Modules\Systems\C_Shops.cs" />
     <Compile Include="Source\Modules\Systems\C_Trade.cs" />
+    <Compile Include="Source\Modules\UI\Customizable UI\UI_MainMenu.cs" />
     <Compile Include="Source\Modules\UI\C_Chat.cs" />
     <Compile Include="Source\Forms\FrmAdmin.Designer.cs">
       <DependentUpon>FrmAdmin.cs</DependentUpon>

@@ -121,7 +121,7 @@
   <data name="pnlLogin.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -415,7 +415,7 @@
   <data name="btnLogin.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -425,7 +425,7 @@
   <data name="pnlRegister.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -719,7 +719,7 @@
   <data name="btnCreateAccount.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -729,7 +729,7 @@
   <data name="pnlCredits.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -1026,7 +1026,7 @@
   <data name="pnlNewChar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -1320,7 +1320,7 @@
   <data name="btnCreateCharacter.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAu
+        wgAADsIBFShKgAAAAAd0SU1FB+AGHAQFLum3/fMAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAu
         OWwzfk4AAADSSURBVHhe7du3EcRAEANBhsAQqLU0mH9ox+cZ7yABbNUYvRvA2ChSSkVZlgm+vkY50vM8
         MPY1+oe67xuGJNR1XTAkoc7zhCFCBSGhjuOAIQm17zsMESoICbVtGwxJqHVdYYhQQUioZVlgSELN8wxD
         EmqaJhgiVBASahxHGJJQwzDAEKGCkFB938OQhOq6DoYIFYSEatsWhiRU0zQwJKHquoYhQgUhoaqqgiFC
@@ -1330,7 +1330,7 @@
   <data name="pnlMainMenu.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -1631,7 +1631,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="pnlIPConfig.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -1925,7 +1925,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnSaveIP.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -1935,7 +1935,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="picLogo.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAlgAAADQCAYAAADbGh9AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAA/45JREFUeF7s/Xms
+        wgAADsIBFShKgAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC45bDN+TgAA/45JREFUeF7s/Xms
         LNmW3oft6m6ySbEfZVFt8U1V994z5TxnRkRGThE5Z+Q8D2ce71i3qt57PUktsdWSTcNum5bp6Q8DtCAb
         hm1INkzDgAeApinBgA1JsAlJf1AGDQsEBNgGBVAAYcvA8vftc8+pc2/lrdevuvrxNW8E8CEyI2PcsTP2
         b6+19golIr58+fLly5cvX76+RW1d6MuXL1++fPny5euba+tCX758+fLly5cvX99cWxf68uXLly9fvnz5
@@ -4071,7 +4071,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnPlay.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4081,7 +4081,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnRegister.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4091,7 +4091,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnCredits.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4101,7 +4101,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnExit.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4111,7 +4111,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="pnlCharSelect.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZAAAADACAYAAAAqRjWPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
+        wQAADsEBuJFr7QAAAAd0SU1FB+AGGxQfKt8GWPgAAEOESURBVHhe7b3bsh3FdvzNHbZB22f7EQhiAwbb
         2GwsjLHNGSIgcBCcwcbb4qANN1zxpv+nWZ9+9SknqWRUdfVcc0lLa9VFqqpy5BjV3UiddFd3z0eeffbZ
         s6eeeursH//xH8+efvrps7/7u787e/7558/+/u///uy55547++d//uezf/qnf2pxuH/4h39ocXIYiwdo
         XUc+uerDU/+JJ55oePLJJ8+YHw6geeGFF1qdf/mXfzn73e9+1/JpmZM+UB8ttan7zDPPNFBH+4RO+6Tt
@@ -4405,7 +4405,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnUseChar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4415,7 +4415,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnDelChar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4425,7 +4425,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="btnNewChar.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGoAAAAmCAYAAAAsuw6AAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
+        wwAADsMBx2+oZAAAAAd0SU1FB+AGHAQFLum3/fMAAADQSURBVHhe7du5DcRADATBDUEh6P9fQ/mHtjrJ
         OGcSGAJNoAj6bTPl3xRFAWPvpPe47xvG3kb/UNd1wZCEOs8ThiTUcRwwRKggJNS+7zAkobZtgyFCBSGh
         1nWFIQm1LAsMESoICTXPMwxJqGmaYEhCjeMIQ4QKQkINwwBDEqrvexgiVBASqus6GJJQbdvCEKGCkFBN
         08CQhKrrGoYkVFVVMESoICRUWZYwRKggCBUEoYIgVBCECoJQQRAqCEIFIaHg6wvFD6+/74f3WynBWM45
@@ -4435,7 +4435,7 @@ This project is based off of Eclipse Origins, feel free to check them out at htt
   <data name="pnlLoad.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAArYAAAI3CAYAAABu7xiRAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAAd0SU1FB+AGGxQHEwIYSKkAAP+fSURBVHhe7LzbliXHjhx4dGtJ8///q4HdALhH
+        wAAADsABataJCQAAAAd0SU1FB+AGGxQHEwIYSKkAAP+fSURBVHhe7LzbliXHjhx4dGtJ8///q4HdALhH
         7Mwsssg+muGDLQcMBgNityrdF1er//Vf/st/+T//tYDziP9rzv8qPvl/UU7O54HuW9yB6T+4j/r/BPxL
         Z/04z5rxry805B71f13nhX+98PHYXoidNxee3kFqw/3r4E9kBpFdcIaPv7n2Bk+94RizoPlXe8XjQtWl
         ja5ia48ZrpFn3Tz16BVQE6ytvtsbNXqjn3WcrrU+furlTPccng9u+oR4Fw8d8ugZV6311h61aO3runa6
