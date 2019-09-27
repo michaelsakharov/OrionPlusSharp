@@ -235,18 +235,21 @@ namespace Engine
 			{
 				resourceSprite = Types.Resource[resourceMaster].ExhaustedImage;
 			}
-			
-			// src rect
-			rec.Y = 0;
-			rec.Height = C_Graphics.ResourcesGfxInfo[resourceSprite].Height;
-			rec.X = 0;
-			rec.Width = C_Graphics.ResourcesGfxInfo[resourceSprite].Width;
-			
-			// Set base x + y, then the offset due to size
-			x = System.Convert.ToInt32((MapResource[resourceNum].X * C_Constants.PicX) - ((double) C_Graphics.ResourcesGfxInfo[resourceSprite].Width / 2) + 16);
-			y = (MapResource[resourceNum].Y * C_Constants.PicY) - C_Graphics.ResourcesGfxInfo[resourceSprite].Height + 32;
-			
-			DrawResource(resourceSprite, x, y, rec);
+
+            if (resourceSprite < C_Graphics.ResourcesGfxInfo.Length)
+            {
+                // src rect
+                rec.Y = 0;
+                rec.Height = C_Graphics.ResourcesGfxInfo[resourceSprite].Height;
+                rec.X = 0;
+                rec.Width = C_Graphics.ResourcesGfxInfo[resourceSprite].Width;
+
+                // Set base x + y, then the offset due to size
+                x = System.Convert.ToInt32((MapResource[resourceNum].X * C_Constants.PicX) - ((double)C_Graphics.ResourcesGfxInfo[resourceSprite].Width / 2) + 16);
+                y = (MapResource[resourceNum].Y * C_Constants.PicY) - C_Graphics.ResourcesGfxInfo[resourceSprite].Height + 32;
+
+                DrawResource(resourceSprite, x, y, rec);
+            }
 		}
 		
 #endregion
