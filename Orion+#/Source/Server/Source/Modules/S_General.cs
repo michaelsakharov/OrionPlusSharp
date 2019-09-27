@@ -359,6 +359,11 @@ namespace Engine
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Loading Classes..."); modDatabase.LoadClasses();
             Console.WriteLine("Loading Maps..."); modDatabase.LoadMaps();
+            Console.WriteLine("Creating Map Matrices...");
+            for (int i=1; i < Constants.MAX_MAPS; i++)
+            {
+                modPathfinding.CreatePathMatrix(i);
+            }
             Console.WriteLine("Loading Items..."); S_Items.LoadItems();
             Console.WriteLine("Loading Npc's..."); modDatabase.LoadNpcs();
             Console.WriteLine("Loading Resources..."); S_Resources.LoadResources();

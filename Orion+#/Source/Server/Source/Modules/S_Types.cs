@@ -184,6 +184,13 @@
             public bool PetstopRegen;
 
             public int PetstopRegenTimer;
+
+            // Pet Pathfinding
+            public modPathfinding.tPoint[] arPath;
+            public bool hasPath;
+            public int targetX;
+            public int targetY;
+            public int pathLoc;
         }
 
         internal struct MapRec
@@ -287,6 +294,13 @@
             public int[] SkillCd;
             public byte StopRegen;
             public int StopRegenTimer;
+
+            // Pathfinding
+            public modPathfinding.tPoint[] arPath;
+            public bool hasPath;
+            public int targetX;
+            public int targetY;
+            public int pathLoc;
         }
 
         internal struct TempTileRec
