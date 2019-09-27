@@ -719,9 +719,27 @@ namespace Engine
 				case (int) Enums.DirectionType.Right:
 					C_Types.Player[i].XOffset = C_Constants.PicX * -1;
 					break;
-			}
-			
-			buffer.Dispose();
+
+                    // 8 Directional Movement
+				case (int) Enums.DirectionType.UpLeft:
+					C_Types.Player[i].YOffset = C_Constants.PicX;
+					C_Types.Player[i].XOffset = C_Constants.PicX;
+					break;
+				case (int) Enums.DirectionType.UpRight:
+					C_Types.Player[i].YOffset = C_Constants.PicX;
+					C_Types.Player[i].XOffset = C_Constants.PicX * -1;
+					break;
+				case (int) Enums.DirectionType.DownLeft:
+					C_Types.Player[i].YOffset = C_Constants.PicX * -1;
+					C_Types.Player[i].XOffset = C_Constants.PicX;
+					break;
+				case (int) Enums.DirectionType.DownRight:
+					C_Types.Player[i].YOffset = C_Constants.PicX * -1;
+					C_Types.Player[i].XOffset = C_Constants.PicX * -1;
+					break;
+            }
+
+            buffer.Dispose();
 		}
 		
 		private static void Packet_NpcMove(ref byte[] data)
