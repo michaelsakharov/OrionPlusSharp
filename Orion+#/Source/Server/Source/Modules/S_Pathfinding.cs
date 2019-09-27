@@ -300,22 +300,26 @@ namespace Engine
             
 		}
 
-        public static void PetMoveAlongPath(int MapNum, int playerNum)
+        public static void PetMoveAlongPath(int MapNum, int playerNum, bool Sprint = false)
         {
 
             int x, y;
+
+            int movementType;
+            if (Sprint) { movementType = (int)MovementType.Running; } else { movementType = (int)MovementType.Walking; }
 
             // make sure we're not at end of path
             if (modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc >= 1)
             {
                 x = modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.arPath[modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc - 1].x;
                 y = modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.arPath[modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc - 1].y;
+                
                 // up
                 if (y < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Up))
                     {
-                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Up, (int)MovementType.Walking);
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Up, movementType);
                         modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
                         return;
                     }
@@ -325,7 +329,7 @@ namespace Engine
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Down))
                     {
-                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Down, (int)MovementType.Walking);
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Down, movementType);
                         modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
                         return;
                     }
@@ -335,7 +339,7 @@ namespace Engine
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Left))
                     {
-                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Left, (int)MovementType.Walking);
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Left, movementType);
                         modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
                         return;
                     }
@@ -345,7 +349,7 @@ namespace Engine
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Right))
                     {
-                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Right, (int)MovementType.Walking);
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.Right, movementType);
                         modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
                         return;
                     }

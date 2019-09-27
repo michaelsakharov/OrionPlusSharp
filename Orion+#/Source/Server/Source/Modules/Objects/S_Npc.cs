@@ -1385,6 +1385,11 @@ namespace Engine
         internal static void DropNpcItems(int mapNum, int MapNpcNum)
         {
             var NpcNum = modTypes.MapNpc[mapNum].Npc[MapNpcNum].Num;
+            if(NpcNum == 0)
+            {
+                Console.WriteLine("Unable to drop NPC loot");
+                return;
+            }
             var tmpitem = S_GameLogic.Random(1, 5);
             var n = Conversion.Int(VBMath.Rnd() * Types.Npc[NpcNum].DropChance[tmpitem]) + 1;
 

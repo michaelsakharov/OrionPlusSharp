@@ -1011,6 +1011,8 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                                         targetX = S_Players.GetPlayerX(playerindex);
                                         targetY = S_Players.GetPlayerY(playerindex);
 
+                                        byte dist = (byte)((Math.Abs(GetPetX(playerindex) - targetX) + Math.Abs(GetPetY(playerindex) - targetY)));
+
                                         if (modPathfinding.mapMatrix[mapNum].created)
                                         {
                                             if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
@@ -1025,7 +1027,14 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                                             if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
                                             {
                                                 // Follow Path
-                                                modPathfinding.PetMoveAlongPath(mapNum, playerindex);
+                                                if (dist > 5)
+                                                {
+                                                    modPathfinding.PetMoveAlongPath(mapNum, playerindex, true);
+                                                }
+                                                else
+                                                {
+                                                    modPathfinding.PetMoveAlongPath(mapNum, playerindex);
+                                                }
                                                 didWalk = true;
                                             }
                                             else
