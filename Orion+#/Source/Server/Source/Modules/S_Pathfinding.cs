@@ -10,7 +10,7 @@ namespace Engine
 
         //=========================================================
         
-        public static mapMatrixRec[] mapMatrix = new mapMatrixRec[Constants.MAX_MAPS + 1];
+        public static mapMatrixRec[] mapMatrix = new mapMatrixRec[Constants.MAX_MAPS];
         
         public struct mapMatrixRec
         {
@@ -243,7 +243,7 @@ namespace Engine
 			mapMatrix[MapNum].gaeGrid = new eCell[modTypes.Map[MapNum].MaxX + 1, modTypes.Map[MapNum].MaxY + 1];
 			for(x=0; x<= modTypes.Map[MapNum].MaxX; x++) {
 				for(y=0; y<= modTypes.Map[MapNum].MaxY; y++) {
-					if (modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.None && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.Item && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.NpcSpawn) {
+					if (modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.None && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.Warp && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.Light && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.House && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.Item && modTypes.Map[MapNum].Tile[x, y].Type != (int)Enums.TileType.NpcSpawn) {
 						mapMatrix[MapNum].gaeGrid[x, y] = eCell.Obstacle;
 					} else {
 						mapMatrix[MapNum].gaeGrid[x, y] = eCell.Void;

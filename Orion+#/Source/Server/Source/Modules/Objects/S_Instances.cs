@@ -79,6 +79,7 @@
 
             if (!(modTypes.Map[slot + Constants.MAX_MAPS].Name == Microsoft.VisualBasic.Constants.vbNullString))
                 modTypes.Map[slot + Constants.MAX_MAPS].Name = modTypes.Map[slot + Constants.MAX_MAPS].Name + INSTANCED_MAP_SUFFIX;
+
             return slot;
         }
 

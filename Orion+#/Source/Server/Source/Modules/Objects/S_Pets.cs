@@ -939,13 +939,19 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                                 {
                                     didWalk = false;
 
+                                    int mapMartixNum = mapNum;
+                                    if (S_Instances.IsInstancedMap(mapNum))
+                                    {
+                                        mapMartixNum = S_Instances.GetInstanceBaseMap(mapNum);
+                                    }
+
                                     // Gonna make npc's properly smart, implementing real path finding
-                                    if (modPathfinding.mapMatrix[mapNum].created)
+                                    if (modPathfinding.mapMatrix[mapMartixNum].created)
                                     {
                                         if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
                                         {
                                             // Target has moved
-                                            modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
+                                            modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapMartixNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
                                             if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
                                             {
                                                 modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.pathLoc = modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath.Length - 1; // Should we remove the - 1?
@@ -975,12 +981,18 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                                         targetX = modTypes.TempPlayer[playerindex].GoToX;
                                         targetY = modTypes.TempPlayer[playerindex].GoToY;
 
-                                        if (modPathfinding.mapMatrix[mapNum].created)
+                                        int mapMartixNum = mapNum;
+                                        if (S_Instances.IsInstancedMap(mapNum))
+                                        {
+                                            mapMartixNum = S_Instances.GetInstanceBaseMap(mapNum);
+                                        }
+
+                                        if (modPathfinding.mapMatrix[mapMartixNum].created)
                                         {
                                             if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
                                             {
                                                 // Target has moved
-                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
+                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapMartixNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
                                                 if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
                                                 {
                                                     modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.pathLoc = modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath.Length - 1; // Should we remove the - 1?
@@ -1013,12 +1025,18 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
                                         byte dist = (byte)((Math.Abs(GetPetX(playerindex) - targetX) + Math.Abs(GetPetY(playerindex) - targetY)));
 
-                                        if (modPathfinding.mapMatrix[mapNum].created)
+                                        int mapMartixNum = mapNum;
+                                        if (S_Instances.IsInstancedMap(mapNum))
+                                        {
+                                            mapMartixNum = S_Instances.GetInstanceBaseMap(mapNum);
+                                        }
+
+                                        if (modPathfinding.mapMatrix[mapMartixNum].created)
                                         {
                                             if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
                                             {
                                                 // Target has moved
-                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
+                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapMartixNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
                                                 if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
                                                 {
                                                     modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.pathLoc = modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath.Length - 1; // Should we remove the - 1?
@@ -1253,7 +1271,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
             // if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right || movement < 1 || movement > 2)
             // 8 Directional Movement
-            if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight || movement < 1 || movement > 2)
+            if (mapNum < 1 || mapNum > S_Instances.MAX_CACHED_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight || movement < 1 || movement > 2)
                 return;
 
             modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Dir = dir;
@@ -1331,7 +1349,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             int y;
             bool CanPetMove;
             // 8 Directional Movement
-            if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight)
+            if (mapNum < 1 || mapNum > S_Instances.MAX_CACHED_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight)
                 return false;
 
             x = GetPetX(index);
@@ -1359,7 +1377,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x, y - 1].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1412,7 +1430,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x, y + 1].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1463,7 +1481,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x - 1, y].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1514,7 +1532,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x + 1, y].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1564,7 +1582,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x - 1, y - 1].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1615,7 +1633,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x + 1, y - 1].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1666,7 +1684,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x - 1, y + 1].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
@@ -1717,7 +1735,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             n = modTypes.Map[mapNum].Tile[x + 1, y + 1].Type;
 
                             // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.NpcSpawn)
+                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Warp && n != (int)Enums.TileType.Light && n != (int)Enums.TileType.House && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
                             {
                                 return false;
                             }
