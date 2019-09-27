@@ -939,78 +939,103 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                                 {
                                     didWalk = false;
 
-                                    if (S_Events.IsOneBlockAway(GetPetX(playerindex), GetPetY(playerindex), targetX, targetY))
+                                    // Gonna make npc's properly smart, implementing real path finding
+                                    if (modPathfinding.mapMatrix[mapNum].created)
                                     {
-                                        if (GetPetX(playerindex) < targetX)
+                                        if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
                                         {
-                                            PetDir(playerindex, (byte)Enums.DirectionType.Right);
+                                            // Target has moved
+                                            modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
+                                            if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
+                                            {
+                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.pathLoc = modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath.Length - 1; // Should we remove the - 1?
+                                            }
+                                        }
+                                        if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
+                                        {
+                                            // Follow Path
+                                            modPathfinding.PetMoveAlongPath(mapNum, playerindex);
                                             didWalk = true;
                                         }
-                                        else if (GetPetX(playerindex) > targetX)
+                                        else
                                         {
-                                            PetDir(playerindex, (int)Enums.DirectionType.Left);
-                                            didWalk = true;
+                                            didWalk = false;
                                         }
-                                        else if (GetPetY(playerindex) < targetY)
-                                        {
-                                            PetDir(playerindex, (int)Enums.DirectionType.Up);
-                                            didWalk = true;
-                                        }
-                                        else if (GetPetY(playerindex) > targetY)
-                                        {
-                                            PetDir(playerindex, (int)Enums.DirectionType.Down);
-                                            didWalk = true;
-                                        }
-                                    }
-                                    else
-                                        didWalk = PetTryWalk(playerindex, targetX, targetY);
-                                }
-                                else if (modTypes.TempPlayer[playerindex].PetBehavior == PetBehaviourGoto && targetVerify == false)
-                                {
-                                    if (GetPetX(playerindex) == modTypes.TempPlayer[playerindex].GoToX && GetPetY(playerindex) == modTypes.TempPlayer[playerindex].GoToY)
-                                    {
                                     }
                                     else
                                     {
                                         didWalk = false;
+                                    }
+                                }
+                                else if (modTypes.TempPlayer[playerindex].PetBehavior == PetBehaviourGoto && targetVerify == false)
+                                {
+                                    if (GetPetX(playerindex) != modTypes.TempPlayer[playerindex].GoToX && GetPetY(playerindex) != modTypes.TempPlayer[playerindex].GoToY)
+                                    {
+                                        didWalk = false;
                                         targetX = modTypes.TempPlayer[playerindex].GoToX;
                                         targetY = modTypes.TempPlayer[playerindex].GoToY;
-                                        didWalk = PetTryWalk(playerindex, targetX, targetY);
 
-                                        if (didWalk == false)
+                                        if (modPathfinding.mapMatrix[mapNum].created)
                                         {
-                                            tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
-
-                                            if (tmpdir == 1)
+                                            if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
                                             {
-                                                tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
-                                                if (CanPetMove(playerindex, mapNum, (byte)tmpdir))
-                                                    PetMove(playerindex, mapNum, tmpdir, (byte)Enums.MovementType.Walking);
+                                                // Target has moved
+                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
+                                                if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
+                                                {
+                                                    modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.pathLoc = modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath.Length - 1; // Should we remove the - 1?
+                                                }
                                             }
+                                            if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
+                                            {
+                                                // Follow Path
+                                                modPathfinding.PetMoveAlongPath(mapNum, playerindex);
+                                                didWalk = true;
+                                            }
+                                            else
+                                            {
+                                                didWalk = false;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            didWalk = false;
                                         }
                                     }
                                 }
                                 else if (modTypes.TempPlayer[playerindex].PetBehavior == PetBehaviourFollow)
                                 {
-                                    if (IsPetByPlayer(playerindex))
-                                    {
-                                    }
-                                    else
+                                    if (!IsPetByPlayer(playerindex))
                                     {
                                         didWalk = false;
                                         targetX = S_Players.GetPlayerX(playerindex);
                                         targetY = S_Players.GetPlayerY(playerindex);
-                                        didWalk = PetTryWalk(playerindex, targetX, targetY);
 
-                                        if (didWalk == false)
+                                        if (modPathfinding.mapMatrix[mapNum].created)
                                         {
-                                            tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
-                                            if (tmpdir == 1)
+                                            if (targetX != GetPetX(playerindex) || targetY != GetPetY(playerindex))
                                             {
-                                                tmpdir = (byte)Conversion.Int(VBMath.Rnd() * 4);
-                                                if (CanPetMove(playerindex, mapNum, (byte)tmpdir))
-                                                    PetMove(playerindex, mapNum, tmpdir, (byte)Enums.MovementType.Walking);
+                                                // Target has moved
+                                                modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath = modPathfinding.APlus(mapNum, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.X, modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.Y, targetX, targetY, modPathfinding.eCell.Void, ref modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath);
+                                                if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
+                                                {
+                                                    modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.pathLoc = modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.arPath.Length - 1; // Should we remove the - 1?
+                                                }
                                             }
+                                            if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
+                                            {
+                                                // Follow Path
+                                                modPathfinding.PetMoveAlongPath(mapNum, playerindex);
+                                                didWalk = true;
+                                            }
+                                            else
+                                            {
+                                                didWalk = false;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            didWalk = false;
                                         }
                                     }
                                 }
