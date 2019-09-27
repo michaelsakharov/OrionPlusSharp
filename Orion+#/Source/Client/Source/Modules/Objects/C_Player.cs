@@ -82,12 +82,12 @@ namespace Engine
 					}
 				}
 				
-				if (C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.Up)
+				if (C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.Up || C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.UpLeft || C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.UpRight)
 				{
 					x = GetPlayerX(C_Variables.Myindex);
 					y = GetPlayerY(C_Variables.Myindex) - 1;
 				}
-				else if (C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.Down)
+				else if (C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.Down || C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.DownLeft || C_Types.Player[C_Variables.Myindex].Dir == (byte)Enums.DirectionType.DownRight)
 				{
 					x = GetPlayerX(C_Variables.Myindex);
 					y = GetPlayerY(C_Variables.Myindex) + 1;
