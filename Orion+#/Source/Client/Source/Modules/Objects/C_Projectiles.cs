@@ -195,15 +195,13 @@ namespace Engine
 			int collisionindex = 0;
 			byte collisionType = 0;
 			int collisionZone = 0;
-			int xOffset;
-			int yOffset;
 			int x = 0;
 			int y = 0;
 			int i = 0;
 			int sprite = 0;
 			
 			// check to see if it's time to move the Projectile
-			if (C_General.GetTickCount() > MapProjectiles[projectileNum].TravelTime)
+			if (MapProjectiles[projectileNum].TravelTime < C_General.GetTickCount())
 			{
 				if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
 				{
@@ -221,7 +219,28 @@ namespace Engine
 				{
 					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
 				}
-				MapProjectiles[projectileNum].TravelTime = C_General.GetTickCount() + (Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed * 2);
+                //8 Directional movement
+				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpLeft)
+				{
+					MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+				}
+				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpRight)
+				{
+					MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+				}
+				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownLeft)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+                }
+				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownRight)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+                }
+				MapProjectiles[projectileNum].TravelTime = C_General.GetTickCount() + (Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed * 1000000);
 				MapProjectiles[projectileNum].Range = MapProjectiles[projectileNum].Range + 1;
 			}
 			
@@ -326,29 +345,25 @@ namespace Engine
 			// src rect
 			rec.Top = 0;
 			rec.Bottom = C_Graphics.ProjectileGfxInfo[sprite].Height;
-			rec.Left = MapProjectiles[projectileNum].Dir * C_Constants.PicX;
+            switch (MapProjectiles[projectileNum].Dir)
+            {
+                case 0:
+                    rec.Left = 0;
+                    break;
+                case 1:
+                    rec.Left = C_Constants.PicX;
+                    break;
+                case 2:
+                    rec.Left = C_Constants.PicX * 2;
+                    break;
+                case 3:
+                    rec.Left = C_Constants.PicX * 3;
+                    break;
+            }
 			rec.Right = rec.Left + C_Constants.PicX;
-			
-			//Find the offset
-			if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
-			{
-				yOffset = ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
-			{
-				yOffset = - ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicY;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
-			{
-				xOffset = ((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicX;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Right)
-			{
-				xOffset = -((MapProjectiles[projectileNum].TravelTime - C_General.GetTickCount()) / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed) * C_Constants.PicX;
-			}
-			
-			x = C_Graphics.ConvertMapX(x * C_Constants.PicX);
-			y = C_Graphics.ConvertMapY(y * C_Constants.PicY);
+
+            x = C_Graphics.ConvertMapX(x * C_Constants.PicY);
+			y = C_Graphics.ConvertMapY(y * C_Constants.PicX);
 			
 			Sprite tmpSprite = new Sprite(C_Graphics.ProjectileGfx[sprite]) {
 					TextureRect = new IntRect(rec.Left, rec.Top, 32, 32),
