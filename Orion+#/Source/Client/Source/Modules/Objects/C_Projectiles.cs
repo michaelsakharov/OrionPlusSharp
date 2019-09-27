@@ -317,8 +317,9 @@ namespace Engine
 			//Clear the projectile if possible
 			if (canClearProjectile == true)
 			{
-				//Only send the clear to the server if you're the projectile caster or the one hit (only if owner is not a player)
-				if (MapProjectiles[projectileNum].OwnerType == (byte)Enums.TargetType.Player && MapProjectiles[projectileNum].Owner == C_Variables.Myindex)
+                C_Graphics.ProjectileSprite[Projectiles[MapProjectiles[projectileNum].ProjectileNum].Sprite].Rotation = 0;
+                //Only send the clear to the server if you're the projectile caster or the one hit (only if owner is not a player)
+                if (MapProjectiles[projectileNum].OwnerType == (byte)Enums.TargetType.Player && MapProjectiles[projectileNum].Owner == C_Variables.Myindex)
 				{
 					SendClearProjectile(projectileNum, collisionindex, collisionType, collisionZone);
 				}
@@ -341,10 +342,10 @@ namespace Engine
 			//seeying we still use it, lets update timer
 			ref var with_1 = ref C_Graphics.ProjectileGfxInfo[sprite];
 			with_1.TextureTimer = C_General.GetTickCount() + 100000;
-			
-			// src rect
-			rec.Top = 0;
+            // src rect
+            rec.Top = 0;
 			rec.Bottom = C_Graphics.ProjectileGfxInfo[sprite].Height;
+            C_Graphics.ProjectileSprite[Projectiles[MapProjectiles[projectileNum].ProjectileNum].Sprite].Rotation = 0;
             switch (MapProjectiles[projectileNum].Dir)
             {
                 case 0:
@@ -364,12 +365,28 @@ namespace Engine
 
             x = C_Graphics.ConvertMapX(x * C_Constants.PicY);
 			y = C_Graphics.ConvertMapY(y * C_Constants.PicX);
-			
-			Sprite tmpSprite = new Sprite(C_Graphics.ProjectileGfx[sprite]) {
-					TextureRect = new IntRect(rec.Left, rec.Top, 32, 32),
-					Position = new Vector2f(x, y)
+
+            Sprite tmpSprite = new Sprite(C_Graphics.ProjectileGfx[sprite]) {
+                    TextureRect = new IntRect(rec.Left, rec.Top, 32, 32),
+                    Position = new Vector2f(x, y),
+                    Origin = new Vector2f(C_Constants.PicX / 2, C_Constants.PicY / 2),
 				};
-			C_Graphics.GameWindow.Draw(tmpSprite);
+            switch (MapProjectiles[projectileNum].Dir)
+            {
+                case 4: // Upleft
+                    tmpSprite.Rotation = -45;
+                    break;
+                case 5: // Upright
+                    tmpSprite.Rotation = 45;
+                    break;
+                case 6: // DownLeft
+                    tmpSprite.Rotation = -135;
+                    break;
+                case 7: // Downright
+                    tmpSprite.Rotation = 135;
+                    break;
+            }
+            C_Graphics.GameWindow.Draw(tmpSprite);
 			
 		}
 		
