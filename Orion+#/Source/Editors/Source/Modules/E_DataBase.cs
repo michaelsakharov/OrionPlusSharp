@@ -377,13 +377,16 @@ namespace Engine
 			}
 			E_Globals.Resource_Changed = new bool[Constants.MAX_RESOURCES + 1];
 		}
-		
-		public static void ClearResource(int index)
-		{
-			Types.Resource[index] = new Types.ResourceRec {
-					Name = ""
-				};
-		}
+
+        public static void ClearResource(int index)
+        {
+            Types.Resource[index] = new Types.ResourceRec
+            {
+                Name = "",
+                SuccessMessage = "",
+                EmptyMessage = "",
+            };
+        }
 		
 		public static void ClearResources()
 		{

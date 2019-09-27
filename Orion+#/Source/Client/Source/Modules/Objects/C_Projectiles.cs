@@ -201,48 +201,45 @@ namespace Engine
 			int sprite = 0;
 			
 			// check to see if it's time to move the Projectile
-			if (MapProjectiles[projectileNum].TravelTime < C_General.GetTickCount())
+			if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
 			{
-				if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
-				{
-					MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
-				}
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
-				{
-					MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
-				}
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
-				{
-					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
-				}
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Right)
-				{
-					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
-				}
-                //8 Directional movement
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpLeft)
-				{
-					MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
-					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
-				}
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpRight)
-				{
-					MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
-					MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
-				}
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownLeft)
-                {
-                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
-                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
-                }
-				else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownRight)
-                {
-                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
-                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
-                }
-				MapProjectiles[projectileNum].TravelTime = C_General.GetTickCount() + (Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed * 1000000);
-				MapProjectiles[projectileNum].Range = MapProjectiles[projectileNum].Range + 1;
+				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
 			}
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
+			{
+				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+			}
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
+			{
+				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+			}
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Right)
+			{
+				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+			}
+            //8 Directional movement
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpLeft)
+			{
+				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+			}
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpRight)
+			{
+				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+			}
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownLeft)
+            {
+                MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+            }
+			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownRight)
+            {
+                MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+            }
+
+			//MapProjectiles[projectileNum].Range = MapProjectiles[projectileNum].Range + 1;
 			
 			x = MapProjectiles[projectileNum].X;
 			y = MapProjectiles[projectileNum].Y;
@@ -317,7 +314,6 @@ namespace Engine
 			//Clear the projectile if possible
 			if (canClearProjectile == true)
 			{
-                C_Graphics.ProjectileSprite[Projectiles[MapProjectiles[projectileNum].ProjectileNum].Sprite].Rotation = 0;
                 //Only send the clear to the server if you're the projectile caster or the one hit (only if owner is not a player)
                 if (MapProjectiles[projectileNum].OwnerType == (byte)Enums.TargetType.Player && MapProjectiles[projectileNum].Owner == C_Variables.Myindex)
 				{
@@ -345,23 +341,23 @@ namespace Engine
             // src rect
             rec.Top = 0;
 			rec.Bottom = C_Graphics.ProjectileGfxInfo[sprite].Height;
-            C_Graphics.ProjectileSprite[Projectiles[MapProjectiles[projectileNum].ProjectileNum].Sprite].Rotation = 0;
-            switch (MapProjectiles[projectileNum].Dir)
-            {
-                case 0:
-                    rec.Left = 0;
-                    break;
-                case 1:
-                    rec.Left = C_Constants.PicX;
-                    break;
-                case 2:
-                    rec.Left = C_Constants.PicX * 2;
-                    break;
-                case 3:
-                    rec.Left = C_Constants.PicX * 3;
-                    break;
-            }
-			rec.Right = rec.Left + C_Constants.PicX;
+            //switch (animationstate)
+            //{
+            //    case 0:
+            //        rec.Left = 0;
+            //        break;
+            //    case 1:
+            //        rec.Left = C_Constants.PicX;
+            //        break;
+            //    case 2:
+            //        rec.Left = C_Constants.PicX * 2;
+            //        break;
+            //    case 3:
+            //        rec.Left = C_Constants.PicX * 3;
+            //        break;
+            //}
+            rec.Left = 0;
+            rec.Right = rec.Left + C_Constants.PicX;
 
             x = C_Graphics.ConvertMapX(x * C_Constants.PicY);
 			y = C_Graphics.ConvertMapY(y * C_Constants.PicX);
@@ -373,6 +369,19 @@ namespace Engine
 				};
             switch (MapProjectiles[projectileNum].Dir)
             {
+                case 0: // Up
+                    tmpSprite.Rotation = 0;
+                    break;
+                case 1: // down
+                    tmpSprite.Rotation = 180;
+                    break;
+                case 2: // Left
+                    tmpSprite.Rotation = -90;
+                    break;
+                case 3: // Right
+                    tmpSprite.Rotation = 90;
+                    break;
+
                 case 4: // Upleft
                     tmpSprite.Rotation = -45;
                     break;
