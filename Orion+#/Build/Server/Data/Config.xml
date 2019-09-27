@@ -11,5 +11,7 @@
   </Settings>
   <Game>
     <Element Name="xpMultiplier" Value="0" />
+    <Element Name="allowEightDirectionalMovement" Value="True" />
+    <Element Name="useSmoothDynamicLightRendering" Value="True" />
   </Game>
 </Options>

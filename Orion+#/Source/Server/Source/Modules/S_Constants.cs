@@ -20,8 +20,5 @@
         internal const long ITEM_SPAWN_TIME = 30000; // 30 seconds
         internal const long ITEM_DESPAWN_TIME = 90000; // 1:30 seconds
 
-        // Should NPC's Pets and other such things be able to move in 8 directions or 4? True = 8
-        internal const bool EightDirectionalMovement = true;
-
     }
 }

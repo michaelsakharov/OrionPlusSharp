@@ -1622,8 +1622,11 @@ namespace Engine
 
             S_General.AddDebug("Sent SMSG: SNews");
 
+            // This sends more then just News now :P should probably update its name
             buffer.WriteString(modTypes.Options.GameName.Trim());
             buffer.WriteString(modDatabase.GetFileContents(Application.StartupPath + @"\data\news.txt").Trim());
+            buffer.WriteString(modTypes.Options.allowEightDirectionalMovement.ToString());
+            buffer.WriteString(modTypes.Options.useSmoothDynamicLightRendering.ToString());
 
             S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
 

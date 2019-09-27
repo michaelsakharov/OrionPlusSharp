@@ -1799,6 +1799,8 @@ namespace Engine
 			ByteStream buffer = new ByteStream(data);
 			C_Constants.GameName = buffer.ReadString();
 			C_Variables.News = buffer.ReadString();
+			C_Variables.allowEightDirectionalMovement = bool.Parse(buffer.ReadString());
+			C_Variables.useSmoothDynamicLightRendering = bool.Parse(buffer.ReadString());
 			
 			C_Variables.UpdateNews = true;
 			

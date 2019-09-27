@@ -4220,7 +4220,7 @@ namespace Engine
                             {
                                 List<Vector2i> tiles = AppendFov(x, y, C_Maps.Map.Tile[x, y].Data1, true);
                                 tiles.Add(new Vector2i(x, y)); // Add the center tile, Fov doesnt calculate this
-                                if (Constants.USE_SMOOTH_DYNAMIC_LIGHTING) // If Smooth Lighting
+                                if (C_Variables.useSmoothDynamicLightRendering) // If Smooth Lighting
                                 {
                                     Vector2f scale = new Vector2f();
                                     if (C_Maps.Map.Tile[x, y].Data2 == 1)

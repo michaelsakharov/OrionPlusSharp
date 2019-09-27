@@ -221,6 +221,10 @@ namespace Engine
 		internal static string News;
 		
 		internal static bool UpdateNews;
+
+        //Server side game settings
+		internal static bool allowEightDirectionalMovement;
+		internal static bool useSmoothDynamicLightRendering;
 		
 		internal static bool ShakeTimerEnabled;
 		internal static int ShakeTimer;

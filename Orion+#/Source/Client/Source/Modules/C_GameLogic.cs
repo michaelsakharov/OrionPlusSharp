@@ -93,7 +93,7 @@ namespace Engine
 				C_Variables.DirRight = C_UpdateUI.VbKeyRight;
 
                 // 8 Directional Movement
-                if (C_Constants.EightDirectionalMovement)
+                if (C_Variables.allowEightDirectionalMovement)
                 {
                     C_Variables.DirUpLeft = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyLeft);
                     C_Variables.DirUpRight = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyRight);

@@ -212,6 +212,8 @@ namespace Engine
                 modTypes.Options.StartMap = 1;
                 modTypes.Options.StartX = 13;
                 modTypes.Options.StartY = 7;
+                modTypes.Options.allowEightDirectionalMovement = true;
+                modTypes.Options.useSmoothDynamicLightRendering = true;
                 modDatabase.SaveOptions();
             }
             else

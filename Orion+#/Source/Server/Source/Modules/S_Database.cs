@@ -2006,7 +2006,13 @@ namespace Engine
             myXml.WriteString("Settings", "StartMap", Options.StartMap.ToString());
             myXml.WriteString("Settings", "StartX", Options.StartX.ToString());
             myXml.WriteString("Settings", "StartY", Options.StartY.ToString());
+
             myXml.WriteString("Game", "xpMultiplier", Options.xpMultiplier.ToString());
+
+            //Game Settings
+            myXml.WriteString("Game", "allowEightDirectionalMovement", Options.allowEightDirectionalMovement.ToString());
+            myXml.WriteString("Game", "useSmoothDynamicLightRendering", Options.useSmoothDynamicLightRendering.ToString());
+
             myXml.CloseXml(true);
         }
 
@@ -2025,7 +2031,11 @@ namespace Engine
             Options.StartMap = Convert.ToInt32(myXml.ReadString("Settings", "StartMap", "1"));
             Options.StartX = Convert.ToInt32(myXml.ReadString("Settings", "StartX", "13+"));
             Options.StartY = Convert.ToInt32(myXml.ReadString("Settings", "StartY", "7"));
+
             Options.xpMultiplier = Convert.ToSingle(myXml.ReadString("Game", "xpMultiplier", "1"));
+
+            Options.allowEightDirectionalMovement = bool.Parse(myXml.ReadString("Game", "allowEightDirectionalMovement", "True"));
+            Options.useSmoothDynamicLightRendering = bool.Parse(myXml.ReadString("Game", "useSmoothDynamicLightRendering", "True"));
             myXml.CloseXml(false);
         }
 

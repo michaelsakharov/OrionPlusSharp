@@ -11,6 +11,14 @@
         public int StartX;
         public int StartY;
         public float xpMultiplier;
+
+        // Game Settings
+        public bool allowEightDirectionalMovement;
+        public bool useSmoothDynamicLightRendering;
+
+        
+
+        // Session based settings
         public bool unlockCPS;
     }
 }

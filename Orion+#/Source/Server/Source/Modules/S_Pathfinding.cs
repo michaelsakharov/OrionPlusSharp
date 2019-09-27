@@ -149,7 +149,7 @@ namespace Engine
 					for(lOffX=-1; lOffX<=1; lOffX++) {
 						// Ignore the actual field, process all others (8 neighbors).
 						if (lOffX!=0 | lOffY!=0) {
-                            if (!S_Constants.EightDirectionalMovement && !(lOffX != 0 & lOffY != 0))
+                            if (!modTypes.Options.allowEightDirectionalMovement && !(lOffX != 0 & lOffY != 0))
                             {
                                 continue;
                             }
