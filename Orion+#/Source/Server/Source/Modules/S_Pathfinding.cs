@@ -149,60 +149,61 @@ namespace Engine
 					for(lOffX=-1; lOffX<=1; lOffX++) {
 						// Ignore the actual field, process all others (8 neighbors).
 						if (lOffX!=0 | lOffY!=0) {
-							// ignore all diagonal movement
-							if (!(lOffX!=0 & lOffY!=0)) {
-								// Get the neighbor's coordinates.
-								lTestX = lCheapX+lOffX; lTestY = lCheapY+lOffY;
-								// Don't test beyond the grid's boundaries.
-								if (lTestX>=0 & lTestX<=lMaxX & lTestY>=0 & lTestY<=lMaxY) {
-									// The cell is within the grid's boundaries.
-									// Make sure the field is accessible. To be accessible,
-									// the cell must have the value as per the function
-									// argument FreeCell (change as needed). Of course, the
-									// target is allowed as well.
-									if (mapMatrix[MapNum].gaeGrid[lTestX, lTestY]==FreeCell || mapMatrix[MapNum].gaeGrid[lTestX, lTestY]==eCell.target) {
-										// The cell is accessible.
-										// For this we created the "bitmatrix" abGridCopy().
-										if (abGridCopy[lTestX, lTestY].ListStat==eListStat.Unprocessed) {
-											// Register the new cell in the list.
-											lMaxList += 1;
-											 Array.Resize(ref grList, lMaxList + 1);
+                            if (!S_Constants.EightDirectionalMovement && !(lOffX != 0 & lOffY != 0))
+                            {
+                                continue;
+                            }
+                            // Get the neighbor's coordinates.
+                            lTestX = lCheapX+lOffX; lTestY = lCheapY+lOffY;
+							// Don't test beyond the grid's boundaries.
+							if (lTestX>=0 & lTestX<=lMaxX & lTestY>=0 & lTestY<=lMaxY) {
+								// The cell is within the grid's boundaries.
+								// Make sure the field is accessible. To be accessible,
+								// the cell must have the value as per the function
+								// argument FreeCell (change as needed). Of course, the
+								// target is allowed as well.
+								if (mapMatrix[MapNum].gaeGrid[lTestX, lTestY]==FreeCell || mapMatrix[MapNum].gaeGrid[lTestX, lTestY]==eCell.target) {
+									// The cell is accessible.
+									// For this we created the "bitmatrix" abGridCopy().
+									if (abGridCopy[lTestX, lTestY].ListStat==eListStat.Unprocessed) {
+										// Register the new cell in the list.
+										lMaxList += 1;
+										 Array.Resize(ref grList, lMaxList + 1);
         
-											// The parent is where we come from (the cheapest field);
-											// it's index is registered.
-											grList[lMaxList].x = lTestX; grList[lMaxList].y = lTestY; grList[lMaxList].Parent = lCheapIndex;
-											// Additional cost is 1 for othogonal movement, cSqr2 for
-											// diagonal movement (change if diagonal steps should have
-											// a different cost).
-											if (Math.Abs(lOffX)+Math.Abs(lOffY)==1) sAdditCost = (float)(1.0);											 else  sAdditCost = cSqr2;
-											// Store cost to get there by summing the actual cell's cost
-											// and the additional cost.
-											grList[lMaxList].Cost = grList[lCheapIndex].Cost+sAdditCost;
-											// Calculate distance to target as the heuristical part
-											grList[lMaxList].Heuristic = (float)(Math.Sqrt((TX-lTestX)*(TX-lTestX)+(TY-lTestY)*(TY-lTestY)));
+										// The parent is where we come from (the cheapest field);
+										// it's index is registered.
+										grList[lMaxList].x = lTestX; grList[lMaxList].y = lTestY; grList[lMaxList].Parent = lCheapIndex;
+										// Additional cost is 1 for othogonal movement, cSqr2 for
+										// diagonal movement (change if diagonal steps should have
+										// a different cost).
+										if (Math.Abs(lOffX)+Math.Abs(lOffY)==1) sAdditCost = (float)(1.0);											 else  sAdditCost = cSqr2;
+										// Store cost to get there by summing the actual cell's cost
+										// and the additional cost.
+										grList[lMaxList].Cost = grList[lCheapIndex].Cost+sAdditCost;
+										// Calculate distance to target as the heuristical part
+										grList[lMaxList].Heuristic = (float)(Math.Sqrt((TX-lTestX)*(TX-lTestX)+(TY-lTestY)*(TY-lTestY)));
         
-											// Register in the Grid copy as open.
-											abGridCopy[lTestX, lTestY].ListStat = eListStat.IsOpen;
-											// Also register the index to quickly find the element in the
-											// "closed" list.
-											abGridCopy[lTestX, lTestY].Index = lMaxList;
-										} else if (abGridCopy[lTestX, lTestY].ListStat==eListStat.IsOpen) {
-											// Is the cost to get to this already open field cheaper when using
-											// this path via lTestX/lTestY ?
-											lActList = abGridCopy[lTestX, lTestY].Index;
-											sAdditCost = (float)((Math.Abs(lOffX)+Math.Abs(lOffY)==1 ? 1.0 : cSqr2));
-											if (grList[lCheapIndex].Cost+sAdditCost<grList[lActList].Cost) {
-												// The cost to reach the already open field is lower via the
-												// actual field.
+										// Register in the Grid copy as open.
+										abGridCopy[lTestX, lTestY].ListStat = eListStat.IsOpen;
+										// Also register the index to quickly find the element in the
+										// "closed" list.
+										abGridCopy[lTestX, lTestY].Index = lMaxList;
+									} else if (abGridCopy[lTestX, lTestY].ListStat==eListStat.IsOpen) {
+										// Is the cost to get to this already open field cheaper when using
+										// this path via lTestX/lTestY ?
+										lActList = abGridCopy[lTestX, lTestY].Index;
+										sAdditCost = (float)((Math.Abs(lOffX)+Math.Abs(lOffY)==1 ? 1.0 : cSqr2));
+										if (grList[lCheapIndex].Cost+sAdditCost<grList[lActList].Cost) {
+											// The cost to reach the already open field is lower via the
+											// actual field.
         
-												// Store new cost
-												grList[lActList].Cost = grList[lCheapIndex].Cost+sAdditCost;
-												// Store new parent
-												grList[lActList].Parent = lCheapIndex;
-											}
-											// ElseIf abGridCopy(lTestX, lTestY) = IsClosed Then
-											// This cell can be ignored
+											// Store new cost
+											grList[lActList].Cost = grList[lCheapIndex].Cost+sAdditCost;
+											// Store new parent
+											grList[lActList].Parent = lCheapIndex;
 										}
+										// ElseIf abGridCopy(lTestX, lTestY) = IsClosed Then
+										// This cell can be ignored
 									}
 								}
 							}
@@ -264,8 +265,51 @@ namespace Engine
 			if (modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc>=1) {
                 x = modTypes.MapNpc[MapNum].Npc[MapNpcNum].arPath[modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc-1].x;
 				y = modTypes.MapNpc[MapNum].Npc[MapNpcNum].arPath[modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc-1].y;
-				// up
-				if (y < modTypes.MapNpc[MapNum].Npc[MapNpcNum].Y) {
+
+                // Do 8 Directional First
+                // up Left
+                if (y < modTypes.MapNpc[MapNum].Npc[MapNpcNum].Y && x < modTypes.MapNpc[MapNum].Npc[MapNpcNum].X)
+                {
+                    if (S_Npc.CanNpcMove(MapNum, MapNpcNum, (int)DirectionType.UpLeft))
+                    {
+                        S_Npc.NpcMove(MapNum, MapNpcNum, (int)DirectionType.UpLeft, (int)MovementType.Walking);
+                        modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc -= 1;
+                        return;
+                    }
+                }
+                // Up Right
+                else if (y < modTypes.MapNpc[MapNum].Npc[MapNpcNum].Y && x > modTypes.MapNpc[MapNum].Npc[MapNpcNum].X)
+                {
+                    if (S_Npc.CanNpcMove(MapNum, MapNpcNum, (int)DirectionType.UpRight))
+                    {
+                        S_Npc.NpcMove(MapNum, MapNpcNum, (int)DirectionType.UpRight, (int)MovementType.Walking);
+                        modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc -= 1;
+                        return;
+                    }
+                }
+                // Down Left
+                else if (y > modTypes.MapNpc[MapNum].Npc[MapNpcNum].Y && x < modTypes.MapNpc[MapNum].Npc[MapNpcNum].X)
+                {
+                    if (S_Npc.CanNpcMove(MapNum, MapNpcNum, (int)DirectionType.DownLeft))
+                    {
+                        S_Npc.NpcMove(MapNum, MapNpcNum, (int)DirectionType.DownLeft, (int)MovementType.Walking);
+                        modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc -= 1;
+                        return;
+                    }
+                }
+                // Down Right
+                else if (y > modTypes.MapNpc[MapNum].Npc[MapNpcNum].Y && x > modTypes.MapNpc[MapNum].Npc[MapNpcNum].X)
+                {
+                    if (S_Npc.CanNpcMove(MapNum, MapNpcNum, (int)DirectionType.DownRight))
+                    {
+                        S_Npc.NpcMove(MapNum, MapNpcNum, (int)DirectionType.DownRight, (int)MovementType.Walking);
+                        modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc -= 1;
+                        return;
+                    }
+                }
+
+                // up
+                else if (y < modTypes.MapNpc[MapNum].Npc[MapNpcNum].Y) {
 					if (S_Npc.CanNpcMove(MapNum, MapNpcNum, (int)DirectionType.Up)) {
                         S_Npc.NpcMove(MapNum, MapNpcNum, (int)DirectionType.Up, (int)MovementType.Walking);
 						modTypes.MapNpc[MapNum].Npc[MapNpcNum].pathLoc -= 1;
@@ -310,9 +354,51 @@ namespace Engine
             {
                 x = modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.arPath[modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc - 1].x;
                 y = modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.arPath[modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc - 1].y;
-                
+
+                // Do 8 Directional First
+                // up Left
+                if (y < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y && x < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.UpLeft))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.UpLeft, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+                // Up Right
+                else if (y < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y && x > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.UpRight))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.UpRight, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+                // Down Left
+                else if (y > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y && x < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.DownLeft))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.DownLeft, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+                // Down Right
+                else if (y > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y && x > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                {
+                    if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.DownRight))
+                    {
+                        S_Pets.PetMove(playerNum, MapNum, (int)DirectionType.DownRight, (int)MovementType.Walking);
+                        modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.pathLoc -= 1;
+                        return;
+                    }
+                }
+
                 // up
-                if (y < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
+                else if (y < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Up))
                     {
@@ -322,7 +408,7 @@ namespace Engine
                     }
                 }
                 // down
-                if (y > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
+                else if (y > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.Y)
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Down))
                     {
@@ -332,7 +418,7 @@ namespace Engine
                     }
                 }
                 // left
-                if (x < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                else if (x < modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Left))
                     {
@@ -342,7 +428,7 @@ namespace Engine
                     }
                 }
                 // right
-                if (x > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
+                else if (x > modTypes.Player[playerNum].Character[modTypes.TempPlayer[playerNum].CurChar].Pet.X)
                 {
                     if (S_Pets.CanPetMove(playerNum, MapNum, (int)DirectionType.Right))
                     {

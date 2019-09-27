@@ -722,19 +722,19 @@ namespace Engine
 
                     // 8 Directional Movement
 				case (int) Enums.DirectionType.UpLeft:
-					C_Types.Player[i].YOffset = C_Constants.PicX;
+					C_Types.Player[i].YOffset = C_Constants.PicY;
 					C_Types.Player[i].XOffset = C_Constants.PicX;
 					break;
 				case (int) Enums.DirectionType.UpRight:
-					C_Types.Player[i].YOffset = C_Constants.PicX;
+					C_Types.Player[i].YOffset = C_Constants.PicY;
 					C_Types.Player[i].XOffset = C_Constants.PicX * -1;
 					break;
 				case (int) Enums.DirectionType.DownLeft:
-					C_Types.Player[i].YOffset = C_Constants.PicX * -1;
+					C_Types.Player[i].YOffset = C_Constants.PicY * -1;
 					C_Types.Player[i].XOffset = C_Constants.PicX;
 					break;
 				case (int) Enums.DirectionType.DownRight:
-					C_Types.Player[i].YOffset = C_Constants.PicX * -1;
+					C_Types.Player[i].YOffset = C_Constants.PicY * -1;
 					C_Types.Player[i].XOffset = C_Constants.PicX * -1;
 					break;
             }

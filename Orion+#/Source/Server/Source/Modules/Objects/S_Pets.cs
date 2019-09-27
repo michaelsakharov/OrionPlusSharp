@@ -1305,28 +1305,28 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                 case (int)Enums.DirectionType.UpLeft:
                     {
                         SetPetY(index, GetPetY(index) - 1);
-                        SetPetX(index, GetPetY(index) - 1);
+                        SetPetX(index, GetPetX(index) - 1);
                         break;
                     }
 
                 case (int)Enums.DirectionType.UpRight:
                     {
                         SetPetY(index, GetPetY(index) - 1);
-                        SetPetX(index, GetPetY(index) + 1);
+                        SetPetX(index, GetPetX(index) + 1);
                         break;
                     }
 
                 case (int)Enums.DirectionType.DownLeft:
                     {
                         SetPetY(index, GetPetY(index) + 1);
-                        SetPetX(index, GetPetY(index) - 1);
+                        SetPetX(index, GetPetX(index) - 1);
                         break;
                     }
 
                 case (int)Enums.DirectionType.DownRight:
                     {
                         SetPetY(index, GetPetY(index) + 1);
-                        SetPetX(index, GetPetY(index) + 1);
+                        SetPetX(index, GetPetX(index) + 1);
                         break;
                     }
             }
