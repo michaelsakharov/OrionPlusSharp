@@ -560,11 +560,14 @@ namespace Engine
 
         internal static void SendLeaveGame()
         {
-            ByteStream buffer = new ByteStream(4);
+            if (E_NetworkConfig.Socket != null & E_NetworkConfig.Socket.IsConnected)
+            {
+                ByteStream buffer = new ByteStream(4);
 
-            buffer.WriteInt32((int)Packets.ClientPackets.CQuit);
-            E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
-            buffer.Dispose();
+                buffer.WriteInt32((int)Packets.ClientPackets.CQuit);
+                E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
+                buffer.Dispose();
+            }
         }
 
         internal static void SendEditorRequestMap(int mapNum)
