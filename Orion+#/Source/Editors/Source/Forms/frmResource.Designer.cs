@@ -281,8 +281,9 @@ namespace Engine
             this.cmbTool.Items.AddRange(new object[] {
             "None",
             "Hatchet",
+            "Fishing Rod",
             "Pickaxe",
-            "Fishing Rod"});
+            "Hoe"});
             this.cmbTool.Location = new System.Drawing.Point(84, 13);
             this.cmbTool.Name = "cmbTool";
             this.cmbTool.Size = new System.Drawing.Size(103, 21);
