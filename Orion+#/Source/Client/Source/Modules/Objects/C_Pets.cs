@@ -319,9 +319,30 @@ namespace Engine
 			else if (with_1.Dir == (byte)Enums.DirectionType.Right)
 			{
 				with_1.XOffset = C_Constants.PicX * -1;
-			}
-			
-			buffer.Dispose();
+            }
+            // 8 Directional Movement
+            else if (with_1.Dir == (byte)Enums.DirectionType.UpRight)
+            {
+                with_1.YOffset = C_Constants.PicY;
+                with_1.XOffset = C_Constants.PicY;
+            }
+            else if (with_1.Dir == (byte)Enums.DirectionType.UpLeft)
+            {
+                with_1.YOffset = C_Constants.PicY;
+                with_1.XOffset = C_Constants.PicY * -1;
+            }
+            else if (with_1.Dir == (byte)Enums.DirectionType.DownLeft)
+            {
+                with_1.YOffset = C_Constants.PicX * -1;
+                with_1.XOffset = C_Constants.PicX;
+            }
+            else if (with_1.Dir == (byte)Enums.DirectionType.DownRight)
+            {
+                with_1.YOffset = C_Constants.PicX * -1;
+                with_1.XOffset = C_Constants.PicX * -1;
+            }
+
+            buffer.Dispose();
 		}
 		
 		internal static void Packet_PetDir(ref byte[] data)
@@ -405,44 +426,83 @@ namespace Engine
 			
 			// Check if pet is walking, and if so process moving them over
 			
-			if (C_Types.Player[index].Pet.Moving == (byte)Enums.MovementType.Walking)
+			if (C_Types.Player[index].Pet.Moving == (byte)Enums.MovementType.Walking || C_Types.Player[index].Pet.Moving == (byte)Enums.MovementType.Running)
 			{
-				
-				switch (C_Types.Player[index].Pet.Dir)
-				{
-					case (int) Enums.DirectionType.Up:
-						C_Types.Player[index].Pet.YOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.YOffset - C_Constants.WalkSpeed);
-						if (C_Types.Player[index].Pet.YOffset < 0)
-						{
-							C_Types.Player[index].Pet.YOffset = 0;
-						}
-						break;
-						
-					case (int) Enums.DirectionType.Down:
-						C_Types.Player[index].Pet.YOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.YOffset + C_Constants.WalkSpeed);
-						if (C_Types.Player[index].Pet.YOffset > 0)
-						{
-							C_Types.Player[index].Pet.YOffset = 0;
-						}
-						break;
-						
-					case (int) Enums.DirectionType.Left:
-						C_Types.Player[index].Pet.XOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.XOffset - C_Constants.WalkSpeed);
-						if (C_Types.Player[index].Pet.XOffset < 0)
-						{
-							C_Types.Player[index].Pet.XOffset = 0;
-						}
-						break;
-						
-					case (int) Enums.DirectionType.Right:
-						C_Types.Player[index].Pet.XOffset = System.Convert.ToInt32(C_Types.Player[index].Pet.XOffset + C_Constants.WalkSpeed);
-						if (C_Types.Player[index].Pet.XOffset > 0)
-						{
-							C_Types.Player[index].Pet.XOffset = 0;
-						}
-						break;
-						
-				}
+
+                if (C_Types.Player[index].Pet.Moving == (byte)Enums.MovementType.Walking)
+                {
+                    switch (C_Types.Player[index].Pet.Dir)
+                    {
+                        case (int)Enums.DirectionType.Up:
+                            C_Types.Player[index].Pet.YOffset = (C_Types.Player[index].Pet.YOffset - C_Constants.WalkSpeed);
+                            if (C_Types.Player[index].Pet.YOffset < 0)
+                            {
+                                C_Types.Player[index].Pet.YOffset = 0;
+                            }
+                            break;
+
+                        case (int)Enums.DirectionType.Down:
+                            C_Types.Player[index].Pet.YOffset = (C_Types.Player[index].Pet.YOffset + C_Constants.WalkSpeed);
+                            if (C_Types.Player[index].Pet.YOffset > 0)
+                            {
+                                C_Types.Player[index].Pet.YOffset = 0;
+                            }
+                            break;
+
+                        case (int)Enums.DirectionType.Left:
+                            C_Types.Player[index].Pet.XOffset = (C_Types.Player[index].Pet.XOffset - C_Constants.WalkSpeed);
+                            if (C_Types.Player[index].Pet.XOffset < 0)
+                            {
+                                C_Types.Player[index].Pet.XOffset = 0;
+                            }
+                            break;
+
+                        case (int)Enums.DirectionType.Right:
+                            C_Types.Player[index].Pet.XOffset = (C_Types.Player[index].Pet.XOffset + C_Constants.WalkSpeed);
+                            if (C_Types.Player[index].Pet.XOffset > 0)
+                            {
+                                C_Types.Player[index].Pet.XOffset = 0;
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (C_Types.Player[index].Pet.Dir)
+                    {
+                        case (int)Enums.DirectionType.Up:
+                            C_Types.Player[index].Pet.YOffset = (C_Types.Player[index].Pet.YOffset - C_Constants.RunSpeed);
+                            if (C_Types.Player[index].Pet.YOffset < 0)
+                            {
+                                C_Types.Player[index].Pet.YOffset = 0;
+                            }
+                            break;
+
+                        case (int)Enums.DirectionType.Down:
+                            C_Types.Player[index].Pet.YOffset = (C_Types.Player[index].Pet.YOffset + C_Constants.RunSpeed);
+                            if (C_Types.Player[index].Pet.YOffset > 0)
+                            {
+                                C_Types.Player[index].Pet.YOffset = 0;
+                            }
+                            break;
+
+                        case (int)Enums.DirectionType.Left:
+                            C_Types.Player[index].Pet.XOffset = (C_Types.Player[index].Pet.XOffset - C_Constants.RunSpeed);
+                            if (C_Types.Player[index].Pet.XOffset < 0)
+                            {
+                                C_Types.Player[index].Pet.XOffset = 0;
+                            }
+                            break;
+
+                        case (int)Enums.DirectionType.Right:
+                            C_Types.Player[index].Pet.XOffset = (C_Types.Player[index].Pet.XOffset + C_Constants.RunSpeed);
+                            if (C_Types.Player[index].Pet.XOffset > 0)
+                            {
+                                C_Types.Player[index].Pet.XOffset = 0;
+                            }
+                            break;
+                    }
+                }
 				
 				// Check if completed walking over to the next tile
 				if (C_Types.Player[index].Pet.Moving > 0)

@@ -1027,14 +1027,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                                             if (modTypes.Player[playerindex].Character[modTypes.TempPlayer[playerindex].CurChar].Pet.hasPath)
                                             {
                                                 // Follow Path
-                                                if (dist > 5)
-                                                {
-                                                    modPathfinding.PetMoveAlongPath(mapNum, playerindex, true);
-                                                }
-                                                else
-                                                {
-                                                    modPathfinding.PetMoveAlongPath(mapNum, playerindex);
-                                                }
+                                                modPathfinding.PetMoveAlongPath(mapNum, playerindex);
                                                 didWalk = true;
                                             }
                                             else
@@ -1260,7 +1253,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
 
             // if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right || movement < 1 || movement > 2)
             // 8 Directional Movement
-            if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.Right || movement < 1 || movement > 2)
+            if (mapNum < 1 || mapNum > Constants.MAX_MAPS || index <= 0 || index > Constants.MAX_PLAYERS || dir < (int)Enums.DirectionType.Up || dir > (int)Enums.DirectionType.DownRight || movement < 1 || movement > 2)
                 return;
 
             modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Dir = dir;
