@@ -18,6 +18,7 @@ namespace Engine
 			InitializeComponent();
 
             this.MouseWheel += ScrlMapViewH_MouseWheel;
+            this.MouseDown += DragMapViewH_MouseMiddle;
 
             if (defaultInstance == null)
 				defaultInstance = this;
@@ -939,6 +940,13 @@ namespace Engine
             }
             scrlMapViewV.Value = E_Globals.EditorViewY;
             scrlMapViewH.Value = E_Globals.EditorViewX;
+        }
+
+        public void DragMapViewH_MouseMiddle(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+            }
         }
         
         public void ChkInstance_CheckedChanged(object sender, EventArgs e)

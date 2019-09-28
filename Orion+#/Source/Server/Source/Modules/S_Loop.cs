@@ -613,7 +613,7 @@ namespace Engine
 
                                             if (i == 1)
                                             {
-                                                if (S_Constants.EightDirectionalMovement)
+                                                if (modTypes.Options.useSmoothDynamicLightRendering)
                                                 {
                                                     i = (int)(VBMath.Rnd() * 8);
                                                 }

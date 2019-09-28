@@ -280,10 +280,10 @@ namespace Engine
             this.cmbTool.FormattingEnabled = true;
             this.cmbTool.Items.AddRange(new object[] {
             "None",
+            "Hoe",
             "Hatchet",
-            "Fishing Rod",
             "Pickaxe",
-            "Hoe"});
+            "Fishing Rod"});
             this.cmbTool.Location = new System.Drawing.Point(84, 13);
             this.cmbTool.Name = "cmbTool";
             this.cmbTool.Size = new System.Drawing.Size(103, 21);

@@ -1243,10 +1243,10 @@ namespace Engine
             this.cmbTool.FormattingEnabled = true;
             this.cmbTool.Items.AddRange(new object[] {
             "None",
+            "Hoe",
             "Hatchet",
-            "Rod",
             "Pickaxe",
-            "Hoe"});
+            "Fishing Rod"});
             this.cmbTool.Location = new System.Drawing.Point(70, 19);
             this.cmbTool.Name = "cmbTool";
             this.cmbTool.Size = new System.Drawing.Size(121, 21);

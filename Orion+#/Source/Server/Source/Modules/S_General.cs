@@ -13,6 +13,7 @@ using static Engine.S_Housing;
 using static Engine.Types;
 using static Engine.S_Projectiles;
 using static Engine.S_Pets;
+using System.Text;
 
 namespace Engine
 {
