@@ -59,6 +59,7 @@ namespace Engine
             this.DarkLabel1 = new DarkUI.Controls.DarkLabel();
             this.btnSave = new DarkUI.Controls.DarkButton();
             this.btnCancel = new DarkUI.Controls.DarkButton();
+            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDamage)).BeginInit();
@@ -114,7 +115,7 @@ namespace Engine
             this.DarkGroupBox2.Size = new System.Drawing.Size(249, 273);
             this.DarkGroupBox2.TabIndex = 1;
             this.DarkGroupBox2.TabStop = false;
-            this.DarkGroupBox2.Text = "Projectile Properties";
+            this.DarkGroupBox2.Text = "Projectile Basic Properties";
             // 
             // DarkLabel5
             // 
@@ -156,6 +157,11 @@ namespace Engine
             this.nudSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudSpeed.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudSpeed.Location = new System.Drawing.Point(119, 167);
+            this.nudSpeed.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             this.nudSpeed.Minimum = new decimal(new int[] {
             1,
             0,
@@ -271,13 +277,26 @@ namespace Engine
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // darkGroupBox3
+            // 
+            this.darkGroupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.darkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro;
+            this.darkGroupBox3.Location = new System.Drawing.Point(452, 3);
+            this.darkGroupBox3.Name = "darkGroupBox3";
+            this.darkGroupBox3.Size = new System.Drawing.Size(559, 305);
+            this.darkGroupBox3.TabIndex = 12;
+            this.darkGroupBox3.TabStop = false;
+            this.darkGroupBox3.Text = "Projectile Type Settings";
+            // 
             // frmProjectile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(452, 319);
+            this.ClientSize = new System.Drawing.Size(1023, 319);
             this.ControlBox = false;
+            this.Controls.Add(this.darkGroupBox3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.DarkGroupBox2);
@@ -314,6 +333,7 @@ namespace Engine
 		internal DarkUI.Controls.DarkLabel DarkLabel5;
 		internal DarkUI.Controls.DarkButton btnSave;
 		internal DarkUI.Controls.DarkButton btnCancel;
-	}
+        internal DarkUI.Controls.DarkGroupBox darkGroupBox3;
+    }
 	
 }

@@ -52,6 +52,7 @@ namespace Engine
 			public byte Dir;
 			public int Range;
 			public int TravelTime;
+			public int LastTravelTime;
 			public int Timer;
 		}
 		
@@ -199,46 +200,59 @@ namespace Engine
 			int y = 0;
 			int i = 0;
 			int sprite = 0;
-			
-			// check to see if it's time to move the Projectile
-			if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
-			{
-				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
-			{
-				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
-			{
-				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Right)
-			{
-				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
-			}
-            //8 Directional movement
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpLeft)
-			{
-				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
-				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpRight)
-			{
-				MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
-				MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
-			}
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownLeft)
-            {
-                MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
-                MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
-            }
-			else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownRight)
-            {
-                MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
-                MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
-            }
 
+            // TODO fix Speed, Add Animation support, Remake Projectile resources, Overall improve editor to be able to compete with Intersect
+
+            // check to see if it's time to move the Projectile
+            MapProjectiles[projectileNum].TravelTime += 1;
+            if (MapProjectiles[projectileNum].TravelTime > MapProjectiles[projectileNum].LastTravelTime)
+            {
+                if(Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed != 0)
+                {
+                    MapProjectiles[projectileNum].LastTravelTime += (50 / Projectiles[MapProjectiles[projectileNum].ProjectileNum].Speed);
+                }
+                else
+                {
+                    MapProjectiles[projectileNum].LastTravelTime += 50;
+                }
+                if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Up)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+                }
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Down)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                }
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Left)
+                {
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+                }
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.Right)
+                {
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+                }
+                //8 Directional movement
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpLeft)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+                }
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.UpRight)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y - 1;
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+                }
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownLeft)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X - 1;
+                }
+                else if (MapProjectiles[projectileNum].Dir == (byte)Enums.DirectionType.DownRight)
+                {
+                    MapProjectiles[projectileNum].Y = MapProjectiles[projectileNum].Y + 1;
+                    MapProjectiles[projectileNum].X = MapProjectiles[projectileNum].X + 1;
+                }
+            }
 			//MapProjectiles[projectileNum].Range = MapProjectiles[projectileNum].Range + 1;
 			
 			x = MapProjectiles[projectileNum].X;
