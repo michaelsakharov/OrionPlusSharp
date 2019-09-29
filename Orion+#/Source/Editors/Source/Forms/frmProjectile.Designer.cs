@@ -43,6 +43,7 @@ namespace Engine
 		//Do not modify it using the code editor.
 		[System.Diagnostics.DebuggerStepThrough()]private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProjectile));
             this.DarkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.lstIndex = new System.Windows.Forms.ListBox();
             this.DarkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
@@ -59,7 +60,12 @@ namespace Engine
             this.DarkLabel1 = new DarkUI.Controls.DarkLabel();
             this.btnSave = new DarkUI.Controls.DarkButton();
             this.btnCancel = new DarkUI.Controls.DarkButton();
-            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
+            this.cmbTool = new DarkUI.Controls.DarkComboBox();
+            this.darkLabel6 = new DarkUI.Controls.DarkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.darkGroupBox4 = new DarkUI.Controls.DarkGroupBox();
+            this.darkLabel7 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel8 = new DarkUI.Controls.DarkLabel();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDamage)).BeginInit();
@@ -67,6 +73,8 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.nudRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.darkGroupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // DarkGroupBox1
@@ -98,6 +106,8 @@ namespace Engine
             // 
             this.DarkGroupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.DarkGroupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.DarkGroupBox2.Controls.Add(this.darkLabel6);
+            this.DarkGroupBox2.Controls.Add(this.cmbTool);
             this.DarkGroupBox2.Controls.Add(this.DarkLabel5);
             this.DarkGroupBox2.Controls.Add(this.DarkLabel4);
             this.DarkGroupBox2.Controls.Add(this.nudDamage);
@@ -277,26 +287,102 @@ namespace Engine
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // darkGroupBox3
+            // cmbTool
             // 
-            this.darkGroupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.darkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.darkGroupBox3.Location = new System.Drawing.Point(452, 3);
-            this.darkGroupBox3.Name = "darkGroupBox3";
-            this.darkGroupBox3.Size = new System.Drawing.Size(559, 305);
-            this.darkGroupBox3.TabIndex = 12;
-            this.darkGroupBox3.TabStop = false;
-            this.darkGroupBox3.Text = "Projectile Type Settings";
+            this.cmbTool.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.cmbTool.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.cmbTool.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.cmbTool.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.cmbTool.ButtonIcon = ((System.Drawing.Bitmap)(resources.GetObject("cmbTool.ButtonIcon")));
+            this.cmbTool.DrawDropdownHoverOutline = false;
+            this.cmbTool.DrawFocusRectangle = false;
+            this.cmbTool.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbTool.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTool.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbTool.ForeColor = System.Drawing.Color.Gainsboro;
+            this.cmbTool.FormattingEnabled = true;
+            this.cmbTool.Items.AddRange(new object[] {
+            "Linear",
+            "Accelerating",
+            "Laser Beam",
+            "Boomerang",
+            "Homing",
+            "Re-Angle",
+            "Wave",
+            "Exploding Bullets",
+            "Bouncing"});
+            this.cmbTool.Location = new System.Drawing.Point(119, 234);
+            this.cmbTool.Name = "cmbTool";
+            this.cmbTool.Size = new System.Drawing.Size(120, 21);
+            this.cmbTool.TabIndex = 12;
+            this.cmbTool.Text = "Linear";
+            this.cmbTool.TextPadding = new System.Windows.Forms.Padding(2);
+            // 
+            // darkLabel6
+            // 
+            this.darkLabel6.AutoSize = true;
+            this.darkLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel6.Location = new System.Drawing.Point(6, 237);
+            this.darkLabel6.Name = "darkLabel6";
+            this.darkLabel6.Size = new System.Drawing.Size(80, 13);
+            this.darkLabel6.TabIndex = 13;
+            this.darkLabel6.Text = "Projectile Type:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Location = new System.Drawing.Point(455, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(265, 265);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // darkGroupBox4
+            // 
+            this.darkGroupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.darkGroupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.darkGroupBox4.Controls.Add(this.darkLabel7);
+            this.darkGroupBox4.Enabled = false;
+            this.darkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro;
+            this.darkGroupBox4.Location = new System.Drawing.Point(9, 321);
+            this.darkGroupBox4.Name = "darkGroupBox4";
+            this.darkGroupBox4.Size = new System.Drawing.Size(711, 214);
+            this.darkGroupBox4.TabIndex = 13;
+            this.darkGroupBox4.TabStop = false;
+            this.darkGroupBox4.Text = "Projectile Type Settings";
+            // 
+            // darkLabel7
+            // 
+            this.darkLabel7.AutoSize = true;
+            this.darkLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel7.Location = new System.Drawing.Point(234, 104);
+            this.darkLabel7.Name = "darkLabel7";
+            this.darkLabel7.Size = new System.Drawing.Size(241, 13);
+            this.darkLabel7.TabIndex = 14;
+            this.darkLabel7.Text = "PROJECTILE TYPES NOT IMPLEMENTED YET";
+            this.darkLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // darkLabel8
+            // 
+            this.darkLabel8.AutoSize = true;
+            this.darkLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel8.Location = new System.Drawing.Point(467, 134);
+            this.darkLabel8.Name = "darkLabel8";
+            this.darkLabel8.Size = new System.Drawing.Size(241, 13);
+            this.darkLabel8.TabIndex = 15;
+            this.darkLabel8.Text = "PROJECTILE TYPES NOT IMPLEMENTED YET";
+            this.darkLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmProjectile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(1023, 319);
+            this.ClientSize = new System.Drawing.Size(729, 547);
             this.ControlBox = false;
-            this.Controls.Add(this.darkGroupBox3);
+            this.Controls.Add(this.darkLabel8);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.darkGroupBox4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.DarkGroupBox2);
@@ -313,7 +399,11 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.nudRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.darkGroupBox4.ResumeLayout(false);
+            this.darkGroupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 		
@@ -333,7 +423,12 @@ namespace Engine
 		internal DarkUI.Controls.DarkLabel DarkLabel5;
 		internal DarkUI.Controls.DarkButton btnSave;
 		internal DarkUI.Controls.DarkButton btnCancel;
-        internal DarkUI.Controls.DarkGroupBox darkGroupBox3;
+        internal DarkUI.Controls.DarkLabel darkLabel6;
+        internal DarkUI.Controls.DarkComboBox cmbTool;
+        internal PictureBox pictureBox1;
+        internal DarkUI.Controls.DarkGroupBox darkGroupBox4;
+        internal DarkUI.Controls.DarkLabel darkLabel7;
+        internal DarkUI.Controls.DarkLabel darkLabel8;
     }
 	
 }

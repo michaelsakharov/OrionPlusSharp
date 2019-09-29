@@ -201,7 +201,7 @@ namespace Engine
 			int i = 0;
 			int sprite = 0;
 
-            // TODO fix Speed, Add Animation support, Remake Projectile resources, Overall improve editor to be able to compete with Intersect
+            // TODO Add Animation support, Remake Projectile resources, Overall improve editor to be able to compete with Intersect
 
             // check to see if it's time to move the Projectile
             MapProjectiles[projectileNum].TravelTime += 1;
