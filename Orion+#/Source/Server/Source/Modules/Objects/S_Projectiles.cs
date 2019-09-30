@@ -224,7 +224,7 @@ namespace Engine
                                                     // Get the damage we can do
                                                     Damage = S_Players.GetPlayerDamage(index) + Projectiles[MapProjectiles[mapNum, ProjectileNum].ProjectileNum].Damage;
 
-                                                    // if the npc blocks, take away the block amount
+                                                    // if the player blocks, take away the block amount
                                                     armor = Convert.ToInt32(S_Players.CanPlayerBlockHit(Targetindex));
                                                     Damage = Damage - armor;
 
