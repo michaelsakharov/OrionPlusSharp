@@ -41,6 +41,10 @@ namespace Engine
 			public byte Range;
 			public int Speed;
 			public int Damage;
+
+            // New stuff
+            public List<E_Emitter> Emitters;
+
 		}
 		
 		public struct MapProjectileRec
@@ -85,6 +89,8 @@ namespace Engine
 			buffer.WriteInt32(Projectiles[ProjectileNum].Range);
 			buffer.WriteInt32(Projectiles[ProjectileNum].Speed);
 			buffer.WriteInt32(Projectiles[ProjectileNum].Damage);
+
+            //TODO Projectiles - Save Emitters
 			
 			E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
@@ -139,8 +145,10 @@ namespace Engine
 			Projectiles[ProjectileNum].Range = (byte) (buffer.ReadInt32());
 			Projectiles[ProjectileNum].Speed = buffer.ReadInt32();
 			Projectiles[ProjectileNum].Damage = buffer.ReadInt32();
-			
-			buffer.Dispose();
+
+            //TODO Projectiles - 
+
+            buffer.Dispose();
 			
 		}
 		
@@ -186,6 +194,8 @@ namespace Engine
 			Projectiles[index].Range = 0;
 			Projectiles[index].Speed = 1;
 			Projectiles[index].Damage = 0;
+
+			Projectiles[index].Emitters = new List<E_Emitter>();
 			
 		}
 		
@@ -267,8 +277,17 @@ namespace Engine
 			frmProjectile.Default.nudRange.Value = Projectiles[E_Globals.Editorindex].Range;
 			frmProjectile.Default.nudSpeed.Value = Projectiles[E_Globals.Editorindex].Speed;
 			frmProjectile.Default.nudDamage.Value = Projectiles[E_Globals.Editorindex].Damage;
-			
-			Projectile_Changed[E_Globals.Editorindex] = true;
+
+            Projectiles[E_Globals.Editorindex].Emitters = new List<E_Emitter>();
+
+            for (int i=0; i < Projectiles[E_Globals.Editorindex].Emitters.Count; i++)
+            {
+                frmProjectile.Default.emitterListBox.Items.Add(Projectiles[E_Globals.Editorindex].Emitters[i].emitterName);
+            }
+
+            frmProjectile.Default.UpdateEmitterUI();
+
+            Projectile_Changed[E_Globals.Editorindex] = true;
 			
 		}
 		

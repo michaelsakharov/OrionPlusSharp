@@ -33,11 +33,9 @@ namespace Engine
         //Internal Emitter Variables
         public List<ProjectileBullet> projectiles;
         
+        public void InitializeEmitter() {  }
         public void UpdateParticles() {  }
-        public void DrawParticles() {  }
-
-        public string EncodeToString() { return ""; }
-        public void DecodeFromString(string data) { }
+        public void DrawParticles(RenderWindow gameWindow) {  }
 
     }
 }

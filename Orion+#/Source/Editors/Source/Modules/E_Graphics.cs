@@ -22,6 +22,8 @@ namespace Engine
 	{
 		internal static RenderWindow GameWindow;
 		internal static RenderWindow TilesetWindow;
+
+		internal static RenderWindow ProjectilePreviwWindow;
 		
 		internal static RenderWindow EditorItem_Furniture;
 		
@@ -166,6 +168,8 @@ namespace Engine
 			GameWindow.SetFramerateLimit((uint) E_Globals.FPS_LIMIT);
 			
 			TilesetWindow = new RenderWindow(frmMapEditor.Default.picBackSelect.Handle);
+
+			ProjectilePreviwWindow = new RenderWindow(frmProjectile.Default.picProjectilePreview.Handle);
 			
 			EditorItem_Furniture = new RenderWindow(FrmItem.Default.picFurniture.Handle);
 			
@@ -1675,6 +1679,11 @@ namespace Engine
 			E_Globals.LastTileset = tileset;
 		}
 		
+        public static void Draw_ProjectilePreview()
+        {
+            // TODO
+        }
+
 		public static void DestroyGraphics()
 		{
 			

@@ -47,9 +47,10 @@ namespace Engine
             this.DarkGroupBox1 = new DarkUI.Controls.DarkGroupBox();
             this.lstIndex = new System.Windows.Forms.ListBox();
             this.DarkGroupBox2 = new DarkUI.Controls.DarkGroupBox();
+            this.darkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
+            this.emitterListBox = new System.Windows.Forms.ListBox();
             this.btnAddEmitter = new DarkUI.Controls.DarkButton();
             this.btnDeleteEmitter = new DarkUI.Controls.DarkButton();
-            this.emitterListBox = new System.Windows.Forms.ListBox();
             this.DarkLabel5 = new DarkUI.Controls.DarkLabel();
             this.DarkLabel4 = new DarkUI.Controls.DarkLabel();
             this.nudDamage = new DarkUI.Controls.DarkNumericUpDown();
@@ -63,7 +64,8 @@ namespace Engine
             this.DarkLabel1 = new DarkUI.Controls.DarkLabel();
             this.btnSave = new DarkUI.Controls.DarkButton();
             this.btnCancel = new DarkUI.Controls.DarkButton();
-            this.darkGroupBox3 = new DarkUI.Controls.DarkGroupBox();
+            this.emitterPropertiesPanel = new DarkUI.Controls.DarkGroupBox();
+            this.darkGroupBox4 = new DarkUI.Controls.DarkGroupBox();
             this.darkLabel16 = new DarkUI.Controls.DarkLabel();
             this.emitterOffsetRotationNud = new DarkUI.Controls.DarkNumericUpDown();
             this.darkLabel15 = new DarkUI.Controls.DarkLabel();
@@ -84,19 +86,18 @@ namespace Engine
             this.emitterRangeNud = new DarkUI.Controls.DarkNumericUpDown();
             this.emitterSpriteNud = new DarkUI.Controls.DarkNumericUpDown();
             this.darkLabel11 = new DarkUI.Controls.DarkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picProjectilePreview = new System.Windows.Forms.PictureBox();
             this.emitterNameTextBox = new DarkUI.Controls.DarkTextBox();
             this.darkLabel12 = new DarkUI.Controls.DarkLabel();
-            this.darkGroupBox4 = new DarkUI.Controls.DarkGroupBox();
-            this.darkGroupBox5 = new DarkUI.Controls.DarkGroupBox();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
+            this.darkGroupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDamage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
-            this.darkGroupBox3.SuspendLayout();
+            this.emitterPropertiesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.emitterOffsetRotationNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterYOffsetNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterXOffsetNud)).BeginInit();
@@ -106,8 +107,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.emitterBulletSpeedNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterRangeNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterSpriteNud)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.darkGroupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectilePreview)).BeginInit();
             this.SuspendLayout();
             // 
             // DarkGroupBox1
@@ -161,23 +161,18 @@ namespace Engine
             this.DarkGroupBox2.TabStop = false;
             this.DarkGroupBox2.Text = "Projectile Properties";
             // 
-            // btnAddEmitter
+            // darkGroupBox5
             // 
-            this.btnAddEmitter.Image = ((System.Drawing.Image)(resources.GetObject("btnAddEmitter.Image")));
-            this.btnAddEmitter.Location = new System.Drawing.Point(9, 435);
-            this.btnAddEmitter.Name = "btnAddEmitter";
-            this.btnAddEmitter.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAddEmitter.Size = new System.Drawing.Size(24, 24);
-            this.btnAddEmitter.TabIndex = 14;
-            // 
-            // btnDeleteEmitter
-            // 
-            this.btnDeleteEmitter.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteEmitter.Image")));
-            this.btnDeleteEmitter.Location = new System.Drawing.Point(215, 435);
-            this.btnDeleteEmitter.Name = "btnDeleteEmitter";
-            this.btnDeleteEmitter.Padding = new System.Windows.Forms.Padding(5);
-            this.btnDeleteEmitter.Size = new System.Drawing.Size(24, 24);
-            this.btnDeleteEmitter.TabIndex = 13;
+            this.darkGroupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.darkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.darkGroupBox5.Controls.Add(this.emitterListBox);
+            this.darkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro;
+            this.darkGroupBox5.Location = new System.Drawing.Point(9, 179);
+            this.darkGroupBox5.Name = "darkGroupBox5";
+            this.darkGroupBox5.Size = new System.Drawing.Size(230, 250);
+            this.darkGroupBox5.TabIndex = 1;
+            this.darkGroupBox5.TabStop = false;
+            this.darkGroupBox5.Text = "Emitter List";
             // 
             // emitterListBox
             // 
@@ -189,6 +184,26 @@ namespace Engine
             this.emitterListBox.Name = "emitterListBox";
             this.emitterListBox.Size = new System.Drawing.Size(230, 236);
             this.emitterListBox.TabIndex = 12;
+            // 
+            // btnAddEmitter
+            // 
+            this.btnAddEmitter.Image = ((System.Drawing.Image)(resources.GetObject("btnAddEmitter.Image")));
+            this.btnAddEmitter.Location = new System.Drawing.Point(9, 435);
+            this.btnAddEmitter.Name = "btnAddEmitter";
+            this.btnAddEmitter.Padding = new System.Windows.Forms.Padding(5);
+            this.btnAddEmitter.Size = new System.Drawing.Size(24, 24);
+            this.btnAddEmitter.TabIndex = 14;
+            this.btnAddEmitter.Click += new System.EventHandler(this.btnAddEmitter_Click);
+            // 
+            // btnDeleteEmitter
+            // 
+            this.btnDeleteEmitter.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteEmitter.Image")));
+            this.btnDeleteEmitter.Location = new System.Drawing.Point(215, 435);
+            this.btnDeleteEmitter.Name = "btnDeleteEmitter";
+            this.btnDeleteEmitter.Padding = new System.Windows.Forms.Padding(5);
+            this.btnDeleteEmitter.Size = new System.Drawing.Size(24, 24);
+            this.btnDeleteEmitter.TabIndex = 13;
+            this.btnDeleteEmitter.Click += new System.EventHandler(this.btnDeleteEmitter_Click);
             // 
             // DarkLabel5
             // 
@@ -303,9 +318,9 @@ namespace Engine
             // picProjectile
             // 
             this.picProjectile.BackColor = System.Drawing.Color.Black;
-            this.picProjectile.Location = new System.Drawing.Point(9, 45);
+            this.picProjectile.Location = new System.Drawing.Point(55, 45);
             this.picProjectile.Name = "picProjectile";
-            this.picProjectile.Size = new System.Drawing.Size(230, 32);
+            this.picProjectile.Size = new System.Drawing.Size(129, 32);
             this.picProjectile.TabIndex = 3;
             this.picProjectile.TabStop = false;
             // 
@@ -350,40 +365,53 @@ namespace Engine
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // darkGroupBox3
+            // emitterPropertiesPanel
             // 
-            this.darkGroupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.darkGroupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.darkGroupBox3.Controls.Add(this.darkLabel16);
-            this.darkGroupBox3.Controls.Add(this.emitterOffsetRotationNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel15);
-            this.darkGroupBox3.Controls.Add(this.emitterYOffsetNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel14);
-            this.darkGroupBox3.Controls.Add(this.emitterXOffsetNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel13);
-            this.darkGroupBox3.Controls.Add(this.emitterCountNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel6);
-            this.darkGroupBox3.Controls.Add(this.emitterSpeedNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel7);
-            this.darkGroupBox3.Controls.Add(this.emitterTypeComboBox);
-            this.darkGroupBox3.Controls.Add(this.darkLabel8);
-            this.darkGroupBox3.Controls.Add(this.darkLabel9);
-            this.darkGroupBox3.Controls.Add(this.darkNumericUpDown1);
-            this.darkGroupBox3.Controls.Add(this.emitterBulletSpeedNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel10);
-            this.darkGroupBox3.Controls.Add(this.emitterRangeNud);
-            this.darkGroupBox3.Controls.Add(this.emitterSpriteNud);
-            this.darkGroupBox3.Controls.Add(this.darkLabel11);
-            this.darkGroupBox3.Controls.Add(this.pictureBox1);
-            this.darkGroupBox3.Controls.Add(this.emitterNameTextBox);
-            this.darkGroupBox3.Controls.Add(this.darkLabel12);
-            this.darkGroupBox3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.darkGroupBox3.Location = new System.Drawing.Point(452, 3);
-            this.darkGroupBox3.Name = "darkGroupBox3";
-            this.darkGroupBox3.Size = new System.Drawing.Size(580, 494);
-            this.darkGroupBox3.TabIndex = 4;
-            this.darkGroupBox3.TabStop = false;
-            this.darkGroupBox3.Text = "Emitter Properties";
+            this.emitterPropertiesPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.emitterPropertiesPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.emitterPropertiesPanel.Controls.Add(this.darkGroupBox4);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel16);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterOffsetRotationNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel15);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterYOffsetNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel14);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterXOffsetNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel13);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterCountNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel6);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterSpeedNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel7);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterTypeComboBox);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel8);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel9);
+            this.emitterPropertiesPanel.Controls.Add(this.darkNumericUpDown1);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterBulletSpeedNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel10);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterRangeNud);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterSpriteNud);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel11);
+            this.emitterPropertiesPanel.Controls.Add(this.picProjectilePreview);
+            this.emitterPropertiesPanel.Controls.Add(this.emitterNameTextBox);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel12);
+            this.emitterPropertiesPanel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.emitterPropertiesPanel.Location = new System.Drawing.Point(452, 3);
+            this.emitterPropertiesPanel.Name = "emitterPropertiesPanel";
+            this.emitterPropertiesPanel.Size = new System.Drawing.Size(580, 494);
+            this.emitterPropertiesPanel.TabIndex = 4;
+            this.emitterPropertiesPanel.TabStop = false;
+            this.emitterPropertiesPanel.Text = "Emitter Properties";
+            // 
+            // darkGroupBox4
+            // 
+            this.darkGroupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.darkGroupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.darkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro;
+            this.darkGroupBox4.Location = new System.Drawing.Point(6, 343);
+            this.darkGroupBox4.Name = "darkGroupBox4";
+            this.darkGroupBox4.Size = new System.Drawing.Size(568, 145);
+            this.darkGroupBox4.TabIndex = 24;
+            this.darkGroupBox4.TabStop = false;
+            this.darkGroupBox4.Text = "Emitter Type Settings";
             // 
             // darkLabel16
             // 
@@ -712,14 +740,15 @@ namespace Engine
             this.darkLabel11.TabIndex = 4;
             this.darkLabel11.Text = "Picture:";
             // 
-            // pictureBox1
+            // picProjectilePreview
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(249, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(325, 325);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.picProjectilePreview.BackColor = System.Drawing.Color.Black;
+            this.picProjectilePreview.Location = new System.Drawing.Point(249, 11);
+            this.picProjectilePreview.Name = "picProjectilePreview";
+            this.picProjectilePreview.Size = new System.Drawing.Size(325, 325);
+            this.picProjectilePreview.TabIndex = 3;
+            this.picProjectilePreview.TabStop = false;
+            this.picProjectilePreview.Paint += new System.Windows.Forms.PaintEventHandler(this.picProjectilePreview_Paint);
             // 
             // emitterNameTextBox
             // 
@@ -730,6 +759,7 @@ namespace Engine
             this.emitterNameTextBox.Name = "emitterNameTextBox";
             this.emitterNameTextBox.Size = new System.Drawing.Size(129, 20);
             this.emitterNameTextBox.TabIndex = 1;
+            this.emitterNameTextBox.TextChanged += new System.EventHandler(this.emitterNameTextBox_TextChanged);
             // 
             // darkLabel12
             // 
@@ -741,31 +771,6 @@ namespace Engine
             this.darkLabel12.TabIndex = 0;
             this.darkLabel12.Text = "Emitter Name:";
             // 
-            // darkGroupBox4
-            // 
-            this.darkGroupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.darkGroupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.darkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro;
-            this.darkGroupBox4.Location = new System.Drawing.Point(452, 345);
-            this.darkGroupBox4.Name = "darkGroupBox4";
-            this.darkGroupBox4.Size = new System.Drawing.Size(580, 152);
-            this.darkGroupBox4.TabIndex = 24;
-            this.darkGroupBox4.TabStop = false;
-            this.darkGroupBox4.Text = "Emitter Type Settings";
-            // 
-            // darkGroupBox5
-            // 
-            this.darkGroupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.darkGroupBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.darkGroupBox5.Controls.Add(this.emitterListBox);
-            this.darkGroupBox5.ForeColor = System.Drawing.Color.Gainsboro;
-            this.darkGroupBox5.Location = new System.Drawing.Point(9, 179);
-            this.darkGroupBox5.Name = "darkGroupBox5";
-            this.darkGroupBox5.Size = new System.Drawing.Size(230, 250);
-            this.darkGroupBox5.TabIndex = 1;
-            this.darkGroupBox5.TabStop = false;
-            this.darkGroupBox5.Text = "Emitter List";
-            // 
             // frmProjectile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -773,8 +778,7 @@ namespace Engine
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1044, 509);
             this.ControlBox = false;
-            this.Controls.Add(this.darkGroupBox4);
-            this.Controls.Add(this.darkGroupBox3);
+            this.Controls.Add(this.emitterPropertiesPanel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.DarkGroupBox2);
@@ -786,13 +790,14 @@ namespace Engine
             this.DarkGroupBox1.ResumeLayout(false);
             this.DarkGroupBox2.ResumeLayout(false);
             this.DarkGroupBox2.PerformLayout();
+            this.darkGroupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudDamage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
-            this.darkGroupBox3.ResumeLayout(false);
-            this.darkGroupBox3.PerformLayout();
+            this.emitterPropertiesPanel.ResumeLayout(false);
+            this.emitterPropertiesPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.emitterOffsetRotationNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterYOffsetNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterXOffsetNud)).EndInit();
@@ -802,8 +807,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.emitterBulletSpeedNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterRangeNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterSpriteNud)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.darkGroupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picProjectilePreview)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -825,7 +829,7 @@ namespace Engine
 		internal DarkUI.Controls.DarkButton btnSave;
 		internal DarkUI.Controls.DarkButton btnCancel;
         internal ListBox emitterListBox;
-        internal DarkUI.Controls.DarkGroupBox darkGroupBox3;
+        internal DarkUI.Controls.DarkGroupBox emitterPropertiesPanel;
         internal DarkUI.Controls.DarkLabel darkLabel7;
         internal DarkUI.Controls.DarkComboBox emitterTypeComboBox;
         internal DarkUI.Controls.DarkLabel darkLabel8;
@@ -836,7 +840,7 @@ namespace Engine
         internal DarkUI.Controls.DarkNumericUpDown emitterRangeNud;
         internal DarkUI.Controls.DarkNumericUpDown emitterSpriteNud;
         internal DarkUI.Controls.DarkLabel darkLabel11;
-        internal PictureBox pictureBox1;
+        internal PictureBox picProjectilePreview;
         internal DarkUI.Controls.DarkTextBox emitterNameTextBox;
         internal DarkUI.Controls.DarkLabel darkLabel12;
         internal DarkUI.Controls.DarkButton btnDeleteEmitter;

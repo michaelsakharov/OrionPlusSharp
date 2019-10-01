@@ -58,6 +58,9 @@ namespace Engine
 		{
 			nudPic.Maximum = E_Projectiles.NumProjectiles;
             E_Projectiles.ProjectileEditorInit();
+            UpdateEmitterUI();
+            E_Graphics.ProjectilePreviwWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picProjectilePreview.Width, picProjectilePreview.Height)));
+
         }
 		
 		public void LstIndex_Click(object sender, EventArgs e)
@@ -130,6 +133,87 @@ namespace Engine
 			
 			E_Projectiles.Projectiles[E_Globals.Editorindex].Damage = (int) nudDamage.Value;
 		}
-		
-	}
+
+        #region New Projectile Editor Stuff
+
+        private void btnAddEmitter_Click(object sender, EventArgs e)
+        {
+            emitterListBox.Items.Add("Emitter " + emitterListBox.Items.Count);
+            emitterListBox.SelectedIndex = emitterListBox.Items.Count - 1;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Add(new E_Emitter());
+            UpdateEmitterUI();
+        }
+
+        private void picProjectilePreview_Paint(object sender, PaintEventArgs e)
+        {
+            // Override Paint, cause we dont want it to Paint
+        }
+
+        private void btnDeleteEmitter_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = emitterListBox.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                emitterListBox.SelectedIndex = selectedIndex - 1;
+                emitterListBox.Items.RemoveAt(selectedIndex);
+                E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.RemoveAt(selectedIndex);
+                if (emitterListBox.SelectedIndex == -1 && emitterListBox.Items.Count > 0)
+                {
+                    emitterListBox.SelectedIndex = 0;
+                }
+            }
+            UpdateEmitterUI();
+        }
+
+        private void emitterNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int tmpindex = emitterListBox.SelectedIndex;
+            if (tmpindex != -1)
+            {
+                E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].emitterName = emitterNameTextBox.Text.Trim();
+                emitterListBox.Items.RemoveAt(tmpindex);
+                emitterListBox.Items.Insert(tmpindex, emitterNameTextBox.Text.Trim());
+                emitterListBox.SelectedIndex = tmpindex;
+            }
+        }
+
+
+
+
+        public void UpdateEmitterUI()
+        {
+            if (emitterListBox.SelectedIndex == -1)
+            {
+                Width = 465;
+            }
+            else
+            {
+                Width = 1060;
+            }
+            if (emitterListBox.SelectedIndex != -1 && E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Count > 0)
+            {
+                emitterNameTextBox.Text = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].emitterName;
+            }
+            else
+            {
+                emitterNameTextBox.Text = "";
+            }
+            if(emitterListBox.Items.Count > 0)
+            {
+                nudPic.Enabled = false;
+                nudRange.Enabled = false;
+                nudSpeed.Enabled = false;
+                nudDamage.Enabled = false;
+            }
+            else
+            {
+                nudPic.Enabled = true;
+                nudRange.Enabled = true;
+                nudSpeed.Enabled = true;
+                nudDamage.Enabled = true;
+            }
+        }
+
+        #endregion
+    }
 }
