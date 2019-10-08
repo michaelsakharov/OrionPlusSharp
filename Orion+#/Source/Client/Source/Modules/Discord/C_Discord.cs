@@ -16,17 +16,19 @@ namespace Engine
 
         static void InitializeDiscord()
         {
-            
-            client = new DiscordRpcClient(C_Types.Options.ApplicationID);
-            
-            client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
-
-            client.OnPresenceUpdate += (sender, e) =>
+            if (C_Types.Options.ApplicationID != null)
             {
-                OnPresenceUpdate(e.Presence);
-            };
-            
-            client.Initialize();
+                client = new DiscordRpcClient(C_Types.Options.ApplicationID);
+
+                client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
+
+                client.OnPresenceUpdate += (sender, e) =>
+                {
+                    OnPresenceUpdate(e.Presence);
+                };
+
+                client.Initialize();
+            }
         }
 
         public static void SetPresence(string details, string state)
