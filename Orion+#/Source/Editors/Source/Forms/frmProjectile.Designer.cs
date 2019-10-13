@@ -89,6 +89,10 @@ namespace Engine
             this.picProjectilePreview = new System.Windows.Forms.PictureBox();
             this.emitterNameTextBox = new DarkUI.Controls.DarkTextBox();
             this.darkLabel12 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel17 = new DarkUI.Controls.DarkLabel();
+            this.PreviewSpriteNud = new DarkUI.Controls.DarkNumericUpDown();
+            this.darkLabel18 = new DarkUI.Controls.DarkLabel();
+            this.PreviewDirectionDropdown = new DarkUI.Controls.DarkComboBox();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
             this.darkGroupBox5.SuspendLayout();
@@ -108,6 +112,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.emitterRangeNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterSpriteNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectilePreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewSpriteNud)).BeginInit();
             this.SuspendLayout();
             // 
             // DarkGroupBox1
@@ -369,6 +374,10 @@ namespace Engine
             // 
             this.emitterPropertiesPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.emitterPropertiesPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel18);
+            this.emitterPropertiesPanel.Controls.Add(this.PreviewDirectionDropdown);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel17);
+            this.emitterPropertiesPanel.Controls.Add(this.PreviewSpriteNud);
             this.emitterPropertiesPanel.Controls.Add(this.darkGroupBox4);
             this.emitterPropertiesPanel.Controls.Add(this.darkLabel16);
             this.emitterPropertiesPanel.Controls.Add(this.emitterOffsetRotationNud);
@@ -408,7 +417,7 @@ namespace Engine
             this.darkGroupBox4.ForeColor = System.Drawing.Color.Gainsboro;
             this.darkGroupBox4.Location = new System.Drawing.Point(6, 343);
             this.darkGroupBox4.Name = "darkGroupBox4";
-            this.darkGroupBox4.Size = new System.Drawing.Size(568, 145);
+            this.darkGroupBox4.Size = new System.Drawing.Size(418, 145);
             this.darkGroupBox4.TabIndex = 24;
             this.darkGroupBox4.TabStop = false;
             this.darkGroupBox4.Text = "Emitter Type Settings";
@@ -771,6 +780,80 @@ namespace Engine
             this.darkLabel12.TabIndex = 0;
             this.darkLabel12.Text = "Emitter Name:";
             // 
+            // darkLabel17
+            // 
+            this.darkLabel17.AutoSize = true;
+            this.darkLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel17.Location = new System.Drawing.Point(430, 354);
+            this.darkLabel17.Name = "darkLabel17";
+            this.darkLabel17.Size = new System.Drawing.Size(78, 13);
+            this.darkLabel17.TabIndex = 26;
+            this.darkLabel17.Text = "Preview Sprite:";
+            // 
+            // PreviewSpriteNud
+            // 
+            this.PreviewSpriteNud.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.PreviewSpriteNud.ForeColor = System.Drawing.Color.Gainsboro;
+            this.PreviewSpriteNud.Location = new System.Drawing.Point(532, 352);
+            this.PreviewSpriteNud.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.PreviewSpriteNud.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.PreviewSpriteNud.Name = "PreviewSpriteNud";
+            this.PreviewSpriteNud.Size = new System.Drawing.Size(42, 20);
+            this.PreviewSpriteNud.TabIndex = 25;
+            this.PreviewSpriteNud.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // darkLabel18
+            // 
+            this.darkLabel18.AutoSize = true;
+            this.darkLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel18.Location = new System.Drawing.Point(430, 381);
+            this.darkLabel18.Name = "darkLabel18";
+            this.darkLabel18.Size = new System.Drawing.Size(64, 13);
+            this.darkLabel18.TabIndex = 28;
+            this.darkLabel18.Text = "Preview Dir:";
+            // 
+            // PreviewDirectionDropdown
+            // 
+            this.PreviewDirectionDropdown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.PreviewDirectionDropdown.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.PreviewDirectionDropdown.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.PreviewDirectionDropdown.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.PreviewDirectionDropdown.ButtonIcon = ((System.Drawing.Bitmap)(resources.GetObject("PreviewDirectionDropdown.ButtonIcon")));
+            this.PreviewDirectionDropdown.DrawDropdownHoverOutline = false;
+            this.PreviewDirectionDropdown.DrawFocusRectangle = false;
+            this.PreviewDirectionDropdown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.PreviewDirectionDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PreviewDirectionDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PreviewDirectionDropdown.ForeColor = System.Drawing.Color.Gainsboro;
+            this.PreviewDirectionDropdown.FormattingEnabled = true;
+            this.PreviewDirectionDropdown.Items.AddRange(new object[] {
+            "Up",
+            "Down",
+            "Left",
+            "Right",
+            "UpLeft",
+            "UpRight",
+            "DownLeft",
+            "DownRight"});
+            this.PreviewDirectionDropdown.Location = new System.Drawing.Point(500, 378);
+            this.PreviewDirectionDropdown.Name = "PreviewDirectionDropdown";
+            this.PreviewDirectionDropdown.Size = new System.Drawing.Size(74, 21);
+            this.PreviewDirectionDropdown.TabIndex = 27;
+            this.PreviewDirectionDropdown.Text = "Up";
+            this.PreviewDirectionDropdown.TextPadding = new System.Windows.Forms.Padding(2);
+            // 
             // frmProjectile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -808,6 +891,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.emitterRangeNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterSpriteNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectilePreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PreviewSpriteNud)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -857,6 +941,10 @@ namespace Engine
         internal DarkUI.Controls.DarkNumericUpDown emitterOffsetRotationNud;
         internal DarkUI.Controls.DarkGroupBox darkGroupBox4;
         internal DarkUI.Controls.DarkGroupBox darkGroupBox5;
+        internal DarkUI.Controls.DarkLabel darkLabel18;
+        internal DarkUI.Controls.DarkComboBox PreviewDirectionDropdown;
+        internal DarkUI.Controls.DarkLabel darkLabel17;
+        internal DarkUI.Controls.DarkNumericUpDown PreviewSpriteNud;
     }
 	
 }

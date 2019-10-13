@@ -59,7 +59,7 @@ namespace Engine
 			nudPic.Maximum = E_Projectiles.NumProjectiles;
             E_Projectiles.ProjectileEditorInit();
             UpdateEmitterUI();
-            E_Graphics.ProjectilePreviwWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picProjectilePreview.Width, picProjectilePreview.Height)));
+            E_Graphics.ProjectilePreviewWindow.SetView(new SFML.Graphics.View(new SFML.Graphics.FloatRect(0, 0, picProjectilePreview.Width, picProjectilePreview.Height)));
 
         }
 		

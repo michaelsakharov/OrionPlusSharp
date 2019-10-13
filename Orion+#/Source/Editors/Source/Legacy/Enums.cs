@@ -124,7 +124,11 @@ namespace Engine
 			Up,
 			Down,
 			Left,
-			Right
+			Right,
+            UpLeft,
+            UpRight,
+            DownLeft,
+            DownRight
 		}
 		
 		/// <Summary> Movement Constant </Summary>

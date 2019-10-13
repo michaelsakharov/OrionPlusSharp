@@ -140,6 +140,13 @@
         SyEAr2eQARUUMjAAAKoooI/mSAUbAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="PreviewDirectionDropdown.ButtonIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAYAAACXU8ZrAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
+        MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADrwAAA68AZW8ckkAAAAvSURBVBhXY4iJiflPCDP8//8f
+        r0KQPFgRLoUwObgiEMamAIRRFIEwuoL///8zAAC5cW+geGnZqAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="emitterTypeComboBox.ButtonIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAYAAACXU8ZrAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
