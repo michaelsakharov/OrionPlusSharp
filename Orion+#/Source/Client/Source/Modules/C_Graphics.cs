@@ -1392,12 +1392,32 @@ namespace Engine
             //check for paperdolling
             for (var i = 1; i <= (int)Enums.EquipmentType.Count - 1; i++)
             {
-                if (C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i) > 0)
+                if (i != 1 && 7 != 4) // Skip Weapon and Shield
                 {
-                    if (Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll > 0)
+                    if (C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i) > 0)
                     {
-                        DrawPaperdoll(x, y, Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll, anim, spriteleft);
+                        if (Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll > 0)
+                        {
+                            DrawPaperdoll(x, y, Types.Item[C_Player.GetPlayerEquipment(index, (Enums.EquipmentType)i)].Paperdoll, anim, spriteleft);
+                        }
                     }
+                }
+            }
+            // Lets render Weapon and Shield AFTER clothing
+            //Weapon first
+            if (C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon) > 0)
+            {
+                if (Types.Item[C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon)].Paperdoll > 0)
+                {
+                    DrawPaperdoll(x, y, Types.Item[C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Weapon)].Paperdoll, anim, spriteleft);
+                }
+            }
+            //Shield now
+            if (C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Shield) > 0)
+            {
+                if (Types.Item[C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Shield)].Paperdoll > 0)
+                {
+                    DrawPaperdoll(x, y, Types.Item[C_Player.GetPlayerEquipment(index, Enums.EquipmentType.Shield)].Paperdoll, anim, spriteleft);
                 }
             }
 
