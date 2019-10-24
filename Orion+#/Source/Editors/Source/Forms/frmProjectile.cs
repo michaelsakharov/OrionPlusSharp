@@ -140,7 +140,7 @@ namespace Engine
         {
             emitterListBox.Items.Add("Emitter " + emitterListBox.Items.Count);
             emitterListBox.SelectedIndex = emitterListBox.Items.Count - 1;
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Add(new E_Emitter());
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Add(new E_Emitter() { emitterName = "Emitter " + emitterListBox.Items.Count });
             UpdateEmitterUI();
         }
 
@@ -190,7 +190,7 @@ namespace Engine
             {
                 Width = 1060;
             }
-            if (emitterListBox.SelectedIndex != -1 && E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Count > 0)
+            if (emitterListBox.SelectedIndex != -1)
             {
                 emitterNameTextBox.Text = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].emitterName;
             }
@@ -211,6 +211,50 @@ namespace Engine
                 nudRange.Enabled = true;
                 nudSpeed.Enabled = true;
                 nudDamage.Enabled = true;
+            }
+
+        }
+
+        public void emitterTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateEmitterType();
+        }
+
+        public void UpdateEmitterType()
+        {
+            for (int i = 0; i < E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Count; i++)
+            {
+
+                switch (frmProjectile.Default.emitterTypeComboBox.SelectedText)
+                {
+                    case "Linear":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new LinearEmitter();
+                        break;
+                    case "Accelerating":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Laser Beam":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Boomerang":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Homing":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Re-Direction":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Wave":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Exploding Bullets":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                    case "Bouncing":
+                        E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i] = new E_Emitter();
+                        break;
+                }
             }
         }
 

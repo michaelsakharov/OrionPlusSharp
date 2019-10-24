@@ -13,7 +13,7 @@ using System.Linq;
 using System.IO;
 using ASFW;
 using Engine;
-
+using SFML.Graphics;
 
 namespace Engine
 {
@@ -29,12 +29,12 @@ namespace Engine
 		internal static bool InitProjectileEditor;
 		internal const byte EDITOR_PROJECTILE = 10;
 		internal static bool[] Projectile_Changed = new bool[MAX_PROJECTILES + 1];
-		
+
 #endregion
-		
-#region Types
-		
-		public struct ProjectileRec
+
+        #region Types
+
+        public struct ProjectileRec
 		{
 			public string Name;
 			public int Sprite;
@@ -91,8 +91,14 @@ namespace Engine
 			buffer.WriteInt32(Projectiles[ProjectileNum].Damage);
 
             //TODO Projectiles - Save Emitters
-			
-			E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
+            buffer.WriteInt32(Projectiles[ProjectileNum].Emitters.Count - 1);
+
+            for(int i=0; i < Projectiles[ProjectileNum].Emitters.Count; i++)
+            {
+
+            }
+
+            E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
 			
 		}
@@ -146,7 +152,7 @@ namespace Engine
 			Projectiles[ProjectileNum].Speed = buffer.ReadInt32();
 			Projectiles[ProjectileNum].Damage = buffer.ReadInt32();
 
-            //TODO Projectiles - 
+            //TODO Projectiles - emitters
 
             buffer.Dispose();
 			
@@ -250,8 +256,26 @@ namespace Engine
 			
 			if (File.Exists(Application.StartupPath + E_Globals.GFX_PATH + "Projectiles\\" + System.Convert.ToString(iconnum) + E_Globals.GFX_EXT))
 			{
-				frmProjectile.Default.picProjectile.BackgroundImage = Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "Projectiles\\" + System.Convert.ToString(iconnum) + E_Globals.GFX_EXT);
+				frmProjectile.Default.picProjectile.BackgroundImage = System.Drawing.Image.FromFile(Application.StartupPath + E_Globals.GFX_PATH + "Projectiles\\" + System.Convert.ToString(iconnum) + E_Globals.GFX_EXT);
 			}
+			
+		}
+		
+		internal static void EditorProjectile_DrawEmitterProjectile()
+		{
+
+            if(Projectiles[E_Globals.Editorindex].Emitters != null && Projectiles[E_Globals.Editorindex].Emitters.Count > 0)
+            {
+
+                // Render and Update the particles
+
+                foreach(E_Emitter emitter in Projectiles[E_Globals.Editorindex].Emitters)
+                {
+                    emitter.UpdateParticles();
+                    emitter.DrawParticles(E_Graphics.ProjectilePreviewWindow);
+                }
+                
+            }
 			
 		}
 		
@@ -288,8 +312,11 @@ namespace Engine
             frmProjectile.Default.UpdateEmitterUI();
 
             Projectile_Changed[E_Globals.Editorindex] = true;
-			
-		}
+
+            frmProjectile.Default.UpdateEmitterType();
+
+
+        }
 		
 		internal static void ProjectileEditorOk()
 		{

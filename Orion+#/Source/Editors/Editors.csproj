@@ -69,9 +69,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\Modules\Objects\ProjectileSystem\Emitters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="ApplicationEvents.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -223,6 +221,7 @@
     <Compile Include="Source\Modules\Network\E_NetworkConfig.cs" />
     <Compile Include="Source\Modules\Network\E_NetworkReceive.cs" />
     <Compile Include="Source\Modules\Network\E_NetworkSend.cs" />
+    <Compile Include="Source\Modules\Objects\ProjectileSystem\Emitters\LinearEmitter.cs" />
     <Compile Include="Source\Modules\Objects\ProjectileSystem\E_Emitter.cs" />
     <Compile Include="Source\Modules\Objects\ProjectileSystem\E_ProjectileSystem.cs" />
   </ItemGroup>

@@ -1727,10 +1727,11 @@ namespace Engine
                 RenderSprite(CharacterSprite[spriteNum], ProjectilePreviewWindow, (width / 2) - (charWidth / 2), (height / 2) - (charHeight / 2), srcrec.X, srcrec.Y, srcrec.Width, srcrec.Height);
             }
 
-            ProjectilePreviewWindow.Display();
-
             // Lets update and render all Emitters
-            // Todo
+
+            E_Projectiles.EditorProjectile_DrawEmitterProjectile();
+
+            ProjectilePreviewWindow.Display();
 
         }
 

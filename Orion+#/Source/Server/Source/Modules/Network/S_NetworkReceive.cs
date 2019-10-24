@@ -458,7 +458,6 @@ namespace Engine
                 if (S_NetworkConfig.IsLoggedIn(index))
                 {
                     slot = (byte)buffer.ReadInt32();
-
                     // Check if character data has been created
                     if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Character[slot].Name)) > 0)
                     {

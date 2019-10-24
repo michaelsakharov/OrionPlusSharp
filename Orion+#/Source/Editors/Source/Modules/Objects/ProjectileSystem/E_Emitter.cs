@@ -13,6 +13,7 @@ namespace Engine
         public Sprite sprite;
         public int x;
         public int y;
+        public byte dir;
     }
 
     public class E_Emitter
@@ -27,15 +28,14 @@ namespace Engine
         public int rotationOffset = 0;
         public int range = 1;
         public int speed = 1;
-        public int emitterSpeed = 1;
         public int additionalDamage = 0;
 
         //Internal Emitter Variables
         public List<ProjectileBullet> projectiles;
         
-        public void InitializeEmitter() {  }
-        public void UpdateParticles() {  }
-        public void DrawParticles(RenderWindow gameWindow) {  }
+        public virtual void InitializeEmitter() {  }
+        public virtual void UpdateParticles() {  }
+        public virtual void DrawParticles(RenderWindow gameWindow) {  }
 
     }
 }

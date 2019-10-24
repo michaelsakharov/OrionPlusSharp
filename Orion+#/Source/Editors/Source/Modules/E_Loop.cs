@@ -20,10 +20,15 @@ namespace Engine
 {
 	sealed class E_Loop
 	{
-		
-#region Startup
-		
-		internal static void Main()
+
+        public static float deltaTime;
+        public static double lastTime;
+
+        private static Stopwatch clock;
+
+        #region Startup
+
+        internal static void Main()
 		{
 			
 			//check if we are in the right place...
@@ -37,8 +42,10 @@ namespace Engine
 			{
 				return;
 			}
-			
-			SFML.Portable.Activate();
+
+            clock = new Stopwatch();
+
+            SFML.Portable.Activate();
 			
 			//Strings.Init(1, "English")
 			
@@ -260,10 +267,19 @@ namespace Engine
 			FrmLogin.Default.txtLogin.Text = E_Types.Options.Username;
 			FrmLogin.Default.txtPassword.Text = E_Types.Options.Password;
 		}
-		
-#endregion
-		
-		public static void GameLoop()
+
+        #endregion
+        
+        public static void DeltaTime()
+        {
+            double time = clock.Elapsed.TotalSeconds;
+            double delta = (time - lastTime);
+            lastTime = time;
+
+            deltaTime = (float)delta;
+        }
+
+        public static void GameLoop()
 		{
             Point dest = new Point(frmMapEditor.Default.PointToScreen(frmMapEditor.Default.picScreen.Location).X, frmMapEditor.Default.PointToScreen(frmMapEditor.Default.picScreen.Location).Y);
             Graphics g = frmMapEditor.Default.picScreen.CreateGraphics();
@@ -276,8 +292,10 @@ namespace Engine
 			int rendercount = 0;
 			
 			starttime = ClientDataBase.GetTickCount();
-			
-			do
+
+            clock.Start();
+
+            do
 			{
 				if (E_Globals.GameDestroyed == true)
 				{
@@ -285,8 +303,10 @@ namespace Engine
 				}
 				
 				UpdateUI();
-				
-				if (E_Globals.GameStarted == true)
+
+                DeltaTime();
+
+                if (E_Globals.GameStarted == true)
 				{
 					Tick = ClientDataBase.GetTickCount();
 					
