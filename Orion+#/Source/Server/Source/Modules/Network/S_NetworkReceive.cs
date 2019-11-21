@@ -457,17 +457,19 @@ namespace Engine
             {
                 if (S_NetworkConfig.IsLoggedIn(index))
                 {
-
                     //Its possible for the player to be Double logged in, what causes this isnt quite clear yet
                     //To fix it lets do a brute force check
-                    var loopTo = S_GameLogic.GetPlayersOnline();
+                    //But this fix/bug mayyyy become a stability hazard in the future, so it needs to be fixed asap
+                    var loopTo = Constants.MAX_PLAYERS;
                     for (int i=1; i <= loopTo; i++)
                     {
                         if (S_NetworkConfig.IsPlaying(i))
                         {
-                            if (i != index && (modTypes.Player[i].Login == modTypes.Player[index].Login))
+                            if (i != index && (modTypes.Player[i].Login != null && modTypes.Player[i].Login == modTypes.Player[index].Login))
                             {
-                                Console.WriteLine("Found duplicate user");
+                                Console.WriteLine("Removing a duplicate character from the world, this bug needs to be resolved asap!");
+                                S_NetworkSend.SendLeftGame(i);
+                                S_Players.ForceLeftGame(i);
                             }
                         }
                     }

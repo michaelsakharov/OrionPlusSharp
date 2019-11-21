@@ -3731,6 +3731,75 @@ namespace Engine
             S_General.UpdateCaption();
         }
 
+        public static void ForceLeftGame(int index)
+        {
+            int i = 0;
+            int tradeTarget;
+
+            if (modTypes.TempPlayer[index].InGame)
+            {
+                S_NetworkSend.SendLeftMap(index);
+                modTypes.TempPlayer[index].InGame = false;
+                ModLoop.UpdateOnlinePlayers();
+
+                // Check if player was the only player on the map and stop npc processing if so
+                if (GetPlayerMap(index) > 0)
+                {
+                    if (S_GameLogic.GetTotalMapPlayers(GetPlayerMap(index)) < 1)
+                    {
+                        modTypes.PlayersOnMap[GetPlayerMap(index)] = 0;
+                        if (S_Instances.IsInstancedMap(GetPlayerMap(index)))
+                        {
+                            S_Instances.DestroyInstancedMap(GetPlayerMap(index) - Constants.MAX_MAPS);
+
+                            if (modTypes.TempPlayer[index].InInstance == 1)
+                            {
+                                SetPlayerMap(index, modTypes.TempPlayer[index].TmpMap);
+                                SetPlayerX(index, modTypes.TempPlayer[index].TmpX);
+                                SetPlayerY(index, modTypes.TempPlayer[index].TmpY);
+                                modTypes.TempPlayer[index].InInstance = 0;
+                            }
+                        }
+                    }
+                }
+
+                // Check if the player was in a party, and if so cancel it out so the other player doesn't continue to get half exp
+                // leave party.
+                S_Parties.Party_PlayerLeave(index);
+
+                // cancel any trade they're in
+                if (modTypes.TempPlayer[index].InTrade > 0)
+                {
+                    tradeTarget = modTypes.TempPlayer[index].InTrade;
+                    S_NetworkSend.PlayerMsg(tradeTarget, string.Format("{0} has declined the trade.", GetPlayerName(index)), (int)Enums.ColorType.BrightRed);
+                    // clear out trade
+                    for (i = 1; i <= Constants.MAX_INV; i++)
+                    {
+                        modTypes.TempPlayer[tradeTarget].TradeOffer[i].Num = 0;
+                        modTypes.TempPlayer[tradeTarget].TradeOffer[i].Value = 0;
+                    }
+                    modTypes.TempPlayer[tradeTarget].InTrade = 0;
+                    S_NetworkSend.SendCloseTrade(tradeTarget);
+                }
+
+                // pet
+                // ReleasePet(Index)
+                S_Pets.ReCallPet(index);
+
+                modTypes.TempPlayer[index] = default(TempPlayerRec);
+                modTypes.TempPlayer[i].SkillCd = new int[Constants.MAX_PLAYER_SKILLS + 1];
+                modTypes.TempPlayer[i].TradeOffer = new PlayerInvRec[Constants.MAX_INV + 1];
+            }
+
+            S_NetworkSend.SendTotalOnlineToAll();
+
+            modDatabase.ClearPlayer(index);
+            modDatabase.ClearBank(index);
+
+            S_NetworkConfig.Socket.Disconnect(index);
+            S_General.UpdateCaption();
+        }
+
         internal static void KillPlayer(int index)
         {
             int exp;
