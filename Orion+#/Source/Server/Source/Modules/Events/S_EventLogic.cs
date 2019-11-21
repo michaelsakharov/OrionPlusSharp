@@ -2102,28 +2102,30 @@ namespace Engine
                                                     if (restartlist == false && endprocess == false)
                                                     {
                                                         // If we are still here, then we are good to process shit :D
-                                                        // Debug.WriteLine(.CurSlot)
-                                                        switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Index)
+
+                                                        ref EventCommandStruct with_1 = ref modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot];
+
+                                                        switch (with_1.Index)
                                                         {
                                                             case (int)S_Events.EventType.EvAddText:
                                                                 {
-                                                                    switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2)
+                                                                    switch (with_1.Data2)
                                                                     {
                                                                         case 0:
                                                                             {
-                                                                                S_NetworkSend.PlayerMsg(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                                S_NetworkSend.PlayerMsg(i, with_1.Text1, with_1.Data1);
                                                                                 break;
                                                                             }
 
                                                                         case 1:
                                                                             {
-                                                                                S_NetworkSend.MapMsg(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1, (byte)modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                                S_NetworkSend.MapMsg(S_Players.GetPlayerMap(i), with_1.Text1, (byte)with_1.Data1);
                                                                                 break;
                                                                             }
 
                                                                         case 2:
                                                                             {
-                                                                                S_NetworkSend.GlobalMsg(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1); // Map(GetPlayerMap(i)).Events(.EventID).Pages(.PageID).CommandList(.CurList).Commands(.CurSlot).Data1)
+                                                                                S_NetworkSend.GlobalMsg(with_1.Text1); // Map(GetPlayerMap(i)).Events(.EventID).Pages(.PageID).CommandList(.CurList).Commands(.CurSlot).Data1)
                                                                                 break;
                                                                             }
                                                                     }
@@ -2137,8 +2139,8 @@ namespace Engine
                                                                     buffer.WriteInt32((int)(Packets.ServerPackets.SEventChat));
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].EventId);
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].PageId);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
-                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1))));
+                                                                    buffer.WriteInt32(with_1.Data1);
+                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, with_1.Text1))));
                                                                     buffer.WriteInt32(0);
 
                                                                     S_General.AddDebug("Sent SMSG: SEventChat evShowText");
@@ -2166,21 +2168,21 @@ namespace Engine
                                                                     buffer.WriteInt32((int)(Packets.ServerPackets.SEventChat));
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].EventId);
                                                                     buffer.WriteInt32(modTypes.TempPlayer[i].EventProcessing[x].PageId);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data5);
-                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1))));
+                                                                    buffer.WriteInt32(with_1.Data5);
+                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, with_1.Text1))));
 
                                                                     S_General.AddDebug("Sent SMSG: SEventChat evShowChoices");
 
-                                                                    if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text2)) > 0)
+                                                                    if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(with_1.Text2)) > 0)
                                                                     {
                                                                         w = 1;
-                                                                        if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text3)) > 0)
+                                                                        if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(with_1.Text3)) > 0)
                                                                         {
                                                                             w = 2;
-                                                                            if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text4)) > 0)
+                                                                            if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(with_1.Text4)) > 0)
                                                                             {
                                                                                 w = 3;
-                                                                                if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text5)) > 0)
+                                                                                if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(with_1.Text5)) > 0)
                                                                                     w = 4;
                                                                             }
                                                                         }
@@ -2193,25 +2195,25 @@ namespace Engine
                                                                         {
                                                                             case 1:
                                                                                 {
-                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text2)))));
+                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(with_1.Text2)))));
                                                                                     break;
                                                                                 }
 
                                                                             case 2:
                                                                                 {
-                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text3)))));
+                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(with_1.Text3)))));
                                                                                     break;
                                                                                 }
 
                                                                             case 3:
                                                                                 {
-                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text4)))));
+                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(with_1.Text4)))));
                                                                                     break;
                                                                                 }
 
                                                                             case 4:
                                                                                 {
-                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text5)))));
+                                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(ParseEventText(i, Microsoft.VisualBasic.Strings.Trim(with_1.Text5)))));
                                                                                     break;
                                                                                 }
                                                                         }
@@ -2235,29 +2237,29 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvPlayerVar:
                                                                 {
-                                                                    switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2)
+                                                                    switch (with_1.Data2)
                                                                     {
                                                                         case 0:
                                                                             {
-                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3;
+                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.Data1] = with_1.Data3;
                                                                                 break;
                                                                             }
 
                                                                         case 1:
                                                                             {
-                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] + modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3;
+                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.Data1] = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.Data1] + with_1.Data3;
                                                                                 break;
                                                                             }
 
                                                                         case 2:
                                                                             {
-                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] - modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3;
+                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.Data1] = modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.Data1] - with_1.Data3;
                                                                                 break;
                                                                             }
 
                                                                         case 3:
                                                                             {
-                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] = S_GameLogic.Random(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data4);
+                                                                                modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.Data1] = S_GameLogic.Random(with_1.Data3, with_1.Data4);
                                                                                 break;
                                                                             }
                                                                     }
@@ -2267,10 +2269,10 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvPlayerSwitch:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 0)
-                                                                        modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] = 1;
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 1)
-                                                                        modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] = 0;
+                                                                    if (with_1.Data2 == 0)
+                                                                        modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[with_1.Data1] = 1;
+                                                                    else if (with_1.Data2 == 1)
+                                                                        modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[with_1.Data1] = 0;
                                                                     break;
                                                                 }
 
@@ -2278,38 +2280,38 @@ namespace Engine
                                                                 {
                                                                     if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Globals == 1)
                                                                     {
-                                                                        if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 0)
-                                                                            modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1] = 1;
-                                                                        else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 1)
-                                                                            modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1] = 0;
+                                                                        if (with_1.Data2 == 0)
+                                                                            modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.Data1 + 1] = 1;
+                                                                        else if (with_1.Data2 == 1)
+                                                                            modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.Data1 + 1] = 0;
                                                                     }
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 0)
-                                                                        modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1] = 1;
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 1)
-                                                                        modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1] = 0;
+                                                                    else if (with_1.Data2 == 0)
+                                                                        modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.Data1 + 1] = 1;
+                                                                    else if (with_1.Data2 == 1)
+                                                                        modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.Data1 + 1] = 0;
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvCondition:
                                                                 {
-                                                                    switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Condition)
+                                                                    switch (with_1.ConditionalBranch.Condition)
                                                                     {
                                                                         case 0:
                                                                             {
-                                                                                switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2)
+                                                                                switch (with_1.ConditionalBranch.Data2)
                                                                                 {
                                                                                     case 0:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.ConditionalBranch.Data1] == with_1.ConditionalBranch.Data3)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2318,16 +2320,16 @@ namespace Engine
 
                                                                                     case 1:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] >= modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.ConditionalBranch.Data1] >= with_1.ConditionalBranch.Data3)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2336,16 +2338,16 @@ namespace Engine
 
                                                                                     case 2:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] <= modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.ConditionalBranch.Data1] <= with_1.ConditionalBranch.Data3)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2354,16 +2356,16 @@ namespace Engine
 
                                                                                     case 3:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] > modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.ConditionalBranch.Data1] > with_1.ConditionalBranch.Data3)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2372,16 +2374,16 @@ namespace Engine
 
                                                                                     case 4:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] < modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.ConditionalBranch.Data1] < with_1.ConditionalBranch.Data3)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2390,16 +2392,16 @@ namespace Engine
 
                                                                                     case 5:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] != modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Variables[with_1.ConditionalBranch.Data1] != with_1.ConditionalBranch.Data3)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2412,20 +2414,20 @@ namespace Engine
 
                                                                         case 1:
                                                                             {
-                                                                                switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2)
+                                                                                switch (with_1.ConditionalBranch.Data2)
                                                                                 {
                                                                                     case 0:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] == 1)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[with_1.ConditionalBranch.Data1] == 1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2434,16 +2436,16 @@ namespace Engine
 
                                                                                     case 1:
                                                                                         {
-                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1] == 0)
+                                                                                            if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Switches[with_1.ConditionalBranch.Data1] == 0)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2456,16 +2458,16 @@ namespace Engine
 
                                                                         case 2:
                                                                             {
-                                                                                if (S_Players.HasItem(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1) >= modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2)
+                                                                                if (S_Players.HasItem(i, with_1.ConditionalBranch.Data1) >= with_1.ConditionalBranch.Data2)
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
 
@@ -2474,16 +2476,16 @@ namespace Engine
 
                                                                         case 3:
                                                                             {
-                                                                                if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Classes == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Classes == with_1.ConditionalBranch.Data1)
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
 
@@ -2492,16 +2494,16 @@ namespace Engine
 
                                                                         case 4:
                                                                             {
-                                                                                if (S_Players.HasSkill(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1) == true)
+                                                                                if (S_Players.HasSkill(i, with_1.ConditionalBranch.Data1) == true)
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
 
@@ -2510,20 +2512,20 @@ namespace Engine
 
                                                                         case 5:
                                                                             {
-                                                                                switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2)
+                                                                                switch (with_1.ConditionalBranch.Data2)
                                                                                 {
                                                                                     case 0:
                                                                                         {
-                                                                                            if (S_Players.GetPlayerLevel(i) == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                            if (S_Players.GetPlayerLevel(i) == with_1.ConditionalBranch.Data1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2532,16 +2534,16 @@ namespace Engine
 
                                                                                     case 1:
                                                                                         {
-                                                                                            if (S_Players.GetPlayerLevel(i) >= modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                            if (S_Players.GetPlayerLevel(i) >= with_1.ConditionalBranch.Data1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2550,16 +2552,16 @@ namespace Engine
 
                                                                                     case 2:
                                                                                         {
-                                                                                            if (S_Players.GetPlayerLevel(i) <= modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                            if (S_Players.GetPlayerLevel(i) <= with_1.ConditionalBranch.Data1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2568,16 +2570,16 @@ namespace Engine
 
                                                                                     case 3:
                                                                                         {
-                                                                                            if (S_Players.GetPlayerLevel(i) > modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                            if (S_Players.GetPlayerLevel(i) > with_1.ConditionalBranch.Data1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2586,16 +2588,16 @@ namespace Engine
 
                                                                                     case 4:
                                                                                         {
-                                                                                            if (S_Players.GetPlayerLevel(i) < modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                            if (S_Players.GetPlayerLevel(i) < with_1.ConditionalBranch.Data1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2604,16 +2606,16 @@ namespace Engine
 
                                                                                     case 5:
                                                                                         {
-                                                                                            if (S_Players.GetPlayerLevel(i) != modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                            if (S_Players.GetPlayerLevel(i) != with_1.ConditionalBranch.Data1)
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                 modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                             }
 
@@ -2628,21 +2630,21 @@ namespace Engine
                                                                             {
                                                                                 if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Globals == 1)
                                                                                 {
-                                                                                    switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2)
+                                                                                    switch (with_1.ConditionalBranch.Data2)
                                                                                     {
                                                                                         case 0 // Self Switch is true
                                                                                        :
                                                                                             {
-                                                                                                if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1 + 1] == 1)
+                                                                                                if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.ConditionalBranch.Data1 + 1] == 1)
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
 
@@ -2652,16 +2654,16 @@ namespace Engine
                                                                                         case 1  // self switch is false
                                                                                  :
                                                                                             {
-                                                                                                if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1 + 1] == 0)
+                                                                                                if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.ConditionalBranch.Data1 + 1] == 0)
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
 
@@ -2670,21 +2672,21 @@ namespace Engine
                                                                                     }
                                                                                 }
                                                                                 else
-                                                                                    switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2)
+                                                                                    switch (with_1.ConditionalBranch.Data2)
                                                                                     {
                                                                                         case 0 // Self Switch is true
                                                                                        :
                                                                                             {
-                                                                                                if (modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1 + 1] == 1)
+                                                                                                if (modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.ConditionalBranch.Data1 + 1] == 1)
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
 
@@ -2694,16 +2696,16 @@ namespace Engine
                                                                                         case 1  // self switch is false
                                                                                  :
                                                                                             {
-                                                                                                if (modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1 + 1] == 0)
+                                                                                                if (modTypes.TempPlayer[i].EventMap.EventPages[modTypes.TempPlayer[i].EventProcessing[x].EventId].SelfSwitches[with_1.ConditionalBranch.Data1 + 1] == 0)
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                 }
 
@@ -2716,24 +2718,24 @@ namespace Engine
 
                                                                         case 7:
                                                                             {
-                                                                                if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1 > 0 && modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1 <= S_Quest.MAX_QUESTS)
+                                                                                if (with_1.ConditionalBranch.Data1 > 0 && with_1.ConditionalBranch.Data1 <= S_Quest.MAX_QUESTS)
                                                                                 {
-                                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2 == 0)
+                                                                                    if (with_1.ConditionalBranch.Data2 == 0)
                                                                                     {
-                                                                                        switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                        switch (with_1.ConditionalBranch.Data3)
                                                                                         {
                                                                                             case 0:
                                                                                                 {
-                                                                                                    if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1].Status == 0)
+                                                                                                    if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.ConditionalBranch.Data1].Status == 0)
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
 
@@ -2742,16 +2744,16 @@ namespace Engine
 
                                                                                             case 1:
                                                                                                 {
-                                                                                                    if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1].Status == 1)
+                                                                                                    if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.ConditionalBranch.Data1].Status == 1)
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
 
@@ -2760,16 +2762,16 @@ namespace Engine
 
                                                                                             case 2:
                                                                                                 {
-                                                                                                    if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1].Status == 2 || modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1].Status == 3)
+                                                                                                    if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.ConditionalBranch.Data1].Status == 2 || modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.ConditionalBranch.Data1].Status == 3)
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
 
@@ -2778,16 +2780,16 @@ namespace Engine
 
                                                                                             case 3:
                                                                                                 {
-                                                                                                    if (S_Quest.CanStartQuest(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1))
+                                                                                                    if (S_Quest.CanStartQuest(i, with_1.ConditionalBranch.Data1))
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
 
@@ -2796,16 +2798,16 @@ namespace Engine
 
                                                                                             case 4:
                                                                                                 {
-                                                                                                    if (S_Quest.CanEndQuest(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1))
+                                                                                                    if (S_Quest.CanEndQuest(i, with_1.ConditionalBranch.Data1))
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                                        modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                                         modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                                     }
 
@@ -2813,18 +2815,18 @@ namespace Engine
                                                                                                 }
                                                                                         }
                                                                                     }
-                                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data2 == 1)
+                                                                                    else if (with_1.ConditionalBranch.Data2 == 1)
                                                                                     {
-                                                                                        if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1].ActualTask == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data3)
+                                                                                        if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.ConditionalBranch.Data1].ActualTask == with_1.ConditionalBranch.Data3)
                                                                                         {
                                                                                             modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                            modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                            modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                             modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                         }
                                                                                         else
                                                                                         {
                                                                                             modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                            modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                            modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                             modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                         }
                                                                                     }
@@ -2835,16 +2837,16 @@ namespace Engine
 
                                                                         case 8:
                                                                             {
-                                                                                if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Sex == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Sex == with_1.ConditionalBranch.Data1)
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
 
@@ -2853,16 +2855,16 @@ namespace Engine
 
                                                                         case 9:
                                                                             {
-                                                                                if ((int)Time.Instance.TimeOfDay == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.Data1)
+                                                                                if ((int)Time.Instance.TimeOfDay == with_1.ConditionalBranch.Data1)
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.CommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.CommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff[modTypes.TempPlayer[i].EventProcessing[x].CurList] = modTypes.TempPlayer[i].EventProcessing[x].CurSlot;
-                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].ConditionalBranch.ElseCommandList;
+                                                                                    modTypes.TempPlayer[i].EventProcessing[x].CurList = with_1.ConditionalBranch.ElseCommandList;
                                                                                     modTypes.TempPlayer[i].EventProcessing[x].CurSlot = 1;
                                                                                 }
 
@@ -2882,31 +2884,31 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvChangeItems:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 0)
+                                                                    if (with_1.Data2 == 0)
                                                                     {
-                                                                        if (S_Players.HasItem(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1) > 0)
+                                                                        if (S_Players.HasItem(i, with_1.Data1) > 0)
                                                                         {
-                                                                            S_Players.SetPlayerInvItemValue(i, S_Players.FindItemSlot(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3);
-                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Fetch, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
-                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Give, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                            S_Players.SetPlayerInvItemValue(i, S_Players.FindItemSlot(i, with_1.Data1), with_1.Data3);
+                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Fetch, with_1.Data1);
+                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Give, with_1.Data1);
                                                                         }
                                                                     }
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 1)
+                                                                    else if (with_1.Data2 == 1)
                                                                     {
-                                                                        S_Players.GiveInvItem(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3, true);
-                                                                        S_Quest.CheckTasks(i, (int)Enums.QuestType.Fetch, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
-                                                                        S_Quest.CheckTasks(i, (int)Enums.QuestType.Give, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                        S_Players.GiveInvItem(i, with_1.Data1, with_1.Data3, true);
+                                                                        S_Quest.CheckTasks(i, (int)Enums.QuestType.Fetch, with_1.Data1);
+                                                                        S_Quest.CheckTasks(i, (int)Enums.QuestType.Give, with_1.Data1);
                                                                     }
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 2)
+                                                                    else if (with_1.Data2 == 2)
                                                                     {
                                                                         int itemAmount;
-                                                                        itemAmount = S_Players.HasItem(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                        itemAmount = S_Players.HasItem(i, with_1.Data1);
                                                                         // Check Amount
-                                                                        if (itemAmount >= modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3)
+                                                                        if (itemAmount >= with_1.Data3)
                                                                         {
-                                                                            S_Players.TakeInvItem(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3);
-                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Fetch, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
-                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Give, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                            S_Players.TakeInvItem(i, with_1.Data1, with_1.Data3);
+                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Fetch, with_1.Data1);
+                                                                            S_Quest.CheckTasks(i, (int)Enums.QuestType.Give, with_1.Data1);
                                                                         }
                                                                     }
                                                                     S_NetworkSend.SendInventory(i);
@@ -2938,7 +2940,7 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvChangeLevel:
                                                                 {
-                                                                    S_Players.SetPlayerLevel(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                    S_Players.SetPlayerLevel(i, with_1.Data1);
                                                                     S_Players.SetPlayerExp(i, 0);
                                                                     S_NetworkSend.SendExp(i);
                                                                     S_NetworkSend.SendPlayerData(i);
@@ -2947,12 +2949,12 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvChangeSkills:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 0)
+                                                                    if (with_1.Data2 == 0)
                                                                     {
                                                                         if (S_Players.FindOpenSkillSlot(i) > 0)
                                                                         {
-                                                                            if (S_Players.HasSkill(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1) == false)
-                                                                                S_Players.SetPlayerSkill(i, S_Players.FindOpenSkillSlot(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                            if (S_Players.HasSkill(i, with_1.Data1) == false)
+                                                                                S_Players.SetPlayerSkill(i, S_Players.FindOpenSkillSlot(i), with_1.Data1);
                                                                             else
                                                                             {
                                                                             }
@@ -2961,13 +2963,13 @@ namespace Engine
                                                                         {
                                                                         }
                                                                     }
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 1)
+                                                                    else if (with_1.Data2 == 1)
                                                                     {
-                                                                        if (S_Players.HasSkill(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1) == true)
+                                                                        if (S_Players.HasSkill(i, with_1.Data1) == true)
                                                                         {
                                                                             for (p = 1; p <= Constants.MAX_PLAYER_SKILLS; p++)
                                                                             {
-                                                                                if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Skill[p] == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1)
+                                                                                if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Skill[p] == with_1.Data1)
                                                                                     S_Players.SetPlayerSkill(i, p, 0);
                                                                             }
                                                                         }
@@ -2978,23 +2980,23 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvChangeClass:
                                                                 {
-                                                                    modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Classes = (byte)modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1;
+                                                                    modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Classes = (byte)with_1.Data1;
                                                                     S_NetworkSend.SendPlayerData(i);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvChangeSprite:
                                                                 {
-                                                                    S_Players.SetPlayerSprite(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                    S_Players.SetPlayerSprite(i, with_1.Data1);
                                                                     S_NetworkSend.SendPlayerData(i);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvChangeSex:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 == 0)
+                                                                    if (with_1.Data1 == 0)
                                                                         modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Sex = (byte)Enums.SexType.Male;
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 == 1)
+                                                                    else if (with_1.Data1 == 1)
                                                                         modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Sex = (byte)Enums.SexType.Female;
                                                                     S_NetworkSend.SendPlayerData(i);
                                                                     break;
@@ -3002,9 +3004,9 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvChangePk:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 == 0)
+                                                                    if (with_1.Data1 == 0)
                                                                         modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pk = 0;
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 == 1)
+                                                                    else if (with_1.Data1 == 1)
                                                                         modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Pk = 1;
                                                                     S_NetworkSend.SendPlayerData(i);
                                                                     break;
@@ -3012,12 +3014,12 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvWarpPlayer:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data4 == 0)
-                                                                        S_Players.PlayerWarp(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3);
+                                                                    if (with_1.Data4 == 0)
+                                                                        S_Players.PlayerWarp(i, with_1.Data1, with_1.Data2, with_1.Data3);
                                                                     else
                                                                     {
-                                                                        modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Dir = (byte)(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data4 - 1);
-                                                                        S_Players.PlayerWarp(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3);
+                                                                        modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].Dir = (byte)(with_1.Data4 - 1);
+                                                                        S_Players.PlayerWarp(i, with_1.Data1, with_1.Data2, with_1.Data3);
                                                                     }
 
                                                                     break;
@@ -3025,27 +3027,27 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvSetMoveRoute:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 <= modTypes.Map[S_Players.GetPlayerMap(i)].EventCount)
+                                                                    if (with_1.Data1 <= modTypes.Map[S_Players.GetPlayerMap(i)].EventCount)
                                                                     {
-                                                                        if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Globals == 1)
+                                                                        if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[with_1.Data1].Globals == 1)
                                                                         {
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveType = 2;
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].IgnoreIfCannotMove = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2;
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].RepeatMoveRoute = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3;
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRouteCount = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].MoveRouteCount;
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRoute = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].MoveRoute;
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRouteStep = 0;
-                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRouteComplete = 0;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].MoveType = 2;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].IgnoreIfCannotMove = with_1.Data2;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].RepeatMoveRoute = with_1.Data3;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].MoveRouteCount = with_1.MoveRouteCount;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].MoveRoute = with_1.MoveRoute;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].MoveRouteStep = 0;
+                                                                            S_Events.TempEventMap[S_Players.GetPlayerMap(i)].Events[with_1.Data1].MoveRouteComplete = 0;
                                                                         }
                                                                         else
                                                                         {
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveType = 2;
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].IgnoreIfCannotMove = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2;
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].RepeatMoveRoute = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3;
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRouteCount = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].MoveRouteCount;
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRoute = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].MoveRoute;
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRouteStep = 0;
-                                                                            modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].MoveRouteComplete = 0;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].MoveType = 2;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].IgnoreIfCannotMove = with_1.Data2;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].RepeatMoveRoute = with_1.Data3;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].MoveRouteCount = with_1.MoveRouteCount;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].MoveRoute = with_1.MoveRoute;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].MoveRouteStep = 0;
+                                                                            modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data1].MoveRouteComplete = 0;
                                                                         }
                                                                     }
 
@@ -3054,24 +3056,24 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvPlayAnimation:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 0)
-                                                                        S_Animations.SendAnimation(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, S_Players.GetPlayerX(i), S_Players.GetPlayerY(i), (byte)Enums.TargetType.Player, i);
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 1)
+                                                                    if (with_1.Data2 == 0)
+                                                                        S_Animations.SendAnimation(S_Players.GetPlayerMap(i), with_1.Data1, S_Players.GetPlayerX(i), S_Players.GetPlayerY(i), (byte)Enums.TargetType.Player, i);
+                                                                    else if (with_1.Data2 == 1)
                                                                     {
                                                                         if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Globals == 1)
-                                                                            S_Animations.SendAnimation(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].X, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3].Y);
+                                                                            S_Animations.SendAnimation(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[with_1.Data3].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].X, modTypes.Map[S_Players.GetPlayerMap(i)].Events[with_1.Data3].Y);
                                                                         else
-                                                                            S_Animations.SendAnimation(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3].X, modTypes.TempPlayer[i].EventMap.EventPages[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3].Y, 0, 0);
+                                                                            S_Animations.SendAnimation(S_Players.GetPlayerMap(i), with_1.Data1, modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data3].X, modTypes.TempPlayer[i].EventMap.EventPages[with_1.Data3].Y, 0, 0);
                                                                     }
-                                                                    else if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2 == 2)
-                                                                        S_Animations.SendAnimation(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data4, 0, 0);
+                                                                    else if (with_1.Data2 == 2)
+                                                                        S_Animations.SendAnimation(S_Players.GetPlayerMap(i), with_1.Data1, with_1.Data3, with_1.Data4, 0, 0);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvCustomScript:
                                                                 {
                                                                     // Runs Through Cases for a script
-                                                                    S_Events.CustomScript(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, S_Players.GetPlayerMap(i), modTypes.TempPlayer[i].EventProcessing[x].EventId);
+                                                                    S_Events.CustomScript(i, with_1.Data1, S_Players.GetPlayerMap(i), modTypes.TempPlayer[i].EventProcessing[x].EventId);
                                                                     break;
                                                                 }
 
@@ -3079,7 +3081,7 @@ namespace Engine
                                                                 {
                                                                     buffer = new ByteStream(4);
                                                                     buffer.WriteInt32((int)(Packets.ServerPackets.SPlayBGM));
-                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1)));
+                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(with_1.Text1)));
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPlayBGM", S_Constants.PACKET_LOG);
@@ -3106,7 +3108,7 @@ namespace Engine
                                                                 {
                                                                     buffer = new ByteStream(4);
                                                                     buffer.WriteInt32((int)(Packets.ServerPackets.SPlaySound));
-                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1)));
+                                                                    buffer.WriteString((Microsoft.VisualBasic.Strings.Trim(with_1.Text1)));
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPlaySound", S_Constants.PACKET_LOG);
@@ -3131,19 +3133,19 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvSetAccess:
                                                                 {
-                                                                    modTypes.Player[i].Access = (byte)modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1;
+                                                                    modTypes.Player[i].Access = (byte)with_1.Data1;
                                                                     S_NetworkSend.SendPlayerData(i);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvOpenShop:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 > 0)
+                                                                    if (with_1.Data1 > 0)
                                                                     {
-                                                                        if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Types.Shop[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Name)) > 0)
+                                                                        if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(Types.Shop[with_1.Data1].Name)) > 0)
                                                                         {
-                                                                            S_NetworkSend.SendOpenShop(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
-                                                                            modTypes.TempPlayer[i].InShop = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1; // stops movement and the like
+                                                                            S_NetworkSend.SendOpenShop(i, with_1.Data1);
+                                                                            modTypes.TempPlayer[i].InShop = with_1.Data1; // stops movement and the like
                                                                             modTypes.TempPlayer[i].EventProcessing[x].WaitingForResponse = 2;
                                                                         }
                                                                     }
@@ -3160,29 +3162,29 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvGiveExp:
                                                                 {
-                                                                    S_Events.GivePlayerExp(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                    S_Events.GivePlayerExp(i, with_1.Data1);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvShowChatBubble:
                                                                 {
-                                                                    switch (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1)
+                                                                    switch (with_1.Data1)
                                                                     {
                                                                         case (int)Enums.TargetType.Player:
                                                                             {
-                                                                                S_NetworkSend.SendChatBubble(S_Players.GetPlayerMap(i), i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1, (int)Enums.ColorType.Brown);
+                                                                                S_NetworkSend.SendChatBubble(S_Players.GetPlayerMap(i), i, with_1.Data1, with_1.Text1, (int)Enums.ColorType.Brown);
                                                                                 break;
                                                                             }
 
                                                                         case (int)Enums.TargetType.Npc:
                                                                             {
-                                                                                S_NetworkSend.SendChatBubble(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1, (int)Enums.ColorType.Brown);
+                                                                                S_NetworkSend.SendChatBubble(S_Players.GetPlayerMap(i), with_1.Data2, with_1.Data1, with_1.Text1, (int)Enums.ColorType.Brown);
                                                                                 break;
                                                                             }
 
                                                                         case (int)Enums.TargetType.Event:
                                                                             {
-                                                                                S_NetworkSend.SendChatBubble(S_Players.GetPlayerMap(i), modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1, (int)Enums.ColorType.Brown);
+                                                                                S_NetworkSend.SendChatBubble(S_Players.GetPlayerMap(i), with_1.Data2, with_1.Data1, with_1.Text1, (int)Enums.ColorType.Brown);
                                                                                 break;
                                                                             }
                                                                     }
@@ -3198,14 +3200,14 @@ namespace Engine
                                                             case (int)S_Events.EventType.EvGotoLabel:
                                                                 {
                                                                     // Find the label's list of commands and slot
-                                                                    FindEventLabel(Microsoft.VisualBasic.Strings.Trim(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Text1), S_Players.GetPlayerMap(i), modTypes.TempPlayer[i].EventProcessing[x].EventId, modTypes.TempPlayer[i].EventProcessing[x].PageId, ref modTypes.TempPlayer[i].EventProcessing[x].CurSlot, ref modTypes.TempPlayer[i].EventProcessing[x].CurList, ref modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff);
+                                                                    FindEventLabel(Microsoft.VisualBasic.Strings.Trim(with_1.Text1), S_Players.GetPlayerMap(i), modTypes.TempPlayer[i].EventProcessing[x].EventId, modTypes.TempPlayer[i].EventProcessing[x].PageId, ref modTypes.TempPlayer[i].EventProcessing[x].CurSlot, ref modTypes.TempPlayer[i].EventProcessing[x].CurList, ref modTypes.TempPlayer[i].EventProcessing[x].ListLeftOff);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvSpawnNpc:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Npc[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1] > 0)
-                                                                        S_Npc.SpawnNpc(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, S_Players.GetPlayerMap(i));
+                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Npc[with_1.Data1] > 0)
+                                                                        S_Npc.SpawnNpc(with_1.Data1, S_Players.GetPlayerMap(i));
                                                                     break;
                                                                 }
 
@@ -3229,25 +3231,25 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvSetFog:
                                                                 {
-                                                                    S_Events.SendSpecialEffect(i, S_Events.EffectTypeFog, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3);
+                                                                    S_Events.SendSpecialEffect(i, S_Events.EffectTypeFog, with_1.Data1, with_1.Data2, with_1.Data3);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvSetWeather:
                                                                 {
-                                                                    S_Events.SendSpecialEffect(i, S_Events.EffectTypeWeather, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2);
+                                                                    S_Events.SendSpecialEffect(i, S_Events.EffectTypeWeather, with_1.Data1, with_1.Data2);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvSetTint:
                                                                 {
-                                                                    S_Events.SendSpecialEffect(i, S_Events.EffectTypeTint, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data4);
+                                                                    S_Events.SendSpecialEffect(i, S_Events.EffectTypeTint, with_1.Data1, with_1.Data2, with_1.Data3, with_1.Data4);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvWait:
                                                                 {
-                                                                    modTypes.TempPlayer[i].EventProcessing[x].ActionTimer = S_General.GetTimeMs() + modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1;
+                                                                    modTypes.TempPlayer[i].EventProcessing[x].ActionTimer = S_General.GetTimeMs() + with_1.Data1;
                                                                     break;
                                                                 }
 
@@ -3258,26 +3260,26 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvBeginQuest:
                                                                 {
-                                                                    if (S_Quest.CanStartQuest(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1))
-                                                                        S_Quest.QuestMessage(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, S_Quest.Quest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Chat[1], modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                    if (S_Quest.CanStartQuest(i, with_1.Data1))
+                                                                        S_Quest.QuestMessage(i, with_1.Data1, S_Quest.Quest[with_1.Data1].Chat[1], with_1.Data1);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvEndQuest:
                                                                 {
-                                                                    if (S_Quest.CanEndQuest(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1))
-                                                                        S_Quest.EndQuest(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1);
+                                                                    if (S_Quest.CanEndQuest(i, with_1.Data1))
+                                                                        S_Quest.EndQuest(i, with_1.Data1);
                                                                     break;
                                                                 }
 
                                                             case (int)S_Events.EventType.EvQuestTask:
                                                                 {
-                                                                    if (S_Quest.QuestInProgress(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1))
+                                                                    if (S_Quest.QuestInProgress(i, with_1.Data1))
                                                                     {
-                                                                        if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].ActualTask == modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2)
+                                                                        if (modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.Data1].ActualTask == with_1.Data2)
                                                                         {
-                                                                            if (S_Quest.Quest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Task[modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].ActualTask].TaskType == (int)Enums.QuestType.TalkEvent || S_Quest.Quest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Task[modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].ActualTask].TaskType == (int)Enums.QuestType.Fetch)
-                                                                                S_Quest.CheckTask(i, modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1, S_Quest.Quest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Task[modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].ActualTask].TaskType, -1);
+                                                                            if (S_Quest.Quest[with_1.Data1].Task[modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.Data1].ActualTask].TaskType == (int)Enums.QuestType.TalkEvent || S_Quest.Quest[with_1.Data1].Task[modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.Data1].ActualTask].TaskType == (int)Enums.QuestType.Fetch)
+                                                                                S_Quest.CheckTask(i, with_1.Data1, S_Quest.Quest[with_1.Data1].Task[modTypes.Player[i].Character[modTypes.TempPlayer[i].CurChar].PlayerQuest[with_1.Data1].ActualTask].TaskType, -1);
                                                                         }
                                                                     }
 
@@ -3289,11 +3291,11 @@ namespace Engine
                                                                     buffer = new ByteStream(4);
                                                                     buffer.WriteInt32((int)(Packets.ServerPackets.SPic));
                                                                     buffer.WriteInt32(0);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data2);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data3);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data4);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data5);
+                                                                    buffer.WriteInt32(with_1.Data1 + 1);
+                                                                    buffer.WriteInt32(with_1.Data2);
+                                                                    buffer.WriteInt32(with_1.Data3);
+                                                                    buffer.WriteInt32(with_1.Data4);
+                                                                    buffer.WriteInt32(with_1.Data5);
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPic evShowPicture", S_Constants.PACKET_LOG);
@@ -3308,7 +3310,7 @@ namespace Engine
                                                                     buffer = new ByteStream(4);
                                                                     buffer.WriteInt32((int)(Packets.ServerPackets.SPic));
                                                                     buffer.WriteInt32(1);
-                                                                    buffer.WriteInt32(modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 + 1);
+                                                                    buffer.WriteInt32(with_1.Data1 + 1);
                                                                     S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
 
                                                                     modDatabase.Addlog("Sent SMSG: SPic evHidePicture", S_Constants.PACKET_LOG);
@@ -3320,18 +3322,18 @@ namespace Engine
 
                                                             case (int)S_Events.EventType.EvWaitMovement:
                                                                 {
-                                                                    if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1 <= modTypes.Map[S_Players.GetPlayerMap(i)].EventCount)
+                                                                    if (with_1.Data1 <= modTypes.Map[S_Players.GetPlayerMap(i)].EventCount)
                                                                     {
-                                                                        if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1].Globals == 1)
+                                                                        if (modTypes.Map[S_Players.GetPlayerMap(i)].Events[with_1.Data1].Globals == 1)
                                                                         {
                                                                             modTypes.TempPlayer[i].EventProcessing[x].WaitingForResponse = 4;
-                                                                            modTypes.TempPlayer[i].EventProcessing[x].EventMovingId = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1;
+                                                                            modTypes.TempPlayer[i].EventProcessing[x].EventMovingId = with_1.Data1;
                                                                             modTypes.TempPlayer[i].EventProcessing[x].EventMovingType = 1;
                                                                         }
                                                                         else
                                                                         {
                                                                             modTypes.TempPlayer[i].EventProcessing[x].WaitingForResponse = 4;
-                                                                            modTypes.TempPlayer[i].EventProcessing[x].EventMovingId = modTypes.Map[S_Players.GetPlayerMap(i)].Events[modTypes.TempPlayer[i].EventProcessing[x].EventId].Pages[modTypes.TempPlayer[i].EventProcessing[x].PageId].CommandList[modTypes.TempPlayer[i].EventProcessing[x].CurList].Commands[modTypes.TempPlayer[i].EventProcessing[x].CurSlot].Data1;
+                                                                            modTypes.TempPlayer[i].EventProcessing[x].EventMovingId = with_1.Data1;
                                                                             modTypes.TempPlayer[i].EventProcessing[x].EventMovingType = 0;
                                                                         }
                                                                     }
