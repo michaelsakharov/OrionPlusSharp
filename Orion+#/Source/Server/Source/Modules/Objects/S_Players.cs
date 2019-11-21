@@ -2249,7 +2249,7 @@ namespace Engine
                 if (GetPlayerInvItemNum(index, i) == ItemNum)
                 {
                     FindItemSlot = i;
-                    return 0;
+                    //return 0;
                 }
             }
             return FindItemSlot;
