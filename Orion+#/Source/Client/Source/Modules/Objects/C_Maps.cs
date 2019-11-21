@@ -216,6 +216,7 @@ namespace Engine
             C_Variables.MapData = false;
 
             ClearMap();
+            C_Projectiles.ClearMapProjectiles(); // Also clear projectiles otherwise they will carry over to the new map
 
             lock (MapLock)
             {

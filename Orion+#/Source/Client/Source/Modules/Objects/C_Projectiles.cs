@@ -141,6 +141,17 @@ namespace Engine
 			
 		}
 		
+		public static void ClearMapProjectiles()
+		{
+			int i = 0;
+			
+			for (i = 1; i <= MaxProjectiles; i++)
+			{
+                ClearMapProjectile(i);
+			}
+			
+		}
+		
 		public static void ClearProjectile(int index)
 		{
 			
