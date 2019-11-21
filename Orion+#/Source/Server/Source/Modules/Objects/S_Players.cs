@@ -141,12 +141,12 @@ namespace Engine
 
             if (ShieldSlot > 0)
             {
-                n = (byte)Conversion.Int(VBMath.Rnd() * 2);
+                n = (byte)Conversion.Int(VBMathClone.Rnd() * 2);
 
                 if (n == 1)
                 {
                     i = (GetPlayerStat(index, Enums.StatType.Endurance) / 2) + (GetPlayerLevel(index) / 2);
-                    n = (byte)Conversion.Int(VBMath.Rnd() * 100) + 1;
+                    n = (byte)Conversion.Int(VBMathClone.Rnd() * 100) + 1;
 
                     if (n <= i)
                         CanPlayerBlockHit = true;
@@ -163,12 +163,12 @@ namespace Engine
             bool CanPlayerCriticalHit = false;
             if (GetPlayerEquipment(index, Enums.EquipmentType.Weapon) > 0)
             {
-                n = (byte)(VBMath.Rnd()) * 2;
+                n = (byte)(VBMathClone.Rnd()) * 2;
 
                 if (n == 1)
                 {
                     i = (GetPlayerStat(index, Enums.StatType.Strength) / 2) + (GetPlayerLevel(index) / 2);
-                    n = (byte)Conversion.Int(VBMath.Rnd() * 100) + 1;
+                    n = (byte)Conversion.Int(VBMathClone.Rnd() * 100) + 1;
 
                     if (n <= i)
                         CanPlayerCriticalHit = true;

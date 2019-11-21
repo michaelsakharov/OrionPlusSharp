@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using System;
 using System.Linq;
 using System.Threading;
@@ -609,17 +608,17 @@ namespace Engine
                                         }
                                         else
                                         {
-                                            i = (int)(VBMath.Rnd() * 4);
+                                            i = (int)(VBMathClone.Rnd() * 4);
 
                                             if (i == 1)
                                             {
                                                 if (modTypes.Options.useSmoothDynamicLightRendering)
                                                 {
-                                                    i = (int)(VBMath.Rnd() * 8);
+                                                    i = (int)(VBMathClone.Rnd() * 8);
                                                 }
                                                 else
                                                 {
-                                                    i = (int)(VBMath.Rnd() * 4);
+                                                    i = (int)(VBMathClone.Rnd() * 4);
                                                 }
 
                                                 if (S_Npc.CanNpcMove(mapNum, x, (byte)i))

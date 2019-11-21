@@ -1447,7 +1447,7 @@ namespace Engine
                             int x2 = modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].X;
                             int y2 = modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].Y;
                             int walkThrough = modTypes.Map[mapNum].Events[modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].EventId].Pages[modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].PageId].WalkThrough;
-                            int i = checked((int)Math.Round((double)Conversion.Int(unchecked(VBMath.Rnd() * 5f))));
+                            int i = checked((int)Math.Round((double)Conversion.Int(unchecked(VBMathClone.Rnd() * 5f))));
                             bool didwalk = false;
                             switch (i)
                             {
@@ -1640,7 +1640,7 @@ namespace Engine
                             int x2 = modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].X;
                             int y2 = modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].Y;
                             int walkThrough = modTypes.Map[mapNum].Events[modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].EventId].Pages[modTypes.TempPlayer[playerId].EventMap.EventPages[eventId].PageId].WalkThrough;
-                            int i = checked((int)Math.Round((double)(int)(unchecked(Microsoft.VisualBasic.VBMath.Rnd() * 5f))));
+                            int i = checked((int)Math.Round((double)(int)(unchecked(VBMathClone.Rnd() * 5f))));
                             bool didwalk = false;
                             switch (i)
                             {

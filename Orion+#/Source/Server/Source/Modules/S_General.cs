@@ -63,7 +63,7 @@ namespace Engine
             time1 = GetTimeMs();
 
             // Initialize the random-number generator
-            VBMath.Randomize();
+            VBMathClone.Randomize();
 
             // LOAD ENCRYPTION
             var fi = Application.StartupPath + @"\AsyncKeys.xml";
@@ -269,6 +269,12 @@ namespace Engine
             Console.WriteLine("Initialization complete. Server loaded in " + (time2 - time1).ToString() + "ms.");
             Console.WriteLine("");
             Console.WriteLine("Use /help for the available commands.");
+
+            Random r = new Random();
+            for(int d=0; d<100; d++)
+            {
+                Console.WriteLine(VBMathClone.Rnd());
+            }
 
             Console.ResetColor();
 

@@ -51,7 +51,7 @@ namespace Engine
                 modTypes.MapNpc[mapNum].Npc[mapNpcNum].Vital[(int)Enums.VitalType.MP] = S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.MP);
                 modTypes.MapNpc[mapNum].Npc[mapNpcNum].Vital[(int)Enums.VitalType.SP] = S_GameLogic.GetNpcMaxVital(npcNum, Enums.VitalType.SP);
 
-                modTypes.MapNpc[mapNum].Npc[mapNpcNum].Dir = (int)Conversion.Int(VBMath.Rnd() * 4);
+                modTypes.MapNpc[mapNum].Npc[mapNpcNum].Dir = (int)Conversion.Int(VBMathClone.Rnd() * 4);
                 var loopTo = modTypes.Map[mapNum].MaxX;
 
                 // Check if theres a spawn tile for the specific npc
@@ -1085,7 +1085,7 @@ namespace Engine
 
                 // Drop the goods if they get it
                 var tmpitem = S_GameLogic.Random(1, 5);
-                n = (int)Conversion.Int(VBMath.Rnd() * Types.Npc[vNpcNum].DropChance[tmpitem]) + 1;
+                n = (int)Conversion.Int(VBMathClone.Rnd() * Types.Npc[vNpcNum].DropChance[tmpitem]) + 1;
                 if (n == 1)
                     S_Items.SpawnItem(Types.Npc[vNpcNum].DropItem[tmpitem], Types.Npc[vNpcNum].DropItemValue[tmpitem], mapNum, modTypes.MapNpc[mapNum].Npc[Victim].X, modTypes.MapNpc[mapNum].Npc[Victim].Y);
 
@@ -1391,7 +1391,7 @@ namespace Engine
                 return;
             }
             var tmpitem = S_GameLogic.Random(1, 5);
-            var n = Conversion.Int(VBMath.Rnd() * Types.Npc[NpcNum].DropChance[tmpitem]) + 1;
+            var n = Conversion.Int(VBMathClone.Rnd() * Types.Npc[NpcNum].DropChance[tmpitem]) + 1;
 
             if (n == 1)
                 S_Items.SpawnItem(Types.Npc[NpcNum].DropItem[tmpitem], Types.Npc[NpcNum].DropItemValue[tmpitem], mapNum, modTypes.MapNpc[mapNum].Npc[MapNpcNum].X, modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y);
