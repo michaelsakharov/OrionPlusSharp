@@ -469,7 +469,7 @@ namespace Engine
                     }
                     else
                         // send new char shit
-                        if (!S_NetworkConfig.IsPlaying(index))
+                    if (!S_NetworkConfig.IsPlaying(index))
                     {
                         S_NetworkSend.SendNewCharClasses(index);
                         modTypes.TempPlayer[index].CurChar = slot;

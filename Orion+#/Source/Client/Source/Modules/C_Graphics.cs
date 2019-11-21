@@ -4240,21 +4240,23 @@ namespace Engine
                             {
                                 List<Vector2i> tiles = AppendFov(x, y, C_Maps.Map.Tile[x, y].Data1, true);
                                 tiles.Add(new Vector2i(x, y)); // Add the center tile, Fov doesnt calculate this
+
+                                Vector2f scale = new Vector2f();
+                                if (C_Maps.Map.Tile[x, y].Data2 == 1)
+                                {
+                                    lastLightFlicker = Environment.TickCount;
+                                    // Flicker
+                                    float r = (float)RandomNumberBetween(-0.01f, 0.01f);
+                                    scale = new Vector2f(0.35f + r, 0.35f + r);
+
+                                }
+                                else
+                                {
+                                    scale = new Vector2f(0.35f, 0.35f);
+                                }
+
                                 if (C_Variables.useSmoothDynamicLightRendering) // If Smooth Lighting
                                 {
-                                    Vector2f scale = new Vector2f();
-                                    if (C_Maps.Map.Tile[x, y].Data2 == 1)
-                                    {
-                                        lastLightFlicker = Environment.TickCount;
-                                        // Flicker
-                                        float r = (float)RandomNumberBetween(-0.01f, 0.01f);
-                                        scale = new Vector2f(0.35f + r, 0.35f + r);
-
-                                    }
-                                    else
-                                    {
-                                        scale = new Vector2f(0.35f, 0.35f);
-                                    }
                                     foreach (Vector2i tile in tiles)
                                     {
                                         LightSprite.Scale = scale;
@@ -4277,7 +4279,7 @@ namespace Engine
                                     }
                                     foreach (Vector2i tile in tiles)
                                     {
-                                        LightDynamicSprite.Scale = new Vector2f(0.35f, 0.35f);
+                                        LightDynamicSprite.Scale = scale;
                                         LightDynamicSprite.Position = new Vector2f((ConvertMapX(tile.X * 32)), (ConvertMapY(tile.Y * 32)));
                                         byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
                                         LightDynamicSprite.Color = new SFML.Graphics.Color(0, 0, 0, (byte)Clamp((alphaBump * dist), 0, 255));
