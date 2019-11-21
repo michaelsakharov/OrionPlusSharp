@@ -314,7 +314,8 @@ namespace Engine
 		
 		public void BtnCancel_Click(object sender, EventArgs e)
 		{
-			Dispose();
+			//Dispose();
+            Close();
 		}
 		
 		public void TvCommands_AfterSelect(object sender, TreeViewEventArgs e)

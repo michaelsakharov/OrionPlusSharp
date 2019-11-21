@@ -683,7 +683,8 @@ namespace Engine
 			
 			C_Maps.Map.Events[EditorEvent] = TmpEvent;
 			// unload the form
-			FrmEditor_Events.Default.Dispose();
+			//FrmEditor_Events.Default.Dispose();
+			FrmEditor_Events.Default.Close();
 			
 		}
 		
