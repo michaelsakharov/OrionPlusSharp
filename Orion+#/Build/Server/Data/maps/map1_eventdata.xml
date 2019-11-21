@@ -363,8 +363,8 @@
     <Element Name="CommandList1Command1Data5" Value="0" />
     <Element Name="CommandList1Command1Data6" Value="0" />
     <Element Name="CommandList1Command1ConditionalBranchCommandList" Value="2" />
-    <Element Name="CommandList1Command1ConditionalBranchCondition" Value="8" />
-    <Element Name="CommandList1Command1ConditionalBranchData1" Value="1" />
+    <Element Name="CommandList1Command1ConditionalBranchCondition" Value="2" />
+    <Element Name="CommandList1Command1ConditionalBranchData1" Value="3" />
     <Element Name="CommandList1Command1ConditionalBranchData2" Value="1" />
     <Element Name="CommandList1Command1ConditionalBranchData3" Value="0" />
     <Element Name="CommandList1Command1ConditionalBranchElseCommandList" Value="3" />

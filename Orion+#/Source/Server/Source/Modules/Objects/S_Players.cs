@@ -2229,7 +2229,7 @@ namespace Engine
                         HasItem = GetPlayerInvItemValue(index, i);
                     else
                         HasItem = 1;
-                    return 0;
+                    //return 0;
                 }
             }
             return HasItem;
