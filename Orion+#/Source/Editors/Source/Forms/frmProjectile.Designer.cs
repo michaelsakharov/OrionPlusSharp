@@ -189,6 +189,7 @@ namespace Engine
             // 
             // btnAddEmitter
             // 
+            this.btnAddEmitter.Enabled = false;
             this.btnAddEmitter.Image = ((System.Drawing.Image)(resources.GetObject("btnAddEmitter.Image")));
             this.btnAddEmitter.Location = new System.Drawing.Point(9, 435);
             this.btnAddEmitter.Name = "btnAddEmitter";
@@ -199,6 +200,7 @@ namespace Engine
             // 
             // btnDeleteEmitter
             // 
+            this.btnDeleteEmitter.Enabled = false;
             this.btnDeleteEmitter.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteEmitter.Image")));
             this.btnDeleteEmitter.Location = new System.Drawing.Point(215, 435);
             this.btnDeleteEmitter.Name = "btnDeleteEmitter";

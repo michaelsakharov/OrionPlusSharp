@@ -100,8 +100,8 @@ namespace Engine
             int x;
             int y;
 
-            MapProjectiles = new MapProjectileRec[501, 256];
-            for (x = 1; x <= Constants.MAX_MAPS; x++)
+            MapProjectiles = new MapProjectileRec[Constants.MAX_MAPS + S_Instances.MAX_INSTANCED_MAPS + 1, 256];
+            for (x = 1; x <= Constants.MAX_MAPS + S_Instances.MAX_INSTANCED_MAPS; x++)
             {
                 for (y = 1; y <= MAX_PROJECTILES; y++)
                     ClearMapProjectile(x, y);
