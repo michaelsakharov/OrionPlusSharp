@@ -465,9 +465,9 @@ namespace Engine
                     {
                         if (S_NetworkConfig.IsPlaying(i))
                         {
-                            if (i != index && modTypes.TempPlayer[i].InGame)
+                            if (i != index && (modTypes.Player[i].Login == modTypes.Player[index].Login))
                             {
-                                Console.WriteLine("Found duplicate users");
+                                Console.WriteLine("Found duplicate user");
                             }
                         }
                     }
