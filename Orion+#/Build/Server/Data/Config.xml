@@ -10,7 +10,7 @@
     <Element Name="StartY" Value="7" />
   </Settings>
   <Game>
-    <Element Name="xpMultiplier" Value="0" />
+    <Element Name="xpMultiplier" Value="1" />
     <Element Name="allowEightDirectionalMovement" Value="True" />
     <Element Name="useSmoothDynamicLightRendering" Value="True" />
   </Game>

@@ -327,6 +327,13 @@ namespace Engine
 
             S_General.AddDebug("Recieved CMSG: CLogin");
 
+            //start server
+            // Start two clients but dont login
+            // Login on one client, preferrably the first one created
+            // You will notice the server id say 2, even though it should be 1, and the client will never get ingame
+            // Login with the next client, id will be 1 and it will get ingame
+            Console.WriteLine("Player joined index: " + index);
+
             if (!S_NetworkConfig.IsPlaying(index))
             {
                 if (!S_NetworkConfig.IsLoggedIn(index))
@@ -465,7 +472,7 @@ namespace Engine
                     {
                         if (S_NetworkConfig.IsPlaying(i))
                         {
-                            if (i != index && (modTypes.Player[i].Login != null && modTypes.Player[i].Login == modTypes.Player[index].Login))
+                            if (i != index && modTypes.Player[i].Login == modTypes.Player[index].Login)
                             {
                                 Console.WriteLine("Removing a duplicate character from the world, this bug needs to be resolved asap!");
                                 S_NetworkSend.SendLeftGame(i);

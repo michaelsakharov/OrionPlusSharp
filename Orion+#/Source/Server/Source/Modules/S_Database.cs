@@ -1265,7 +1265,8 @@ namespace Engine
             ByteStream reader = new ByteStream();
             BinaryFile.Load(Application.StartupPath + @"\Data\Accounts\" + Microsoft.VisualBasic.Strings.Trim(Name) + @"\Data.bin", ref reader);
             string formatVersion = reader.ReadString();
-            if (reader.ReadString().Trim() != Name.Trim())
+            string pass = reader.ReadString().Trim();
+            if (pass != Name.Trim())
                 return false;
             return reader.ReadString().Trim().ToUpper() == Password.Trim().ToUpper();
         }
@@ -1308,7 +1309,8 @@ namespace Engine
             {
                 string playername = Microsoft.VisualBasic.Strings.Trim(Player[index].Login);
                 string filename = Application.StartupPath + @"\Data\Accounts\" + playername;
-                S_General.CheckDir(filename); filename += @"\Data.bin";
+                S_General.CheckDir(filename);
+                filename += @"\Data.bin";
 
                 ByteStream writer = new ByteStream(9 + Player[index].Login.Length + Player[index].Password.Length);
 
@@ -2017,7 +2019,14 @@ namespace Engine
             myXml.WriteString("Settings", "StartX", Options.StartX.ToString());
             myXml.WriteString("Settings", "StartY", Options.StartY.ToString());
 
-            myXml.WriteString("Game", "xpMultiplier", Options.xpMultiplier.ToString());
+            if (Options.xpMultiplier < 1)
+            {
+                myXml.WriteString("Game", "xpMultiplier", 1.ToString());
+            }
+            else
+            {
+                myXml.WriteString("Game", "xpMultiplier", Options.xpMultiplier.ToString());
+            }
 
             //Game Settings
             myXml.WriteString("Game", "allowEightDirectionalMovement", Options.allowEightDirectionalMovement.ToString());
