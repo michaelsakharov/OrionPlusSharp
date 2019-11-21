@@ -75,7 +75,9 @@ namespace Engine
             try
             {
                 System.IO.StreamReader reader = new System.IO.StreamReader(request.GetResponse().GetResponseStream());
-                return reader.ReadToEnd();
+                string ip = reader.ReadToEnd();
+                reader.Dispose();
+                return ip;
             }
             catch (Exception e)
             {
