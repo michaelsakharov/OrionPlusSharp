@@ -231,8 +231,6 @@ namespace Engine
 				lCheapIndex = grList[lCheapIndex].Parent;
 			} while (lCheapIndex!=-1);
         
-			Console.WriteLine("Path found");
-        
 			APlus = true; 
         return APlus;
 		}

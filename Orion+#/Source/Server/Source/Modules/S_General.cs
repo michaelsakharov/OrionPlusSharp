@@ -270,12 +270,6 @@ namespace Engine
             Console.WriteLine("");
             Console.WriteLine("Use /help for the available commands.");
 
-            Random r = new Random();
-            for(int d=0; d<100; d++)
-            {
-                Console.WriteLine(VBMathClone.Rnd());
-            }
-
             Console.ResetColor();
 
             MyIPAddress = S_NetworkConfig.GetIP();

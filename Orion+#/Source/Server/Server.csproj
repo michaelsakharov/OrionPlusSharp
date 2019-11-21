@@ -88,7 +88,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Common\CustomRandom.cs" />
+    <Compile Include="Source\Common\VBMathClone.cs" />
     <Compile Include="Source\Common\Time.cs" />
     <Compile Include="Source\Legacy\Constants.cs" />
     <Compile Include="Source\Legacy\Enums.cs" />
