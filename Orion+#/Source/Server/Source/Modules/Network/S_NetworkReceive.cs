@@ -457,6 +457,21 @@ namespace Engine
             {
                 if (S_NetworkConfig.IsLoggedIn(index))
                 {
+
+                    //Its possible for the player to be Double logged in, what causes this isnt quite clear yet
+                    //To fix it lets do a brute force check
+                    var loopTo = S_GameLogic.GetPlayersOnline();
+                    for (int i=1; i <= loopTo; i++)
+                    {
+                        if (S_NetworkConfig.IsPlaying(i))
+                        {
+                            if (i != index && modTypes.TempPlayer[i].InGame)
+                            {
+                                Console.WriteLine("Found duplicate users");
+                            }
+                        }
+                    }
+
                     slot = (byte)buffer.ReadInt32();
                     // Check if character data has been created
                     if (Microsoft.VisualBasic.Strings.Len(Microsoft.VisualBasic.Strings.Trim(modTypes.Player[index].Character[slot].Name)) > 0)
