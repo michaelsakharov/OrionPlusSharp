@@ -1301,26 +1301,36 @@ namespace Engine
 
         public static void SavePlayer(int index)
         {
-            if(Player[index].Login == null)
+            // Due to the unpredictable effects of a Threaded server were unable to tell if the file were saving to is already in use, meaning we have to stick this into a try/catch
+            // This also means its possible for someone ingame to Lose some progress due to their data not saving correctly, this should be ok since whatever is currently effecting that file
+            // is either saving or loading, due to my knowledge in IOExceptions im guessing Saving is already happening somewhere else.
+            try
             {
-                Console.WriteLine("It appears a player data is missing.. Did they quit while we were saving them?");
-                return;
+                string playername = Microsoft.VisualBasic.Strings.Trim(Player[index].Login);
+                string filename = Application.StartupPath + @"\Data\Accounts\" + playername;
+                S_General.CheckDir(filename); filename += @"\Data.bin";
+
+                ByteStream writer = new ByteStream(9 + Player[index].Login.Length + Player[index].Password.Length);
+
+                writer.WriteString("0");
+                writer.WriteString(Player[index].Login);
+                writer.WriteString(Player[index].Password);
+                writer.WriteByte(Player[index].Access);
+
+                // This can thow an IOException because the file were saving to could already be in use due to the server being threaded.
+                BinaryFile.Save(filename, ref writer);
+
+                for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
+                    SaveCharacter(index, i);
             }
-            string playername = Microsoft.VisualBasic.Strings.Trim(Player[index].Login);
-            string filename = Application.StartupPath + @"\Data\Accounts\" + playername;
-            S_General.CheckDir(filename); filename += @"\Data.bin";
-
-            ByteStream writer = new ByteStream(9 + Player[index].Login.Length + Player[index].Password.Length);
-
-            writer.WriteString("0");
-            writer.WriteString(Player[index].Login);
-            writer.WriteString(Player[index].Password);
-            writer.WriteByte(Player[index].Access);
-
-            BinaryFile.Save(filename, ref writer);
-
-            for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
-                SaveCharacter(index, i);
+            catch(Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("A WILD ERROR HAS APPEARED!");
+                Console.WriteLine("Error: " + e.ToString());
+                Console.WriteLine("StackTrace: " + e.StackTrace);
+                Console.ResetColor();
+            }
         }
 
         public static void LoadPlayer(int index, string Name)
