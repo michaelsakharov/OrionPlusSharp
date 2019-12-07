@@ -33,8 +33,7 @@ namespace Engine
         // Token: 0x060001D8 RID: 472 RVA: 0x000398D4 File Offset: 0x00037AD4
         public static void LoadHouses()
         {
-            bool flag = !File.Exists(Path.Combine(Application.StartupPath, "data", "houseconfig.xml"));
-            if (flag)
+            if (!File.Exists(Path.Combine(Application.StartupPath, "data", "houseconfig.xml")))
             {
                 S_Housing.CreateHouses();
             }
@@ -77,8 +76,7 @@ namespace Engine
                 Root = "Config"
             };
             myXml.LoadXml();
-            bool flag = index > 0 && index <= S_Housing.MAX_HOUSES;
-            if (flag)
+            if (index > 0 && index <= S_Housing.MAX_HOUSES)
             {
                 myXml.WriteString("House" + Conversions.ToString(index), "BaseMap", Conversions.ToString(S_Housing.HouseConfig[index].BaseMap));
                 myXml.WriteString("House" + Conversions.ToString(index), "Name", S_Housing.HouseConfig[index].ConfigName);
@@ -109,15 +107,12 @@ namespace Engine
         {
             ByteStream buffer = new ByteStream(data);
             int i = buffer.ReadInt32();
-            bool flag = i == 1;
-            if (flag)
+            if (i == 1)
             {
-                bool flag2 = modTypes.TempPlayer[index].BuyHouseindex > 0;
-                if (flag2)
+                if (modTypes.TempPlayer[index].BuyHouseindex > 0)
                 {
                     int price = S_Housing.HouseConfig[modTypes.TempPlayer[index].BuyHouseindex].Price;
-                    bool flag3 = S_Players.HasItem(index, 1) >= price;
-                    if (flag3)
+                    if (S_Players.HasItem(index, 1) >= price)
                     {
                         S_Players.TakeInvItem(index, 1, price);
                         modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex = modTypes.TempPlayer[index].BuyHouseindex;
@@ -146,44 +141,36 @@ namespace Engine
             string Name = (buffer.ReadString().Trim());
             int invitee = S_GameLogic.FindPlayer(Name);
             buffer.Dispose();
-            bool flag = invitee == 0;
-            if (flag)
+            if (invitee == 0)
             {
                 S_NetworkSend.PlayerMsg(index, "Player not found.", 12);
             }
             else
             {
-                bool flag2 = index == invitee;
-                if (flag2)
+                if (index == invitee)
                 {
                     S_NetworkSend.PlayerMsg(index, "You cannot invite yourself to you own house!", 12);
                 }
                 else
                 {
-                    bool flag3 = modTypes.TempPlayer[invitee].Invitationindex > 0;
-                    if (flag3)
+                    if (modTypes.TempPlayer[invitee].Invitationindex > 0)
                     {
-                        bool flag4 = modTypes.TempPlayer[invitee].InvitationTimer > S_General.GetTimeMs();
-                        if (flag4)
+                        if (modTypes.TempPlayer[invitee].InvitationTimer > S_General.GetTimeMs())
                         {
                             S_NetworkSend.PlayerMsg(index, (S_Players.GetPlayerName(invitee).Trim()) + " is currently busy!", 14);
                             return;
                         }
                     }
-                    bool flag5 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex > 0;
-                    if (flag5)
+
+                    if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex > 0)
                     {
-                        bool flag6 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse > 0;
-                        if (flag6)
+                        if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse > 0)
                         {
-                            bool flag7 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse == index;
-                            if (flag7)
+                            if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse == index)
                             {
-                                bool flag8 = modTypes.Player[invitee].Character[(int)modTypes.TempPlayer[invitee].CurChar].InHouse > 0;
-                                if (flag8)
+                                if (modTypes.Player[invitee].Character[(int)modTypes.TempPlayer[invitee].CurChar].InHouse > 0)
                                 {
-                                    bool flag9 = modTypes.Player[invitee].Character[(int)modTypes.TempPlayer[invitee].CurChar].InHouse == index;
-                                    if (flag9)
+                                    if (modTypes.Player[invitee].Character[(int)modTypes.TempPlayer[invitee].CurChar].InHouse == index)
                                     {
                                         S_NetworkSend.PlayerMsg(index, (S_Players.GetPlayerName(invitee).Trim()) + " is already in your house!", 14);
                                     }
@@ -227,17 +214,13 @@ namespace Engine
             ByteStream buffer = new ByteStream(data);
             int response = buffer.ReadInt32();
             buffer.Dispose();
-            bool flag = response == 1;
-            if (flag)
+            if (response == 1)
             {
-                bool flag2 = modTypes.TempPlayer[index].Invitationindex > 0;
-                if (flag2)
+                if (modTypes.TempPlayer[index].Invitationindex > 0)
                 {
-                    bool flag3 = modTypes.TempPlayer[index].InvitationTimer > S_General.GetTimeMs();
-                    if (flag3)
+                    if (modTypes.TempPlayer[index].InvitationTimer > S_General.GetTimeMs())
                     {
-                        bool flag4 = S_NetworkConfig.IsPlaying(modTypes.TempPlayer[index].Invitationindex);
-                        if (flag4)
+                        if (S_NetworkConfig.IsPlaying(modTypes.TempPlayer[index].Invitationindex))
                         {
                             modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse = modTypes.TempPlayer[index].Invitationindex;
                             modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastX = S_Players.GetPlayerX(index);
@@ -260,8 +243,7 @@ namespace Engine
             }
             else
             {
-                bool flag5 = S_NetworkConfig.IsPlaying(modTypes.TempPlayer[index].Invitationindex);
-                if (flag5)
+                if (S_NetworkConfig.IsPlaying(modTypes.TempPlayer[index].Invitationindex))
                 {
                     modTypes.TempPlayer[index].InvitationTimer = 0;
                     S_NetworkSend.PlayerMsg(modTypes.TempPlayer[index].Invitationindex, (S_Players.GetPlayerName(index).Trim()) + " rejected your invitation", 12);
@@ -278,22 +260,18 @@ namespace Engine
             int invslot = buffer.ReadInt32();
             buffer.Dispose();
             int ItemNum = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].Inv[invslot].Num;
-            bool flag = ItemNum < 1 || ItemNum > 500;
             checked
             {
-                if (!flag)
+                if (!(ItemNum < 1 || ItemNum > 500))
                 {
-                    bool flag2 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse == index;
-                    if (flag2)
+                    if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse == index)
                     {
-                        bool flag3 = Types.Item[ItemNum].Type == 6;
-                        if (flag3)
+                        if (Types.Item[ItemNum].Type == 6)
                         {
                             int i = 1;
                             for (; ; )
                             {
-                                bool flag4 = S_Players.GetPlayerRawStat(index, (Enums.StatType)i) < (int)Types.Item[ItemNum].Stat_Req[i];
-                                if (flag4)
+                                if (S_Players.GetPlayerRawStat(index, (Enums.StatType)i) < (int)Types.Item[ItemNum].Stat_Req[i])
                                 {
                                     break;
                                 }
@@ -306,57 +284,47 @@ namespace Engine
                             S_NetworkSend.PlayerMsg(index, "You do not meet the stat requirements to use this item.", 12);
                             return;
                             Block_6:
-                            bool flag5 = S_Players.GetPlayerLevel(index) < Types.Item[ItemNum].LevelReq;
-                            if (flag5)
+                            if (S_Players.GetPlayerLevel(index) < Types.Item[ItemNum].LevelReq)
                             {
                                 S_NetworkSend.PlayerMsg(index, "You do not meet the level requirement to use this item.", 12);
                             }
                             else
                             {
-                                bool flag6 = Types.Item[ItemNum].ClassReq > 0;
-                                if (flag6)
+                                if (Types.Item[ItemNum].ClassReq > 0)
                                 {
-                                    bool flag7 = S_Players.GetPlayerClass(index) != Types.Item[ItemNum].ClassReq;
-                                    if (flag7)
+                                    if (S_Players.GetPlayerClass(index) != Types.Item[ItemNum].ClassReq)
                                     {
                                         S_NetworkSend.PlayerMsg(index, "You do not meet the class requirement to use this item.", 12);
                                         return;
                                     }
                                 }
-                                bool flag8 = S_Players.GetPlayerAccess(index) < Types.Item[ItemNum].AccessReq;
-                                if (flag8)
+                                if (S_Players.GetPlayerAccess(index) < Types.Item[ItemNum].AccessReq)
                                 {
                                     S_NetworkSend.PlayerMsg(index, "You do not meet the access requirement to use this item.", 12);
                                 }
                                 else
                                 {
-                                    bool flag9 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse != index;
-                                    if (flag9)
+                                    if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse != index)
                                     {
                                         S_NetworkSend.PlayerMsg(index, "You must be inside your house to place furniture!", 14);
                                     }
                                     else
                                     {
-                                        bool flag10 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount >= S_Housing.HouseConfig[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex].MaxFurniture;
-                                        if (flag10)
+                                        if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount >= S_Housing.HouseConfig[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex].MaxFurniture)
                                         {
-                                            bool flag11 = S_Housing.HouseConfig[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex].MaxFurniture > 0;
-                                            if (flag11)
+                                            if (S_Housing.HouseConfig[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex].MaxFurniture > 0)
                                             {
                                                 S_NetworkSend.PlayerMsg(index, "Your house cannot hold any more furniture!", 12);
                                                 return;
                                             }
                                         }
-                                        bool flag12 = x < 0 || x > (int)modTypes.Map[S_Players.GetPlayerMap(index)].MaxX;
-                                        if (!flag12)
+                                        if (!(x < 0 || x > (int)modTypes.Map[S_Players.GetPlayerMap(index)].MaxX))
                                         {
-                                            bool flag13 = y < 0 || y > (int)modTypes.Map[S_Players.GetPlayerMap(index)].MaxY;
-                                            if (!flag13)
+                                            if (!(y < 0 || y > (int)modTypes.Map[S_Players.GetPlayerMap(index)].MaxY))
                                             {
-                                                bool flag14 = Types.Item[ItemNum].FurnitureWidth > 2;
                                                 int x2;
                                                 int widthoffset;
-                                                if (flag14)
+                                                if (Types.Item[ItemNum].FurnitureWidth > 2)
                                                 {
                                                     x2 = (int)Math.Round(unchecked((double)x + (double)Types.Item[ItemNum].FurnitureWidth / 2.0));
                                                     widthoffset = x2 - x;
@@ -365,8 +333,7 @@ namespace Engine
                                                 x2 = x;
                                                 widthoffset = 0;
                                                 int y2 = y;
-                                                bool flag15 = widthoffset > 0;
-                                                if (flag15)
+                                                if (widthoffset > 0)
                                                 {
                                                     int num = x2;
                                                     int num2 = x2 + widthoffset;
@@ -376,39 +343,32 @@ namespace Engine
                                                         int num4 = y2 - Types.Item[ItemNum].FurnitureHeight + 1;
                                                         for (y = num3; y >= num4; y += -1)
                                                         {
-                                                            bool flag16 = modTypes.Map[S_Players.GetPlayerMap(index)].Tile[x, y].Type == 1;
-                                                            if (flag16)
+                                                            if (modTypes.Map[S_Players.GetPlayerMap(index)].Tile[x, y].Type == 1)
                                                             {
                                                                 return;
                                                             }
                                                             int playersOnline = S_GameLogic.GetPlayersOnline();
                                                             for (i = 1; i <= playersOnline; i++)
                                                             {
-                                                                bool flag17 = S_NetworkConfig.IsPlaying(i) && i != index && S_Players.GetPlayerMap(i) == S_Players.GetPlayerMap(index);
-                                                                if (flag17)
+                                                                if (S_NetworkConfig.IsPlaying(i) && i != index && S_Players.GetPlayerMap(i) == S_Players.GetPlayerMap(index))
                                                                 {
-                                                                    bool flag18 = modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse;
-                                                                    if (flag18)
+                                                                    if (modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse)
                                                                     {
-                                                                        bool flag19 = (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].X == x && (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].Y == y;
-                                                                        if (flag19)
+                                                                        if ((int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].X == x && (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].Y == y)
                                                                         {
                                                                             return;
                                                                         }
                                                                     }
                                                                 }
                                                             }
-                                                            bool flag20 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount > 0;
-                                                            if (flag20)
+                                                            if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount > 0)
                                                             {
                                                                 int furnitureCount = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount;
                                                                 for (i = 1; i <= furnitureCount; i++)
                                                                 {
-                                                                    bool flag21 = x >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X && x <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X + Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureWidth - 1;
-                                                                    if (flag21)
+                                                                    if (x >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X && x <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X + Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureWidth - 1)
                                                                     {
-                                                                        bool flag22 = y <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y && y >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y - Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureHeight + 1;
-                                                                        if (flag22)
+                                                                        if (y <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y && y >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y - Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureHeight + 1)
                                                                         {
                                                                             return;
                                                                         }
@@ -425,39 +385,32 @@ namespace Engine
                                                         int num8 = y2 - Types.Item[ItemNum].FurnitureHeight + 1;
                                                         for (y = num7; y >= num8; y += -1)
                                                         {
-                                                            bool flag23 = modTypes.Map[S_Players.GetPlayerMap(index)].Tile[x, y].Type == 1;
-                                                            if (flag23)
+                                                            if (modTypes.Map[S_Players.GetPlayerMap(index)].Tile[x, y].Type == 1)
                                                             {
                                                                 return;
                                                             }
                                                             int playersOnline2 = S_GameLogic.GetPlayersOnline();
                                                             for (i = 1; i <= playersOnline2; i++)
                                                             {
-                                                                bool flag24 = S_NetworkConfig.IsPlaying(i) && i != index && S_Players.GetPlayerMap(i) == S_Players.GetPlayerMap(index);
-                                                                if (flag24)
+                                                                if (S_NetworkConfig.IsPlaying(i) && i != index && S_Players.GetPlayerMap(i) == S_Players.GetPlayerMap(index))
                                                                 {
-                                                                    bool flag25 = modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse;
-                                                                    if (flag25)
+                                                                    if (modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse)
                                                                     {
-                                                                        bool flag26 = (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].X == x && (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].Y == y;
-                                                                        if (flag26)
+                                                                        if ((int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].X == x && (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].Y == y)
                                                                         {
                                                                             return;
                                                                         }
                                                                     }
                                                                 }
                                                             }
-                                                            bool flag27 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount > 0;
-                                                            if (flag27)
+                                                            if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount > 0)
                                                             {
                                                                 int furnitureCount2 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount;
                                                                 for (i = 1; i <= furnitureCount2; i++)
                                                                 {
-                                                                    bool flag28 = x >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X && x <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X + Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureWidth - 1;
-                                                                    if (flag28)
+                                                                    if (x >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X && x <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X + Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureWidth - 1)
                                                                     {
-                                                                        bool flag29 = y <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y && y >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y - Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureHeight + 1;
-                                                                        if (flag29)
+                                                                        if (y <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y && y >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y - Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureHeight + 1)
                                                                         {
                                                                             return;
                                                                         }
@@ -477,39 +430,32 @@ namespace Engine
                                                         int num12 = y2 - Types.Item[ItemNum].FurnitureHeight + 1;
                                                         for (y = num11; y >= num12; y += -1)
                                                         {
-                                                            bool flag30 = modTypes.Map[S_Players.GetPlayerMap(index)].Tile[x, y].Type == 1;
-                                                            if (flag30)
+                                                            if (modTypes.Map[S_Players.GetPlayerMap(index)].Tile[x, y].Type == 1)
                                                             {
                                                                 return;
                                                             }
                                                             int playersOnline3 = S_GameLogic.GetPlayersOnline();
                                                             for (i = 1; i <= playersOnline3; i++)
                                                             {
-                                                                bool flag31 = S_NetworkConfig.IsPlaying(i) && i != index && S_Players.GetPlayerMap(i) == S_Players.GetPlayerMap(index);
-                                                                if (flag31)
+                                                                if (S_NetworkConfig.IsPlaying(i) && i != index && S_Players.GetPlayerMap(i) == S_Players.GetPlayerMap(index))
                                                                 {
-                                                                    bool flag32 = modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse;
-                                                                    if (flag32)
+                                                                    if (modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse)
                                                                     {
-                                                                        bool flag33 = (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].X == x && (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].Y == y;
-                                                                        if (flag33)
+                                                                        if ((int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].X == x && (int)modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].Y == y)
                                                                         {
                                                                             return;
                                                                         }
                                                                     }
                                                                 }
                                                             }
-                                                            bool flag34 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount > 0;
-                                                            if (flag34)
+                                                            if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount > 0)
                                                             {
                                                                 int furnitureCount3 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.FurnitureCount;
                                                                 for (i = 1; i <= furnitureCount3; i++)
                                                                 {
-                                                                    bool flag35 = x >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X && x <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X + Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureWidth - 1;
-                                                                    if (flag35)
+                                                                    if (x >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X && x <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X + Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureWidth - 1)
                                                                     {
-                                                                        bool flag36 = y <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y && y >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y - Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureHeight + 1;
-                                                                        if (flag36)
+                                                                        if (y <= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y && y >= modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y - Types.Item[modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].ItemNum].FurnitureHeight + 1)
                                                                         {
                                                                             return;
                                                                         }
@@ -549,10 +495,9 @@ namespace Engine
         // Token: 0x060001DF RID: 479 RVA: 0x0003B69C File Offset: 0x0003989C
         public static void Packet_RequestEditHouse(int index, ref byte[] data)
         {
-            bool flag = S_Players.GetPlayerAccess(index) < 2;
             checked
             {
-                if (!flag)
+                if (!(S_Players.GetPlayerAccess(index) < 2))
                 {
                     ByteStream buffer = new ByteStream(4);
                     buffer.WriteInt32(93);
@@ -575,15 +520,13 @@ namespace Engine
         // Token: 0x060001E0 RID: 480 RVA: 0x0003B79C File Offset: 0x0003999C
         public static void Packet_SaveHouses(int index, ref byte[] data)
         {
-            bool flag = S_Players.GetPlayerAccess(index) < 2;
             checked
             {
-                if (!flag)
+                if (!(S_Players.GetPlayerAccess(index) < 2))
                 {
                     ByteStream buffer = new ByteStream(data);
                     int Count = buffer.ReadInt32();
-                    bool flag2 = Count > 0;
-                    if (flag2)
+                    if (Count > 0)
                     {
                         int num = Count;
                         for (int z = 1; z <= num; z++)
@@ -599,8 +542,7 @@ namespace Engine
                             int playersOnline = S_GameLogic.GetPlayersOnline();
                             for (int x = 1; x <= playersOnline; x++)
                             {
-                                bool flag3 = S_NetworkConfig.IsPlaying(x) && modTypes.Player[x].Character[(int)modTypes.TempPlayer[x].CurChar].InHouse == i;
-                                if (flag3)
+                                if (S_NetworkConfig.IsPlaying(x) && modTypes.Player[x].Character[(int)modTypes.TempPlayer[x].CurChar].InHouse == i)
                                 {
                                     S_Housing.SendFurnitureToHouse(i);
                                 }
@@ -617,10 +559,10 @@ namespace Engine
         {
             ByteStream buffer = new ByteStream(data);
             int Tmpindex = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex;
-            bool flag = Tmpindex > 0;
+
             checked
             {
-                if (flag)
+                if (Tmpindex > 0)
                 {
                     int refund = (int)Math.Round((double)S_Housing.HouseConfig[Tmpindex].Price / 2.0);
                     modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Houseindex = 0;
@@ -633,8 +575,8 @@ namespace Engine
                         modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].X = 0;
                         modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].House.Furniture[i].Y = 0;
                     }
-                    bool flag2 = modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse == Tmpindex;
-                    if (flag2)
+
+                    if (modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].InHouse == Tmpindex)
                     {
                         S_Players.PlayerWarp(index, modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastMap, modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastX, modTypes.Player[index].Character[(int)modTypes.TempPlayer[index].CurChar].LastY, false, false);
                     }
@@ -677,10 +619,10 @@ namespace Engine
             buffer.WriteInt32(92);
             buffer.WriteInt32(Houseindex);
             buffer.WriteInt32(modTypes.Player[Houseindex].Character[(int)modTypes.TempPlayer[Houseindex].CurChar].House.FurnitureCount);
-            bool flag = modTypes.Player[Houseindex].Character[(int)modTypes.TempPlayer[Houseindex].CurChar].House.FurnitureCount > 0;
+
             checked
             {
-                if (flag)
+                if (modTypes.Player[Houseindex].Character[(int)modTypes.TempPlayer[Houseindex].CurChar].House.FurnitureCount > 0)
                 {
                     int furnitureCount = modTypes.Player[Houseindex].Character[(int)modTypes.TempPlayer[Houseindex].CurChar].House.FurnitureCount;
                     for (int i = 1; i <= furnitureCount; i++)
@@ -693,11 +635,9 @@ namespace Engine
                 int playersOnline = S_GameLogic.GetPlayersOnline();
                 for (int i = 1; i <= playersOnline; i++)
                 {
-                    bool flag2 = S_NetworkConfig.IsPlaying(i);
-                    if (flag2)
+                    if (S_NetworkConfig.IsPlaying(i))
                     {
-                        bool flag3 = modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == Houseindex;
-                        if (flag3)
+                        if (modTypes.Player[i].Character[(int)modTypes.TempPlayer[i].CurChar].InHouse == Houseindex)
                         {
                             S_NetworkConfig.Socket.SendDataTo(i, buffer.Data, buffer.Head);
                         }
