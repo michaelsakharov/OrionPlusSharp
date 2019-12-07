@@ -20,6 +20,15 @@ namespace Engine
     {
         internal static void PacketRouter()
         {
+            // AFSW returns an ID to a connection, problem is this ID isnt always correct related to the server.
+            // For the server an id of 1 means the first logged in player
+            // For ASFW an id of 1 means the first connected player
+            // This means its possible for a player in the server to be assigned to id 2 but theres only 1 player logged in
+            // This breaks a lot
+            // So we need to create a middle man, something that can bridge these two systems
+            // Or abandon ASFW
+            // Or re-write how the server handles players
+
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CCheckPing] = Packet_Ping;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CNewAccount] = Packet_NewAccount;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CDelAccount] = Packet_DeleteAccount;
@@ -464,22 +473,20 @@ namespace Engine
             {
                 if (S_NetworkConfig.IsLoggedIn(index))
                 {
-                    //Its possible for the player to be Double logged in, what causes this isnt quite clear yet
-                    //To fix it lets do a brute force check
-                    //But this fix/bug mayyyy become a stability hazard in the future, so it needs to be fixed asap
-                    var loopTo = Constants.MAX_PLAYERS;
-                    for (int i=1; i <= loopTo; i++)
-                    {
-                        if (S_NetworkConfig.IsPlaying(i))
-                        {
-                            if (i != index && modTypes.Player[i].Login == modTypes.Player[index].Login)
-                            {
-                                Console.WriteLine("Removing a duplicate character from the world, this bug needs to be resolved asap!");
-                                S_NetworkSend.SendLeftGame(i);
-                                S_Players.ForceLeftGame(i);
-                            }
-                        }
-                    }
+                    //Did i fix this?
+                    //var loopTo = Constants.MAX_PLAYERS;
+                    //for (int i=1; i <= loopTo; i++)
+                    //{
+                    //    if (S_NetworkConfig.IsPlaying(i))
+                    //    {
+                    //        if (i != index && modTypes.Player[i].Login == modTypes.Player[index].Login)
+                    //        {
+                    //            Console.WriteLine("Removing a duplicate character from the world, this bug needs to be resolved asap!");
+                    //            S_NetworkSend.SendLeftGame(i);
+                    //            S_Players.ForceLeftGame(i);
+                    //        }
+                    //    }
+                    //}
 
                     slot = (byte)buffer.ReadInt32();
                     // Check if character data has been created

@@ -29,7 +29,8 @@ namespace Engine
                 if (modTypes.TempPlayer[i].InGame == true)
                     x = x + 1;
             }
-            return x;
+            //return x;
+            return S_NetworkConfig.Socket.HighIndex;
         }
 
         public static int GetNpcMaxVital(int NpcNum, Enums.VitalType Vital)
