@@ -60,8 +60,7 @@ namespace Engine
                 int playersOnline = S_GameLogic.GetPlayersOnline();
                 for (int i = 1; i <= playersOnline; i++)
                 {
-                    bool flag2 = S_NetworkConfig.IsPlaying(i);
-                    if (flag2)
+                    if (S_NetworkConfig.IsPlaying(i))
                     {
                         S_Housing.SendHouseConfigs(i);
                     }

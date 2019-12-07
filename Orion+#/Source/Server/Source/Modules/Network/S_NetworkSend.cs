@@ -629,8 +629,11 @@ namespace Engine
                 {
                     if (i != index)
                     {
-                        s = s + S_Players.GetPlayerName(i) + ", ";
-                        n = n + 1;
+                        if (S_NetworkConfig.IsPlaying(i))
+                        {
+                            s = s + S_Players.GetPlayerName(i) + ", ";
+                            n = n + 1;
+                        }
                     }
                 }
             }
@@ -1713,7 +1716,8 @@ namespace Engine
 
             S_General.AddDebug("Sent SMSG: STotalOnline");
 
-            Buffer.WriteInt32(S_GameLogic.GetPlayersOnline());
+            //Buffer.WriteInt32(S_GameLogic.GetPlayersOnline());
+            Buffer.WriteInt32(S_GameLogic.GetPlayersInGame());
             S_NetworkConfig.Socket.SendDataTo(index, Buffer.Data, Buffer.Head);
 
             Buffer.Dispose();
@@ -1727,6 +1731,7 @@ namespace Engine
 
             S_General.AddDebug("Sent SMSG: STotalOnline To All");
 
+            //Buffer.WriteInt32(S_GameLogic.GetPlayersInGame());
             Buffer.WriteInt32(S_GameLogic.GetPlayersOnline());
             S_NetworkConfig.SendDataToAll(ref Buffer.Data, Buffer.Head);
 

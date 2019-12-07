@@ -474,6 +474,7 @@ namespace Engine
                 if (S_NetworkConfig.IsLoggedIn(index))
                 {
                     //Did i fix this?
+                    // in S_GameLogic i modified GetPlayersOnline to just return a list of everyone connected rather then everyone playing
                     //var loopTo = Constants.MAX_PLAYERS;
                     //for (int i=1; i <= loopTo; i++)
                     //{

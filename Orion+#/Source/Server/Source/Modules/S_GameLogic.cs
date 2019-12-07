@@ -19,6 +19,19 @@ namespace Engine
             return n;
         }
 
+        internal static int GetPlayersInGame()
+        {
+            int x;
+            x = 0;
+            var loopTo = S_NetworkConfig.Socket.HighIndex;
+            for (int i = 1; i <= loopTo; i++)
+            {
+                if (modTypes.TempPlayer[i].InGame == true)
+                    x = x + 1;
+            }
+            return x;
+        }
+
         internal static int GetPlayersOnline()
         {
             int x;

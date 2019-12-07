@@ -4963,3 +4963,7 @@ Sent SMSG: SNpcMove Left
 Sent SMSG: SNpcMove DownRight
 Sent SMSG: SNpcMove UpRight
 Sent SMSG: SNpcMove UpLeft
+Sent SMSG: SNpcMove Left
+Sent SMSG: SNpcMove DownRight
+Sent SMSG: SNpcMove Right
+Sent SMSG: SNpcMove DownRight

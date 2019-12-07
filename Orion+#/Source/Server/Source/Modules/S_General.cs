@@ -313,7 +313,7 @@ namespace Engine
 
         public static void UpdateCaption()
         {
-            Console.Title = string.Format("{0} <IP {1}:{2}> ({3} Players Online) - Current Errors: {4} - Time: {5} - CPS: {6}", modTypes.Options.GameName, MyIPAddress, modTypes.Options.Port, S_GameLogic.GetPlayersOnline(), S_Globals.ErrorCount, Time.Instance.ToString(), S_General.gameCPS);
+            Console.Title = string.Format("{0} <IP {1}:{2}> ({3} Players Online {4} Players Ingame) - Current Errors: {5} - Time: {6} - CPS: {7}", modTypes.Options.GameName, MyIPAddress, modTypes.Options.Port, S_GameLogic.GetPlayersOnline(), S_GameLogic.GetPlayersInGame(), S_Globals.ErrorCount, Time.Instance.ToString(), S_General.gameCPS);
         }
 
         public static void DestroyServer()
