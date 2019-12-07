@@ -7,11 +7,9 @@ using Microsoft.VisualBasic.CompilerServices;
 
 namespace Engine
 {
-    // Token: 0x0200001B RID: 27
     [StandardModule]
     internal sealed class S_Housing
     {
-        // Token: 0x060001D7 RID: 471 RVA: 0x00039760 File Offset: 0x00037960
         public static void CreateHouses()
         {
             XmlClass myXml = new XmlClass
@@ -29,8 +27,7 @@ namespace Engine
             myXml.WriteString("House" + Conversions.ToString(1), "Y", Conversions.ToString(S_Housing.HouseConfig[1].Y));
             myXml.CloseXml(true);
         }
-
-        // Token: 0x060001D8 RID: 472 RVA: 0x000398D4 File Offset: 0x00037AD4
+        
         public static void LoadHouses()
         {
             if (!File.Exists(Path.Combine(Application.StartupPath, "data", "houseconfig.xml")))
@@ -66,8 +63,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001D9 RID: 473 RVA: 0x00039AE4 File Offset: 0x00037CE4
+        
         public static void SaveHouse(int index)
         {
             XmlClass myXml = new XmlClass
@@ -88,8 +84,7 @@ namespace Engine
             myXml.CloseXml(true);
             S_Housing.LoadHouses();
         }
-
-        // Token: 0x060001DA RID: 474 RVA: 0x00039C70 File Offset: 0x00037E70
+        
         public static void SaveHouses()
         {
             int max_HOUSES = S_Housing.MAX_HOUSES;
@@ -101,8 +96,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001DB RID: 475 RVA: 0x00039C98 File Offset: 0x00037E98
+        
         public static void Packet_BuyHouse(int index, ref byte[] data)
         {
             ByteStream buffer = new ByteStream(data);
@@ -133,8 +127,7 @@ namespace Engine
             modTypes.TempPlayer[index].BuyHouseindex = 0;
             buffer.Dispose();
         }
-
-        // Token: 0x060001DC RID: 476 RVA: 0x00039F50 File Offset: 0x00038150
+        
         public static void Packet_InviteToHouse(int index, ref byte[] data)
         {
             ByteStream buffer = new ByteStream(data);
@@ -207,8 +200,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001DD RID: 477 RVA: 0x0003A20C File Offset: 0x0003840C
+        
         public static void Packet_AcceptInvite(int index, ref byte[] data)
         {
             ByteStream buffer = new ByteStream(data);
@@ -250,8 +242,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001DE RID: 478 RVA: 0x0003A504 File Offset: 0x00038704
+        
         public static void Packet_PlaceFurniture(int index, ref byte[] data)
         {
             ByteStream buffer = new ByteStream(data);
@@ -491,8 +482,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001DF RID: 479 RVA: 0x0003B69C File Offset: 0x0003989C
+        
         public static void Packet_RequestEditHouse(int index, ref byte[] data)
         {
             checked
@@ -516,8 +506,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001E0 RID: 480 RVA: 0x0003B79C File Offset: 0x0003999C
+        
         public static void Packet_SaveHouses(int index, ref byte[] data)
         {
             checked
@@ -553,8 +542,7 @@ namespace Engine
                 }
             }
         }
-
-        // Token: 0x060001E1 RID: 481 RVA: 0x0003B8F8 File Offset: 0x00039AF8
+        
         public static void Packet_SellHouse(int index, ref byte[] data)
         {
             ByteStream buffer = new ByteStream(data);
@@ -591,8 +579,7 @@ namespace Engine
                 buffer.Dispose();
             }
         }
-
-        // Token: 0x060001E2 RID: 482 RVA: 0x0003BC34 File Offset: 0x00039E34
+        
         public static void SendHouseConfigs(int index)
         {
             ByteStream buffer = new ByteStream(4);
@@ -611,8 +598,7 @@ namespace Engine
                 buffer.Dispose();
             }
         }
-
-        // Token: 0x060001E3 RID: 483 RVA: 0x0003BCEC File Offset: 0x00039EEC
+        
         public static void SendFurnitureToHouse(int Houseindex)
         {
             ByteStream buffer = new ByteStream(4);
@@ -646,58 +632,41 @@ namespace Engine
                 buffer.Dispose();
             }
         }
-
-        // Token: 0x04000054 RID: 84
+        
         internal static int MAX_HOUSES = 100;
-
-        // Token: 0x04000055 RID: 85
+        
         internal static S_Housing.HouseRec[] HouseConfig;
-
-        // Token: 0x0200004B RID: 75
+        
         public struct HouseRec
         {
-            // Token: 0x040001DA RID: 474
             public string ConfigName;
-
-            // Token: 0x040001DB RID: 475
+            
             public int BaseMap;
-
-            // Token: 0x040001DC RID: 476
+            
             public int Price;
-
-            // Token: 0x040001DD RID: 477
+            
             public int MaxFurniture;
-
-            // Token: 0x040001DE RID: 478
+            
             public int X;
-
-            // Token: 0x040001DF RID: 479
+            
             public int Y;
         }
-
-        // Token: 0x0200004C RID: 76
+        
         public struct FurnitureRec
         {
-            // Token: 0x040001E0 RID: 480
             public int ItemNum;
-
-            // Token: 0x040001E1 RID: 481
+            
             public int X;
-
-            // Token: 0x040001E2 RID: 482
+            
             public int Y;
         }
-
-        // Token: 0x0200004D RID: 77
+        
         public struct PlayerHouseRec
         {
-            // Token: 0x040001E3 RID: 483
             public int Houseindex;
-
-            // Token: 0x040001E4 RID: 484
+            
             public int FurnitureCount;
-
-            // Token: 0x040001E5 RID: 485
+            
             public S_Housing.FurnitureRec[] Furniture;
         }
     }

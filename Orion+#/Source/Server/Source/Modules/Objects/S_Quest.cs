@@ -743,8 +743,7 @@ namespace Engine
             }
             return QuestInProgress;
         }
-
-        // Token: 0x06000302 RID: 770 RVA: 0x00058D04 File Offset: 0x00056F04
+        
         internal static bool QuestCompleted(int index, int QuestNum)
         {
             bool QuestCompleted = false;
@@ -759,8 +758,7 @@ namespace Engine
             }
             return QuestCompleted;
         }
-
-        // Token: 0x06000303 RID: 771 RVA: 0x00058DA8 File Offset: 0x00056FA8
+        
         internal static int GetQuestNum(string QuestName)
         {
             int GetQuestNum = 0;
@@ -783,8 +781,7 @@ namespace Engine
                 return GetQuestNum;
             }
         }
-
-        // Token: 0x06000304 RID: 772 RVA: 0x00058DF4 File Offset: 0x00056FF4
+        
         internal static int GetItemNum(string ItemName)
         {
             int GetItemNum = 0;
