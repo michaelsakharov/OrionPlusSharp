@@ -1152,6 +1152,8 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
         {
             modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Alive = 1;
             S_NetworkSend.PlayerMsg(index, "You summoned your " + GetPetName(index).Trim() + "!", (int)Enums.ColorType.BrightGreen);
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.X = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].X;
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Y = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Y;
             SendUpdatePlayerPet(index, false);
         }
 
