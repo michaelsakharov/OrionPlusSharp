@@ -1134,7 +1134,7 @@ namespace Engine
                 }
             }
 
-                //only loop tru last entries
+            //only loop tru last entries
             for (i = firstLineIndex; i <= C_Text.LastLineindex; i++)
             {
                 text = Convert.ToString(C_Types.Chat[i].Text);

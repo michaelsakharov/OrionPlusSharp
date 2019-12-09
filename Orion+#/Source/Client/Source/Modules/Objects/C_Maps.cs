@@ -62,6 +62,7 @@ namespace Engine
                 // We are clearing the map, so lets also clear the Cache
                 mapLayers = null;
                 fringeMapLayers = null;
+                C_Graphics.tempTileLights = null;
 
                 Map.Name = "";
                 Map.Tileset = 1;
