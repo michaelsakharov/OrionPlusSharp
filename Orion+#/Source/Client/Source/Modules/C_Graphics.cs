@@ -1118,15 +1118,44 @@ namespace Engine
                 C_Text.LastLineindex = C_Types.Chat.Count - 1; //Based off of index 0, so the last element should be Chat.Count -1
             }
 
-            //only loop tru last entries
+            int firstLineIndex = C_Text.FirstLineindex;
+
+            // Check how many lines we should skip first this is far from perfect but better then nothing, it was far worse before
             for (i = C_Text.FirstLineindex; i <= C_Text.LastLineindex; i++)
+            {
+                text = Convert.ToString(C_Types.Chat[i].Text);
+                if (text.Length > 70)
+                {
+                    for (var s = 0; s < text.Length; s += 70)
+                    {
+                        firstLineIndex = firstLineIndex + 1;
+                        //i++;
+                    }
+                }
+            }
+
+                //only loop tru last entries
+            for (i = firstLineIndex; i <= C_Text.LastLineindex; i++)
             {
                 text = Convert.ToString(C_Types.Chat[i].Text);
 
                 if (!string.IsNullOrEmpty(text)) // or not
                 {
-                    C_Text.DrawText(C_UpdateUI.ChatWindowX + x, C_UpdateUI.ChatWindowY + y, text, C_Text.GetSfmlColor(System.Convert.ToByte(C_Types.Chat[i].Color)), SFML.Graphics.Color.Black, GameWindow);
-                    y = y + C_Text.ChatLineSpacing + 1;
+                    // If message is to long split it up and render each part
+                    if (text.Length > 70)
+                    {
+                        for (var s = 0; s < text.Length; s += 70)
+                        {
+                            string newLine = text.Substring(s, Math.Min(70, text.Length - s));
+                            C_Text.DrawText(C_UpdateUI.ChatWindowX + x, C_UpdateUI.ChatWindowY + y, newLine, C_Text.GetSfmlColor(System.Convert.ToByte(C_Types.Chat[i].Color)), SFML.Graphics.Color.Black, GameWindow);
+                            y = y + C_Text.ChatLineSpacing + 1;
+                        }
+                    }
+                    else
+                    {
+                        C_Text.DrawText(C_UpdateUI.ChatWindowX + x, C_UpdateUI.ChatWindowY + y, text, C_Text.GetSfmlColor(System.Convert.ToByte(C_Types.Chat[i].Color)), SFML.Graphics.Color.Black, GameWindow);
+                        y = y + C_Text.ChatLineSpacing + 1;
+                    }
                 }
 
             }
@@ -1144,6 +1173,12 @@ namespace Engine
                 }
                 C_Text.DrawText(C_UpdateUI.MyChatX + 5, C_UpdateUI.MyChatY - 3, subText, SFML.Graphics.Color.White, SFML.Graphics.Color.Black, GameWindow);
             }
+        }
+
+        public static IEnumerable<String> SplitInParts(String s, Int32 partLength)
+        {
+            for (var i = 0; i < s.Length; i += partLength)
+                yield return s.Substring(i, Math.Min(partLength, s.Length - i));
         }
 
         internal static void DrawButton(string text, int destX, int destY, byte hover)
