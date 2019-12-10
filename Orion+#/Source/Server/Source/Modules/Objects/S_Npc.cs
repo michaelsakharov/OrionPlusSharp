@@ -222,6 +222,10 @@ namespace Engine
                                     {
                                         return false;
                                     }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                    {
+                                        return false;
+                                    }
                                 }
                             }
 
