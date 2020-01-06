@@ -45,9 +45,6 @@ namespace Engine
 
                     CheckShutDownCountDown();
 
-                    // Get all our online players.
-                    //var onlinePlayers = modTypes.TempPlayer.Where(player => player.InGame).Select((player, index) => new { Index = index + 1, player }).ToArray();
-
                     if (tick > tmr25)
                     {
                         if (onlinePlayers.Count() > 0)

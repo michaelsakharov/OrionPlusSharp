@@ -438,7 +438,8 @@ namespace Engine
 			}
 			if (Button == (int) MouseButtons.Left)
 			{
-				if (E_Globals.SelectedTab == 1)
+                E_Graphics.tempTileLights = null;
+                if (E_Globals.SelectedTab == 1)
 				{
 					// (EditorTileSelEnd.X - EditorTileSelStart.X) = 1 AndAlso (EditorTileSelEnd.Y - EditorTileSelStart.Y) = 1 Then 'single tile
 					if (E_Globals.EditorTileWidth == 1 && E_Globals.EditorTileHeight == 1)
@@ -618,8 +619,9 @@ namespace Engine
 			}
 			
 			if (Button == (int) MouseButtons.Right)
-			{
-				if (E_Globals.SelectedTab == 1)
+            {
+                E_Graphics.tempTileLights = null;
+                if (E_Globals.SelectedTab == 1)
 				{
 					
 					// clear layer
@@ -674,8 +676,8 @@ namespace Engine
 		{
 			int x2 = 0;
 			int y2 = 0;
-			
-			if (theAutotile > 0)
+            E_Graphics.tempTileLights = null;
+            if (theAutotile > 0)
 			{
 				// set layer
 				E_Types.Map.Tile[X, Y].Layer[CurLayer].X = (byte)E_Globals.EditorTileX;
@@ -738,8 +740,9 @@ namespace Engine
 			
 			// ask to clear layer
 			if (Interaction.MsgBox("Are you sure you wish to clear this layer?", MsgBoxStyle.YesNo, "MapEditor") == MsgBoxResult.Yes)
-			{
-				for (X = 0; X <= E_Types.Map.MaxX; X++)
+            {
+                E_Graphics.tempTileLights = null;
+                for (X = 0; X <= E_Types.Map.MaxX; X++)
 				{
 					for (Y = 0; Y <= E_Types.Map.MaxY; Y++)
 					{
@@ -762,8 +765,9 @@ namespace Engine
 			CurLayer = frmMapEditor.Default.cmbLayers.SelectedIndex + 1;
 			
 			if (Interaction.MsgBox("Are you sure you wish to fill this layer?", MsgBoxStyle.YesNo, "Map Editor") == MsgBoxResult.Yes)
-			{
-				if (theAutotile > 0)
+            {
+                E_Graphics.tempTileLights = null;
+                if (theAutotile > 0)
 				{
 					for (X = 0; X <= E_Types.Map.MaxX; X++)
 					{
@@ -820,7 +824,7 @@ namespace Engine
 			
 			if (Interaction.MsgBox("Are you sure you wish to clear the attributes on this map?", MsgBoxStyle.YesNo, "MapEditor") == MsgBoxResult.Yes)
 			{
-				
+                E_Graphics.tempTileLights = null;
 				for (X = 0; X <= E_Types.Map.MaxX; X++)
 				{
 					for (Y = 0; Y <= E_Types.Map.MaxY; Y++)

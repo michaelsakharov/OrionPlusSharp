@@ -895,7 +895,6 @@ namespace Engine
             for (i = 1; i <= Constants.MAX_NPCS; i++)
             {
                 LoadNpc(i);
-                //Application.DoEvents();
             }
         }
 

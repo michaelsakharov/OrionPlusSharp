@@ -1849,8 +1849,8 @@ namespace Engine
             }
         }
 
-
-        public static int lastLightFlicker;
+        
+        public static List<LightTile> tempTileLights;
 
         public static void DrawNight()
         {
@@ -1884,24 +1884,27 @@ namespace Engine
                 return;
             }
 
-            for (x = E_Globals.TileView.Left - 5; x <= E_Globals.TileView.Right + 5; x++)
+            if (tempTileLights == null)
             {
-                for (y = E_Globals.TileView.Top - 5; y <= E_Globals.TileView.Bottom + 5; y++)
+
+                tempTileLights = new List<LightTile>();
+
+                for (x = 0; x <= E_Types.Map.MaxX; x++)
                 {
-                    if (IsValidMapPoint(x, y))
+                    for (y = 0; y <= E_Types.Map.MaxY; y++)
                     {
-                        if (E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
+                        if (IsValidMapPoint(x, y))
                         {
-                            if (E_Types.Map.Tile[x, y].Data3 == 1)
+                            if (E_Types.Map.Tile[x, y].Type == (byte)Enums.TileType.Light)
                             {
-                                List<Vector2i> tiles = AppendFov(x, y, E_Types.Map.Tile[x, y].Data1, true);
-                                tiles.Add(new Vector2i(x, y)); // Add the center tile, Fov doesnt calculate this
-                                if (Constants.USE_SMOOTH_DYNAMIC_LIGHTING) // If Smooth Lighting
+                                if (E_Types.Map.Tile[x, y].Data3 == 1) // Is Dynamic
                                 {
+                                    List<Vector2i> tiles = AppendFov(x, y, E_Types.Map.Tile[x, y].Data1, true);
+                                    tiles.Add(new Vector2i(x, y)); // Add the center tile, Fov doesnt calculate this
+
                                     Vector2f scale = new Vector2f();
                                     if (E_Types.Map.Tile[x, y].Data2 == 1)
                                     {
-                                        lastLightFlicker = Environment.TickCount;
                                         // Flicker
                                         float r = (float)RandomNumberBetween(-0.01f, 0.01f);
                                         scale = new Vector2f(0.35f + r, 0.35f + r);
@@ -1911,59 +1914,122 @@ namespace Engine
                                     {
                                         scale = new Vector2f(0.35f, 0.35f);
                                     }
-                                    foreach (Vector2i tile in tiles)
+
+                                    if (Constants.USE_SMOOTH_DYNAMIC_LIGHTING) // If Smooth Lighting
                                     {
-                                        LightSprite.Scale = scale;
-                                        LightSprite.Position = new Vector2f((ConvertMapX(tile.X * 32) - (LightGfx.Size.X / 2 * LightSprite.Scale.X) + 16), (ConvertMapY(tile.Y * 32) - (LightGfx.Size.Y / 2 * LightSprite.Scale.Y) + 16));
-                                        byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
-                                        LightSprite.Color = new SFML.Graphics.Color(0, 0, 0, 255);
-                                        NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
-                                    }
-                                }
-                                else
-                                {
-                                    byte alphaBump; // How much the Lights alpha should drop each tile from the source
-                                    if (E_Types.Map.Tile[x, y].Data1 == 0)
-                                    {
-                                        alphaBump = 255;
+                                        foreach (Vector2i tile in tiles)
+                                        {
+                                            LightSprite.Scale = scale;
+                                            LightSprite.Position = new Vector2f((ConvertMapX(tile.X * 32) - (LightGfx.Size.X / 2 * LightSprite.Scale.X) + 16), (ConvertMapY(tile.Y * 32) - (LightGfx.Size.Y / 2 * LightSprite.Scale.Y) + 16));
+                                            //byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
+                                            //LightSprite.Color = new SFML.Graphics.Color(0, 0, 0, 255);
+
+                                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+                                        }
+
+                                        tempTileLights.Add(new LightTile() { tiles = tiles, isFlicker = E_Types.Map.Tile[x, y].Data2 == 1, scale = new Vector2f(0.35f, 0.35f) });
                                     }
                                     else
                                     {
-                                        alphaBump = (byte)(255 / (E_Types.Map.Tile[x, y].Data1));
-                                    }
-                                    foreach (Vector2i tile in tiles)
-                                    {
-                                        LightDynamicSprite.Scale = new Vector2f(0.35f, 0.35f);
-                                        LightDynamicSprite.Position = new Vector2f((ConvertMapX(tile.X * 32)), (ConvertMapY(tile.Y * 32)));
-                                        byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
-                                        LightDynamicSprite.Color = new SFML.Graphics.Color(0, 0, 0, (byte)Clamp((alphaBump * dist), 0, 255));
-                                        NightGfx.Draw(LightDynamicSprite, new RenderStates(BlendMode.Multiply));
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //Create the light texture to multiply over the dark texture.
-                                LightSprite.Color = SFML.Graphics.Color.Red;
-                                Vector2f scale = new Vector2f();
-                                if (E_Types.Map.Tile[x, y].Data2 == 1)
-                                {
-                                    lastLightFlicker = Environment.TickCount;
-                                    // Flicker
-                                    float r = (float)RandomNumberBetween(-0.01f, 0.01f);
-                                    scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1 + r, 0.3f * E_Types.Map.Tile[x, y].Data1 + r);
+                                        byte alphaBump; // How much the Lights alpha should drop each tile from the source
+                                        if (E_Types.Map.Tile[x, y].Data1 == 0)
+                                        {
+                                            alphaBump = 255;
+                                        }
+                                        else
+                                        {
+                                            alphaBump = (byte)(255 / (E_Types.Map.Tile[x, y].Data1));
+                                        }
+                                        foreach (Vector2i tile in tiles)
+                                        {
+                                            LightDynamicSprite.Scale = scale;
+                                            LightDynamicSprite.Position = new Vector2f((ConvertMapX(tile.X * 32)), (ConvertMapY(tile.Y * 32)));
+                                            byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
+                                            LightDynamicSprite.Color = new SFML.Graphics.Color(0, 0, 0, (byte)Clamp((alphaBump * dist), 0, 255));
 
+                                            NightGfx.Draw(LightDynamicSprite, new RenderStates(BlendMode.Multiply));
+                                        }
+
+                                        tempTileLights.Add(new LightTile() { tiles = tiles, isFlicker = E_Types.Map.Tile[x, y].Data2 == 1, scale = new Vector2f(0.35f, 0.35f) });
+                                    }
                                 }
                                 else
                                 {
-                                    scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1, 0.3f * E_Types.Map.Tile[x, y].Data1);
+                                    //Create the light texture to multiply over the dark texture.
+                                    LightSprite.Color = SFML.Graphics.Color.Red;
+                                    Vector2f scale = new Vector2f();
+                                    if (E_Types.Map.Tile[x, y].Data2 == 1)
+                                    {
+                                        // Flicker
+                                        float r = (float)RandomNumberBetween(-0.01f, 0.01f);
+                                        scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1 + r, 0.3f * E_Types.Map.Tile[x, y].Data1 + r);
+
+                                    }
+                                    else
+                                    {
+                                        scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1, 0.3f * E_Types.Map.Tile[x, y].Data1);
+                                    }
+                                    LightSprite.Scale = scale;
+                                    var x1 = (ConvertMapX(x * 32) + 16 - (double)(LightGfxInfo.width * scale.X) / 2);
+                                    var y1 = (ConvertMapY(y * 32) + 16 - (double)(LightGfxInfo.height * scale.Y) / 2);
+                                    LightSprite.Position = new Vector2f((float)x1, (float)y1);
+
+                                    tempTileLights.Add(new LightTile() { tiles = new List<Vector2i>() { new Vector2i(x, y) }, isFlicker = E_Types.Map.Tile[x, y].Data2 == 1, scale = new Vector2f(0.3f * E_Types.Map.Tile[x, y].Data1, 0.3f * E_Types.Map.Tile[x, y].Data1) });
+
+                                    NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
                                 }
-                                LightSprite.Scale = scale;
-                                var x1 = (ConvertMapX(x * 32) + 16 - (double)(LightGfxInfo.width * scale.X) / 2);
-                                var y1 = (ConvertMapY(y * 32) + 16 - (double)(LightGfxInfo.height * scale.Y) / 2);
-                                LightSprite.Position = new Vector2f((float)x1, (float)y1);
-                                NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
                             }
+                        }
+                    }
+                }
+            }
+            else // Temp lights not null
+            {
+
+                // We already have Light data calculated so just update and re-render it
+                foreach (LightTile light in tempTileLights)
+                {
+                    Vector2f scale = new Vector2f();
+                    if (light.isFlicker)
+                    {
+                        // Flicker
+                        float r = (float)RandomNumberBetween(-0.004f, 0.004f);
+                        scale = new Vector2f(light.scale.X + r, light.scale.Y + r);
+
+                    }
+                    else
+                    {
+                        scale = light.scale;
+                    }
+                    foreach (Vector2i tile in light.tiles)
+                    {
+                        if (light.isSmooth)
+                        {
+                            LightSprite.Scale = scale;
+                            LightSprite.Position = new Vector2f((ConvertMapX(tile.X * 32) - (LightGfx.Size.X / 2 * LightSprite.Scale.X) + 16), (ConvertMapY(tile.Y * 32) - (LightGfx.Size.Y / 2 * LightSprite.Scale.Y) + 16));
+                            //byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
+                            //LightSprite.Color = new SFML.Graphics.Color(0, 0, 0, 255);
+
+                            NightGfx.Draw(LightSprite, new RenderStates(BlendMode.Multiply));
+                        }
+                        else
+                        {
+                            byte alphaBump; // How much the alpha should drop each tile from the source
+                            if (E_Types.Map.Tile[x, y].Data1 == 0)
+                            {
+                                alphaBump = 255;
+                            }
+                            else
+                            {
+                                alphaBump = (byte)(255 / (E_Types.Map.Tile[x, y].Data1));
+                            }
+
+                            LightDynamicSprite.Scale = scale;
+                            LightDynamicSprite.Position = new Vector2f((ConvertMapX(tile.X * 32)), (ConvertMapY(tile.Y * 32)));
+                            byte dist = (byte)((Math.Abs(x - tile.X) + Math.Abs(y - tile.Y)));
+                            LightDynamicSprite.Color = new SFML.Graphics.Color(0, 0, 0, (byte)Clamp((alphaBump * dist), 0, 255));
+
+                            NightGfx.Draw(LightDynamicSprite, new RenderStates(BlendMode.Multiply));
                         }
                     }
                 }
@@ -2495,4 +2561,13 @@ namespace Engine
 		}
 		
 	}
+
+    public class LightTile
+    {
+        public List<Vector2i> tiles;
+        public bool isFlicker;
+        public bool isSmooth;
+        public Vector2f scale;
+    }
+
 }

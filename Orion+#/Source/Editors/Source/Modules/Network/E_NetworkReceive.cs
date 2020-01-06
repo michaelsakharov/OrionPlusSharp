@@ -465,6 +465,8 @@ namespace Engine
             ClientDataBase.ClearTempTile();
             E_AutoTiles.InitAutotiles();
 
+            E_Graphics.tempTileLights = null;
+
             E_Globals.MapData = true;
 
             E_Globals.CurrentWeather = Map.WeatherType;

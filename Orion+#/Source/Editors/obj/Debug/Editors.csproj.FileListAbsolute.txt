@@ -27,7 +27,6 @@ C:\Users\Michael\Desktop\orion plus c#\vb.net Orion+\Source\Build\Editors\Editor
 C:\Users\Michael\Desktop\orion plus c#\vb.net Orion+\Source\Editors\CS\obj\Debug\Editors.csproj.CopyComplete
 C:\Users\Michael\Desktop\orion plus c#\vb.net Orion+\Source\Editors\CS\obj\Debug\Editors.exe
 C:\Users\Michael\Desktop\orion plus c#\vb.net Orion+\Source\Editors\CS\obj\Debug\Editors.pdb
-C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.Properties.Resources.resources
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmAutoMapper.resources
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmAnimation.resources
@@ -56,3 +55,4 @@ C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Lupus Edi
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Lupus Editor.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Lupus Editor.exe
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Lupus Editor.pdb
+C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csprojAssemblyReference.cache
