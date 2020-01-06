@@ -15,7 +15,6 @@ namespace Engine
         public int y;
         public byte dir;
     }
-
     public class E_Emitter
     {
         // Public variables
@@ -29,13 +28,20 @@ namespace Engine
         public int range = 1;
         public int speed = 1;
         public int additionalDamage = 0;
+        public float startDelay = 0;
+        public float startDelayTimer = 0;
 
         //Internal Emitter Variables
         public List<ProjectileBullet> projectiles;
         
         public virtual void InitializeEmitter() {  }
         public virtual void UpdateParticles() {  }
-        public virtual void DrawParticles(RenderWindow gameWindow) {  }
+        public virtual void DrawParticles(RenderWindow gameWindow) { }
+
+        public virtual void ResetEmitter()
+        {
+            InitializeEmitter();
+        }
 
     }
 }

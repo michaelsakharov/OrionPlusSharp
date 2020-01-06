@@ -138,10 +138,12 @@ namespace Engine
 
         private void btnAddEmitter_Click(object sender, EventArgs e)
         {
+            ResetAllEmitters();
             emitterListBox.Items.Add("Emitter " + emitterListBox.Items.Count);
+            frmProjectile.Default.emitterTypeComboBox.SelectedIndex = 0; // Reset to Linear
+                    E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Add(new LinearEmitter() { emitterName = "Emitter " + emitterListBox.Items.Count });
             emitterListBox.SelectedIndex = emitterListBox.Items.Count - 1;
-            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Add(new E_Emitter() { emitterName = "Emitter " + emitterListBox.Items.Count });
-            UpdateEmitterUI();
+            //UpdateEmitterUI();
         }
 
         private void picProjectilePreview_Paint(object sender, PaintEventArgs e)
@@ -151,18 +153,20 @@ namespace Engine
 
         private void btnDeleteEmitter_Click(object sender, EventArgs e)
         {
+            ResetAllEmitters();
             int selectedIndex = emitterListBox.SelectedIndex;
             if (selectedIndex != -1)
             {
                 emitterListBox.SelectedIndex = selectedIndex - 1;
                 emitterListBox.Items.RemoveAt(selectedIndex);
+                frmProjectile.Default.emitterTypeComboBox.SelectedIndex = 0; // Reset to Linear
                 E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.RemoveAt(selectedIndex);
                 if (emitterListBox.SelectedIndex == -1 && emitterListBox.Items.Count > 0)
                 {
                     emitterListBox.SelectedIndex = 0;
                 }
             }
-            UpdateEmitterUI();
+            //UpdateEmitterUI();
         }
 
         private void emitterNameTextBox_TextChanged(object sender, EventArgs e)
@@ -176,9 +180,51 @@ namespace Engine
                 emitterListBox.SelectedIndex = tmpindex;
             }
         }
+        
+        public void UpdateEmitterSettings(object sender, EventArgs e)
+        {
+            ResetAllEmitters();
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].picture = (byte)emitterSpriteNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].range = (byte)emitterRangeNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].count = (byte)emitterCountNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].speed = (byte)emitterBulletSpeedNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].yOffset = (int)emitterYOffsetNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].xOffset = (int)emitterXOffsetNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].rotationOffset = (int)emitterOffsetRotationNud.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].additionalDamage = (byte)darkNumericUpDown1.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].startDelay = (float)darkNumericUpDown2.Value;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].startDelayTimer = 0;
+            foreach(ProjectileBullet proj in E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].projectiles)
+            {
+                if(PreviewDirectionDropdown.SelectedIndex == -1)
+                {
+                    proj.dir = 0;
+                    continue;
+                }
+                proj.dir = (byte)PreviewDirectionDropdown.SelectedIndex;
+            }
+        }
 
+        public void ResetAllEmitters()
+        {
+            for (int i = 0; i < E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters.Count; i++)
+            {
+                E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[i].ResetEmitter();
+            }
+        }
 
-
+        E_Emitter previousEmitter = null;
+        public void UpdateEmitterUI(object sender, EventArgs e)
+        {
+            if (emitterListBox.SelectedIndex != -1)
+            {
+                if (previousEmitter != E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex])
+                {
+                    UpdateEmitterUI();
+                    previousEmitter = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex];
+                }
+            }
+        }
 
         public void UpdateEmitterUI()
         {
@@ -211,6 +257,18 @@ namespace Engine
                 nudRange.Enabled = true;
                 nudSpeed.Enabled = true;
                 nudDamage.Enabled = true;
+            }
+            if (emitterListBox.SelectedIndex != -1)
+            {
+                emitterSpriteNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].picture;
+                emitterRangeNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].range;
+                emitterCountNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].count;
+                emitterBulletSpeedNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].speed;
+                emitterYOffsetNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].yOffset;
+                emitterXOffsetNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].xOffset;
+                emitterOffsetRotationNud.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].rotationOffset;
+                darkNumericUpDown1.Value = E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].additionalDamage;
+                darkNumericUpDown2.Value = (Decimal)E_Projectiles.Projectiles[E_Globals.Editorindex].Emitters[emitterListBox.SelectedIndex].startDelay;
             }
 
         }

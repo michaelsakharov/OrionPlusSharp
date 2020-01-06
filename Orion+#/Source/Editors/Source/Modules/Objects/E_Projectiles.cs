@@ -271,8 +271,11 @@ namespace Engine
 
                 foreach(E_Emitter emitter in Projectiles[E_Globals.Editorindex].Emitters)
                 {
-                    emitter.UpdateParticles();
-                    emitter.DrawParticles(E_Graphics.ProjectilePreviewWindow);
+                    if (emitter is LinearEmitter)
+                    {
+                        (emitter as LinearEmitter).UpdateParticles();
+                        (emitter as LinearEmitter).DrawParticles(E_Graphics.ProjectilePreviewWindow);
+                    }
                 }
                 
             }

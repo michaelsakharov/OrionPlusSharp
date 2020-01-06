@@ -65,6 +65,8 @@ namespace Engine
             this.btnSave = new DarkUI.Controls.DarkButton();
             this.btnCancel = new DarkUI.Controls.DarkButton();
             this.emitterPropertiesPanel = new DarkUI.Controls.DarkGroupBox();
+            this.darkLabel6 = new DarkUI.Controls.DarkLabel();
+            this.darkNumericUpDown2 = new DarkUI.Controls.DarkNumericUpDown();
             this.darkLabel18 = new DarkUI.Controls.DarkLabel();
             this.PreviewDirectionDropdown = new DarkUI.Controls.DarkComboBox();
             this.darkLabel17 = new DarkUI.Controls.DarkLabel();
@@ -100,6 +102,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
             this.emitterPropertiesPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.darkNumericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewSpriteNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterOffsetRotationNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterYOffsetNud)).BeginInit();
@@ -186,6 +189,7 @@ namespace Engine
             this.emitterListBox.Name = "emitterListBox";
             this.emitterListBox.Size = new System.Drawing.Size(230, 236);
             this.emitterListBox.TabIndex = 12;
+            this.emitterListBox.SelectedIndexChanged += new System.EventHandler(this.UpdateEmitterUI);
             // 
             // btnAddEmitter
             // 
@@ -299,11 +303,21 @@ namespace Engine
             this.nudPic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.nudPic.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudPic.Location = new System.Drawing.Point(119, 83);
+            this.nudPic.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudPic.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudPic.Name = "nudPic";
             this.nudPic.Size = new System.Drawing.Size(120, 20);
             this.nudPic.TabIndex = 5;
             this.nudPic.Value = new decimal(new int[] {
-            0,
+            1,
             0,
             0,
             0});
@@ -373,6 +387,8 @@ namespace Engine
             // 
             this.emitterPropertiesPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.emitterPropertiesPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel6);
+            this.emitterPropertiesPanel.Controls.Add(this.darkNumericUpDown2);
             this.emitterPropertiesPanel.Controls.Add(this.darkLabel18);
             this.emitterPropertiesPanel.Controls.Add(this.PreviewDirectionDropdown);
             this.emitterPropertiesPanel.Controls.Add(this.darkLabel17);
@@ -406,6 +422,37 @@ namespace Engine
             this.emitterPropertiesPanel.TabIndex = 4;
             this.emitterPropertiesPanel.TabStop = false;
             this.emitterPropertiesPanel.Text = "Emitter Properties";
+            // 
+            // darkLabel6
+            // 
+            this.darkLabel6.AutoSize = true;
+            this.darkLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel6.Location = new System.Drawing.Point(5, 282);
+            this.darkLabel6.Name = "darkLabel6";
+            this.darkLabel6.Size = new System.Drawing.Size(62, 13);
+            this.darkLabel6.TabIndex = 30;
+            this.darkLabel6.Text = "Start Delay:";
+            // 
+            // darkNumericUpDown2
+            // 
+            this.darkNumericUpDown2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.darkNumericUpDown2.DecimalPlaces = 1;
+            this.darkNumericUpDown2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.darkNumericUpDown2.Location = new System.Drawing.Point(110, 280);
+            this.darkNumericUpDown2.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.darkNumericUpDown2.Name = "darkNumericUpDown2";
+            this.darkNumericUpDown2.Size = new System.Drawing.Size(129, 20);
+            this.darkNumericUpDown2.TabIndex = 29;
+            this.darkNumericUpDown2.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.darkNumericUpDown2.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel18
             // 
@@ -446,6 +493,7 @@ namespace Engine
             this.PreviewDirectionDropdown.TabIndex = 27;
             this.PreviewDirectionDropdown.Text = "Up";
             this.PreviewDirectionDropdown.TextPadding = new System.Windows.Forms.Padding(2);
+            this.PreviewDirectionDropdown.SelectedIndexChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel17
             // 
@@ -526,6 +574,7 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterOffsetRotationNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel15
             // 
@@ -560,6 +609,7 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterYOffsetNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel14
             // 
@@ -594,6 +644,7 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterXOffsetNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel13
             // 
@@ -628,6 +679,7 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterCountNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel7
             // 
@@ -709,6 +761,7 @@ namespace Engine
             0,
             0,
             0});
+            this.darkNumericUpDown1.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // emitterBulletSpeedNud
             // 
@@ -728,6 +781,7 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterBulletSpeedNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel10
             // 
@@ -762,12 +816,18 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterRangeNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // emitterSpriteNud
             // 
             this.emitterSpriteNud.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.emitterSpriteNud.ForeColor = System.Drawing.Color.Gainsboro;
             this.emitterSpriteNud.Location = new System.Drawing.Point(110, 72);
+            this.emitterSpriteNud.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.emitterSpriteNud.Name = "emitterSpriteNud";
             this.emitterSpriteNud.Size = new System.Drawing.Size(129, 20);
             this.emitterSpriteNud.TabIndex = 5;
@@ -776,6 +836,7 @@ namespace Engine
             0,
             0,
             0});
+            this.emitterSpriteNud.ValueChanged += new System.EventHandler(this.UpdateEmitterSettings);
             // 
             // darkLabel11
             // 
@@ -845,6 +906,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
             this.emitterPropertiesPanel.ResumeLayout(false);
             this.emitterPropertiesPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.darkNumericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewSpriteNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterOffsetRotationNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emitterYOffsetNud)).EndInit();
@@ -906,6 +968,8 @@ namespace Engine
         internal DarkUI.Controls.DarkComboBox PreviewDirectionDropdown;
         internal DarkUI.Controls.DarkLabel darkLabel17;
         internal DarkUI.Controls.DarkNumericUpDown PreviewSpriteNud;
+        internal DarkUI.Controls.DarkLabel darkLabel6;
+        internal DarkUI.Controls.DarkNumericUpDown darkNumericUpDown2;
     }
 	
 }
