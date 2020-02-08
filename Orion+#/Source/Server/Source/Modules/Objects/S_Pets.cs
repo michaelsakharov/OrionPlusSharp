@@ -1164,6 +1164,20 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
             SendUpdatePlayerPet(index, false);
         }
 
+        public static void ForcePetBackToPlayer(int index)
+        {
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Alive = 1;
+            // Remove Target
+            modTypes.TempPlayer[index].PetTarget = 0;
+            modTypes.TempPlayer[index].PetTargetType = 0;
+            modTypes.TempPlayer[index].GoToX = -1;
+            modTypes.TempPlayer[index].GoToY = -1;
+            // Move to Player
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.X = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].X;
+            modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Y = modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Y;
+            SendUpdatePlayerPet(index, false);
+        }
+
         public static void ReleasePet(int index)
         {
             int i;
