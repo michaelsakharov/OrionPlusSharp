@@ -268,6 +268,10 @@ namespace Engine
                                     {
                                         return false;
                                     }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                    {
+                                        return false;
+                                    }
                                 }
                             }
 
@@ -310,6 +314,10 @@ namespace Engine
                                     {
                                         return false;
                                     }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
+                                    {
+                                        return false;
+                                    }
                                 }
                             }
 
@@ -349,6 +357,10 @@ namespace Engine
                                 if (S_NetworkConfig.IsPlaying(i))
                                 {
                                     if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
+                                    {
+                                        return false;
+                                    }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
                                     {
                                         return false;
                                     }
@@ -396,6 +408,10 @@ namespace Engine
                                     {
                                         return false;
                                     }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                    {
+                                        return false;
+                                    }
                                 }
                             }
 
@@ -435,6 +451,10 @@ namespace Engine
                                 if (S_NetworkConfig.IsPlaying(i))
                                 {
                                     if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
+                                    {
+                                        return false;
+                                    }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
                                     {
                                         return false;
                                     }
@@ -480,6 +500,10 @@ namespace Engine
                                     {
                                         return false;
                                     }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                    {
+                                        return false;
+                                    }
                                 }
                             }
 
@@ -519,6 +543,10 @@ namespace Engine
                                 if (S_NetworkConfig.IsPlaying(i))
                                 {
                                     if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
+                                    {
+                                        return false;
+                                    }
+                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
                                     {
                                         return false;
                                     }
