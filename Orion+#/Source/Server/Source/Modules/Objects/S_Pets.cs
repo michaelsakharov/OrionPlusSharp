@@ -1391,7 +1391,7 @@ if (modTypes.TempPlayer[index].PetTargetType == (byte)Enums.TargetType.Player &&
                             {
                                 if (S_NetworkConfig.IsPlaying(i))
                                 {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == GetPetX(index) + 1) && (S_Players.GetPlayerY(i) == GetPetY(index) - 1))
+                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == GetPetX(index)) && (S_Players.GetPlayerY(i) == GetPetY(index) - 1))
                                     {
                                         return false;
                                     }
