@@ -345,14 +345,15 @@ namespace Engine
 			txtCurrency.Text = "";
 			C_Variables.CurrencyMenu = (byte) 0; // clear
 		}
-		
-#endregion
-		
-#region PicScreen Code
-		
-		public void Picscreen_MouseDown(object sender, MouseEventArgs e)
+
+        #endregion
+
+        #region PicScreen Code
+
+        public void Picscreen_MouseDown(object sender, MouseEventArgs olde)
 		{
-			if (!C_GuiFunctions.CheckGuiClick(e.X, e.Y, e))
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            if (!C_GuiFunctions.CheckGuiClick(e.X, e.Y, e))
 			{
 				
 				if (C_Constants.InMapEditor)
@@ -425,11 +426,12 @@ namespace Engine
 			
 		}
 		
-		public void Picscreen_DoubleClick(object sender, EventArgs e)
-		{
-            MouseEventArgs eMouse = (MouseEventArgs)e;
+		public void Picscreen_DoubleClick(object sender, EventArgs earg)
+        {
+            MouseEventArgs olde = (MouseEventArgs)earg;
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
 
-            C_GuiFunctions.CheckGuiDoubleClick(eMouse.X, eMouse.Y, eMouse);
+            C_GuiFunctions.CheckGuiDoubleClick(e.X, e.Y, e);
 		}
 		
 		public void Picscreen_Paint(object sender, PaintEventArgs e)
@@ -438,9 +440,10 @@ namespace Engine
 			return;
 		}
 		
-		public void Picscreen_MouseMove(object sender, MouseEventArgs e)
-		{
-			C_Variables.CurX = C_Variables.TileView.Left + ((e.Location.X + C_Variables.Camera.Left) / C_Constants.PicX);
+		public void Picscreen_MouseMove(object sender, MouseEventArgs olde)
+        {
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            C_Variables.CurX = C_Variables.TileView.Left + ((e.Location.X + C_Variables.Camera.Left) / C_Constants.PicX);
 			C_Variables.CurY = C_Variables.TileView.Top + ((e.Location.Y + C_Variables.Camera.Top) / C_Constants.PicY);
 			C_Variables.CurMouseX = e.Location.X;
 			C_Variables.CurMouseY = e.Location.Y;
@@ -455,9 +458,10 @@ namespace Engine
 			}
 		}
 		
-		public void Picscreen_MouseUp(object sender, MouseEventArgs e)
-		{
-			C_Variables.CurX = C_Variables.TileView.Left + ((e.Location.X + C_Variables.Camera.Left) / C_Constants.PicX);
+		public void Picscreen_MouseUp(object sender, MouseEventArgs olde)
+        {
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            C_Variables.CurX = C_Variables.TileView.Left + ((e.Location.X + C_Variables.Camera.Left) / C_Constants.PicX);
 			C_Variables.CurY = C_Variables.TileView.Top + ((e.Location.Y + C_Variables.Camera.Top) / C_Constants.PicY);
 			C_GuiFunctions.CheckGuiMouseUp(e.X, e.Y, e);
 		}

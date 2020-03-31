@@ -71,6 +71,7 @@ namespace Engine
 			int tmrconnect = 0;
 			int rendercount = 0;
 			int fadetmr = 0;
+			int appDoEventsTimer = 0;
 			int x = 0;
 			int Y = 0;
 			
@@ -80,291 +81,259 @@ namespace Engine
             clock = new Stopwatch();
             clock.Start();
 
+            Application.DoEvents();
+
             do
 			{
-				if (C_UpdateUI.GameDestroyed)
-				{
-					ProjectData.EndApp();
-				}
-				
-				C_Variables.DirDown = C_UpdateUI.VbKeyDown;
-				C_Variables.DirUp = C_UpdateUI.VbKeyUp;
-				C_Variables.DirLeft = C_UpdateUI.VbKeyLeft;
-				C_Variables.DirRight = C_UpdateUI.VbKeyRight;
-
-                // 8 Directional Movement
-                if (C_Variables.allowEightDirectionalMovement)
+                try
                 {
-                    C_Variables.DirUpLeft = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyLeft);
-                    C_Variables.DirUpRight = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyRight);
-                    C_Variables.DirDownLeft = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyLeft);
-                    C_Variables.DirDownRight = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyRight);
-                }
-                else
-                {
-                    C_Variables.DirUpLeft = false;
-                    C_Variables.DirUpRight = false;
-                    C_Variables.DirDownLeft = false;
-                    C_Variables.DirDownRight = false;
-                }
-
-                if (C_UpdateUI.Frmmenuvisible == true)
-				{
-                    // Were not connected and were in the main menu so lets connect
-                    if(C_Discord.client == null)
+                    if (C_UpdateUI.GameDestroyed)
                     {
-                        C_Discord.SetPresence(C_Constants.GameName, "Main Menu");
+                        ProjectData.EndApp();
                     }
 
-					if (tmrconnect < C_General.GetTickCount())
-					{
-						if (C_NetworkConfig.Socket.IsConnected == true)
-						{
-							FrmMenu.Default.lblServerStatus.ForeColor = Color.LightGreen;
-							FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serveronline");
-						}
-						else
-						{
-							i++;
-							if (i >= 5)
-							{
-								C_NetworkConfig.Connect();
-								FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serverreconnect");
-								FrmMenu.Default.lblServerStatus.ForeColor = Color.Orange;
-								i = 0;
-							}
-							else
-							{
-								FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serveroffline");
-								FrmMenu.Default.lblServerStatus.ForeColor = Color.Red;
-							}
-						}
-						tmrconnect = C_General.GetTickCount() + 500;
-					}
-				}
-				
-				//Update the UI
-				C_UpdateUI.UpdateUi();
-				
-				if (GameStarted())
-				{
+                    C_Variables.DirDown = C_UpdateUI.VbKeyDown;
+                    C_Variables.DirUp = C_UpdateUI.VbKeyUp;
+                    C_Variables.DirLeft = C_UpdateUI.VbKeyLeft;
+                    C_Variables.DirRight = C_UpdateUI.VbKeyRight;
 
-                    tick = C_General.GetTickCount();
-					C_Variables.ElapsedTime = tick - frameTime; // Set the time difference for time-based movement
-					
-					frameTime = tick;
-					C_UpdateUI.Frmmaingamevisible = true;
-
-                    //Calculate lps
-                    if (starttime < tick)
-					{
-						C_Variables.Lps = tmplps;
-						tmplps = 0;
-						starttime = tick + 1000;
-					}
-					tmplps++;
-					
-					// Update inv animation
-					if (C_Graphics.NumItems > 0)
-					{
-						if (tmr100 < tick)
-						{
-							
-							if (C_Banks.InBank == 1)
-							{
-								C_Banks.DrawBank();
-							}
-							if (C_Shops.InShop == 1)
-							{
-								C_Shops.DrawShop();
-							}
-							if (C_Trade.InTrade)
-							{
-								C_Trade.DrawTrade();
-							}
-							
-							tmr100 = tick + 100;
-						}
-					}
-					
-					if (C_Variables.ShowAnimTimer < tick)
-					{
-						C_Variables.ShowAnimLayers = !C_Variables.ShowAnimLayers;
-						C_Variables.ShowAnimTimer = tick + 500;
-					}
-					
-					for (i = 1; i <= byte.MaxValue; i++)
-					{
-						CheckAnimInstance(i);
-					}
-					
-					if (tick > C_EventSystem.EventChatTimer)
-					{
-						if (string.IsNullOrEmpty(C_EventSystem.EventText))
-						{
-							if (C_EventSystem.EventChat == true)
-							{
-								C_EventSystem.EventChat = false;
-								C_UpdateUI.PnlEventChatVisible = false;
-							}
-						}
-					}
-					
-					if (tmr10000 < tick)
-					{
-						//clear any unused gfx
-						//C_Graphics.ClearGfx();
-						
-						C_NetworkSend.GetPing();
-						DrawPing();
-						
-						tmr10000 = tick + 10000;
-					}
-					
-					if (tmr1000 < tick)
-					{
-						Time.Instance.Tick();
-						
-						tmr1000 = tick + 1000;
-					}
-					
-					//crafting timer
-					if (C_Crafting.CraftTimerEnabled)
-					{
-						if (C_Crafting.CraftTimer < tick)
-						{
-							C_Crafting.CraftProgressValue = System.Convert.ToInt32(C_Crafting.CraftProgressValue + (100 / C_Crafting.Recipe[C_Crafting.GetRecipeIndex(C_Crafting.RecipeNames[C_Crafting.SelectedRecipe])].CreateTime));
-							
-							if (C_Crafting.CraftProgressValue >= 100)
-							{
-								C_Crafting.CraftTimerEnabled = false;
-							}
-							C_Crafting.CraftTimer = tick + 1000;
-						}
-					}
-					
-					//screenshake timer
-					if (C_Variables.ShakeTimerEnabled)
-					{
-						if (C_Variables.ShakeTimer < tick)
-						{
-							if (C_Variables.ShakeCount < 10)
-							{
-								if (C_Variables.LastDir == 0)
-								{
-									FrmGame.Default.picscreen.Location = new Point(FrmGame.Default.picscreen.Location.X + 20, FrmGame.Default.picscreen.Location.Y);
-									C_Variables.LastDir = (byte) 1;
-								}
-								else
-								{
-									FrmGame.Default.picscreen.Location = new Point(FrmGame.Default.picscreen.Location.X - 20, FrmGame.Default.picscreen.Location.Y);
-									C_Variables.LastDir = (byte) 0;
-								}
-							}
-							else
-							{
-								FrmGame.Default.picscreen.Location = new Point(0, 0);
-								C_Variables.ShakeCount = (byte) 0;
-								C_Variables.ShakeTimerEnabled = false;
-							}
-							
-							C_Variables.ShakeCount++;
-							
-							C_Variables.ShakeTimer = tick + 50;
-						}
-					}
-					
-					// check if trade timed out
-					if (C_Trade.TradeRequest == true)
-					{
-						if (C_Trade.TradeTimer < tick)
-						{
-							C_Text.AddText(Strings.Get("trade", "tradetimeout"), (System.Int32) Enums.ColorType.Yellow);
-							C_Trade.TradeRequest = false;
-							C_Trade.TradeTimer = 0;
-						}
-					}
-					
-					// check if we need to end the CD icon
-					if (C_Graphics.NumSkillIcons > 0)
-					{
-						for (i = 1; i <= Constants.MAX_PLAYER_SKILLS; i++)
-						{
-							if (C_Variables.PlayerSkills[i] > 0)
-							{
-								if (C_Variables.SkillCd[i] > 0)
-								{
-									if (C_Variables.SkillCd[i] + (Types.Skill[C_Variables.PlayerSkills[i]].CdTime * 1000) < tick)
-									{
-										C_Variables.SkillCd[i] = 0;
-										C_Graphics.DrawPlayerSkills();
-									}
-								}
-							}
-						}
-					}
-					
-					// check if we need to unlock the player's skill casting restriction
-					if (C_Variables.SkillBuffer > 0)
-					{
-						if (C_Variables.SkillBufferTimer + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 100) < tick)
-						{
-							C_Variables.SkillBuffer = 0;
-							C_Variables.SkillBufferTimer = 0;
-						}
-					}
-					// check if we need to unlock the pets's spell casting restriction
-					if (C_Pets.PetSkillBuffer > 0)
-					{
-						if (C_Pets.PetSkillBufferTimer + (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 100) < tick)
-						{
-							C_Pets.PetSkillBuffer = 0;
-							C_Pets.PetSkillBufferTimer = 0;
-						}
-					}
-
-                    lock (C_Maps.MapLock)
+                    // 8 Directional Movement
+                    if (C_Variables.allowEightDirectionalMovement)
                     {
-                        //Set this to True to use Auto Attack on Client
-                        bool UseAutoAttack = false;
-                        //AutoAttack
-                        if (UseAutoAttack)
+                        C_Variables.DirUpLeft = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyLeft);
+                        C_Variables.DirUpRight = (C_UpdateUI.VbKeyUp && C_UpdateUI.VbKeyRight);
+                        C_Variables.DirDownLeft = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyLeft);
+                        C_Variables.DirDownRight = (C_UpdateUI.VbKeyDown && C_UpdateUI.VbKeyRight);
+                    }
+                    else
+                    {
+                        C_Variables.DirUpLeft = false;
+                        C_Variables.DirUpRight = false;
+                        C_Variables.DirDownLeft = false;
+                        C_Variables.DirDownRight = false;
+                    }
+
+                    if (C_UpdateUI.Frmmenuvisible == true)
+                    {
+                        // Were not connected and were in the main menu so lets connect
+                        if (C_Discord.client == null)
                         {
-                            if (C_Variables.CanMoveNow)
+                            C_Discord.SetPresence(C_Constants.GameName, "Main Menu");
+                        }
+
+                        if (tmrconnect < C_General.GetTickCount())
+                        {
+                            if (C_NetworkConfig.Socket.IsConnected == true)
                             {
-                                switch (C_Player.GetPlayerDir(C_Variables.Myindex))
+                                FrmMenu.Default.lblServerStatus.ForeColor = Color.LightGreen;
+                                FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serveronline");
+                            }
+                            else
+                            {
+                                i++;
+                                if (i >= 5)
                                 {
-                                    case (int)Enums.DirectionType.Up:
-                                        x = C_Player.GetPlayerX(C_Variables.Myindex);
-                                        Y = C_Player.GetPlayerY(C_Variables.Myindex) - 1;
-                                        break;
-                                    case (int)Enums.DirectionType.Down:
-                                        x = C_Player.GetPlayerX(C_Variables.Myindex);
-                                        Y = C_Player.GetPlayerY(C_Variables.Myindex) + 1;
-                                        break;
-                                    case (int)Enums.DirectionType.Left:
-                                        x = C_Player.GetPlayerX(C_Variables.Myindex) - 1;
-                                        Y = C_Player.GetPlayerY(C_Variables.Myindex);
-                                        break;
-                                    case (int)Enums.DirectionType.Right:
-                                        x = C_Player.GetPlayerX(C_Variables.Myindex) + 1;
-                                        Y = C_Player.GetPlayerY(C_Variables.Myindex);
-                                        break;
+                                    C_NetworkConfig.Connect();
+                                    FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serverreconnect");
+                                    FrmMenu.Default.lblServerStatus.ForeColor = Color.Orange;
+                                    i = 0;
                                 }
-                                if (C_Variables.MyTarget > 0)
+                                else
                                 {
-                                    if (x == C_Maps.MapNpc[C_Variables.MyTarget].X && Y == C_Maps.MapNpc[C_Variables.MyTarget].Y)
+                                    FrmMenu.Default.lblServerStatus.Text = Strings.Get("mainmenu", "serveroffline");
+                                    FrmMenu.Default.lblServerStatus.ForeColor = Color.Red;
+                                }
+                            }
+                            tmrconnect = C_General.GetTickCount() + 500;
+                        }
+                    }
+
+                    //Update the UI
+                    C_UpdateUI.UpdateUi();
+
+                    if (GameStarted())
+                    {
+
+                        tick = C_General.GetTickCount();
+                        C_Variables.ElapsedTime = tick - frameTime; // Set the time difference for time-based movement
+
+                        frameTime = tick;
+                        C_UpdateUI.Frmmaingamevisible = true;
+
+                        //Calculate lps
+                        if (starttime < tick)
+                        {
+                            C_Variables.Lps = tmplps;
+                            tmplps = 0;
+                            starttime = tick + 1000;
+                        }
+                        tmplps++;
+
+                        // Update inv animation
+                        if (C_Graphics.NumItems > 0)
+                        {
+                            if (tmr100 < tick)
+                            {
+
+                                if (C_Banks.InBank == 1)
+                                {
+                                    C_Banks.DrawBank();
+                                }
+                                if (C_Shops.InShop == 1)
+                                {
+                                    C_Shops.DrawShop();
+                                }
+                                if (C_Trade.InTrade)
+                                {
+                                    C_Trade.DrawTrade();
+                                }
+
+                                tmr100 = tick + 100;
+                            }
+                        }
+
+                        if (C_Variables.ShowAnimTimer < tick)
+                        {
+                            C_Variables.ShowAnimLayers = !C_Variables.ShowAnimLayers;
+                            C_Variables.ShowAnimTimer = tick + 500;
+                        }
+
+                        for (i = 1; i <= byte.MaxValue; i++)
+                        {
+                            CheckAnimInstance(i);
+                        }
+
+                        if (tick > C_EventSystem.EventChatTimer)
+                        {
+                            if (string.IsNullOrEmpty(C_EventSystem.EventText))
+                            {
+                                if (C_EventSystem.EventChat == true)
+                                {
+                                    C_EventSystem.EventChat = false;
+                                    C_UpdateUI.PnlEventChatVisible = false;
+                                }
+                            }
+                        }
+
+                        if (tmr10000 < tick)
+                        {
+                            //clear any unused gfx
+                            //C_Graphics.ClearGfx();
+
+                            C_NetworkSend.GetPing();
+                            DrawPing();
+
+                            tmr10000 = tick + 10000;
+                        }
+
+                        if (tmr1000 < tick)
+                        {
+                            Time.Instance.Tick();
+
+                            tmr1000 = tick + 1000;
+                        }
+
+                        //crafting timer
+                        if (C_Crafting.CraftTimerEnabled)
+                        {
+                            if (C_Crafting.CraftTimer < tick)
+                            {
+                                C_Crafting.CraftProgressValue = System.Convert.ToInt32(C_Crafting.CraftProgressValue + (100 / C_Crafting.Recipe[C_Crafting.GetRecipeIndex(C_Crafting.RecipeNames[C_Crafting.SelectedRecipe])].CreateTime));
+
+                                if (C_Crafting.CraftProgressValue >= 100)
+                                {
+                                    C_Crafting.CraftTimerEnabled = false;
+                                }
+                                C_Crafting.CraftTimer = tick + 1000;
+                            }
+                        }
+
+                        //screenshake timer
+                        if (C_Variables.ShakeTimerEnabled)
+                        {
+                            if (C_Variables.ShakeTimer < tick)
+                            {
+                                if (C_Variables.ShakeCount < 10)
+                                {
+                                    if (C_Variables.LastDir == 0)
                                     {
-                                        C_Variables.ControlDown = true;
+                                        FrmGame.Default.picscreen.Location = new Point(FrmGame.Default.picscreen.Location.X + 20, FrmGame.Default.picscreen.Location.Y);
+                                        C_Variables.LastDir = (byte)1;
                                     }
                                     else
                                     {
-                                        C_Player.CheckMovement(); // Check if player is trying to move
-                                        C_Player.CheckAttack(); // Check to see if player is trying to attack
+                                        FrmGame.Default.picscreen.Location = new Point(FrmGame.Default.picscreen.Location.X - 20, FrmGame.Default.picscreen.Location.Y);
+                                        C_Variables.LastDir = (byte)0;
+                                    }
+                                }
+                                else
+                                {
+                                    FrmGame.Default.picscreen.Location = new Point(0, 0);
+                                    C_Variables.ShakeCount = (byte)0;
+                                    C_Variables.ShakeTimerEnabled = false;
+                                }
+
+                                C_Variables.ShakeCount++;
+
+                                C_Variables.ShakeTimer = tick + 50;
+                            }
+                        }
+
+                        // check if trade timed out
+                        if (C_Trade.TradeRequest == true)
+                        {
+                            if (C_Trade.TradeTimer < tick)
+                            {
+                                C_Text.AddText(Strings.Get("trade", "tradetimeout"), (System.Int32)Enums.ColorType.Yellow);
+                                C_Trade.TradeRequest = false;
+                                C_Trade.TradeTimer = 0;
+                            }
+                        }
+
+                        // check if we need to end the CD icon
+                        if (C_Graphics.NumSkillIcons > 0)
+                        {
+                            for (i = 1; i <= Constants.MAX_PLAYER_SKILLS; i++)
+                            {
+                                if (C_Variables.PlayerSkills[i] > 0)
+                                {
+                                    if (C_Variables.SkillCd[i] > 0)
+                                    {
+                                        if (C_Variables.SkillCd[i] + (Types.Skill[C_Variables.PlayerSkills[i]].CdTime * 1000) < tick)
+                                        {
+                                            C_Variables.SkillCd[i] = 0;
+                                            C_Graphics.DrawPlayerSkills();
+                                        }
                                     }
                                 }
                             }
-                            else
+                        }
+
+                        // check if we need to unlock the player's skill casting restriction
+                        if (C_Variables.SkillBuffer > 0)
+                        {
+                            if (C_Variables.SkillBufferTimer + (Types.Skill[C_Variables.PlayerSkills[C_Variables.SkillBuffer]].CastTime * 100) < tick)
+                            {
+                                C_Variables.SkillBuffer = 0;
+                                C_Variables.SkillBufferTimer = 0;
+                            }
+                        }
+                        // check if we need to unlock the pets's spell casting restriction
+                        if (C_Pets.PetSkillBuffer > 0)
+                        {
+                            if (C_Pets.PetSkillBufferTimer + (Types.Skill[C_Pets.Pet[C_Types.Player[C_Variables.Myindex].Pet.Num].Skill[C_Pets.PetSkillBuffer]].CastTime * 100) < tick)
+                            {
+                                C_Pets.PetSkillBuffer = 0;
+                                C_Pets.PetSkillBufferTimer = 0;
+                            }
+                        }
+
+                        lock (C_Maps.MapLock)
+                        {
+                            //Set this to True to use Auto Attack on Client
+                            bool UseAutoAttack = false;
+                            //AutoAttack
+                            if (UseAutoAttack)
                             {
                                 if (C_Variables.CanMoveNow)
                                 {
@@ -387,181 +356,226 @@ namespace Engine
                                             Y = C_Player.GetPlayerY(C_Variables.Myindex);
                                             break;
                                     }
-                                    C_Player.CheckMovement(); // Check if player is trying to move
+                                    if (C_Variables.MyTarget > 0)
+                                    {
+                                        if (x == C_Maps.MapNpc[C_Variables.MyTarget].X && Y == C_Maps.MapNpc[C_Variables.MyTarget].Y)
+                                        {
+                                            C_Variables.ControlDown = true;
+                                        }
+                                        else
+                                        {
+                                            C_Player.CheckMovement(); // Check if player is trying to move
+                                            C_Player.CheckAttack(); // Check to see if player is trying to attack
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (C_Variables.CanMoveNow)
+                                    {
+                                        switch (C_Player.GetPlayerDir(C_Variables.Myindex))
+                                        {
+                                            case (int)Enums.DirectionType.Up:
+                                                x = C_Player.GetPlayerX(C_Variables.Myindex);
+                                                Y = C_Player.GetPlayerY(C_Variables.Myindex) - 1;
+                                                break;
+                                            case (int)Enums.DirectionType.Down:
+                                                x = C_Player.GetPlayerX(C_Variables.Myindex);
+                                                Y = C_Player.GetPlayerY(C_Variables.Myindex) + 1;
+                                                break;
+                                            case (int)Enums.DirectionType.Left:
+                                                x = C_Player.GetPlayerX(C_Variables.Myindex) - 1;
+                                                Y = C_Player.GetPlayerY(C_Variables.Myindex);
+                                                break;
+                                            case (int)Enums.DirectionType.Right:
+                                                x = C_Player.GetPlayerX(C_Variables.Myindex) + 1;
+                                                Y = C_Player.GetPlayerY(C_Variables.Myindex);
+                                                break;
+                                        }
+                                        C_Player.CheckMovement(); // Check if player is trying to move
+                                    }
+                                }
+                            }
+
+                            if (C_Variables.CanMoveNow && !UseAutoAttack)
+                            {
+
+                                C_Player.CheckMovement(); // Check if player is trying to move
+                                C_Player.CheckAttack(); // Check to see if player is trying to attack
+                            }
+
+                            // Process input before rendering, otherwise input will be behind by 1 frame
+                            if (walkTimer < tick)
+                            {
+
+                                for (i = 1; i <= C_Variables.TotalOnline; i++) //MAX_PLAYERS
+                                {
+                                    if (C_Player.IsPlaying(i))
+                                    {
+                                        C_Player.ProcessMovement(i);
+                                        if (C_Pets.PetAlive(i))
+                                        {
+                                            C_Pets.ProcessPetMovement(i);
+                                        }
+                                    }
+                                }
+
+                                // Process npc movements (actually move them)
+                                for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+                                {
+                                    if (C_Maps.Map.Npc[i] > 0)
+                                    {
+                                        ProcessNpcMovement(i);
+                                    }
+                                }
+
+                                if (C_Maps.Map.CurrentEvents > 0)
+                                {
+                                    for (i = 1; i <= C_Maps.Map.CurrentEvents; i++)
+                                    {
+                                        C_EventSystem.ProcessEventMovement(i);
+                                    }
+                                }
+
+                                walkTimer = tick + 30; // edit this value to change WalkTimer
+                            }
+
+                            // fog scrolling
+                            if (fogtmr < tick)
+                            {
+                                if (C_Weather.CurrentFogSpeed > 0)
+                                {
+                                    // move
+                                    C_Weather.FogOffsetX--;
+                                    C_Weather.FogOffsetY--;
+                                    // reset
+                                    if (C_Weather.FogOffsetX < -255)
+                                    {
+                                        C_Weather.FogOffsetX = 1;
+                                    }
+                                    if (C_Weather.FogOffsetY < -255)
+                                    {
+                                        C_Weather.FogOffsetY = 1;
+                                    }
+                                    fogtmr = tick + 255 - C_Weather.CurrentFogSpeed;
+                                }
+                            }
+
+                            if (tmr500 < tick)
+                            {
+                                // animate waterfalls
+                                switch (C_AutoTiles.WaterfallFrame)
+                                {
+                                    case 0:
+                                        C_AutoTiles.WaterfallFrame = 1;
+                                        break;
+                                    case 1:
+                                        C_AutoTiles.WaterfallFrame = 2;
+                                        break;
+                                    case 2:
+                                        C_AutoTiles.WaterfallFrame = 0;
+                                        break;
+                                }
+                                // animate autotiles
+                                switch (C_AutoTiles.AutoTileFrame)
+                                {
+                                    case 0:
+                                        C_AutoTiles.AutoTileFrame = 1;
+                                        break;
+                                    case 1:
+                                        C_AutoTiles.AutoTileFrame = 2;
+                                        break;
+                                    case 2:
+                                        C_AutoTiles.AutoTileFrame = 0;
+                                        break;
+                                }
+
+                                tmr500 = tick + 500;
+                            }
+
+                            if (C_Sound.FadeInSwitch == true)
+                            {
+                                C_Sound.FadeIn();
+                            }
+
+                            if (C_Sound.FadeOutSwitch == true)
+                            {
+                                C_Sound.FadeOut();
+                            }
+
+                            if (C_Constants.InMapEditor)
+                            {
+                                FrmEditor_MapEditor.Default.EditorMap_DrawTileset();
+                            }
+
+                            //Do we need todo this?
+                            //Application.DoEvents();
+
+                            if (C_Variables.GettingMap)
+                            {
+                                Font font = new Font(Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + C_Constants.FontName, C_Constants.FontSize);
+                                g.DrawString(Strings.Get("gamegui", "maprecieve"), font, Brushes.DarkCyan, FrmGame.Default.picscreen.Width - 130, 5);
+                            }
+
+                        }
+                    }
+
+                    if (tmrweather < tick)
+                    {
+                        C_Weather.ProcessWeather();
+                        tmrweather = tick + 50;
+                    }
+
+                    if (fadetmr < tick)
+                    {
+                        if (C_Variables.FadeType != 2)
+                        {
+                            if (C_Variables.FadeType == 1)
+                            {
+                                if (C_Variables.FadeAmount != 255)
+                                {
+                                    C_Variables.FadeAmount = C_Variables.FadeAmount + 5;
+                                }
+                            }
+                            else if (C_Variables.FadeType == 0)
+                            {
+                                if (C_Variables.FadeAmount == 0)
+                                {
+                                    C_Variables.UseFade = false;
+                                }
+                                else
+                                {
+                                    C_Variables.FadeAmount = C_Variables.FadeAmount - 5;
                                 }
                             }
                         }
+                        fadetmr = tick + 30;
+                    }
 
-                        if (C_Variables.CanMoveNow && !UseAutoAttack)
-                        {
+                    if (rendercount < tick || C_Types.Options.UnlockFPS == 1)
+                    {
+                        //Actual Game Loop Stuff :/
+                        C_Variables.Fps = CalculateFrameRate();
+                        C_Graphics.Render_Graphics();
+                        rendercount = tick + 8;
+                    }
 
-                            C_Player.CheckMovement(); // Check if player is trying to move
-                            C_Player.CheckAttack(); // Check to see if player is trying to attack
-                        }
-						
-						// Process input before rendering, otherwise input will be behind by 1 frame
-						if (walkTimer < tick)
-						{
-							
-							for (i = 1; i <= C_Variables.TotalOnline; i++) //MAX_PLAYERS
-							{
-								if (C_Player.IsPlaying(i))
-								{
-									C_Player.ProcessMovement(i);
-									if (C_Pets.PetAlive(i))
-									{
-										C_Pets.ProcessPetMovement(i);
-									}
-								}
-							}
-							
-							// Process npc movements (actually move them)
-							for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-							{
-								if (C_Maps.Map.Npc[i] > 0)
-								{
-									ProcessNpcMovement(i);
-								}
-							}
-							
-							if (C_Maps.Map.CurrentEvents > 0)
-							{
-								for (i = 1; i <= C_Maps.Map.CurrentEvents; i++)
-								{
-									C_EventSystem.ProcessEventMovement(i);
-								}
-							}
-							
-							walkTimer = tick + 30; // edit this value to change WalkTimer
-						}
-						
-						// fog scrolling
-						if (fogtmr < tick)
-						{
-							if (C_Weather.CurrentFogSpeed > 0)
-							{
-								// move
-								C_Weather.FogOffsetX--;
-								C_Weather.FogOffsetY--;
-								// reset
-								if (C_Weather.FogOffsetX < -255)
-								{
-									C_Weather.FogOffsetX = 1;
-								}
-								if (C_Weather.FogOffsetY < -255)
-								{
-									C_Weather.FogOffsetY = 1;
-								}
-								fogtmr = tick + 255 - C_Weather.CurrentFogSpeed;
-							}
-						}
-						
-						if (tmr500 < tick)
-						{
-							// animate waterfalls
-							switch (C_AutoTiles.WaterfallFrame)
-							{
-								case 0:
-									C_AutoTiles.WaterfallFrame = 1;
-									break;
-								case 1:
-									C_AutoTiles.WaterfallFrame = 2;
-									break;
-								case 2:
-									C_AutoTiles.WaterfallFrame = 0;
-									break;
-							}
-							// animate autotiles
-							switch (C_AutoTiles.AutoTileFrame)
-							{
-								case 0:
-									C_AutoTiles.AutoTileFrame = 1;
-									break;
-								case 1:
-									C_AutoTiles.AutoTileFrame = 2;
-									break;
-								case 2:
-									C_AutoTiles.AutoTileFrame = 0;
-									break;
-							}
-							
-							tmr500 = tick + 500;
-						}
-						
-						if (C_Sound.FadeInSwitch == true)
-						{
-							C_Sound.FadeIn();
-						}
-						
-						if (C_Sound.FadeOutSwitch == true)
-						{
-							C_Sound.FadeOut();
-						}
-						
-						if (C_Constants.InMapEditor)
-						{
-							FrmEditor_MapEditor.Default.EditorMap_DrawTileset();
-						}
-						
-                        //Do we need todo this?
-						//Application.DoEvents();
-						
-						if (C_Variables.GettingMap)
-						{
-							Font font = new Font(Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + C_Constants.FontName, C_Constants.FontSize);
-							g.DrawString(Strings.Get("gamegui", "maprecieve"), font, Brushes.DarkCyan, FrmGame.Default.picscreen.Width - 130, 5);
-						}
-						
-					}
-				}
-				
-				if (tmrweather < tick)
-				{
-					C_Weather.ProcessWeather();
-					tmrweather = tick + 50;
-				}
-				
-				if (fadetmr < tick)
-				{
-					if (C_Variables.FadeType != 2)
-					{
-						if (C_Variables.FadeType == 1)
-						{
-							if (C_Variables.FadeAmount != 255)
-							{
-								C_Variables.FadeAmount = C_Variables.FadeAmount + 5;
-							}
-						}
-						else if (C_Variables.FadeType == 0)
-						{
-							if (C_Variables.FadeAmount == 0)
-							{
-								C_Variables.UseFade = false;
-							}
-							else
-							{
-								C_Variables.FadeAmount = C_Variables.FadeAmount - 5;
-							}
-						}
-					}
-					fadetmr = tick + 30;
-				}
-				
-				if (rendercount < tick || C_Types.Options.UnlockFPS == 1)
-				{
-                    //Actual Game Loop Stuff :/
-                    C_Variables.Fps = CalculateFrameRate();
-                    C_Graphics.Render_Graphics();
-					tmplps++;
-					rendercount = tick + 8;
-				}
-                
-                Application.DoEvents();
+                    if(appDoEventsTimer < C_General.GetTickCount())
+                    {
+                        Application.DoEvents();
+                        appDoEventsTimer = C_General.GetTickCount() + 25;
+                    }
 
-                DeltaTime();
-                
-				Thread.Sleep(1); // Yield also works
-				//Thread.Yield();
+
+                    DeltaTime();
+
+                    Thread.Sleep(1); // Yield also works
+                                     //Thread.Yield();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.StackTrace, "ERROR");
+                }
 				
 			} while (true);
 		}
