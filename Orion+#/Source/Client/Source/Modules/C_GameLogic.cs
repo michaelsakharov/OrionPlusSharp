@@ -569,8 +569,14 @@ namespace Engine
 
                     DeltaTime();
 
-                    Thread.Sleep(1); // Yield also works
-                                     //Thread.Yield();
+                    Thread.Sleep(1); 
+                    // Yield also works but Yield produces much more erratic performance, while Sleep produces a smooth stable performance
+                    // Thats because Yield has to find a new open thread, this process can sometimes be instant or take a bit to process.
+                    // While Thread.Sleep will always wait exactly the said time rather then it being slightly random.
+                    // You could also play without a delay entirely, there isnt a major change besides a MINOR boost to performance
+                    // But it will attempt to consume 100% of the cpu at all times, which may not be desired
+                    // The delay gives the CPU a break
+                    //Thread.Yield();
                 }
                 catch (Exception e)
                 {
