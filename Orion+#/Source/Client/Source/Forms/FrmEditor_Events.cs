@@ -1104,9 +1104,10 @@ namespace Engine
 		C_EventSystem.EditorEvent_DrawGraphic();
 	}
 	
-	public void PicGraphicSel_Click(object sender, MouseEventArgs e)
-	{
-		int X = 0;
+	public void PicGraphicSel_Click(object sender, MouseEventArgs olde)
+    {
+        MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
+        int X = 0;
 		int Y = 0;
 		
 		X = e.Location.X;

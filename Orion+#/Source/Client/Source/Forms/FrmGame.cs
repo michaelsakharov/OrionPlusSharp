@@ -352,7 +352,7 @@ namespace Engine
 
         public void Picscreen_MouseDown(object sender, MouseEventArgs olde)
 		{
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
             if (!C_GuiFunctions.CheckGuiClick(e.X, e.Y, e))
 			{
 				
@@ -429,7 +429,7 @@ namespace Engine
 		public void Picscreen_DoubleClick(object sender, EventArgs earg)
         {
             MouseEventArgs olde = (MouseEventArgs)earg;
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
 
             C_GuiFunctions.CheckGuiDoubleClick(e.X, e.Y, e);
 		}
@@ -442,7 +442,7 @@ namespace Engine
 		
 		public void Picscreen_MouseMove(object sender, MouseEventArgs olde)
         {
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
             C_Variables.CurX = C_Variables.TileView.Left + ((e.Location.X + C_Variables.Camera.Left) / C_Constants.PicX);
 			C_Variables.CurY = C_Variables.TileView.Top + ((e.Location.Y + C_Variables.Camera.Top) / C_Constants.PicY);
 			C_Variables.CurMouseX = e.Location.X;
@@ -460,7 +460,7 @@ namespace Engine
 		
 		public void Picscreen_MouseUp(object sender, MouseEventArgs olde)
         {
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, olde.X * (FrmGame.Default.Width / 832), olde.Y * (FrmGame.Default.Height / 640), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
             C_Variables.CurX = C_Variables.TileView.Left + ((e.Location.X + C_Variables.Camera.Left) / C_Constants.PicX);
 			C_Variables.CurY = C_Variables.TileView.Top + ((e.Location.Y + C_Variables.Camera.Top) / C_Constants.PicY);
 			C_GuiFunctions.CheckGuiMouseUp(e.X, e.Y, e);

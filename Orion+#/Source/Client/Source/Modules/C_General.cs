@@ -321,9 +321,10 @@ namespace Engine
 		
 		internal static void RePositionGui()
 		{
-			
-			//first change the tiles
-			if (C_Types.Options.ScreenSize == 0) // 800x600
+
+            //first change the tiles
+            C_Types.Options.ScreenSize = 0;
+            if (C_Types.Options.ScreenSize == 0) // 800x600
 			{
 				C_Constants.ScreenMapx = (byte) 25;
 				C_Constants.ScreenMapy = (byte) 19;
