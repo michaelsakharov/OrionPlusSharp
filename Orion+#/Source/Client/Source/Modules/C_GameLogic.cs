@@ -569,6 +569,7 @@ namespace Engine
 
                     DeltaTime();
 
+
                     Thread.Sleep(1); 
                     // Yield also works but Yield produces much more erratic performance, while Sleep produces a smooth stable performance
                     // Thats because Yield has to find a new open thread, this process can sometimes be instant or take a bit to process.
@@ -585,7 +586,7 @@ namespace Engine
 				
 			} while (true);
 		}
-		
+
 		public static void ClearTempTile()
 		{
 			int x = 0;
