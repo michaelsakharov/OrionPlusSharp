@@ -42,9 +42,6 @@ namespace Engine
 			public int Speed;
 			public int Damage;
 
-            // New stuff
-            public List<E_Emitter> Emitters;
-
 		}
 		
 		public struct MapProjectileRec
@@ -89,14 +86,6 @@ namespace Engine
 			buffer.WriteInt32(Projectiles[ProjectileNum].Range);
 			buffer.WriteInt32(Projectiles[ProjectileNum].Speed);
 			buffer.WriteInt32(Projectiles[ProjectileNum].Damage);
-
-            //TODO Projectiles - Save Emitters
-            buffer.WriteInt32(Projectiles[ProjectileNum].Emitters.Count - 1);
-
-            for(int i=0; i < Projectiles[ProjectileNum].Emitters.Count; i++)
-            {
-
-            }
 
             E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
@@ -200,8 +189,6 @@ namespace Engine
 			Projectiles[index].Range = 0;
 			Projectiles[index].Speed = 1;
 			Projectiles[index].Damage = 0;
-
-			Projectiles[index].Emitters = new List<E_Emitter>();
 			
 		}
 		
@@ -261,27 +248,6 @@ namespace Engine
 			
 		}
 		
-		internal static void EditorProjectile_DrawEmitterProjectile()
-		{
-
-            if(Projectiles[E_Globals.Editorindex].Emitters != null && Projectiles[E_Globals.Editorindex].Emitters.Count > 0)
-            {
-
-                // Render and Update the particles
-
-                foreach(E_Emitter emitter in Projectiles[E_Globals.Editorindex].Emitters)
-                {
-                    if (emitter is LinearEmitter)
-                    {
-                        (emitter as LinearEmitter).UpdateParticles();
-                        (emitter as LinearEmitter).DrawParticles(E_Graphics.ProjectilePreviewWindow);
-                    }
-                }
-                
-            }
-			
-		}
-		
 #endregion
 		
 #region Projectile Editor
@@ -305,18 +271,7 @@ namespace Engine
 			frmProjectile.Default.nudSpeed.Value = Projectiles[E_Globals.Editorindex].Speed;
 			frmProjectile.Default.nudDamage.Value = Projectiles[E_Globals.Editorindex].Damage;
 
-            Projectiles[E_Globals.Editorindex].Emitters = new List<E_Emitter>();
-
-            for (int i=0; i < Projectiles[E_Globals.Editorindex].Emitters.Count; i++)
-            {
-                frmProjectile.Default.emitterListBox.Items.Add(Projectiles[E_Globals.Editorindex].Emitters[i].emitterName);
-            }
-
-            frmProjectile.Default.UpdateEmitterUI();
-
             Projectile_Changed[E_Globals.Editorindex] = true;
-
-            frmProjectile.Default.UpdateEmitterType();
 
 
         }

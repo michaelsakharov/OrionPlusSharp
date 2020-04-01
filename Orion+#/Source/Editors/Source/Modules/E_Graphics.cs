@@ -22,8 +22,6 @@ namespace Engine
 	{
 		internal static RenderWindow GameWindow;
 		internal static RenderWindow TilesetWindow;
-
-		internal static RenderWindow ProjectilePreviewWindow;
 		
 		internal static RenderWindow EditorItem_Furniture;
 		
@@ -168,8 +166,6 @@ namespace Engine
 			GameWindow.SetFramerateLimit((uint) E_Globals.FPS_LIMIT);
 			
 			TilesetWindow = new RenderWindow(frmMapEditor.Default.picBackSelect.Handle);
-
-			ProjectilePreviewWindow = new RenderWindow(frmProjectile.Default.picProjectilePreview.Handle);
 			
 			EditorItem_Furniture = new RenderWindow(FrmItem.Default.picFurniture.Handle);
 			
@@ -1678,62 +1674,6 @@ namespace Engine
 			
 			E_Globals.LastTileset = tileset;
 		}
-		
-        public static void Draw_ProjectilePreview()
-        {
-            ProjectilePreviewWindow.Clear();
-
-            int height = frmProjectile.Default.picProjectilePreview.Height;
-            int width = frmProjectile.Default.picProjectilePreview.Width;
-
-            int spriteNum = (int)frmProjectile.Default.PreviewSpriteNud.Value;
-            int spriteleft = 3;
-
-            switch (frmProjectile.Default.PreviewDirectionDropdown.SelectedIndex)
-            {
-                case (int)Enums.DirectionType.Up:
-                case (int)Enums.DirectionType.UpLeft:
-                case (int)Enums.DirectionType.UpRight:
-                    spriteleft = 3;
-                    break;
-                case (int)Enums.DirectionType.Right:
-                    spriteleft = 2;
-                    break;
-                case (int)Enums.DirectionType.Down:
-                case (int)Enums.DirectionType.DownLeft:
-                case (int)Enums.DirectionType.DownRight:
-                    spriteleft = 0;
-                    break;
-                case (int)Enums.DirectionType.Left:
-                    spriteleft = 1;
-                    break;
-            }
-
-            if (CharacterSprite.Count() > 0)
-            {
-                if (!CharacterGFXInfo[spriteNum].IsLoaded)
-                {
-                    LoadTexture(spriteNum, 2);
-                }
-
-                int charWidth = (int)CharacterSprite[spriteNum].Texture.Size.X / 4;
-                int charHeight = (int)CharacterSprite[spriteNum].Texture.Size.Y / 4;
-                
-                Rectangle srcrec = new Rectangle();
-
-                srcrec = new Rectangle((int)((0) * ((double)CharacterGFXInfo[spriteNum].width / 4)), (int)(spriteleft * ((double)CharacterGFXInfo[spriteNum].height / 4)), (int)((double)CharacterGFXInfo[spriteNum].width / 4), (int)((double)CharacterGFXInfo[spriteNum].height / 4));
-
-
-                RenderSprite(CharacterSprite[spriteNum], ProjectilePreviewWindow, (width / 2) - (charWidth / 2), (height / 2) - (charHeight / 2), srcrec.X, srcrec.Y, srcrec.Width, srcrec.Height);
-            }
-
-            // Lets update and render all Emitters
-
-            E_Projectiles.EditorProjectile_DrawEmitterProjectile();
-
-            ProjectilePreviewWindow.Display();
-
-        }
 
 		public static void DestroyGraphics()
 		{

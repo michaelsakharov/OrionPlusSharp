@@ -315,11 +315,6 @@ namespace Engine
 					{
 						E_Graphics.EditorAnim_DrawAnim();
 					}
-					
-                    if(E_Globals.Editor == E_Projectiles.EDITOR_PROJECTILE)
-                    {
-                        E_Graphics.Draw_ProjectilePreview();
-                    }
 
 					FrameTime = Tick;
 					if (E_Globals.InMapEditor && !E_Globals.GettingMap)

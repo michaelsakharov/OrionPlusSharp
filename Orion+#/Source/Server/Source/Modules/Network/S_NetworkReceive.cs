@@ -20,14 +20,6 @@ namespace Engine
     {
         internal static void PacketRouter()
         {
-            // AFSW returns an ID to a connection, problem is this ID isnt always correct related to the server.
-            // For the server an id of 1 means the first logged in player
-            // For ASFW an id of 1 means the first connected player
-            // This means its possible for a player in the server to be assigned to id 2 but theres only 1 player logged in
-            // This breaks a lot
-            // So we need to create a middle man, something that can bridge these two systems
-            // Or abandon ASFW
-            // Or re-write how the server handles players
 
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CCheckPing] = Packet_Ping;
             S_NetworkConfig.Socket.PacketId[(int)Packets.ClientPackets.CNewAccount] = Packet_NewAccount;
