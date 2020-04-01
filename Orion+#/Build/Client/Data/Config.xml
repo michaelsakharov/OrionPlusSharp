@@ -16,7 +16,7 @@
     <Element Name="Volume" Value="100" />
   </Sfx>
   <Misc>
-    <Element Name="ScreenSize" Value="2" />
+    <Element Name="ScreenSize" Value="1" />
     <Element Name="VSync" Value="1" />
     <Element Name="ShowNpcBar" Value="1" />
     <Element Name="UnlockFPS" Value="1" />
