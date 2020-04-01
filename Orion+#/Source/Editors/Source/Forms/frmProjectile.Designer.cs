@@ -60,6 +60,14 @@ namespace Engine
             this.btnSave = new DarkUI.Controls.DarkButton();
             this.btnCancel = new DarkUI.Controls.DarkButton();
             this.emitterPropertiesPanel = new DarkUI.Controls.DarkGroupBox();
+            this.darkLabel9 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel8 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel7 = new DarkUI.Controls.DarkLabel();
+            this.darkLabel6 = new DarkUI.Controls.DarkLabel();
+            this.darkTextBox4 = new DarkUI.Controls.DarkTextBox();
+            this.darkTextBox3 = new DarkUI.Controls.DarkTextBox();
+            this.darkTextBox2 = new DarkUI.Controls.DarkTextBox();
+            this.darkTextBox1 = new DarkUI.Controls.DarkTextBox();
             this.DarkGroupBox1.SuspendLayout();
             this.DarkGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDamage)).BeginInit();
@@ -67,6 +75,7 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.nudRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).BeginInit();
+            this.emitterPropertiesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DarkGroupBox1
@@ -291,13 +300,121 @@ namespace Engine
             // 
             this.emitterPropertiesPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.emitterPropertiesPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel9);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel8);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel7);
+            this.emitterPropertiesPanel.Controls.Add(this.darkLabel6);
+            this.emitterPropertiesPanel.Controls.Add(this.darkTextBox4);
+            this.emitterPropertiesPanel.Controls.Add(this.darkTextBox3);
+            this.emitterPropertiesPanel.Controls.Add(this.darkTextBox2);
+            this.emitterPropertiesPanel.Controls.Add(this.darkTextBox1);
             this.emitterPropertiesPanel.ForeColor = System.Drawing.Color.Gainsboro;
             this.emitterPropertiesPanel.Location = new System.Drawing.Point(452, 3);
             this.emitterPropertiesPanel.Name = "emitterPropertiesPanel";
             this.emitterPropertiesPanel.Size = new System.Drawing.Size(580, 494);
             this.emitterPropertiesPanel.TabIndex = 4;
             this.emitterPropertiesPanel.TabStop = false;
-            this.emitterPropertiesPanel.Text = "Code";
+            this.emitterPropertiesPanel.Text = "Logic";
+            // 
+            // darkLabel9
+            // 
+            this.darkLabel9.AutoSize = true;
+            this.darkLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel9.Location = new System.Drawing.Point(284, 263);
+            this.darkLabel9.Name = "darkLabel9";
+            this.darkLabel9.Size = new System.Drawing.Size(220, 39);
+            this.darkLabel9.TabIndex = 15;
+            this.darkLabel9.Text = "On Hit Entity\r\n(Called when the projectile hits a living entity);\r\n\r\n";
+            // 
+            // darkLabel8
+            // 
+            this.darkLabel8.AutoSize = true;
+            this.darkLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel8.Location = new System.Drawing.Point(6, 263);
+            this.darkLabel8.Name = "darkLabel8";
+            this.darkLabel8.Size = new System.Drawing.Size(267, 26);
+            this.darkLabel8.TabIndex = 14;
+            this.darkLabel8.Text = "On Hit Wall\r\n(Called when the projectiles makes contact with a wall):\r\n";
+            // 
+            // darkLabel7
+            // 
+            this.darkLabel7.AutoSize = true;
+            this.darkLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel7.Location = new System.Drawing.Point(284, 21);
+            this.darkLabel7.Name = "darkLabel7";
+            this.darkLabel7.Size = new System.Drawing.Size(265, 26);
+            this.darkLabel7.TabIndex = 13;
+            this.darkLabel7.Text = "On Update\r\n(Called every Frame to Update the Projectiles Position):\r\n";
+            // 
+            // darkLabel6
+            // 
+            this.darkLabel6.AutoSize = true;
+            this.darkLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel6.Location = new System.Drawing.Point(6, 21);
+            this.darkLabel6.Name = "darkLabel6";
+            this.darkLabel6.Size = new System.Drawing.Size(187, 26);
+            this.darkLabel6.TabIndex = 12;
+            this.darkLabel6.Text = "On Instantiate\r\n(Called when the projectile is Created):";
+            // 
+            // darkTextBox4
+            // 
+            this.darkTextBox4.AcceptsReturn = true;
+            this.darkTextBox4.AcceptsTab = true;
+            this.darkTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.darkTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.darkTextBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkTextBox4.Location = new System.Drawing.Point(285, 301);
+            this.darkTextBox4.MaxLength = 99999;
+            this.darkTextBox4.Multiline = true;
+            this.darkTextBox4.Name = "darkTextBox4";
+            this.darkTextBox4.Size = new System.Drawing.Size(287, 164);
+            this.darkTextBox4.TabIndex = 5;
+            this.darkTextBox4.TextChanged += new System.EventHandler(this.darkTextBox4_TextChanged);
+            // 
+            // darkTextBox3
+            // 
+            this.darkTextBox3.AcceptsReturn = true;
+            this.darkTextBox3.AcceptsTab = true;
+            this.darkTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.darkTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.darkTextBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkTextBox3.Location = new System.Drawing.Point(287, 60);
+            this.darkTextBox3.MaxLength = 99999;
+            this.darkTextBox3.Multiline = true;
+            this.darkTextBox3.Name = "darkTextBox3";
+            this.darkTextBox3.Size = new System.Drawing.Size(287, 164);
+            this.darkTextBox3.TabIndex = 4;
+            this.darkTextBox3.TextChanged += new System.EventHandler(this.darkTextBox3_TextChanged);
+            // 
+            // darkTextBox2
+            // 
+            this.darkTextBox2.AcceptsReturn = true;
+            this.darkTextBox2.AcceptsTab = true;
+            this.darkTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.darkTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.darkTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkTextBox2.Location = new System.Drawing.Point(6, 60);
+            this.darkTextBox2.MaxLength = 99999;
+            this.darkTextBox2.Multiline = true;
+            this.darkTextBox2.Name = "darkTextBox2";
+            this.darkTextBox2.Size = new System.Drawing.Size(273, 164);
+            this.darkTextBox2.TabIndex = 3;
+            this.darkTextBox2.TextChanged += new System.EventHandler(this.darkTextBox2_TextChanged);
+            // 
+            // darkTextBox1
+            // 
+            this.darkTextBox1.AcceptsReturn = true;
+            this.darkTextBox1.AcceptsTab = true;
+            this.darkTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.darkTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.darkTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkTextBox1.Location = new System.Drawing.Point(6, 301);
+            this.darkTextBox1.MaxLength = 99999;
+            this.darkTextBox1.Multiline = true;
+            this.darkTextBox1.Name = "darkTextBox1";
+            this.darkTextBox1.Size = new System.Drawing.Size(273, 164);
+            this.darkTextBox1.TabIndex = 2;
+            this.darkTextBox1.TextChanged += new System.EventHandler(this.darkTextBox1_TextChanged);
             // 
             // frmProjectile
             // 
@@ -323,6 +440,8 @@ namespace Engine
             ((System.ComponentModel.ISupportInitialize)(this.nudRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picProjectile)).EndInit();
+            this.emitterPropertiesPanel.ResumeLayout(false);
+            this.emitterPropertiesPanel.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -344,6 +463,14 @@ namespace Engine
 		internal DarkUI.Controls.DarkButton btnSave;
 		internal DarkUI.Controls.DarkButton btnCancel;
         internal DarkUI.Controls.DarkGroupBox emitterPropertiesPanel;
+        internal DarkUI.Controls.DarkLabel darkLabel9;
+        internal DarkUI.Controls.DarkLabel darkLabel8;
+        internal DarkUI.Controls.DarkLabel darkLabel7;
+        internal DarkUI.Controls.DarkLabel darkLabel6;
+        internal DarkUI.Controls.DarkTextBox darkTextBox4;
+        internal DarkUI.Controls.DarkTextBox darkTextBox3;
+        internal DarkUI.Controls.DarkTextBox darkTextBox2;
+        internal DarkUI.Controls.DarkTextBox darkTextBox1;
     }
 	
 }

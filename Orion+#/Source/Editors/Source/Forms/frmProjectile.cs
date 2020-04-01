@@ -131,5 +131,50 @@ namespace Engine
 			
 			E_Projectiles.Projectiles[E_Globals.Editorindex].Damage = (int) nudDamage.Value;
 		}
+
+        // projectile Logic
+        // On Instatiate
+        private void darkTextBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+            {
+                return;
+            }
+
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox2.Text;
+        }
+
+        // On Update
+        private void darkTextBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+            {
+                return;
+            }
+
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox3.Text;
+        }
+
+        // On Hit Wall
+        private void darkTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+            {
+                return;
+            }
+
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox1.Text;
+        }
+
+        // On Hit Entity
+        private void darkTextBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (E_Globals.Editorindex < 1 || E_Globals.Editorindex > E_Projectiles.MAX_PROJECTILES)
+            {
+                return;
+            }
+
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox4.Text;
+        }
     }
 }

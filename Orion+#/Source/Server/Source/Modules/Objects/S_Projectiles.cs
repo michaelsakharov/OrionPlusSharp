@@ -21,6 +21,10 @@ namespace Engine
             public byte Range;
             public int Speed;
             public int Damage;
+            public string OnInstantiate;
+            public string OnUpdate;
+            public string OnHitWall;
+            public string OnHitEntity;
         }
 
         internal struct MapProjectileRec
@@ -57,6 +61,11 @@ namespace Engine
             writer.WriteByte(Projectiles[ProjectileNum].Range);
             writer.WriteInt32(Projectiles[ProjectileNum].Speed);
             writer.WriteInt32(Projectiles[ProjectileNum].Damage);
+            //Logic
+            writer.WriteString(Projectiles[ProjectileNum].OnInstantiate);
+            writer.WriteString(Projectiles[ProjectileNum].OnUpdate);
+            writer.WriteString(Projectiles[ProjectileNum].OnHitWall);
+            writer.WriteString(Projectiles[ProjectileNum].OnHitEntity);
 
             BinaryFile.Save(filename, ref writer);
         }
@@ -79,8 +88,11 @@ namespace Engine
                 Projectiles[i].Range = reader.ReadByte();
                 Projectiles[i].Speed = reader.ReadInt32();
                 Projectiles[i].Damage = reader.ReadInt32();
-
-                //Application.DoEvents();
+                //Logic
+                Projectiles[i].OnInstantiate = reader.ReadString();
+                Projectiles[i].OnUpdate = reader.ReadString();
+                Projectiles[i].OnHitWall = reader.ReadString();
+                Projectiles[i].OnHitEntity = reader.ReadString();
             }
         }
 
@@ -126,6 +138,10 @@ namespace Engine
             Projectiles[index].Range = 1;
             Projectiles[index].Speed = 1;
             Projectiles[index].Damage = 0;
+            Projectiles[index].OnInstantiate = "";
+            Projectiles[index].OnUpdate = "";
+            Projectiles[index].OnHitWall = "";
+            Projectiles[index].OnHitEntity = "";
         }
 
         public static void ClearProjectiles()
@@ -172,6 +188,11 @@ namespace Engine
             Projectiles[ProjectileNum].Range = (byte)buffer.ReadInt32();
             Projectiles[ProjectileNum].Speed = buffer.ReadInt32();
             Projectiles[ProjectileNum].Damage = buffer.ReadInt32();
+            //Logic
+            Projectiles[ProjectileNum].OnInstantiate = buffer.ReadString();
+            Projectiles[ProjectileNum].OnUpdate = buffer.ReadString();
+            Projectiles[ProjectileNum].OnHitWall = buffer.ReadString();
+            Projectiles[ProjectileNum].OnHitEntity = buffer.ReadString();
 
             // Save it
             SendUpdateProjectileToAll(ProjectileNum);
@@ -290,6 +311,11 @@ namespace Engine
             buffer.WriteInt32(Projectiles[ProjectileNum].Range);
             buffer.WriteInt32(Projectiles[ProjectileNum].Speed);
             buffer.WriteInt32(Projectiles[ProjectileNum].Damage);
+            //Logic
+            buffer.WriteString(Projectiles[ProjectileNum].OnInstantiate);
+            buffer.WriteString(Projectiles[ProjectileNum].OnUpdate);
+            buffer.WriteString(Projectiles[ProjectileNum].OnHitWall);
+            buffer.WriteString(Projectiles[ProjectileNum].OnHitEntity);
 
             S_NetworkConfig.SendDataToAll(ref buffer.Data, buffer.Head);
             buffer.Dispose();
@@ -308,6 +334,11 @@ namespace Engine
             buffer.WriteInt32(Projectiles[ProjectileNum].Range);
             buffer.WriteInt32(Projectiles[ProjectileNum].Speed);
             buffer.WriteInt32(Projectiles[ProjectileNum].Damage);
+            //Logic
+            buffer.WriteString(Projectiles[ProjectileNum].OnInstantiate);
+            buffer.WriteString(Projectiles[ProjectileNum].OnUpdate);
+            buffer.WriteString(Projectiles[ProjectileNum].OnHitWall);
+            buffer.WriteString(Projectiles[ProjectileNum].OnHitEntity);
 
             S_NetworkConfig.Socket.SendDataTo(index, buffer.Data, buffer.Head);
             buffer.Dispose();

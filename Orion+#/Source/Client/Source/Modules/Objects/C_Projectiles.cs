@@ -40,7 +40,11 @@ namespace Engine
 			public byte Range;
 			public int Speed;
 			public int Damage;
-		}
+            public string OnInstantiate;
+            public string OnUpdate;
+            public string OnHitWall;
+            public string OnHitEntity;
+        }
 		
 		public struct MapProjectileRec
 		{
@@ -101,8 +105,13 @@ namespace Engine
 			Projectiles[projectileNum].Range = (byte) (buffer.ReadInt32());
 			Projectiles[projectileNum].Speed = buffer.ReadInt32();
 			Projectiles[projectileNum].Damage = buffer.ReadInt32();
-			
-			buffer.Dispose();
+            //Logic
+            Projectiles[projectileNum].OnInstantiate = buffer.ReadString();
+            Projectiles[projectileNum].OnUpdate = buffer.ReadString();
+            Projectiles[projectileNum].OnHitWall = buffer.ReadString();
+            Projectiles[projectileNum].OnHitEntity = buffer.ReadString();
+
+            buffer.Dispose();
 			
 		}
 		
@@ -160,6 +169,11 @@ namespace Engine
 			Projectiles[index].Range = (byte) 0;
 			Projectiles[index].Speed = 1;
 			Projectiles[index].Damage = 0;
+            //Logic
+			Projectiles[index].OnInstantiate = "";
+			Projectiles[index].OnUpdate = "";
+			Projectiles[index].OnHitWall = "";
+			Projectiles[index].OnHitEntity = "";
 			
 		}
 		
@@ -360,7 +374,7 @@ namespace Engine
 				C_Graphics.LoadTexture(sprite, (byte) 11);
 			}
 			
-			//seeying we still use it, lets update timer
+			//see'ing we still use it, lets update timer
 			ref var with_1 = ref C_Graphics.ProjectileGfxInfo[sprite];
 			with_1.TextureTimer = C_General.GetTickCount() + 100000;
             // src rect

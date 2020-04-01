@@ -41,8 +41,13 @@ namespace Engine
 			public byte Range;
 			public int Speed;
 			public int Damage;
+            // Logic
+            public string OnInstantiate;
+            public string OnUpdate;
+            public string OnHitWall;
+            public string OnHitEntity;
 
-		}
+        }
 		
 		public struct MapProjectileRec
 		{
@@ -53,7 +58,6 @@ namespace Engine
 			public int Y;
 			public byte dir;
 			public int Range;
-			public int TravelTime;
 			public int Timer;
 		}
 		
@@ -86,6 +90,11 @@ namespace Engine
 			buffer.WriteInt32(Projectiles[ProjectileNum].Range);
 			buffer.WriteInt32(Projectiles[ProjectileNum].Speed);
 			buffer.WriteInt32(Projectiles[ProjectileNum].Damage);
+            //Logic
+            buffer.WriteString(Projectiles[ProjectileNum].OnInstantiate);
+            buffer.WriteString(Projectiles[ProjectileNum].OnUpdate);
+            buffer.WriteString(Projectiles[ProjectileNum].OnHitWall);
+            buffer.WriteString(Projectiles[ProjectileNum].OnHitEntity);
 
             E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
 			buffer.Dispose();
@@ -140,8 +149,11 @@ namespace Engine
 			Projectiles[ProjectileNum].Range = (byte) (buffer.ReadInt32());
 			Projectiles[ProjectileNum].Speed = buffer.ReadInt32();
 			Projectiles[ProjectileNum].Damage = buffer.ReadInt32();
-
-            //TODO Projectiles - emitters
+            //Logic
+            Projectiles[ProjectileNum].OnInstantiate = buffer.ReadString();
+            Projectiles[ProjectileNum].OnUpdate = buffer.ReadString();
+            Projectiles[ProjectileNum].OnHitWall = buffer.ReadString();
+            Projectiles[ProjectileNum].OnHitEntity = buffer.ReadString();
 
             buffer.Dispose();
 			
@@ -189,6 +201,12 @@ namespace Engine
 			Projectiles[index].Range = 0;
 			Projectiles[index].Speed = 1;
 			Projectiles[index].Damage = 0;
+            //Logic
+			Projectiles[index].OnInstantiate = "";
+			Projectiles[index].OnUpdate = "";
+			Projectiles[index].OnHitWall = "";
+			Projectiles[index].OnHitEntity = "";
+
 			
 		}
 		
@@ -270,6 +288,11 @@ namespace Engine
 			frmProjectile.Default.nudRange.Value = Projectiles[E_Globals.Editorindex].Range;
 			frmProjectile.Default.nudSpeed.Value = Projectiles[E_Globals.Editorindex].Speed;
 			frmProjectile.Default.nudDamage.Value = Projectiles[E_Globals.Editorindex].Damage;
+
+			frmProjectile.Default.darkTextBox2.Text = Projectiles[E_Globals.Editorindex].OnInstantiate;
+			frmProjectile.Default.darkTextBox3.Text = Projectiles[E_Globals.Editorindex].OnUpdate;
+			frmProjectile.Default.darkTextBox1.Text = Projectiles[E_Globals.Editorindex].OnHitWall;
+			frmProjectile.Default.darkTextBox4.Text = Projectiles[E_Globals.Editorindex].OnHitEntity;
 
             Projectile_Changed[E_Globals.Editorindex] = true;
 
