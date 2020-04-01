@@ -323,7 +323,7 @@ namespace Engine
 		{
 
             //first change the tiles
-            C_Types.Options.ScreenSize = 0;
+            //C_Types.Options.ScreenSize = 0;
             if (C_Types.Options.ScreenSize == 0) // 800x600
 			{
 				C_Constants.ScreenMapx = (byte) 25;
@@ -344,8 +344,14 @@ namespace Engine
 			FrmGame.Default.ClientSize = new System.Drawing.Size((C_Constants.ScreenMapx) * C_Constants.PicX + C_Constants.PicX, (C_Constants.ScreenMapy) * C_Constants.PicY + C_Constants.PicY);
 			FrmGame.Default.picscreen.Width = (C_Constants.ScreenMapx) * C_Constants.PicX + C_Constants.PicX;
 			FrmGame.Default.picscreen.Height = (C_Constants.ScreenMapy) * C_Constants.PicY + C_Constants.PicY;
-			
-			C_Constants.HalfX = System.Convert.ToInt32(((C_Constants.ScreenMapx) / 2) * C_Constants.PicX);
+
+            Application.DoEvents();
+
+            C_Constants.BaseScreenWidth = FrmGame.Default.Width;
+            C_Constants.BaseScreenHeight = FrmGame.Default.Height;
+
+
+            C_Constants.HalfX = System.Convert.ToInt32(((C_Constants.ScreenMapx) / 2) * C_Constants.PicX);
 			C_Constants.HalfY = System.Convert.ToInt32(((C_Constants.ScreenMapy) / 2) * C_Constants.PicY);
 			C_Constants.ScreenX = (C_Constants.ScreenMapx) * C_Constants.PicX;
 			C_Constants.ScreenY = (C_Constants.ScreenMapy) * C_Constants.PicY;

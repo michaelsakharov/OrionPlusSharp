@@ -108,9 +108,11 @@ namespace Engine
 		internal static int HalfY = System.Convert.ToInt32((((byte) 26 + 1) / 2) * PicY);
 		internal static int ScreenX = ((byte) 35 + 1) * PicX;
 		internal static int ScreenY = ((byte) 26 + 1) * PicY;
-		
-		//dialog types
-		internal const byte DialogueTypeBuyhome = 1;
+        internal static int BaseScreenWidth;
+        internal static int BaseScreenHeight;
+
+        //dialog types
+        internal const byte DialogueTypeBuyhome = 1;
 		
 		internal const byte DialogueTypeVisit = 2;
 		internal const byte DialogueTypeParty = 3;

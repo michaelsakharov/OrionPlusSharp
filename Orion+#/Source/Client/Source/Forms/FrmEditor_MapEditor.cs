@@ -128,19 +128,19 @@ namespace Engine
 
         public void PicBackSelect_MouseDown(object sender, MouseEventArgs olde)
         {
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (C_Constants.BaseScreenWidth / (float)FrmGame.Default.Width)), (int)(olde.Y * (C_Constants.BaseScreenHeight / (float)FrmGame.Default.Height)), olde.Delta);
             MapEditorChooseTile((int)e.Button, e.X, e.Y);
         }
 
         public void PicBackSelect_MouseMove(object sender, MouseEventArgs olde)
         {
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (C_Constants.BaseScreenWidth / (float)FrmGame.Default.Width)), (int)(olde.Y * (C_Constants.BaseScreenHeight / (float)FrmGame.Default.Height)), olde.Delta);
             MapEditorDrag((int)e.Button, e.X, e.Y);
         }
         
         private void picBackSelect_MouseUp(object sender, MouseEventArgs olde)
         {
-            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
+            MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (C_Constants.BaseScreenWidth / (float)FrmGame.Default.Width)), (int)(olde.Y * (C_Constants.BaseScreenHeight / (float)FrmGame.Default.Height)), olde.Delta);
         }
 
         public void PicBackSelect_Paint(object sender, PaintEventArgs e)

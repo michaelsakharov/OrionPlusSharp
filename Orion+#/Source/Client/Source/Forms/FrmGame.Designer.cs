@@ -57,6 +57,7 @@ namespace Engine
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picscreen.Location = new System.Drawing.Point(0, 0);
+            this.picscreen.Margin = new System.Windows.Forms.Padding(0);
             this.picscreen.Name = "picscreen";
             this.picscreen.Size = new System.Drawing.Size(978, 615);
             this.picscreen.TabIndex = 4;
@@ -130,7 +131,7 @@ namespace Engine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BackColor = System.Drawing.Color.Maroon;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(983, 619);
             this.Controls.Add(this.pnlCurrency);
@@ -145,6 +146,7 @@ namespace Engine
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMainGame_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmMainGame_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmMainGame_KeyUp);
+            this.Resize += new System.EventHandler(this.FrmGame_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.picscreen)).EndInit();
             this.pnlCurrency.ResumeLayout(false);
             this.pnlCurrency.PerformLayout();

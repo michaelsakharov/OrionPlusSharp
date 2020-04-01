@@ -1106,7 +1106,7 @@ namespace Engine
 	
 	public void PicGraphicSel_Click(object sender, MouseEventArgs olde)
     {
-        MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (848 / (float)FrmGame.Default.Width)), (int)(olde.Y * (678 / (float)FrmGame.Default.Height)), olde.Delta);
+        MouseEventArgs e = new MouseEventArgs(olde.Button, olde.Clicks, (int)(olde.X * (C_Constants.BaseScreenWidth / (float)FrmGame.Default.Width)), (int)(olde.Y * (C_Constants.BaseScreenHeight / (float)FrmGame.Default.Height)), olde.Delta);
         int X = 0;
 		int Y = 0;
 		
