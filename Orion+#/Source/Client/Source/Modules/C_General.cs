@@ -27,7 +27,11 @@ namespace Engine
 		
 		public static void Startup()
 		{
-			SFML.Portable.Activate();
+
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
+            SFML.Portable.Activate();
 			
 			SetStatus(Strings.Get("loadscreen", "loading"));
 			
@@ -460,6 +464,17 @@ namespace Engine
 			}
 			return result;
 		}
-		
-	}
+
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs args)
+        {
+            MessageBox.Show(args.Exception.Message, "UNHANDLED THREAD EXPECTION");
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+            MessageBox.Show(e.Message, "UNHANDLED EXPECTION");
+        }
+
+    }
 }
