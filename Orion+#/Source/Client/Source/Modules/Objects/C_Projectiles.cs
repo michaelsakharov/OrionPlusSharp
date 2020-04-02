@@ -173,6 +173,8 @@ namespace Engine
             with_1.Timer = C_General.GetTickCount() + 60000;
             //Logic
             with_1.Speed = Projectiles[with_1.ProjectileNum].Speed + 1;
+            with_1.logicPosition = 0;
+
 
             buffer.Dispose();
 
@@ -232,6 +234,7 @@ namespace Engine
             MapProjectiles[projectileNum].Timer = 0;
             //Logic
             MapProjectiles[projectileNum].Speed = 0;
+            MapProjectiles[projectileNum].logicPosition = 0;
 
         }
 
@@ -367,6 +370,8 @@ namespace Engine
                 return;
             }
 
+            ParseCode(Projectiles[MapProjectiles[projectileNum].ProjectileNum].OnUpdate.ToLower(), projectileNum);
+
             if (C_Graphics.ProjectileGfxInfo[sprite].IsLoaded == false)
             {
                 C_Graphics.LoadTexture(sprite, (byte)11);
@@ -402,9 +407,12 @@ namespace Engine
                 // Now parse each command seperately
                 for (; MapProjectiles[projectileIndex].logicPosition < commands.Length; MapProjectiles[projectileIndex].logicPosition++)
                 {
-                    if (ParseCommand(commands[MapProjectiles[projectileIndex].logicPosition], projectileIndex)) // If returned true, Break this for loop since were gonna Delay the logic
+                    if (!string.IsNullOrWhiteSpace(commands[MapProjectiles[projectileIndex].logicPosition]))
                     {
-                        break;
+                        if (ParseUpdateCommand(commands[MapProjectiles[projectileIndex].logicPosition], projectileIndex)) // If returned true, Break this for loop since were gonna Delay the logic
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -415,7 +423,7 @@ namespace Engine
         }
 
 
-        public static bool ParseCommand(string command, int projectileNum)
+        public static bool ParseUpdateCommand(string command, int projectileNum)
         {
             // todo, Add support for parsing Expressions like (1 + 1) or even (TargetHealth + 10)
 
@@ -609,7 +617,7 @@ namespace Engine
             else if (parts[0] == "delay")
             {
                 double value = -1;
-                if (double.TryParse(parts[2], out value))
+                if (double.TryParse(parts[1], out value))
                 {
                     MapProjectiles[projectileNum].delayTimer = value;
                     MapProjectiles[projectileNum].logicPosition += 1; // Make sure that next time were calculating the NEXT line and not this one agian, otherwise we will fall into an infinite loop

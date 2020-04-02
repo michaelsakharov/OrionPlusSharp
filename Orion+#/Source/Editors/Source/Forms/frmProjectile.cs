@@ -152,7 +152,7 @@ namespace Engine
                 return;
             }
 
-            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox3.Text;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnUpdate = darkTextBox3.Text;
         }
 
         // On Hit Wall
@@ -163,7 +163,7 @@ namespace Engine
                 return;
             }
 
-            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox1.Text;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnHitWall = darkTextBox1.Text;
         }
 
         // On Hit Entity
@@ -174,7 +174,7 @@ namespace Engine
                 return;
             }
 
-            E_Projectiles.Projectiles[E_Globals.Editorindex].OnInstantiate = darkTextBox4.Text;
+            E_Projectiles.Projectiles[E_Globals.Editorindex].OnHitEntity = darkTextBox4.Text;
         }
     }
 }
