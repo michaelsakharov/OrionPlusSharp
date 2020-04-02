@@ -415,6 +415,10 @@ namespace Engine
                         }
                     }
                 }
+                if(MapProjectiles[projectileIndex].logicPosition >= commands.Length)
+                {
+                    MapProjectiles[projectileIndex].logicPosition = 0;
+                }
             }
             else
             {
