@@ -182,6 +182,7 @@ namespace Engine
                 catch(Exception error)
                 {
                     Console.WriteLine("A WILD ERROR HAS APPEARED!");
+                    Console.WriteLine(error.ToString());
                     Console.WriteLine(error.StackTrace.ToString());
                     S_Globals.ErrorCount++;
                     Console.WriteLine("THE SERVER IS NOW UNSTABLE!! PLEASE RESTART!!");
