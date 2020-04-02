@@ -36,8 +36,6 @@ namespace Engine
 
         internal static void DestroyNetwork()
         {
-            // Calling a disconnect is not necessary when using destroy network as
-            // Dispose already calls it and cleans up the memory internally.
             Socket.Dispose();
         }
 

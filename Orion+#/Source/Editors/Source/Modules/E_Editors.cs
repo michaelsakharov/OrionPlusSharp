@@ -210,9 +210,16 @@ namespace Engine
 			frmMapEditor.Default.cmbTileSets.SelectedIndex = 0;
 			frmMapEditor.Default.cmbLayers.SelectedIndex = 0;
 			frmMapEditor.Default.cmbAutoTile.SelectedIndex = 0;
+
+			frmMapEditor.Default.chkUseTint.Checked = Convert.ToBoolean(E_Types.Map.HasMapTint);
+			frmMapEditor.Default.nudMapRed.Value = E_Types.Map.MapTintR;
+			frmMapEditor.Default.nudMapGreen.Value = E_Types.Map.MapTintG;
+			frmMapEditor.Default.nudMapBlue.Value = E_Types.Map.MapTintB;
+			frmMapEditor.Default.nudMapAlpha.Value = E_Types.Map.MapTintA;
 			
 			frmMapEditor.Default.cmbWeather.SelectedIndex = E_Types.Map.WeatherType;
 			frmMapEditor.Default.nudFog.Value = E_Types.Map.Fogindex;
+			frmMapEditor.Default.nudFogAlpha.Value = E_Types.Map.WeatherIntensity;
 			frmMapEditor.Default.nudIntensity.Value = E_Types.Map.WeatherIntensity;
 			frmMapEditor.Default.nudBrightness.Value = E_Types.Map.Brightness;
 			

@@ -210,38 +210,38 @@ namespace Engine
                 if (buffer.ReadInt32() == 1)
                 {
                     ClientDataBase.ClearMap();
-                    Map.mapNum = buffer.ReadInt32();
-                    Map.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                    Map.Music = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
-                    Map.Revision = buffer.ReadInt32();
-                    Map.Moral = (byte)buffer.ReadInt32();
-                    Map.tileset = buffer.ReadInt32();
-                    Map.Up = buffer.ReadInt32();
-                    Map.Down = buffer.ReadInt32();
-                    Map.Left = buffer.ReadInt32();
-                    Map.Right = buffer.ReadInt32();
-                    Map.BootMap = buffer.ReadInt32();
-                    Map.BootX = (byte)buffer.ReadInt32();
-                    Map.BootY = (byte)buffer.ReadInt32();
-                    Map.MaxX = (byte)buffer.ReadInt32();
-                    Map.MaxY = (byte)buffer.ReadInt32();
-                    Map.WeatherType = (byte)buffer.ReadInt32();
-                    Map.Fogindex = buffer.ReadInt32();
-                    Map.WeatherIntensity = buffer.ReadInt32();
-                    Map.FogAlpha = (byte)buffer.ReadInt32();
-                    Map.FogSpeed = (byte)buffer.ReadInt32();
-                    Map.HasMapTint = (byte)buffer.ReadInt32();
-                    Map.MapTintR = (byte)buffer.ReadInt32();
-                    Map.MapTintG = (byte)buffer.ReadInt32();
-                    Map.MapTintB = (byte)buffer.ReadInt32();
-                    Map.MapTintA = (byte)buffer.ReadInt32();
+                    E_Types.Map.mapNum = buffer.ReadInt32();
+                    E_Types.Map.Name = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                    E_Types.Map.Music = Microsoft.VisualBasic.Strings.Trim(buffer.ReadString());
+                    E_Types.Map.Revision = buffer.ReadInt32();
+                    E_Types.Map.Moral = (byte)buffer.ReadInt32();
+                    E_Types.Map.tileset = buffer.ReadInt32();
+                    E_Types.Map.Up = buffer.ReadInt32();
+                    E_Types.Map.Down = buffer.ReadInt32();
+                    E_Types.Map.Left = buffer.ReadInt32();
+                    E_Types.Map.Right = buffer.ReadInt32();
+                    E_Types.Map.BootMap = buffer.ReadInt32();
+                    E_Types.Map.BootX = (byte)buffer.ReadInt32();
+                    E_Types.Map.BootY = (byte)buffer.ReadInt32();
+                    E_Types.Map.MaxX = (byte)buffer.ReadInt32();
+                    E_Types.Map.MaxY = (byte)buffer.ReadInt32();
+                    E_Types.Map.WeatherType = (byte)buffer.ReadInt32();
+                    E_Types.Map.Fogindex = buffer.ReadInt32();
+                    E_Types.Map.WeatherIntensity = buffer.ReadInt32();
+                    E_Types.Map.FogAlpha = (byte)buffer.ReadInt32();
+                    E_Types.Map.FogSpeed = (byte)buffer.ReadInt32();
+                    E_Types.Map.HasMapTint = (byte)buffer.ReadInt32();
+                    E_Types.Map.MapTintR = (byte)buffer.ReadInt32();
+                    E_Types.Map.MapTintG = (byte)buffer.ReadInt32();
+                    E_Types.Map.MapTintB = (byte)buffer.ReadInt32();
+                    E_Types.Map.MapTintA = (byte)buffer.ReadInt32();
 
-                    Map.Instanced = (byte)buffer.ReadInt32();
-                    Map.Panorama = (byte)buffer.ReadInt32();
-                    Map.Parallax = (byte)buffer.ReadInt32();
-                    Map.Brightness = (byte)buffer.ReadInt32();
+                    E_Types.Map.Instanced = (byte)buffer.ReadInt32();
+                    E_Types.Map.Panorama = (byte)buffer.ReadInt32();
+                    E_Types.Map.Parallax = (byte)buffer.ReadInt32();
+                    E_Types.Map.Brightness = (byte)buffer.ReadInt32();
 
-                    Map.Tile = new TileRec[Map.MaxX + 1, Map.MaxY + 1];
+                    E_Types.Map.Tile = new TileRec[Map.MaxX + 1, Map.MaxY + 1];
 
                     for (X = 1; X <= Constants.MAX_MAP_NPCS; X++)
                         Map.Npc[X] = buffer.ReadInt32();
