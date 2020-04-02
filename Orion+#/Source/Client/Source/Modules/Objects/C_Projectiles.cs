@@ -388,7 +388,7 @@ namespace Engine
                 TextureRect = new IntRect(0, 0, 32, 32),
                 Position = new Vector2f(x, y),
                 Origin = new Vector2f(C_Constants.PicX / 2, C_Constants.PicY / 2),
-                Rotation = (float)MapProjectiles[projectileNum].RenderDir,
+                Rotation = (float)(MapProjectiles[projectileNum].Dir * (180 / Math.PI)) - 90,
             };
 
             C_Graphics.GameWindow.Draw(tmpSprite);
@@ -514,7 +514,7 @@ namespace Engine
                 else if (parts[1] == "direction")
                 {
                     double value = -1;
-                    if (double.TryParse(parts[2], out value))
+                    if (getDecimalNumber(parts[2], projectileNum, out value))
                     {
                         MapProjectiles[projectileNum].Dir += value;
                     }
@@ -621,7 +621,7 @@ namespace Engine
             else if (parts[0] == "delay")
             {
                 double value = -1;
-                if (double.TryParse(parts[1], out value))
+                if (getDecimalNumber(parts[1], projectileNum, out value))
                 {
                     MapProjectiles[projectileNum].delayTimer = value;
                     MapProjectiles[projectileNum].logicPosition += 1; // Make sure that next time were calculating the NEXT line and not this one agian, otherwise we will fall into an infinite loop
@@ -647,6 +647,7 @@ namespace Engine
             if(part == "x") { value = (int)MapProjectiles[projectileNum].X; return true; }
             if(part == "y") { value = (int)MapProjectiles[projectileNum].Y; return true; }
             if(part == "damage") { value = Projectiles[MapProjectiles[projectileNum].ProjectileNum].Damage; return true; }
+            if(part == "totaldamage") { MessageBox.Show($"Total damage has not been calculated yet in OnUpdate, use it in OnHitEntity instead!", "Projectile Logic Error" + $" ID: {projectileNum}"); value = 0; return false; }
 
             if(part.Contains("(")) // Evaluation Expression
             {

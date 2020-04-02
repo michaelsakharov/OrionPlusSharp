@@ -3861,8 +3861,10 @@ namespace Engine
                 SetPlayerPK(index, 1);
                 S_NetworkSend.SendPlayerData(index);
             }
-
-            S_Pets.ForcePetBackToPlayer(index);
+            if (modTypes.Player[index].Character[modTypes.TempPlayer[index].CurChar].Pet.Alive == 1)
+            {
+                S_Pets.ForcePetBackToPlayer(index);
+            }
         }
 
         public static int GetPlayerVitalRegen(int index, Enums.VitalType Vital)
