@@ -1405,6 +1405,7 @@ namespace Engine
             // nudMaxY
             // 
             this.nudMaxY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudMaxY.Enabled = false;
             this.nudMaxY.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMaxY.Location = new System.Drawing.Point(145, 14);
             this.nudMaxY.Name = "nudMaxY";
@@ -1419,6 +1420,7 @@ namespace Engine
             // nudMaxX
             // 
             this.nudMaxX.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudMaxX.Enabled = false;
             this.nudMaxX.ForeColor = System.Drawing.Color.Gainsboro;
             this.nudMaxX.Location = new System.Drawing.Point(52, 14);
             this.nudMaxX.Name = "nudMaxX";
