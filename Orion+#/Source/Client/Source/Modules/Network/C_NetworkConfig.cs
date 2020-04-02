@@ -24,6 +24,8 @@ namespace Engine
                 return;
             }
             Socket = new Client((int)Packets.ServerPackets.COUNT, 4096);
+            Socket.ConnectionLost += Socket_ConnectionLost;
+            Socket.CrashReport += Socket_CrashReport;
             C_NetworkReceive.PacketRouter();
         }
 
