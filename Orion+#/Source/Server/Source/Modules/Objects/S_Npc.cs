@@ -177,6 +177,18 @@ namespace Engine
             return NpcTileIsOpen;
         }
 
+        public static bool IsPositionInsideBounds(int x, int y, int mapNum)
+        {
+            if(x >= 0 & y >= 0)
+            {
+                if(x <= modTypes.Map[mapNum].MaxX && y <= modTypes.Map[mapNum].MaxY)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool CanNpcMove(int mapNum, int MapNpcNum, byte Dir)
         {
             int i;
@@ -193,6 +205,7 @@ namespace Engine
 
             x = modTypes.MapNpc[mapNum].Npc[MapNpcNum].X;
             y = modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y;
+
             CanNpcMove = true;
 
             switch (Dir)
@@ -203,6 +216,12 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (y > 0)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x, y - 1, mapNum))
+                            {
+                                return false;
+                            }
+
                             n = modTypes.Map[mapNum].Tile[x, y - 1].Type;
 
                             // Check to make sure that the tile is walkable
@@ -249,6 +268,12 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (y < modTypes.Map[mapNum].MaxY)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x, y + 1, mapNum))
+                            {
+                                return false;
+                            }
+
                             n = modTypes.Map[mapNum].Tile[x, y + 1].Type;
 
                             // Check to make sure that the tile is walkable
@@ -295,6 +320,12 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (x > 0)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x - 1, y, mapNum))
+                            {
+                                return false;
+                            }
+
                             n = modTypes.Map[mapNum].Tile[x - 1, y].Type;
 
                             // Check to make sure that the tile is walkable
@@ -341,6 +372,11 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (x < modTypes.Map[mapNum].MaxX)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x + 1, y, mapNum))
+                            {
+                                return false;
+                            }
                             n = modTypes.Map[mapNum].Tile[x + 1, y].Type;
 
                             // Check to make sure that the tile is walkable
@@ -389,6 +425,11 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (y > 0 && x > 0)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x - 1, y - 1, mapNum))
+                            {
+                                return false;
+                            }
                             n = modTypes.Map[mapNum].Tile[x - 1, y - 1].Type;
 
                             // Check to make sure that the tile is walkable
@@ -435,6 +476,11 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (y > 0 && x < modTypes.Map[mapNum].MaxX)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x + 1, y - 1, mapNum))
+                            {
+                                return false;
+                            }
                             n = modTypes.Map[mapNum].Tile[x + 1, y - 1].Type;
 
                             // Check to make sure that the tile is walkable
@@ -481,6 +527,11 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (y < modTypes.Map[mapNum].MaxY && x > 0)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x - 1, y + 1, mapNum))
+                            {
+                                return false;
+                            }
                             n = modTypes.Map[mapNum].Tile[x - 1, y + 1].Type;
 
                             // Check to make sure that the tile is walkable
@@ -527,6 +578,11 @@ namespace Engine
                         // Check to make sure not outside of boundries
                         if (y < modTypes.Map[mapNum].MaxY && x < modTypes.Map[mapNum].MaxX)
                         {
+                            // Make sure were not trying to move Outside of the bounds
+                            if (!IsPositionInsideBounds(x + 1, y + 1, mapNum))
+                            {
+                                return false;
+                            }
                             n = modTypes.Map[mapNum].Tile[x + 1, y + 1].Type;
 
                             // Check to make sure that the tile is walkable
@@ -570,6 +626,11 @@ namespace Engine
 
             if (modTypes.MapNpc[mapNum].Npc[MapNpcNum].SkillBuffer > 0)
                 CanNpcMove = false;
+
+            if (!IsPositionInsideBounds(x, y, mapNum))
+            {
+                return false;
+            }
 
             return true;
         }
