@@ -41,3 +41,5 @@ Multiple Characters per account -
 Pets - 
 Pet Evolve - 
 Cached Maps for huge performance boosts on the client - Up to 300+ fps - 
+
+Huge thanks to Rory for some of the Artwork in Lupus!
