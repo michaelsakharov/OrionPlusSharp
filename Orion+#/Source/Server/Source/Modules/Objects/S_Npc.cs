@@ -177,460 +177,101 @@ namespace Engine
             return NpcTileIsOpen;
         }
 
-        public static bool IsPositionInsideBounds(int x, int y, int mapNum)
-        {
-            if(x >= 0 & y >= 0)
-            {
-                if(x <= modTypes.Map[mapNum].MaxX && y <= modTypes.Map[mapNum].MaxY)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public static bool CanNpcMove(int mapNum, int MapNpcNum, byte Dir)
         {
-            int i;
-            int n;
-            int x;
-            int y;
-            bool CanNpcMove = false;
-
             // Check for subscript out of range
-            //if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.Right)
-            // 8 Directional Movement
-            if (mapNum <= 0 || mapNum > S_Instances.MAX_CACHED_MAPS || MapNpcNum <= 0 || MapNpcNum > Constants.MAX_MAP_NPCS || Dir < (int)Enums.DirectionType.Up || Dir > (byte)Enums.DirectionType.DownRight)
-                return false;
+            if (
+                mapNum <= 0 || 
+                mapNum > S_Instances.MAX_CACHED_MAPS || 
+                MapNpcNum <= 0 || 
+                MapNpcNum > Constants.MAX_MAP_NPCS || 
+                Dir < (int)Enums.DirectionType.Up || 
+                Dir > (int)Enums.DirectionType.DownRight
+            ) return false;
 
-            x = modTypes.MapNpc[mapNum].Npc[MapNpcNum].X;
-            y = modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y;
+            var x = modTypes.MapNpc[mapNum].Npc[MapNpcNum].X;
+            var y = modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y;
+            var rx = x;
+            var ry = y;
+            
+            // Get Y mods
+            if (
+                Dir == (int)Enums.DirectionType.Up || 
+                Dir == (int)Enums.DirectionType.UpLeft ||
+                Dir == (int)Enums.DirectionType.UpRight
+            ) ry -= 1;
+            if (
+                Dir == (int)Enums.DirectionType.Down || 
+                Dir == (int)Enums.DirectionType.DownLeft ||
+                Dir == (int)Enums.DirectionType.DownRight
+            ) ry += 1;
+            
+            // Get X mods
+            if (
+                Dir == (int)Enums.DirectionType.Left || 
+                Dir == (int)Enums.DirectionType.UpLeft ||
+                Dir == (int)Enums.DirectionType.DownLeft
+            ) rx -= 1;
+            if (
+                Dir == (int)Enums.DirectionType.Right || 
+                Dir == (int)Enums.DirectionType.UpRight ||
+                Dir == (int)Enums.DirectionType.DownRight
+            ) rx += 1;
+            
+            // Inside boundaries check
+            if (
+                rx < 0 || ry < 0 ||
+                rx > modTypes.Map[mapNum].MaxX ||
+                ry > modTypes.Map[mapNum].MaxY
+            ) return false;
+            
+            var n = modTypes.Map[mapNum].Tile[rx, ry].Type;
 
-            CanNpcMove = true;
+            // Check to make sure that the tile is walkable
+            if (
+                n != (int)Enums.TileType.None && 
+                n != (int)Enums.TileType.Item && 
+                n != (int)Enums.TileType.NpcSpawn
+            ) return false;
 
-            switch (Dir)
+            var highIndex = S_GameLogic.GetPlayersOnline();
+
+            // Check to make sure that there is not a 'player' entity in the way
+            for (var i = 1; i <= highIndex; i++)
             {
-                case (int)Enums.DirectionType.Up:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (y > 0)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x, y - 1, mapNum))
-                            {
-                                return false;
-                            }
-
-                            n = modTypes.Map[mapNum].Tile[x, y - 1].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                case (int)Enums.DirectionType.Down:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (y < modTypes.Map[mapNum].MaxY)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x, y + 1, mapNum))
-                            {
-                                return false;
-                            }
-
-                            n = modTypes.Map[mapNum].Tile[x, y + 1].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo1 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo1; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                case (int)Enums.DirectionType.Left:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (x > 0)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x - 1, y, mapNum))
-                            {
-                                return false;
-                            }
-
-                            n = modTypes.Map[mapNum].Tile[x - 1, y].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo2 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo2; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                case (int)Enums.DirectionType.Right:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (x < modTypes.Map[mapNum].MaxX)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x + 1, y, mapNum))
-                            {
-                                return false;
-                            }
-                            n = modTypes.Map[mapNum].Tile[x + 1, y].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo3 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo3; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                    // 8 Directional Movement
-
-                case (int)Enums.DirectionType.UpLeft:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (y > 0 && x > 0)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x - 1, y - 1, mapNum))
-                            {
-                                return false;
-                            }
-                            n = modTypes.Map[mapNum].Tile[x - 1, y - 1].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo3 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo3; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                case (int)Enums.DirectionType.UpRight:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (y > 0 && x < modTypes.Map[mapNum].MaxX)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x + 1, y - 1, mapNum))
-                            {
-                                return false;
-                            }
-                            n = modTypes.Map[mapNum].Tile[x + 1, y - 1].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo3 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo3; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y - 1))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                case (int)Enums.DirectionType.DownLeft:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (y < modTypes.Map[mapNum].MaxY && x > 0)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x - 1, y + 1, mapNum))
-                            {
-                                return false;
-                            }
-                            n = modTypes.Map[mapNum].Tile[x - 1, y + 1].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo3 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo3; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X - 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
-
-                case (int)Enums.DirectionType.DownRight:
-                    {
-
-                        // Check to make sure not outside of boundries
-                        if (y < modTypes.Map[mapNum].MaxY && x < modTypes.Map[mapNum].MaxX)
-                        {
-                            // Make sure were not trying to move Outside of the bounds
-                            if (!IsPositionInsideBounds(x + 1, y + 1, mapNum))
-                            {
-                                return false;
-                            }
-                            n = modTypes.Map[mapNum].Tile[x + 1, y + 1].Type;
-
-                            // Check to make sure that the tile is walkable
-                            if (n != (int)Enums.TileType.None && n != (int)Enums.TileType.Item && n != (int)Enums.TileType.NpcSpawn)
-                            {
-                                return false;
-                            }
-
-                            var loopTo3 = S_GameLogic.GetPlayersOnline();
-
-                            // Check to make sure that there is not a player in the way
-                            for (i = 1; i <= loopTo3; i++)
-                            {
-                                if (S_NetworkConfig.IsPlaying(i))
-                                {
-                                    if ((S_Players.GetPlayerMap(i) == mapNum) && (S_Players.GetPlayerX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Players.GetPlayerY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                    {
-                                        return false;
-                                    }
-                                    else if (S_Pets.PetAlive(i) && (S_Players.GetPlayerMap(i) == mapNum) && (S_Pets.GetPetX(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (S_Pets.GetPetY(i) == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-
-                            // Check to make sure that there is not another npc in the way
-                            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
-                            {
-                                if ((i != MapNpcNum) && (modTypes.MapNpc[mapNum].Npc[i].Num > 0) && (modTypes.MapNpc[mapNum].Npc[i].X == modTypes.MapNpc[mapNum].Npc[MapNpcNum].X + 1) && (modTypes.MapNpc[mapNum].Npc[i].Y == modTypes.MapNpc[mapNum].Npc[MapNpcNum].Y + 1))
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                        else
-                            CanNpcMove = false;
-                        break;
-                    }
+                // Make sure player index is playing
+                if (!S_NetworkConfig.IsPlaying(i)) continue;
+                    
+                // Check for a player
+                if (
+                    S_Players.GetPlayerMap(i) == mapNum && 
+                    S_Players.GetPlayerX(i) == rx && 
+                    S_Players.GetPlayerY(i) == ry
+                ) return false;
+                
+                // Check for a pet
+                if (
+                    S_Pets.PetAlive(i) && 
+                    S_Players.GetPlayerMap(i) == mapNum && 
+                    S_Pets.GetPetX(i) == rx && 
+                    S_Pets.GetPetY(i) == ry
+                ) return false;
             }
 
+            // Check to make sure that there is not another npc in the way
+            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+            {
+                if (
+                    i != MapNpcNum && 
+                    modTypes.MapNpc[mapNum].Npc[i].Num > 0 && 
+                    modTypes.MapNpc[mapNum].Npc[i].X == rx && 
+                    modTypes.MapNpc[mapNum].Npc[i].Y == ry
+                ) return false;
+            }
+            
+            // Stun check?
             if (modTypes.MapNpc[mapNum].Npc[MapNpcNum].SkillBuffer > 0)
-                CanNpcMove = false;
-
-            if (!IsPositionInsideBounds(x, y, mapNum))
-            {
                 return false;
-            }
 
             return true;
         }
