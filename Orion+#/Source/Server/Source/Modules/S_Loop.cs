@@ -507,11 +507,16 @@ namespace Engine
                             // Make sure theres a npc with the map
                             if (modTypes.Map[mapNum].Npc[x] > 0 && modTypes.MapNpc[mapNum].Npc[x].Num > 0)
                             {
-                                if (!S_Npc.IsPositionInsideBounds(modTypes.MapNpc[mapNum].Npc[x].X, modTypes.MapNpc[mapNum].Npc[x].Y, mapNum))
+                                var tx = modTypes.MapNpc[mapNum].Npc[x].X;
+                                var ty = modTypes.MapNpc[mapNum].Npc[x].Y;
+                                var mx = modTypes.Map[mapNum].MaxX;
+                                var my = modTypes.Map[mapNum].MaxY;
+
+                                if (tx < 0 || tx > mx || ty < 0 || ty > my)
                                 {
                                     // NPC is outside the map? Force him back into a new place!
-                                    modTypes.MapNpc[mapNum].Npc[x].X = (byte)S_GameLogic.Random(0, modTypes.Map[mapNum].MaxX);
-                                    modTypes.MapNpc[mapNum].Npc[x].Y = (byte)S_GameLogic.Random(0, modTypes.Map[mapNum].MaxY);
+                                    modTypes.MapNpc[mapNum].Npc[x].X = (byte)S_GameLogic.Random(0, mx);
+                                    modTypes.MapNpc[mapNum].Npc[x].Y = (byte)S_GameLogic.Random(0, my);
                                 }
 
                                 if (modTypes.MapNpc[mapNum].Npc[x].StunDuration > 0)

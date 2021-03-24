@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.Linq;
-using ASFW;
+using Asfw;
 using static Engine.Enums;
 using static Engine.Types;
 using static Engine.modTypes;

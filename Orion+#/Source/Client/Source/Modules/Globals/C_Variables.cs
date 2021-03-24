@@ -234,6 +234,6 @@ namespace Engine
 		internal static bool ShowAnimLayers;
 		internal static int ShowAnimTimer;
 		
-		internal static ASFW.IO.Encryption.KeyPair EKeyPair = new ASFW.IO.Encryption.KeyPair();
+		internal static Asfw.IO.Encryption.KeyPair EKeyPair = new Asfw.IO.Encryption.KeyPair();
 	}
 }

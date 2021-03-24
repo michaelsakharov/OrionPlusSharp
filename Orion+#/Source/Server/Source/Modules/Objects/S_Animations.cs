@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 using static Engine.Types;
 
 namespace Engine
@@ -46,7 +46,7 @@ namespace Engine
             for (x = 0; x <= loopTo3; x++)
                 writer.WriteInt32(Types.Animation[AnimationNum].LoopTime[x]);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadAnimations()
@@ -65,7 +65,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "animations", string.Format("animation{0}.dat", AnimationNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             Types.Animation[AnimationNum].Name = reader.ReadString();
             Types.Animation[AnimationNum].Sound = reader.ReadString();

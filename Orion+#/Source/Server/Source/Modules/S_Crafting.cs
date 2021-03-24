@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 
 namespace Engine
 {
@@ -78,7 +78,7 @@ namespace Engine
 
             writer.WriteByte(Recipe[RecipeNum].CreateTime);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadRecipes()
@@ -101,7 +101,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "recipes", string.Format("recipe{0}.dat", RecipeNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             Recipe[RecipeNum].Name = reader.ReadString();
             Recipe[RecipeNum].RecipeType = reader.ReadByte();

@@ -57,7 +57,7 @@ namespace Engine
 
         }
 
-        static void OnPresenceUpdate(RichPresence presence)
+        static void OnPresenceUpdate(BaseRichPresence presence)
         {
 
         }

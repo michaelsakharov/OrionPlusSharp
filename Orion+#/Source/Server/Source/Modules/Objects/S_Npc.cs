@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using System;
-using ASFW;
+using Asfw;
 
 namespace Engine
 {
@@ -259,7 +259,7 @@ namespace Engine
             }
 
             // Check to make sure that there is not another npc in the way
-            for (i = 1; i <= Constants.MAX_MAP_NPCS; i++)
+            for (var i = 1; i <= Constants.MAX_MAP_NPCS; i++)
             {
                 if (
                     i != MapNpcNum && 

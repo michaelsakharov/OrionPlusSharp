@@ -211,7 +211,7 @@ namespace Engine
 		public static void Packet_AutoMapper(ref byte[] data)
 		{
 			int Layer = 0;
-			ASFW.ByteStream buffer = new ASFW.ByteStream(data);
+			Asfw.ByteStream buffer = new Asfw.ByteStream(data);
 			MapStart = buffer.ReadInt32();
 			MapSize = buffer.ReadInt32();
 			MapX = buffer.ReadInt32();
@@ -256,7 +256,7 @@ namespace Engine
 		
 		internal static void SendRequestAutoMapper()
 		{
-			ASFW.ByteStream buffer = new ASFW.ByteStream(4);
+			Asfw.ByteStream buffer = new Asfw.ByteStream(4);
 			
 			buffer.WriteInt32((System.Int32) Packets.EditorPackets.RequestAutoMap);
 			E_NetworkConfig.Socket.SendData(buffer.Data, buffer.Head);
@@ -269,7 +269,7 @@ namespace Engine
 					Filename = Application.StartupPath + "\\Data\\AutoMapper.xml",
 					Root = "Options"
 				};
-			ASFW.ByteStream buffer = new ASFW.ByteStream(4);
+			Asfw.ByteStream buffer = new Asfw.ByteStream(4);
 			
 			buffer.WriteInt32((System.Int32) Packets.EditorPackets.SaveAutoMap);
 			

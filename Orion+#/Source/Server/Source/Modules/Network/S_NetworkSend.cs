@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using ASFW;
-using ASFW.IO;
+using Asfw;
+using Asfw.IO;
 using System;
 using static Engine.Enums;
 

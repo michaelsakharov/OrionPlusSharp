@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using ASFW;
+using Asfw;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.CompilerServices;
 

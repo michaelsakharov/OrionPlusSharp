@@ -222,6 +222,6 @@ namespace Engine
 		
 		internal static bool LoadClassInfo;
 		
-		internal static ASFW.IO.Encryption.KeyPair EKeyPair = new ASFW.IO.Encryption.KeyPair();
+		internal static Asfw.IO.Encryption.KeyPair EKeyPair = new Asfw.IO.Encryption.KeyPair();
 	}
 }

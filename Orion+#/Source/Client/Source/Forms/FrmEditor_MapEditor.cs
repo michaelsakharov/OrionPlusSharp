@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using ASFW;
+using Asfw;
 using SFML.Graphics;
 using SFML.Window;
 using Engine;

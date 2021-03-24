@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 using System;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 
 namespace Engine
 {
@@ -67,7 +67,7 @@ namespace Engine
             writer.WriteString(Projectiles[ProjectileNum].OnHitWall);
             writer.WriteString(Projectiles[ProjectileNum].OnHitEntity);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadProjectiles()
@@ -81,7 +81,7 @@ namespace Engine
             {
                 filename = Path.Combine(Application.StartupPath, "data", "projectiles", string.Format("projectile{0}.dat", i));
                 ByteStream reader = new ByteStream();
-                BinaryFile.Load(filename, ref reader);
+                ByteFile.Load(filename, ref reader);
 
                 Projectiles[i].Name = reader.ReadString();
                 Projectiles[i].Sprite = reader.ReadInt32();
