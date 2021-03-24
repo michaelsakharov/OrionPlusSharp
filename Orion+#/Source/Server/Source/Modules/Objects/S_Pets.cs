@@ -3,8 +3,8 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 using static Engine.Enums;
 
 namespace Engine
@@ -116,7 +116,7 @@ namespace Engine
             writer.WriteInt32(Pet[petNum].EvolveLevel);
             writer.WriteInt32(Pet[petNum].EvolveNum);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadPets()
@@ -138,7 +138,7 @@ namespace Engine
 
             filename = Application.StartupPath + @"\data\pets\pet" + petNum + ".dat";
 
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             Pet[petNum].Num = reader.ReadInt32();
             Pet[petNum].Name = reader.ReadString();

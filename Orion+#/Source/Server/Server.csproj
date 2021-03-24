@@ -66,9 +66,8 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="CS-ASFW, Version=2.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\CS-ASFW.dll</HintPath>
+    <Reference Include="Asfw.Net, Version=0.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Asfw.Net.0.10.6\lib\net45\Asfw.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -162,6 +161,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
     <None Include="Source\Modules\SFML.Net.dll.config" />
   </ItemGroup>
   <ItemGroup>

@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 using static Engine.Types;
 
 namespace Engine
@@ -84,7 +84,7 @@ namespace Engine
             writer.WriteInt32(Types.Item[itemNum].Projectile);
             writer.WriteInt32(Types.Item[itemNum].Ammo);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadItems()
@@ -105,7 +105,7 @@ namespace Engine
             filename = Path.Combine(Application.StartupPath, "data", "items", string.Format("item{0}.dat", ItemNum));
 
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             Types.Item[ItemNum].Name = reader.ReadString();
             Types.Item[ItemNum].Pic = reader.ReadInt32();

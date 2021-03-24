@@ -24,3 +24,16 @@ C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Server\Lupus Serv
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Lupus Server.exe
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Lupus Server.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Engine.My_Project.Resources.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csproj.GenerateResource.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Lupus Server.exe
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Lupus Server.pdb
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Server\Data\AutoMapper.xml
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Server\Data\SkillExp.xml
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Server\Data\News.txt
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Server\Lupus Server.exe.config
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Server\Lupus Server.exe
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Server\Lupus Server.pdb
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Server\obj\Debug\Server.csproj.CopyComplete

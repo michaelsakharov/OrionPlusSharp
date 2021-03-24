@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 using static Engine.Types;
 
 namespace Engine
@@ -65,7 +65,7 @@ namespace Engine
             writer.WriteBoolean(Types.Resource[ResourceNum].Walkthrough);
             writer.WriteInt32(Types.Resource[ResourceNum].Animation);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadResources()
@@ -87,7 +87,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "resources", string.Format("resource{0}.dat", ResourceNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             Types.Resource[ResourceNum].Name = reader.ReadString();
             Types.Resource[ResourceNum].SuccessMessage = reader.ReadString();

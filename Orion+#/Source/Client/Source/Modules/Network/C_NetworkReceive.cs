@@ -6,8 +6,8 @@ using System.Diagnostics;
 using Microsoft.VisualBasic;
 
 
-using ASFW;
-using ASFW.IO;
+using Asfw;
+using Asfw.IO;
 using System.Windows.Forms;
 using Engine;
 
@@ -19,149 +19,149 @@ namespace Engine
 		
 		public static void PacketRouter()
 		{
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAlertMsg] = new ASFW.Network.Client.DataArgs(Packet_AlertMSG);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SKeyPair] = new ASFW.Network.Client.DataArgs(Packet_KeyPair);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLoadCharOk] = new ASFW.Network.Client.DataArgs(Packet_LoadCharOk);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLoginOk] = new ASFW.Network.Client.DataArgs(Packet_LoginOk);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNewCharClasses] = new ASFW.Network.Client.DataArgs(Packet_NewCharClasses);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClassesData] = new ASFW.Network.Client.DataArgs(Packet_ClassesData);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SInGame] = new ASFW.Network.Client.DataArgs(Packet_InGame);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerInv] = new ASFW.Network.Client.DataArgs(Packet_PlayerInv);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerInvUpdate] = new ASFW.Network.Client.DataArgs(Packet_PlayerInvUpdate);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerWornEq] = new ASFW.Network.Client.DataArgs(Packet_PlayerWornEquipment);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerHp] = new ASFW.Network.Client.DataArgs(Packet_PlayerHP);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerMp] = new ASFW.Network.Client.DataArgs(Packet_PlayerMP);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerSp] = new ASFW.Network.Client.DataArgs(Packet_PlayerSP);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerStats] = new ASFW.Network.Client.DataArgs(Packet_PlayerStats);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerData] = new ASFW.Network.Client.DataArgs(Packet_PlayerData);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerMove] = new ASFW.Network.Client.DataArgs(Packet_PlayerMove);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcMove] = new ASFW.Network.Client.DataArgs(Packet_NpcMove);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerDir] = new ASFW.Network.Client.DataArgs(Packet_PlayerDir);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcDir] = new ASFW.Network.Client.DataArgs(Packet_NpcDir);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerXY] = new ASFW.Network.Client.DataArgs(Packet_PlayerXY);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAttack] = new ASFW.Network.Client.DataArgs(Packet_Attack);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcAttack] = new ASFW.Network.Client.DataArgs(Packet_NpcAttack);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCheckForMap] = new ASFW.Network.Client.DataArgs(C_Maps.Packet_CheckMap);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapData] = new ASFW.Network.Client.DataArgs(C_Maps.Packet_MapData);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNpcData] = new ASFW.Network.Client.DataArgs(C_Maps.Packet_MapNPCData);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNpcUpdate] = new ASFW.Network.Client.DataArgs(C_Maps.Packet_MapNPCUpdate);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapDone] = new ASFW.Network.Client.DataArgs(C_Maps.Packet_MapDone);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SGlobalMsg] = new ASFW.Network.Client.DataArgs(Packet_GlobalMessage);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerMsg] = new ASFW.Network.Client.DataArgs(Packet_PlayerMessage);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapMsg] = new ASFW.Network.Client.DataArgs(Packet_MapMessage);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpawnItem] = new ASFW.Network.Client.DataArgs(Packet_SpawnItem);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateItem] = new ASFW.Network.Client.DataArgs(C_Items.Packet_UpdateItem);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpawnNpc] = new ASFW.Network.Client.DataArgs(Packet_SpawnNPC);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcDead] = new ASFW.Network.Client.DataArgs(Packet_NpcDead);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateNpc] = new ASFW.Network.Client.DataArgs(Packet_UpdateNPC);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapKey] = new ASFW.Network.Client.DataArgs(Packet_MapKey);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEditMap] = new ASFW.Network.Client.DataArgs(C_Maps.Packet_EditMap);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateShop] = new ASFW.Network.Client.DataArgs(C_Shops.Packet_UpdateShop);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateSkill] = new ASFW.Network.Client.DataArgs(Packet_UpdateSkill);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSkills] = new ASFW.Network.Client.DataArgs(Packet_Skills);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLeftMap] = new ASFW.Network.Client.DataArgs(Packet_LeftMap);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SResourceCache] = new ASFW.Network.Client.DataArgs(C_Resources.Packet_ResourceCache);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateResource] = new ASFW.Network.Client.DataArgs(C_Resources.Packet_UpdateResource);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSendPing] = new ASFW.Network.Client.DataArgs(Packet_Ping);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SDoorAnimation] = new ASFW.Network.Client.DataArgs(Packet_DoorAnimation);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SActionMsg] = new ASFW.Network.Client.DataArgs(Packet_ActionMessage);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerEXP] = new ASFW.Network.Client.DataArgs(Packet_PlayerExp);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SBlood] = new ASFW.Network.Client.DataArgs(Packet_Blood);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateAnimation] = new ASFW.Network.Client.DataArgs(Packet_UpdateAnimation);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAnimation] = new ASFW.Network.Client.DataArgs(Packet_Animation);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNpcVitals] = new ASFW.Network.Client.DataArgs(Packet_NPCVitals);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCooldown] = new ASFW.Network.Client.DataArgs(Packet_Cooldown);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClearSkillBuffer] = new ASFW.Network.Client.DataArgs(Packet_ClearSkillBuffer);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSayMsg] = new ASFW.Network.Client.DataArgs(Packet_SayMessage);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SOpenShop] = new ASFW.Network.Client.DataArgs(C_Shops.Packet_OpenShop);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SResetShopAction] = new ASFW.Network.Client.DataArgs(C_Shops.Packet_ResetShopAction);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SStunned] = new ASFW.Network.Client.DataArgs(Packet_Stunned);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapWornEq] = new ASFW.Network.Client.DataArgs(Packet_MapWornEquipment);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SBank] = new ASFW.Network.Client.DataArgs(C_Banks.Packet_OpenBank);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLeftGame] = new ASFW.Network.Client.DataArgs(Packet_LeftGame);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAlertMsg] = new Asfw.Network.Client.DataArgs(Packet_AlertMSG);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SKeyPair] = new Asfw.Network.Client.DataArgs(Packet_KeyPair);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLoadCharOk] = new Asfw.Network.Client.DataArgs(Packet_LoadCharOk);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLoginOk] = new Asfw.Network.Client.DataArgs(Packet_LoginOk);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNewCharClasses] = new Asfw.Network.Client.DataArgs(Packet_NewCharClasses);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClassesData] = new Asfw.Network.Client.DataArgs(Packet_ClassesData);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SInGame] = new Asfw.Network.Client.DataArgs(Packet_InGame);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerInv] = new Asfw.Network.Client.DataArgs(Packet_PlayerInv);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerInvUpdate] = new Asfw.Network.Client.DataArgs(Packet_PlayerInvUpdate);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerWornEq] = new Asfw.Network.Client.DataArgs(Packet_PlayerWornEquipment);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerHp] = new Asfw.Network.Client.DataArgs(Packet_PlayerHP);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerMp] = new Asfw.Network.Client.DataArgs(Packet_PlayerMP);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerSp] = new Asfw.Network.Client.DataArgs(Packet_PlayerSP);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerStats] = new Asfw.Network.Client.DataArgs(Packet_PlayerStats);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerData] = new Asfw.Network.Client.DataArgs(Packet_PlayerData);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerMove] = new Asfw.Network.Client.DataArgs(Packet_PlayerMove);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcMove] = new Asfw.Network.Client.DataArgs(Packet_NpcMove);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerDir] = new Asfw.Network.Client.DataArgs(Packet_PlayerDir);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcDir] = new Asfw.Network.Client.DataArgs(Packet_NpcDir);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerXY] = new Asfw.Network.Client.DataArgs(Packet_PlayerXY);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAttack] = new Asfw.Network.Client.DataArgs(Packet_Attack);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcAttack] = new Asfw.Network.Client.DataArgs(Packet_NpcAttack);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCheckForMap] = new Asfw.Network.Client.DataArgs(C_Maps.Packet_CheckMap);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapData] = new Asfw.Network.Client.DataArgs(C_Maps.Packet_MapData);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNpcData] = new Asfw.Network.Client.DataArgs(C_Maps.Packet_MapNPCData);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNpcUpdate] = new Asfw.Network.Client.DataArgs(C_Maps.Packet_MapNPCUpdate);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapDone] = new Asfw.Network.Client.DataArgs(C_Maps.Packet_MapDone);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SGlobalMsg] = new Asfw.Network.Client.DataArgs(Packet_GlobalMessage);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerMsg] = new Asfw.Network.Client.DataArgs(Packet_PlayerMessage);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapMsg] = new Asfw.Network.Client.DataArgs(Packet_MapMessage);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpawnItem] = new Asfw.Network.Client.DataArgs(Packet_SpawnItem);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateItem] = new Asfw.Network.Client.DataArgs(C_Items.Packet_UpdateItem);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpawnNpc] = new Asfw.Network.Client.DataArgs(Packet_SpawnNPC);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNpcDead] = new Asfw.Network.Client.DataArgs(Packet_NpcDead);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateNpc] = new Asfw.Network.Client.DataArgs(Packet_UpdateNPC);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapKey] = new Asfw.Network.Client.DataArgs(Packet_MapKey);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEditMap] = new Asfw.Network.Client.DataArgs(C_Maps.Packet_EditMap);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateShop] = new Asfw.Network.Client.DataArgs(C_Shops.Packet_UpdateShop);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateSkill] = new Asfw.Network.Client.DataArgs(Packet_UpdateSkill);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSkills] = new Asfw.Network.Client.DataArgs(Packet_Skills);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLeftMap] = new Asfw.Network.Client.DataArgs(Packet_LeftMap);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SResourceCache] = new Asfw.Network.Client.DataArgs(C_Resources.Packet_ResourceCache);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateResource] = new Asfw.Network.Client.DataArgs(C_Resources.Packet_UpdateResource);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSendPing] = new Asfw.Network.Client.DataArgs(Packet_Ping);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SDoorAnimation] = new Asfw.Network.Client.DataArgs(Packet_DoorAnimation);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SActionMsg] = new Asfw.Network.Client.DataArgs(Packet_ActionMessage);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerEXP] = new Asfw.Network.Client.DataArgs(Packet_PlayerExp);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SBlood] = new Asfw.Network.Client.DataArgs(Packet_Blood);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateAnimation] = new Asfw.Network.Client.DataArgs(Packet_UpdateAnimation);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAnimation] = new Asfw.Network.Client.DataArgs(Packet_Animation);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNpcVitals] = new Asfw.Network.Client.DataArgs(Packet_NPCVitals);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCooldown] = new Asfw.Network.Client.DataArgs(Packet_Cooldown);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClearSkillBuffer] = new Asfw.Network.Client.DataArgs(Packet_ClearSkillBuffer);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSayMsg] = new Asfw.Network.Client.DataArgs(Packet_SayMessage);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SOpenShop] = new Asfw.Network.Client.DataArgs(C_Shops.Packet_OpenShop);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SResetShopAction] = new Asfw.Network.Client.DataArgs(C_Shops.Packet_ResetShopAction);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SStunned] = new Asfw.Network.Client.DataArgs(Packet_Stunned);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapWornEq] = new Asfw.Network.Client.DataArgs(Packet_MapWornEquipment);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SBank] = new Asfw.Network.Client.DataArgs(C_Banks.Packet_OpenBank);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SLeftGame] = new Asfw.Network.Client.DataArgs(Packet_LeftGame);
 			
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClearTradeTimer] = new ASFW.Network.Client.DataArgs(C_Trade.Packet_ClearTradeTimer);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STradeInvite] = new ASFW.Network.Client.DataArgs(C_Trade.Packet_TradeInvite);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STrade] = new ASFW.Network.Client.DataArgs(C_Trade.Packet_Trade);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCloseTrade] = new ASFW.Network.Client.DataArgs(C_Trade.Packet_CloseTrade);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STradeUpdate] = new ASFW.Network.Client.DataArgs(C_Trade.Packet_TradeUpdate);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STradeStatus] = new ASFW.Network.Client.DataArgs(C_Trade.Packet_TradeStatus);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClearTradeTimer] = new Asfw.Network.Client.DataArgs(C_Trade.Packet_ClearTradeTimer);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STradeInvite] = new Asfw.Network.Client.DataArgs(C_Trade.Packet_TradeInvite);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STrade] = new Asfw.Network.Client.DataArgs(C_Trade.Packet_Trade);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCloseTrade] = new Asfw.Network.Client.DataArgs(C_Trade.Packet_CloseTrade);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STradeUpdate] = new Asfw.Network.Client.DataArgs(C_Trade.Packet_TradeUpdate);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STradeStatus] = new Asfw.Network.Client.DataArgs(C_Trade.Packet_TradeStatus);
 			
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SGameData] = new ASFW.Network.Client.DataArgs(Packet_GameData);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapReport] = new ASFW.Network.Client.DataArgs(Packet_Mapreport); //Mapreport
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STarget] = new ASFW.Network.Client.DataArgs(Packet_Target);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SGameData] = new Asfw.Network.Client.DataArgs(Packet_GameData);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapReport] = new Asfw.Network.Client.DataArgs(Packet_Mapreport); //Mapreport
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STarget] = new Asfw.Network.Client.DataArgs(Packet_Target);
 			
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAdmin] = new ASFW.Network.Client.DataArgs(Packet_Admin);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNames] = new ASFW.Network.Client.DataArgs(Packet_MapNames);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SAdmin] = new Asfw.Network.Client.DataArgs(Packet_Admin);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapNames] = new Asfw.Network.Client.DataArgs(Packet_MapNames);
 			
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCritical] = new ASFW.Network.Client.DataArgs(Packet_Critical);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNews] = new ASFW.Network.Client.DataArgs(Packet_News);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SrClick] = new ASFW.Network.Client.DataArgs(Packet_RClick);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STotalOnline] = new ASFW.Network.Client.DataArgs(Packet_TotalOnline);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SCritical] = new Asfw.Network.Client.DataArgs(Packet_Critical);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SNews] = new Asfw.Network.Client.DataArgs(Packet_News);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SrClick] = new Asfw.Network.Client.DataArgs(Packet_RClick);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STotalOnline] = new Asfw.Network.Client.DataArgs(Packet_TotalOnline);
 			
 			//quests
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateQuest] = new ASFW.Network.Client.DataArgs(C_Quest.Packet_UpdateQuest);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerQuest] = new ASFW.Network.Client.DataArgs(C_Quest.Packet_PlayerQuest);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerQuests] = new ASFW.Network.Client.DataArgs(C_Quest.Packet_PlayerQuests);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SQuestMessage] = new ASFW.Network.Client.DataArgs(C_Quest.Packet_QuestMessage);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateQuest] = new Asfw.Network.Client.DataArgs(C_Quest.Packet_UpdateQuest);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerQuest] = new Asfw.Network.Client.DataArgs(C_Quest.Packet_PlayerQuest);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayerQuests] = new Asfw.Network.Client.DataArgs(C_Quest.Packet_PlayerQuests);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SQuestMessage] = new Asfw.Network.Client.DataArgs(C_Quest.Packet_QuestMessage);
 			
 			//Housing
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SHouseConfigs] = new ASFW.Network.Client.DataArgs(C_Housing.Packet_HouseConfigurations);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SBuyHouse] = new ASFW.Network.Client.DataArgs(C_Housing.Packet_HouseOffer);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SVisit] = new ASFW.Network.Client.DataArgs(C_Housing.Packet_Visit);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SFurniture] = new ASFW.Network.Client.DataArgs(C_Housing.Packet_Furniture);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SHouseConfigs] = new Asfw.Network.Client.DataArgs(C_Housing.Packet_HouseConfigurations);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SBuyHouse] = new Asfw.Network.Client.DataArgs(C_Housing.Packet_HouseOffer);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SVisit] = new Asfw.Network.Client.DataArgs(C_Housing.Packet_Visit);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SFurniture] = new Asfw.Network.Client.DataArgs(C_Housing.Packet_Furniture);
 			
 			//hotbar
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SHotbar] = new ASFW.Network.Client.DataArgs(Packet_Hotbar);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SHotbar] = new Asfw.Network.Client.DataArgs(Packet_Hotbar);
 			
 			//Events
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpawnEvent] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_SpawnEvent);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventMove] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_EventMove);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventDir] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_EventDir);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventChat] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_EventChat);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventStart] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_EventStart);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventEnd] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_EventEnd);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayBGM] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_PlayBGM);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlaySound] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_PlaySound);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SFadeoutBGM] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_FadeOutBGM);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SStopSound] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_StopSound);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSwitchesAndVariables] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_SwitchesAndVariables);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapEventData] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_MapEventData);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SChatBubble] = new ASFW.Network.Client.DataArgs(Packet_ChatBubble);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpecialEffect] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_SpecialEffect);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpawnEvent] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_SpawnEvent);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventMove] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_EventMove);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventDir] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_EventDir);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventChat] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_EventChat);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventStart] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_EventStart);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEventEnd] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_EventEnd);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlayBGM] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_PlayBGM);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPlaySound] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_PlaySound);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SFadeoutBGM] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_FadeOutBGM);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SStopSound] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_StopSound);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSwitchesAndVariables] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_SwitchesAndVariables);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapEventData] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_MapEventData);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SChatBubble] = new Asfw.Network.Client.DataArgs(Packet_ChatBubble);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSpecialEffect] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_SpecialEffect);
 			//SPic
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SHoldPlayer] = new ASFW.Network.Client.DataArgs(C_EventSystem.Packet_HoldPlayer);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SHoldPlayer] = new Asfw.Network.Client.DataArgs(C_EventSystem.Packet_HoldPlayer);
 			
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateProjectile] = new ASFW.Network.Client.DataArgs(C_Projectiles.HandleUpdateProjectile);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapProjectile] = new ASFW.Network.Client.DataArgs(C_Projectiles.HandleMapProjectile);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateProjectile] = new Asfw.Network.Client.DataArgs(C_Projectiles.HandleUpdateProjectile);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SMapProjectile] = new Asfw.Network.Client.DataArgs(C_Projectiles.HandleMapProjectile);
 			
 			//craft
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateRecipe] = new ASFW.Network.Client.DataArgs(C_Crafting.Packet_UpdateRecipe);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSendPlayerRecipe] = new ASFW.Network.Client.DataArgs(C_Crafting.Packet_SendPlayerRecipe);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SOpenCraft] = new ASFW.Network.Client.DataArgs(C_Crafting.Packet_OpenCraft);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateCraft] = new ASFW.Network.Client.DataArgs(C_Crafting.Packet_UpdateCraft);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateRecipe] = new Asfw.Network.Client.DataArgs(C_Crafting.Packet_UpdateRecipe);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SSendPlayerRecipe] = new Asfw.Network.Client.DataArgs(C_Crafting.Packet_SendPlayerRecipe);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SOpenCraft] = new Asfw.Network.Client.DataArgs(C_Crafting.Packet_OpenCraft);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdateCraft] = new Asfw.Network.Client.DataArgs(C_Crafting.Packet_UpdateCraft);
 			
 			//emotes
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEmote] = new ASFW.Network.Client.DataArgs(Packet_Emote);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SEmote] = new Asfw.Network.Client.DataArgs(Packet_Emote);
 			
 			//party
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPartyInvite] = new ASFW.Network.Client.DataArgs(C_Parties.Packet_PartyInvite);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPartyUpdate] = new ASFW.Network.Client.DataArgs(C_Parties.Packet_PartyUpdate);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPartyVitals] = new ASFW.Network.Client.DataArgs(C_Parties.Packet_PartyVitals);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPartyInvite] = new Asfw.Network.Client.DataArgs(C_Parties.Packet_PartyInvite);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPartyUpdate] = new Asfw.Network.Client.DataArgs(C_Parties.Packet_PartyUpdate);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPartyVitals] = new Asfw.Network.Client.DataArgs(C_Parties.Packet_PartyVitals);
 			
 			//pets
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdatePet] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_UpdatePet);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdatePlayerPet] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_UpdatePlayerPet);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetMove] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetMove);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetDir] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetDir);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetVital] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetVital);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClearPetSkillBuffer] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_ClearPetSkillBuffer);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetAttack] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetAttack);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetXY] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetXY);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetExp] = new ASFW.Network.Client.DataArgs(C_Pets.Packet_PetExperience);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdatePet] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_UpdatePet);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SUpdatePlayerPet] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_UpdatePlayerPet);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetMove] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_PetMove);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetDir] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_PetDir);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetVital] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_PetVital);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClearPetSkillBuffer] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_ClearPetSkillBuffer);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetAttack] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_PetAttack);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetXY] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_PetXY);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SPetExp] = new Asfw.Network.Client.DataArgs(C_Pets.Packet_PetExperience);
 			
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClock] = new ASFW.Network.Client.DataArgs(C_Time.Packet_Clock);
-			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STime] = new ASFW.Network.Client.DataArgs(C_Time.Packet_Time);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.SClock] = new Asfw.Network.Client.DataArgs(C_Time.Packet_Clock);
+			C_NetworkConfig.Socket.PacketId[(byte)Packets.ServerPackets.STime] = new Asfw.Network.Client.DataArgs(C_Time.Packet_Time);
         }
 		
 		private static void Packet_AlertMSG(ref byte[] data)

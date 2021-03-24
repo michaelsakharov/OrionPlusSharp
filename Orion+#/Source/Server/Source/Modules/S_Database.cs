@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 using static Engine.modTypes;
 using static Engine.Types;
 using static Engine.S_Events;
@@ -367,7 +367,7 @@ namespace Engine
             for (x = 1; x <= Constants.MAX_MAP_NPCS; x++)
                 writer.WriteInt32(Map[mapNum].Npc[x]);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void SaveMapEvent(int mapNum)
@@ -715,7 +715,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "maps", string.Format("map{0}.dat", mapNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
             Map[mapNum].Name = reader.ReadString();
@@ -883,7 +883,7 @@ namespace Engine
             writer.WriteInt32(Types.Npc[NpcNum].Level);
             writer.WriteInt32(Types.Npc[NpcNum].Damage);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadNpcs()
@@ -905,7 +905,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "npcs", string.Format("npc{0}.dat", NpcNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
             Types.Npc[NpcNum].Name = reader.ReadString();
@@ -1046,7 +1046,7 @@ namespace Engine
                 writer.WriteInt32(Types.Shop[shopNum].TradeItem[i].CostValue);
             }
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadShops()
@@ -1069,7 +1069,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "shops", string.Format("shop{0}.dat", ShopNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
             Types.Shop[ShopNum].Name = reader.ReadString();
@@ -1168,7 +1168,7 @@ namespace Engine
             writer.WriteByte(Types.Skill[skillnum].KnockBack);
             writer.WriteByte(Types.Skill[skillnum].KnockBackTiles);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadSkills()
@@ -1190,7 +1190,7 @@ namespace Engine
 
             filename = Path.Combine(Application.StartupPath, "data", "skills", string.Format("skills{0}.dat", SkillNum));
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
             Types.Skill[SkillNum].Name = reader.ReadString();
@@ -1262,7 +1262,7 @@ namespace Engine
             if (!AccountExist(Name))
                 return false;
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(Application.StartupPath + @"\Data\Accounts\" + Microsoft.VisualBasic.Strings.Trim(Name) + @"\Data.bin", ref reader);
+            ByteFile.Load(Application.StartupPath + @"\Data\Accounts\" + Microsoft.VisualBasic.Strings.Trim(Name) + @"\Data.bin", ref reader);
             string formatVersion = reader.ReadString();
             string pass = reader.ReadString().Trim();
             if (pass != Name.Trim())
@@ -1319,7 +1319,7 @@ namespace Engine
                 writer.WriteByte(Player[index].Access);
 
                 // This can thow an IOException because the file were saving to could already be in use due to the server being threaded.
-                BinaryFile.Save(filename, ref writer);
+                ByteFile.Save(filename, ref writer);
 
                 for (var i = 1; i <= S_Constants.MAX_CHARS; i++)
                     SaveCharacter(index, i);
@@ -1339,7 +1339,7 @@ namespace Engine
             string filename = Application.StartupPath + @"\Data\Accounts\" + Name.Trim() + @"\Data.bin";
             ClearPlayer(index);
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
             Player[index].Login = reader.ReadString();
@@ -1387,7 +1387,7 @@ namespace Engine
             }
 
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
 
@@ -1436,7 +1436,7 @@ namespace Engine
                     writer.WriteInt32(Bank[index].ItemRand[i].Stat[x]);
             }
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void ClearBank(int index)
@@ -1615,7 +1615,7 @@ namespace Engine
             ClearCharacter(index, CharNum);
 
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(filename, ref reader);
+            ByteFile.Load(filename, ref reader);
 
             string formatVersion = reader.ReadString();
             Player[index].Character[CharNum].Classes = reader.ReadByte();
@@ -1895,7 +1895,7 @@ namespace Engine
             writer.WriteInt32(Player[index].Character[CharNum].Pet.Points);
             writer.WriteInt32(Player[index].Character[CharNum].Pet.Exp);
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static bool CharExist(int index, int CharNum)

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.IO;
-using ASFW;
-using ASFW.IO.FileIO;
+using Asfw;
+using Asfw.IO;
 
 namespace Engine
 {
@@ -150,7 +150,7 @@ namespace Engine
                 writer.WriteInt32(Quest[QuestNum].Task[I].TaskType);
             }
 
-            BinaryFile.Save(filename, ref writer);
+            ByteFile.Save(filename, ref writer);
         }
 
         public static void LoadQuests()
@@ -174,7 +174,7 @@ namespace Engine
             FileName = Path.Combine(Application.StartupPath, "data", "quests", string.Format("quest{0}.dat", QuestNum));
 
             ByteStream reader = new ByteStream();
-            BinaryFile.Load(FileName, ref reader);
+            ByteFile.Load(FileName, ref reader);
 
             Quest[QuestNum].Name = reader.ReadString();
             Quest[QuestNum].QuestLog = reader.ReadString();

@@ -56,3 +56,32 @@ C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Build\Editors\Lupus Edi
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Lupus Editor.exe
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Lupus Editor.pdb
 C:\Users\Michael\Documents\GitHub\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csprojAssemblyReference.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Editors\Data\AutoMapper.xml
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Editors\Lupus Editor.exe.config
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Editors\Lupus Editor.exe
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Editors\Lupus Editor.pdb
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Build\Editors\Editors.xml
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csprojAssemblyReference.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.Properties.Resources.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmAutoMapper.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmAnimation.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmClasses.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmMapEditor.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmEvents.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmHouse.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmItem.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmNPC.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmPet.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmProjectile.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmQuest.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmRecipe.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmResource.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmShop.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.frmSkill.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmLogin.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Engine.FrmVisualWarp.resources
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csproj.GenerateResource.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csproj.CoreCompileInputs.cache
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Editors.csproj.CopyComplete
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Lupus Editor.exe
+C:\Users\Spice\Desktop\Dlang Morph\Bindings\OrionPlusSharp\Orion+#\Source\Editors\obj\Debug\Lupus Editor.pdb
