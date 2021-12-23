@@ -1,10 +1,7 @@
 Lupus Game Engine
 =================
 
-Lupus Engine (Previously known as Orion+#) started as a project to convert Orion+ to c# just to see how fast I could do it.
-I succeeded in about 4 days though it was quite unstable. After a lot of work the engine is starting to become stable and useable!
-I Have fixed many bugs while also intoducing many new features and improvements!
-
+Lupus Engine (Previously known as Orion+#)
 
 Current Features: 
 Event System - 
